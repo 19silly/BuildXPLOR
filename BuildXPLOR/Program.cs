@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +24,7 @@ namespace BuildXPLOR
 
             if (args.Length == 1)
             {
-                args = new String[] { args[0], "." };
+                args = new String[] { args[0], Path.GetFileNameWithoutExtension(args[0]) };
             }
 
             ProcessManifest(args[0], args[1]);
@@ -41,38 +42,45 @@ namespace BuildXPLOR
 
                 foreach (var file in manifest.FileList)
                 {
-                    if (Path.GetExtension(file) == ".pak")
+                    try
                     {
-                        if (file == "Data/Scripts.pak")
+                        if (Path.GetExtension(file) == ".pak")
                         {
-                            Console.WriteLine("Downloading PAK: {0}", file);
-
-                            webClient.DownloadFile(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file), "scripts.pak");
-                            
-                            Process process = new Process();
-                            ProcessStartInfo startInfo = new ProcessStartInfo();
-                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                            startInfo.FileName = "pakdecrypt.exe";
-                            startInfo.Arguments = "scripts.pak";
-                            process.StartInfo = startInfo;
-                            process.Start();
-                            process.WaitForExit();
-                            using (var pakStream = File.OpenRead("scripts.pak.zip"))
+                            if (file == "Data/Scripts.pak")
                             {
-                                ExtractPAK(pakStream, outDir);
-                            }
-                            File.Delete("scripts.pak");
-                            File.Delete("scripts.pak.zip");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Downloading PAK: {0}", file);
+                                Console.WriteLine("Downloading PAK: {0}", file);
 
-                            using (var pakStream = webClient.OpenRead(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file)))
+                                webClient.DownloadFile(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file), "scripts.pak");
+
+                                Process process = new Process();
+                                ProcessStartInfo startInfo = new ProcessStartInfo();
+                                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                                startInfo.FileName = String.Format("{0}/{1}", Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase), "pakdecrypt.exe");
+                                startInfo.Arguments = "scripts.pak";
+                                process.StartInfo = startInfo;
+                                process.Start();
+                                process.WaitForExit();
+                                using (var pakStream = File.OpenRead("scripts.pak.zip"))
+                                {
+                                    ExtractPAK(pakStream, outDir);
+                                }
+                                File.Delete("scripts.pak");
+                                File.Delete("scripts.pak.zip");
+                            }
+                            else
                             {
-                                ExtractPAK(pakStream, outDir);
+                                Console.WriteLine("Downloading PAK: {0}", file);
+
+                                using (var pakStream = webClient.OpenRead(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file)))
+                                {
+                                    ExtractPAK(pakStream, outDir);
+                                }
                             }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Extracting PAK: {0}", file);
                     }
                 }
             }
