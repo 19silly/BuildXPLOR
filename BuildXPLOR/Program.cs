@@ -21,6 +21,11 @@ namespace BuildXPLOR
                 args = new String[] { "299764.json", @"C:\Users\peter.dolkens\SkyDrive\Workspaces\BuildXPLOR\src" };
             }
 
+            if (args.Length == 1)
+            {
+                args = new String[] { args[0], "." };
+            }
+
             ProcessManifest(args[0], args[1]);
         }
 
