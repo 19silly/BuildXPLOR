@@ -1,0 +1,32 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="3" Class="Debug:DisplayMessage" pos="100,-530,0" flags="1">
+   <Inputs entityId="0" message="Do you wish to go streetside? (Y/N)" DisplayTime="3" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="4" Class="Debug:InputKey" pos="450,-70,0" flags="0">
+   <Inputs entityId="0" Key="Y" NonDevMode="0"/>
+  </Node>
+  <Node Id="5" Class="Actor:LocalPlayer" pos="-200,-440,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="7" Class="Debug:InputKey" pos="450,50,0" flags="0">
+   <Inputs entityId="0" Key="N" NonDevMode="0"/>
+  </Node>
+  <Node Id="8" Class="Mission:LoadNextLevel" pos="809.13531,-20.588684,0" flags="0">
+   <Inputs NextLevel="planet_uee_stanton_arccorp_area18"/>
+  </Node>
+  <Node Id="11" Class="entity:PU_Hangar2PlanetsideSwitch" pos="-220,-20,0" flags="0">
+   <Inputs entityId="0" Hide="0" UnHide="0" Use="0" UserId="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="4" nodeOut="3" portIn="Enable" portOut="Show" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="3" portIn="Enable" portOut="Show" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="4" portIn="Trigger" portOut="Pressed" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="5" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="5" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="5" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="11" portIn="Show" portOut="Used" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

@@ -1,0 +1,27 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:RSI_IR1337_Weapon_Mount" pos="-210,-60,0" flags="0">
+   <Inputs entityId="0" Disable="0" DisableEngine="0" DisableMovement="0" Enable="0" EnableEngine="0" EnableMovement="0"/>
+  </Node>
+  <Node Id="8" Class="Time:Delay" pos="49,200,0" flags="0" InHideMask="7" OutHideMask="1">
+   <Inputs delay="5" resetOnInput="0"/>
+  </Node>
+  <Node Id="13" Class="Vehicle:VehicleAnimation" pos="430,180,0" flags="0">
+   <Inputs entityId="0" vAnim_Animation="Chair" vAnimstate_State="Retract" Trigger="0" Manual="0" Frame="0" Initialize="0" Force="1"/>
+  </Node>
+  <Node Id="16" Class="Animations:CheckAnimPlaying" pos="159,180,0" flags="0">
+   <Inputs entityId="0" CheckAlways="0" anim_Animation="chair_retract" Layer="5"/>
+  </Node>
+  <Node Id="18" Class="Vehicle:Lock" pos="640,180,0" flags="0">
+   <Inputs entityId="0" LockType="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="8" nodeOut="2" portIn="in" portOut="OnPassengerExit" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="8" portIn="Check" portOut="out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="13" portIn="Unlock" portOut="Done" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="13" portIn="Lock" portOut="Trigger" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="16" portIn="Start" portOut="NotPlaying" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

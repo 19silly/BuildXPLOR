@@ -1,0 +1,205 @@
+<!--
+   WARNING This Template is used to generate Weapon XMLS
+-->
+
+<!-- Laser Cannon Template -->
+<item name="AMRS_LaserCannon_S2" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+	<param name="adb" value="Items\Weapons\A_and_R\AMRS_LC_S2_Q3.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="Omnisky VI Laser Cannon" /> <!-- Replace me with Localization -->
+    <param name="itemManufactor" value="AMRS" />
+    <param name="itemSize" value="2" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+    <param name="display_name"	value="Omnisky VI Laser Cannon" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="0" />
+		<RoF 		value="0" />
+		<Range 		value="0" />
+		<Power 		value="0" />
+	</itemStats>
+    </params>
+	
+  <ammos>
+    <ammo name="AMRS_LaserCannon_S2_AMMO" extra="0" amount="0" />
+  </ammos>
+  
+  <firemodes>
+    <firemode name="Auto" type="Automatic">
+      <fire>
+        <param name="ammo_type" value="AMRS_LaserCannon_S2_AMMO" />
+        <param name="rate" value="160" />
+        <param name="clip_size" value="-1" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+        <param name="helper_fp" value="muzzle_out" />
+        <param name="helper_tp" value="muzzle_out" />
+		<param name="fireLocatorType" value = "circle" />
+      </fire>
+      <spread>
+        <param name="min" value="0" />
+        <param name="max" value="0" />
+        <param name="attack" value="0" />
+        <param name="decay" value="0" />
+      </spread>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.laser_cannon.firefx" helper="muzzle_out" />
+        <thirdperson effect="weapon_fx.laser_cannon.firefx" helper="muzzle_out"/>
+      </muzzleflash>
+      <pools>
+		<!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-70" />
+        <pool class="Heat" value="27" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="-600" rate="-110" />
+      <States>
+        <State state="Default">
+          <Value value="-10" ignorepool="1"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="800" rate="23" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+
+  </Pipes>
+
+  <damagelevels>
+	<level damageRatio="0.50">
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.electric_small"  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.debris.debris_fire_small"  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.electric_small"  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris4" mass="10" impulse="0,10,0" >
+			</Debris>
+			<Debris name="base_100_debris5" mass="10" impulse="0,10,0" >
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+  
+	<boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
+    </boneAttachments>
+	
+    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
+    <!-- default fallback -->
+    <thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga"/>
+		
+		
+	<tags tag="damage_50">
+		<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon_50.cga"/>
+	</tags>
+	<tags tag="damage_100">
+		<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon_100.cga"/>
+	</tags>
+	
+	<tags tag="HUD">
+		<thirdperson name="Objects\UI\Weapons\A_and_R\Omnisky_VI_Laser_Cannon\AR_omnisky_VI_laser_cannon_UI.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		<tags tag="damage_50">
+			<thirdperson name="Objects\UI\Weapons\A_and_R\Omnisky_VI_Laser_Cannon\AR_omnisky_VI_laser_cannon_UI.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects\UI\Weapons\A_and_R\Omnisky_VI_Laser_Cannon\AR_omnisky_VI_laser_cannon_UI.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+	</tags>	
+	
+	<tags tag="Hologram">
+	
+		<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+
+		<tags tag="ShipHologram">
+			<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		  
+			<tags tag="inactive">
+				<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="overCompareValid">
+				<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="overCompareInvalid">
+				<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+		</tags>
+		
+		<tags tag="ItemList">
+			<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+		</tags>	
+		
+		<tags tag="ItemPreviewA">
+		  <thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		</tags>
+		
+		<tags tag="ItemPreviewB">
+		  <thirdperson name="Objects/Spaceships/Weapons/A_and_R/AR_omnisky_VI_laser_cannon/AR_omnisky_VI_laser_cannon.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		</tags>	
+		
+	</tags>
+    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+    
+  </geometry>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+</item>

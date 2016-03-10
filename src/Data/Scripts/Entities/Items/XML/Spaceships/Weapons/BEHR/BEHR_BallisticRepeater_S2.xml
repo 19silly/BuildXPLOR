@@ -1,0 +1,299 @@
+<!--
+   WARNING This Template is used to generate Weapon XMLS
+-->
+
+<!-- Ballistic Repeater Template -->
+<item name="BEHR_BallisticRepeater_S2" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+	<param name="adb" value="Items\Weapons\BEHR\BEHR_BallisticRepeater_S2.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="Behring SW16BR2 40mm Sawbuck " /> <!-- Replace me with Localization -->
+    <param name="itemManufactor" value="BEHR" />
+    <param name="itemSize" value="2" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+    <param name="display_name"	value="Behring SW16BR2 40mm Sawbuck " />
+	<param name="weaponRequireAmmoBox" value="1" />
+	<param name="weaponDelayChangeAmmoBox" value="0.25" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="0" />
+		<RoF 		value="0" />
+		<Range 		value="0" />
+		<Power 		value="0" />
+	</itemStats>
+    </params>
+  
+  <firemodes>
+    <firemode name="Weapon" type="Burst">
+      <fire>
+        <param name="rate" value="400" />
+        <param name="clip_size" value="0" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+		<param name="muzzleFromFiringLocator" value="1" />
+		<param name="fireLocatorType" value = "LR" />
+      </fire>
+	  
+	  <barrels>
+		<barrel helper_muzzle_override="muzzle_out_01" fragmentId="recoil_01" />
+		<barrel helper_muzzle_override="muzzle_out_02" fragmentId="recoil_02" />
+		<barrel helper_muzzle_override="muzzle_out_03" fragmentId="recoil_03" />
+	  </barrels>
+	  
+	  <burst>
+		<param name="rate" value="60" />
+		<param name="nshots" value="3" />
+		<param name="noSound" value="0" />
+	  </burst>
+	  
+	  <spread>
+        <param name="min" value="0" />
+        <param name="max" value="1" />
+        <param name="attack" value="1" />
+        <param name="decay" value="0.75" />
+      </spread>
+	  
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.ballistic_gatling.firefx" helper="muzzle_out_01" />
+		<thirdperson effect="weapon_fx.ballistic_gatling.firefx" helper="muzzle_out_01" /> 
+      </muzzleflash>
+	  
+	  <reject>
+		<firstperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
+		<thirdperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
+	  </reject>
+	  
+      <pools>
+        <!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-1" />
+        <pool class="Heat" value="13" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+    
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="0" rate="0" />
+      <States>
+        <State state="Default">
+          <Value value="-3" ignorepool="0"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="600" rate="35" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+    
+  </Pipes>
+  
+  <heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="1" />
+		<param name="damageMax" value="3" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+  </heatOverflow>
+
+
+
+  <damagelevels>
+	<level damageRatio="0.50">
+		<EffectsList>
+			<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
+		</EffectsList>
+		<DebrisList>
+			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1"/>
+				</EffectsList>
+			</Debris>
+			<Debris name="base_50_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_base_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_50_debris1_PFX1"  />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_1_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_50_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+		</DebrisList> 
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_100_debris1_PFX1" />
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_100_debris1_PFX2" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_1_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_100_debris1_PFX1" />
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_100_debris1_PFX2" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_2_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_2_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_3_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_3_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<!-- Missing barrel_tip_1_100_PFX1/PFX2; not debris, don't know where to put it -->
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+  
+	<!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+    <boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out_01" bone="muzzle_out_01" />
+      <attachment target="thirdperson" name="muzzle_out_02" bone="muzzle_out_02" />
+      <attachment target="thirdperson" name="muzzle_out_03" bone="muzzle_out_03" />
+    </boneAttachments>
+	
+    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
+    <!-- default fallback -->
+    <thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga"/>
+
+<!-- 	<tags tag="damage_25">
+		<thirdperson name="%modelname_damage_25%"/>
+	</tags> -->
+	
+	<tags tag="damage_50">
+		<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2_50.cga"/>
+	</tags>
+	
+<!-- 	<tags tag="damage_75">
+		<thirdperson name="%modelname_damage_75%"/>
+	</tags> -->
+	
+	<tags tag="damage_100">
+		<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2_100.cga"/>
+	</tags>
+	
+	<tags tag="HUD">
+		<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		<tags tag="damage_50">
+			<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+	</tags>
+
+	<tags tag="Hologram">
+	
+		<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+
+		<tags tag="ShipHologram">
+			<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		  
+			<tags tag="inactive">
+				<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="overCompareValid">
+				<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="overCompareInvalid">
+				<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+		</tags>
+		
+		<tags tag="ItemList">
+			<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+		</tags>	
+		
+		<tags tag="ItemPreviewA">
+		  <thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		</tags>
+		
+		<tags tag="ItemPreviewB">
+		  <thirdperson name="Objects/Spaceships/Weapons/BEHR/BEHR_BallisticRepeater_S2/BEHR_BallisticRepeater_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		</tags>	
+		
+	</tags>
+
+  </geometry>
+  
+  <portParams>
+	<ports>
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="" display_name="Ammo Box #1">
+			<Types>
+				<Type type="AmmoBox" subtypes="40mm"/>
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+  
+  <defaultLoadout>
+    <Items>
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_40mm" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_40mm" />
+    </Items>
+  </defaultLoadout>
+  
+</item>

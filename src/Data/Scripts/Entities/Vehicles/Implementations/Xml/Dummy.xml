@@ -1,0 +1,69 @@
+<Vehicle name="Dummy" category="WeaponMount" displayname="Debug Vehicle" classname="Class 0" id="idVehicleClass">
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+	<Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+		<DamageMultipliers>
+			<DamageMultiplier damageType="bullet" multiplier="1"/>
+			<DamageMultiplier damageType="melee" multiplier="0"/>
+			<DamageMultiplier damageType="collision" multiplier="1"/>
+			<DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+		</DamageMultipliers>
+	</Damages>
+	<Parts>
+		<Part name="hull" class="Animated" mass="100" disablePhysics="0" scopeContext="Vehicle"  id="idMainPart">
+			<Animated filename="Objects/!test_assets/dummy_vehicle/Dummy.cga" filenameDestroyed="Objects/!test_assets/dummy_vehicle/Dummy.cga"/>
+			<Parts>
+				<Part name="item_helper" class="ItemPort">
+					<ItemPort  minsize="1" maxsize="9" flags="right" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+					<GeomTags>
+					  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+					  <TagsList>
+					  <Tags tag="over dragging">
+						<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+					  </Tags>
+					  <Tags tag="overCompareValid">
+						<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+					  </Tags>
+					  <Tags tag="overCompareInvalid">
+						<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+					  </Tags>
+					  </TagsList>
+					</GeomTags>
+					</ItemPort>
+				</Part>
+			</Parts>
+		</Part>
+	</Parts>
+	<Seats>
+		<Seat name="SeatDriver" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" updatePassengerTM ="0" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" visorType="targeting">
+			<!-- Begin actions for this seat-->
+			<SeatActions>
+				<!-- Weapons used / controlled by pilot of Confed Hornet -->
+				<SeatAction class="SharedWeapons">
+					<SharedWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="item_helper" 		priority="0" active="1" actorRecoil="0" defaultGroup="2" />
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+			</SeatActions>
+			<SeatAction class="SharedItems">
+					<SharedItems>
+						<Settings>
+							<Items>
+								<ItemPort part="item_helper" active="1" />
+
+							</Items>
+						</Settings>
+					</SharedItems>
+				</SeatAction>
+		</Seat>
+	</Seats>
+	<MovementParams>
+		<Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="100" maxBoostSpeed="125" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120"/>
+	</MovementParams>
+</Vehicle>

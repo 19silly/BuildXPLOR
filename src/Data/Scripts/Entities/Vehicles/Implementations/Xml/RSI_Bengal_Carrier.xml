@@ -1,0 +1,1111 @@
+<Vehicle name="RSI_Bengal_Carrier">
+ <Physics pushable="0" retainGravity="1">
+  <Buoyancy waterDensity="150" waterResistance="2500"/>
+  <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2"/>
+ </Physics>
+  <Damages collDamageThreshold="500">
+    <DamageMultipliers>
+      <DamageMultiplier damageType="melee" multiplier="0.0"/>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+      <DamageMultiplier damageType="collision" multiplier="1"/>
+      <DamageMultiplier damageType="explosion" multiplier="2" splash="0.5"/>
+    </DamageMultipliers>
+      <DamagesGroups>
+        <DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
+          <DamagesSubGroups>
+            <DamagesSubGroup delay="0.34999999" randomness="0.1">
+              <DamageBehaviors>
+                <DamageBehavior class="Explosion">
+                  <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+                </DamageBehavior>
+              </DamageBehaviors>
+            </DamagesSubGroup>
+            <DamagesSubGroup delay="0" randomness="0">
+              <DamageBehaviors>
+                <DamageBehavior class="HitPassenger">
+                  <HitPassenger damage="100" isDamagePercent="1"/>
+                </DamageBehavior>
+              </DamageBehaviors>
+            </DamagesSubGroup>
+            <DamagesSubGroup delay="3" randomness="0.25">
+              <DamageBehaviors>
+                <DamageBehavior class="Burn">
+                  <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
+                </DamageBehavior>
+              </DamageBehaviors>
+            </DamagesSubGroup>
+          </DamagesSubGroups>
+        </DamagesGroup>
+    </DamagesGroups>
+  </Damages>
+ <Components>
+  <Component name="Hull" damageMax="8000" major="1" position="-0.00060000003,0.3062,-0.1309" size="9.9404001,18.8384,9.1845999" useBoundsFromParts="0" id="idHull">
+   <DamageMultipliers>
+    <DamageMultiplier damageType="bullet" multiplier="0.0080000004"/>
+    <DamageMultiplier damageType="melee" multiplier="0"/>
+    <DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+    <DamageMultiplier damageType="collision" multiplier="0.079999998"/>
+    <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+   </DamageMultipliers>
+   <DamageBehaviors>
+    <DamageBehavior class="Group" damageRatioMin="1">
+     <Group name="Destroy"/>
+    </DamageBehavior>
+    <DamageBehavior class="Group" damageRatioMin="0.25">
+     <Group name="DestroyEngine"/>
+    </DamageBehavior>
+    <DamageBehavior class="Effect" damageRatioMin="0.25" damageRatioMax="0.75" ignoreVehicleDestruction="1">
+     <Effect effect="HullDamaged25"/>
+    </DamageBehavior>
+    <DamageBehavior class="Effect" damageRatioMin="0.75" damageRatioMax="1" ignoreVehicleDestruction="1">
+     <Effect effect="HullDamaged75"/>
+    </DamageBehavior>
+   </DamageBehaviors>
+  </Component>
+ </Components>
+ <Parts>
+  <Part name="hull" class="Animated" component="Hull" mass="0" disablePhysics="0" visibility="exterior">
+   <Parts>
+     <Part name="hull_front" class="AnimatedJoint" visibility="both" />
+     <Part name="interior_flight_deck" class ="Animated" mass="0" disablePhysics="0" visibility="interior">
+       <Animated filename="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_interior.cga" filenameDestroyed="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_interior.cga" />
+      </Part>
+     <Part name="rear_hangar_entrance_right_side" class="AnimatedJoint" visibility="both" />
+     <Part name="rear_hangar_entrance_left_side" class="AnimatedJoint" visibility="both" />
+     <!--
+     <Part name="interior_flight_deck_helper" class ="AnimatedJoint" mass="0" disablePhysics="0">
+       <AnimatedJoint filename="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_Interior/Bridge_Interior.cgf" filenameDestroyed="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_Interior/Bridge_Interior.cgf" />
+     </Part>
+     <Part name="carrier" class ="AnimatedJoint" mass="0" disablePhysics="0">
+       <AnimatedJoint filename="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_Interior/props/bridge_Props.cgf" filenameDestroyed="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_Interior/props/bridge_Props.cgf" />
+     </Part>
+     -->
+
+     <!-- Ship to Ship Gun Turret Hardpoints -->
+     
+     <Part name="STS_Turret_front_hangar_door_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_front_hangar_door_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_scramble_deck_front_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_scramble_deck_front_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_scramble_deck_back_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_scramble_deck_back_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_rear_top_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_rear_top_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_rear_superstructure_top_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_rear_superstructure_top_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_right_engine_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_left_engine_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_rear_bottom_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_rear_bottom_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_front_bottom_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_front_bottom_left_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_middle_bottom_right_helper" class ="AnimatedJoint"/>
+     <Part name="STS_Turret_middle_bottom_left_helper" class ="AnimatedJoint"/>
+
+
+     <!-- AntiAir Gun Hardpoints -->
+
+     <!-- Upper Bridge right AA Gun Hardpoints-->
+     <Part name="Turret_AA_upper_bridge_right_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_upper_bridge_right_2_helper" class ="AnimatedJoint"/>
+     <!-- Upper Bridge front AA Gun Hardpoints-->
+     <Part name="Turret_AA_upper_bridge_front_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_upper_bridge_front_2_helper" class ="AnimatedJoint"/>
+     <!-- Upper Bridge Left AA Gun Hardpoints-->
+     <Part name="Turret_AA_upper_bridge_left_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_upper_bridge_left_2_helper" class ="AnimatedJoint"/>
+     <!-- Scramble Deck right AA Gun Hardpoints-->
+     <Part name="Turret_AA_scramble_deck_right_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_scramble_deck_right_2_helper" class ="AnimatedJoint"/>
+     <!-- Scramble Deck left AA Gun Hardpoints-->
+     <Part name="Turret_AA_scramble_deck_left_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_scramble_deck_left_2_helper" class ="AnimatedJoint"/>
+     <!-- Upper Front Hull AA Gun Hardpoints-->
+     <Part name="Turret_AA_top_front_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_top_front_2_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_top_front_3_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_top_front_4_helper" class ="AnimatedJoint"/>
+     <!-- Lower Bridge Rear AA Gun Hardpoints-->
+     <Part name="Turret_AA_lower_bridge_rear_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_lower_bridge_rear_2_helper" class ="AnimatedJoint"/>
+     <!-- Bottom Hull Right AA Gun Hardpoints-->
+     <Part name="Turret_AA_bottom_right_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_bottom_right_2_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_bottom_right_3_helper" class ="AnimatedJoint"/>
+     <!-- Bottom Hull Front AA Gun Hardpoints-->
+     <Part name="Turret_AA_front_bottom_right_1" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_front_bottom_right_2" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_front_bottom_left_1" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_front_bottom_left_2" class ="AnimatedJoint"/>
+     <!-- Bottom Hull Rear AA Gun Hardpoints-->
+     <Part name="Turret_AA_rear_bottom_right" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_bottom_left" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_bottom_back_right" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_bottom_back_left" class ="AnimatedJoint"/>
+     <!-- Rear Hangar Door AA Gun Hardpoints-->
+     <Part name="Turret_AA_rear_hangar_right" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_hangar_left" class ="AnimatedJoint"/>
+     <!-- Bottom Hull Left AA Gun Hardpoints-->
+     <Part name="Turret_AA_bottom_left_1_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_bottom_left_2_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_bottom_left_3_helper" class ="AnimatedJoint"/>
+     <!-- Engine Nacel AA Gun Hardpoints-->
+     <Part name="Turret_AA_right_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_right_upper_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_left_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_left_upper_nacel_helper" class ="AnimatedJoint"/>
+     <!-- Rear Superstrcuture AA Gun Hardpoints-->
+     <Part name="Turret_AA_rear_superstrcuture_right_back" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_superstrcuture_right_front" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_superstrcuture_left_back" class ="AnimatedJoint"/>
+     <Part name="Turret_AA_rear_superstrcuture_left_front" class ="AnimatedJoint"/>
+
+     <!-- Phalanx Point Defense Turret Hardpoints -->
+     
+     <Part name="Phalanx_top_right_engine_nacel_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_top_left_engine_nacel_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_landingbay_top_right_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_landingbay_top_left_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_top_right_middle_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_top_left_middle_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_flightdeck_top_right_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_flightdeck_top_left_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_top_front_right_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_top_front_left_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_bottom_front_right_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_bottom_front_left_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_bottom_rear_right_helper" class ="AnimatedJoint" />
+     <Part name="Phalanx_bottom_rear_left_helper" class ="AnimatedJoint" />
+     
+     <!-- Missile Turret Hardpoints -->
+     
+     <Part name="Missile_Turret_flightdeck_top_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_flightdeck_top_left_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_top_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_top_left_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_top_front_back_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_top_front_back_left_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_scramble_deck_top_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_scramble_deck_top_left_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_top_middle_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_top_middle_left_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_right_engine_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_left_engine_nacel_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_rear_top_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_rear_top_left_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_bottom_right_helper" class ="AnimatedJoint"/>
+     <Part name="Missile_Turret_bottom_left_helper" class ="AnimatedJoint"/>
+
+     <!-- Thrusters -->
+
+     <!-- Lower Right Engine Nacel-->
+     <Part name="top_right_engine_nozzle" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="2000000">
+         <Exhausts>
+           <Exhaust helper ="big_engine_lower_top_right_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.main_engine_exhaust"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="bottom_right_engine_nozzle" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="2000000">
+         <Exhausts>
+           <Exhaust helper ="big_engine_lower_bottom_right_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.main_engine_exhaust"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="right_engine_nacel_small_engine_left" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="right_engine_nacel_small_engine_left_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="right_engine_nacel_small_engine_right" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="right_engine_nacel_small_engine_right_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <!-- Upper Right Engine Nacel-->
+     <Part name="upper_right_engine_nozzle" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="2000000">
+         <Exhausts>
+           <Exhaust helper ="big_engine_upper_right_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.main_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="upper_right_engine_nacel_small_top_nozzel" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="upper_right_engine_nacel_small_top_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="upper_right_engine_nacel_small_bottom_nozzel" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="upper_right_engine_nacel_small_bottom_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+
+     <!-- Lower Left Engine Nacel-->
+     <Part name="top_left_engine_nozzle" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="2000000">
+         <Exhausts>
+           <Exhaust helper ="left_nacel_top_big_engine_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.main_engine_exhaust"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="bottom_left_engine_nozzle" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="2000000">
+         <Exhausts>
+           <Exhaust helper ="left_nacel_bottom_big_engine_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.main_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="left_engine_nacel_small_engine_left" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="left_engine_nacel_small_engine_left_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="left_engine_nacel_small_engine_right" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="left_engine_nacel_small_engine_right_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     
+     <!-- Upper Left Engine Nacel-->
+     <Part name="upper_left_engine_nozzle" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="2000000">
+         <Exhausts>
+           <Exhaust helper ="big_engine_upper_left_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.main_engine_exhaust"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="upper_left_engine_nacel_small_top_nozzel" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="upper_left_engine_nacel_small_top_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name="upper_left_engine_nacel_small_bottom_nozzel" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="500000">
+         <Exhausts>
+           <Exhaust helper ="upper_left_engine_nacel_small_bottom_exhaust" scale="1">
+             <Run effect="spaceship_fx.BengalClass.small_engine_exhaust" />
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <!-- Maneuvering thrusters -->-->
+     <Part name ="rear_bottom_left_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X +Z lower rear left" maxThrust ="3000000" helper ="rear_bottom_left_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-60" max ="60" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="rear_top_left_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X -Z upper rear left" maxThrust ="3000000" helper ="rear_top_left_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-90" max ="90" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="rear_top_right_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X -Z upper rear right" maxThrust ="3000000" helper ="rear_top_right_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-90" max ="90" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="rear_bottom_right_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X +Z lower rear right" maxThrust ="3000000" helper ="rear_bottom_right_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-90" max ="90" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     
+     <Part name ="left_engine_nacel_top_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X -Z upper left rear" maxThrust ="3000000" helper ="left_engine_nacel_top_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name ="left_engine_nacel_bottom_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X +Z lower left rear" maxThrust ="3000000" helper ="left_engine_nacel_bottom_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name ="right_engine_nacel_top_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X -Z upper right rear" maxThrust ="3000000" helper ="right_engine_nacel_top_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name ="right_engine_nacel_bottom_thruster_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X +Z lower right rear" maxThrust ="3000000" helper ="right_engine_nacel_bottom_thruster_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="middle_top_right_thrusters_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X -Z upper right" maxThrust ="3000000" helper ="middle_top_right_thrusters_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="middle_bottom_right_thrusters_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X +Z lower right" maxThrust ="3000000" helper ="middle_bottom_right_thrusters_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="middle_top_left_thrusters_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X -Z upper left" maxThrust ="3000000" helper ="middle_top_left_thrusters_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="middle_bottom_left_thrusters_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X +Z lower left" maxThrust ="3000000" helper ="middle_bottom_left_thrusters_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="thruster_front_top_left_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X -Z upper front left" maxThrust ="3000000" helper ="thruster_front_top_left_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="thruster_front_bottom_left_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation +X +Z lower front left" maxThrust ="3000000" helper ="thruster_front_bottom_left_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="thruster_front_top_right_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X -Z upper front right" maxThrust ="3000000" helper ="thruster_front_top_right_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+     <Part name ="thruster_front_bottom_right_helper" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation -X +Z lower front right" maxThrust ="3000000" helper ="thruster_front_bottom_right_helper" filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_RCS.cga" animation ="RCS_nozzle_open">
+         <Pitch speed="80" accel="40" min ="-80" max ="80" />
+         <Exhausts>
+           <Exhaust helper ="carrier_rcs_exhaust_01" pitchJoint="rcs_rotating_base_01" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_02" pitchJoint="rcs_rotating_base_02" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+           <Exhaust helper ="carrier_rcs_exhaust_03" pitchJoint="rcs_rotating_base_03" scale ="2">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+
+
+
+     <!-- Escape Pods -->
+     
+     <!-- Right side middle rear escape pods -->
+     <Part name="hull_right_middle_greeble_escapepod_015" class ="AnimatedJoint">
+      <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_014" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_013" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_012" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_011" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_010" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_009" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_008" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_007" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_006" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_005" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_004" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_003" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_002" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_right_middle_greeble_escapepod_001" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     
+     <!-- Right side middle front escape pods -->
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_01" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_002" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_003" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_004" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_005" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_006" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_007" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_008" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_009" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_010" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_011" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_012" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_013" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_014" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_015" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_017" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <!-- Right side lower bridge rear escape pods -->
+     <Part name="bridge_right_lower_rear_lifeboat_bay001_escapepod_01" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_lower_rear_lifeboat_bay001_escapepod_02" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_lower_rear_lifeboat_bay001_escapepod_03" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_lower_rear_lifeboat_bay001_escapepod_04" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_lower_rear_lifeboat_bay001_escapepod_05" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <!-- Right side lower bridge front escape pods -->
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_017" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_018" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_019" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_020" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_021" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_right_escapepod_022" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <!-- Right side upper bridge rear escape pods -->
+     <Part name="bridge_right_middle_greeble_007_escapepod_01" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_middle_greeble_007_escapepod_002" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_middle_greeble_007_escapepod_003" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_middle_greeble_007_escapepod_004" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_middle_greeble_007_escapepod_005" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_middle_greeble_007_escapepod_006" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <!-- Right side upper bridge front escape pods -->
+     <Part name="bridge_right_middle_greeble_007_escapepod_007" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_right_middle_greeble_007_escapepod_008" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <!-- Escape Pods -->
+
+     <!-- Left side middle escape pods -->
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_000" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_001" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_002" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_003" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_004" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_005" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_006" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_007" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_008" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_009" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_010" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_011" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_012" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_013" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_014" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_015" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_016" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_017" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_018" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_019" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_020" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_021" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_022" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_023" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_024" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_025" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_026" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_027" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_028" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_029" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_left_middle_greeble_escapepod_030" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_050" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_051" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_052" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_053" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_054" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="hull_middle_lifeboat_bay_left_escapepod_055" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_016" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_015" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_014" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_013" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_012" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_011" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_010" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+     <Part name="bridge_left_middle_greeble_007_escapepod_009" class ="AnimatedJoint">
+       <AnimatedJoint filename ="Objects/Spaceships/RSI_Bengal_Carrier/Carrier_EscapePod.cgf"/>
+     </Part>
+   </Parts>
+   <Animated filename="Objects/Spaceships/RSI_Bengal_Carrier/Carrier.cga" filenameDestroyed="Objects/Spaceships/RSI_Bengal_Carrier/Carrier.cga" />
+  </Part>
+ </Parts>
+ <Helpers>
+  <Helper name="pilot_eye_pos" position="-0.2527,3.6213,1.1378" direction="0,1,-0.0049999999" part="hull"/>
+  </Helpers>
+ <Actions>
+  <Action class="Enter">
+   <Activations>
+    <Activation type="OnUsed" param1="component" param2="hull" distance="8"/>
+   </Activations>
+   <Enter>
+    <Seats>
+     <Seat value="driver"/>
+    </Seats>
+   </Enter>
+  </Action>
+ </Actions>
+ <Seats>
+  <Seat name="driver" part="" sitHelper="captains_chair" useBoundsForEntering="1" isDriver="1" isPassengerShielded="1" AimPart="" seatGroupIndex="1" agVehicleName="RSI_Bengal_Carrier" actionMap="spaceship" >
+    <Views>
+      <View class="FirstPerson" canRotate="1" rotationMin="-10,0,-20" rotationMax="10,0,20">
+        <SteerThirdPerson />
+        <FirstPerson offset="0,0,0" relativeToHorizon="0.5"/>
+        <ActionThirdPerson />
+      </View>
+      <View class="Orbit" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+        <Orbit heightOffset="1.5" speed="15" zoomMin =" 0.2"/>
+      </View>
+      <View class="Orbit" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="10,0,0">
+        <Orbit heightOffset="1.5" speed="15" zoomMin =" 0.2"/>
+      </View>
+    </Views>
+   <SeatActions>
+     <SeatAction class="Weapons">
+       <Weapons isSecondary="0" disablesShootToCrosshair ="1">
+         <Selection>
+           <Set id ="1" name ="Phalanx" active="1" />
+           <Set id ="2" name ="AntiAir" />
+           <Set id ="3" name ="Missile" />
+           <Set id ="4" name ="ShipToShip" />
+           <Set id ="5" name ="MainGun" />
+         </Selection>
+         <Weapons>
+           <Weapon class="PhalanxTurret" part="Phalanx_top_right_engine_nacel_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_top_left_engine_nacel_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_landingbay_top_right_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_landingbay_top_left_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_top_right_middle_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_top_left_middle_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_top_left_middle_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_flightdeck_top_right_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_flightdeck_top_left_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_top_front_right_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_top_front_left_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_bottom_front_right_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_bottom_front_left_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_bottom_rear_right_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           <Weapon class="PhalanxTurret" part="Phalanx_bottom_rear_left_helper" actorRecoil ="0" selection="1"  control="auto"  />
+           
+           <Weapon class="STSTurret" part="STS_Turret_front_hangar_door_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_front_hangar_door_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_scramble_deck_front_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_scramble_deck_front_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_scramble_deck_back_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_scramble_deck_back_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_rear_top_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_rear_top_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_rear_superstructure_top_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_rear_superstructure_top_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_right_engine_nacel_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_left_engine_nacel_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_rear_bottom_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_rear_bottom_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_front_bottom_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_front_bottom_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_middle_bottom_right_helper" actorRecoil ="0" selection="4"  control="auto"  />
+           <Weapon class="STSTurret" part="STS_Turret_middle_bottom_left_helper" actorRecoil ="0" selection="4"  control="auto"  />
+
+           <Weapon class="AATurret" part="Turret_AA_upper_bridge_right_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_upper_bridge_right_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_upper_bridge_front_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_upper_bridge_front_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_upper_bridge_left_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_upper_bridge_left_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_scramble_deck_right_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_scramble_deck_right_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_scramble_deck_left_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_scramble_deck_left_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_top_front_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_top_front_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_top_front_3_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_top_front_4_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_lower_bridge_rear_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_lower_bridge_rear_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_bottom_right_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_bottom_right_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_bottom_right_3_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_front_bottom_right_1" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_front_bottom_right_2" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_front_bottom_left_1" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_front_bottom_left_2" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_bottom_right" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_bottom_left" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_bottom_back_right" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_bottom_back_left" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_hangar_right" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_hangar_left" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_bottom_left_1_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_bottom_left_2_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_bottom_left_3_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_right_nacel_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_right_upper_nacel_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_left_nacel_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_left_upper_nacel_helper" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_superstrcuture_right_back" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_superstrcuture_right_front" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_superstrcuture_left_back" actorRecoil ="0" selection="2"  control="auto"  />
+           <Weapon class="AATurret" part="Turret_AA_rear_superstrcuture_left_front" actorRecoil ="0" selection="2"  control="auto"  />
+
+           <Weapon class="MissileTurret" part="Missile_Turret_flightdeck_top_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_flightdeck_top_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_top_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_top_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_top_front_back_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_top_front_back_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_scramble_deck_top_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_scramble_deck_top_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_top_middle_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_top_middle_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_right_engine_nacel_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_left_engine_nacel_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_rear_top_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_rear_top_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_bottom_right_helper" actorRecoil ="0" selection="3"  control="auto"  />
+           <Weapon class="MissileTurret" part="Missile_Turret_bottom_left_helper" actorRecoil ="0" selection="3"  control="auto"  />
+
+         </Weapons>
+       </Weapons>
+     </SeatAction>
+   </SeatActions>
+   <Sounds inout="0" mood="1"/>
+  </Seat>
+ </Seats>
+  
+<MovementParams>
+  <Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="10" maxBoostSpeed="10" maxEngineThrust="150" maxRetroThrust="120" maxAngularVelocity="30,20,45" maxAngularAcceleration="10,10,15">
+  </Spaceship>
+</MovementParams>
+  
+ <Particles>
+ </Particles>
+
+  <AnimationsLegacy>
+    <Animation name="RearHangarDoors" part="hull" initState="open">
+      <States>
+        <State name="open" animation="back_doors_open" isLooped="0" speedDefault="0.5" speedMin="0.1" speedMax="1" nextState ="close"/>
+        <State name="close" animation="back_doors_open" isLooped="0" startTime ="1.0" speedDefault="-0.5" speedMin="-1" speedMax="-0.1" nextState ="open"/>
+      </States>
+    </Animation>
+    <Animation name="FrontFlightDeckDoors" part="hull" initState="close">
+      <States>
+        <State name="close" animation="front_doors_close" isLooped="0" speedDefault="0.5" speedMin="0.1" speedMax="1" nextState ="open"/>
+        <State name="open" animation="front_doors_close" isLooped="0" startTime ="1.0" speedDefault="-0.5" speedMin="-1" speedMax="-0.1" nextState ="close"/>
+      </States>
+    </Animation>
+    <Animation name="LeftHullDoors" part="hull" initState="open">
+      <States>
+        <State name="open" animation="left _hull_doors_open" isLooped="0" speedDefault="1" speedMin="0.1" speedMax="1" nextState ="close"/>
+        <State name="close" animation="left _hull_doors_open" isLooped="0" startTime ="1.0" speedDefault="-1" speedMin="-1" speedMax="-0.1" nextState ="open"/>
+      </States>
+    </Animation>
+    <Animation name="RightHullDoors" part="hull" initState="open">
+      <States>
+        <State name="open" animation="right _hull_doors_open" isLooped="0" speedDefault="1" speedMin="0.1" speedMax="1" nextState ="close"/>
+        <State name="close" animation="right _hull_doors_open" isLooped="0" startTime ="1.0" speedDefault="-1" speedMin="-1" speedMax="-0.1" nextState ="open"/>
+      </States>
+    </Animation>
+    <Animation name="bridge_radar_dishes" part="hull" reserveLayer="1">
+      <States>
+        <State name="rotating" animation="radar_dishes" isLooped="1" speedDefault="0.5" speedMin="0.1" speedMax="3"/>
+      </States>
+    </Animation>
+    <Animation name="deck_crane_01" part="interior_flight_deck" reserveLayer="0">
+      <States>
+        <State name="articulate" animation="interior_right _crane_1" isLooped="0" speedDefault="0.5" speedMin="0.1" speedMax="3"/>
+      </States>
+    </Animation>
+    <Animation name="RightUpperDeckElevator" part="interior_flight_deck" initState="lowering">
+      <States>
+        <State name="lowering" animation="interior_right_lower_deck_elevator.anm" isLooped="0" speedDefault="1" speedMin="0.1" speedMax="1" nextState ="raising"/>
+        <State name="raising" animation="interior_right_upper_deck_elevator" isLooped="0" startTime ="1.0" speedDefault="-1" speedMin="-1" speedMax="-0.1" nextState ="lowering"/>
+      </States>
+    </Animation>
+    <Animation name="RightLowerDeckElevator" part="interior_flight_deck" initState="raising">
+      <States>
+        <State name="raising" animation="interior_right_lower_deck_elevator" isLooped="0" speedDefault="1" speedMin="0.1" speedMax="1" nextState ="lowering"/>
+        <State name="lowering" animation="interior_right_lower_deck_elevator" isLooped="0" startTime ="1.0" speedDefault="-1" speedMin="-1" speedMax="-0.1" nextState ="raising"/>
+      </States>
+    </Animation>
+  </AnimationsLegacy>
+
+  
+  <Mannequin tag="bengal_carrier" controllerDef="Animations/Mannequin/ADB/spaceshipControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/ship_bengalCarrierAnims.adb" passengerADB="Animations/Mannequin/ADB/humanSpaceshipAnims.adb"/>
+</Vehicle>

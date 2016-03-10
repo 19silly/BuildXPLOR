@@ -1,0 +1,115 @@
+<interface name="interface_325a_HAPR_VP_RMI_S3_Q2">
+	<!-- 
+	This is the model and vfx template for Thrusters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" /><!-- ONLY use if Thruster has special one-off params. All other params should remain in item.xml. -->
+	</params>
+
+
+
+  <damagelevels>
+	<!-- Fill me with damagelevels -->
+  </damagelevels>
+
+
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga"/>
+		
+		<tags tag="Hologram">
+	
+		<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+
+		<tags tag="ShipHologram">
+			<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+		  
+			<tags tag="inactive">
+				<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+			</tags>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+			</tags>
+			<tags tag="overCompareValid">
+				<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+			</tags>
+			<tags tag="overCompareInvalid">
+				<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+			</tags>
+		</tags>
+		
+		<tags tag="ItemList">
+			<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+			</tags>
+		</tags>	
+		
+		<tags tag="ItemPreviewA">
+		  <thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+		</tags>
+		
+		<tags tag="ItemPreviewB">
+		  <thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HE_5_3/325A_HE_5_3.cga" material=""/>
+		</tags>	
+		
+	</tags>
+		
+	</geometry>
+  
+  <thrusters>
+	<thruster>
+			<exhausts>
+				<exhaust scale="1.0" animation="nozzle" helper="engine_exhaust" effectStopThreshold="0.1" >
+					<effect name="thruster_fx.Origin_300i.300i_HAPR_VP_RMI_S3_Q2" helper="engine_exhaust" enable ="0" tag = "run">
+					<!--effect name="!test_ParticleArchetypes.somegroup.particleEffect" archetype="1" helper="engine_exhaust"-->
+						<strength var="thrust" />
+	<!-- 					<size var="thrust" min="1" multiplier="1" /> -->
+	<!-- 					<speed var="thrust" min="0.25" multiplier="0.5" /> -->
+					</effect>
+					<effect name="thruster_fx.Origin_300i.300i_HAPR_VP_RMI_S3_Q2_Boost" helper="engine_boost" enable ="0" tag = "boost">
+						<strength var="boost" />
+						<size var="boost" min="0.1" multiplier="1.5" />
+						<speed var="boost" min="0.2" multiplier="5" />				
+					</effect>		
+					<effect name="thruster_fx.Origin_300i.300i_HAPR_VP_RMI_S3_Q2_Idle" helper="engine_idle" enable ="0" tag = "idle">a
+						<strength var="idle" />
+	<!-- 					<size var="idle" min="0.2" multiplier="1" /> -->
+						<speed var="idle" min="0.2" multiplier="1" />
+					</effect>				
+					<light name="Spaceship_Engine_Point_Light_Volume.300I_HAPR_VP_RMI_S3_Q2.Light" archetype="1" helper="engine_light" enable ="0" tag = "run">
+						<radius var="boost" min=".1" multiplier="4" />
+						<diffuse var="boost" min="0.5" multiplier="1" />
+						<specular var="boost" min="0.0" multiplier="0.0" />
+					</light>
+					<material enable ="1" slot="1" helper = "nozzle" matId= "3" tag = "run">
+						<param name="glow" var="thrust" min = "1" multiplier="30" />
+					</material>
+
+					<sound name="sounds/thrusters:hapr_he53:start_run" enable ="0" tag = "run" helper="engine_sound" loop="0">
+						<param name="rpm" var="thrust" lerpTime="0.9" />
+						<param name="load" var="load" min="0.2" lerpTime="0.9" />
+						<param name="boost" var="boost" lerpTime="2.0" />
+						<param name="in_out" var="in_out" />
+					</sound>
+					<sound name="sounds/thrusters:hapr_he53:stop" enable ="0" tag = "stop" loop="0">
+					<param name="rpm" var="thrust" lerpTime="0.9" />
+					<param name="boost" var="boost" lerpTime="2.0" />
+					<param name="in_out" var="in_out" />
+					</sound>
+					<sound name="sounds/afterburner:hapr_he53:run" enable ="0" tag = "boost" helper="engine_boost_sound">
+						<param name="boost" var="boost" lerpTime="0.9" />
+						<param name="in_out" var="in_out" />
+					</sound>
+				</exhaust>
+			</exhausts>
+	  </thruster>
+  </thrusters>
+
+</interface>

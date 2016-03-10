@@ -1,0 +1,628 @@
+<!--
+//////////////////////////////////////////////////////////////////////////
+///              VANDUUL SCYTHE MEDIUM FIGHTER
+//////////////////////////////////////////////////////////////////////////
+-->
+<Vehicle name="VNCL_Scythe" displayname="Vanduul Clan Scythe" category="StarFighter" requiredItemTags="" itemPortTags="Vanduul" crossSectionMultiplier="0.47, 0.28, 0.32">
+ <Physics pushable="0" dampingFreefall="0">
+  <Buoyancy waterDensity="150" waterResistance="2500"/>
+  <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+ </Physics>
+ <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <DamageMultipliers>
+   <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+   <DamageMultiplier damageType="melee" multiplier="0"/>
+   <DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+   <DamageMultiplier damageType="collision" multiplier="1"/>
+   <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+  </DamageMultipliers>
+  <DamagesGroups>
+   <DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
+    <DamagesSubGroups>
+     <DamagesSubGroup delay="0.34999999" randomness="0.1">
+      <DamageBehaviors>
+       <DamageBehavior class="Explosion">
+        <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+     <DamagesSubGroup delay="0" randomness="0">
+      <DamageBehaviors>
+       <DamageBehavior class="HitPassenger">
+        <HitPassenger damage="100" isDamagePercent="1"/>
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+     <DamagesSubGroup delay="3" randomness="0.25">
+      <DamageBehaviors>
+       <DamageBehavior class="Burn">
+        <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+    </DamagesSubGroups>
+   </DamagesGroup>
+   <DamagesGroup name="DestroyEngine">
+    <DamagesSubGroups>
+     <DamagesSubGroup delay="0" randomness="0">
+      <DamageBehaviors>
+       <DamageBehavior class="MovementNotification">
+        <MovementNotification isDamageAlwaysFull="0"/>
+       </DamageBehavior>
+       <DamageBehavior class="Effect">
+        <Effect effect="EngineDamaged" disableAfterExplosion="1"/>
+       </DamageBehavior>
+       <DamageBehavior class="CameraShake">
+        <CameraShake />
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+    </DamagesSubGroups>
+   </DamagesGroup>
+  </DamagesGroups>
+ </Damages>
+
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- BEGIN Vehicle Components //////////////////////////////////////////////////////////////////////////-->
+  <Components>
+    
+   <Component name="Hull" damageMax="800" major="1" position="-0.00060000003,0.3062,-0.1309" size="9.9404001,18.8384,9.1845999" useBoundsFromParts="0" id="idHull">
+      <DamageMultipliers>
+        <DamageMultiplier damageType="bullet" multiplier="0.0080000004"/>
+        <DamageMultiplier damageType="melee" multiplier="0"/>
+        <DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+        <DamageMultiplier damageType="collision" multiplier="0.079999998"/>
+        <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+      </DamageMultipliers>
+      <DamageBehaviors>
+        <DamageBehavior class="Group" damageRatioMin="1">
+          <Group name="Destroy"/>
+        </DamageBehavior>
+        <DamageBehavior class="Group" damageRatioMin="0.25">
+          <Group name="DestroyEngine"/>
+        </DamageBehavior>
+        <DamageBehavior class="Effect" damageRatioMin="0.25" damageRatioMax="0.75" ignoreVehicleDestruction="1">
+          <Effect effect="HullDamaged25"/>
+        </DamageBehavior>
+        <DamageBehavior class="Effect" damageRatioMin="0.75" damageRatioMax="1" ignoreVehicleDestruction="1">
+          <Effect effect="HullDamaged75"/>
+        </DamageBehavior>
+      </DamageBehaviors>
+    </Component>
+   
+    <Component name="frontCockpit" damageMax="0" major="0" position="-0.075400002,-0.89700001,-1.7276" size="1.5122,6.5321999,4.7491999" useBoundsFromParts="0">
+      <DamageBehaviors />
+    </Component>
+
+    <Component name="left_wing" damageMax="1" major="0" useBoundsFromParts="1">
+      <DamageBehaviors>
+        <DamageBehavior class="DetachPart" damageRatioMin="1.0">
+          <DetachPart part="Left_Wing" baseForce="-0.5,0,0" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" />
+        </DamageBehavior>
+      </DamageBehaviors>
+    </Component>
+
+    <Component name="right_wing" damageMax="1" major="0" useBoundsFromParts="1">
+      <DamageBehaviors>
+        <DamageBehavior class="DetachPart" damageRatioMin="1.0">
+          <DetachPart part="Right_Wing_Cannon" baseForce="0.5,0,0.2" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" />
+        </DamageBehavior>
+      </DamageBehaviors>
+    </Component>
+
+
+  </Components>
+<!-- END VEHICLE COMPONENTS ////////////////////////////////////////////////////////////////////////////-->
+
+	
+	<!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
+	<Cameras>		
+		<Camera type="missile" attachPoint="" cameraOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+		<Camera type="death" attachPoint="" cameraOffset="0,0,0" filename="Cameras/death.xml" />
+		<Camera type="gun" attachPoint="hardpoint_leftwing_gun" cameraOffset="0,-0.6,-4.0" cameraShakeScale="0.3" filename="Cameras/gun.xml" />
+		<Camera type="gun" attachPoint="hardpoint_rightwing_gun" cameraOffset="0.7,0,-0.7" cameraShakeScale="0.3" filename="Cameras/gun.xml" />
+		<Camera type="gun" attachPoint="hardpoint_weapon_nose_left" cameraOffset="-0.25,0,-0.5" filename="Cameras/gun.xml" />
+		<Camera type="gun" attachPoint="hardpoint_weapon_nose_right" cameraOffset="0.25,0,-0.5" filename="Cameras/gun.xml" />
+	</Cameras>
+	<!-- Cinematic Cameras End  //////////////////////////////////////////////////////////////////////////-->
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+
+  <Parts>
+   <Part name="hull" class="Animated" component="Hull" mass="15000" disablePhysics="0">
+     <Animated filename="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" filenameDestroyed="Objects/Spaceships/Ships/VNCL/Scythe//VNCL_Scythe_Dogfight_Damaged.CGA"/> <!--THIS IS OLD! Need new Scythe_Damaged.cga -->
+     <Parts>
+       <Part name="canopy" class="AnimatedJoint"/>
+       <Part name="Left_Wing" class="AnimatedJoint" component="left_wing" mass="500">
+         <Parts>
+           <Part name="Left_Wing_cannon" class="AnimatedJoint">
+            <AnimatedJoint />
+           </Part>
+          </Parts>
+         <AnimatedJoint/>
+       </Part>
+       <Part name="Right_Wing_Cannon" class="AnimatedJoint" component="right_wing" mass="500">
+         <AnimatedJoint/>
+       </Part> <!-- started here -->
+       <Part name="Back_Engine_Left_Thruster" class="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid left" requiredTags="">
+           	<Types>
+				<Type type="ManneuverThruster" subtypes=""/>
+			</Types>
+		   <Flaps speed ="40">
+             <Flap name="Back_Engine_Left_Rotary_Flap02" min ="-30" max="15"/>
+           </Flaps>
+
+         </ItemPort>
+       </Part>
+       <Part name="Back_Engine_Right_Thruster" class="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid right" requiredTags="">
+            <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>		
+		   <Flaps speed ="40">
+             <Flap name="Back_Engine_Right_Rotary_Flap02" min ="-30" max="15"/>
+           </Flaps>
+           <Exhausts>
+             <Exhaust helper ="Back_Engine_Right_Thruster">
+               <Run effect="spaceship_fx.Vanduul.main_thruster_exhaust" boostEffect="spaceship_fx.Vanduul.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+             </Exhaust>
+           </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="Back_Engine_Left_Rotary_Flap02" class="AnimatedJoint">
+         <AnimatedJoint />
+       </Part>
+       <Part name ="Back_Engine_Right_Rotary_Flap02" class="AnimatedJoint">
+         <AnimatedJoint />
+       </Part>
+       <Part name ="Front_Left_Rotary_Nozzel" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z front mid left" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>		
+           <Pitch speed="80" accel="40" min ="0" max ="90"/>
+             <Exhausts>
+              <Exhaust helper ="Front_Left_Rotary_Nozzel_helper"  scale ="0.5">
+                <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+           </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="Back_Left_Rotary_Nozzel" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid left" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>		
+           <Pitch speed="80" accel="40" min ="0" max ="90"/>
+           <Exhausts>
+             <Exhaust helper ="Back_Left_Rotary_Nozzel_helper"  scale ="0.5">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+           </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="Front_Right_Rotary_Nozzel" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z front mid right" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>			
+           <Pitch speed="80" accel="40" min ="0" max ="90"/>
+           <Exhausts>
+             <Exhaust helper ="Front_Right_Rotary_Nozzel_helper"  scale ="0.5">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+           </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="Back_Right_Rotary_Nozzel" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid right" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>		
+           <Pitch speed="80" accel="40" min ="0" max ="90"/>
+           <Exhausts>
+             <Exhaust helper ="Back_Right_Rotary_Nozzel_helper"  scale ="0.5">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+           </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="front_vert_right_exhaust_dummy" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z front mid right" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>			
+           <Exhausts>
+             <Exhaust helper ="front_vert_right_exhaust_dummy" scale ="0.6">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+            </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="back_vert_right_exhaust_dummy" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid right" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>			
+           <Exhausts>
+             <Exhaust helper ="back_vert_right_exhaust_dummy" scale ="0.6">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+             </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="front_vert_left_exhaust_dummy" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z front mid left" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>			
+           <Exhausts>
+             <Exhaust helper ="front_vert_left_exhaust_dummy" scale ="0.6">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+             </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="back_vert_left_exhaust_dummy" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid left" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>		
+           <Exhausts>
+             <Exhaust helper ="back_vert_left_exhaust_dummy" scale ="0.6">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+            </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="front_right_thruster_dummy" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z front mid right" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>		
+           <Exhausts>
+             <Exhaust helper ="front_right_thruster_dummy" scale ="0.8">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+            </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="front_left_thruster_dummy" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z front mid left" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types> 
+           <Exhausts>
+             <Exhaust helper ="front_left_thruster_dummy" scale ="0.8">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+             </Exhausts>
+           </ItemPort>
+       </Part>
+       <Part name ="Right_Side_Thruster" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z mid right" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>			
+           <Pitch speed="80" accel="40" min ="-40" max ="50"/>
+          <Exhausts>
+           <Exhaust helper ="Right_Side_Thruster_helper">
+             <Run effect="spaceship_fx.Vanduul.thruster"/>
+           </Exhaust>
+          </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name ="Left_Side_Thruster" class ="ItemPort">
+         <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z mid left" requiredTags="">
+		    <Types>
+			  <Type type="ManneuverThruster" subtypes=""/>
+			</Types>	
+           <Pitch speed="80" accel="40" min ="-50" max ="40"/>
+           <Exhausts>
+             <Exhaust helper ="Left_Side_Thruster_helper">
+               <Run effect="spaceship_fx.Vanduul.thruster"/>
+             </Exhaust>
+           </Exhausts>
+         </ItemPort>
+       </Part>
+       <Part name="Interior_Right_Pedal" class="AnimatedJoint" />
+       <Part name="Interior_Left_Pedal" class="AnimatedJoint" />
+     </Parts>
+   </Part> 
+ </Parts>
+<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Helpers>
+  <Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="hull"/>
+  <Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="hull"/>
+  </Helpers>
+<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Actions>
+  <Action class="Enter">
+   <Activations>
+    <Activation type="OnUsed" param1="part" param2="canopy" distance="8"/>
+   </Activations>
+   <Enter>
+    <Seats>
+     <Seat value="driver"/>
+    </Seats>
+   </Enter>
+  </Action>
+  <Action class="LandingGears">
+     <Activations>
+       <Activation type="OnGroundCollision"/>
+       </Activations>
+       <LandingGears landingDamages="500" altitudeToRetractGears="8" blockPartRotation="Canard"/>
+  </Action>
+ </Actions>
+<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+
+ <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+ <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Seats>
+
+  <!-- Pilot's seat ("driver" is the standard name that CryEngine uses for the this position) -->
+  <Seat name="driver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" agVehicleName="Vanduul_Scythe" actionMap="spaceship">
+    <!-- Begin views for this seat-->
+    <Views>   
+		<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50">
+			<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
+		</View>
+		<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+			<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+			<CameraEffects minSpeed="102" maxSpeed="280">
+				<FOV maxOffset="20.0f" />
+				<DOF stength="0.25f" offsetLag="0.8f" />
+				<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+			</CameraEffects>
+		</View>
+		<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="30,0,180">
+			<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+		</View>
+    </Views>
+    
+    <!-- Begin actions for this seat-->
+   <SeatActions>
+    <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init a the SeatActionMovement component that will start the engine on entry-->
+	<SeatAction class="Movement">
+		<Movement engine="1">
+		</Movement>
+	</SeatAction>
+				
+
+     <!-- Weapons used / controlled by pilot of Dralthi -->
+     <SeatAction class="Weapons">
+       <Weapons isSecondary="0" disablesShootToCrosshair ="1">
+        <Passenger>
+          <Action name="StartFire" action="pull_trigger" />
+          <Action name="StopFire" action="idle" />
+          <Action name="StartFireSecondary" signal="throttle_high_button" />
+          <Action name="Selected" signal="throttle_low_button"/>
+          <Action name="CycleWeapon" signal="joystick_thumb_dial"/>
+        </Passenger>
+        <Selection>
+          <Set id ="1" name ="Wing Guns" active="1" MovieClip=""/>
+          <Set id ="2" name ="Missiles" />
+         </Selection>
+        <Weapons>
+          <Weapon class="ScytheRightWingCannon" part="Right_Wing_cannon" actorRecoil ="0" selection="1" />
+          <Weapon class="ScytheLeftWingCannon" part="Left_Wing_cannon" actorRecoil ="0" selection="1" />
+          <Weapon class="ScytheMissileRacks" part="hull" actorRecoil ="0" isHot="0" isSecondary="1" selection="1" />
+         </Weapons>
+       </Weapons>
+     </SeatAction>
+     
+     <!-- SeatActionAnimateControlInputs
+     This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+     Format is
+      Parts               List of parts to animate
+        ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+          RotateX         Rotation around the X axis (pitch)
+          RotateY         Roll
+          RotateZ         Yaw
+            input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+                          registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its workign set of action variables )
+                          or in the Variables section of the vehicle xml
+            actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+            direction=    forwards or backwards
+            min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+            max=
+            sound=        The sound to play when animating the part
+            stopSound=    The sound to play when stopping
+          Animation
+            manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (dpending on what kind of input was specified). If thsi si not set the animtion will
+                          play normally according to it's state parameters in the vehicle animation system.
+     -->
+     <SeatAction class ="AnimateControlInputs">
+       <AnimateControlInputs isAvailableDocked="1">
+         <Parts>
+           <ControlPart part ="Interior_Right_Pedal">
+             <Rotate_X input = "roll" min="-15" max = "15"/>
+           </ControlPart>
+           <ControlPart part ="Interior_Left_Pedal">
+             <Rotate_X input = "roll" min="-15" max = "15"/>
+           </ControlPart>
+           <ControlPart part ="hull">
+             <Animation input = "power" animation ="deployWings" manual ="1"/>
+           </ControlPart>
+         </Parts>
+       </AnimateControlInputs>
+     </SeatAction>
+     <!--
+     <SeatAction class ="PassengerIK">
+       <PassengerIK waitShortlyBeforeStarting="1">
+       <Limbs>
+         <Limb tag ="LeftArmThrottle" on="0" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="throttle_IK_attach" blendTime="0"/>
+         <Limb tag ="RightArmJoystick" on="0" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="joystick_IK_attach" blendTime="0"/>
+         <Limb tag ="LeftLegPedal" on="0" limb ="LftLeg01" IKTargetSystemType ="vehicleHelper" helper ="left_pedal_attach" blendTime="0" />
+         <Limb tag ="RightLegPedal" on="0" limb ="RgtLeg01" IKTargetSystemType ="vehicleHelper" helper ="right_pedal_attach" blendTime="0" />
+       </Limbs>
+       </PassengerIK>
+     </SeatAction>
+     -->
+   </SeatActions>
+   <Sounds inout="0" mood="1"/>
+  </Seat>
+ </Seats>
+<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+
+<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+  <MovementParams>
+  <Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
+    <SoundParams>
+		<SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+		<SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+    </SoundParams>
+	<Animations engine="intake_fans"/>
+    <Contrails>
+      <Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" minSpeed ="25" />
+      <Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" minSpeed ="25" />
+    </Contrails>
+  </Spaceship>
+</MovementParams>
+<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+
+  <Particles>
+   <DamageEffects>
+   <DamageEffect name="VehicleDestroyed" helper="" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01s" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+   <DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+   <DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+  </DamageEffects>
+  <EnvironmentLayers>
+   <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+    <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
+    <Emitters />
+    <Wheels />
+   </EnvironmentLayer>
+  </EnvironmentLayers>
+ </Particles>
+  
+  <!-- Animations
+  Format is
+  
+    Animation
+      name =        Vehicle Animtion name that all systems use when refering to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+      part =        This is the name of the parent VehiclePartAnimated of this animation. As there can be multipel CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+      reserveLayer= if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+                    This is useful for animation sthat you need to guarntee whill play.
+                    
+    State
+      name=         Name of state
+      animation=    this is the CGA ANM file name (sans the CGA name. For instance if teh CGA is WCShipHornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+      speedDefault= Speed the animtion will play at. A negative numbers means the animtion will play backwards. Defaults to 1
+      speedMin=     defaults to -1
+      speedMax=     defaults to 1
+      isLooped=     Is animation looped
+      isLoopedEx=   Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+      isManual=     Is animation manually advanced
+      canRestart=   if true the animation can be iterrupted and started again before its finsihed playing. Defaults to false.
+      interrupt=    Can this animation be interupted by another one. Defaults to no.
+      startTime=    The time that the aniamtion will start at when played (in normlaized anaimtion time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+                    until the animtion is requested to be played.
+      play=         Number of thimes this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+      nextState=    The next state to go to once this state has been played. If not defined the nextState is always the current state
+      sound=        Name of sound to played
+      helper=       (optional) vehicle helper location of sound
+      
+      Materials
+        Material        Specifies the material which the material settign will be animated by the state's speed.
+          name=         name of material
+          setting=      material setting (e.g. opacity etc) to animate
+          min=          min value of setting 
+          max=          max value of setting
+          invertValue=  invert setting
+      
+  -->
+ <Animations>
+   <Animation name="canopyOpen" part="hull" initState="open">
+     <States>
+       <State name="open" animation="Fighter_canopy_open" isLooped="0" speedDefault="0.5" speedMin="0.1" speedMax="1" sound="sounds/spaceships:hornet_parts:cockpit_canopy_close(48_24_2)" nextState="close"/>
+       <State name="close" animation="Fighter_canopy_open" isLooped="0" startTime="1.0" speedDefault="-0.5" speedMin="-1" speedMax="-0.1" sound="sounds/spaceships:hornet_parts:cockpit_canopy_open(48_24_2)" nextState="open"/>
+     </States>
+   </Animation>
+   <Animation name="deployWings" part="hull" reserveLayer="1" >
+     <States>
+       <State name="down" animation="Fighter_wings_deploy" isLooped="0" speedDefault="0.25" speedMin="0.1" speedMax="1" nextState="up"/>
+       <State name="up" animation="Fighter_wings_deploy" isLooped="0" startTime ="1.0" speedDefault="-0.25" speedMin="-1" speedMax="-0.1" nextState="back"/>
+     </States>
+   </Animation>
+  <Animation name="leftWingCannonRecoil" part="hull">
+    <States>
+      <State name="fire" animation="Fighter_left_wing_cannon_recoil" isLooped="0" restart ="1" speedDefault="1" speedMin="1" speedMax="3"/>
+    </States>
+  </Animation>
+   <Animation name="rightWingCannonRecoil" part="hull">
+     <States>
+       <State name="fire" animation="Fighter_right_wing_cannon_recoil" isLooped="0" restart ="1" speedDefault="1" speedMin="1" speedMax="3"/>
+     </States>
+   </Animation>
+   <Animation name="LandingGears" part="hull">
+     <States>
+       <State name="opened" animation="Fighter_landing_skids_retract" isLooped="0" speedDefault="1" speedMin="0.1" speedMax="1"/>
+       <State name="closed" animation="Fighter_landing_skids_retract" isLooped="0" speedDefault="1" speedMin="0.1" speedMax="1"/>
+     </States>
+   </Animation>
+ </Animations>
+
+  <!-- Attachments
+  This is a list of any attachment objects on the vehicle. This is used primarlily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+  where you dont need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+  dont really need them to be their own VehiclePart
+  Format is 
+    name=     is the string name that other systems use when telling the vehicle to do soemthing with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+              animation or do something with an attachment.) 
+    helper=   is the helper where the attachment is located
+    filename= if specified then the system assumes the attachement is either a CHR,CDF or CGF (depending on the extension).
+    effect=   if specified then the system assumes the attachment is a particle effect, and this is teh name of the effect in the particle database. 
+    light=    if specified then the system assumes the attachment is a light, and the string is the light type as deifned in DefaultVehcileLights. Note this is just here form completeness. 
+              Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc.
+              
+  optional parameters are
+  
+    hide=     "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+  -->
+  <Attachments>
+  </Attachments>
+  <GeomTags>
+    <geom name="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <TagsList>
+      <Tags tag="HUD">
+        <geom name="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" material="materials/item_selection/material_hologram_neutral.mtl" />
+        <Tags tag="hostile">
+          <geom name="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" material="materials/item_selection/material_hologram_neutral.mtl" />
+        </Tags>
+        <Tags tag="neutral">
+          <geom name="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" material="materials/item_selection/material_hologram_neutral.mtl" />
+        </Tags>
+      </Tags>
+      <Tags tag="over dragging">
+        <geom name="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+      </Tags>
+      <Tags tag="ItemPreviewA">
+        <geom name="Objects/Spaceships/Ships/VNCL/Scythe/VNCL_Scythe_Dogfight.CGA" material="" id="idHoloGeometry_ItemPreviewA" />
+      </Tags>
+    </TagsList>
+  </GeomTags>
+  <!-- Variables
+  This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+  A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+  but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+  so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+  Format is 
+    name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
+    value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+   -->
+  <Variables>
+  </Variables>
+  
+  <Mannequin tag="scythe" controllerDef="Animations/Mannequin/ADB/spaceshipControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/ship_scytheAnims.adb" passengerADB="Animations/Mannequin/ADB/humanSpaceshipAnims.adb"/>
+</Vehicle>

@@ -1,0 +1,203 @@
+<item name="Freelancer_Stock_Missile_Rack" class="VehicleMissileRack" invisible="0" category="VehicleWeapon" uniqueId="2" priority="30" weaponParams="1" >
+  <params>
+    <param name="giveable" value="0" />
+    <param name="selectable" value="0" />
+    <param name="pickable" value="0" />
+    <param name="mountable" value="1" />
+    <param name="usable" value="0" />
+    <param name="arms" value="0" />
+    <param name="itemType" value="WeaponMissile" />
+    <param name="itemSubType" value="MissileRack" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="MISC" />
+    <param name="itemSize" value="3" />
+	<param name="itemClass" value="3" />
+    <param name="display_name"	value="Freelancer Stock Missile Rack" />
+	<param name="inefficiency" value="0.3" />
+  </params>
+
+    <Pipes>
+		<Pipe class="Power" prioType="manageable" prioGroup="weapon">
+			<StateLevels>
+				<Warning  value = "0.75" />
+				<Critical value = "0.5" />
+				<Fail     value = "0.3" />
+			</StateLevels>
+		
+			<States>
+				<State state="Active"><Value value="-10" /></State>
+			</States>
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="100" rate="6" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Active"><Value value="6" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+
+	<geometry>
+		<!-- As this vehicle weapon is remote to the player firing, no first person geometry -->
+		<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga"/>
+		<tags tag="left">
+			<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+		</tags> 
+		<tags tag="right">
+			<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_right.cga" material=""/>
+		</tags> 
+
+	
+		<tags tag="Hologram">
+		
+			<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+
+			<tags tag="ShipHologram">
+				<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+			  
+				<tags tag="inactive">
+					<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+				</tags>
+				<tags tag="over dragging">
+					<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+				</tags>
+				<tags tag="overCompareValid">
+					<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+				</tags>
+				<tags tag="overCompareInvalid">
+					<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+				</tags>
+			</tags>
+			
+			<tags tag="ItemList">
+				<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+				<tags tag="over dragging">
+					<thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+				</tags>
+			</tags>	
+			
+			<tags tag="ItemPreviewA">
+			  <thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+			</tags>
+			
+			<tags tag="ItemPreviewB">
+			  <thirdperson name="objects/spaceships/Missile_Racks/Talon/Dominator/Talon_Dominator_Platform_Hornet_x4_left.cga" material=""/>
+			</tags>	
+			
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects\UI\Weapons\Talon\Dominator\Talon_Dominator_FF_UI.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="damage_50">
+				<thirdperson name="Objects\UI\Weapons\Talon\Dominator\Talon_Dominator_FF_UI.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+			</tags>
+			<tags tag="damage_100">
+				<thirdperson name="Objects\UI\Weapons\Talon\Dominator\Talon_Dominator_FF_UI.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+			</tags>					
+		</tags>
+
+
+	</geometry>
+	
+	<portParams>
+	<ports>
+		<ItemPort name="missile_01_attach" minsize="1" maxsize="1" flags="right top" display_name="Ordinance Slot #1">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_02_attach" minsize="1" maxsize="1" flags="left top" display_name="Ordinance Slot #2">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_03_attach" minsize="1" maxsize="1" flags="right bottom" display_name="Ordinance Slot #3">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_04_attach" minsize="1" maxsize="1" flags="left top" display_name="Ordinance Slot #4">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+
+  <missilerackparams>
+    <param name="detach_FX" value="spaceship_fx.Hornet.missile_detach" />
+    <detach_vel>
+      <param value="0,0.5,0" />
+      <tags tag="left">
+        <param value="-1.5,0.5,0" />
+        <tags tag="top">
+          <param value="-1.5,0.5,0.5" />
+        </tags>
+        <tags tag="bottom">
+          <param value="-1.5,0.5,-0.5" />
+        </tags>
+      </tags>
+      <tags tag="right">
+        <param value="1.5,0.5,0" />
+        <tags tag="top">
+          <param value="1.5,0.5,0.5" />
+        </tags>
+        <tags tag="bottom">
+          <param value="1.5,0.5,-0.5" />
+        </tags>
+      </tags>
+    </detach_vel>
+  </missilerackparams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+</item>

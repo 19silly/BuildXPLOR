@@ -1,0 +1,57 @@
+<!-- Autogen Projectiles for ammo -->
+
+<ammo name="50mm_AMMO" class="LaserBolt">
+	<flags>
+		<param name="clientonly" value="1" />
+		<param name="reusable" value="1" />
+	</flags>
+	
+	<geometry>
+		<firstperson name="Objects/Effects/projectiles/laser_projectile.cgf" material="Materials/Effects/Projectiles/ballistic_size_1.mtl" />
+	</geometry>
+  
+	<whiz>
+		<param name="sound" value="sounds/ammo_whiz_by:knightbridge/50mm_kbar_bc_s3_q1:whiz" />
+		<param name="distance" value="100" />
+		<param name="speed" value="22" />
+	</whiz>
+   
+	<physics type="particle">
+		<param name="mass" value="1" />
+		<param name="speed" value="900" />
+		<param name="radius" value="0.1" />
+		<param name="air_resistance" value="0" />
+		<param name="water_resistance" value="0" />
+		<param name="gravity" value="0, 0, 0" />
+		<param name="water_gravity" value="0, 0, 0" />
+		<param name="material" value="metal_dense" />
+		<param name="pierceability" value="14" />
+		<param name="no_spin" value="1"/>
+		<param name="single_contact" value="1" />
+		<param name="no_path_alignment" value="1"/>
+		<param name="constant_orientation" value="1"/>
+		<param name="no_self_collisions" value="1"/>
+	</physics>
+
+	<params>
+		<param name="lifetime" value="3" />
+		<param name="showtime" value="0" /> <!-- Amount of time delayed before the particle effect is shown in seconds -->
+	</params>
+  
+	<LaserBoldParams>
+		<!--visual parameters for "stretching" the laser bolt mesh for a cool Star Wars feel-->
+		<param name="gapSize" value="0.1" />
+		<param name="maxLength" value="30" />
+		<param name="radius" value="0.6" />
+		<param name="effect" value="weapon_fx.lasercanon.hit_failed" />
+		<param name="failed_effect" value="weapon_fx.lasercanon.hit_failed" />
+	</LaserBoldParams>
+	
+	<VehicleDamageParams>
+		<param name="damage" value="90" /> 		<!-- This is PHYSICAL damage -->
+		<param name="damage_energy" value="0" /> <!-- This is ENERGY damage -->
+		<param name="damage_distortion" value="0" /> <!-- This is DISTORTION damage -->
+		<param name="radius" value="0" /> <!-- This is the damage radius of the projectile. 0 is point impact -->
+	</VehicleDamageParams>
+
+</ammo>

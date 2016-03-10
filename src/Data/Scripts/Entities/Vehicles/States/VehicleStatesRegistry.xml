@@ -1,0 +1,103 @@
+<!--
+	Conditions:
+		<vehicle>
+		movementType	=	Land, space
+		category	=	StarFighter, CapitalShip
+		<seat>
+		actionClass	=	Movement, Eject
+		vehicleMovementType	=	see movmentType above
+		vehicleCaterogry	=	See category above
+	Data:
+		<ActionMap>
+		name	=	vehicle_*, spaceship_*
+-->
+
+<VehicleStates>
+	<State name="default">
+		<Vehicle movementType="land">
+		<!-- Ground vehicle -->
+			<ActionMap name="vehicle_general" />
+			<Seat actionClass="Movement">
+			<!-- Driver -->
+				<ActionMap name="vehicle_driver" />
+			</Seat>			
+			<Seat actionClass="SteeringWheel">
+			<!-- Driver -->
+				<ActionMap name="vehicle_driver" />
+			</Seat>
+		</Vehicle>
+		<Vehicle movementType="space">
+		<!-- Spaceship -->
+			<ActionMap name="spaceship_general" />
+			<ActionMap name="spaceship_view" />
+			<ActionMap name="spaceship_hud" />
+			<Seat actionClass="Movement">
+			<!-- Space pilot -->
+				<ActionMap name="spaceship_movement" />
+				<ActionMap name="spaceship_radar" />
+			</Seat>
+			<Seat actionClass="SharedWeapons">
+			<!-- Space gunner -->
+				<ActionMap name="spaceship_weapons" />
+				<ActionMap name="spaceship_targeting" />
+				<!-- Default input to aim -->
+				<ActionFilter name="aim_look" enable="1"/>
+				<ActionFilter name="head_look" enable="0"/>				
+			</Seat>
+			<Seat actionClass="SharedMannedTurret">
+			<!-- Space gunner -->
+				<ActionMap name="spaceship_weapons" />
+				<ActionMap name="spaceship_turret" />
+				<!-- Default input to aim -->
+				<ActionFilter name="aim_look" enable="1"/>
+				<ActionFilter name="head_look" enable="0"/>				
+			</Seat>
+			<Seat actionClass="SharedMissiles">
+			<!-- Space gunner (missiles) -->
+				<ActionMap name="spaceship_missiles" />
+				<ActionMap name="spaceship_targeting" />
+			</Seat>
+			<Seat actionClass="SharedDefensive">
+			<!-- Space defensive -->
+				<ActionMap name="spaceship_defensive" />
+			</Seat>
+			<Seat actionClass="SharedAutoWeapons">
+			<!-- Space AI manager -->
+				<ActionMap name="spaceship_auto_weapons" />
+			</Seat>
+		</Vehicle>
+		<Vehicle movementType="weaponmount">
+		<!-- WeaponMount -->
+			<ActionMap name="spaceship_general" />
+			<ActionMap name="spaceship_view" />
+			<Seat actionClass="Movement">
+			<!-- Space pilot -->
+				<ActionMap name="spaceship_movement" />
+			</Seat>
+			<Seat actionClass="SharedMissiles">
+			<!-- Space gunner (missiles) -->
+				<ActionMap name="spaceship_missiles" />
+				<ActionMap name="spaceship_targeting" />
+			</Seat>
+			<Seat actionClass="SharedWeapons">
+			<!-- Space gunner (for the weapon mount) -->
+				<ActionMap name="spaceship_weapons" />
+				<ActionMap name="spaceship_targeting" />
+			<!-- Default input to aim -->
+				<ActionFilter name="aim_look" enable="1"/>
+				<ActionFilter name="head_look" enable="0"/>		
+			</Seat>	
+		</Vehicle>
+	</State>
+	<State name="hangar">
+		<Vehicle movementType="space">
+		<!-- Spaceship -->
+			<ActionMap name="spaceship_general" />
+			<ActionMap name="spaceship_view" />
+			<Seat actionClass="Movement">
+			<!-- Space pilot -->
+				<ActionMap name="spaceship_movement" />
+			</Seat>		
+		</Vehicle>
+	</State>
+</VehicleStates>

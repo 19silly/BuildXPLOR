@@ -1,0 +1,853 @@
+<!--
+//////////////////////////////////////////////////////////////////////////
+///              CNOUin Jumpworks Mustang
+///
+//////////////////////////////////////////////////////////////////////////
+-->
+<Vehicle name="AEGS_Redeemer" category="StarFighter" displayname="Aegis Dynamics Redeemer" classname="Class 2" id="idVehicleClass" dockingclass="4" piority="2" HudPaletteScheme="Origin">
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+	<Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+		<DamageMultipliers>
+			<DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+			<DamageMultiplier damageType="melee" multiplier="0"/>
+			<DamageMultiplier damageType="collision" multiplier="1"/>
+			<DamageMultiplier damageType="explosion" multiplier="1" />
+		</DamageMultipliers>
+		<DamagesGroups>
+			<DamagesGroup name="Destroy">
+				<DamagesSubGroups>
+					<!-- SubGroup to Destroy Vehicle -->
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>							
+							<DamageBehavior class="Destroy" />
+							<DamageBehavior class="Effect" >
+								<Effect effect="VehicleDestroyed" />
+							</DamageBehavior>
+							<DamageBehavior class="Explosion">
+								<Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+
+					<!-- SubGroup to kill Passengers -->
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="HitPassenger">
+								<HitPassenger damage="100" isDamagePercent="1"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+
+					<!-- SubGroup to apply burning - might remove this -->
+					<DamagesSubGroup delay="3" randomness="0.25">
+						<DamageBehaviors>
+							<DamageBehavior class="Burn">
+								<Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>			
+		</DamagesGroups>
+	</Damages>
+
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<Parts>
+		<Part name="Nose" class="Animated" damageMax="275" mass="0" disablePhysics="1" scopeContext="Ship" id="idMain_Part">
+			<Animated filename="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" filenameDestruction="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" id="idShipGeometry"/>			
+		</Part>
+		<Part name="Joystick" class="AnimatedJoint" id="idMainControlStick" />
+		<Part name="Throttle" class="AnimatedJoint" id="idMainThrottle" />
+	</Parts>
+	
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	  
+	<Helpers/>
+	
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->		
+	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<Actions>
+	<!-- SeatDriver Enter -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="cockpit_use_helper" distance="1" bbMin="-0.4,-0.1,-1" bbMax="0.4,0.1,1" id="idPilotEnterPosActivation"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="SeatDriver"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+    <!-- Seat / Turret Lower -->
+		<Action class="Enter">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="Turret_Lower_Helper" distance="1.5" bbMin="-0.5,-0.5,-0.5" bbMax="0.5,0.5,0.5" />
+		  </Activations>
+		  <Enter>
+			<Seats>
+			  <Seat value="TurretLower" />
+			</Seats>
+		  </Enter>
+		</Action>
+	
+	    <!-- Seat / Toilet -->
+		<Action class="Enter">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="toilet_helper" distance="1.5" bbMin="-0.5,-0.5,-0.5" bbMax="0.5,0.5,0.5" />
+		  </Activations>
+		  <Enter>
+			<Seats>
+			  <Seat value="ToiletSeat" />
+			</Seats>
+		  </Enter>
+		</Action>
+		
+	<!-- Switch / Rear Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Rear_Door_Helper" distance="1.0" bbMin="-1,-2,-1" bbMax="1,1,2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="RearDoor" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="RearDoor" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+
+	<!-- Switch / Cabin Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Cabin_Door_Helper" distance="1.0" bbMin="-0.6,-0.1,-1.2" bbMax="0.6,0.1,1.2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="CabinDoor" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="CabinDoor" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>		
+	<!-- Switch / Lower Turret Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Lower_Turret_Door_Helper" distance="1.0" bbMin="-0.4,-0.1,-1" bbMax="0.4,0.1,1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="LowerTurretDoor" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="LowerTurretDoor" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+	<!-- Switch / Kitchen Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Kitchen_Door_Helper" distance="1.0" bbMin="-0.6,-0.1,-1.2" bbMax="0.6,0.1,1.2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="KitchenDoor" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="KitchenDoor" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	
+	<!-- Switch / Cargo Hatch -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Cargo_Hatch_Helper" distance="1.0" bbMin="-0.4,-0.1,-0.8" bbMax="0.4,0.1,0.8"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="CargoHatch" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="CargoHatch" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	
+	<!-- Switch / Shower Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Shower_Door_Helper" distance="1.0" bbMin="-0.5,-0.1,-1" bbMax="0.5,0.1,1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="ShowerDoor" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="ShowerDoor" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+	<!-- Switch / Bathroom Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Bathroom_Door_Helper" distance="1.0" bbMin="-0.5,-0.1,-1" bbMax="0.5,0.1,1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="BathroomDoor" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="BathroomDoor" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>		
+	<!-- Switch / Upper Turret -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="Turret_Upper_Wall_Helper" distance="1.0" bbMin="-0.1,-0.1,-0.1" bbMax="0.1,0.1,0.1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="UpperTurretShip" state="Deploy" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="UpperTurretShip" state="Retract" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	
+
+    <!-- Seat / Turret Upper -->
+		<Action class="Enter">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="Turret_Upper_Helper" distance="1.5" bbMin="-0.2,-0.2,-0.2" bbMax="0.2,0.2,0.2" />
+		  </Activations>
+		  <Enter>
+			<Seats>
+			  <Seat value="TurretUpper" />
+			</Seats>
+		  </Enter>
+		</Action>		
+
+	<!-- Switch / Bed 01 Upper -->
+<!-- 		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bed_01_open_helper" distance="1.5" bbMin="-0.1,-0.1,-0.1" bbMax="0.1,0.1,0.1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Bed01" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Bed01" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	 -->
+	<!-- Switch / Bed 02 Lower -->
+<!-- 		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bed_02_open_helper" distance="1.5" bbMin="-0.1,-0.1,-0.1" bbMax="0.1,0.1,0.1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Bed02" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Bed02" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	 -->
+		
+    <!-- Seat / Bed Lower -->
+		<Action class="Enter">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="bed_02_helper" distance="1.5" bbMin="-0.9,-0.3,-0.1" bbMax="0.9,0.3,0.1"/>
+		  </Activations>
+		  <Enter>
+			<Seats>
+			  <Seat value="BedLower" />
+			</Seats>
+		  </Enter>
+		</Action>	
+		
+    <!-- Seat / Bed Upper -->
+		<Action class="Enter">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="bed_01_helper" distance="1.5" bbMin="-0.9,-0.3,-0.1" bbMax="0.9,0.3,0.1"/>
+		  </Activations>
+		  <Enter>
+			<Seats>
+			  <Seat value="BedUpper" />
+			</Seats>
+		  </Enter>
+		</Action>			
+		
+<!-- 	<Action class="LandingGears">
+		<Activations>
+			<Activation type="OnGroundCollision"/>
+		</Activations>
+		<LandingGears animation ="Landing_Gear" landingDamages="500" altitudeToRetractGears="8" openState="Deploy" closeState="Retract"/>
+	</Action>	 -->		
+	</Actions>	
+	
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+	<!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<Interior bbSize="2,5,2" bbCenter="0,6,3">
+		<Doors>
+		</Doors>
+		<Views>
+			<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+				<Orbit speed="2.0" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+			</View>
+		</Views>
+	</Interior>
+	
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->  
+	<!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	
+	<Seats>
+		<!-- SeatDriver's seat  -->
+		<Seat name="SeatDriver" enterHelper="pilot_mount_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" lookOnMoveInput="0.005,0,0.005" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot">
+			<!-- Begin views for this seat-->
+			<ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+			<Views>
+				<View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+					<Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-26" maxPitch="80" />
+				</View>
+				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+					<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+					<CameraEffects minSpeed="102" maxSpeed="280">
+						<FOV maxOffset="20.0f" />
+						<DOF stength="0.25f" offsetLag="0.8f" />
+						<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+					</CameraEffects>
+				</View>
+				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+				</View>
+				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
+					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+				</View>
+			</Views>
+			
+ 			<WaitFor>
+				<Enter>
+					<State animation="PilotChair" state="Open" />
+				</Enter>
+<!-- 				<Exit>
+					<State animation="Cockpit" state="Deploy" />
+				</Exit> -->
+			</WaitFor>
+			
+<!-- 			<PostAction>
+				<Enter>
+					<State animation="Cockpit" state="Retract" />
+				</Enter>
+			</PostAction>  -->
+			
+			<!-- Begin actions for this seat-->
+			<SeatActions>
+				<!-- We specifiy the Movement Seat Action as we dont want the engine to start on entry. Otehrwise the default vehicle implementation will init a teh SeatActionMovement componnet that will start the engine on entry-->
+				<SeatAction class="Movement">
+					<Movement engine="1">
+					</Movement>
+				</SeatAction>
+
+				<!-- Weapons used / controlled by pilot of Mustang -->
+				<SeatAction class="SharedWeapons">
+					<SharedWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_weapon_gun_class1_left_wing"	priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+								<ItemPort part="hardpoint_weapon_gun_class1_right_wing"	priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+
+				<!-- counter messures used / controlled by pilot of Confed Hornet -->
+				<SeatAction class="SharedDefensive">
+					<SharedWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_countermeasure_launcher_left" 	priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+								<ItemPort part="hardpoint_countermeasure_launcher_right" 	priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+				
+				<!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+				<SeatAction class="SharedItems">
+					<SharedItems>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_powerplant_left" />
+								<ItemPort part="hardpoint_powerplant_right" />								
+								<ItemPort part="pilotVisor" />
+								<ItemPort part="hardpoint_radiator_left" />
+								<ItemPort part="hardpoint_radiator_right" />
+								<ItemPort part="hardpoint_avionics_motherboard" />
+								<ItemPort part="hardpoint_radar" />
+								<ItemPort part="hardpoint_shield_generator" />
+								<ItemPort part="hardpoint_pilot_chair"/>
+								<ItemPort part="radar_helper"/>
+								<ItemPort part="*light"/>
+								<ItemPort part="*hardpoint_fuel" />
+								<ItemPort part="hardpoint_cockpit_audio" />							
+								<ItemPort part="hardpoint_interior_audio" />							
+							</Items>
+						</Settings>
+					</SharedItems>
+				</SeatAction>
+
+
+				<SeatAction class="SharedThruster">
+				  <SharedAutoWeapons>
+					<Settings>
+					  <Items>
+						<ItemPort part="*hardpoint_engine" />
+						<ItemPort part="*hardpoint_thruster" />
+						</Items>
+						</Settings>
+					</SharedAutoWeapons>
+				</SeatAction>
+				
+				<SeatAction class="SharedAutoWeapons">
+					<SharedAutoWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_weapon_gun_class1_left_wing"	priority="0"  />
+								<ItemPort part="hardpoint_weapon_gun_class1_right_wing"	priority="0"  />
+							</Items>
+						</Settings>
+					</SharedAutoWeapons>
+				</SeatAction>
+
+			  <!-- SeatActionAnimateControlInputs
+		     This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+		     Format is
+			    Parts               List of parts to animate
+				    ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+					    RotateX         Rotation around the X axis (pitch)
+					    RotateY         Roll
+					    RotateZ         Yaw
+						    input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+													    registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its workign set of action variables )
+													    or in the Variables section of the vehicle xml
+						    actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+						    direction=    forwards or backwards
+						    min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+						    max=
+						    sound=        The sound to play when animating the part
+						    stopSound=    The sound to play when stopping
+					    Animation
+						    manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (dpending on what kind of input was specified). If thsi si not set the animtion will
+													    play normally according to it's state parameters in the vehicle animation system.
+		     -->
+			<SeatAction class ="AnimateControlInputs" >
+				<AnimateControlInputs isAvailableDocked="1">
+					<Parts>
+						<ControlPart part ="Throttle">
+							<Rotate_X input = "pitch" min="-30" max = "30"/>
+							<Rotate_Y input = "yaw" direction ="1" min="-30" max = "30"/>
+						</ControlPart>
+						<ControlPart part ="Joystick">
+							<Rotate_X input = "pitch" min="-30" max = "30"/>
+							<Rotate_Y input = "yaw" direction ="1" min="-30" max = "30"/>
+						</ControlPart>
+					</Parts>
+				</AnimateControlInputs>
+			</SeatAction>
+		    <SeatAction class ="PassengerIK" >
+			    <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+					<Limbs>
+						<Limb tag ="LeftArmThrottle" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="LeftHandIKattach" blendTime="0"/>
+						<Limb tag ="RightArmJoystick" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="RightHandIKattach" blendTime="0"/>
+					</Limbs>
+			    </PassengerIK>
+		    </SeatAction>
+		    </SeatActions>
+		    <Sounds inout="0" mood="1"/>
+			
+			<DockingStation>
+				<Slots>
+					<Slot name="First" itemPort="Radar_Helper">
+						<Tag name="Radar"/>
+					</Slot>
+				</Slots>
+			</DockingStation>
+
+
+			<!-- <FixedVisorSettings default_fixed="1" scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.06" /> -->
+			<FixedVisorSettings default_fixed="0">
+				<FirstPerson scale="1.5" x_offset="0" y_offset="0" z_offset="0.065" />
+				<ThirdPerson scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.06" />
+			</FixedVisorSettings>
+			
+			<Screens>
+				<Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
+					<Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" scale="0.85" y_offset="0" z_offset="0.1"/>
+				</Screen>
+			</Screens>
+			
+		</Seat>
+		
+		<!-- TurretLower -->		
+		<Seat name="TurretLower" enterHelper="turret_lower_mount_pos" sitHelper="turret_lower_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-180" lookMax ="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" rotates="1">
+		  <Views>
+			<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
+				<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" turretLookMin="-10,0,-50" turretLookMax="40,0,50" />
+			</View>
+			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
+				<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+			</View>
+		  </Views>
+		  <WaitFor>
+
+		  </WaitFor>
+		  <PostAction>
+		  </PostAction>
+		  <SeatActions>
+		  <SeatAction class="SharedWeapons">
+			  <SharedWeapons isAvailableDocked="1">
+						<Settings>
+							<Items>
+							</Items>
+						</Settings>
+			  </SharedWeapons>
+		  </SeatAction>
+		  <SeatAction class ="AnimateControlInputs">
+			<AnimateControlInputs isAvailableDocked="1">
+				<Parts>
+					<ControlPart part ="turret_chair_joystick_left">
+						<Rotate_Z input = "roll" direction ="-1" min="-5" max = "5"/>
+					</ControlPart>
+					<ControlPart part ="turret_chair_joystick_left">
+						<Rotate_Z input = "roll" direction ="1" min="-5" max = "5"/>
+					</ControlPart>
+				</Parts>
+			</AnimateControlInputs>
+		</SeatAction>
+		<SeatAction class ="PassengerIK">
+			<PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+				<Limbs>
+					<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_left" blendTime="0"/>
+					<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_right" blendTime="0"/>
+				</Limbs>
+			</PassengerIK>
+		</SeatAction>
+			
+		  </SeatActions>
+		</Seat>		
+		<!-- TurretUpper -->		
+		<Seat name="TurretUpper" enterHelper="turret_upper_mount_pos" sitHelper="turret_upper_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-180" lookMax ="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" rotates="1">
+		  <Views>
+			<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
+				<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" turretLookMin="-10,0,-50" turretLookMax="40,0,50" />
+			</View>
+			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
+				<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+			</View>
+		  </Views>
+		  <WaitFor>
+
+		  </WaitFor>
+		  <PostAction>
+		  </PostAction>
+		  <SeatActions>
+		  <SeatAction class="SharedWeapons">
+			  <SharedWeapons isAvailableDocked="1">
+						<Settings>
+							<Items>
+							</Items>
+						</Settings>
+			  </SharedWeapons>
+		  </SeatAction>
+		  <SeatAction class ="AnimateControlInputs">
+			<AnimateControlInputs isAvailableDocked="1">
+				<Parts>
+					<ControlPart part ="turret_chair_joystick_left">
+						<Rotate_Z input = "roll" direction ="-1" min="-5" max = "5"/>
+					</ControlPart>
+					<ControlPart part ="turret_chair_joystick_left">
+						<Rotate_Z input = "roll" direction ="1" min="-5" max = "5"/>
+					</ControlPart>
+				</Parts>
+			</AnimateControlInputs>
+		</SeatAction>
+		<SeatAction class ="PassengerIK">
+			<PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+				<Limbs>
+					<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_left" blendTime="0"/>
+					<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_right" blendTime="0"/>
+				</Limbs>
+			</PassengerIK>
+		</SeatAction>
+			
+		  </SeatActions>
+		</Seat>		
+		
+	<Seat name="ToiletSeat" enterHelper="toilet_mount_pos" sitHelper="toilet_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>
+	  
+	  <WaitFor>
+		<Enter>
+			<State animation="Toilet" state="Open" />
+		</Enter>
+	  </WaitFor>
+	  
+      <SeatActions />
+    </Seat>
+	
+	<Seat name="BedLower" enterHelper="bed_lower_mount_pos" sitHelper="bed_lower_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>
+	  
+	  <WaitFor>
+		<Enter>
+			<State animation="Bed02" state="Open" />
+		</Enter>
+	  </WaitFor>
+	  
+      <SeatActions />
+    </Seat>
+	
+	<Seat name="BedUpper" enterHelper="bed_upper_mount_pos" sitHelper="bed_upper_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>
+	  
+	  <WaitFor>
+		<Enter>
+			<State animation="Bed01" state="Open" />
+		</Enter>
+	  </WaitFor>
+	  
+      <SeatActions />
+    </Seat>
+	</Seats>
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<MovementParams>
+		<Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="280" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="120,140,120" maxAngularAcceleration="240,180,270" maxJerk="100.0" maxAngJerk="60.0">
+			<SoundParams>
+				<AmbientSound sound="Sounds/spaceships_CNOU_Mustang:parts:ambient_interior"/>
+				<PassByLoopSound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_loop" />
+				<PassBySound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+				<DuressSound sound="Sounds/spaceships:CNOU_Mustang/under_duress:under_duress" damage_floor="21.0" damage_buffer="80.0"/>
+			</SoundParams>
+			<!--<Contrails>
+				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+				<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+			</Contrails>-->
+		</Spaceship>
+	</MovementParams>
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+	<Particles mfxRow="vfx_Anvil_Hornet">
+		<!--
+	 <Exhaust insideWater="0" outsideWater="1">
+	 <Helpers>
+		<Helper value="main_engine_exhaust"/>
+	 </Helpers>
+	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+	</Exhaust>
+	-->
+		<DamageEffects>
+			<DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+		</DamageEffects>
+		<EnvironmentLayers>
+			<EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+				<Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
+				<Emitters />
+				<Wheels />
+			</EnvironmentLayer>
+		</EnvironmentLayers>
+	</Particles>
+	
+	
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- Mannequin information for vehicle -->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+	<Mannequin tag="AEGS_Redeemer" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer_HumanAnims.adb" id="idMannequin"/>
+		<Animations>
+		<!-- Default Animation States -->
+		<Action name="PilotChair" state="Close" />
+		<Action name="RearDoor" state="Close" />
+
+		</Animations>
+	
+	<!-- Vehicle Animations (to be replaced by mannequin)
+	Format is
+	
+		Animation
+			name =        Vehicle Animtion name that all systems use when refering to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part =        This is the name of the parent VehiclePartAnimated of this animation. As there can be multipel CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer= if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+										This is useful for animation sthat you need to guarentee will play.
+										
+		State
+			name=         Name of state
+			animation=    this is the CGA ANM file name (sans the CGA name. For instance if teh CGA is Hornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+			speedDefault= Speed the animtion will play at. A negative numbers means the animtion will play backwards. Defaults to 1
+			speedMin=     defaults to -1
+			speedMax=     defaults to 1
+			isLooped=     Is animation looped
+			isLoopedEx=   Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+			isManual=     Is animation manually advanced
+			canRestart=   if true the animation can be iterrupted and started again before its finsihed playing. Defaults to false.
+			interrupt=    Can this animation be interupted by another one. Defaults to no.
+			startTime=    The time that the aniamtion will start at when played (in normlaized anaimtion time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+										until the animtion is requested to be played.
+			play=         Number of thimes this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+			nextState=    The next state to go to once this state has been played. If not defined the nextState is always the current state
+			sound=        Name of sound to played
+			helper=       (optional) vehicle helper location of sound
+			
+			Materials
+				Material        Specifies the material which the material settign will be animated by the state's speed.
+					name=         name of material
+					setting=      material setting (e.g. opacity etc) to animate
+					min=          min value of setting 
+					max=          max value of setting
+					invertValue=  invert setting
+					
+		Action
+			name =        Name of Mannequin Fragment in the vehicle adb file
+			state =       Sets the Action to teh last frame of the fragment on init, String is the fragment tag(s)
+			play =        Plays this Action on init, String is the fragment tag(s)  
+			
+	-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is 
+		name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
+		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+	 -->
+	<Attachments>
+
+	</Attachments>
+	
+	<GeomTags>
+		<geom name="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default"/>
+		<TagsList>
+			<Tags tag="HUD">
+				<geom name="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" material=""/>
+				<Tags tag="hostile">
+					<geom name="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" material=""/>
+				</Tags>
+				<Tags tag="neutral">
+					<geom name="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" material=""/>
+				</Tags>
+			</Tags>		
+			<Tags tag="over dragging">
+				<geom name="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+			</Tags>
+			<Tags tag="ItemPreviewA">
+				<geom name="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+			</Tags>
+		</TagsList>
+	</GeomTags>
+	
+</Vehicle>

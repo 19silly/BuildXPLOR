@@ -1,0 +1,58 @@
+<Mode name="DFM_Conquest">
+
+	<Spawning class="DFMSpawning" teamGame="0" teamSpawnsType="None" usingLua="0" RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" />
+
+	<!-- Will define ship values here -->
+	<Scoring class="DFMScoring">
+		<Player>
+			<Event type="DamageShip" points="1" />
+			<Event type="DestroyedShip" points="1" />
+			<Event type="DestroyedShipEjected" points="1" />
+			<Event type="PlayerKillEjected" points="1" />
+		</Player>
+	</Scoring>
+
+	<PlayerStats class="DFMPlayerStats" />
+	<StatsRecording class="AuthoritativeStats" />
+
+	<State class="DFMState">
+		<StartStrings startMatch="ui_msg_ia_matchstart" />
+		<Prematch requiredPlayers="2" gameStartTimer="10"/>
+	</State>
+
+	<VictoryConditions class="StandardVictoryConditionsPlayer" killsAsScore="1" />
+
+	<PlayerSetup class="StandardSetup" />
+
+	<DamageHandling class="DFMDamageHandling">
+		<Table path="Scripts/GameRules/MPDamageTable.xml" />
+	</DamageHandling>
+
+	<ActorAction class="MPActorAction" />
+
+	<Spectator class="DFMSpectator" eatsActorActions="1" enableFree="1" enableFollow="1" enableKiller="0" timeFromDeathTillAutoSpectate="5000" />
+
+	<!-- Custom Match Settings -->
+	<OptionBindings>
+		<OptionBinding>
+			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "1" Max = "10" Step = "1"	DefaultValue = "5" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		<OptionBinding>
+			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "10" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		<!--
+		<OptionBinding>
+			<Option		Name = "CockpitView" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesCockpitView" Description = "@dfm_ac_ui_RulesCockpitView"	DefaultValue = "true" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+		<!--
+		<OptionBinding>
+			<Option		Name = "FriendlyFire" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesFriendlyFire" Description = "@dfm_ac_ui_RulesFriendlyFire"	DefaultValue = "false" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+	</OptionBindings>
+</Mode>

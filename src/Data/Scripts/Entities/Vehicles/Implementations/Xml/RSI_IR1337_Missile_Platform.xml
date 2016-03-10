@@ -1,0 +1,371 @@
+<Vehicle name="RSI_IR1337_Missile_Platform" category="WeaponMount" displayname="RSI IR1337 Weapon Mount" classname="Class 2" id="idVehicleClass">
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+	<Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+		<DamageMultipliers>
+			<DamageMultiplier damageType="bullet" multiplier="0.001"/>
+			<DamageMultiplier damageType="melee" multiplier="0"/>
+			<DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+			<DamageMultiplier damageType="collision" multiplier="1"/>
+			<DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+		</DamageMultipliers>
+		<DamagesGroups>
+			<DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
+				<DamagesSubGroups>
+					<DamagesSubGroup delay="0.34999999" randomness="0.1">
+						<DamageBehaviors>
+							<DamageBehavior class="Explosion">
+								<Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="HitPassenger">
+								<HitPassenger damage="100" isDamagePercent="1"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+					<DamagesSubGroup delay="3" randomness="0.25">
+						<DamageBehaviors>
+							<DamageBehavior class="Burn">
+								<Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>
+			<DamagesGroup name="DestroyEngine">
+				<DamagesSubGroups>
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="MovementNotification">
+								<MovementNotification isDamageAlwaysFull="0"/>
+							</DamageBehavior>
+							<DamageBehavior class="Effect">
+								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
+							</DamageBehavior>
+							<DamageBehavior class="CameraShake">
+								<CameraShake />
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>
+		</DamagesGroups>
+	</Damages>
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+
+	<Parts>
+		<Part name="hull" class="Animated" component="Hull" mass="999999999" disablePhysics="0" scopeContext="Vehicle"  id="idMainPart">
+			<Parts>
+			
+									<Part name="hardpoint_lol_radar" class="ItemPort">
+										<ItemPort minsize="1" maxsize="55" display_name="Short Range Radar">
+											<Types>
+												<Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar"/>
+											</Types>
+										</ItemPort>
+									</Part>
+
+						<Part name="weapon_mount" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+
+							<Pitch min ="-20" max ="20" />
+							<Yaw min ="-45" max ="15" />
+							<GeomTags>
+							  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+							  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+							  </TagsList>
+							</GeomTags>
+							</ItemPort>
+						</Part>
+						
+						
+				<Part name="hardpoint_power_plant_attach" class="ItemPort">
+					<ItemPort minsize="1" maxsize="5" flags="invisible" display_name="Power Plant" displayPos="75,290">
+						<Types>
+							<Type type="PowerPlant" subtypes="Power_ANVL_Hornet"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+				<Part name="hardpoint_radiator_attach" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Cooler">
+						<Types>
+							<Type type="Cooler" subtypes="Cooler_ANVL_Hornet"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				
+				<Part name ="hardpoint_avonics_motherboard" class = "ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+						<Types>
+							<Type type="Avionics" subtypes="Motherboard"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+					</ItemPort>
+				</Part>
+			</Parts>
+		<Animated filename="Objects/Spaceships/Weapon_Platforms/RSI/Missile_Platform/RSI_IR1337_Missile_Platform.cga" filenameDestroyed="Objects/Spaceships/Weapon_Platforms/RSI/Missile_Platform/RSI_IR1337_Missile_Platform.cga" id="idShipGeometry"/>
+	</Part>
+
+	</Parts>
+	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Helpers>
+	</Helpers>
+	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Actions>
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="gunner_sit_pos" distance="1.5" bbMin="-0.2,-0.2,0" bbMax="0.2,0.2,1.5"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="SeatDriver"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- Switch / Fire Weapon 
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="control_panel_helper" distance="1" bbMin="-0.2,-0.1,0" bbMax="0.2,0.1,0.3"/>
+			</Activations>
+			<States>
+				<State>
+
+					<uiAction name="Weapon_Mount_FireToggle" />
+				</State>
+				<State>
+
+					<uiAction name="Weapon_Mount_FireToggle" />
+				</State>
+			</States>
+		</Action>-->
+		
+	</Actions>
+	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Seats>
+
+		<!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
+		<Seat name="SeatDriver" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" updatePassengerTM ="0" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot">
+			<!-- Begin views for this seat-->
+			<Views defaultFirstPerson="0" defaultThirdPerson="3">
+				<View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+					<Cockpit offset="0,0,0" relativeToHorizon="0.9"/>
+				</View>
+				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+					<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+				</View>
+				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+				</View>
+				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
+					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+				</View>
+			</Views>
+			
+			<WaitFor>
+				<Enter>
+					<State animation="Chair" state="Deploy" />
+				</Enter>
+			</WaitFor>
+			
+						<FixedVisorSettings default_fixed="0" >
+				<FirstPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.1" />
+				<ThirdPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.065" />
+			</FixedVisorSettings>
+			
+			<!-- Begin actions for this seat-->
+			<SeatActions>
+				<!-- missiles used / controlled by pilot of Confed Hornet -->
+				<SeatAction class="SharedMissiles">
+					<SharedWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="weapon_mount"	priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+				
+				<!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+				<SeatAction class="SharedItems">
+					<SharedItems>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_power_plant_attach" />	
+								<ItemPort part="hardpoint_radiator_attach" />
+								<ItemPort part="hardpoint_avonics_motherboard" />
+								<ItemPort part="hardpoint_lol_radar" />
+								<ItemPort part="hardpoint_weapon_control" />
+							</Items>
+						</Settings>
+					</SharedItems>
+				</SeatAction>
+
+				<!-- Weapons used / controlled by pilot of Confed Hornet -->
+				<SeatAction class="SharedWeapons">
+					<SharedWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="weapon_mount" priority="0" active="0" actorRecoil="0"/>
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+				
+				<SeatAction class="SharedAutoWeapons">
+					<SharedAutoWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="weapon_mount" priority="1" />
+							</Items>
+						</Settings>
+					</SharedAutoWeapons>
+				</SeatAction>
+			</SeatActions>
+			<Sounds inout="0" mood="1"/>
+		</Seat>
+	</Seats>
+	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<MovementParams>
+		<WeaponMount/>
+	</MovementParams>
+	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- Mannequin information for vehicle -->
+	<Mannequin tag="Weapon_Mount" controllerDef="Animations/Mannequin/ADB/Vehicles/Weapon_Mount/Weapon_Mount_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/Weapon_Mount/Weapon_Mount_Anims.adb" passengerADB="Animations/Mannequin/ADB/Vehicles/Weapon_Mount/Weapon_Mount_HumanAnims.adb" id="idMannequin"/>
+
+	<Animations>
+	</Animations>
+
+	<!-- Attachments
+	This is a list of any attachment objects on the vehicle. This is used primarlily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+	where you dont need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+	dont really need them to be their own VehiclePart
+	Format is 
+		name=     is the string name that other systems use when telling the vehicle to do soemthing with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+							animation or do something with an attachment.) 
+		helper=   is the helper where the attachment is located
+		filename= if specified then the system assumes the attachement is either a CHR,CDF or CGF (depending on the extension).
+		effect=   if specified then the system assumes the attachment is a particle effect, and this is teh name of the effect in the particle database. 
+		light=    if specified then the system assumes the attachment is a light, and the string is the light type as deifned in DefaultVehcileLights. Note this is just here form completeness. 
+							Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc.
+							
+	optional parameters are
+	
+		hide=     "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+	-->
+	<Attachments>
+<!--		<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" filename ="Objects/Spaceships/Anvil_Hornet/pilot_umbilical.chr" scopeContext ="Umbilical"/> -->
+	</Attachments>
+
+	<!-- Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is 
+		name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
+		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+	 -->
+
+   <GeomTags>
+    <geom name="Objects/Spaceships/Weapon_Platforms/RSI/Missile_Platform/RSI_IR1337_Missile_Platform.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default"/>
+    <TagsList>
+		<Tags tag="over dragging">
+		  <geom name="Objects/Spaceships/Weapon_Platforms/RSI/Missile_Platform/RSI_IR1337_Missile_Platform.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging"/>
+		</Tags>
+		<Tags tag="ItemPreviewA">
+		  <geom name="Objects/Spaceships/Weapon_Platforms/RSI/Missile_Platform/RSI_IR1337_Missile_Platform.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+		</Tags>
+	</TagsList>
+  </GeomTags>
+  
+	<Modifications>
+	
+		<Modification name="Normal">
+			<Elems>
+				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Weapon_Platforms/RSI/Missile_Platform/RSI_IR1337_Missile_Platform.cga"/>
+			</Elems>
+		</Modification>
+		
+		<Modification name="Firing">
+			<Elems>
+				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Weapon_Mount/RSI_IR1337_Weapon_Mount_Firing.cga"/>
+			</Elems>
+		</Modification>
+		
+	</Modifications>
+		
+</Vehicle>

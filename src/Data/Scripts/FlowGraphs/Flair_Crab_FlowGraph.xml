@@ -1,0 +1,61 @@
+<Graph Description="" Group="Crab" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Animations:PlayAnimation" pos="540,-180,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" anim_Animation="idle" CharacterSlot="1" BlendInTime="0.2" Layer="0" Loop="1" ForceUpdate="0" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="6" Class="Animations:PlayAnimation" pos="-120,120,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" anim_Animation="out" CharacterSlot="1" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="0" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="8" Class="Logic:RandomSelect" pos="-320,-140,0" flags="0">
+   <Inputs outMin="1" outMax="1"/>
+  </Node>
+  <Node Id="9" Class="Animations:PlayAnimation" pos="-90,-90,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" anim_Animation="idle2" CharacterSlot="1" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="0" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="13" Class="Time:Timer" pos="-670,-220,0" flags="0">
+   <Inputs period="20" min="1" max="1" paused="0"/>
+  </Node>
+  <Node Id="14" Class="Logic:OR" pos="10,-190,0" flags="0">
+   <Inputs A="0" B="0" Always="1"/>
+  </Node>
+  <Node Id="17" Class="Game:Start" pos="-430,-390,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="27" Class="Logic:Once" pos="-240,-370,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="28" Class="Logic:OR" pos="340,-250,0" flags="0">
+   <Inputs A="0" B="0" Always="1"/>
+  </Node>
+  <Node Id="30" Class="Logic:OR" pos="290,20,0" flags="1">
+   <Inputs A="0" B="0" Always="1"/>
+  </Node>
+  <Node Id="40" Class="Logic:NOT" pos="180,10,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="41" Class="Logic:NOT" pos="150,90,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="43" Class="Time:RandomDelay" pos="-510,-130,0" flags="0">
+   <Inputs MinDelay="0" MaxDelay="5"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="41" nodeOut="6" portIn="in" portOut="Done" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="8" portIn="Start" portOut="Out6" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="8" portIn="Start" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="8" portIn="A" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="8" portIn="B" portOut="Out6" enabled="1"/>
+  <Edge nodeIn="40" nodeOut="9" portIn="in" portOut="Done" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="13" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="1" nodeOut="14" portIn="Stop" portOut="out" enabled="1"/>
+  <Edge nodeIn="27" nodeOut="17" portIn="Input1" portOut="output" enabled="1"/>
+  <Edge nodeIn="28" nodeOut="27" portIn="A" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1" nodeOut="28" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="28" nodeOut="30" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="30" nodeOut="40" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="30" nodeOut="41" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="43" portIn="In" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

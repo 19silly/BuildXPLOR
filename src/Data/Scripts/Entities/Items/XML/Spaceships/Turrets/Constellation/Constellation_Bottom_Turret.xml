@@ -1,0 +1,63 @@
+<item name="Constellation_Bottom_Turret" class="VehicleTurret" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <param name="adb" value="" />
+    <param name="actionController" value="" />
+    <param name="itemType" value="Turret" />
+    <param name="itemSubType" value="BottomTurret" />
+	<param name="itemDescription" value="Featuring a three-barrel sequential fire design, the Klaus &amp; Werner CF-007 Bulldog repeater is capable of high rates of fire while maintaining accuracy. It has low damage per projectile and, although it has relatively low power consumption over-all, several publications have commented on its somewhat lackluster efficiency. Even so, the CF-007 remains a favorite among new pilots who are outfitting their first ship." />
+    <param name="itemManufactor" value="Congruent" />
+    <param name="itemSize" value="3" />
+	<param name="itemTags" value="" />
+	<param name="requiredPortTags" value="RSI_Constellation_Base" />
+    <param name="display_name"	value="Congruent" />
+    <param name="forceWaitRetract"	value="1" />
+  </params>
+  
+   <geometry>
+		<thirdperson name=""/> <!-- need this here and to be an empty string to signify null geo in the code! -->
+	</geometry>
+
+  <turretParams>
+	<yaw limits="-180, 180" speed="100" accel="150" >
+		<joint value="Bottom_Turret" />
+	</yaw>
+	<pitch limits="-85, 10" speed="100" accel="150" >
+		<joint value="gun_bottom_pitch" />	
+		<joint value="const_Bottom_Turret_Rotator" />	
+	</pitch>
+  </turretParams>
+  
+  <EntityEffects>
+		<sound name="sounds/thrusters:vncl_tr4:start_run" enable ="0" tag = "move" helper="Bottom_Turret">
+			<param name="rpm" var="yaw_speed" multiplier="1" lerpTime="1.1" />
+			<param name="in_out" var="in_out" />
+		</sound>
+  </EntityEffects>  
+  
+   <portParams>
+	<ports>
+		<!-- since the geo is null at the top these ports are joints on the vehicle itself -->
+		<ItemPort name="hardpoint_bottomturret_left_S3" minsize="0" maxsize="5" >
+		<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+		</Types>
+		</ItemPort>
+		<ItemPort name="hardpoint_bottomturret_right_S3" minsize="0" maxsize="5" >
+		<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+		</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+
+ </item>

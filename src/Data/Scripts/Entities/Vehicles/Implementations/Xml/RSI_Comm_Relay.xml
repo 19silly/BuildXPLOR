@@ -1,0 +1,224 @@
+<Vehicle name="RSI_Comm_Relay2" category="StarFighter" displayname="Comm Relay" classname="Class 2" id="idVehicleClass">
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+	<Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+		<DamageMultipliers>
+			<DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+			<DamageMultiplier damageType="melee" multiplier="0"/>
+			<DamageMultiplier damageType="collision" multiplier="1"/>
+			<DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+		</DamageMultipliers>
+		<DamagesGroups>
+			<DamagesGroup name="Destroy">
+				<DamagesSubGroups>
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="Destroy" />
+							<DamageBehavior class="Effect" >
+								<Effect effect="VehicleDestroyed" />
+							</DamageBehavior>
+							<DamageBehavior class="Explosion">
+								<Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>
+		</DamagesGroups>
+	</Damages>
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+
+	<Parts>
+		<Part name="target" class="Animated" damageMax="2" mass="1000000" disablePhysics="0" scopeContext="Vehicle" id="idMain_Part">
+
+				<DamageBehaviors>
+					<DamageBehavior class="Group" damageRatioMin="1">
+						<Group name="Destroy"/>
+					</DamageBehavior>
+				</DamageBehaviors>
+			<Animated filename="Objects/brush/space/uee/comm_relay/comm_relay.cga" filenameDestroyed=""/>
+
+		</Part>
+		<!--
+		<Part name="comm_base" class="Animated" damageMax="5" mass="1000000" disablePhysics="0" scopeContext="Comm_Relay" id="idMain_Part">
+		</Part>
+		<Part name="comm_fin_01" class="Animated" damageMax="5" mass="1000000" disablePhysics="0" scopeContext="Comm_Relay" id="idMain_Part">
+		</Part>
+		<Part name="comm_fin_02" class="Animated" damageMax="5" mass="1000000" disablePhysics="0" scopeContext="Comm_Relay" id="idMain_Part">
+		</Part>
+		<Part name="comm_fin_03" class="Animated" damageMax="5" mass="1000000" disablePhysics="0" scopeContext="Comm_Relay" id="idMain_Part">
+		</Part>
+		-->
+
+
+
+	</Parts>
+
+	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Helpers>
+		<Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="target"/>
+		<Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="target"/>
+	</Helpers>
+	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Actions>
+	</Actions>
+	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Seats>
+		<!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
+		
+	</Seats>
+	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<MovementParams>
+		<Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="100" maxBoostSpeed="125" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
+			<SoundParams>
+				<SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+				<SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+			</SoundParams>
+			<Animations engine="Intake_Fans"/>
+			<Contrails>
+			<!--	<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="25" />
+				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="25" />
+				<Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+				<Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+			-->
+			</Contrails>
+		</Spaceship>
+	</MovementParams>
+	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+
+	<Particles mfxRow="vfx_Anvil_Hornet">
+		<DamageEffects>
+			<DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Hornet_Destroyed" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+		</DamageEffects>
+		<EnvironmentLayers>
+			<EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+				<Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
+				<Emitters />
+				<Wheels />
+			</EnvironmentLayer>
+		</EnvironmentLayers>
+	</Particles>
+
+	<!-- Mannequin information for vehicle -->
+	<Mannequin tag="Comm_Relay" controllerDef="Animations/Mannequin/ADB/Vehicles/Comm_Relay/Comm_Relay_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/Comm_Relay/Comm_Relay_Anims.adb" />
+		<Animations>
+			<!-- Default Animation States -->
+			<Action name="Base" play="On" />
+		</Animations>
+	<!-- Vehicle Animations (to be replaced by mannequin)
+	Format is
+	
+		Animation
+			name=       Vehicle Animation name that all systems use when referring to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part=       This is the name of the parent VehiclePartAnimated of this animation. As there can be multiple CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer=if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+										This is useful for animations that you need to guarantee will play.
+										
+		State
+			name=        Name of state
+			animation=   this is the CGA ANM file name (sans the CGA name. For instance if the CGA is Hornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+			speedDefault=Speed the animation will play at. A negative numbers means the animation will play backwards. Defaults to 1
+			speedMin=    defaults to -1
+			speedMax=    defaults to 1
+			isLooped=    Is animation looped
+			isLoopedEx=  Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+			isManual=    Is animation manually advanced
+			canRestart=  if true the animation can be interrupted and started again before its finished playing. Defaults to false.
+			interrupt=   Can this animation be interrupted by another one. Defaults to no.
+			startTime=   The time that the animation will start at when played (in normalized animation time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+										until the animation is requested to be played.
+			play=        Number of times this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+			nextState=   The next state to go to once this state has been played. If not defined the nextState is always the current state
+			sound=       Name of sound to played
+			helper=      (optional) vehicle helper location of sound
+			
+			Materials
+				Material        Specifies the material which the material setting will be animated by the state's speed.
+					name=        name of material
+					setting=     material setting (e.g. opacity etc) to animate
+					min=         min value of setting 
+					max=         max value of setting
+					invertValue= invert setting
+					
+		Action
+			name=       Name of Mannequin Fragment in the vehicle adb file
+			state=      Sets the Action to the last frame of the fragment on init, String is the fragment tag(s)
+			play=       Plays this Action on init, String is the fragment tag(s)  
+			
+	-->
+
+
+	<!-- Attachments
+	This is a list of any attachment objects on the vehicle. This is used primarily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+	where you don't need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+	don't really need them to be their own VehiclePart
+	Format is 
+		name=    is the string name that other systems use when telling the vehicle to do something with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+							animation or do something with an attachment.) 
+		helper=  is the helper where the attachment is located
+		filename=if specified then the system assumes the attachment is either a CHR,CDF or CGF (depending on the extension).
+		effect=  if specified then the system assumes the attachment is a particle effect, and this is the name of the effect in the particle database. 
+		light=   if specified then the system assumes the attachment is a light, and the string is the light type as defined in DefaultVehcileLights. Note this is just here form completeness. 
+							Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc..
+							
+	optional parameters are
+	
+		hide=    "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+	-->
+	<Attachments>
+<!--		<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" geometry="Objects/Spaceships/Ships/ANVL/Hornet/F7C/pilot_umbilical.chr" scopeContext="Umbilical"/> -->
+		<!--Attachment name="headlight" helper="Headlight" archetype="!test_LightsArchetypes.groupname.light" orientation="0,0,90"/-->
+		<!--Attachment name="headlightFlare" helper="Headlight" light="Headlight_Flare" orientation="0,0,90" /-->
+	</Attachments>
+
+	<!-- Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be defined somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is 
+		name=is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the variable in the VehiclePlayerControls dynamic variable list
+		value=is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+	 -->
+	<Variables>
+	</Variables>
+
+	<Inventory>
+	</Inventory>
+	
+
+	<!-- FIX ME!!! Need to export a full F7A model again -->
+   <GeomTags>
+		<geom name="Objects/brush/space/uee/comm_relay/comm_relay.cga" material="materials/item_selection/material_hologram_default.mtl" id="idHoloGeometry_Default"/>
+		<Tags tag="over dragging">
+		  <geom name="Objects/brush/space/uee/comm_relay/comm_relay.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+		</Tags>
+		<Tags tag="ItemPreviewA">
+		  <geom name="Objects/brush/space/uee/comm_relay/comm_relay.cga" material="" id="idHoloGeometry_ItemPreviewA"/>
+		</Tags>
+  </GeomTags>
+  
+	<Modifications>
+		
+	</Modifications>
+		
+</Vehicle>

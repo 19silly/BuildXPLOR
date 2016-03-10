@@ -1,0 +1,32 @@
+<Mode name='DFM_TestLayer'>
+	
+	<Spawning class='DFMSpawning' teamGame='0' teamSpawnsType='None' usingLua='0' RespawnTimeKilled="10" RespawnTimeEjected="30" />
+
+	<!-- Will define ship values here -->
+	<Scoring class='DFMScoring'>
+		<Player>
+			<Event type='DamageShip'        points='1'	 />
+			<Event type='DestroyedShip'		points='1'	 />
+		</Player>
+	</Scoring>
+
+	<PlayerStats class='DFMPlayerStats' />
+	
+	<State class='DFMState'>
+		<StartStrings startMatch='ui_msg_ia_matchstart' />
+		<Prematch requiredPlayers="2" gameStartTimer="5"/>
+	</State>
+
+	<VictoryConditions class='DFMVictoryConditionsPlayer'  VictoryScoringType='Score' TimeLimit="1" ScoreLimit="100000" />
+
+	<PlayerSetup class='StandardSetup' />
+
+	<DamageHandling class='DFMDamageHandling' vehicleDestroyedRemovalTimer='15'>
+		<Table path='Scripts/GameRules/MPDamageTable.xml' />
+	</DamageHandling>
+
+	<ActorAction class='MPActorAction' />
+
+	<Spectator class='DFMSpectator' eatsActorActions='1' enableFree='1' enableFollow='1' enableKiller='0' timeFromDeathTillAutoSpectate='5000' />
+
+</Mode>

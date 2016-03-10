@@ -1,0 +1,51 @@
+<Graph Description="" Group="Test Use" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="5" Class="entity:Crab" pos="-560,-130,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Hide="0" UnHide="0" Use="0" UserId="0"/>
+  </Node>
+  <Node Id="6" Class="Animations:PlayAnimation" pos="160,-240,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" anim_Animation="Open" CharacterSlot="1" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="0" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="10" Class="Logic:Once" pos="-290,-130,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="11" Class="Logic:NOT" pos="-400,-20,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="13" Class="Animations:PlayAnimation" pos="-120,240,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" anim_Animation="Close" CharacterSlot="1" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="0" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="17" Class="Logic:Sequentializer" pos="-60,-230,0" flags="0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="18" Class="Logic:NOT" pos="250,-10,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="19" Class="Logic:NOT" pos="70,170,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="20" Class="Logic:OR" pos="190,130,0" flags="0">
+   <Inputs A="0" B="0" Always="1"/>
+  </Node>
+  <Node Id="22" Class="Logic:OR" pos="-150,-40,0" flags="1">
+   <Inputs A="0" B="0" Always="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="10" nodeOut="5" portIn="Input1" portOut="Used" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="5" portIn="in" portOut="Used" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="6" portIn="in" portOut="Done" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="10" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="11" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="13" portIn="in" portOut="Done" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="17" portIn="Start" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="17" portIn="Start" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="17" portIn="A" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="17" portIn="B" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="18" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="19" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="20" portIn="Open" portOut="out" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="22" portIn="Close" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

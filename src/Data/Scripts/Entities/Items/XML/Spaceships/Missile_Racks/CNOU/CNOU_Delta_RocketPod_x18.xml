@@ -1,0 +1,235 @@
+<item name="CNOU_Delta_RocketPod_x18" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" value="0" />
+    <param name="selectable" value="0" />
+    <param name="pickable" value="0" />
+    <param name="mountable" value="1" />
+    <param name="usable" value="0" />
+    <param name="arms" value="0" />
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="In the thin market of FF missiles, the Dominator is one of the few stand-outs. With Talon's state-of-the-art target recognition system, these missiles are ideal for mixing it up with large numbers of ships. Varying sizes available." />
+    <param name="itemManufactor" value="Consolidated Outlands" />
+    <param name="itemSize" value="1" />
+	<param name="itemTags" value="flightReady Delta_RocketPod" />
+	<param name="requiredPortTags" value="CNOU_Mustang_Base" />
+	<param name="itemClass" value="3" />
+    <param name="display_name"	value="Talon Dominator FF Quad" />
+	<param name="weaponRequireAmmoBox" value="1" />
+	<param name="weaponDelayChangeAmmoBox" value="1.25" />
+	<param name="inefficiency" value="0.3" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="170" />
+	<itemStats>
+		<Damage 	value="1" />
+		<RoF 		value="60" />
+		<Range 		value="60" />
+		<Power 		value="27" />
+	</itemStats>
+  </params>
+
+     <Pipes>
+    
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="-600" rate="-100" />
+      <States>
+        <State state="Active">
+          <Value value="-2" ignorepool="1"/>
+        </State>
+		<State state="Off">
+				<Value value="0" />
+		</State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="600" rate="40" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Pipe name="Power" value="0.25" />
+        </State>
+        <State state="Shooting">
+          <Pipe name="Power" value="0.25" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+    
+  </Pipes>
+  
+	<geometry>
+		<!-- As this vehicle weapon is remote to the player firing, no first person geometry -->
+		<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga"/>
+		<tags tag="left">
+			<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+		</tags> 
+		<tags tag="right">
+			<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Right.cga" material=""/>
+		</tags> 
+
+	
+		<tags tag="Hologram">
+		
+			<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+
+			<tags tag="ShipHologram">
+				<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+			  
+				<tags tag="inactive">
+					<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+				</tags>
+				<tags tag="over dragging">
+					<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+				</tags>
+				<tags tag="overCompareValid">
+					<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+				</tags>
+				<tags tag="overCompareInvalid">
+					<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+				</tags>
+			</tags>
+			
+			<tags tag="ItemList">
+				<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+				<tags tag="over dragging">
+					<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+				</tags>
+			</tags>	
+			
+			<tags tag="ItemPreviewA">
+			  <thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+			</tags>
+			
+			<tags tag="ItemPreviewB">
+			  <thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material=""/>
+			</tags>	
+			
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="damage_50">
+				<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+			</tags>
+			<tags tag="damage_100">
+				<thirdperson name="Objects/Spaceships/Missile_Racks/CNOU/CNOU_Mustang_Delta_Left.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+			</tags>					
+		</tags>
+
+	<boneAttachments>
+      <attachment target="thirdperson" name="muzzle_01" bone="muzzle_out_01" />
+      <!-- <attachment target="thirdperson" name="muzzle_02" bone="muzzle_out_02" />
+      <attachment target="thirdperson" name="muzzle_03" bone="muzzle_out_03" /> -->
+    </boneAttachments>
+
+	</geometry>
+	<portParams>
+	<ports>
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="right" display_name="Ammo Box #1">
+			<Types>
+				<Type type="AmmoBox" subtypes="Rocket"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="1" flags="left" display_name="Ammo Box #2">
+			<Types>
+				<Type type="AmmoBox" subtypes="Rocket"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <ammos>
+    <ammo name="Rocket_AMMO" extra="0" amount="0" />
+  </ammos>
+  
+  <firemodes>
+    <firemode name="Weapon" type="Automatic">
+      <fire>
+        <param name="ammo_type" value="Rocket_AMMO" />
+        <param name="rate" value="100" />
+        <!-- <param name="damage" value="7" /> -->
+         <param name="clip_size" value="0" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+       <!--  <param name="ai_vs_player_damage" value="3.9" /> -->
+		<param name="muzzleFromFiringLocator" value="1" />
+		<param name="fireLocatorType" value = "LR" />
+      </fire>
+	 <!--  <barrels>
+		<barrel helper_muzzle_override="muzzle_01" fragmentId="recoil_01" />
+		<barrel helper_muzzle_override="muzzle2" fragmentId="recoil_02" />
+		<barrel helper_muzzle_override="muzzle3" fragmentId="recoil_03" />
+	  </barrels> -->
+	  <spread>
+        <param name="min" value="0.0"/>
+        <param name="max" value="0.0"/>
+        <param name="attack" value="1" />
+        <param name="decay" value="0.5" />
+      </spread>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.laserbolt.firefx" helper="muzzle_out_01" />
+		<thirdperson effect="weapon_fx.laserbolt.firefx" helper="muzzle_out_01" /> 
+      </muzzleflash>
+      <pools>
+        <pool class="Power" value="-10" />
+        <pool class="Heat" value="3" />
+      </pools>
+    </firemode>
+  </firemodes>
+  
+  <missilerackparams>
+    <param name="detach_FX" value="spaceship_fx.Hornet.missile_detach" />
+    <detach_vel>
+      <param value="10,0,0" />
+	  <tags tag="left">
+		<param value="-10,0,0" />
+	  </tags>
+    </detach_vel>
+  </missilerackparams>
+  
+   <defaultLoadout>
+    <Items>
+      <Item portName="ammo_box_01" itemName="AmmoBox_Rocket" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Rocket" />
+    </Items>
+  </defaultLoadout>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+</item>

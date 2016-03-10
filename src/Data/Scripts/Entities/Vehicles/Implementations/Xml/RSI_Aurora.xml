@@ -1,0 +1,2147 @@
+<Vehicle name="RSI_Aurora" category="StarFighter" displayname="Anvil Hornet" classname="Class 2" id="idVehicleClass" HudPaletteScheme="RSI" requiredItemTags="flightReady" itemPortTags="RSI_Aurora_Base" crossSectionMultiplier="0.59, 0.61, 0.62">
+  <Physics pushable="0" dampingFreefall="0">
+    <Buoyancy waterDensity="150" waterResistance="2500" />
+    <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+  </Physics>
+  <VisorElement element="Visor_HUD_Aurora" />
+  <Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+    <DamageMultipliers>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+      <DamageMultiplier damageType="melee" multiplier="0" />
+      <DamageMultiplier damageType="collision" multiplier="1" />
+      <DamageMultiplier damageType="explosion" multiplier="1" />
+    </DamageMultipliers>
+    <DamagesGroups>
+      <DamagesGroup name="GlobalHitReactions" global="1">
+        <DamagesSubGroups>
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <!-- Camera Shake -->
+              <DamageBehavior class="CameraShake">
+                <ShakeTable>
+                  <Shake hitType="default" minDamage="1" maxDamage="20" minAngleMagnitude="5,5,5" maxAngleMagnitude="30,30,30" minShiftMagnitude="1" maxShiftMagnitude="2" frequency="4" cooldown="0.2" duration="0.15" />
+                  <Shake hitType="default" minDamage="21" maxDamage="100" minAngleMagnitude="5,5,5" maxAngleMagnitude="30,30,30" minShiftMagnitude="2" maxShiftMagnitude="4" frequency="4" cooldown="0.2" duration="0.15" />
+                  <Shake hitType="default" minDamage="101" maxDamage="1000" minAngleMagnitude="5,5,5" maxAngleMagnitude="30,30,30" minShiftMagnitude="4" maxShiftMagnitude="7" frequency="4" cooldown="0.2" duration="0.15" />
+                </ShakeTable>
+              </DamageBehavior>
+              <!-- cockpit fx -->
+              <DamageBehavior class="Effect">
+                <Effects spawnLimit="8" maxActive="16" coolDown="1" minWeight="3" maxWeight="60">
+                  <!-- Left overhead-->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_1" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_1" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_1" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_1" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_1" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_1" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_1" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Right overhead -->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_2" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_2" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_2" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_2" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_2" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_2" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_2" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Left Canopy -->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_3" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_3" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_3" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_3" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_3" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_3" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_3" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_3" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_3" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_3" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_3" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_3" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_3" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_3" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Right console -->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_4" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_4" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_4" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_4" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_4" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_4" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_4" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_4" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_4" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_4" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_4" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_4" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_4" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_4" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Left pipes -->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_5" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_5" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_5" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_5" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_5" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_5" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_5" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_5" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_5" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_5" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_5" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_5" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_5" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_5" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Front -->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_6" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_6" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_6" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_6" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_6" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_6" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_6" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_6" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_6" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_6" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_6" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_6" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_6" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_6" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Left front -->
+                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Aurora_Hit_FX_7" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Aurora_Hit_FX_7" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Aurora_Hit_FX_7" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Aurora_Hit_FX_7" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Aurora_Hit_FX_7" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Aurora_Hit_FX_7" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Aurora_Hit_FX_7" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Aurora_Hit_FX_7" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.everything" helper="Aurora_Hit_FX_7" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Aurora_Hit_FX_7" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Aurora_Hit_FX_7" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Aurora_Hit_FX_7" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.everything" helper="Aurora_Hit_FX_7" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Aurora_Hit_FX_7" weight="2" lifetime="4" coolDown="30" />
+                  <!-- Right front -->
+                  <!-- <Effect effect="cockpit_fx.uee.cont.low.smoke" 			helper="Aurora_Hit_FX_8"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.sparks" 		helper="Aurora_Hit_FX_8"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.everything" 	helper="Aurora_Hit_FX_8"	 weight="2" lifetime="5" 	coolDown="30" />  
+		
+									<Effect effect="cockpit_fx.uee.cont.high.smoke" 		helper="Aurora_Hit_FX_8"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.sparks" 		helper="Aurora_Hit_FX_8"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.everything" 	helper="Aurora_Hit_FX_8"	 weight="3" lifetime="10"	coolDown="30"  /> 
+		
+									<Effect effect="cockpit_fx.uee.low.smoke" 				helper="Aurora_Hit_FX_8"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.sparks" 				helper="Aurora_Hit_FX_8"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.everything" 			helper="Aurora_Hit_FX_8"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.electricity" 		helper="Aurora_Hit_FX_8"	 weight="1" lifetime="4" 	coolDown="30" /> 
+		
+									<Effect effect="cockpit_fx.uee.high.smoke" 				helper="Aurora_Hit_FX_8"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.sparks" 			helper="Aurora_Hit_FX_8"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.everything" 		helper="Aurora_Hit_FX_8"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.electricity" 		helper="Aurora_Hit_FX_8"	 weight="2" lifetime="4" 	coolDown="30" />  -->
+                  <!-- Left console -->
+                  <!--  <Effect effect="cockpit_fx.uee.cont.low.smoke" 		helper="Aurora_Hit_FX_9"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.sparks" 		helper="Aurora_Hit_FX_9"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.everything" 	helper="Aurora_Hit_FX_9"	 weight="2" lifetime="5" 	coolDown="30" />  
+		
+									<Effect effect="cockpit_fx.uee.cont.high.smoke" 		helper="Aurora_Hit_FX_9"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.sparks" 		helper="Aurora_Hit_FX_9"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.everything" 	helper="Aurora_Hit_FX_9"	 weight="3" lifetime="10"	coolDown="30"  /> 
+		
+									<Effect effect="cockpit_fx.uee.low.smoke" 				helper="Aurora_Hit_FX_9"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.sparks" 				helper="Aurora_Hit_FX_9"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.everything" 			helper="Aurora_Hit_FX_9"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.electricity" 		helper="Aurora_Hit_FX_9"	 weight="1" lifetime="4" 	coolDown="30" /> 
+		
+									<Effect effect="cockpit_fx.uee.high.smoke" 				helper="Aurora_Hit_FX_9"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.sparks" 			helper="Aurora_Hit_FX_9"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.everything" 		helper="Aurora_Hit_FX_9"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.electricity" 		helper="Aurora_Hit_FX_9"	 weight="2" lifetime="4" 	coolDown="30" />  -->
+                  <!-- Right floor -->
+                  <!-- <Effect effect="cockpit_fx.uee.cont.low.smoke" 			helper="Aurora_Hit_FX_10"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.sparks" 		helper="Aurora_Hit_FX_10"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.everything" 	helper="Aurora_Hit_FX_10"	 weight="2" lifetime="5" 	coolDown="30" />  
+		
+									<Effect effect="cockpit_fx.uee.cont.high.smoke" 		helper="Aurora_Hit_FX_10"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.sparks" 		helper="Aurora_Hit_FX_10"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.everything"	helper="Aurora_Hit_FX_10"	 weight="3" lifetime="10"	coolDown="30"  /> 
+		
+									<Effect effect="cockpit_fx.uee.low.smoke" 				helper="Aurora_Hit_FX_10"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.sparks" 				helper="Aurora_Hit_FX_10"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.everything" 			helper="Aurora_Hit_FX_10"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.electricity" 		helper="Aurora_Hit_FX_10"	 weight="1" lifetime="4" 	coolDown="30" /> 
+		
+									<Effect effect="cockpit_fx.uee.high.smoke" 				helper="Aurora_Hit_FX_10"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.sparks" 			helper="Aurora_Hit_FX_10"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.everything" 		helper="Aurora_Hit_FX_10"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.electricity" 		helper="Aurora_Hit_FX_10"	 weight="2" lifetime="4" 	coolDown="30" />  -->
+                  <!-- Right console electric crawl -->
+                  <!-- <Effect effect="cockpit_fx.uee.cont.low.smoke" 			helper="Aurora_Hit_FX_11"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.sparks"			helper="Aurora_Hit_FX_11"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.everything" 	helper="Aurora_Hit_FX_11"	 weight="2" lifetime="5" 	coolDown="30" />  
+		
+									<Effect effect="cockpit_fx.uee.cont.high.smoke" 		helper="Aurora_Hit_FX_11"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.sparks" 		helper="Aurora_Hit_FX_11"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.everything" 	helper="Aurora_Hit_FX_11"	 weight="3" lifetime="10"	coolDown="30"  /> 
+		
+									<Effect effect="cockpit_fx.uee.low.smoke" 				helper="Aurora_Hit_FX_11"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.sparks" 				helper="Aurora_Hit_FX_11"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.everything" 			helper="Aurora_Hit_FX_11"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.electricity" 		helper="Aurora_Hit_FX_11"	 weight="1" lifetime="4" 	coolDown="30" /> 
+		
+									<Effect effect="cockpit_fx.uee.high.smoke" 				helper="Aurora_Hit_FX_11"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.sparks" 			helper="Aurora_Hit_FX_11"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.everything" 		helper="Aurora_Hit_FX_11"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.electricity"		helper="Aurora_Hit_FX_11"	 weight="2" lifetime="4" 	coolDown="30" />  -->
+                  <!-- Left console electric crawl -->
+                  <!--  <Effect effect="cockpit_fx.uee.cont.low.smoke" 		helper="Aurora_Hit_FX_12"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.sparks" 		helper="Aurora_Hit_FX_12"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.everything" 	helper="Aurora_Hit_FX_12"	 weight="2" lifetime="5" 	coolDown="30" />  
+		
+									<Effect effect="cockpit_fx.uee.cont.high.smoke" 		helper="Aurora_Hit_FX_12"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.sparks" 		helper="Aurora_Hit_FX_12"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.everything" 	helper="Aurora_Hit_FX_12"	 weight="3" lifetime="10"	coolDown="30"  /> 
+		
+									<Effect effect="cockpit_fx.uee.low.smoke" 				helper="Aurora_Hit_FX_12"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.sparks" 				helper="Aurora_Hit_FX_12"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.everything" 			helper="Aurora_Hit_FX_12"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.electricity" 		helper="Aurora_Hit_FX_12"	 weight="1" lifetime="4" 	coolDown="30" /> 
+		
+									<Effect effect="cockpit_fx.uee.high.smoke" 				helper="Aurora_Hit_FX_12"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.sparks" 			helper="Aurora_Hit_FX_12"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.everything" 		helper="Aurora_Hit_FX_12"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.electricity" 		helper="Aurora_Hit_FX_12"	 weight="2" lifetime="4" 	coolDown="30" />  -->
+                  <!-- Right pipes -->
+                  <!-- <Effect effect="cockpit_fx.uee.cont.low.smoke" 			helper="Aurora_Hit_FX_13"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.sparks" 		helper="Aurora_Hit_FX_13"	 weight="2" lifetime="5" 	coolDown="30" />  
+									<Effect effect="cockpit_fx.uee.cont.low.everything" 	helper="Aurora_Hit_FX_13"	 weight="2" lifetime="5" 	coolDown="30" />  
+		
+									<Effect effect="cockpit_fx.uee.cont.high.smoke" 		helper="Aurora_Hit_FX_13"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.sparks" 		helper="Aurora_Hit_FX_13"	 weight="3" lifetime="10"	coolDown="30"  /> 
+									<Effect effect="cockpit_fx.uee.cont.high.everything" 	helper="Aurora_Hit_FX_13"	 weight="3" lifetime="10"	coolDown="30"  /> 
+		
+									<Effect effect="cockpit_fx.uee.low.smoke" 				helper="Aurora_Hit_FX_13"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.sparks" 				helper="Aurora_Hit_FX_13"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.everything" 			helper="Aurora_Hit_FX_13"	 weight="1" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.low.electricity" 		helper="Aurora_Hit_FX_13"	 weight="1" lifetime="4" 	coolDown="30" /> 
+		
+									<Effect effect="cockpit_fx.uee.high.smoke" 				helper="Aurora_Hit_FX_13"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.sparks" 			helper="Aurora_Hit_FX_13"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.everything" 		helper="Aurora_Hit_FX_13"	 weight="2" lifetime="4" 	coolDown="30" /> 
+									<Effect effect="cockpit_fx.uee.high.electricity" 		helper="Aurora_Hit_FX_13"	 weight="2" lifetime="4" 	coolDown="30" />  -->
+                </Effects>
+              </DamageBehavior>
+              <DamageBehavior class="AudioFeedback" damageRatioMin="0.1" damageRatioMax="0.95">
+                <Sound sound="Sounds/spaceships:rsi_aurora/damage:hull_damage" cooldown="1" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+      <DamagesGroup name="Destroy">
+        <DamagesSubGroups>
+          <!-- SubGroup to Destroy Vehicle -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="Destroy" />
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" />
+              </DamageBehavior>
+              <DamageBehavior class="Explosion">
+                <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to kill Passengers -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="HitPassenger">
+                <HitPassenger damage="100" isDamagePercent="1" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to apply burning - might remove this -->
+          <DamagesSubGroup delay="3" randomness="0.25">
+            <DamageBehaviors>
+              <DamageBehavior class="Burn">
+                <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+      <!--<DamagesGroup name="DestroyEngine">
+				<DamagesSubGroups>
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="MovementNotification">
+								<MovementNotification isDamageAlwaysFull="0"/>
+							</DamageBehavior>
+							<DamageBehavior class="Effect">
+								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
+							</DamageBehavior>
+							<DamageBehavior class="CameraShake">
+								<CameraShake />
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>-->
+    </DamagesGroups>
+  </Damages>
+  <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
+  <!-- Modes:	gun, missile, pilot, eject, enemy, thrusters, death	-->
+  <Cameras>
+    <Camera type="missile" attachPoint="" cameraOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+    <Camera type="eject" attachPoint="" cameraOffset="0,5,2" filename="Cameras/eject.xml" />
+    <Camera type="death" attachPoint="" cameraOffset="0,0,0" filename="Cameras/death.xml" />
+    <Camera type="gun" attachPoint="hardpoint_class_1_left_whisker" cameraOffset="1.7,-2.5,-0.8" cameraRotationOffset="0,90,0" filename="Cameras/gun.xml" />
+	<Camera type="gun" attachPoint="hardpoint_wing_top_left" cameraOffset="-0.5,0.8,-0.3" cameraRotationOffset="0,0,0" filename="Cameras/gun.xml" />
+	<Camera type="gun" attachPoint="hardpoint_wing_top_right" cameraOffset="0.7,0.8,-0.3" cameraRotationOffset="0,0,0" filename="Cameras/gun.xml" />
+    <Camera type="pilot" attachPoint="" cameraOffset="-0.4,7.1,1.2" cameraRotationOffset="-7,0,-7" filename="Cameras/pilot.xml" />
+    <Camera type="pilot" attachPoint="" cameraOffset="0.4,7.1,1.2" cameraRotationOffset="-7,0,7" filename="Cameras/pilot.xml" />
+	<Camera type="pilot" attachPoint="" cameraOffset="0.05,8.9,0.7" cameraRotationOffset="0,20,180" filename="Cameras/pilot.xml" /> <!-- Rear Facing Pilot Cam -->
+  </Cameras>
+  <!-- Cinematic Cameras End  //////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+  <Parts>
+    <Part name="RSI_Aurora" class="Animated" mass="14000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
+      <Animated filename="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" filenameDestruction="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora_Damaged.cga" id="idMainGeo" />
+      <DamageBehaviors>
+        <!-- <DamageBehavior class="DetachPart" damageRatioMin="1">
+				<DetachPart>
+					<Part name="Aurora_Cockpit" recurseChildren="1" Probability="1" /> 
+					<Part name="Aurora_Cockpit_100_debris_1" />
+					<Part name="Aurora_Cockpit_100_debris_3" />
+					<Part name="Aurora_TopBeam_100_debris_1"/> 
+					<Part name="Aurora_TopBeam_100_debris_2"/> 
+					<Part name="Aurora_TopBeam"/> 
+				</DetachPart>
+			</DamageBehavior> -->
+        <DamageBehavior class="Group" damageRatioMin="1">
+          <Group name="Destroy" />
+        </DamageBehavior>
+        <!--<DamageBehavior class="DamagePart" partState="-1">
+				<DamagePart>
+					<MasterFX masterDetachFX="explosions_fx.Part_Electrical_State_1" masterDebrisFX="damage_fx.uee.debris.sml.25_dmg.smoke"/>
+					<DamageStates>
+						<DamageState state="1" >
+							<Debris>
+								<DebrisEle name="F7C_Body_25_debris_1" helper="F7C_Body_25_GEO_1" >
+									<Effects>
+										<Effect effect="damage_fx.uee.hull.med.dmg_25" helper="F7C_Body_25_PFX_1" attached="1"  />
+										<Effect helper="F7C_Body_25_PFX_debris_1" />
+									</Effects>
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_2" helper="F7C_Body_25_GEO_2" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_2" attached="1" />
+										<Effect helper="F7C_Body_25_PFX_debris_2"  />
+									</Effects>
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_3" helper="F7C_Body_25_GEO_3" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_3" attached="1" />
+										<Effect helper="F7C_Body_25_PFX_debris_3" />
+									</Effects>
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_4" helper="F7C_Body_25_GEO_4" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_4" attached="1" />
+										<Effect helper="F7C_Body_25_PFX_debris_4" />
+									</Effects>	
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_5" helper="F7C_Body_25_GEO_5" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_5" attached="1" />
+										<Effect helper="F7C_Body_25_PFX_debris_5" />
+									</Effects>	
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_6" helper="F7C_Body_25_GEO_6" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_6" attached="1" />
+										<Effect helper="F7C_Body_25_PFX_debris_6" />
+									</Effects>	
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_7" helper="F7C_Body_25_GEO_7" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_7" attached="1" />
+										<Effect helper="F7C_Body_25_PFX_debris_7" />
+									</Effects>	
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_25_debris_8" helper="F7C_Body_25_GEO_8" >
+									<Effects>	
+										<Effect helper="F7C_Body_25_PFX_8" attached="1"  />
+										<Effect helper="F7C_Body_25_PFX_debris_8" />
+									</Effects>	
+								</DebrisEle>
+							</Debris>
+						</DamageState>
+						<DamageState state="2" >
+							<Debris>
+								<DebrisEle name="F7C_Body_50_debris_1" helper="F7C_Body_50_GEO_1" >
+									<Effects>
+										<Effect effect="damage_fx.uee.static.electric_small" helper="F7C_Body_50_PFX_1" attached="1" />
+										<Effect helper="F7C_Body_50_PFX_debris_1"  />
+									</Effects>
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_50_debris_2" helper="F7C_Body_50_GEO_2" >
+									<Effects>
+										<Effect helper="F7C_Body_50_PFX_2" attached="1" />
+										<Effect helper="F7C_Body_50_PFX_debris_2" />
+									</Effects>
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_50_debris_3" helper="F7C_Body_50_GEO_3" >
+									<Effects>
+										<Effect helper="F7C_Body_50_PFX_3" attached="1" />
+										<Effect helper="F7C_Body_50_PFX_debris_3" />
+									</Effects>
+								</DebrisEle>
+								<DebrisEle name="F7C_Body_50_debris_4" helper="F7C_Body_50_GEO_4"  >
+									<Effects>
+										<Effect helper="F7C_Body_50_PFX_4" attached="1"  />
+										<Effect helper="F7C_Body_50_PFX_debris_4"  />
+									</Effects>
+								</DebrisEle>
+							</Debris>
+						</DamageState>
+						<DamageState state="3" >
+							<Debris>
+								<DebrisEle name="F7C_Body_75_debris_2" helper="F7C_Body_75_GEO_2"  >
+									<Effects>
+										<Effect effect="damage_fx.uee.hull.med.dmg_75" helper="F7C_Body_75_PFX_2" attached="1" />
+										<Effect helper="F7C_Body_75_PFX_debris_2"  />
+									</Effects>
+								</DebrisEle>
+							</Debris>
+							<Detach>
+								<DetachEle name="F7C_BodyLeftFrontTopThrusterHousing" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="1800" localImpulse="1.5,0,1" randomForce ="0.5" random = "0.6" >
+									<Effects>
+										<Effect helper="F7C_Body_75_PFX_1" attached="1"  />
+										<Effect helper="F7C_BodyLeftFrontTopThrusterHousing_75_PFX"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_BodyRightBackTopThrusterHousing" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="1800" localImpulse="-1,0,1" randomForce ="0.5" random = "0.6" >
+									<Effects>
+										<Effect helper="F7C_Body_75_PFX_3" attached="1"  />
+										<Effect helper="F7C_BodyRightBackTopThrusterHousing_75_PFX"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_WingLeftRear" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="1800" localImpulse="-1,0,0" randomForce ="0.5"  random = "0.3" >
+									<Effects>
+										<Effect helper="F7C_WingLeftRear" />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_WingRightRear" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="1800" localImpulse="1,0,0" randomForce ="0.5"  random = "0.3" >
+									<Effects>
+										<Effect helper="F7C_WingRightRear"  />
+									</Effects>
+								</DetachEle>								
+							</Detach>
+						</DamageState>
+						<DamageState state="4" >
+							<Detach>
+								<DetachEle name="F7C_BodyFront" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="7200" localImpulse="0,1,0" randomForce ="0.5" random="0.5" >
+									<Effects>
+										<Effect effect="damage_fx.uee.hull.med.dmg_100" helper="F7C_Body_100_PFX_1" attached="1" />
+										<Effect helper="F7C_BodyFront_100_PFX"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_BodyLeft" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="7200" localImpulse="-1,0,0" randomForce ="0.5" random="0.5" >
+									<Effects>
+										<Effect helper="F7C_Body_100_PFX_2" attached="1"  />
+										<Effect helper="F7C_BodyLeft_100_PFX"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_BodyRight" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="7200" localImpulse="1,0,0" randomForce ="0.5" random="0.5" >
+									<Effects>
+										<Effect helper="F7C_Body_100_PFX_4" attached="1"  />
+										<Effect helper="F7C_BodyRight_100_PFX"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_BodyRear" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="7200" localImpulse="0,-1,0" randomForce ="0.5" random="0.5" >
+									<Effects>
+										<Effect helper="F7C_Body_100_PFX_3" attached="1"  />
+										<Effect helper="F7C_BodyRear_100_PFX"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_EngineHousing" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="1800" localImpulse="1,0,0" randomForce ="0.5"  random = "0.3" >
+									<Effects>
+										<Effect helper="F7C_EngineHousing"  />
+									</Effects>
+								</DetachEle>
+								<DetachEle name="F7C_Tail" class="Vehicle_Debris" joint="Attachment_Damage_Greeble" life="1800" localImpulse="1,0,0" randomForce ="0.5"  random = "0.3" >
+									<Effects>
+										<Effect helper="F7C_Tail"  />
+									</Effects>
+								</DetachEle>									
+							</Detach>
+						</DamageState>
+					</DamageStates>
+				</DamagePart>
+			</DamageBehavior>	
+		-->
+      </DamageBehaviors>
+      <Parts>
+        <Part name="hardpoint_paint" class="ItemPort">
+			<ItemPort minsize="1" maxsize="1" flags="" display_name="Paint">
+				<Types>
+					<Type type="Paints" />
+				</Types>
+			</ItemPort>
+		</Part>
+		<Part name="Aurora_Cockpit" class="AnimatedJoint" detachRatio="1" damageMax="160" disablePhysics="0">
+          <Effects>
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_Cockpit_100_PFX_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.smoke_debris" joint="Aurora_Cockpit_100_PFX_2" minDamageRatio="0.35" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_Cockpit_100_PFX_3" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.smoke_debris" joint="Aurora_Cockpit_100_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_Cockpit_100_PFX_2" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_Cockpit_100_PFX_3" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.smoke_debris" joint="Aurora_Cockpit_100_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_Cockpit_100_PFX_2" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_Cockpit_100_PFX_3" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.explosion_3" joint="Aurora_Cockpit_100_PFX_1" minDamageRatio="1" maxDamageRatio="1" />
+            <HitFx effect="damage_fx.uee.static.fire_small_long" joint="Aurora_Cockpit_100_PFX_1" minDamageRatio="1" maxDamageRatio="1" />
+            <HitFx effect="damage_fx.uee.static.electric_crawl" joint="Aurora_Cockpit_100_PFX_2" minDamageRatio="1" maxDamageRatio="1" />
+            <HitFx effect="damage_fx.uee.static.fire_debris" joint="Aurora_Cockpit_100_PFX_3" minDamageRatio="1" maxDamageRatio="1" />
+            <HitFx effect="damage_fx.uee.static.glass" joint="Aurora_Cockpit_100_PFX_4" minDamageRatio="1" maxDamageRatio="1" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_25_PFX_2" partName="300I_Tail_100_debris_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_25_PFX_3" partName="300I_Tail_100_debris_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_25_PFX_4" partName="300I_Tail_100_debris_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_25_PFX_5" partName="300I_Tail_100_debris_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_25_PFX_6" partName="300I_Tail_100_debris_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_25_PFX_7" partName="300I_Tail_100_debris_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage_fx.uee.static.fire_smoke" joint="300I_Tail_50_PFX_1" partName="300I_Tail_100_debris_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_50_PFX_2" partName="300I_Tail_100_debris_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_50_PFX_3" partName="300I_Tail_100_debris_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_50_PFX_4" partName="300I_Tail_100_debris_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.fire_small" joint="300I_Tail_50_PFX_5" partName="300I_Tail_100_debris_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_75_PFX_1" partName="300I_Tail_100_debris_1" minDamageRatio="0.75" maxDamageRatio="0.99" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_75_PFX_2" partName="300I_Tail_100_debris_1" minDamageRatio="0.75" maxDamageRatio="0.99" />
+            <HitFx effect="damage_fx.uee.static.fire_smoke" joint="300I_Tail_75_PFX_3" partName="300I_Tail_100_debris_1" minDamageRatio="0.75" maxDamageRatio="0.99" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_75_PFX_4" partName="300I_Tail_100_debris_1" minDamageRatio="0.75" maxDamageRatio="0.99" />
+            <HitFx effect="damage_fx.uee.static.smoke_long" joint="300I_Tail_75_PFX_4" partName="300I_Tail_100_debris_1" minDamageRatio="0.75" maxDamageRatio="0.99" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_75_PFX_5" partName="300I_Tail_100_debris_1" minDamageRatio="0.75" maxDamageRatio="0.99" />
+            <HitFx effect="damage_fx.uee.static.fire_sparks" joint="300I_Tail_100_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_100_PFX_2" minDamageRatio="1.00" maxDamageRatio="1.00" />
+            <HitFx effect="damage_fx.uee.static.electric_sparks" joint="300I_Tail_100_PFX_3" minDamageRatio="1.00" maxDamageRatio="1.00" />
+          </Effects>
+          <DamageBehaviors>
+            <DamageBehavior class="DamagePart" damageRatioMin="1">
+              <DamageParts>
+                <DamagePart name="Aurora_TopBeam" />
+                <DamagePart name="Aurora_BottomBeam" />
+                <DamagePart name="Aurora_Interior" />
+              </DamageParts>
+            </DamageBehavior>
+            <!-- <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+						<DetachPart>
+							<Part name="Aurora_Cockpit" recurseChildren="1" skipParent="1" Probability="0.05" /> 
+						</DetachPart>
+					</DamageBehavior>
+					<DamageBehavior class="DetachPart" damageRatioMin="0.50">
+						<DetachPart>
+							<Part name="Aurora_Cockpit" recurseChildren="1" skipParent="1" Probability="0.05" /> 
+						</DetachPart>
+					</DamageBehavior>
+					<DamageBehavior class="DetachPart" damageRatioMin="0.75">
+						<DetachPart>
+							<Part name="Aurora_Cockpit" recurseChildren="1" skipParent="1" Probability="0.05" /> 
+						</DetachPart>
+					</DamageBehavior>
+					<DamageBehavior class="DetachPart" damageRatioMin="1">
+						<DetachPart>
+							<Part name="Aurora_Cockpit" recurseChildren="1" skipParent="1" Probability="0.05" /> 
+						</DetachPart>
+					</DamageBehavior> -->
+            <DamageBehavior class="DetachPart" damageRatioMin="1">
+              <DetachPart>
+                <Part name="hardpoint_pilot_chair" />
+                <Part name="hardpoint_class_3" />
+                <Part name="Aurora_Cockpit_100_debris_1" />
+                <Part name="Aurora_Cockpit_100_debris_2" Probability="0.4" />
+                <Part name="Aurora_TopBeam_100_debris_1" />
+                <Part name="Aurora_TopBeam_100_debris_2" />
+                <Part name="Aurora_TopBeam" />
+                <Part name="Aurora_RightTopWing_100_debris_2" />
+                <!-- <Part name="Aurora_Cockpit" recurseChildren="0" Probability="0.7" />  -->
+              </DetachPart>
+            </DamageBehavior>
+            <DamageBehavior class="Group" damageRatioMin="1">
+              <Group name="Destroy" />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Parts>
+			<Part name="Aurora_RightAirlock" class="AnimatedJoint" damageMax="25" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <DamageBehaviors>
+                <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                  <DetachPart>
+                    <Part name="Aurora_RightAirlock" recurseChildren="1" skipParent="1" Probability="0.1" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                  <DetachPart>
+                    <Part name="Aurora_RightAirlock" recurseChildren="1" skipParent="1" Probability="0.1" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                  <DetachPart>
+                    <Part name="Aurora_RightAirlock" recurseChildren="1" skipParent="1" Probability="0.1" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="1">
+                  <DetachPart>
+                    <Part name="Aurora_RightAirlock" recurseChildren="1" skipParent="1" Probability="0.1" />
+                  </DetachPart>
+                </DamageBehavior>
+              </DamageBehaviors>
+              <Parts>
+                <Part name="Aurora_RightAirlockMesh" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="Aurora_RightAirlockLowerGlass" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="Aurora_RightAirlockUpperLockRing" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="Aurora_RightAirlockUpperGlass" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="Aurora_RightAirlockLowerLockRing" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="Aurora_RightAirlock_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="Aurora_RightAirlock_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                  </Parts>
+                </Part>
+                <Part name="Aurora_RightAirlock_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="Aurora_LeftAirlock" class="AnimatedJoint" damageMax="25" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="Aurora_LeftAirlockMesh" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="Aurora_LeftAirlockUpperGlass" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="Aurora_LeftAirlockLowerLockRing" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="Aurora_LeftAirlockLowerGlass" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="Aurora_LeftAirlockUpperLockRing" class="AnimatedJoint" damageMax="1" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="Aurora_LeftAirlock_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="Aurora_LeftAirlock_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="Aurora_LeftAirlock_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_1_PFX" />
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="hardpoint_class_1_left_whisker" class="ItemPort" detachRatio="0">
+              <ItemPort minsize="1" maxsize="2" flags="left" display_name="Left Whisker Class 1 Slot" displayPos="75,290">
+                <Types>
+                  <Type type="Turret" subtypes="GunTurret" />
+                </Types>
+                <Pitch min="-10" max="10" />
+                <Yaw min="-10" max="10" />
+
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_class_1_right_whisker" class="ItemPort" detachRatio="0">
+              <ItemPort minsize="1" maxsize="2" flags="right" display_name="Right Whisker Class 1 Slot" displayPos="75,290">
+                <Types>
+                  <Type type="Turret" subtypes="GunTurret" />
+                </Types>
+                <Pitch min="-10" max="10" />
+                <Yaw min="-10" max="10" />
+                
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_mid_front_top" class="ItemPort" detachRatio="0">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro +Z -Y front top">
+                <Pitch min="-90" max="0" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="0, 10.6, 1.3" />
+                </OptimalStates>
+              
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_mid_front_bottom" class="ItemPort" detachRatio="0">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro -Z -Y front bottom">
+                <Pitch min="-90" max="0" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="0, 10.6, -1.3" />
+                </OptimalStates>
+                
+              </ItemPort>
+            </Part>
+            <Part name="Aurora_Cockpit_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_1_PFX">
+              <Parts>
+                <Part name="Aurora_Interior_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_Interior_100_debris_1_PFX" />
+              </Parts>
+            </Part>
+            <Part name="Aurora_Cockpit_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0, 0, 0" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_2_PFX">
+              <Parts>
+                <Part name="Aurora_Interior_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_Interior_100_debris_2_PFX" />
+                <Part name="Aurora_Bumper" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="Aurora_Bumper_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="Aurora_Bumper_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="hardpoint_thruster_left_front_mid" class="ItemPort" detachRatio="0">
+                      <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z -Z retro front mid left">
+                        <Yaw min="-90" max="90" />
+                        <Types>
+                          <Type type="ManneuverThruster" subtypes="" />
+                        </Types>
+                        <OptimalStates>
+                          <Fixup pos="-1.3, 7.6, 0" />
+                        </OptimalStates>
+
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_thruster_right_front_mid" class="ItemPort" detachRatio="0">
+                      <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z -Z retro front mid right">
+                        <Yaw min="-90" max="90" />
+                        <Types>
+                          <Type type="ManneuverThruster" subtypes="" />
+                        </Types>
+                        <OptimalStates>
+                          <Fixup pos="1.3, 7.6, 0" />
+                        </OptimalStates>
+
+                      </ItemPort>
+                    </Part>
+                    <Part name="Aurora_LeftWhisker" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="Aurora_LeftWhisker_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftWhisker_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftWhisker_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftWhisker_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="Aurora_RightWhisker" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <DamageBehaviors>
+                        <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                          <DetachPart>
+                            <Part name="Aurora_RightWhisker" recurseChildren="1" skipParent="1" Probability="0.1" />
+                          </DetachPart>
+                        </DamageBehavior>
+                        <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                          <DetachPart>
+                            <Part name="Aurora_RightWhisker" recurseChildren="1" skipParent="1" Probability="0.1" />
+                          </DetachPart>
+                        </DamageBehavior>
+                        <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                          <DetachPart>
+                            <Part name="Aurora_RightWhisker" recurseChildren="1" skipParent="1" Probability="0.1" />
+                          </DetachPart>
+                        </DamageBehavior>
+                        <DamageBehavior class="DetachPart" damageRatioMin="1">
+                          <DetachPart>
+                            <Part name="Aurora_RightWhisker" recurseChildren="1" skipParent="1" Probability="0.1" />
+                          </DetachPart>
+                        </DamageBehavior>
+                      </DamageBehaviors>
+                      <Parts>
+                        <Part name="Aurora_RightWhisker_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightWhisker_PFX_25_debris_1_25" />
+                        <Part name="Aurora_RightWhisker_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightWhisker_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightWhisker_PFX_100_debris_1_100" />
+                        <Part name="Aurora_RightWhisker_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightWhisker_PFX_75_debris_1_75" />
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="Aurora_Cockpit_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_1_PFX" />
+            <Part name="Aurora_Cockpit_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_2_PFX" />
+            <Part name="Aurora_Cockpit_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_1_PFX" />
+            <Part name="Aurora_Cockpit_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_2_PFX" />
+            <Part name="Aurora_Cockpit_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_1_PFX" />
+            <Part name="Aurora_Cockpit_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_2_PFX" />
+            <Part name="Aurora_Interior" class="AnimatedJoint" damageMax="40" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="Aurora_InteriorLeftPedal" class="AnimatedJoint" />
+                <Part name="Aurora_InteriorLeftJoystick" class="AnimatedJoint" />
+                <Part name="Aurora_InteriorRightPedal" class="AnimatedJoint" />
+                <Part name="hardpoint_cockpit_audio" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="Cockpit Audio">
+                    <Types>
+                      <Type type="Avionics" subtypes="Cockpit_Audio" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="Aurora_InteriorRightJoystick" class="AnimatedJoint" />
+                <Part name="hardpoint_interior_audio" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="int" display_name="Interior_Audio">
+                    <Types>
+                      <Type type="Audio" subtypes="Interior_Audio" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="Aurora_Cockpit_75_debris_3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_3_PFX" />
+            <Part name="Aurora_Cockpit_75_debris_4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_4_PFX" />
+            <Part name="UI_helper" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
+                <Types>
+                  <Type type="Display" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_radar" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
+                <Types>
+                  <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="Radar_Helper" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="UI">
+                <Types>
+                  <Type type="Display" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_light_ext_cockpit_landing" class="ItemPort">
+              <!-- Body Rig attach point  -->
+              <ItemPort minsize="1" maxsize="1" flags="ext_cockpit_landing" display_name="Ext Cockpit Landing Lights">
+                <Types>
+                  <Type type="Light" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_light_ext_cockpit" class="ItemPort">
+              <!-- Body Rig attach point  -->
+              <ItemPort minsize="1" maxsize="1" flags="ext_cockpit" display_name="Ext Cockpit Lights">
+                <Types>
+                  <Type type="Light" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_light_int_cockpit" class="ItemPort">
+              <!-- Body Rig attach point  -->
+              <ItemPort minsize="1" maxsize="1" flags="int_cockpit" display_name="Int Cockpit Lights">
+                <Types>
+                  <Type type="Light" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_pilot_chair" class="ItemPort" detachRatio="0">
+              <ItemPort minsize="1" maxsize="1" flags="pilot" display_name="Pilot Seat" displayPos="75,290">
+                <Types>
+                  <Type type="Seat" subtypes="Pilot" />
+                </Types>
+               
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_armor" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Armor Slot">
+                <Types>
+                  <Type type="Armor" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_avonics_motherboard" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+                <Types>
+                  <Type type="Avionics" subtypes="Motherboard" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="Aurora_Body" class="AnimatedJoint" damageMax="180" detachRatio="0" detachBaseForce="0,-1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <HitFx effect="damage_fx.uee.static.fire_smoke" joint="Aurora_Body_25_PFX_4" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_25_PFX_10" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_Body_50_PFX_5" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_Body_50_PFX_11" minDamageRatio="0.25" maxDamageRatio="0.74" />
+                <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_Body_75_PFX_12" minDamageRatio="0.25" maxDamageRatio="0.99" />
+                <HitFx effect="damage_fx.uee.static.smoke_debris​" joint="Aurora_Body_75_PFX_19" minDamageRatio="0.25" maxDamageRatio="0.99" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_50_PFX_5" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_50_PFX_11" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_25_PFX_10" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_75_PFX_12" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_75_PFX_19" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_25_PFX_4" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage_fx.uee.static.fire_smoke" joint="Aurora_Body_75_PFX_12" minDamageRatio="1" maxDamageRatio="1" />
+                <HitFx effect="damage_fx.uee.static.fire_smoke" joint="Aurora_Body_75_PFX_19" minDamageRatio="1" maxDamageRatio="1" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_100_PFX_3" minDamageRatio="1" maxDamageRatio="1" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_100_PFX_10" minDamageRatio="1" maxDamageRatio="1" />
+                <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_Body_100_PFX_17" minDamageRatio="1" maxDamageRatio="1" />
+              </Effects>
+              <DamageBehaviors>
+                <DamageBehavior class="DamagePart" damageRatioMin="1">
+                  <DamagePart name="Aurora_Cockpit" />
+                  <DamagePart name="Aurora_TopBeam" />
+                  <DamagePart name="Aurora_BottomBeam" />
+                  <DamagePart name="Aurora_Interior" />
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                  <DetachPart>
+                    <!-- <Part name="Aurora_Body" recurseChildren="1" skipParent="1" Probability="0.2" />  -->
+                    <Part name="Aurora_Body_25_debris_1" Probability="0.3" />
+                    <Part name="Aurora_Body_25_debris_2" Probability="0.3" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                  <DetachPart>
+                    <Part name="Aurora_Body_25_debris_1" Probability="0.3" />
+                    <Part name="Aurora_Body_25_debris_2" Probability="0.3" />
+                    <Part name="Aurora_Body_50_debris_1" Probability="0.3" />
+                    <Part name="Aurora_Body_50_debris_2" Probability="0.3" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                  <DetachPart>
+                    <Part name="Aurora_Body_50_debris_1" Probability="0.3" />
+                    <Part name="Aurora_Body_50_debris_2" Probability="0.3" />
+                    <Part name="Aurora_Body_75_debris_1" Probability="0.3" />
+                    <Part name="Aurora_Body_75_debris_2" Probability="0.3" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="DetachPart" damageRatioMin="1">
+                  <DetachPart>
+                    <Part name="Aurora_Body_100_debris_1" Probability="0.3" />
+                    <Part name="Aurora_Body_100_debris_2" Probability="0.3" />
+                    <Part name="Aurora_Body_100_debris_3" Probability="0.3" />
+                    <Part name="Aurora_Cockpit_100_debris_3" />
+                    <Part name="Aurora_TopBeam_100_debris_1" />
+                    <Part name="Aurora_TopBeam_100_debris_2" />
+                    <Part name="Aurora_TopBeam" />
+                  </DetachPart>
+                </DamageBehavior>
+              </DamageBehaviors>
+              <Parts>
+                <Part name="Aurora_BottomBeam" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" skipPart="0" id="idBottomBeam">
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                      <DetachPart>
+                        <Part name="Aurora_BottomBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                      <DetachPart>
+                        <Part name="Aurora_BottomBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                      <DetachPart>
+                        <Part name="Aurora_BottomBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="1">
+                      <DetachPart>
+                        <Part name="Aurora_BottomBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Parts>
+                    <Part name="Aurora_BottomBeam_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_100_debris_1_PFX">
+                      <Parts>
+                        <Part name="Aurora_BottomBeam_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_100_debris_2_PFX" />
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_thruster_retro_bottom_left" class="ItemPort" detachRatio="0">
+                      <ItemPort minsize="1" maxsize="4" flags="maneuver orientation retro -Z -Y front top">
+                        <Types>
+                          <Type type="ManneuverThruster" subtypes="" />
+                        </Types>
+                        <OptimalStates>
+                          <Fixup pos="-1.7, 1.0, -1.85" />
+                        </OptimalStates>
+
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_thruster_retro_bottom_right" class="ItemPort" detachRatio="0">
+                      <ItemPort minsize="1" maxsize="4" flags="maneuver orientation retro -Z -Y front top">
+                        <Types>
+                          <Type type="ManneuverThruster" subtypes="" />
+                        </Types>
+                        <OptimalStates>
+                          <Fixup pos="1.7, 1.0, -1.85" />
+                        </OptimalStates>
+
+                      </ItemPort>
+                    </Part>
+                    <Part name="Aurora_BottomBeam_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_75_debris_1_PFX" />
+                  </Parts>
+                </Part>
+                <Part name="Aurora_TopBeam" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="1,0.2,0" detachRandomRotation="0,0,0" detachProbability="1">
+                  <AnimatedJoint filename="" id="idTopBeam" />
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                      <DetachPart>
+                        <Part name="Aurora_TopBeam_25_debris_2" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                      <DetachPart>
+                        <Part name="Aurora_TopBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                      <DetachPart>
+                        <Part name="Aurora_TopBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                      <DetachPart>
+                        <Part name="Aurora_TopBeam" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="1">
+                      <DetachPart>
+                        <Part name="Aurora_TopBeam_100_debris_1" />
+                        <Part name="Aurora_TopBeam_100_debris_2" />
+                        <Part name="Aurora_TopBeam" recurseChildren="1" Probability="0.6" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Parts>
+                    <Part name="hardpoint_thruster_retro_top_left" class="ItemPort" detachRatio="0">
+                      <ItemPort minsize="1" maxsize="4" flags="maneuver orientation retro -Z -Y front top">
+                        <Types>
+                          <Type type="ManneuverThruster" subtypes="" />
+                        </Types>
+                        <OptimalStates>
+                          <Fixup pos="-1.7, 1.0, 1.85" />
+                        </OptimalStates>
+
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_thruster_retro_top_right" class="ItemPort" detachRatio="0">
+                      <ItemPort minsize="1" maxsize="4" flags="maneuver orientation retro -Z -Y front top">
+                        <Types>
+                          <Type type="ManneuverThruster" subtypes="" />
+                        </Types>
+                        <OptimalStates>
+                          <Fixup pos="1.7, 1.0, 1.85" />
+                        </OptimalStates>
+
+                      </ItemPort>
+                    </Part>
+                    <Part name="Aurora_TopBeam_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.25, 0.5, 0.25" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_TopBeam_25_debris_2_PFX" />
+                    <Part name="Aurora_TopBeam_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_TopBeam_25_debris_6_PFX" />
+                    <Part name="Aurora_TopBeam_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_TopBeam_50_debris_1_PFX" />
+                    <Part name="Aurora_TopBeam_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Aurora_TopBeam_75_debris_3_PFX" />
+                    <Part name="Aurora_TopBeam_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,1" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Aurora_TopBeam_100_debris_2_PFX" />
+                    <Part name="Aurora_TopBeam_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Aurora_TopBeam_100_debris_4_PFX" />
+                  </Parts>
+                </Part>
+                <Part name="Aurora_RightBottomWing" class="AnimatedJoint" damageMax="75" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="1">
+                      <DetachPart>
+                        <Part name="Aurora_RightBottomWing_100_debris_1" recurseChildren="1" Probability="0.4" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Effects>
+                    <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_RightBottomWing_50_PFX_3" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                    <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_RightBottomWing_75_PFX_4" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightBottomWing_100_PFX_1" minDamageRatio="1" maxDamageRatio="1" />
+                    <HitFx effect="damage_fx.uee.static.electric_crawl" joint="Aurora_RightBottomWing_50_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_RightBottomWing_75_PFX_1" partName="Aurora_RightBottomWing_75_debris_1" minDamageRatio="0.75" maxDamageRatio="1" />
+                  </Effects>
+                  <Parts>
+                    <Part name="Aurora_RightBottomWing_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0, 0, 0" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Aurora_RightBottomWing_100_PFX_debris_1">
+                      <Parts>
+                        <Part name="Aurora_RightBottomWingFrontLowerHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingFrontLowerHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingFrontUpperHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingFrontUpperHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="Aurora_RightBottomWing_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_25_PFX_debris_1" />
+                          </Parts>
+                        </Part>
+                        <Part name="Aurora_RightBottomWingFrontPropeller" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_light_ext_starboard_nav" class="ItemPort">
+                      <!-- Body Rig attach point  -->
+                      <ItemPort minsize="1" maxsize="1" flags="starboard_nav" display_name="Starboard Nav Lights">
+                        <Types>
+                          <Type type="Light" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="Aurora_RightBottomWing_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_25_PFX_debris_2" />
+                    <Part name="Aurora_RightBottomWing_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_50_PFX_debris_1" />
+                    <Part name="Aurora_RightBottomWing_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_50_PFX_debris_2" />
+                    <Part name="Aurora_RightBottomWing_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Aurora_RightBottomWing_75_PFX_debris_1">
+                      <Parts>
+                        <Part name="Aurora_RightBottomWingBackPropeller" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingBackLowerHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingBackLowerHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingBackUpperHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_RightBottomWingBackUpperHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="hardpoint_landinggear_right" class="AnimatedJoint" detachRatio="0" />
+                      </Parts>
+                    </Part>
+                    <Part name="Aurora_RightBottomWing_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Aurora_RightBottomWing_75_PFX_debris_2" />
+                  </Parts>
+                </Part>
+                <Part name="hardpoint_countermeasure_left" class="ItemPort">
+				  <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Intake Countermeasure Launcher">
+					<Types>
+					  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+					</Types>
+				  </ItemPort>
+				</Part>
+				<Part name="hardpoint_countermeasure_right" class="ItemPort">
+				  <ItemPort minsize="1" maxsize="3" flags="right" display_name="Left Intake Countermeasure Launcher">
+					<Types>
+					  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+					</Types>
+				  </ItemPort>
+				</Part>
+				<Part name="hardpoint_fuel_intake_left" class="ItemPort">
+				  <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Fuel Intake">
+					<Types>
+					  <Type type="FuelIntake" />
+					</Types>
+				  </ItemPort>
+				</Part>
+				<Part name="hardpoint_fuel_intake_right" class="ItemPort">
+				  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Fuel Intake">
+					<Types>
+					  <Type type="FuelIntake" />
+					</Types>
+				  </ItemPort>
+				</Part>
+				<Part name="hardpoint_fuel_intake_center" class="ItemPort">
+				  <ItemPort minsize="1" maxsize="1" flags="center" display_name="Center Fuel Intake">
+					<Types>
+					  <Type type="FuelIntake" />
+					</Types>
+				  </ItemPort>
+				</Part>
+				<Part name="hardpoint_power_plant_attach" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="2" flags="main rear" display_name="Power Plant" displayPos="75,290" requiredTags="">
+                    <Types>
+                      <Type type="PowerPlant" subtypes="Power" />
+                    </Types>
+
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_class_3" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="3" flags="top mid" display_name="Class 3 Slot" displayPos="275,260" displayTop="1">
+                    <Types>
+                      <Type type="WeaponMissile" subtypes="MissileRack" />
+                    </Types>
+
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_engine" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="2" maxsize="3" flags="" requiredTags="">
+                    <Types>
+                      <Type type="MainThruster" subtypes="" id="idEngineType" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="0.0, -5.0, 0" />
+                    </OptimalStates>
+                    
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_right_back_mid" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z -Z rear mid right">
+                    <Yaw min="-90" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="1.3, -7.6, 0" />
+                    </OptimalStates>
+                    
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_mid_back_bottom" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z -Z rear mid left">
+                    <Pitch min="-90" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="0, -4.6, -1.3" />
+                    </OptimalStates>
+                    
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_left_back_mid" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z -Z rear mid left">
+                    <Yaw min="-90" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-1.3, -7.6, 0" />
+                    </OptimalStates>
+                   
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_mid_back_top" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z -Z rear mid right">
+                    <Pitch min="-90" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="0, -4.6, 1.3" />
+                    </OptimalStates>
+                   
+                  </ItemPort>
+                </Part>
+                <Part name="Aurora_Body_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_1_PFX" />
+                <Part name="Aurora_Body_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_2_PFX" />
+                <Part name="Aurora_Body_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_1_PFX">
+                  <Parts>
+                    <Part name="Aurora_Body_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_1_PFX" />
+                  </Parts>
+                </Part>
+                <Part name="Aurora_Body_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_1_PFX">
+                  <Parts>
+                    <Part name="Aurora_Body_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_2_PFX">
+                      <Parts>
+                        <Part name="Aurora_Body_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_2_PFX" />
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="Aurora_Body_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_2_PFX" />
+                <Part name="Aurora_Body_100_debris_3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_3_PFX" />
+                <Part name="hardpoint_shield_generator" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="3" flags="" display_name="Shield Slot">
+                    <Types>
+                      <Type type="Shield" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_light_ext_dorsal" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="ext_dorsal" display_name="Dorsal Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_light_ext_ventral" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="ext_ventral" display_name="Ventral Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_light_ext_body" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="ext_body" display_name="Body Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_light_ext_tail" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="tail" display_name="Tail Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_light_int" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="int" display_name="Interior Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="TopDuct" class="AnimatedJoint">
+                  <AnimatedJoint filename="" id="idTopDuct" />
+                </Part>
+                <Part name="hardpoint_wing_top_left" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Wing Class 1 Slot" displayPos="75,290">
+                    <Types>
+                      <Type type="WeaponGun" subtypes="Gun" />
+                    </Types>
+                    
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_wing_top_right" class="ItemPort" detachRatio="0">
+                  <ItemPort minsize="1" maxsize="3" flags="right" display_name="Right Wing Class 1 Slot" displayPos="75,290">
+                    <Types>
+                      <Type type="WeaponGun" subtypes="Gun" />
+                    </Types>
+                   
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_selfdestruct" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
+                    <Types>
+                      <Type type="SelfDestruct" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="Aurora_RightTopWing" class="AnimatedJoint" damageMax="75" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Effects>
+                    <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_RightTopWing_25_PFX_5" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightTopWing_50_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightTopWing_50_PFX_5" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightTopWing_50_PFX_10" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightTopWing_75_PFX_3" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightTopWing_75_PFX_4" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_RightTopWing_75_PFX_11" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_RightTopWing_100_PFX_1" minDamageRatio="1" maxDamageRatio="1" />
+                    <HitFx effect="damage_fx.uee.static.fire_smoke" joint="Aurora_RightTopWing_100_PFX_2" minDamageRatio="1" maxDamageRatio="1" />
+                  </Effects>
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                      <DetachPart>
+                        <Part name="Aurora_RightTopWing" recurseChildren="1" skipParent="1" Probability="0.2" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                      <DetachPart>
+                        <Part name="Aurora_RightTopWing" recurseChildren="1" skipParent="1" Probability="0.2" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                      <DetachPart>
+                        <Part name="Aurora_RightTopWing" recurseChildren="1" skipParent="1" Probability="0.2" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="1">
+                      <DetachPart>
+                        <Part name="Aurora_RightTopWing" recurseChildren="1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Parts>
+                    <Part name="Aurora_RightTopWing_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_1_PFX">
+                      <DamageBehaviors>
+                        <DamageBehavior class="DetachPart" damageRatioMin="1">
+                          <DetachPart>
+                            <Part name="Aurora_RightTopWing_100_debris_1" recurseChildren="0.3" />
+                            <Part name="Aurora_RightTopWing_100_debris_2" />
+                          </DetachPart>
+                        </DamageBehavior>
+                      </DamageBehaviors>
+                    </Part>
+                    <Part name="Aurora_RightTopWing_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_2_PFX" />
+                    <Part name="Aurora_RightTopWing_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_1_PFX" />
+                    <Part name="Aurora_RightTopWing_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_1_PFX" />
+                    <Part name="Aurora_RightTopWing_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_2_PFX" />
+                    <Part name="Aurora_RightTopWing_50_debris_3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_50_debris_3_PFX" />
+                    <Part name="Aurora_RightTopWing_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_1_PFX" />
+                    <Part name="Aurora_RightTopWing_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_2_PFX" />
+                    <Part name="Aurora_RightTopWing_75_debris_3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Scythe_Nose_75_debris_3_PFX">
+                      <Parts>
+                        <Part name="hardpoint_radiator_right" class="ItemPort">
+                          <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot" requiredTags="">
+                            <Types>
+                              <Type type="Cooler" subtypes="" />
+                            </Types>
+                          </ItemPort>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="Aurora_LeftTopWing" class="AnimatedJoint" damageMax="75" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" >
+                   <AnimatedJoint filename="" id="idLeftTopWing" />
+				  <Effects>
+                    <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_25_PFX_5" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_50_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_50_PFX_5" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_50_PFX_10" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_75_PFX_3" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_75_PFX_4" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_75_PFX_11" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_LeftTopWing_100_PFX_1" minDamageRatio="1" maxDamageRatio="1" />
+                    <HitFx effect="damage_fx.uee.static.fire_smoke" joint="Aurora_LeftTopWing_100_PFX_2" minDamageRatio="1" maxDamageRatio="1" />
+                  </Effects>
+                  <!-- <DamageBehavior class="Explosion" damageRatioMin="0.74">
+							<Explosion helper="Aurora_LeftTopWing_75" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+						</DamageBehavior> -->
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                      <DetachPart>
+                        <Part name="Aurora_LeftTopWing" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.50">
+                      <DetachPart>
+                        <Part name="Aurora_LeftTopWing" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.75">
+                      <DetachPart>
+                        <Part name="Aurora_LeftTopWing" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                    <DamageBehavior class="DetachPart" damageRatioMin="1">
+                      <DetachPart>
+                        <Part name="Aurora_LeftTopWing" recurseChildren="1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Parts>
+                    <Part name="Aurora_LeftTopWing_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_100_PFX_debris_1" partName="Aurora_LeftTopWing_100_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_100_PFX_debris_1" />
+                      </Effects>
+                      <DamageBehaviors>
+                        <DamageBehavior class="DetachPart" damageRatioMin="1">
+                          <DetachPart>
+                            <Part name="Aurora_LeftTopWing_100_debris_1" recurseChildren="0.3" />
+                            <Part name="Aurora_LeftTopWing_100_debris_2" />
+                          </DetachPart>
+                        </DamageBehavior>
+                      </DamageBehaviors>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_100_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_100_PFX_debris_2" partName="Aurora_LeftTopWing_100_debris_2" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_100_PFX_debris_2" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_25_PFX_debris_1" partName="Aurora_LeftTopWing_50_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_25_PFX_debris_1" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_50_PFX_debris_1" partName="Aurora_LeftTopWing_50_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_50_PFX_debris_1" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_50_PFX_debris_2" partName="Aurora_LeftTopWing_50_debris_2" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_50_PFX_debris_2" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_75_PFX_debris_1" partName="Aurora_LeftTopWing_75_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_75_PFX_debris_1" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_75_PFX_debris_2" partName="Aurora_LeftTopWing_75_debris_2" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_75_PFX_debris_2" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftTopWing_75_debris_3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_75_PFX_debris_3" partName="Aurora_LeftTopWing_75_debris_3" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftTopWing_75_PFX_debris_3" />
+                      </Effects>
+                      <Parts>
+                        <Part name="hardpoint_radiator_left" class="ItemPort">
+                          <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Cooler Slot" requiredTags="">
+                            <Types>
+                              <Type type="Cooler" subtypes="" />
+                            </Types>
+                          </ItemPort>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="Aurora_LeftBottomWing" class="AnimatedJoint" damageMax="75" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Effects>
+                    <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_50_PFX_3" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                    <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_LeftBottomWing_75_PFX_4" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftBottomWing_100_PFX_1" minDamageRatio="1" maxDamageRatio="1" />
+                    <HitFx effect="damage_fx.uee.static.electric_crawl" joint="Aurora_LeftBottomWing_50_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                    <HitFx effect="damage_fx.uee.static.fire_sparks" joint="Aurora_LeftBottomWing_75_PFX_1" partName="Aurora_LeftBottomWing_75_debris_1" minDamageRatio="0.75" maxDamageRatio="1" />
+                  </Effects>
+                  <Parts>
+                    <Part name="Aurora_LeftBottomWing_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Aurora_LeftBottomWing_100_PFX_debris_1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_100_PFX_debris_1_100" partName="300I_RearStabilizer" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_100_PFX_debris_1_100" />
+                      </Effects>
+                      <Parts>
+                        <Part name="Aurora_LeftBottomWingFrontPropeller" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingFrontUpperHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="Aurora_LeftBottomWing_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_25_PFX_debris_1" partName="Aurora_LeftBottomWing_100_debris_1" />
+                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_25_PFX_debris_1" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="Aurora_LeftBottomWingFrontLowerHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingFrontUpperHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingFrontLowerHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_light_ext_port_nav" class="ItemPort">
+                      <!-- Body Rig attach point  -->
+                      <ItemPort minsize="1" maxsize="1" flags="port_nav" display_name="Port Nav Lights">
+                        <Types>
+                          <Type type="Light" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="Aurora_LeftBottomWing_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_25_PFX_debris_2" partName="Aurora_LeftBottomWing_100_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_25_PFX_debris_2" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftBottomWing_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_50_PFX_debris_1" partName="Aurora_LeftBottomWing_100_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_50_PFX_debris_1" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftBottomWing_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_50_PFX_debris_2" partName="Aurora_LeftBottomWing_100_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_50_PFX_debris_2" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftBottomWing_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_75_PFX_debris_1" partName="Aurora_LeftBottomWing_100_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_75_PFX_debris_1" />
+                      </Effects>
+                    </Part>
+                    <Part name="Aurora_LeftBottomWing_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_75_PFX_debris_2" partName="Aurora_LeftBottomWing_100_debris_1" />
+                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_LeftBottomWing_75_PFX_debris_2" />
+                      </Effects>
+                      <Parts>
+                        <Part name="Aurora_LeftBottomWingBackUpperHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingBackUpperHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingBackLowerHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingBackLowerHatch02" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="Aurora_LeftBottomWingBackPropeller" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="hardpoint_landinggear_left" class="AnimatedJoint" detachRatio="0" />
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="hardpoint_player_aux" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="invisible aux" display_name="Aux Connection">
+            <Types>
+              <Type type="Player" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_fuel_tank_left" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Tank">
+            <Types>
+              <Type type="FuelTank" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_fuel_tank_right" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Tank">
+            <Types>
+              <Type type="FuelTank" />
+            </Types>
+          </ItemPort>
+        </Part>
+      </Parts>
+    </Part>
+  </Parts>
+  <!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Helpers>
+  </Helpers>
+  <!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Actions>
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_left" distance="2" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.0" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_exit_pos_left" distance="0" bbMin="-0.8,-0.2,0" bbMax="0.8,0.5,2.0" />
+      </Activations>
+      <Enter>
+        <Doors>
+          <Door value="DoorLeft_Airlock" />
+        </Doors>
+      </Enter>
+    </Action>
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_right" distance="2" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.0" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_exit_pos_right" distance="0" bbMin="-0.8,-0.2,0" bbMax="0.8,0.5,2.0" />
+      </Activations>
+      <Enter>
+        <Doors>
+          <Door value="DoorRight_Airlock" />
+        </Doors>
+      </Enter>
+    </Action>
+    <!-- SeatDriver -->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="pilot_enterCockpit_pos" distance="0" bbMin="-0.8,0,0" bbMax="0.8,1.5,2.0" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="SeatDriver" />
+        </Seats>
+      </Enter>
+    </Action>
+    <!-- /SeatDriver -->
+    <!-- SeatBed -->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="bed_door_helper" distance="0" bbMin="-0.5,-0.85,0" bbMax="0.5,0.5,1.2" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="SeatBed" />
+        </Seats>
+      </Enter>
+    </Action>
+    <!-- /SeatBed -->
+    <Action class="LandingGears">
+      <Activations>
+        <Activation type="OnGroundCollision" />
+      </Activations>
+      <LandingGears animation="Landing_Gear" landingDamages="500" altitudeToRetractGears="8" openState="Deploy" closeState="Retract" />
+    </Action>
+  </Actions>
+  <!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
+  <Interior bbSize="2.5,5,1.9" bbCenter="0,6.5,0.4">
+    <Doors>
+      <Door name="DoorLeft_Airlock">
+        <Enter startHelper="pilot_enter_pos_left" endHelper="pilot_exit_pos_left">
+          <State animation="Left_Airlock" state="Open" />
+          <State animation="Left_Ladder" state="Open" />
+        </Enter>
+        <Exit startHelper="pilot_exit_pos_left" endHelper="pilot_enter_pos_left">
+          <State animation="Left_Airlock" state="Open" />
+          <State animation="Left_Ladder" state="Open" />
+        </Exit>
+      </Door>
+      <Door name="DoorRight_Airlock">
+        <Enter startHelper="pilot_enter_pos_right" endHelper="pilot_exit_pos_right">
+          <State animation="Right_Airlock" state="Open" />
+          <State animation="Right_Ladder" state="Open" />
+        </Enter>
+        <Exit startHelper="pilot_exit_pos_right" endHelper="pilot_enter_pos_right">
+          <State animation="Right_Airlock" state="Open" />
+          <State animation="Right_Ladder" state="Open" />
+        </Exit>
+      </Door>
+    </Doors>
+    <Views>
+      <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+        <Orbit speed="2.0" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+      </View>
+    </Views>
+  </Interior>
+  <!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Seats>
+    <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
+    <Seat name="SeatDriver" enterHelper="pilot_enterCockpit_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-35" maxPitch="50" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+        </View>
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
+          <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1"/>
+        </View>
+      </Views>
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init a the SeatActionMovement component that will start the engine on entry-->
+        <SeatAction class="Movement">
+          <Movement engine="0" isAvailableDocked="0">
+          </Movement>
+        </SeatAction>
+        <!-- Weapons used / controlled by pilot of Confed Hornet -->
+        <SeatAction class="SharedWeapons">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_1_left_whisker" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_class_1_right_whisker" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_wing_top_left" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <ItemPort part="hardpoint_wing_top_right" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- missiles used / controlled by pilot of Confed Hornet -->
+        <SeatAction class="SharedMissiles">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_3" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- counter messures used / controlled by pilot of Confed Hornet -->
+        <SeatAction class="SharedDefensive">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_countermeasure_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_power_plant_attach" />
+                <ItemPort part="pilotVisor" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_avonics_motherboard" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+                <ItemPort part="hardpoint_armor" />
+                <ItemPort part="radar_helper" />
+                <ItemPort part="*hardpoint_fuel" />
+                <ItemPort part="*light" />
+                <ItemPort part="hardpoint_cockpit_audio" />
+                <ItemPort part="hardpoint_pilot_chair" />
+                <ItemPort part="hardpoint_selfdestruct" />
+              </Items>
+            </Settings>
+          </SharedItems>
+        </SeatAction>
+        <SeatAction class="AnimatedAction">
+          <Actions>
+            <Action action="v_weapon_launch_missile" animation="rsi_aurora_joystick_right_button" vehicleAnimation="rsi_aurora_joystick_right_button" />
+            <Action action="v_afterburner" animation="rsi_aurora_joystick_left_button" vehicleAnimation="rsi_aurora_joystick_left_button" isTrigger="1" />
+            <Action action="v_attack1_group1" animation="rsi_aurora_joystick_right_trigger" vehicleAnimation="rsi_aurora_joystick_right_trigger" isTrigger="1" />
+            <Action action="v_attack1_group2" animation="rsi_aurora_joystick_left_trigger" vehicleAnimation="rsi_aurora_joystick_left_trigger" isTrigger="1" />
+            <Action action="v_attack1_group3" animation="rsi_aurora_joystick_left_trigger" vehicleAnimation="rsi_aurora_joystick_left_trigger" isTrigger="1" />
+          </Actions>
+        </SeatAction>
+        <SeatAction class="SharedAutoWeapons">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_1_left_whisker" priority="1" id="idSharedWeapon_hardpoint_class_1_left_whisker" />
+                <ItemPort part="hardpoint_class_1_right_whisker" priority="1" id="idSharedWeapon_hardpoint_class_1_right_whisker" />
+                <ItemPort part="hardpoint_wing_top_right" priority="1" id="idSharedWeapon_hardpoint_wing_top_right" />
+                <ItemPort part="hardpoint_wing_top_left" priority="1" id="idSharedWeapon_hardpoint_wing_top_left" />
+                <ItemPort part="hardpoint_class_3" priority="1" id="idSharedWeapon_hardpoint_class_3" />
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <SeatAction class="SharedThruster">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="*hardpoint_engine" />
+                <ItemPort part="*hardpoint_thruster" />
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <!-- SeatActionAnimateControlInputs
+		     This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+		     Format is
+			    Parts               List of parts to animate
+				    ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+					    RotateX         Rotation around the X axis (pitch)
+					    RotateY         Roll
+					    RotateZ         Yaw
+						    input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+													    registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its working set of action variables )
+													    or in the Variables section of the vehicle xml
+						    actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+						    direction=    forwards or backwards
+						    min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+						    max=
+						    sound=        The sound to play when animating the part
+						    stopSound=    The sound to play when stopping
+					    Animation
+						    manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (depending on what kind of input was specified). If thsi si not set the animtion will
+													    play normally according to it's state parameters in the vehicle animation system.
+		     -->
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="Aurora_InteriorLeftJoystick">
+                <Rotate_X input="StrafeUpDown" direction="-1" min="-13" max="20" />
+                <Rotate_Y input="StrafeLeftRight" direction="-1" min="-20" max="20" />
+								<Rotate_Z input="StrafeForwardBack" direction="1" minRange="-1" maxRange="1" min="-25" max="25" />
+              </ControlPart>
+              <ControlPart part="Aurora_InteriorRightJoystick">
+                <Rotate_X input="pitch" direction="-1" min="-13" max="20" />
+                <Rotate_Y input="roll" direction="-1" min="-20" max="20" />
+								<Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-25" max="25" />
+              </ControlPart>
+              <ControlPart part="Aurora_InteriorLeftPedal">
+                <Rotate_X input="Brake" direction="1" minRange="-1" maxRange="1" min="0" max="-20" />
+              </ControlPart>
+              <ControlPart part="Aurora_InteriorRightPedal">
+                <Rotate_X input="Throttle" direction="1" minRange="-1" maxRange="1" min="0" max="-20" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+
+      <SeatAction class="AnimatedAction">
+          <Actions>
+            <!-- Left hand -->
+    <!--        <Action action="v_radar_cycle_zoom_fwd" animation="cockpityokew_rh_cycleradar_add"/>
+            <Action action="v_radar_cycle_zoom_back" animation="cockpityokew_rh_cycleradar_add"/>
+
+            <Action action="v_ifcs_toggle_vector_decoupling" animation="cockpityokew_rh_enable_decouple_add"/>
+            <Action action="v_ifcs_toggle_gforce_safety" animation="cockpityokew_rh_enable_decouple_add"/>
+            <Action action="v_ifcs_toggle_gforce_comstab" animation="cockpityokew_rh_enable_decouple_add"/> -->
+
+            <!-- Right hand -->
+    <!--        <Action action="v_weapon_cycle_countermeasure_fwd" animation="cockpityokew_lh_chaff_add"/>
+            <Action action="v_weapon_cycle_countermeasure_back" animation="cockpityokew_lh_flare_add"/> -->
+
+            <Action action="v_weapon_launch_missile" animation="cockpityokew_rh_press_thumb2"/>
+
+            <Action action="v_afterburner" animation="cockpityokew_lh_afterburner_add" isTrigger="1"/>
+            
+            <Action action="v_attack1_group1" animation="cockpityokew_rh_pull_trigger" isTrigger="1"/>
+            <Action action="v_attack1_group2" animation="cockpityokew_rh_pull_trigger" isTrigger="1"/>
+            <Action action="v_attack1_group3" animation="cockpityokew_rh_pull_trigger" isTrigger="1"/>
+          </Actions>
+        </SeatAction>
+        
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+              <Limb tag="LeftArmYoke" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="yoke_IK_attach_left" blendTime="0" />
+              <Limb tag="RightArmYoke" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="yoke_IK_attach_right" blendTime="0" />
+              <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_IK_attach" blendTime="0" />
+              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_IK_attach" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <DockingStation>
+        <Slots>
+          <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" />
+          </Slot>
+        </Slots>
+      </DockingStation>
+      <FixedVisorSettings default_fixed="1">
+        <FirstPerson scale="1" x_offset="-0.005" y_offset="-0.1" z_offset="-0.075" />
+        <ThirdPerson scale="1" x_offset="-0.005" y_offset="-0.1" z_offset="-0.075" />
+      </FixedVisorSettings>
+      <Screens>
+		  <Screen name="Fixed UI" element="ShipInterface" screen="AuroraInterfaceScreen" number="1">
+			  <Container name="FrontHUDScreen" helper="FrontHud_Helper" container="FrontHUDScreen" scale="1.5" x_offset="0" y_offset="0" z_offset="-0.025" />
+			  <Container name="LeftMFD" helper="LeftScreen_Helper" container="LeftMFD" scale="0.6" y_offset="-0.005" />
+			  <Container name="RightMFD" helper="RightScreen_Helper" container="RightMFD" scale="0.6" y_offset="-0.005" />
+			  <Container name="EmissionsScreen" helper="LeftTopScreen_Helper" container="EmissionsScreen" scale="0.65" z_offset="-0.025" />
+			  <Container name="PerformanceScreen" helper="LeftTopScreen_Helper" container="PerformanceScreen" scale="0.65" z_offset="-0.025" />
+			  <Container name="OwnShipHoloScreen" helper="LeftTopScreen_Helper" container="OwnShipHoloScreen" scale="0.65" z_offset="0.08" />
+			  <Container name="TargetHoloScreen" helper="RightTopScreen_Helper" container="TargetHoloScreen" scale="0.60" z_offset="0.03" />
+		  </Screen>
+      </Screens>
+    </Seat>
+    <Seat name="SeatBed" enterHelper="pilot_enterBed_pos" sitHelper="pilot_Bed_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-70" lookMax="60,0,70" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+      <!-- Begin views for this seat-->
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-40,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+        </View>
+      </Views>
+    </Seat>
+  </Seats>
+  <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+  <MovementParams>
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="150" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="70,70,70" maxAngularAcceleration="520,520,520" maxJerk="100.0" maxAngJerk="60.0">
+      <SoundParams dmgBufferDecay="0.16">
+        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
+        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
+        <RunSound running_sound="" />
+        <AmbientSound running_sound="Sounds/spaceships:rsi_aurora/parts:ambient_interior" />
+        <PassByLoopSound sound="Sounds/spaceships:rsi_aurora/pass_by:pass_by_loop" />
+        <PassBySound sound="Sounds/spaceships:rsi_aurora/pass_by:pass_by_800ms_0to100meters" leadinTime="0.8" maxDistance="100" cooldownTime="2" />
+        <DuressSound sound="Sounds/spaceships:rsi_aurora/under_duress:under_duress" damage_floor="19.0" damage_buffer="60.0" />
+      </SoundParams>
+      <Animations engine="Intake_Fans" />
+      <Contrails>
+        <Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
+        <Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
+        <Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+        <Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+      </Contrails>
+    </Spaceship>
+  </MovementParams>
+  <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Anvil_Hornet">
+    <!--
+	 <Exhaust insideWater="0" outsideWater="1">
+	 <Helpers>
+		<Helper value="main_engine_exhaust"/>
+	 </Helpers>
+	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+	</Exhaust>
+	-->
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
+  <!-- Mannequin information for vehicle -->
+  <Mannequin tag="RSI_Aurora" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/RSI/Aurora/RSI_Aurora_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/RSI/Aurora/RSI_Aurora_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/RSI/Aurora/RSI_Aurora_HumanAnims.adb" />
+  <!-- Vehicle Animations (to be replaced by mannequin)
+	Format is
+	
+		Animation
+			name=       Vehicle Animation name that all systems use when referring to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part=       This is the name of the parent VehiclePartAnimated of this animation. As there can be multiple CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer=if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+										This is useful for animations that you need to guarantee will play.
+										
+		State
+			name=        Name of state
+			animation=   this is the CGA ANM file name (sans the CGA name. For instance if the CGA is Hornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+			speedDefault=Speed the animation will play at. A negative numbers means the animation will play backwards. Defaults to 1
+			speedMin=    defaults to -1
+			speedMax=    defaults to 1
+			isLooped=    Is animation looped
+			isLoopedEx=  Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+			isManual=    Is animation manually advanced
+			canRestart=  if true the animation can be interrupted and started again before its finished playing. Defaults to false.
+			interrupt=   Can this animation be interrupted by another one. Defaults to no.
+			startTime=   The time that the animation will start at when played (in normalized animation time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+										until the animation is requested to be played.
+			play=        Number of times this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+			nextState=   The next state to go to once this state has been played. If not defined the nextState is always the current state
+			sound=       Name of sound to played
+			helper=      (optional) vehicle helper location of sound
+			
+			Materials
+				Material        Specifies the material which the material setting will be animated by the state's speed.
+					name=        name of material
+					setting=     material setting (e.g. opacity etc) to animate
+					min=         min value of setting 
+					max=         max value of setting
+					invertValue= invert setting
+					
+		Action
+			name=       Name of Mannequin Fragment in the vehicle adb file
+			state=      Sets the Action to the last frame of the fragment on init, String is the fragment tag(s)
+			play=       Plays this Action on init, String is the fragment tag(s)  
+			
+	-->
+  <Animations>
+    <Action name="Controls" state="Retract" />
+  </Animations>
+  <!-- Attachments
+	This is a list of any attachment objects on the vehicle. This is used primarily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+	where you don't need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+	don't really need them to be their own VehiclePart
+	Format is 
+		name=    is the string name that other systems use when telling the vehicle to do something with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+							animation or do something with an attachment.) 
+		helper=  is the helper where the attachment is located
+		geometry=if specified then the system assumes the attachment is either a CHR,CDF or CGF (depending on the extension).
+		effect=  if specified then the system assumes the attachment is a particle effect, and this is the name of the effect in the particle database. 
+		light=   if specified then the system assumes the attachment is a light, and the string is the light type as defined in DefaultVehcileLights. Note this is just here form completeness. 
+							Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc..
+		archetype= name of entity archetype					
+							
+	optional parameters are
+	
+		hide=    "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+		orientation = 	the angle of the attachment from its parent joint in degrees about the x,y & z axis respectively
+		mass =			specifies the mas in KG of the attachment for physicalization purposes
+	-->
+  <Attachments>
+    <!--		<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" geometry="Objects/Spaceships/Ships/ANVL/Hornet/F7C/pilot_umbilical.chr" scopeContext="Umbilical"/> -->
+    <Attachment name="landing_gear_right_wing" helper="hardpoint_landinggear_right" geometry="Objects/Spaceships/Ships/RSI/LandingGear/Aurora/Aurora_RightLandingGear.cga" scopeContext="LandingGearRight" />
+    <Attachment name="landing_gear_left_wing" helper="hardpoint_landinggear_left" geometry="Objects/Spaceships/Ships/RSI/LandingGear/Aurora/Aurora_LeftLandingGear.cga" scopeContext="LandingGearLeft" />
+    <Attachment name="landing_gear_front" helper="hardpoint_landinggear_front" geometry="Objects/Spaceships/Ships/RSI/LandingGear/Aurora/Aurora_FrontLandingGear.cga" scopeContext="LandingGearFront" />
+    <!--Attachment name="headlight" helper="Headlight" archetype="!test_LightsArchetypes.groupname.light" orientation="0,0,90"/-->
+    <!--Attachment name="headlightFlare" helper="Headlight" light="Headlight_Flare" orientation="0,0,90" /-->
+  </Attachments>
+  <!-- Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be defined somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is 
+		name=is the string name used to refer to the variable by other systems (SeatActionsAnimateControlInputs etc) and the "mapped" name of the variable in the VehiclePlayerControls dynamic variable list
+		value=is the initial value of the variable. If not defined this will default to 0. All variables in this system are floats.
+	 -->
+  <Variables>
+  </Variables>
+  <Inventory>
+    <AmmoTypes>
+    </AmmoTypes>
+  </Inventory>
+  <GeomTags>
+    <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <TagsList>
+      <Tags tag="HUD">
+        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="" />
+        <Tags tag="hostile">
+          <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="" />
+        </Tags>
+        <Tags tag="neutral">
+          <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="" />
+        </Tags>
+      </Tags>
+      <Tags tag="over dragging">
+        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+      </Tags>
+      <Tags tag="ItemPreviewA">
+        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+      </Tags>
+    </TagsList>
+  </GeomTags>
+  
+  <Paints>
+ 		<Paint name="aurora_uee" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_uee.mtl"/>
+		<Paint name="aurora_blackbeard" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_blackbeard.mtl"/>
+		<Paint name="aurora_pitchfork" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_pitchfork.mtl"/>
+ </Paints>
+  
+  <Modifications>
+    <Modification name="CL">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora CL" />
+		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.61,0.62"/>
+				
+        <Elem idRef="idMainPart" name="name" value="RSI_Aurora_CL" />
+        <!-- Disable Top right and left hardpoints, only available on LN -->
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
+        <!-- Default Loadout -->
+        <!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Vehicles/DefaultRSI_Aurora_CL.xml"/>-->
+		<!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_CL.mtl" />
+      </Elems>
+    </Modification>
+    <Modification name="ES">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora ES" />
+		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.62,0.62"/>
+		
+        <Elem idRef="idMainPart" name="name" value="RSI_Aurora_ES" />
+        <!-- Disable Top right and left hardpoints, only available on LN -->
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
+      </Elems>
+    </Modification>
+    <Modification name="LN">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora LN" />
+		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.49,0.50,0.60"/>
+		
+        <Elem idRef="idMainPart" name="name" value="RSI_Aurora_LN" />
+        <Elem idRef="idBottomBeam" name="skipPart" value="1" />
+        <!-- Enable Top right and left hardpoints, only available on LN -->
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="hardpoint_wing_top_right" />
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="hardpoint_wing_top_left" />
+		<!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />		
+        <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_LN.mtl" />
+      </Elems>
+    </Modification>
+    <Modification name="LX">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora LX" />
+		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.52,0.53,0.63"/>
+		
+        <Elem idRef="idMainPart" name="name" value="RSI_Aurora_LX" />
+        <!-- Disable Top right and left hardpoints, only available on LN -->
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
+		<!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_LX.mtl" />
+      </Elems>
+    </Modification>
+    <Modification name="MR">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora MR" />
+		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.61,0.62"/>
+		
+        <Elem idRef="idMainPart" name="name" value="RSI_Aurora_MR" />
+        <!-- Disable Top right and left hardpoints, only available on LN -->
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
+        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
+		<!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_MR.mtl" />
+      </Elems>
+    </Modification>
+  </Modifications>
+</Vehicle>

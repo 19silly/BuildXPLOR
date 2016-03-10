@@ -1,0 +1,149 @@
+<item name="AEGS_Gladius_CML" class="VehicleCountermeasureLauncher" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" value="0" />
+    <param name="selectable" value="0" />
+    <param name="pickable" value="0" />
+    <param name="mountable" value="1" />
+    <param name="usable" value="0" />
+    <param name="arms" value="0" />
+    <param name="itemType" value="WeaponDefensive" />
+    <param name="itemSubType" value="CountermeasureLauncher" />
+    <param name="itemDescription" value="Countermeasure Launcher" />
+    <param name="itemManufactor" value="AEGS" />
+    <param name="itemSize" value="1" />
+	<param name="itemTags" value="flightReady" />
+	<param name="requiredPortTags" value="" />
+    <param name="weaponRequireAmmoBox" value="1" />
+    <param name="display_name"	value="Countermeasure Launcher" />
+
+    <param name="inefficiency" value="0.3" />
+    <param name="hitpoints" value="150" />
+    <param name="mass" value="150" />
+  </params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="critical">
+      <StateLevels>
+        <Warning  value = "0.50" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+
+      <States>
+        <State state="Active,Default">
+          <Value value="-10" />
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+    </Pipe>
+  </Pipes>
+
+  <geometry>
+    <!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
+  <!--  <thirdperson name="" material="objects/spaceships/ships/orig/M50/ORIG_M50.mtl"/>	-->
+	<thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/AEGS/Gladius/Gladius_Default_CML_Left.cga" material=""/>
+
+    <tags tag="left">
+      <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/AEGS/Gladius/Gladius_Default_CML_Left.cga" material=""/>
+    </tags>
+
+    <tags tag="right">
+      <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/AEGS/Gladius/Gladius_Default_CML_Right.cga" material=""/>
+    </tags>
+	
+    <tags tag="HUD">
+      <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+    </tags>
+
+    <tags tag="Hologram">
+
+      <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+
+      <tags tag="ShipHologram">
+        <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+
+        <tags tag="inactive">
+          <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+        </tags>
+        <tags tag="over dragging">
+          <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+        </tags>
+        <tags tag="overCompareValid">
+          <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+        </tags>
+        <tags tag="overCompareInvalid">
+          <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+        </tags>
+      </tags>
+
+      <tags tag="ItemList">
+        <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+        <tags tag="over dragging">
+          <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+        </tags>
+      </tags>
+
+      <tags tag="ItemPreviewA">
+        <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+      </tags>
+
+      <tags tag="ItemPreviewB">
+        <thirdperson name="" material="materials/item_selection/material_hologram_default.mtl"/>
+      </tags>
+
+    </tags>
+  </geometry>
+
+  <actions>
+    <action name="fire">
+      <sound target="thirdperson" name="Sounds/countermeasures:orig:launch" radius="150" static="1"/>
+	  <!--<param name="in_out" var="in_out" />
+			</sound>-->
+    </action>
+  </actions>
+
+  <firemodes>
+    <firemode name="Weapon" type="Single">
+      <fire>
+        <param name="rate" value="120" />
+        <param name="clip_size" value="0" /> <!-- Clip size needs to be 0 for CounterMeasures to work -->
+        <param name="muzzleFromFiringLocator" value="1" /> <!-- turning off muzzle flashes form following the barrels -->.
+        <param name="fireLocatorType" value = "default" />
+      </fire>
+
+      <muzzleflash>
+        <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <!--         <firstperson effect="Counter_Measures_All.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/>
+        <thirdperson effect="Counter_Measures_All.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/> -->
+      </muzzleflash>
+    </firemode>
+  </firemodes>
+
+  <portParams>
+    <ports>
+      <ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="invisible" display_name="Ammo Box #1">
+        <Types>
+          <Type type="AmmoBox" subtypes=""/>
+        </Types>
+        <GeomTags>
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+          <Tags tag="over dragging">
+            <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+          </Tags>
+          <Tags tag="overCompareValid">
+            <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+          </Tags>
+          <Tags tag="overCompareInvalid">
+            <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+          </Tags>
+        </GeomTags>
+      </ItemPort>
+    </ports>
+  </portParams>
+
+  <mobiGlas>
+    <mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+</item>

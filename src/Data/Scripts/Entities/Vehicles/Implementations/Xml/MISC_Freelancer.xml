@@ -1,0 +1,1548 @@
+<!--
+//////////////////////////////////////////////////////////////////////////
+///              Musashi Industrial Starfflight Concern
+//												FREELANCER
+//////////////////////////////////////////////////////////////////////////
+-->
+<Vehicle name="MISC_Freelancer" category="Transport" displayname="MISC Freelancer" classname="Class 3" id="idVehicleClass" dockingclass="3" priority="7">
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+	<Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+		<DamageMultipliers>
+			<DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+			<DamageMultiplier damageType="melee" multiplier="0"/>
+			<DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+			<DamageMultiplier damageType="collision" multiplier="1"/>
+			<DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+		</DamageMultipliers>
+		<DamagesGroups>
+			<DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
+				<DamagesSubGroups>
+					<DamagesSubGroup delay="0.34999999" randomness="0.1">
+						<DamageBehaviors>
+							<DamageBehavior class="Explosion">
+								<Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="HitPassenger">
+								<HitPassenger damage="100" isDamagePercent="1"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+					<DamagesSubGroup delay="3" randomness="0.25">
+						<DamageBehaviors>
+							<DamageBehavior class="Burn">
+								<Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>
+			<DamagesGroup name="DestroyEngine">
+				<DamagesSubGroups>
+					<DamagesSubGroup delay="0" randomness="0">
+						<DamageBehaviors>
+							<DamageBehavior class="MovementNotification">
+								<MovementNotification isDamageAlwaysFull="0"/>
+							</DamageBehavior>
+							<DamageBehavior class="Effect">
+								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
+							</DamageBehavior>
+							<DamageBehavior class="CameraShake">
+								<CameraShake />
+							</DamageBehavior>
+						</DamageBehaviors>
+					</DamagesSubGroup>
+				</DamagesSubGroups>
+			</DamagesGroup>
+		</DamagesGroups>
+	</Damages>
+
+	<!--/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- BEGIN Vehicle Components ///////////////////////////////////////////////////////////////////////////-->
+	<Components>
+
+		<Component name="Hull" damageMax="800" major="1" position="-0.00060000003,0.3062,-0.1309" size="9.9404001,18.8384,9.1845999" useBoundsFromParts="0" id="idHull">
+			<DamageMultipliers>
+				<DamageMultiplier damageType="bullet" multiplier="0.0080000004"/>
+				<DamageMultiplier damageType="melee" multiplier="0"/>
+				<DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+				<DamageMultiplier damageType="collision" multiplier="0.079999998"/>
+				<DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+			</DamageMultipliers>
+			<DamageBehaviors>
+				<DamageBehavior class="Group" damageRatioMin="1">
+					<Group name="Destroy"/>
+				</DamageBehavior>
+				<DamageBehavior class="Group" damageRatioMin="0.25">
+					<Group name="DestroyEngine"/>
+				</DamageBehavior>
+				<DamageBehavior class="Effect" damageRatioMin="0.25" damageRatioMax="0.75" ignoreVehicleDestruction="1">
+					<Effect effect="HullDamaged25"/>
+				</DamageBehavior>
+				<DamageBehavior class="Effect" damageRatioMin="0.75" damageRatioMax="1" ignoreVehicleDestruction="1">
+					<Effect effect="HullDamaged75"/>
+				</DamageBehavior>
+			</DamageBehaviors>
+		</Component>
+
+		<Component name="frontCockpit" damageMax="0" major="0" position="-0.075400002,-0.89700001,-1.7276" size="1.5122,6.5321999,4.7491999" useBoundsFromParts="0">
+			<DamageBehaviors />
+		</Component>
+
+		<Component name="left_wing" damageMax="1" major="0" useBoundsFromParts="1">
+			<DamageBehaviors>
+				<DamageBehavior class="DetachPart" damageRatioMin="1.0">
+					<DetachPart part="Left_Wing" baseForce="-0.5,0,0" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" />
+				</DamageBehavior>
+			</DamageBehaviors>
+		</Component>
+
+		<Component name="right_wing" damageMax="1" major="0" useBoundsFromParts="1">
+			<DamageBehaviors>
+				<DamageBehavior class="DetachPart" damageRatioMin="1.0">
+					<DetachPart part="Right_Wing_Cannon" baseForce="0.5,0,0.2" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" />
+				</DamageBehavior>
+			</DamageBehaviors>
+		</Component>
+
+
+	</Components>
+	<!-- END VEHICLE COMPONENTS ////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+
+	<Parts>
+	 <Part name="MISC_Freelancer" class="Animated" component="Hull" mass="55000" disablePhysics="0" scopeContext ="Ship" id="idMainPart">
+			<Parts>
+				<Part name="MISC_Freelancer_Interior" class ="AnimatedJoint">
+					<Parts>
+						<!-- Pilot controls -->
+						<Part name ="Cockpit_L_YokeMainArm" class ="AnimatedJoint"/>
+						<Part name ="Cockpit_L_YokeArm_L_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_L_Yoke_L" class ="AnimatedJoint" />
+						<Part name ="Cockpit_L_YokeArm_R_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_L_Yoke_R" class ="AnimatedJoint" />
+						
+						<!-- CoPilot controls -->
+						<Part name ="Cockpit_R_YokeMainArm" class ="AnimatedJoint"/>
+						<Part name ="Cockpit_R_YokeArm_L_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_R_Yoke_L" class ="AnimatedJoint" />
+						<Part name ="Cockpit_R_YokeArm_R_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_R_Yoke_R" class ="AnimatedJoint" />
+
+						<Part name="hardpoint_cockpit_audio" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="start_hidden"  display_name="Cockpit Audio">
+								<Types>
+									<Type type="Avionics" subtypes="Cockpit_Audio"/>
+								</Types>
+							</ItemPort>
+						</Part>
+						<Part name="hardpoint_interior_audio" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="int"  display_name="Interior_Audio">
+								<Types>
+									<Type type="Audio" subtypes="Interior_Audio"/>
+								</Types>
+							</ItemPort>
+						</Part>
+					</Parts>
+					<AnimatedJoint/>
+				</Part> 
+				<Part name="hardpoint_power_plant_attach" class="ItemPort">
+					<ItemPort minsize="3" maxsize="5" flags="main rear" display_name="Power Plant" displayPos="75,290">
+						<Types>
+							<Type type="PowerPlant" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_1.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_1.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_1.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_1.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+				<Part name="hardpoint_engine_attach" class="ItemPort">
+					<ItemPort minsize="4" maxsize="5" flags="main rear">
+						<Types>
+							<Type type="MainThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+				<Part name ="hardpoint_thruster_rear_right_bottom" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation lower rear right">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_rear_right_mid" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation mid rear right">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_rear_right_upper" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z upper rear right">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+				<Part name ="hardpoint_thruster_rear_left_bottom" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation lower rear left">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_rear_left_mid" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation mid rear left">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+							  <Tags tag="over dragging">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareValid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+							  </Tags>
+							  <Tags tag="overCompareInvalid">
+								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+							  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_rear_left_upper" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation upper rear left">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+				<Part name ="hardpoint_thruster_front_right_bottom" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation retro lower front right">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_front_right_upper" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation retro upper front right">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_front_right_mid" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation retro mid front right">
+						<Pitch min ="-40" max ="40"/>
+						<Yaw min ="-40" max ="40"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+				<Part name ="hardpoint_thruster_front_left_bottom" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation retro lower front left">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_front_left_upper" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation retro upper front left">
+						<Pitch min ="-45" max ="45"/>
+						<Yaw min ="-45" max ="45"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				<Part name ="hardpoint_thruster_front_left_mid" class ="ItemPort">
+					<ItemPort minsize="1" maxsize="2" flags="maneuver orientation retro mid front left">
+						<Pitch min ="-40" max ="40"/>
+						<Yaw min ="-40" max ="40"/>
+						<Types>
+							<Type type="ManneuverThruster" subtypes=""/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_3.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+
+				<!-- Todo: Set this up as a proper Freelancer missile hardpoint
+				<Part name ="hardpoint_class_3_top_left_wing" class = "ItemPort">
+					<ItemPort minsize="3" maxsize="5" flags="upper left wing" display_name="Left Wing Pylon" displayPos="195,200">
+						<Types>
+							<Type type="WeaponMissile" subtypes="MissileRack"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+				-->
+
+				<!-- Todo: Set this up as a proper Freelancer missile hardpoint
+				<Part name ="hardpoint_class_3_top_right_wing" class = "ItemPort">
+					<ItemPort minsize="1" maxsize="3" flags="upper right wing" display_name="Right Wing Pylon" displayPos="345,200">
+						<Types>
+							<Type type="WeaponMissile" subtypes="MissileRack"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						</GeomTags>
+					</ItemPort>
+				</Part>				
+				-->
+				
+				<Part name="Freelancer_side_cannon_L_Hardpoint" class="ItemPort">
+					<ItemPort minsize="3" maxsize="5" flags="left side top" display_name="Left Class 2 Mount Top" displayPos="75,290">
+						<Types>
+							<Type type="WeaponGun" subtypes="Gun"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+
+					</ItemPort>
+				</Part>
+
+
+				<Part name="Freelancer_side_cannon_L_Bottom_Hardpoint" class="ItemPort">
+					<ItemPort minsize="3" maxsize="5" flags="left side bottom" display_name="Left Class 2 Mount Bottom" displayPos="75,290">
+						<Types>
+							<Type type="WeaponGun" subtypes="Gun"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+					</ItemPort>
+				</Part>					
+				
+				<Part name="Freelancer_side_cannon_R_Hardpoint" class="ItemPort">
+					<ItemPort minsize="3" maxsize="5" flags="right side top" display_name="Right Class 2 Mount Top" displayPos="75,290">
+						<Types>
+							<Type type="WeaponGun" subtypes="Gun"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+					</ItemPort>
+				</Part>
+
+				<Part name="Freelancer_side_cannon_R_Bottom_Hardpoint" class="ItemPort">
+					<ItemPort minsize="3" maxsize="5" flags="right side bottom" display_name="Right Class 2 Mount Bottom" displayPos="75,290">
+						<Types>
+							<Type type="WeaponGun" subtypes="Gun"/>
+						</Types>
+						<GeomTags>
+						  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+						  <TagsList>
+						  <Tags tag="over dragging">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareValid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+						  </Tags>
+						  <Tags tag="overCompareInvalid">
+							<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+						  </Tags>
+						  </TagsList>
+						</GeomTags>
+					</ItemPort>
+				</Part>				
+				
+				
+				
+				
+				
+				
+			</Parts>
+
+			<Animated filename="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer.cga" filenameDestroyed="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer.cga" id="idShipGeometry"/>
+		</Part>
+	</Parts>
+	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- PM to do see if we still need this
+	<Helpers>
+		<Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="hull"/>
+		<Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="hull"/>
+	</Helpers>
+	-->
+	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Actions>
+		<!-- Front Stairs -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5"/>
+				<Activation type="OnUsed" param1="helper" param2="stair_exit_helper" distance="2" bbMin="-0.4,-0.4,-0.4" bbMax="0.4,0.4,0.4"/>
+			</Activations>
+			<Enter>
+				<Doors>
+					<Door value="Entrance_Door_Player"/>
+				</Doors>
+			</Enter>
+		</Action>
+		<!-- Rear Cargo Massive Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="FL_Rear_Door" distance="0.1" bbMin="-2,-2,-2" bbMax="2,1,2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+		
+		<!-- Kitchen Screens -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="kitchen_table_helper" distance="1.5" bbMin="-0.07,-0.7,-0.7" bbMax="0.1,0.7,0.1"/>
+				<Activation type="OnUsed" param1="helper" param2="kitchen_table_helper2" distance="1.5" bbMin="-0.07,-0.7,-0.7" bbMax="0.1,0.7,0.1"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Kitchen_Screens" state="Deploy" />
+					</AnimationStates>
+					<uiAction name="Interaction_HandSwipe" />
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Kitchen_Screens" state="Retract" />
+					</AnimationStates>
+					<uiAction name="Interaction_HandSwipe" />
+				</State>
+			</States>
+		</Action>
+		
+	
+		<!-- Kitchen seat LeftSide -->
+
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="kitchen_table_left_helper" distance="1" bbMin="-0.2,-0.3,-0.2" bbMax="0.1,0.3,0.2"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="kitchen_table_left_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- Kitchen seat RightSide -->
+
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="kitchen_table_right_helper" distance="1" bbMin="-0.2,-0.3,-0.2" bbMax="0.1,0.3,0.2"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="kitchen_table_right_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+
+		
+		<!-- front seat left  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="cockpit_seat_left_helper" distance="1" bbMin="-0.3,-0.3,-0.3" bbMax="0.3,0.3,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="cockpit_seat_leftPlayer"/>
+				</Seats>
+			</Enter>
+		</Action>
+	
+
+	<!-- front seat right  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="cockpit_seat_right_helper" distance="1" bbMin="-0.3,-0.3,-0.3" bbMax="0.3,0.3,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="cockpit_seat_rightPlayer"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- Cargo Man Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="cargo_door_helper" distance="0.75" bbMin="-0.7,-.3,0" bbMax="0.7,0.3,2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Man_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Man_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+		
+		<!-- Cargo Inner Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="cargo_door_entrance_helper" distance="0.75" bbMin="-0.7,-.3,0" bbMax="0.7,0.3,2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Interior_Cargo_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Interior_Cargo_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>		
+		
+		<!-- Pilot seat -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="pilot_enter_helper" distance="0.5" bbMin="-0.4,-0.4,-0.25" bbMax="0.4,0.4,1.0"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="Pilot"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- CoPilot seat -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="copilot_enter_helper" distance="0.5" bbMin="-0.4,-0.4,-0.25" bbMax="0.4,0.4,1.0"/>
+			</Activations>
+			<Enter>
+				<Seats>
+				  <Seat value="Copilot"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- Gunner seat -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="gunner_enter_pos" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5"/>
+			</Activations>
+			<Enter>
+				<Seats>
+				  <Seat value="Gunner"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- Landing Gears -->
+		<Action class="LandingGears">
+			<Activations>
+				<Activation type="OnGroundCollision"/>
+			</Activations>
+				<LandingGears animation ="Landing_Gear" landingDamages="500" altitudeToRetractGears="8" openState="Deploy" closeState="Retract"/>
+		</Action>	
+		
+	<!-- bunk bed lower left  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_lowerleft_helper" distance="1" bbMin="-0.3,-0.3,-0.3" bbMax="0.3,0.3,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_lowerleft_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	<!-- bunk bed lower right  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_lowerright_helper" distance="1" bbMin="-0.3,-0.3,-0.3" bbMax="0.3,0.3,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_lowerright_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	<!-- bunk bed upper right  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_upperright_helper" distance="1" bbMin="-0.3,-0.5,-0.3" bbMax="0.3,0.5,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_upperright_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	<!-- bunk bed upper left  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_upperleft_helper" distance="1" bbMin="-0.3,-0.5,-0.3" bbMax="0.3,0.5,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_upperleft_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+		<!-- shower door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="shower_door_helper" distance="1.5" bbMin="-0.2,-0.5,-0.2" bbMax="0.2,0.5,0.5"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="shower_door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="shower_door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+		
+		<!-- toilet seat -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="toilet_seat_helper" distance="1.50" bbMin="-0.2,-0.2,0" bbMax="0.4,0.4,0.5"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="toilet_seat" state="Deploy" />
+					</AnimationStates>
+					<!--<uiAction name="Interaction_HandSwipe" />-->
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="toilet_seat" state="Retract" />
+					</AnimationStates>
+					<!--<uiAction name="Interaction_HandSwipe" />-->
+				</State>
+			</States>
+		</Action>
+		
+	</Actions>
+	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
+  
+  <Interior bbSize="5,31,5" bbCenter="0,0,3">
+	<Doors>
+		<Door name="Entrance_Door_Player">
+			<Enter startHelper="pilot_enter_pos" endHelper="pilot_exit_pos"/>
+			<Exit startHelper="pilot_exit_pos" endHelper="pilot_enter_pos"/>
+		</Door>
+		<!--<Door name="RearEntranceAction">
+			<Enter startHelper="rear_door_enter_pos" endHelper="rear_door_exit_pos">
+				<State animation="Rear_Door" state="Open" />
+			</Enter>
+			<Exit startHelper="rear_door_exit_pos" endHelper="rear_door_enter_pos">
+				<State animation="Rear_Door" state="close" />
+			</Exit>
+		</Door>-->
+	</Doors>
+	<Views>
+		<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+			<Orbit speed="2.0" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+		</View>
+	</Views>
+  </Interior>
+  
+  <!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Seats>
+
+		<!-- Pilot's seat  -->
+		<Seat name="Pilot" enterHelper="pilot_enterCockpit_pos" sitHelper="pilot_sit_pos" interiorAccess="0" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship">
+			<!-- Begin views for this seat-->
+			<ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+			<Views>
+				<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" minYaw="-70" maxYaw="70" minPitch="-20" maxPitch="80" />
+				</View>
+				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+					<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+					<CameraEffects minSpeed="102" maxSpeed="280">
+						<FOV maxOffset="20.0f" />
+						<DOF stength="0.25f" offsetLag="0.8f" />
+						<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+					</CameraEffects>
+				</View>
+				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+				</View>
+				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-30,0,0" motionBlur="0">
+					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1"/>
+				</View>
+			</Views>
+
+			<!-- Begin actions for this seat-->
+			<SeatActions>
+				<!-- We specifiy the Movement Seat Action as we dont want the engine to start on entry. Otehrwise the default vehicle implementation will init a teh SeatActionMovement componnet that will start the engine on entry-->
+				<SeatAction class="Movement">
+					 <Movement engine="1">
+					 </Movement>
+				</SeatAction>
+
+				<!-- Weapons used / controlled by pilot of Freelancer -->
+				<SeatAction class="SharedWeapons">
+					<SharedWeapons>
+					<Settings>
+						<Items>
+							<ItemPort part="Freelancer_side_cannon_L_Hardpoint" priority="0" active="1" actorRecoil="0"/>
+							<ItemPort part="Freelancer_side_cannon_R_Hardpoint" priority="0" active="1" actorRecoil="0"/>
+							<ItemPort part="Freelancer_side_cannon_L_Bottom_Hardpoint" priority="0" active="1" actorRecoil="0"/>
+							<ItemPort part="Freelancer_side_cannon_R_Bottom_Hardpoint" priority="0" active="1" actorRecoil="0"/>
+						</Items>
+					</Settings>
+					</SharedWeapons>
+				</SeatAction>
+
+				<!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+				<SeatAction class="SharedItems">
+					<SharedItems>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_power_plant_attach" />
+								<ItemPort part="hardpoint_engine_attach" />
+								<ItemPort part="hardpoint_thruster_rear_right_bottom" />
+								<ItemPort part="hardpoint_thruster_rear_right_mid" />
+								<ItemPort part="hardpoint_thruster_rear_right_upper" />
+								<ItemPort part="hardpoint_thruster_rear_left_bottom" />
+								<ItemPort part="hardpoint_thruster_rear_left_mid" />
+								<ItemPort part="hardpoint_thruster_rear_left_upper" />
+								<ItemPort part="hardpoint_thruster_front_right_bottom" />
+								<ItemPort part="hardpoint_thruster_front_right_upper" />
+								<ItemPort part="hardpoint_thruster_front_right_mid" />
+								<ItemPort part="hardpoint_thruster_front_left_bottom" />
+								<ItemPort part="hardpoint_thruster_front_left_upper" />
+								<ItemPort part="hardpoint_thruster_front_left_mid" />
+								<ItemPort part="pilotVisor" />
+							</Items>
+						</Settings>
+					</SharedItems>
+				</SeatAction>
+
+				<SeatAction class="SharedAutoWeapons">
+					<SharedAutoWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="Freelancer_side_cannon_L_Hardpoint" priority="1"/>
+								<ItemPort part="Freelancer_side_cannon_R_Hardpoint" priority="1"/>
+							</Items>
+						</Settings>
+					</SharedAutoWeapons>
+				</SeatAction>
+
+			  <!-- SeatActionAnimateControlInputs
+		     This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+		     Format is
+			    Parts               List of parts to animate
+				    ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+					    RotateX         Rotation around the X axis (pitch)
+					    RotateY         Roll
+					    RotateZ         Yaw
+						    input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+													    registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its workign set of action variables )
+													    or in the Variables section of the vehicle xml
+						    actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+						    direction=    forwards or backwards
+						    min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+						    max=
+						    sound=        The sound to play when animating the part
+						    stopSound=    The sound to play when stopping
+					    Animation
+						    manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (dpending on what kind of input was specified). If thsi si not set the animtion will
+													    play normally according to it's state parameters in the vehicle animation system.
+		     -->
+			<SeatAction class ="AnimateControlInputs" >
+				<AnimateControlInputs isAvailableDocked="1">
+					<Parts>
+						<ControlPart part ="Cockpit_L_YokeMainArm">
+							<Rotate_Y input = "pitch" direction ="-1" min="-5" max = "15"/>
+						</ControlPart>
+						<ControlPart part ="Cockpit_L_Yoke_L">
+							<Rotate_Z input = "roll" direction ="1" min="-30" max = "30"/>
+						</ControlPart>
+						<ControlPart part ="Cockpit_L_Yoke_R">
+							<Rotate_Z input = "roll" direction ="-1" min="-30" max = "30"/>
+						</ControlPart>
+						<ControlPart part ="Cockpit_L_YokeArm_L_02">
+							<Rotate_X input = "yaw" direction ="-1" minRange ="-1" maxRange="1" min="0" max = "30"/>
+						</ControlPart>
+						<ControlPart part ="Cockpit_L_YokeArm_R_02">
+							<Rotate_X input = "yaw" direction ="1" minRange ="-1" maxRange="1" min="0" max = "30"/>
+						</ControlPart>
+					</Parts>
+				</AnimateControlInputs>
+			</SeatAction>
+		    <SeatAction class ="PassengerIK">
+			    <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+					<Limbs>
+						<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="yokePilot_IK_attach_left" blendTime="0"/>
+						<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="yokePilot_IK_attach_right" blendTime="0"/>
+						<!--<Limb tag ="LeftLegPedal" on="1" limb ="LftLeg01" IKTargetSystemType ="vehicleHelper" helper ="left_pedal_IK_attach" blendTime="0" />
+						<Limb tag ="RightLegPedal" on="1" limb ="RgtLeg01" IKTargetSystemType ="vehicleHelper" helper ="right_pedal_IK_attach" blendTime="0" />-->
+					</Limbs>
+			    </PassengerIK>
+		    </SeatAction>
+		    </SeatActions>
+		    <Sounds inout="0" mood="1"/>
+		</Seat>
+    <!--              Copilot's Seat        -->
+    <Seat name="Copilot" enterHelper="copilot_enterCockpit_pos" sitHelper="copilot_sit_pos" interiorAccess="0" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship">
+		<ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+		<Views>
+			<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+				<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" minYaw="-70" maxYaw="70" minPitch="-11" maxPitch="80" />
+			</View>
+			<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+				<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+				<CameraEffects minSpeed="102" maxSpeed="280">
+					<FOV maxOffset="20.0f" />
+					<DOF stength="0.25f" offsetLag="0.8f" />
+					<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+				</CameraEffects>
+			</View>
+			<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+				<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+			</View>
+     			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-30,0,0" motionBlur="0">
+        			<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1"/>
+      			</View>
+		</Views>
+      <SeatActions>
+	  <SeatAction class="Movement">
+		<Movement engine="1">
+		</Movement>
+	</SeatAction>
+
+	  <SeatAction class ="AnimateControlInputs">
+			<AnimateControlInputs isAvailableDocked="1">
+				<Parts>
+				    <ControlPart part ="Cockpit_R_YokeMainArm">
+					    <Rotate_Y input = "pitch" direction ="-1" min="-5" max = "25"/>
+					</ControlPart>
+				    <ControlPart part ="Cockpit_R_Yoke_L">
+					    <Rotate_Z input = "roll" direction ="1" min="-30" max = "30"/>
+					</ControlPart>
+					<ControlPart part ="Cockpit_R_Yoke_R">
+					    <Rotate_Z input = "roll" direction ="-1" min="-30" max = "30"/>
+					</ControlPart>
+					<ControlPart part ="Cockpit_R_YokeArm_L_02">
+						<Rotate_X input = "yaw" direction ="-1" minRange ="-1" maxRange="1" min="0" max = "30"/>
+					</ControlPart>
+					<ControlPart part ="Cockpit_R_YokeArm_R_02">
+						<Rotate_X input = "yaw" direction ="1" minRange ="-1" maxRange="1" min="0" max = "30"/>
+					</ControlPart>
+				</Parts>
+			</AnimateControlInputs>
+	</SeatAction>
+			
+		    <SeatAction class ="PassengerIK">
+			    <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+					<Limbs>
+						<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="yokeCopilot_IK_attach_left" blendTime="0"/>
+						<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="yokeCopilot_IK_attach_right" blendTime="0"/>
+						<!--<Limb tag ="LeftLegPedal" on="1" limb ="LftLeg01" IKTargetSystemType ="vehicleHelper" helper ="left_pedal_IK_attach" blendTime="0" />
+						<Limb tag ="RightLegPedal" on="1" limb ="RgtLeg01" IKTargetSystemType ="vehicleHelper" helper ="right_pedal_IK_attach" blendTime="0" />-->
+					</Limbs>
+			    </PassengerIK>
+		    </SeatAction>
+	  </SeatActions>
+    </Seat>
+    <!--           Gunner (Rear Turret)        -->
+    <Seat name="Gunner" part="" enterHelper="gunner_enter_pos" sitHelper="gunner_seat_pos" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="3" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+    <!--           Kitchen Table Left Side         -->
+    <Seat name="kitchen_table_left_player" part="" enterHelper="kitchen_table_left_mount_pos" sitHelper="kitchen_table_left_sit_pos" canLook ="1" lookMin="-10,0,-20" lookMax ="10,0,20" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="4" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-10,0,-20" rotationMax="10,0,20">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+	  <WaitFor>
+			<Enter>
+				<State animation="Kitchen_Screens" state="Deploy" />
+			</Enter>
+	  </WaitFor>
+      <SeatActions />
+    </Seat>
+
+    <!--           Kitchen Table Right Side         -->
+    <Seat name="kitchen_table_right_player" part="" enterHelper="kitchen_table_right_mount_pos" sitHelper="kitchen_table_right_sit_pos" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="5" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+	  <WaitFor>
+			<Enter>
+				<State animation="Kitchen_Screens" state="Deploy" />
+			</Enter>
+	  </WaitFor>
+      <SeatActions />
+    </Seat>	
+	
+	
+	<!--           front_seat_leftPlayer        -->
+    <Seat name="cockpit_seat_leftPlayer" part="" enterHelper="cockpit_seat_left_mount_pos" sitHelper="cockpit_seat_left_sit_pos" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="6" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+	<!--           front_seat_rightPlayer        -->
+    <Seat name="cockpit_seat_rightPlayer" part="" enterHelper="cockpit_seat_right_mount_pos" sitHelper="cockpit_seat_right_sit_pos" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="7" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Lower Left Sleeping Berth        -->
+    <Seat name="bunkbeds_lowerleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_lowerleft_sit_pos" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="8" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Lower Right Sleeping Berth        -->
+    <Seat name="bunkbeds_lowerright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_lowerright_sit_pos" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="9" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Upper Left Sleeping Berth        -->
+    <Seat name="bunkbeds_upperleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_upperleft_sit_pos" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="10" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Upper Right Sleeping Berth        -->
+    <Seat name="bunkbeds_upperright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_upperright_sit_pos" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="11" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,0" rotationMax="0,0,0" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,90" rotationMax="0,0,90" rotationInit="0,0,90">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+        <View class="ThirdPerson" rotationMin="0,0,180" rotationMax="0,0,180" rotationInit="0,0,180">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	</Seats>
+	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<MovementParams>
+		<Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
+			<SoundParams>
+				<SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+				<SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+			</SoundParams>
+			<Animations />
+			<Contrails>
+				<Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" minSpeed ="25" />
+				<Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" minSpeed ="25" />
+			</Contrails>
+		</Spaceship>
+	</MovementParams>
+	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+
+	<Particles>
+		<DamageEffects>
+			<DamageEffect name="VehicleDestroyed" helper="" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01s" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+		</DamageEffects>
+		<EnvironmentLayers>
+			<EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+				<Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
+				<Emitters />
+				<Wheels />
+			</EnvironmentLayer>
+		</EnvironmentLayers>
+	</Particles>
+
+
+	<!-- Vehicle Animation Component data for Mannequin setup of the vehicle -->
+	<Mannequin tag="MISC_Freelancer" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_HumanAnims.adb" />
+	
+	<!-- Animations
+	Format is
+	
+		Animation
+			name =        Vehicle Animtion name that all systems use when refering to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part =        This is the name of the parent VehiclePartAnimated of this animation. As there can be multipel CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer= if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+										This is useful for animation sthat you need to guarntee whill play.
+										
+			State
+				name=         Name of state
+				animation=    this is the CGA ANM file name (sans the CGA name. For instance if teh CGA is WCShipHornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+				speedDefault= Speed the animtion will play at. A negative numbers means the animtion will play backwards. Defaults to 1
+				speedMin=     defaults to -1
+				speedMax=     defaults to 1
+				isLooped=     Is animation looped
+				isLoopedEx=   Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+				isManual=     Is animation manually advanced
+				canRestart=   if true the animation can be iterrupted and started again before its finsihed playing. Defaults to false.
+				interrupt=    Can this animation be interupted by another one. Defaults to no.
+				startTime=    The time that the aniamtion will start at when played (in normlaized anaimtion time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+											until the animtion is requested to be played.
+				play=         Number of thimes this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+				nextState=    The next state to go to once this state has been played. If not defined the nextState is always the current state
+				sound=        Name of sound to played
+				helper=       (optional) vehicle helper location of sound
+			
+				Materials
+					Material        Specifies the material which the material settign will be animated by the state's speed.
+						name=         name of material
+						setting=      material setting (e.g. opacity etc) to animate
+						min=          min value of setting 
+						max=          max value of setting
+						invertValue=  invert setting
+	 
+	 Action
+			name =        Name of Mannequin Fragment in the vehicle adb file
+			state =       Sets the Action to the last frame of the fragment on init, String is the fragment tag(s)
+			play =        Plays this Action on init, String is the fragment tag(s)  
+	-->
+	
+	<Animations>
+		<!-- Disabled for now until Animation fix -->
+		<!--<Action name="Landing_Gear" state="Deploy" />-->
+		<!--<Action name="Entrance_Door" play="Close" />-->
+		<Action name="Kitchen_Screens" state="Retract" /><!-- Changed "play" to "state" to see if it actually pops the screens to the last frame of its mannequin fragment as described above.-->
+
+	</Animations>
+
+	
+	<!-- Vehicle Attachments
+	This is a list of any attachment objects on the vehicle. This is used primarlily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+	where you dont need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+	dont really need them to be their own VehiclePart
+	Format is 
+		name=     is the string name that other systems use when telling the vehicle to do soemthing with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+							animation or do something with an attachment.) 
+		helper=   is the helper where the attachment is located
+		filename= if specified then the system assumes the attachement is either a CHR,CDF or CGF (depending on the extension).
+		effect=   if specified then the system assumes the attachment is a particle effect, and this is teh name of the effect in the particle database. 
+		light=    if specified then the system assumes the attachment is a light, and the string is the light type as deifned in DefaultVehcileLights. Note this is just here form completeness. 
+							Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc.
+							
+	optional parameters are
+	
+		hide=     "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+	-->
+	
+	<Attachments>
+	</Attachments>
+
+	<!-- Vehicle Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is 
+		name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
+		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+	 -->
+	
+	<Variables>
+	</Variables>
+
+
+
+   <GeomTags>
+    <geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default"/>
+	<TagsList>
+		<Tags tag="over dragging">
+		  <geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging"/>
+		</Tags>
+		<Tags tag="ItemPreviewA">
+		  <geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer.cga" material="" id="idHoloGeometry_ItemPreviewA"/>
+		</Tags>
+	</TagsList>
+  </GeomTags>
+  
+  <!-- For Future Variants -->
+ 	<Modifications>
+		<Modification name="DUR">
+			<Elems>
+				<Elem idRef="idVehicleClass" name="displayname" value="MISC Freelancer DUR"/>
+				<Elem idRef="idMainPart" name="name" value="MISC_Freelancer_DUR"/>
+				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_DUR.cga"/>
+				<Elem idRef="idShipGeometry" name="filenameDestroyed" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_DUR.cga"/>
+				
+				<!-- Geom Tags for Holo Table -->
+				<Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_DUR.cga"/>
+				<Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_DUR.cga"/>
+				<Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_DUR.cga"/>
+				
+
+				<!-- Default Loadout -->
+				<!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Vehicles/DefaultMISC_Freelancer_DUR.xml"/>-->
+			</Elems>
+		</Modification>
+		
+		<Modification name="MAX">
+			<Elems>
+				<Elem idRef="idVehicleClass" name="displayname" value="MISC Freelancer MAX"/>
+				<Elem idRef="idMainPart" name="name" value="MISC_Freelancer_MAX"/>
+				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MAX.cga"/>
+				<Elem idRef="idShipGeometry" name="filenameDestroyed" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MAX.cga"/>
+				
+				<!-- Geom Tags for Holo Table -->
+				<Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MAX.cga"/>
+				<Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MAX.cga"/>
+				<Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MAX.cga"/>
+				
+				<!-- Default Loadout -->
+				<!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Vehicles/DefaultMISC_Freelancer_MAX.xml"/>-->
+			</Elems>
+		</Modification>
+
+		<Modification name="MIS">
+			<Elems>
+				<Elem idRef="idVehicleClass" name="displayname" value="MISC Freelancer MIS"/>
+				<Elem idRef="idMainPart" name="name" value="MISC_Freelancer_MIS"/>
+				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MIS.cga"/>
+				<Elem idRef="idShipGeometry" name="filenameDestroyed" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MIS.cga"/>
+				
+				<!-- Geom Tags for Holo Table -->
+				<Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MIS.cga"/>
+				<Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MIS.cga"/>
+				<Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_MIS.cga"/>
+				
+				<!-- Default Loadout -->
+				<!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Vehicles/DefaultMISC_Freelancer_MIS.xml"/>-->
+			</Elems>
+		</Modification>
+		
+	</Modifications>
+	
+</Vehicle>

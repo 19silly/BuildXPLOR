@@ -1,0 +1,45 @@
+<Mode name='DFM_Survival_Coop'>
+
+	<Spawning class='DFMSpawningLives' teamGame='1' numLives="3" teamSpawnsType='None' usingLua='0' RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" />
+
+	<!-- Will define ship values here -->
+	<Scoring class='DFMScoring' noFriendlyFire="1">
+		<Player>
+			<!--<Event type='PlayerKill'        points='200' />-->
+			<Event type='DamageShip'        points='1'	 />
+			<Event type='DestroyedShip'     points='1'	 />
+		</Player>
+	</Scoring>
+
+	<PlayerStats class='DFMPlayerStats' />
+	<StatsRecording class="AuthoritativeStats" />
+
+	<State class='DFMState'>
+		<StartStrings startMatch='ui_msg_ia_matchstart' />
+		<Prematch requiredPlayers="2" gameStartTimer="5" readySystem="1" readyForceTime="15"/> 
+	</State>
+
+	<VictoryConditions class='DFMVictoryConditionsLives' OpponentsDisconnectCheck="0"/>
+
+	<PlayerSetup class='StandardSetup' />
+
+	<Teams class="DFMCoopTeams" />
+
+	<DamageHandling class='DFMDamageHandling'>
+		<Table path='Scripts/GameRules/MPDamageTable.xml' />
+	</DamageHandling>
+
+	<ActorAction class='MPActorAction' />
+
+	<Spectator class='DFMSpectator' eatsActorActions='1' enableFree='1' enableFollow='1' enableKiller='0' timeFromDeathTillAutoSpectate='5000' />
+	
+	<!-- Custom Match Settings -->
+	<OptionBindings>
+		<!--
+		<OptionBinding>
+			<Option		Name = "MaxPlayers" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesMaxPlayers" Description = "@dfm_ac_ui_RulesMaxPlayers"	Min = "4"	Max = "12"	Step = "1"	DefaultValue = "8" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+	</OptionBindings>
+</Mode>

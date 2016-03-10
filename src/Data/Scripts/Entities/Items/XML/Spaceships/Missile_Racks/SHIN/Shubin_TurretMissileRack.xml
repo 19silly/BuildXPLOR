@@ -1,0 +1,221 @@
+<item name="Shubin_TurretMissileRack" class="VehicleMissileRack" category="VehicleWeapon" uniqueId="2" priority="30" weaponParams="1" >
+  <params>
+    <param name="giveable" value="0" />
+    <param name="selectable" value="0" />
+    <param name="pickable" value="0" />
+    <param name="mountable" value="1" />
+    <param name="usable" value="0" />
+    <param name="arms" value="0" />
+	<param name="adb" value="Spaceships\Items\Turrets\Shubin\shubin_turret.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
+    <param name="itemType" value="WeaponMissile" />
+    <param name="itemSubType" value="MissileRack" />
+	<param name="itemDescription" value="The Behring Marksman heat seeking missile utilizes an enemy's heat signature to obtain and maintain a lock on the target. This tried-and-true method of target acquisition has a few drawbacks: it is easily confused by flares and it may be difficult to establish lock on ships with low heat signatures. These issues aside, the Marksman is the go-to missile of choice for many independent operators and pilots. Rack of four (4)." />
+    <param name="itemManufactor" value="Behring" />
+    <param name="itemSize" value="2" />
+	<param name="itemClass" value="3" />
+    <param name="display_name"	value="Behring Marksman HS Quad Platform" />
+  </params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+	<States>
+      <State state="Idle">
+        <Value value="-3" />
+        <!-- If not selected -->
+      </State>
+      <State state="Active">
+        <Value value="-10" />
+        <!-- If Idle it will use 10 energy points -->
+      </State>
+      <State state="Targeting">
+        <Value value="-30" />
+        <!-- if shooting it will use 30 energy points -->
+      </State>
+	  </States>
+    </Pipe>
+    <Pipe class="Heat" >
+	<States>
+      <State state="Idle,Active,Targeting" transition="0.3">
+        <Value value="3"/>
+      </State>
+	  </States>
+    </Pipe>
+    <Pipe class="Avionics">
+	<States>
+      <State state="ManualControl">
+        <Value value="0"/>
+      </State>
+      <State state="AutoControl">
+        <Value value="20"/>
+      </State>
+	  </States>
+    </Pipe>
+  </Pipes>
+
+  <geometry>
+    <!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
+    <thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga"/>
+	
+	<tags tag="Hologram">
+	
+		<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+
+		<tags tag="ShipHologram">
+			<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+		  
+			<tags tag="inactive">
+				<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+			</tags>
+			<tags tag="over dragging">
+				<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+			</tags>
+			<tags tag="overCompareValid">
+				<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+			</tags>
+			<tags tag="overCompareInvalid">
+				<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+			</tags>
+		</tags>
+		
+		<tags tag="ItemList">
+			<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+			<tags tag="over dragging">
+				<thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+			</tags>
+		</tags>	
+		
+		<tags tag="ItemPreviewA">
+		  <thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+		</tags>
+		
+		<tags tag="ItemPreviewB">
+		  <thirdperson name="Objects\brush\space\shubin\dfm_assets\shubin_dfm_missile_system\CIG_Shubin_Missile_System_Export.cga" material=""/>
+		</tags>	
+		
+	</tags>
+	
+
+  </geometry>
+
+  <portParams>
+	<ports>
+		<ItemPort name="missile_01_attach" minsize="1" maxsize="1" flags="forward" display_name="Ordinance Slot #1">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_02_attach" minsize="1" maxsize="1" flags="forward" display_name="Ordinance Slot #2">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_03_attach" minsize="1" maxsize="1" flags="forward" display_name="Ordinance Slot #3">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_04_attach" minsize="1" maxsize="1" flags="forward" display_name="Ordinance Slot #4">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_05_attach" minsize="1" maxsize="1" flags="forward" display_name="Ordinance Slot #5">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_06_attach" minsize="1" maxsize="1" flags="forward" display_name="Ordinance Slot #6">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <missilerackparams>
+    <param name="detach_FX" value="spaceship_fx.Hornet.missile_detach" />
+    <detach_vel>
+      <param value="0,0.5,0" />
+      <tags tag="forward">
+        <param value="0,0.5,0" />
+      </tags>
+    </detach_vel>
+  </missilerackparams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+</item>

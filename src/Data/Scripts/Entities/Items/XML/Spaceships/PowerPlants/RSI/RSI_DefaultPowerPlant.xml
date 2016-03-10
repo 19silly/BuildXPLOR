@@ -1,0 +1,40 @@
+<item name="RSI_DefaultPowerPlant" class="VehicleItemPowerPlant" invisible="0" category="VehicleItem" interface="interface_RSI_DefaultPowerPlant" >
+	<params>
+		<param name="itemType" value="PowerPlant" />
+		<param name="itemSubType" value="Power" />
+		<param name="itemDescription" value="Item_DescRSI_DefaultPowerPlant" />
+		<param name="itemManufactor" value="RSI" />
+		<param name="itemSize" value="1" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="Item_NameRSI_DefaultPowerPlant" />
+		
+		<param name="inefficiency" value="0.3" />
+		<param name="hitpoints" value="" />
+		<param name="mass" value="" />
+	</params>
+
+	<Pipes>
+		<Pipe class="Power">
+			<Signature name="Electromagnetic" multiplier="1" />
+			<States>
+			<State state="Default">
+				<Value value="1000000" />
+			</State>
+			<State state="Off">
+				<Value value="0" />
+			</State>
+      </States>
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="" rate="" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Default">
+          <Pipe name="Power" value="" />
+        </State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+</item>

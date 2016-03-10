@@ -1,0 +1,46 @@
+<item name="GRNP_SR_S3_Q2" class="VehicleItemRadar" invisible="0" category="VehicleItem" interface="interface_GRNP_SR_S3_Q2">
+	<params>
+		<param name="itemType" value="Radar" />
+		<param name="itemSubType" value="ShortRangeRadar" />
+		<param name="itemManufactor" value="GRNP" />
+		<param name="itemDescription" value="item_DescGRNP_SR_S3_Q2" />
+		<param name="itemSize" value="1" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="item_NameGRNP_SR_S3_Q2" />
+		<param name="hitpoints" value="75" />
+		<param name="mass" value="100" />
+	</params>
+	
+	<Pipes>
+		<Pipe class="Power">
+			<StateLevels>
+				<Warning  value = "0.50" />
+				<Critical value = "0.25" />
+				<Fail     value = "0.01" />
+			</StateLevels>
+			<States>
+				<State state="Active,Default"><Value value="-50" /></State>
+				<State state="Off"><Value value="0" /></State>
+			</States>
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="100" rate="15" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Active"><Value value="15" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<radar>
+		<param name="maxSearchRadius" value="20000" />
+		
+		<Detectors>
+			<Detector signal="Infrared" 		amplifier="66" occlusionMultiplier="1" occlusionMin="0.25" occlusionMax="1" />
+			<Detector signal="Electromagnetic" 	amplifier="66" occlusionMultiplier="1" occlusionMin="0.25" occlusionMax="1" />
+			<Detector signal="CrossSection" 	amplifier="66" stopAtOcclusion="1" signalExponential="1" />
+		</Detectors>
+	</radar>
+	
+</item>

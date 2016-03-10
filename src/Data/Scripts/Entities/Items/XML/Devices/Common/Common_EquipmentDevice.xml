@@ -1,0 +1,245 @@
+<interface name="Common_EquipmentDevice">
+
+  <params>
+    <param name="display_name" value="Ship Equipment Device" />
+    <param name="mountable" value="false" />
+  </params>
+
+  <vehicleEquipItem>
+	
+    <param name="holoTableGeom" 	value="objects/effects/holotable/holoeffects_gui_master_prop_uee_01.cga" />
+
+    <param name="silAmount" value="1" />
+    <param name="silFilStr" value="0.15" />
+    <param name="silType" 	value="0" />
+
+    <componentParams>
+
+      <Flash>
+        <param name="uiElement" 		value="Holotable_Equipment" />
+      </Flash>
+
+      <LightDim>
+        <param name="lightDimStartDelay"	value="0" />
+        <param name="lightDimStartTime"		value="1" />
+        <param name="lightDimEndDelay"		value="0" />
+        <param name="lightDimEndTime"		value="1" />
+        <param name="lightDimRadius"		value="1000" />
+        <param name="lightDimDiffuseVal"	value="0.05" />
+        <param name="lightDimHDRVal"		value="0.05" />
+        <param name="lightDimSpecVal"		value="0.05" />
+      </LightDim>
+
+      <Sound>
+		<param name="targetpanel" 	value="" />
+        <param name="soundbank" 	value="Sounds/hangars:holotable" />
+        <sounds>
+          <param name="Idle"  	value="exist_loop" />
+          <param name="Startup"  	value="power_on" />
+          <param name="Shutdown"  value="power_off" />
+          <param name="Drop"  	value="zoom_in_v02" />
+          <param name="Over1"  	value="select_or_scroll_v06" />
+          <param name="Over2"  	value="select_or_scroll_v06" />
+          <param name="Attach"  	value="select_or_scroll_v02" />
+          <param name="Detach"  	value="select_or_scroll_v04" />
+          <param name="Deny"  	value="ui_rejection" />
+          <param name="Category"	value="zoom_out_v02" />
+          <param name="Scroll"	value="select_or_scroll_v05" />
+        </sounds>
+      </Sound>
+
+      <MtlFade>
+        <param name="initFadeSpeed" value="0.7" />
+        <mtlFade>
+          <layer layer="Volumetrics" mode="toggleon" />
+        </mtlFade>
+      </MtlFade>
+
+      <Particles>
+        <particles>
+          <particle effect="HoloTable.HoloTable.On_Idle" helper="HoloEffects_particle_master_prop_uee_01" />
+        </particles>
+      </Particles>
+
+    </componentParams>
+
+    <panelParams>
+
+      <ShipHologram>
+        <param name="helper" 				value="helper_item" />
+        <param name="toTexture"				value="0" />
+        <param name="fixupScale"			value="1" />
+				
+				<param name="transitionType" value="Transition_Dissolve" />
+
+        <param name="objectSize" 			value="0.5" />
+        <param name="sizeSpeedChange" 		value="3" />
+        <param name="moveSpeed" 			value="3" />
+        <param name="mouseRotSpeed" 		value="0.004" />
+        <param name="swapBack"				value="1" />
+        <param name="contRotation" 			value="0,0,1" />
+        <param name="defaultRot" 			value="-0.3,0,0" />
+
+        <param name="dropBB" 				value="0.6,0.6,0.6" />
+        <param name="dropOffset" 			value="0,0,0" />
+        <param name="interactive"			value="1" />
+
+        <highlight>
+          <param name="Default" 			value="0,0,0,0" />
+          <param name="Over" 				value="0.5,0.5,0,0.8" />
+          <param name="CompareValid" 		value="0.1,0.9,0,0.8" />
+          <param name="CompareInvalid" 	value="0.8,0.1,0,0.8" />
+        </highlight>
+
+        <sceneSettings ambientLight="0.5,0.5,0.5,0.8" fadeInSpeed="0" fovScale="0.65" flashEdgeFadeScale="0.2"/>
+      </ShipHologram>
+
+      <ItemList>
+        <param name="helper" 				value="helper_list" />
+        <param name="toTexture"				value="0" />
+        <param name="fixupScale"			value="1" />
+
+        <param name="objectSize" 			value="0.1" />
+        <param name="sizeSpeedChange" 		value="3" />
+        <param name="contRotation" 			value="0,0,1" />
+        <param name="defaultRot" 			value="-0.3,0,0" />
+        <param name="moveSpeed" 			value="3" />
+        <param name="swapBack"				value="1" />
+
+        <param name="dropBB" 				value="0.3,1.5,1.5" />
+        <param name="dropOffset" 			value="0,0,0" />
+        <param name="interactive"			value="1" />
+
+        <highlight>
+          <param name="Default" 			value="0.3,0.3,0.3,0.1" />
+          <param name="Over" 				value="0.5,0.5,0,0.8" />
+          <param name="CompareValid" 		value="0,0,0,0" />
+          <param name="CompareInvalid" 	value="0,0,0,0" />
+        </highlight>
+
+        <sceneSettings ambientLight="0.5,0.5,0.5,0.8" fadeInSpeed="0" fovScale="0.65" flashEdgeFadeScale="0.2"/>
+
+        <extralights>
+          <light offset="-0.2, -1,  0.5" color="0.5,0.6,1" radius="5" diffMul="3" hdrDyn="0" specMul="1" style="20" />
+          <light offset="-0.2, -1, -0.5" color="0.5,0.6,1" radius="5" diffMul="2" hdrDyn="0" specMul="1" style="20" />
+          <light offset="-0.2,  1,  0.5" color="0.5,0.6,1" radius="5" diffMul="2" hdrDyn="0" specMul="1" style="20" />
+          <light offset="-0.2,  1, -0.5" color="0.5,0.6,1" radius="5" diffMul="2" hdrDyn="0" specMul="1" style="20" />
+        </extralights>
+
+        <itemSpline>
+          <param value="0,  0.6,    0" />
+          <param value="0,    0, -0.6" />
+          <param value="0, -0.6,    0" />
+          <param value="0,    0,  0.6" />
+        </itemSpline>
+
+        <param name="spline_outer" 	value="0.35" />
+        <param name="spline_inner" 	value="0.35" />
+
+        <param name="numItems" 		value="22" />
+      </ItemList>
+
+      <ItemPreviewA>
+        <param name="helper" 				value="helper_item_prev_2" />
+        <param name="toTexture"				value="0" />
+        <param name="fixupScale"			value="0" />
+
+        <param name="objectSize" 			value="0.3" />
+        <param name="sizeSpeedChange" 		value="3" />
+        <param name="contRotation" 			value="0,0,1" />
+        <param name="defaultRot" 			value="-0.3,0,0" />
+        <param name="moveSpeed" 			value="3" />
+        <param name="swapTo"				value="1" />
+        <param name="moveToSpeed"			value="6" />
+
+        <highlight>
+          <param name="Default" 			value="0.5,0.5,0,0.8" />
+          <param name="Over" 				value="0,0,0,0" />
+          <param name="CompareValid" 		value="0,0,0,0" />
+          <param name="CompareInvalid" 	value="0,0,0,0" />
+        </highlight>
+
+        <sceneSettings ambientLight="0.5,0.5,0.5,0.8" fadeInSpeed="0" fovScale="0.65" flashEdgeFadeScale="0.2"/>
+      </ItemPreviewA>
+
+      <ItemPreviewB>
+        <param name="helper" 				value="helper_item_prev_1" />
+        <param name="toTexture"				value="0" />
+        <param name="fixupScale"			value="0" />
+
+        <param name="objectSize" 			value="0.3" />
+        <param name="sizeSpeedChange" 		value="3" />
+        <param name="contRotation" 			value="0,0,1" />
+        <param name="defaultRot" 			value="-0.3,0,0" />
+        <param name="moveSpeed" 			value="3" />
+        <param name="swapTo"				value="1" />
+        <param name="moveToSpeed"			value="6" />
+
+        <highlight>
+          <param name="Default" 			value="0,0,0,0" />
+          <param name="Over" 				value="0,0,0,0" />
+          <param name="CompareValid" 		value="0.1,0.9,0,0.8" />
+          <param name="CompareInvalid" 	value="0.8,0.1,0,0.8" />
+        </highlight>
+
+        <sceneSettings ambientLight="0.5,0.5,0.5,0.8" fadeInSpeed="0" fovScale="0.65" flashEdgeFadeScale="0.2"/>
+      </ItemPreviewB>
+
+    </panelParams>
+
+    <defaultPortGeomDef>
+
+      <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+      <Tags tag="size_2">
+        <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+      </Tags>
+      <Tags tag="size_3">
+        <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+      </Tags>
+      <Tags tag="size_4">
+        <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+      </Tags>
+
+      <Tags tag="over dragging">
+        <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+        <Tags tag="size_2">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+        </Tags>
+        <Tags tag="size_3">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+        </Tags>
+        <Tags tag="size_4">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+        </Tags>
+      </Tags>
+
+      <Tags tag="overCompareValid">
+        <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+        <Tags tag="size_2">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+        </Tags>
+        <Tags tag="size_3">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+        </Tags>
+        <Tags tag="size_4">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+        </Tags>
+      </Tags>
+
+      <Tags tag="overCompareInvalid">
+        <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+        <Tags tag="size_2">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+        </Tags>
+        <Tags tag="size_3">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+        </Tags>
+        <Tags tag="size_4">
+          <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+        </Tags>
+      </Tags>
+    </defaultPortGeomDef>
+
+  </vehicleEquipItem>
+
+</interface>

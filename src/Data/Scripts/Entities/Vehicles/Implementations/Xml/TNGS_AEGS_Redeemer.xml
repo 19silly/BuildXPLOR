@@ -1,0 +1,278 @@
+<Vehicle name="TNGS_AEGS_Redeemer">
+ <Physics pushable="0">
+  <Buoyancy waterDensity="150" waterResistance="2500"/>
+  <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2"/>
+ </Physics>
+ <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <DamageMultipliers>
+   <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+   <DamageMultiplier damageType="melee" multiplier="0"/>
+   <DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+   <DamageMultiplier damageType="collision" multiplier="1"/>
+   <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+  </DamageMultipliers>
+  <DamagesGroups>
+   <DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
+    <DamagesSubGroups>
+     <DamagesSubGroup delay="0.34999999" randomness="0.1">
+      <DamageBehaviors>
+       <DamageBehavior class="Explosion">
+        <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+     <DamagesSubGroup delay="0" randomness="0">
+      <DamageBehaviors>
+       <DamageBehavior class="HitPassenger">
+        <HitPassenger damage="100" isDamagePercent="1"/>
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+     <DamagesSubGroup delay="3" randomness="0.25">
+      <DamageBehaviors>
+       <DamageBehavior class="Burn">
+        <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+    </DamagesSubGroups>
+   </DamagesGroup>
+   <DamagesGroup name="DestroyEngine">
+    <DamagesSubGroups>
+     <DamagesSubGroup delay="0" randomness="0">
+      <DamageBehaviors>
+       <DamageBehavior class="MovementNotification">
+        <MovementNotification isDamageAlwaysFull="0"/>
+       </DamageBehavior>
+       <DamageBehavior class="Effect">
+        <Effect effect="EngineDamaged" disableAfterExplosion="1"/>
+       </DamageBehavior>
+       <DamageBehavior class="CameraShake">
+        <CameraShake />
+       </DamageBehavior>
+      </DamageBehaviors>
+     </DamagesSubGroup>
+    </DamagesSubGroups>
+   </DamagesGroup>
+  </DamagesGroups>
+ </Damages>
+ <Components>
+  <Component name="Hull" damageMax="800" major="1" position="-0.00060000003,0.3062,-0.1309" size="9.9404001,18.8384,9.1845999" useBoundsFromParts="0" id="idHull">
+   <DamageMultipliers>
+    <DamageMultiplier damageType="bullet" multiplier="0.0080000004"/>
+    <DamageMultiplier damageType="melee" multiplier="0"/>
+    <DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
+    <DamageMultiplier damageType="collision" multiplier="0.079999998"/>
+    <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
+   </DamageMultipliers>
+   <DamageBehaviors>
+    <DamageBehavior class="Group" damageRatioMin="1">
+     <Group name="Destroy"/>
+    </DamageBehavior>
+    <DamageBehavior class="Group" damageRatioMin="0.25">
+     <Group name="DestroyEngine"/>
+    </DamageBehavior>
+    <DamageBehavior class="Effect" damageRatioMin="0.25" damageRatioMax="0.75" ignoreVehicleDestruction="1">
+     <Effect effect="HullDamaged25"/>
+    </DamageBehavior>
+    <DamageBehavior class="Effect" damageRatioMin="0.75" damageRatioMax="1" ignoreVehicleDestruction="1">
+     <Effect effect="HullDamaged75"/>
+    </DamageBehavior>
+   </DamageBehaviors>
+  </Component>
+  <Component name="frontCockpit" damageMax="0" major="0" position="-0.075400002,-0.89700001,-1.7276" size="1.5122,6.5321999,4.7491999" useBoundsFromParts="0">
+   <DamageBehaviors />
+  </Component>
+  <Component name="FlippedOver" damageMax="1" major="0" position="0,0,0" size="0,0,0" useBoundsFromParts="1">
+   <DamageBehaviors>
+    <DamageBehavior class="Effect" damageRatioMin="1">
+     <Effect effect="VehicleDestroyed" disableAfterExplosion="1"/>
+    </DamageBehavior>
+    <DamageBehavior class="Burn">
+     <Burn helper="" damage="0" selfDamage="50" radius="5" interval="1"/>
+    </DamageBehavior>
+   </DamageBehaviors>
+  </Component>
+ </Components>
+ <Parts>
+  <Part name="hull" class="Animated" component="Hull" mass="19000" disablePhysics="0">
+   <Parts>
+    <Part name="Left_Gun" class="AnimatedJoint"/>
+    <Part name="Right_Gun" class="AnimatedJoint"/>
+    <Part name="Top_Engine_Thruster" class="Thruster">
+      <Thruster type ="fixed" flags ="main rear" maxThrust ="1500000">
+        <Exhausts>
+          <Exhaust helper ="Top_Engine_Thruster">
+            <Run effect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+            <Boost effect="spaceship_fx.Hornet.main_thruster_boost"/>
+          </Exhaust>
+        </Exhausts>
+      </Thruster>
+    </Part>
+     <Part name="Bottom_Engine_Thruster" class="Thruster">
+       <Thruster type ="fixed" flags ="main rear" maxThrust ="1500000">
+         <Exhausts>
+           <Exhaust helper ="Bottom_Engine_Thruster">
+             <Run effect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+             <Boost effect="spaceship_fx.Hornet.main_thruster_boost"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+    <Part name ="top_right_thruster" class ="Thruster">
+      <Thruster type ="joint" flags="maneuver orientation retro -X -Z upper right" maxThrust ="250000">
+        <Pitch speed="80" accel="40" min ="-90" max ="0"/>
+        <Yaw speed="80" accel="40" min ="-90" max ="90"/>
+        <Exhausts>
+          <Exhaust helper ="top_right_thruster" scale ="0.8">
+            <Run effect="spaceship_fx.Hornet.thruster"/>
+          </Exhaust>
+        </Exhausts>
+      </Thruster>
+    </Part>
+     <Part name ="top_left_thruster" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation retro +X -Z upper left" maxThrust ="250000">
+         <Pitch speed="80" accel="40" min ="-90" max ="0"/>
+         <Yaw speed="80" accel="40" min ="-90" max ="90"/>
+         <Exhausts>
+           <Exhaust helper ="top_left_thruster" scale ="0.8">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name ="bottom_right_thruster" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation retro -X +Z lower right" maxThrust ="250000">
+         <Pitch speed="80" accel="40" min ="0" max ="90"/>
+         <Yaw speed="80" accel="40" min ="-90" max ="90"/>
+         <Exhausts>
+           <Exhaust helper ="bottom_right_thruster" scale ="0.8">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+     <Part name ="bottom_left_thruster" class ="Thruster">
+       <Thruster type ="joint" flags="maneuver orientation retro +X +Z lower left" maxThrust ="250000">
+         <Pitch speed="80" accel="40" min ="0" max ="90"/>
+         <Yaw speed="80" accel="40" min ="-90" max ="90"/>
+         <Exhausts>
+           <Exhaust helper ="bottom_left_thruster" scale ="0.8">
+             <Run effect="spaceship_fx.Hornet.thruster"/>
+           </Exhaust>
+         </Exhausts>
+       </Thruster>
+     </Part>
+   </Parts>
+   <Animated filename="Objects/Spaceships/Ships/AEGS/Redeemer/redeemer.cga" filenameDestroyed="Objects/Spaceships/Ships/AEGS/Redeemer/redeemer.cga"/>
+  </Part>
+ </Parts>
+ <Helpers>
+  <Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="hull"/>
+  <Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="hull"/>
+  </Helpers>
+ <Actions>
+  <Action class="Enter">
+   <Activations>
+    <Activation type="OnUsed" param1="component" param2="hull" distance="8"/>
+   </Activations>
+   <Enter>
+    <Seats>
+     <Seat value="driver"/>
+    </Seats>
+   </Enter>
+  </Action>
+ </Actions>
+ <Seats>
+   <!-- Pilot's seat ("driver" is the standard name that CryEngine uses for the this posiiton) -->
+   <Seat name="driver" enterHelper="pilot_enter_pos" sitHelper="pilot_seat_pos" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" agVehicleName="Red_StarFighter" actionMap="spaceship">
+     <!-- Begin views for this seat-->
+     <Views>
+		<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50">
+			<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
+		</View>       
+		<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+			<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+			<CameraEffects minSpeed="102" maxSpeed="280">
+				<FOV maxOffset="20.0f" />
+				<DOF stength="0.25f" offsetLag="0.8f" />
+				<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+			</CameraEffects>
+		</View>	
+		<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180">
+			<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
+		</View>
+     </Views>
+   <SeatActions>
+    <SeatAction class="Weapons">
+     <Weapons isSecondary="0">
+      <Weapons>
+       <Weapon class="AsianCoaxialGun" part="Left_Gun">
+        <Helpers>
+         <Helper value="Left_Gun_Muzzle"/>
+        </Helpers>
+       </Weapon>
+      </Weapons>
+     </Weapons>
+    </SeatAction>
+    <SeatAction class="Weapons">
+     <Weapons isSecondary="1">
+      <Weapons>
+       <Weapon class="AsianCoaxialGun" part="Right_Gun">
+        <Helpers>
+         <Helper value="Right_Gun_Muzzle"/>
+        </Helpers>
+       </Weapon>
+      </Weapons>
+     </Weapons>
+    </SeatAction>
+    <SeatAction class="RotateTurret">
+     <RotateTurret>
+      <Pitch part="Left_Gun" speed="80" accel="40">
+       <Limits>
+        <Limit value="-30"/>
+        <Limit value="30"/>
+       </Limits>
+      </Pitch>
+     </RotateTurret>
+    </SeatAction>
+   </SeatActions>
+   <Sounds inout="0" mood="1"/>
+  </Seat>
+ </Seats>
+  
+<MovementParams>
+  <Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="180,160,200" maxAngularAcceleration="240,180,270">
+    <SoundParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+  </Spaceship>
+</MovementParams>
+  
+ <Particles>
+  <Exhaust insideWater="0" outsideWater="1">
+   <Helpers>
+    <Helper value="Top_Engine_Thruster"/>
+    <Helper value="Bottom_Engine_Thruster"/>
+   </Helpers>
+   <EngineStart effect="vehicle_fx.vtol.exhaust"/>
+   <EngineStop effect="vehicle_fx.vtol.exhaust"/>
+   <EngineRunning effect="vehicle_fx.vtol.exhaust" boostEffect="vehicle_fx.vtol.exhaust" baseSizeScale="1" minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="70" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0" minPowerSizeScale="1" minPowerCountScale="1" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="1" maxPowerSpeedScale="1"/>
+  </Exhaust>
+  <DamageEffects>
+   <DamageEffect name="VehicleDestroyed" helper="" effect="explosions.vtol_explosion.explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+   <DamageEffect name="HullDamaged25" helper="burningPos" effect="Vehicle_fx.Damages_Sky.USvtol_hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+   <DamageEffect name="HullDamaged75" helper="burningPos" effect="Vehicle_fx.Damages_Sky.USvtol_hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+  </DamageEffects>
+  <EnvironmentLayers>
+   <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+    <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
+    <Emitters />
+    <Wheels />
+   </EnvironmentLayer>
+  </EnvironmentLayers>
+ </Particles>
+ <Inventory>
+  <AmmoTypes>
+   <Ammo type="bullet" capacity="1000"/>
+  </AmmoTypes>
+ </Inventory>
+</Vehicle>

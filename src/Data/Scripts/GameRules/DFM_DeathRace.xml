@@ -1,0 +1,43 @@
+<Mode name='DFM_DeathRace' layerName="DFM_Race">
+
+	<Spawning class='DFMRaceSpawning' teamGame='0' teamSpawnsType='None' usingLua='0' RespawnTimeKilled="0" RespawnTimeEjected="0" DeRezTimeEjected="10" />
+
+	<!-- Will define ship values here -->
+	<Scoring class='DFMScoring'>
+		<Player>
+			<Event type='CompletedLap'        	points='1'	 />
+		</Player>
+	</Scoring>
+
+	<PlayerStats class='DFMPlayerStats' />
+	<StatsRecording class="AuthoritativeStats" />
+	
+	<State class='DFMState'>
+		<StartStrings startMatch='ui_msg_ia_matchstart' />
+		<Prematch requiredPlayers="2" gameStartTimer="10" noMovement="1" readySystem="1" readyForceTime="45" allowSingleplayer="1"/>
+	</State>
+
+	<VictoryConditions class='DFMVictoryConditionsRace' lapCount="3" EndGameTimeLength="60" OpponentsDisconnectCheck="0"/>
+
+	<PlayerSetup class='StandardSetup' />
+
+	<DamageHandling class='DFMDamageHandling' vehicleDestroyedRemovalTimer='15'>
+		<Table path='Scripts/GameRules/MPDamageTable.xml' />
+	</DamageHandling>
+
+	<ActorAction class='MPActorAction' />
+
+	<Spectator class="DFMSpectator" eatsActorActions="1" enableFree="1" enableFollow="1" enableKiller="0" timeFromDeathTillAutoSpectate="5000" />
+
+	<Objectives class='DFMObjective_Race'/>
+
+	<WeaponManagement class='DFMWeaponsRace'/>
+
+	<!-- Custom Match Settings -->
+	<OptionBindings>
+		<OptionBinding>
+			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesLapCount" Description = "@dfm_ac_ui_RulesLapCount"	Min = "1" Max = "10" Step = "1"	DefaultValue = "3" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+	</OptionBindings>
+</Mode>

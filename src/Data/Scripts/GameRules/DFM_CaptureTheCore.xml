@@ -1,0 +1,147 @@
+<Mode name="DFM_CaptureTheCore">
+
+	<Spawning class="DFMSpawning" teamGame="1" teamSpawnsType="RoundSwap" usingLua="0" RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" />
+
+	<Scoring class="DFMScoring">
+		<Player>
+			<Event type="DamageShip"        					points="1" /> <!-- 1 point per damage given -->
+			<Event type="DestroyedShip"        				points="1" /> <!-- 1 point per remaining damage on ship	-->
+			<Event type="DestroyedShipEjected"				points="1" />
+			<Event type="PlayerKillEjected"						points="1" />
+			<Event type="PlayerKill"        					points="0" /> <!-- When you kill the player -->
+			<Event type="PlayerTeamKill"    					points="0" /> <!-- Team Kill -->
+			<Event type="CarryObjectiveCompleted" 		points="5000" /> <!-- Player delivers the core -->
+			<Event type="CarryObjectiveTaken" 				points="1000" /> <!-- Core taken from base. -->
+			<Event type="CarryObjectiveCarrierKilled"	points="500" /> <!-- When you kill the core carrier. -->
+			<Event type="CarryObjectiveRetrieved" 		points="500" /> <!-- When you retrieve the core. -->
+
+			<!-- Awards -->
+			<!-- <Event type="Award_UnaidedKill" points="100" /> -->
+			<Event type="Award_Untouchable" points="100" />
+			<Event type="Award_Ace" points="500" />
+			<Event type="Award_AceBonus" points="100" />
+			<Event type="Award_AceKill" points="1000" />
+			<Event type="Award_NemesisKill" points="300" />
+			<Event type="Award_RedemptionKill" points="300" />
+			<Event type="Award_ResurgentKill" points="300" />
+			<Event type="Award_RevengeKill" points="250" />
+			<Event type="Award_FirstBlood" points="500" />
+			<Event type="Award_CrashRoberts" points="0" />
+			<Event type="Award_ForcedError" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			<Event type="Award_ForcedEject" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+
+			<!-- Squadron Battle Awards -->
+			<Event type="Award_KillAssist" points="200" />
+			<!--<Event type="Award_Wingman" points="200" />-->
+			<Event type="Award_SquadronRevengeKill" points="200" />
+
+			<!-- CTC Awards -->
+			<Event type="Award_CTC_CarrierDefender" points="500" />
+			<Event type="Award_CTC_CaptureAssist" points="1000" />
+			<Event type="Award_CTC_CoreDefender" points="500" />
+			<Event type="Award_CTC_StealAssist" points="200" />
+			
+		</Player>
+		<Team>
+			<Event type="CarryObjectiveCompleted" points="1" />
+		</Team>
+	</Scoring>
+
+	<AssistScoring class="DFMAssistScoring" maxTimeBetweenAttackAndKillForAssist='15000' />
+
+	<Teams class="StandardTwoTeams" />
+
+	<PlayerStats class="DFMPlayerStats" />
+	<StatsRecording class="AuthoritativeStats" />
+
+	<State class="DFMState">
+		<StartStrings startMatch="ui_msg_ia_matchstart" />
+		<Prematch requiredPlayers="2" gameStartTimer="5"/>
+	</State>
+
+	<VictoryConditions class="DFMVictoryConditionsTeam"  VictoryScoringType="Score" TimeLimit="20" ScoreLimit="5" />
+
+	<PlayerSetup class="StandardSetup">
+		<TeamSpecifics luaSetupPlayerTeamSpecificsFunc="SetupPlayerTeamSpecifics" />
+		<RemoveItemsOnDrop>
+			<IgnoreEntity class="CTCCore" />
+		</RemoveItemsOnDrop>
+	</PlayerSetup>
+
+	<DamageHandling class="DFMDamageHandling">
+		<Table path="Scripts/GameRules/MPDamageTable.xml" />
+	</DamageHandling>
+
+	<ActorAction class="MPActorAction" />
+
+	<Spectator class="DFMSpectator" eatsActorActions="1" enableFree="1" enableFollow="1" enableKiller="0" timeFromDeathTillAutoSpectate="5000" />
+
+	<Objectives class="DFMObjective_CTC">
+		<Params
+			droppedResetTimer = "30.0"
+			pickupCoreDist  	= "50.0"
+		/>
+		<Strings
+			complete    = "ui_msg_ctf_score_3"
+			
+			iconDefend  = "ui_icon_ctf_defend"
+			iconReturn  = "ui_icon_ctf_return"
+			iconEscort  = "ui_icon_ctf_escort"
+			iconSeize   = "ui_icon_ctf_seize"
+			iconKill    = "ui_icon_ctf_kill"
+			iconBase    = "ui_icon_ctf_base"
+			
+			hasTaken		= "ui_msg_ctf_has_taken"
+			hasCaptured	= "ui_msg_ctf_has_captured"
+			hasDropped	= "ui_msg_ctf_has_dropped"
+			hasReturned	= "ui_msg_ctf_has_returned"
+		/>
+		<Icons
+			friendlyFlagCarried    = "EGRMO_CTF_Flag_carried_red"
+			hostileFlagCarried     = "EGRMO_CTF_Flag_carried_blue"
+			friendlyFlagDropped    = "EGRMO_CTF_Flag_dropped_blue"
+			hostileFlagDropped     = "EGRMO_CTF_Flag_dropped_red"
+			friendlyBaseWithFlag   = "EGRMO_CTF_Base_with_flag_blue"
+			hostileBaseWithFlag    = "EGRMO_CTF_Base_with_flag_red"
+			friendlyBaseWithNoFlag = "EGRMO_CTF_Base_no_flag_blue"
+			hostileBaseWithNoFlag  = "EGRMO_CTF_Base_no_flag_red"
+		/>
+		<Sounds
+			friendlyComplete	= "GamemodeGoodMajor"
+			hostileComplete		= "GamemodeBadMajor"
+			friendlyPickup		= "GamemodeGoodMinor"
+			hostilePickup			= "GamemodeBadMinor"
+			friendlyReturn		= "GamemodeGoodMinor"
+			hostileReturn			= "GamemodeBadMinor"
+			friendlyDropped		= "GamemodeBadMinor"
+			enemyDropped			= "GamemodeGoodMinor"
+			
+			baseAlarmOff	= "CTFBaseAlarmOff"
+			baseAlarm			= "CTFBaseAlarm"
+		/>
+	</Objectives>
+
+	<!-- Custom Match Settings -->
+	<OptionBindings>
+		<OptionBinding>
+			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "1" Max = "10" Step = "1"	DefaultValue = "5" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		<OptionBinding>
+			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "20" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		<!--
+		<OptionBinding>
+			<Option		Name = "CockpitView" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesCockpitView" Description = "@dfm_ac_ui_RulesCockpitView"	DefaultValue = "true" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+		<!--
+		<OptionBinding>
+			<Option		Name = "FriendlyFire" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesFriendlyFire" Description = "@dfm_ac_ui_RulesFriendlyFire"	DefaultValue = "false" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+	</OptionBindings>
+</Mode>

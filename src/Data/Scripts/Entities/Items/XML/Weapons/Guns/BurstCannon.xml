@@ -1,0 +1,312 @@
+<item name="BurstCannon" class="Weapon" category="large" priority="12" weaponParams="1">
+	<params>
+		<param name="display_name" value="HP21I Thunder" />
+		<!-- Change Me Later -->
+		<param name="giveable" value="1" />
+		<param name="pickable" value="1" />
+		<param name="usable" value="1" />
+		<param name="selectable" value="1" />
+		<param name="mountable" 	value="0" />
+		<param name="pose" value="burstcannon" />
+		<!-- Defined in Mannequin?? -->
+		<param name="itemClass" value="burstcannon" />
+		<!-- Defined in Mannequin?? -->
+		<param name="slidePose" value="burstcannon" />
+		<!-- Defined in Mannequin?? -->
+		<param name="suffix" value="shoulder" />
+		<!-- Defined in Mannequin?? -->
+		<param name="mass" value="3" />
+		<!-- This is in kg -->
+		<param name="melee_attack_firemode" value="melee" />
+		<param name="select_delayed_grab_3P" value="1" />
+
+		<!-- For Item Port Types -->
+		<param name="itemType" value="Weapon" />
+		<param name="itemSubType" value="Large" />
+		<param name="itemSize" value="1" />
+		<param name="itemManufactor" value="" />
+
+		<!-- SP WEAPON STATS -->
+		<param name="sprintToFireDelay" value="0.1" GAME="SP" />
+		<param name="sprintToZoomDelay" value="0.3" GAME="SP" />
+		<param name="autoReloadDelay" value="0.5" GAME="SP" />
+		<param name="autoReloadDelay" value="0.5" GAME="MP" />
+		<param name="runToSprintBlendTime" value="0.3" />
+		<param name="sprintToRunBlendTime" value="0.4" GAME="SP" />
+		<param name="sprintToRunBlendTime" value="0.2" GAME="MP" />
+		<param name="sprintToFireDelay" value="0.05" GAME="MP" />
+		<param name="sprintToZoomDelay" value="0.2" GAME="MP" />
+		<param name="select_override" value="0.8" GAME="MP" />
+		<param name="stat_accuracy" value="6" GAME="SP" />
+		<param name="stat_rate_of_fire" value="7" GAME="SP" />
+		<param name="stat_mobility" value="5" GAME="SP" />
+		<param name="stat_damage" value="4" GAME="SP" />
+		<param name="stat_range" value="5" GAME="SP" />
+		<!-- MP WEAPON STATS -->
+		<param name="stat_accuracy" value="7" GAME="MP" />
+		<param name="stat_rate_of_fire" value="7" GAME="MP" />
+		<param name="stat_mobility" value="5" GAME="MP" />
+		<param name="stat_damage" value="5" GAME="MP" />
+		<param name="stat_range" value="5" GAME="MP" />
+		<param name="stat_recoil" value="5" GAME="MP" />
+		<!-- /STATS -->
+
+		<param name="tag" value="BurstCannon" />
+		<param name="tags" value="867"/>
+		<!-- FIX ME! Mannequin tags -->
+		<param name="adb" value="BurstCannon.adb" />
+		<!-- FIX ME! Mannequin adb -->
+	</params>
+
+	<FPSDebug>
+		<param name="alerted_position" value="-0.1,0.15,-0.5" />
+		<param name="ironsight_position" value="-0.1,0.15,-0.35" />
+	</FPSDebug>
+
+	<MovementModifiers speedScale="1.0" rotationScale="1.0" GAME="SP">
+		<!-- speed/rotation scale = ratio of character's speed is changed by -->
+		<Ironsight speedScale="0.6" rotationScale="0.33" mouseRotationScale="0.9" />
+	</MovementModifiers>
+
+	<MovementModifiers speedScale="1.0" rotationScale="1.0" firingSpeedScale="1.0" GAME="MP">
+		<!-- speed/rotation scale = ratio of character's speed is changed by -->
+		<Ironsight speedScale="0.6" rotationScale="0.33" mouseRotationScale="0.9" />
+	</MovementModifiers>
+
+	<ReloadMagazineParams magazineAttachment="magazine" magazineEvent="magazine" />
+	<ai_descriptor handler="instant" draw_time="2" burstBulletCountMin="5" burstBulletCountMax="9" burstPauseTimeMin="0.4" burstPauseTimeMax="0.9" singleFireTriggerTime="-1" pressureMultiplier="1" coverFireTime="3.0" />
+
+	<ammos>
+		<ammo name="mX-ShatterRocket" extra="20" amount="50" minAmmo="10" capacity="100" GAME="SP"/>
+		<ammo name="mX-ShatterRocket" extra="20" amount="50" capacity="100" GAME="MP"/>
+	</ammos>
+
+	<geometry>
+		<firstperson name="Objects/Weapons/Burst_Cannon/Burst_Cannon.chr" angles="0,0,0" position="0,0,0" />
+		<thirdperson name="Objects/Weapons/Burst_Cannon/Burst_Cannon.chr" angles="0,0,0" useStreaming="0" GAME="MP"/>
+		<thirdperson name="Objects/Weapons/Burst_Cannon/Burst_Cannon.chr" angles="0,0,0" GAME="SP"/>
+	</geometry>
+
+	<firemodes>
+		<firemode name="Automatic" type="Automatic">
+			<fire>
+				<param name="hit_type" value="mX-ShatterRocket" />
+				<param name="reticle" value="BurstCannon" />
+				<param name="ammo_type" value="mX-ShatterRocket" />
+				<param name="ooatracer_treshold" value="0" />
+				<param name="auto_fire" value="0" />
+				<param name="damage" value="110" />
+				<param name="rate" value="12" />
+				<param name="reload_time" value="5" />
+				<param name="damage_drop_per_meter" value="0.25" GAME="MP"/>
+				<param name="damage_drop_min_damage" value="24" GAME="MP"/>
+				<param name="holdbreath_ffeedback_damp" value="1.0" GAME="MP"/>
+				<param name="ironsight_fire_anim_damp" value="1.0" GAME="MP"/>
+				<param name="changeFMFireDelayFraction" value="1.0" GAME="MP"/>
+				<param name="autoSwitch" value="0" />
+				<param name="ironsight_fire_anim_damp" value="1.0" GAME="SP"/>
+				<param name="tag" value="single"/>
+				<param name="sound_radius" value="50.0" />
+			</fire>
+			<recoil>
+				<param name="angular_impulse" value="0.3" GAME="SP"/>
+				<param name="back_impulse" value="0.3" GAME="SP"/>
+				<param name="max_recoil" value="1" GAME="MP"/>
+				<param name="first_attack" value="0.4" GAME="SP"/>
+				<param name="first_attack" value="0.4" GAME="MP"/>
+				<param name="attack" value="0.4" GAME="SP"/>
+				<param name="attack" value="0.4" GAME="MP"/>
+				<param name="decay" value="2.5" GAME="SP"/>
+				<param name="decay" value="2.5" GAME="MP"/>
+				<param name="maxx" value="3" GAME="SP"/>
+				<param name="maxx" value="1.35" GAME="MP"/>
+				<param name="maxy" value="2" GAME="SP"/>
+				<param name="maxy" value="4.5" GAME="MP"/>
+				<param name="end_decay" value="0.2" GAME="SP"/>
+				<param name="end_decay" value="0.4" GAME="MP"/>
+				<param name="randomness" value="0.4" GAME="SP"/>
+				<param name="randomness" value="0.40" GAME="MP"/>
+				<param name="recoil_crouch_m" value="1.0" GAME="MP"/>
+				<!-- these modifiers are applied to the amount of decay reduction per frame, increasing the decay per frame reduces recoil -->
+				<param name="recoil_holdBreathActive_m" value="1.0"  GAME="MP"/>
+				<param name="recoil_crouch_m" value="1.0" GAME="MP"/>
+				<param name="recoil_jump_m" value="0.5" GAME="MP"/>
+				<hints>
+					<hint x="0.1"	y="0.99" />
+					<hint x="0.02"	y="0.89" />
+					<hint x="-0.05"	y="0.94" />
+				</hints>
+			</recoil>
+			<spread>
+				<param name="min" value="1.0" GAME="SP"/>
+				<param name="max" value="2.0" GAME="SP"/>
+				<param name="attack" value="8" GAME="SP"/>
+				<param name="decay" value="0.6" GAME="SP"/>
+				<param name="speed_m" value="1.0" GAME="SP"/>
+				<param name="min" value="2.0" GAME="MP"/>
+				<param name="max" value="3.0" GAME="MP"/>
+				<param name="attack" value="2.6" GAME="MP"/>
+				<param name="decay" value="0.5" GAME="MP"/>
+				<param name="end_decay" value="0.5" GAME="MP" />
+				<param name="speed_m" value="0.2" GAME="MP"/>
+				<param name="spread_crouch_m" value="0.8" GAME="MP"/>
+				<param name="speed_holdBreathActive_m" value="1.0" GAME="MP"/>
+				<param name="spread_holdBreathActive_m" value="1.0" GAME="MP"/>
+			</spread>
+			<animation>
+				<param name="useBaseModifier" value="1" />
+			</animation>
+		</firemode>
+
+	</firemodes>
+
+	<zoommodes>
+		<zoommode name="ironsight" type="IronSight">
+			<stereo>
+				<param name="eyeDistance" value="0.002" />
+				<param name="convergenceDistance" value="0.01" />
+			</stereo>
+			<zoom>
+				<param name="suffix" value="iron" />
+				<param name="suffixAG" value="_iron" />
+				<param name="dof" value="1" />
+				<param name="dof_mask" value="textures/weapons/ironzoom_blurmask.dds" />
+				<param name="dof_focusMin" value="1.0" />
+				<param name="dof_focusMax" value="-1.0" />
+				<param name="dof_focusLimit" value="300.0" />
+				<param name="dof_shoulderMinZ" value="0.15" />
+				<param name="dof_shoulderMinZScale" value="4.0" />
+				<param name="dof_minZ" value="0.25" />
+				<param name="dof_minZScale" value="0.6" />
+				<param name="zoom_smooth_time" value="0" />
+				<param name="zoom_in_time" value="0.25" GAME="SP"/>
+				<param name="zoom_out_time" value="0.25" GAME="SP"/>
+				<param name="zoom_out_delay" value="0.15" GAME="SP"/>
+				<param name="zoom_in_time" value="0.15" GAME="MP"/>
+				<param name="zoom_out_time" value="0.15" GAME="MP"/>
+				<param name="recoil_view_dampen" value="0.0"/>
+				<param name="scope_mode" value="1" GAME="MP"/>
+				<param name="scope_nearFov" value="38" GAME="MP"/>
+				<param name="armor_bonus_zoom" value="1" GAME="SP"/>
+				<param name="muzzle_flash_scale" value="0.55"/>
+				<param name="shoulderMovementAnimFactor" value="0.8" GAME="SP"/>
+				<param name="ironsightMovementAnimFactor" value="0.7" GAME="SP"/>
+				<stages>
+					<stage value="1.4" />
+				</stages>
+			</zoom>
+			<spreadMod>
+				<param name="max_mod" value="0.1" GAME="SP"/>
+				<param name="max_mod" value="0.25" GAME="MP"/>
+				<param name="first_attack_mod" value="1.0" GAME="SP"/>
+				<param name="first_attack_mod" value="1.0" GAME="MP"/>
+				<param name="attack_mod" value="1.2" GAME="SP"/>
+				<param name="attack_mod" value="0.25" GAME="MP"/>
+				<param name="decay_mod" value="1.0" GAME="SP"/>
+				<param name="decay_mod" value="0.35" GAME="MP"/>
+				<param name="end_decay_mod" value="1.0" GAME="MP" />
+				<param name="speed_m_mod" value="0.25" GAME="SP"/>
+				<param name="speed_m_mod" value="0.20" GAME="MP"/>
+				<param name="min_mod" value="0.001" GAME="SP"/>
+				<param name="min_mod" value="0.1" GAME="MP"/>
+				<param name="rotation_m_mod" value="0.5" GAME="SP"/>
+				<param name="rotation_m_mod" value="0.0" GAME="MP"/>
+				<param name="spread_crouch_m_mod" value="0.75" GAME="SP"/>
+				<param name="spread_crouch_m_mod" value="1.0" GAME="MP"/>
+				<param name="spread_prone_m_mod" value="0.5" GAME="SP"/>
+				<param name="spread_jump_m_mod" value="1.0" />
+				<param name="spread_slide_m_mod" value="1.0"/>
+				<param name="spread_holdBreathActive_m_mod" value="1.0" GAME="MP" />
+				<param name="spread_holdBreathActive_m_mod" value="0.75" GAME="SP" />
+				<param name="speed_holdBreathActive_m_mod" value="1.0" GAME="MP"/>
+			</spreadMod>
+			<recoilMod>
+				<param name="max_recoil_mod" value="1.0" />
+				<param name="first_attack_mod" value="0.6" GAME="SP"/>
+				<param name="first_attack_mod" value="0.75" GAME="MP"/>
+				<param name="attack_mod" value="0.6" GAME="SP"/>
+				<param name="attack_mod" value="0.55" GAME="MP"/>
+				<param name="decay_mod" value="2.0" GAME="SP"/>
+				<param name="decay_mod" value="2.0" GAME="MP"/>
+				<param name="end_decay_mod" value="1.5" GAME="SP"/>
+				<param name="end_decay_mod" value="1.1" GAME="MP"/>
+				<param name="impulse_mod" value="1.0" />
+				<param name="maxx_mod" value="1.25" GAME="SP"/>
+				<param name="maxx_mod" value="2.9" GAME="MP"/>
+				<param name="maxy_mod" value="1.75" GAME="SP"/>
+				<param name="maxy_mod" value="1.3" GAME="MP"/>
+				<param name="randomness_mod" 	value="1.0" GAME="SP"/>
+				<param name="angular_impulse_mod" value="1.0" />
+				<param name="back_impulse_mod" value="1.0" />
+				<param name="recoil_crouch_m_mod" value="0.75" GAME="SP"/>
+				<param name="recoil_crouch_m_mod" value="1.0" GAME="MP"/>
+				<param name="recoil_prone_m_mod" value="1.0" GAME="SP"/>
+				<param name="recoil_jump_m_mod" value="1.0" />
+				<param name="recoil_holdBreathActive_m_mod" value="1.25" GAME="SP" />
+				<param name="recoil_holdBreathActive_m_mod" value="1.0" GAME="MP" />
+			</recoilMod>
+		</zoommode>
+	</zoommodes>
+
+	<sway>
+		<param name="maxX" value="1.0" />
+		<param name="maxY" value="1.0" />
+
+		<!-- The translation is based off of the sway rotation, when you hit the rotation max you hit the translation max. So, choose maxX/maxY carefully for one thing. -->
+		<param name="maxTranslateX" value=".25" />
+		<param name="maxTranslateY" value=".25" />
+
+		<!-- This is to prevent the breath swaying from getting too large, depends on the coolDownRate. 
+			 The larger the max scale the longer it'll take for the player to cool down.-->
+		<param name="maxScale" value="6" />
+
+		<!-- Amount of time for a full sway cycle. For example: let's say minSwaySpeed is when you're at full run, maxSwaySpeed is when you're idle. This is calculated based on the current sway relative to the max sway. -->
+		<param name="minSwaySpeed" value="0.75" />
+		<param name="maxSwaySpeed" value="4.0" />
+
+		<!-- Decreases the sway scale by this per second until the scale reaches 1.0 -->
+		<param name="scaleCoolDownRate" value=".5" />
+
+		<param name="zoomScale" value="1.2" />
+		<param name="zoomScaleTime" value="1.0" />
+		<!-- This prevents the player from being able to stabalize the gun by holding their breath until 
+			 their sway scale is at least this high. -->
+		<param name="stabilizeStartMaxScale" value="2" />
+		<!-- When the player holds their breath to stabalize the gun, the sway scale is reduced to this amount.* -->
+		<param name="stabilizeScale" value="0.15" />
+		<!-- When the player goes to hold their breath to stabalize the gun, this is the amount of time it 
+			 takes the player to fully stabalize the gun to the above value. -->
+		<param name="stabilizeScaleTime" value="1.5"/>
+		<!-- This is the maximum amount of time the player can hold their breath after stabalizing the gun before
+			 they need to gasp for air. -->
+		<param name="stabilizeScaleEndTime" value="4.0" />
+		<!-- This is intended to indicate the player gasping for breath after stabilizing the gun, you see the camera suddenly sway quickly. -->
+		<param name="stabilizeRecoverScale" value="4.5" />
+		<param name="stabilizeRecoverTime" value="0.5" />
+
+		<!-- When firing a weapon this causes the scale to go up. It compounds with recoil, intended to indicate
+			 arm soreness after firing a weapon. -->
+		<param name="weaponFiringScale" value="3.0" />
+		<param name="weaponFiringScaleTime" value="0.25" />
+
+		<param name="sprintScale" value="3.0" />
+		<param name="sprintScaleTime" value=".75" />
+		<param name="walkScale" value="1.5" />
+		<param name="walkScaleTime" value="1.0" />
+		<param name="jumpScale" value="3.5" />
+		<param name="slideScale" value="2.0" />
+
+		<param name="proneScale" value="0.4"/>
+		<param name="crouchScale" value="0.8"/>
+		<param name="zerogScale" value=".8"/>
+
+		<!-- * Scales are multiplied together depending on the player state, so you won't necessarily see the exact value in this XML. 
+			   For instance holding your breath and zooming your weapon: baseValue * stanceScale * zoomScale * stabalizeScale * firingScale * movementScale -->
+	</sway>
+	
+	<mobiGlas>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0.4, 0.3" arLongRange="12" arShortRange="6" arMinRange="1"/>
+		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
+	</mobiGlas>
+	
+</item>

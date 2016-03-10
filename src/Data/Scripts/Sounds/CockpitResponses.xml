@@ -1,0 +1,751 @@
+ <!--
+	CockpitResponses.xml
+	Determines all of the possible responses that the cockpit audio system, "Bitching Betty" can produce based on various inputs.
+	The idea here is that a "concept" message is sent based on one of several types defined in code. Responses have a concept
+	associated with them as well as a series of optional rules. If a response is requested, all responses with the associated
+	concept are checked and the most appropriate one is selected.
+
+	Currently FloatArgs are based on closeness values, and are all based on the max value
+	StringArgs are direct strcmp comparisons.
+
+	Dialogue element refers to an articy dialgoue element that will be played.
+	SFX is a standard sound effect that will be played, e.g. bleeps and bloops
+-->
+
+<CockpitAudio>
+
+	<!-- Shields -->
+
+	<Response concept="ShieldsCharging">
+		<Dialogue name="shields_charging" refireDelay="10.0"/>
+		<SFX name="shields_charging"/>
+	</Response>
+
+	<Response concept="ShieldsChargingFull">
+		<Dialogue name="shields_full" refireDelay="10.0"/>
+	</Response>
+
+	<!-- Bubble Shield -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bubble" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_75pc" refireDelay="5.0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bubble" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_50pc" refireDelay="5.0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bubble" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_25pc" refireDelay="5.0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bubble" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_down" refireDelay="5.0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	
+	
+	<!-- Front Shields -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Front" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_front_75"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Front" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_front_50"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Front" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_front_25"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Front" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_front_0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldHit">
+		<Rules>
+			<StringArg name="SegmentName" value="Front" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_hit_front" refireDelay="10.0"/>
+	</Response>
+
+	
+	
+	<!-- Rear Shields -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Back" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_back_75"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Back" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_back_50"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Back" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_back_25"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Back" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_back_0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldHit">
+		<Rules>
+			<StringArg name="SegmentName" value="Back" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_hit_back" refireDelay="10.0"/>
+	</Response>
+	
+	<!-- Left Shields -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Left" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_left_75"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Left" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_left_50"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Left" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_left_25"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Left" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_left_0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldHit">
+		<Rules>
+			<StringArg name="SegmentName" value="Left" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_hit_left" refireDelay="10.0"/>
+	</Response>
+	
+		<!-- Right Shields -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Right" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_right_75"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Right" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_right_50"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Right" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_right_25"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Right" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_right_0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+	
+	<Response concept="ShieldHit">
+		<Rules>
+			<StringArg name="SegmentName" value="Right" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_hit_right" refireDelay="10.0"/>
+	</Response>
+	
+		<!-- Top Shields -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Top" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_top_75"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Top" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_top_50"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Top" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_top_25"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Top" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_top_0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+	
+	<Response concept="ShieldHit">
+		<Rules>
+			<StringArg name="SegmentName" value="Top" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_hit_top" refireDelay="10.0"/>
+	</Response>
+	
+	
+		<!-- Bottom Shields -->
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.75" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bottom" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_bottom_75"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.5" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bottom" priority="2.0"/>
+		</Rules>
+		<!-- <Dialogue name="shields_bottom_50"/> -->
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0.25" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bottom" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_bottom_25"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+
+	<Response concept="ShieldBelowThreshold">
+		<Rules>
+			<FloatArg name="ShieldValue" value="0" priority="1.0"/>
+			<StringArg name="SegmentName" value="Bottom" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_bottom_0"/>
+		<SFX name="shield_damage_state_transition"/>
+	</Response>
+	
+	<Response concept="ShieldHit">
+		<Rules>
+			<StringArg name="SegmentName" value="Bottom" priority="2.0"/>
+		</Rules>
+		<Dialogue name="shields_hit_bottom" refireDelay="10.0"/>
+	</Response>
+	
+	<!-- Shield systems misc -->
+
+	<Response concept="CollisionAlert">
+		<Dialogue name="shields_collision_alert" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+
+	<Response concept="CollisionAlert">
+		<Rules>
+			<StringArg name="Direction" value="Front" priority="2.0"/>
+		</Rules>
+		<Dialogue name="proximity_front" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+
+	<Response concept="CollisionAlert">
+		<Rules>
+			<StringArg name="Direction" value="Rear" priority="2.0"/>
+		</Rules>
+		<Dialogue name="proximity_aft" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+
+	<Response concept="CollisionAlert">
+		<Rules>
+			<StringArg name="Direction" value="Left" priority="2.0"/>
+		</Rules>
+		<Dialogue name="proximity_port" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+
+	<Response concept="CollisionAlert">
+		<Rules>
+			<StringArg name="Direction" value="Right" priority="2.0"/>
+		</Rules>
+		<Dialogue name="proximity_starboard" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+
+	<Response concept="CollisionAlert">
+		<Rules>
+			<StringArg name="Direction" value="Up" priority="2.0"/>
+		</Rules>
+		<Dialogue name="proximity_overhead" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+
+	<Response concept="CollisionAlert">
+		<Rules>
+			<StringArg name="Direction" value="Down" priority="2.0"/>
+		</Rules>
+		<Dialogue name="proximity_deck" refireDelay="7.5"/>
+		<SFX name="collision"/>
+	</Response>
+			
+	<!-- End Shields -->
+
+
+	<!-- Items -->
+
+	<!-- Items have the following args:
+		"Name" - The full display name of the item
+		"Type" - Item type, e.g. "Weapon"
+		"SubType" - SubType, e.g. "MissileRack"
+		"Manufactor" - Manufacturer, e.g. "RSI"
+	-->
+
+	<Response concept="Item">
+		<Dialogue name="Item_Default"/>
+	</Response>
+
+	<Response concept="Item">
+		<Rules>
+			<StringArg name="itemType" value="WeaponGun" priority="1.0"/>
+		</Rules>
+		<Dialogue name="systems_weapons" refireDelay="0"/>
+	</Response>
+
+	<Response concept="Item">
+		<Rules>
+			<StringArg name="itemType" value="WeaponMissile" priority="1.0"/>
+		</Rules>
+		<Dialogue name="systems_weapons" refireDelay="0"/>
+	</Response>
+
+	<Response concept="Item">
+		<Rules>
+			<StringArg name="itemType" value="Turret" priority="1.0"/>
+		</Rules>
+		<Dialogue name="systems_weapons" refireDelay="0"/>
+	</Response>
+
+	<Response concept="Item">
+		<Rules>
+			<StringArg name="itemType" value="MainThruster" priority="1.0"/>
+		</Rules>
+		<Dialogue name="systems_engines" refireDelay="0"/>
+	</Response>
+
+	<Response concept="Item">
+		<Rules>
+			<StringArg name="itemType" value="ManneuverThruster" priority="1.0"/>
+		</Rules>
+		<Dialogue name="systems_engines" refireDelay="0"/>
+	</Response>
+
+	<Response concept="Item">
+		<Rules>
+			<StringArg name="itemType" value="Shield" priority="1.0"/>
+		</Rules>
+		<Dialogue name="systems_shieldgen" refireDelay="0"/>
+	</Response>
+
+	<!-- Missiles -->
+	<Response concept="MissileLocking">
+		<Dialogue name="weapons_missile_locking_on_to_target"/>
+		<SFX name="missile_locking_target"/>
+	</Response>
+
+	<Response concept="MissileLocked">
+		<Dialogue name="weapons_missile_lock_succeeds"/>
+		<SFX name="missile_locked_target"/>
+	</Response>
+
+	<Response concept="MissileLockLost">
+		<StopSFX name="missile_lock_lost"/>
+	</Response>
+
+	<Response concept="EnemyMissileLocking">
+		<!--<Dialogue name="weapons_missile_locking_on_to_me"/> -->
+		<SFX name="missile_locking_me"/>
+	</Response>
+
+	<Response concept="EnemyMissileLocked">
+		<!--<Dialogue name="weapons_missile_locked_on_to_me"/> -->
+		<SFX name="missile_locked_me"/>
+	</Response>
+
+	<Response concept="EnemyMissileEvaded">
+		<SFX name="missile_evaded"/>
+	</Response>
+	
+	<!-- Other systems -->
+	<Response concept="RadarContact">
+		<Dialogue name="sensor_nearby_acquisition"/>
+		<SFX name="sensor_acquisition_nearby"/>
+	</Response>
+
+			<Response concept="EnemyTarget">
+				<Dialogue name="confirmed_enemy_target"/>
+			</Response>
+			
+			<Response concept="EnemyRamming">
+				<Dialogue name="sensor_incoming_ramming"/>
+			</Response>
+	
+	<Response concept="Scanning">
+		<Dialogue name="scanners_scanning"/>
+		<SFX name="scanning"/>
+	</Response>
+	
+			<Response concept="BeingScanned">
+				<Dialogue name="scanners_being_scanned"/>
+				<SFX name="being_scanned"/>
+			</Response>
+
+	<Response concept="Overheating">
+		<Dialogue name="systems_systems_overheating"/>
+		<SFX name="system_down"/>
+	</Response>
+
+	<Response concept="AutopilotEngaged">
+		<Dialogue name="systems_autopilot_engaged" refireDelay="2.0"/>
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="AutopilotDisengaged">
+		<Dialogue name="systems_autopilot_disengaged" refireDelay="2.0"/>
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="MatchSpeedEngaged">
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="MatchSpeedDisengaged">
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="DecoupledModeEngaged">
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="DecoupledModeDisengaged">
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="GForceSafetyEngaged">
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+	<Response concept="GForceSafetyDisengaged">
+		<SFX name="flight_control_state_transition"/>
+	</Response>
+
+			<Response concept="Communications">
+				<Dialogue name="systems_communications"/>
+			</Response>
+	
+			<Response concept="LifeSupport">
+				<Dialogue name="systems_lifesupport"/>
+			</Response>	
+	
+			<Response concept="Engines">
+				<Dialogue name="systems_engines"/>
+			</Response>	
+			
+			<Response concept="BitchingBetty">
+				<Dialogue name="systems_bitchingbetty"/>
+			</Response>
+
+			<Response concept="FlightControl">
+				<Dialogue name="systems_flightcontrol"/>
+			</Response>
+
+			<Response concept="Sensors">
+				<Dialogue name="systems_sensors"/>
+			</Response>
+			
+			<Response concept="Radar">
+				<Dialogue name="systems_radar"/>
+			</Response>			
+			
+			<Response concept="Coolant">
+				<Dialogue name="systems_coolant"/>
+			</Response>	
+			
+			<Response concept="TargetDestroyed">
+				<Dialogue name="weapons_target_destroyed"/>
+			</Response>
+			
+			<Response concept="DestructionImminent">
+				<Dialogue name="systems_destruction_imminent"/>
+			</Response>	
+			
+			<Response concept="ObjectiveReceived">
+				<Dialogue name="systems_objective_received"/>
+			</Response>	
+			
+			<Response concept="LeavingArea">
+				<Dialogue name="systems_leaving_area"/>
+			</Response>	
+			
+			<Response concept="CommsJammed">
+				<Dialogue name="systems_comms_jammed"/>
+			</Response>	
+			
+			<Response concept="SystemsOnline">
+				<Dialogue name="systems_systems_online"/>
+			</Response>	
+			
+			<Response concept="BootUp">
+				<Dialogue name="systems_bootup"/>
+			</Response>
+
+			<Response concept="IsDestroyed">
+				<Dialogue name="systems_is_offline" refireDelay="0"/>
+				<SFX name="system_down"/>
+			</Response>
+
+			<Response concept="IsOffline">
+				<Dialogue name="systems_offline" refireDelay="0"/>
+			</Response>
+
+			<Response concept="IsOnline">
+				<Dialogue name="shields_system_activated"/>
+			</Response>
+			
+	<Response concept="AmmoLow">
+		<!-- TODO -->
+		<Dialogue name="weapons_ammunition_low"/>
+	</Response>
+
+	<Response concept="AmmoDepleted">
+		<Dialogue name="weapons_ammunition_depleted"/>
+		<SFX name="ammunition_depleted"/>
+	</Response>
+
+	<Response concept="MissilesDepleted">
+		<Dialogue name="weapons_missiles_depleted"/>
+		<SFX name="missiles_depleted"/>
+	</Response>
+	
+			<Response concept="WeaponCharging">
+				<Dialogue name="weapons_charging"/>
+				<!--<SFX name="ammunition_depleted"/>-->
+			</Response>
+	
+	
+	<Response concept="FlareLaunched">
+		<Dialogue name="weapons_flare_launched"/>
+	</Response>
+
+	<Response concept="ChaffLaunched">
+		<Dialogue name="weapons_chaff_launched"/>
+	</Response>
+
+	<Response concept="FlareLow">
+		<Dialogue name="weapons_flare_low"/>
+	</Response>
+
+	<Response concept="ChaffLow">
+		<Dialogue name="weapons_chaff_low"/>
+	</Response>
+
+	<Response concept="FlareDepleted">
+		<Dialogue name="weapons_flare_depleted"/>
+		<SFX name="countermeasure_depleted"/>
+	</Response>
+
+	<Response concept="ChaffDepleted">
+		<Dialogue name="weapons_chaff_depleted"/>
+		<SFX name="countermeasure_depleted"/>
+	</Response>
+
+	<Response concept="AfterburnerLow">
+		<SFX name="afterburner_low"/>
+	</Response>
+
+	<Response concept="ThrusterPowerLow">
+		<Dialogue name="engine_depleted"/>
+	</Response>
+
+	<!-- System destroyed message components -->
+	<Response concept="ShieldsCriticalHit">
+		<Dialogue name="shields_critical_hit"/>
+		<SFX name="critical_hit_alarm"/>
+	</Response>
+
+	<Response concept="ShieldsDestroyed">
+		<Dialogue name="shields_offline"/>
+		<SFX name="system_down"/>
+	</Response>
+	
+	<Response concept="EjectionWarning">
+		<SFX name="ejection_warning"/>
+	</Response>
+
+	<Response concept="EjectInitiated">
+		<Dialogue name="ejection" refireDelay="4.0"/>
+	</Response>
+
+	<Response concept="TargetHit">
+		<SFX name="target_hit"/>
+	</Response>
+
+	<Response concept="TargetShieldHit">
+		<SFX name="target_hit_shield"/>
+	</Response>
+
+	<Response concept="TargetFriendlyHit">
+	    <Dialogue name="friendly_fire" refireDelay="10.0"/>
+		<SFX name="target_hit_friendly"/>
+	</Response>
+
+	<Response concept="MissileTargetFail">
+		<SFX name="missile_lock_fail"/>
+	</Response>
+
+	<Response concept="SelfDestructInitiated">
+		<SFX name="Self_Destruct"/>
+	</Response>
+
+	<Response concept="SelfDestructWarning">
+		<Dialogue name="self_destruct_initiated" refireDelay="10.0"/>
+		<SFX name="Self_Destruct_Loop"/>
+	</Response>
+
+	<Response concept="SelfDestructCancelled">
+		<Dialogue name="self_destruct_aborted" refireDelay="10.0"/>
+		<StopSFX name="Self_Destruct_Loop"/>
+	</Response>
+
+	<Response concept="SelfDestructImminent">
+		<SFX name="Self_Destruct"/>
+	</Response>
+
+	<Response concept="ChaffSelected">
+		<Dialogue name="countermeasure_chaff_selected" refireDelay="1.0"/>
+	</Response>
+
+	<Response concept="FlareSelected">
+		<Dialogue name="countermeasure_flare_selected" refireDelay="1.0"/>
+	</Response>
+
+	<Response concept="UI_SwitchContext">
+		<SFX name="UI_SwitchContext"/>
+	</Response>
+	
+	<Response concept="UI_EnterInteractionMode">
+		<SFX name="UI_EnterInteractionMode"/>
+	</Response>
+	
+	<Response concept="UI_ExitInteractionMode">
+		<SFX name="UI_ExitInteractionMode"/>
+	</Response>
+	
+	<Response concept="UI_Navigate">
+		<SFX name="UI_Navigate"/>
+	</Response>
+	
+	<Response concept="UI_ConfirmAction">
+		<SFX name="UI_ConfirmAction"/>
+	</Response>
+	
+
+
+</CockpitAudio>

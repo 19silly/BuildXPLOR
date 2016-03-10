@@ -1,0 +1,2189 @@
+<!--
+//////////////////////////////////////////////////////////////////////////
+///              CNOUin Jumpworks Mustang
+///
+//////////////////////////////////////////////////////////////////////////
+-->
+<Vehicle name="CNOU_Mustang" category="StarFighter" displayname="CNOU Mustang Alpha" classname="Class 2" id="idVehicleClass" dockingclass="2" piority="2" HudPaletteScheme="Origin" requiredItemTags="flightReady" itemPortTags="CNOU_Mustang_Base" crossSectionMultiplier="0.51,0.28,0.43">
+  <Physics pushable="0" dampingFreefall="0">
+    <Buoyancy waterDensity="150" waterResistance="2500" />
+    <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+  </Physics>
+  <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+    <DamageMultipliers>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
+      <DamageMultiplier damageType="melee" multiplier="0" />
+      <DamageMultiplier damageType="collision" multiplier="1" />
+      <DamageMultiplier damageType="explosion" multiplier="1" />
+    </DamageMultipliers>
+    <DamagesGroups>
+      <DamagesGroup name="Destroy">
+        <DamagesSubGroups>
+          <!-- SubGroup to Destroy Vehicle -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="Destroy" />
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" />
+              </DamageBehavior>
+              <DamageBehavior class="Explosion">
+                <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to kill Passengers -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="HitPassenger">
+                <HitPassenger damage="100" isDamagePercent="1" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to apply burning - might remove this -->
+          <DamagesSubGroup delay="3" randomness="0.25">
+            <DamageBehaviors>
+              <DamageBehavior class="Burn">
+                <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+    </DamagesGroups>
+  </Damages>
+  <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
+  <!-- Modes:	gun, missile, pilot, eject, enemy, thrusters, death	-->
+  <Cameras>
+    <Camera type="missile" attachPoint="" cameraOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+    <Camera type="eject" attachPoint="" cameraOffset="0,5,2" filename="Cameras/eject.xml" />
+    <Camera type="death" attachPoint="" cameraOffset="0,0,0" filename="Cameras/death.xml" />
+    <Camera type="gun" attachPoint="hardpoint_weapon_class1_left_wing" cameraOffset="6.5,0.3,-0.8" cameraRotationOffset="0,45,0" cameraShakeScale="0.2" filename="Cameras/gun.xml" />
+    <Camera type="gun" attachPoint="hardpoint_weapon_class1_right_wing" cameraOffset="-6.5,0.3,-0.8" cameraRotationOffset="0,-45,0" cameraShakeScale="0.2" filename="Cameras/gun.xml" />
+    <Camera type="gun" attachPoint="hardpoint_weapon_class_4" cameraOffset="0,8.5,-1.4" cameraRotationOffset="0,-90,0" cameraShakeScale="0.2" filename="Cameras/gun.xml" />
+    <Camera type="pilot" attachPoint="" cameraOffset="0.5,5.6,0.5" cameraRotationOffset="-13,0,15" filename="Cameras/pilot.xml" />
+    <Camera type="pilot" attachPoint="" cameraOffset="-0.5,5.6,0.5" cameraRotationOffset="-13,0,-15" filename="Cameras/pilot.xml" />
+    <Camera type="pilot" attachPoint="" cameraOffset="-0.012,7.03,-0.15" cameraRotationOffset="0,30,180" filename="Cameras/pilot.xml" />
+    <!-- Rear Facing Pilot Cam -->
+  </Cameras>
+  <!-- Cinematic Cameras End  //////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Parts>
+    <Part name="CNOU_Mustang" class="Animated" damageMax="180" mass="13500" disablePhysics="1" scopeContext="Ship" id="idMain_Part">
+      <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Damaged.cga" id="idShipGeometry" />
+      <Parts>
+        <Part name="body" class="AnimatedJoint" damageMax="100">
+          <DamageBehaviors>
+            <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+              <DetachPart>
+                <Part name="body" recurseChildren="1" skipParent="1" Probability="1" />
+                <Part name="v_body" recurseChildren="1" skipParent="1" Probability="1" />
+              </DetachPart>
+            </DamageBehavior>
+            <DamageBehavior class="DamagePart" damageRatioMin="0.1">
+              <DamageParts>
+                <DamagePart name="v_body" />
+                <DamagePart name="v_Interior_A" />
+              </DamageParts>
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Parts>
+            <Part name="hardpoint_thruster_front_left_top" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontL">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="-7.8, 4, 4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_front_left_bottom" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontR">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="-7.8, 4, -4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_rear_left_top" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="-7.8, -4, 4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_rear_left_bottom" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="-7.8, -4, -4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_rear_right_top" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="7.8, -4, 4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_rear_right_bottom" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="7.8, -4, -4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_front_right_top" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontR">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="7.8, 4, 4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_thruster_front_right_bottom" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontL">
+                <Pitch min="0" max="90" />
+                <Types>
+                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                </Types>
+                <OptimalStates>
+                  <Fixup pos="7.8, 4, -4" />
+                </OptimalStates>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_powerplant" class="ItemPort">
+              <ItemPort minsize="1" maxsize="2" flags="invisible" display_name="Power Plant" displayPos="75,290">
+                <Types>
+                  <Type type="PowerPlant" subtypes="" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris11" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris10" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris9" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris8" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_50_debris7" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_75_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="body_75_debris5_PFX_DetachFX_sparks_2m_loop_fixed021" partName="body" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="body_75_debris5_PFX_DebrisFX_metal_8m_once_trail061" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="body_75_debris5_PFX_DetachFX_explode_4m_once_fixed062" partName="body" />
+              </Effects>
+              <DetachParents>
+                <DetachParent partName="v_body_100_debris2" seperateLink="0" />
+              </DetachParents>
+              <Parts>
+                <Part name="body_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Effects>
+                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="body_75_debris4_PFX_DetachFX_sparks_2m_loop_fixed022" partName="body_75_debris5" />
+                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="body_75_debris4_PFX_DebrisFX_metal_8m_once_trail062" />
+                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="body_75_debris4_PFX_DetachFX_explode_4m_once_fixed063" partName="body_75_debris5" />
+                  </Effects>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="body_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="hardpoint_countermeasure1_right" class="ItemPort" skipPart="0">
+              <ItemPort minsize="1" maxsize="3" flags="intake_left" display_name="Right Intake Countermeasure Launcher">
+                <Types>
+                  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_countermeasure2_right" class="ItemPort" skipPart="0">
+              <ItemPort minsize="1" maxsize="3" flags="intake_left" display_name="Right Intake Countermeasure Launcher">
+                <Types>
+                  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_countermeasure1_left" class="ItemPort" skipPart="0">
+              <ItemPort minsize="1" maxsize="3" flags="intake_left" display_name="Left Intake Countermeasure Launcher">
+                <Types>
+                  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_countermeasure2_left" class="ItemPort" skipPart="0">
+              <ItemPort minsize="1" maxsize="3" flags="intake_left" display_name="Left Intake Countermeasure Launcher">
+                <Types>
+                  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_selfdestruct" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
+                <Types>
+                  <Type type="SelfDestruct" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_radar" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
+                <Types>
+                  <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_avionics_motherboard" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+                <Types>
+                  <Type type="Avionics" subtypes="Motherboard" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="body_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="body_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="body_50_debris13" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                  </Parts>
+                </Part>
+                <Part name="body_50_debris12" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="body_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="body_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="body_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="body_50_debris14" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="nacelle_right" class="AnimatedJoint" damageMax="100" detachRatio="1.1" preventRecrusionDetach="1">
+                      <DetachParents>
+                        <DetachParent partName="v_body_100_debris1" seperateLink="0" />
+                      </DetachParents>
+                      <DamageBehaviors>
+                        <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                          <DetachPart>
+                            <Part name="nacelle_right" recurseChildren="1" skipParent="1" Probability="0.1" />
+                          </DetachPart>
+                        </DamageBehavior>
+                      </DamageBehaviors>
+                      <Parts>
+                        <Part name="nacelle_right_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="hardpoint_thruster_right_retro" class="ItemPort">
+                              <ItemPort minsize="1" maxsize="1" flags="">
+                                <Types>
+                                  <Type type="ManneuverThruster" subtypes="JointThruster" />
+                                </Types>
+                                <OptimalStates>
+                                  <Fixup pos="2.5, 5.2, 0.0" />
+                                </OptimalStates>
+                              </ItemPort>
+                            </Part>
+                            <Part name="nacelle_right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_right_75_debris1_PFX_DebrisFX_metal_8m_once_trail051" />
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_right_75_debris1_PFX_DetachFX_explode_4m_once_fixed052" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" joint="nacelle_right_75_debris1_PFX_DetachFX_smoke_1m_loop_trail002" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_right_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed011" partName="nacelle_right_100_debris2" />
+                              </Effects>
+                              <Parts>
+                                <Part name="hardpoint_radiator_right" class="ItemPort">
+                                  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot" requiredTags="">
+                                    <Types>
+                                      <Type type="Cooler" subtypes="" />
+                                    </Types>
+                                  </ItemPort>
+                                </Part>
+                                <Part name="nacelle_right_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_right_50_debris2_PFX_DetachFX_sparks_2m_loop_fixed008" partName="nacelle_right_75_debris1" />
+                                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_right_50_debris2_PFX_DebrisFX_metal_8m_once_trail048" />
+                                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_right_50_debris2_PFX_DetachFX_explode_4m_once_fixed049" partName="nacelle_right_75_debris1" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="nacelle_right_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed064" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nacelle_right_100_debris1_PFX_DetachFX_smoke_2m_loop_trail006" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_right_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed023" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_right_100_debris1_PFX_DebrisFX_metal_8m_once_trail063" />
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed065" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nacelle_right_100_debris1_PFX_DetachFX_smoke_2m_loop_trail007" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_right_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed024" partName="nacelle_right_100_debris2" />
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_right_100_debris1_PFX_DebrisFX_metal_8m_once_trail064" />
+                                <DetachFx effect="explosions.fire" joint="nacelle_right_100_debris1_PFX_DetachFX_fire_4m_once_fixed070" partName="nacelle_right_100_debris2" />
+                              </Effects>
+                              <DamageBehaviors>
+                                <DamageBehavior class="Effect" damageRatioMin="0.25">
+                                  <Effects>
+                                    <Effect effect="SC_Explode_FX.Explode_ALL.explode_8m_once_fixed" helper="nacelle_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed064" />
+                                  </Effects>
+                                </DamageBehavior>
+                                <DamageBehavior class="Explosion" damageRatioMin="0.25">
+                                  <Explosion helper="nacelle_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed064" damage="10" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="3000" pressureInFlight="1000000" />
+                                </DamageBehavior>
+                              </DamageBehaviors>
+                              <Parts>
+                                <Part name="nacelle_right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_right_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed005" partName="nacelle_right_100_debris1" />
+                                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_right_50_debris1_PFX_DebrisFX_metal_8m_once_trail045" />
+                                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_right_50_debris1_PFX_DetachFX_explode_4m_once_fixed046" partName="nacelle_right_100_debris1" />
+                                    <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" joint="nacelle_right_50_debris1_PFX_DetachFX_smoke_1m_loop_trail" partName="nacelle_right_100_debris1" />
+                                  </Effects>
+                                </Part>
+                                <Part name="nacelle_right_75_debris2" class="AnimatedJoint" damageMax="1">
+                                  <Effects>
+                                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_right_75_debris2_PFX_DebrisFX_metal_8m_once_trail052" />
+                                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_right_75_debris2_PFX_DetachFX_explode_4m_once_fixed053" partName="nacelle_right_100_debris1" />
+                                    <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nacelle_right_75_debris2_PFX_DetachFX_smoke_2m_loop_trail003" partName="nacelle_right_100_debris1" />
+                                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_right_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed012" partName="nacelle_right_100_debris1" />
+                                  </Effects>
+                                </Part>
+                                <Part name="hardpoint_engine_right_attach" class="ItemPort">
+                                  <ItemPort minsize="1" maxsize="2" flags="right" requiredTags="">
+                                    <Types>
+                                      <Type type="MainThruster" subtypes="" id="idEngineType" />
+                                    </Types>
+                                    <OptimalStates>
+                                      <Fixup pos="2.5, -5.2, 0.0" />
+                                    </OptimalStates>
+                                  </ItemPort>
+                                </Part>
+                              </Parts>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="nacelle_left" class="AnimatedJoint" damageMax="100" detachRatio="1.1" preventRecrusionDetach="1">
+                  <DetachParents>
+                    <DetachParent partName="v_body_100_debris1" seperateLink="0" />
+                  </DetachParents>
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+                      <DetachPart>
+                        <Part name="nacelle_left" recurseChildren="1" skipParent="1" Probability="0.1" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Parts>
+                    <Part name="nacelle_left_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="hardpoint_thruster_left_retro" class="ItemPort">
+                          <ItemPort minsize="1" maxsize="1" flags="">
+                            <Types>
+                              <Type type="ManneuverThruster" subtypes="JointThruster" />
+                            </Types>
+                            <OptimalStates>
+                              <Fixup pos="-2.5, 5.2, 0.0" />
+                            </OptimalStates>
+                          </ItemPort>
+                        </Part>
+                        <Part name="nacelle_left_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_left_75_debris1_PFX_DebrisFX_metal_8m_once_trail054" />
+                            <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_left_75_debris1_PFX_DetachFX_explode_4m_once_fixed055" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" joint="nacelle_left_75_debris1_PFX_DetachFX_smoke_1m_loop_trail005" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_left_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed014" partName="nacelle_left_100_debris2" />
+                          </Effects>
+                          <Parts>
+                            <Part name="hardpoint_radiator_left" class="ItemPort">
+                              <ItemPort minsize="1" maxsize="1" flags="left" display_name="Right Cooler Slot" requiredTags="">
+                                <Types>
+                                  <Type type="Cooler" subtypes="" />
+                                </Types>
+                              </ItemPort>
+                            </Part>
+                            <Part name="nacelle_left_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_left_50_debris2_PFX_DetachFX_sparks_2m_loop_fixed007" partName="nacelle_left_75_debris1" />
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_left_50_debris2_PFX_DebrisFX_metal_8m_once_trail047" />
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_left_50_debris2_PFX_DetachFX_explode_4m_once_fixed048" partName="nacelle_left_75_debris1" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="nacelle_left_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed066" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nacelle_left_100_debris1_PFX_DetachFX_smoke_2m_loop_trail008" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_left_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed025" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_left_100_debris1_PFX_DebrisFX_metal_8m_once_trail065" />
+                            <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed067" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nacelle_left_100_debris1_PFX_DetachFX_smoke_2m_loop_trail009" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_left_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed026" partName="nacelle_left_100_debris2" />
+                            <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_left_100_debris1_PFX_DebrisFX_metal_8m_once_trail066" />
+                            <DetachFx effect="explosions.fire" joint="nacelle_left_100_debris1_PFX_DetachFX_fire_4m_once_fixed069" partName="nacelle_left_100_debris2" />
+                          </Effects>
+                          <DamageBehaviors>
+                            <DamageBehavior class="Effect" damageRatioMin="0.25">
+                              <Effects>
+                                <Effect effect="SC_Explode_FX.Explode_ALL.explode_8m_once_fixed" helper="nacelle_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed066" />
+                              </Effects>
+                            </DamageBehavior>
+                            <DamageBehavior class="Explosion" damageRatioMin="0.25">
+                              <Explosion helper="nacelle_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed066" damage="10" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="3000" pressureInFlight="1000000" />
+                            </DamageBehavior>
+                          </DamageBehaviors>
+                          <Parts>
+                            <Part name="nacelle_left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_left_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed006" partName="nacelle_left_100_debris1" />
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_left_50_debris1_PFX_DebrisFX_metal_8m_once_trail046" />
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_left_50_debris1_PFX_DetachFX_explode_4m_once_fixed047" partName="nacelle_left_100_debris1" />
+                                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" joint="nacelle_left_50_debris1_PFX_DetachFX_smoke_1m_loop_trail001" partName="nacelle_left_100_debris1" />
+                              </Effects>
+                            </Part>
+                            <Part name="nacelle_left_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nacelle_left_75_debris2_PFX_DebrisFX_metal_8m_once_trail053" />
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nacelle_left_75_debris2_PFX_DetachFX_explode_4m_once_fixed054" partName="nacelle_left_100_debris1" />
+                                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nacelle_left_75_debris2_PFX_DetachFX_smoke_2m_loop_trail004" partName="nacelle_left_100_debris1" />
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nacelle_left_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed013" partName="nacelle_left_100_debris1" />
+                              </Effects>
+                            </Part>
+                            <Part name="hardpoint_engine_left_attach" class="ItemPort">
+                              <ItemPort minsize="1" maxsize="2" flags="Left" requiredTags="">
+                                <Types>
+                                  <Type type="MainThruster" subtypes="" id="idEngineType" />
+                                </Types>
+                                <OptimalStates>
+                                  <Fixup pos="-2.5, -5.2, 0.0" />
+                                </OptimalStates>
+                              </ItemPort>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="body_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="body_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed035" partName="body" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="body_100_debris1_PFX_DetachFX_explode_4m_once_fixed075" partName="body" />
+                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="body_100_debris1_PFX_DetachFX_smoke_2m_loop_trail017" partName="body" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="body_100_debris1_PFX_DebrisFX_metal_8m_once_trail074" />
+              </Effects>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="wing_left" class="AnimatedJoint" damageMax="100" detachRatio="1.1">
+          <DamageBehaviors>
+            <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+              <DetachPart>
+                <Part name="wing_left" recurseChildren="1" skipParent="1" Probability="0.5" />
+              </DetachPart>
+            </DamageBehavior>
+          </DamageBehaviors>
+          <DetachParents>
+            <DetachParent partName="v_body_100_debris1" seperateLink="0" />
+          </DetachParents>
+          <Parts>
+            <Part name="wing_left_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="wing_left_100_debris3_PFX_DetachFX_smoke_2m_loop_trail011" partName="wing_left" />
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_100_debris3_PFX_DetachFX_sparks_2m_loop_fixed029" partName="wing_left" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_100_debris3_PFX_DebrisFX_metal_8m_once_trail068" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_100_debris3_PFX_DetachFX_explode_4m_once_fixed069" partName="wing_left" />
+              </Effects>
+              <Parts>
+                <Part name="wing_left_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Effects>
+                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed027" partName="wing_left_100_debris3" />
+                    <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="wing_left_100_debris1_PFX_DetachFX_smoke_2m_loop_trail010" partName="wing_left_100_debris3" />
+                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_100_debris1_PFX_DebrisFX_metal_8m_once_trail067" />
+                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed068" partName="wing_left_100_debris3" />
+                  </Effects>
+                  <Parts>
+                    <Part name="wing_left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed002" partName="wing_left_100_debris1" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_50_debris1_PFX_DebrisFX_metal_8m_once_trail042" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_50_debris1_PFX_DetachFX_explode_4m_once_fixed043" partName="wing_left_100_debris1" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_left_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed019" partName="wing_left_100_debris1" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_75_debris2_PFX_DebrisFX_metal_8m_once_trail059" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_75_debris2_PFX_DetachFX_explode_4m_once_fixed060" partName="wing_left_100_debris1" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_left_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_75_debris1_PFX_DetachFX_explode_4m_once_fixed056" partName="wing_left_100_debris1" />
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed015" partName="wing_left_100_debris1" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_75_debris1_PFX_DebrisFX_metal_8m_once_trail055" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_left_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="wing_left_100_debris2_PFX_DetachFX_smoke_2m_loop_trail015" partName="wing_left_100_debris1" />
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_100_debris2_PFX_DetachFX_sparks_2m_loop_fixed033" partName="wing_left_100_debris1" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_100_debris2_PFX_DebrisFX_metal_8m_once_trail072" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_100_debris2_PFX_DetachFX_explode_4m_once_fixed073" partName="wing_left_100_debris1" />
+                      </Effects>
+                      <Parts>
+                        <Part name="wing_left_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_50_debris2_PFX_DetachFX_sparks_2m_loop_fixed001" partName="wing_left_100_debris2" />
+                            <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_50_debris2_PFX_DebrisFX_metal_8m_once_trail041" />
+                            <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_50_debris2_PFX_DetachFX_explode_4m_once_fixed042" partName="wing_left_100_debris2" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_left_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_75_debris3_PFX_DetachFX_sparks_2m_loop_fixed018" partName="wing_left_50_debris2" />
+                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_75_debris3_PFX_DebrisFX_metal_8m_once_trail058" />
+                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_75_debris3_PFX_DetachFX_explode_4m_once_fixed059" partName="wing_left_50_debris2" />
+                              </Effects>
+                              <Parts>
+                                <Part name="wing_left_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_50_debris3_PFX_DetachFX_sparks_2m_loop_fixed" partName="wing_left_75_debris3" />
+                                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_50_debris3_PFX_DebrisFX_metal_8m_once_trail040" />
+                                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_50_debris3_PFX_DetachFX_explode_4m_once_fixed041" partName="wing_left_75_debris3" />
+                                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_left_50_debris3_PFX_DetachFX_sparks_2m_loop_fixed004" partName="wing_left_75_debris3" />
+                                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_left_50_debris3_PFX_DebrisFX_metal_8m_once_trail044" />
+                                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_left_50_debris3_PFX_DetachFX_explode_4m_once_fixed045" partName="wing_left_75_debris3" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_weapon_class1_left_wing" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="1" flags="left wing" display_name="Left Wing Class 1 Slot" displayPos="75,290" id="id_class1_leftwing">
+                        <Types>
+                          <Type type="Turret" subtypes="GunTurret" />
+                          <Type type="WeaponGun" subtypes="Gun" />
+                        </Types>
+                        <Pitch min="-15" max="5" />
+                        <Yaw min="-10" max="10" />
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="hardpoint_weapon_class3_left" class="ItemPort" />
+            <Part name="hardpoint_class3_left" class="ItemPort" skipPart="1" id="id_class3_left">
+              <ItemPort minsize="1" maxsize="3" flags="left bottom" display_name="Left Bay Slot" displayPos="195,200">
+                <Types>
+                  <Type type="WeaponGun" subtypes="Gun" />
+                  <!-- Needs to be a missile rack at some point -->
+                </Types>
+              </ItemPort>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="wing_right" class="AnimatedJoint" damageMax="100" detachRatio="1.1">
+          <DamageBehaviors>
+            <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+              <DetachPart>
+                <Part name="wing_right" recurseChildren="1" skipParent="1" Probability="0.5" />
+              </DetachPart>
+            </DamageBehavior>
+          </DamageBehaviors>
+          <DetachParents>
+            <DetachParent partName="v_body_100_debris1" seperateLink="0" />
+          </DetachParents>
+          <Parts>
+            <Part name="wing_right_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="wing_right_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="wing_right_100_debris1_PFX_DetachFX_smoke_2m_loop_trail012" partName="wing_right" />
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed030" partName="wing_right" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_100_debris1_PFX_DebrisFX_metal_8m_once_trail069" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed070" partName="wing_right" />
+              </Effects>
+              <Parts>
+                <Part name="wing_right_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Effects>
+                    <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="wing_right_100_debris3_PFX_DetachFX_smoke_2m_loop_trail013" partName="wing_right_100_debris1" />
+                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_100_debris3_PFX_DetachFX_sparks_2m_loop_fixed031" partName="wing_right_100_debris1" />
+                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_100_debris3_PFX_DebrisFX_metal_8m_once_trail070" />
+                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_100_debris3_PFX_DetachFX_explode_4m_once_fixed071" partName="wing_right_100_debris1" />
+                  </Effects>
+                  <Parts>
+                    <Part name="wing_right_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed020" partName="wing_right_100_debris3" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_75_debris2_PFX_DebrisFX_metal_8m_once_trail060" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_75_debris2_PFX_DetachFX_explode_4m_once_fixed061" partName="wing_right_100_debris3" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_right_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="wing_right_100_debris2_PFX_DetachFX_smoke_2m_loop_trail014" partName="wing_right_100_debris3" />
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_100_debris2_PFX_DetachFX_sparks_2m_loop_fixed032" partName="wing_right_100_debris3" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_100_debris2_PFX_DebrisFX_metal_8m_once_trail071" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_100_debris2_PFX_DetachFX_explode_4m_once_fixed072" partName="wing_right_100_debris3" />
+                      </Effects>
+                      <Parts>
+                        <Part name="wing_right_75_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_75_debris5_PFX_DetachFX_sparks_2m_loop_fixed017" partName="wing_right_100_debris2" />
+                            <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_75_debris5_PFX_DebrisFX_metal_8m_once_trail057" />
+                            <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_75_debris5_PFX_DetachFX_explode_4m_once_fixed058" partName="wing_right_100_debris2" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_right_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="wing_right_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                              </Parts>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                    <Part name="wing_right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed003" partName="wing_right_100_debris3" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_50_debris1_PFX_DebrisFX_metal_8m_once_trail043" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_50_debris1_PFX_DetachFX_explode_4m_once_fixed044" partName="wing_right_100_debris3" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="wing_right_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed016" partName="wing_right_100_debris3" />
+                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="wing_right_75_debris1_PFX_DebrisFX_metal_8m_once_trail056" />
+                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="wing_right_75_debris1_PFX_DetachFX_explode_4m_once_fixed057" partName="wing_right_100_debris3" />
+                      </Effects>
+                    </Part>
+                    <Part name="hardpoint_weapon_class1_right_wing" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="1" flags="right wing" display_name="right wing Class 1 Slot" displayPos="75,290" id="id_class1_rightwing">
+                        <Types>
+                          <Type type="Turret" subtypes="GunTurret" />
+                          <Type type="WeaponGun" subtypes="Gun" />
+                        </Types>
+                        <Pitch min="-15" max="5" />
+                        <Yaw min="-10" max="10" />
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="hardpoint_weapon_class3_right" class="ItemPort" />
+            <Part name="hardpoint_class3_right" class="ItemPort" skipPart="1" id="id_class3_right">
+              <ItemPort minsize="1" maxsize="3" flags="right bottom" display_name="right Bay Slot" displayPos="195,200">
+                <Types>
+                  <Type type="WeaponGun" subtypes="Gun" />
+                </Types>
+              </ItemPort>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="nose" class="AnimatedJoint" damageMax="100">
+          <DamageBehaviors>
+            <DamageBehavior class="DamagePart" damageRatioMin="0.1">
+              <DamageParts>
+                <DamagePart name="v_nose" />
+              </DamageParts>
+            </DamageBehavior>
+            <DamageBehavior class="DetachPart" damageRatioMin="0.25">
+              <DetachPart>
+                <Part name="nose" recurseChildren="1" skipParent="1" Probability="0.5" />
+                <Part name="v_nose" recurseChildren="1" skipParent="1" Probability="0.5" />
+              </DetachPart>
+            </DamageBehavior>
+            <DamageBehavior class="Group" damageRatioMin="1">
+              <Group name="Destroy" />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Parts>
+            <Part name="nose_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nose_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed010" partName="nose" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nose_50_debris1_PFX_DebrisFX_metal_8m_once_trail050" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nose_50_debris1_PFX_DetachFX_explode_4m_once_fixed051" partName="nose" />
+              </Effects>
+            </Part>
+            <Part name="nose_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nose_50_debris3_PFX_DetachFX_sparks_2m_loop_fixed009" partName="nose" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nose_50_debris3_PFX_DebrisFX_metal_8m_once_trail049" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nose_50_debris3_PFX_DetachFX_explode_4m_once_fixed050" partName="nose" />
+              </Effects>
+            </Part>
+            <Part name="nose_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Effects>
+                <DetachFx effect="SC_Smoke_FX.Smoke_ALL.smoke_2m_loop_trail" joint="nose_100_debris1_PFX_DetachFX_smoke_2m_loop_trail016" partName="nose" />
+                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="nose_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed034" partName="nose" />
+                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_8m_once_trail" joint="nose_100_debris1_PFX_DebrisFX_metal_8m_once_trail073" />
+                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="nose_100_debris1_PFX_DetachFX_explode_4m_once_fixed074" partName="nose" />
+              </Effects>
+              <DetachParents>
+                <DetachParent partName="v_nose_100_debris1" seperateLink="0" />
+              </DetachParents>
+              <Parts>
+                <Part name="nose_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="hardpoint_shield_generator" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="2" flags="" display_name="Shield Slot">
+                    <Types>
+                      <Type type="Shield" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_tank_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Tank">
+                    <Types>
+                      <Type type="FuelTank" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_tank_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Tank">
+                    <Types>
+                      <Type type="FuelTank" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_weapon_class_4" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="2" flags="center" display_name="Bottom Turret Slot" displayPos="275,260" displayTop="1" requiredTags="">
+                    <Types>
+                      <Type type="Turret" subtypes="BallTurret" />
+                      <Type type="Container" subtypes="" />
+                      <Type type="Radar" subtypes="" />
+                    </Types>
+                    <Pitch min="-10" max="50" />
+                    <Yaw min="-180" max="180" />
+                  </ItemPort>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="ArenaCommander_Helper" class="ItemPort" />
+            <Part name="Radar_Helper" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="UI">
+                <Types>
+                  <Type type="Display" />
+                </Types>
+              </ItemPort>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="hardpoint_seat" class="ItemPort">
+          <!-- Ventral Beacon attach point  -->
+          <ItemPort minsize="1" maxsize="1" flags="" display_name="Mustang Seat">
+            <Types>
+              <Type type="Seat" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="main_cockpit_throttle" class="AnimatedJoint" />
+        <Part name="main_cockpit_control_stick" class="AnimatedJoint" />
+        <Part name="UI_helper" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
+            <Types>
+              <Type type="Display" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_interior_audio" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="int" display_name="Interior_Audio">
+            <Types>
+              <Type type="Audio" subtypes="Interior_Audio" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_cockpit_audio" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="Cockpit Audio">
+            <Types>
+              <Type type="Avionics" subtypes="Cockpit_Audio" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_engine_mid_attach" class="ItemPort">
+          <ItemPort minsize="1" maxsize="2" flags="Mid" requiredItemTags="Center_Engine" id="idMiddleEngineFlags" portTags="Center_Engine">
+            <Types>
+              <Type type="MainThruster" subtypes="" id="idEngineType" />
+            </Types>
+            <OptimalStates>
+              <Fixup pos="0.0, -5.2, 0.0" />
+            </OptimalStates>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_armor" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Armor Slot">
+            <Types>
+              <Type type="Armor" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_fuel_intake_left" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Intake">
+            <Types>
+              <Type type="FuelIntake" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_fuel_intake_right" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Intake">
+            <Types>
+              <Type type="FuelIntake" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="CNOU_Mustang_Variants" class="Animated" scopeContext="Variant" id="idShipVariantScope">
+          <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Alpha.cga" filenameDestruction="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Alpha_Damaged.cga" id="idShipVariantGeometry" />
+          <Parts>
+            <!-- Mustang Alpha -->
+            <Part name="v_nose" class="AnimatedJoint" damageMax="100">
+              <DamageBehaviors>
+                <DamageBehavior class="DamagePart" damageRatioMin="0.1">
+                  <DamageParts>
+                    <DamagePart name="nose" />
+                    <DamagePart name="v_nose_armor" />
+                  </DamageParts>
+                </DamageBehavior>
+              </DamageBehaviors>
+              <Parts>
+                <Part name="v_nose_armor" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nose_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <DamageBehaviors>
+                    <DamageBehavior class="DetachPart" damageRatioMin="1">
+                      <DetachPart>
+                        <Part name="nose" recurseChildren="1" skipParent="1" Probability="0.25" />
+                        <Part name="v_nose" recurseChildren="1" skipParent="1" Probability="0.25" />
+                      </DetachPart>
+                    </DamageBehavior>
+                  </DamageBehaviors>
+                  <Parts>
+                    <Part name="v_nose_100_debris1_armor" class="AnimatedJoint" damageMax="1" />
+                    <Part name="v_nose_100_debris1_canopy" class="AnimatedJoint" damageMax="1" />
+                    <Part name="v_nose_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="v_nose_100_debris2_armor" class="AnimatedJoint" damageMax="1" />
+                        <Part name="v_nose_100_debris2_canopy" class="AnimatedJoint" damageMax="1" />
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="v_nose_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_body" class="AnimatedJoint" damageMax="100">
+              <DamageBehaviors>
+                <DamageBehavior class="DamagePart" damageRatioMin="0.1">
+                  <DamageParts>
+                    <DamagePart name="body" />
+                    <DamagePart name="v_Interior_A" />
+					<DamagePart name="nose" />
+                    <DamagePart name="v_nose_armor" />
+                  </DamageParts>
+                </DamageBehavior>
+              </DamageBehaviors>
+              <Parts>
+                <Part name="v_back_rudder_Right" class="AnimatedJoint" damageMax="100">
+                  <Parts>
+                    <Part name="v_back_rudder_right_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="v_back_rudder_right_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="v_back_rudder_right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="v_back_rudder_right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="v_back_rudder_Left" class="AnimatedJoint" damageMax="100">
+                  <Parts>
+                    <Part name="v_back_rudder_left_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="v_back_rudder_left_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="v_back_rudder_left_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="v_back_rudder_left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="v_cargo_bed" class="AnimatedJoint" damageMax="100">
+                  <Parts>
+                    <Part name="v_cargo_bed_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="v_cargo_bed_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="v_cargo_bed_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="v_cargo_bed_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                                <Part name="v_cargo_bed_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                              </Parts>
+                            </Part>
+                            <Part name="v_cargo_bed_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                            <Part name="v_cargo_bed_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="v_cargo_bed_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                                <Part name="v_cargo_bed_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                              </Parts>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="v_cargo_bed_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="v_body_100_debris_4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="v_body_100_debris_orphan_4" class="AnimatedJoint" damageMax="1" />
+                  </Parts>
+                </Part>
+                <Part name="v_body_100_debris_3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="v_body_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="v_body_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="v_body_100_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Parts>
+                            <Part name="v_body_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                            <Part name="v_body_50_debris11" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                            <Part name="v_body_50_debris9" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                          </Parts>
+                        </Part>
+                        <Part name="v_body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="v_body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="v_body_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Parts>
+                        <Part name="v_body_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                        <Part name="v_body_50_debris7" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                      </Parts>
+                    </Part>
+                    <Part name="v_body_50_debris8" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_50_debris10" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <!-- Mustang Delta -->
+            <Part name="v_nacelle_armor_right" class="AnimatedJoint" damageMax="1">
+              <DetachParents>
+                <DetachParent partName="nacelle_right_100_debris1" seperateLink="0" />
+              </DetachParents>
+              <Parts>
+                <Part name="v_nacelle_Right_debris1_orphan" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nacelle_Right_debris2_orphan" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nacelle_75_Right_75_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_nacelle_75_Right_75_debris2_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_wing_armor_plates_left" class="AnimatedJoint" damageMax="1">
+              <DetachParents>
+                <DetachParent partName="wing_left_100_debris1" seperateLink="0" />
+              </DetachParents>
+              <Parts>
+                <Part name="v_Wing_50_Left_50_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_75_Left_75_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_100_Left_100_debris2_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_100_Left_100_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_100_Left_100_debris3_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_wing_armor_plates_right" class="AnimatedJoint" damageMax="1">
+              <DetachParents>
+                <DetachParent partName="wing_right_100_debris3" seperateLink="0" />
+              </DetachParents>
+              <Parts>
+                <Part name="v_Wing_50_Right_50_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_75_Right_75_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_100_Right_100_debris2_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_100_Right_100_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Wing_100_Right_100_debris3_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_back_rudder_Left" class="AnimatedJoint" damageMax="100">
+              <Parts>
+                <Part name="v_back_rudder_left_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_back_rudder_left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_back_rudder_left_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_back_rudder_left_75_debris2" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_back_100_100_debris1_Left" class="AnimatedJoint" damageMax="1" />
+              </Parts>
+            </Part>
+            <Part name="v_back_rudder_Right" class="AnimatedJoint" damageMax="100">
+              <Parts>
+                <Part name="v_back_rudder_right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_back_rudder_right_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_back_rudder_right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_back_rudder_50_debris2_Right" class="AnimatedJoint" damageMax="1" />
+              </Parts>
+            </Part>
+            <Part name="v_nacelle_armor_left" class="AnimatedJoint" damageMax="1">
+              <DetachParents>
+                <DetachParent partName="nacelle_left_100_debris1" seperateLink="0" />
+              </DetachParents>
+              <Parts>
+                <Part name="v_nacelle_Left_debris1_orphan" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nacelle_Left_debris2_orphan" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nacelle_75_Left_75_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_nacelle_75_Left_75_debris2_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_airbrake_armor" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_powerplant_cover_armor" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_armor" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_body_100_debris3_orphan" class="AnimatedJoint" damageMax="1" />
+              </Parts>
+            </Part>
+            <!-- <Part name="v_body_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_75_debris5" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_75_debris4" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_50_debris4" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_50_debris9" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris12" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris11" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris10" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris8" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_body_50_debris7" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" /> -->
+            <Part name="v_nose_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_nose_100_debris1_armor" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nose_100_debris1_canopy" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_nose_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="v_nose_100_debris2_armor" class="AnimatedJoint" damageMax="1" />
+                    <Part name="v_nose_100_debris2_canopy" class="AnimatedJoint" damageMax="1" />
+                  </Parts>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="v_nose_75_debris1" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_nose_50_debris3_orphan" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_nose_50_debris1" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_nose_armor" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_body_75_debris5_orphan" class="AnimatedJoint" damageMax="1" />
+            <Part name="v_nacelle_100_Left_100_debris2_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_nacelle_100_Left_100_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_nacelle_100_Right_100_debris2_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_nacelle_100_Right_100_debris1_orphan" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_body_75_debris4_orphan" class="AnimatedJoint" damageMax="1" />
+            <!-- Mustang Beta -->
+            <!-- 	 <Part name="v_Interior_A" class="AnimatedJoint" damageMax="100">
+          <Parts>
+            <Part name="v_Interior_A_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_Interior_A_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_Interior_A_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_Interior_A_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_Interior_A_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_Interior_A_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+          </Parts>
+        </Part>
+        <Part name="v_body" class="AnimatedJoint" damageMax="100">
+          <DamageBehaviors>
+            <DamageBehavior class="DamagePart" damageRatioMin="0.1">
+              <DamageParts>
+                <DamagePart name="body" />
+                <DamagePart name="v_Interior_A" />
+              </DamageParts>
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Parts>
+            <Part name="v_body_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_body_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="v_body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_pipesINT_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_Interior_A_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_50_debris12" class="AnimatedJoint" damageMax="1" />
+                    <Part name="v_body_75_debris4" class="AnimatedJoint" damageMax="1" />
+                  </Parts>
+                </Part>
+                <Part name="v_body_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_50_debris8" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_50_debris10" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Interior_A_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_body_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_body_50_debris9" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_50_debris4" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_body_50_debris11" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_75_debris5" class="AnimatedJoint" damageMax="1" />
+                <Part name="v_body_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Interior_A_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_pipesINT_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+            <Part name="v_body_100_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="v_body_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <Parts>
+                    <Part name="v_body_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                    <Part name="v_body_50_debris7" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                  </Parts>
+                </Part>
+                <Part name="v_body_75_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_body_75_debris7" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_pipesINT_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="v_Interior_A_75_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="v_back_rudder_Left" class="AnimatedJoint" damageMax="100">
+          <Parts>
+            <Part name="v_back_rudder_left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_back_rudder_left_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_back_rudder_left_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_back_rudder_right_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+          </Parts>
+        </Part>
+        <Part name="v_back_rudder_Right" class="AnimatedJoint" damageMax="100">
+          <Parts>
+            <Part name="v_back_rudder_right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_back_rudder_right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_back_rudder_right_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_back_rudder_left_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+          </Parts>
+        </Part> -->
+            <!--  <Part name="v_nose" class="AnimatedJoint" damageMax="100">
+          <DamageBehaviors>
+            <DamageBehavior class="DamagePart" damageRatioMin="0.1">
+              <DamageParts>
+                <DamagePart name="nose" />
+                <DamagePart name="v_nose_armor" />
+              </DamageParts>
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Parts>
+            <Part name="v_nose_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_nose_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_nose_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <DamageBehaviors>
+                <DamageBehavior class="DetachPart" damageRatioMin="1">
+                  <DetachPart>
+                    <Part name="nose" recurseChildren="1" skipParent="1" Probability="0.25" />
+                    <Part name="v_nose" recurseChildren="1" skipParent="1" Probability="0.25" />
+                  </DetachPart>
+                </DamageBehavior>
+              </DamageBehaviors>
+            </Part>
+          </Parts>
+        </Part> -->
+            <Part name="v_wing_right_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="v_wing_left_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+          </Parts>
+        </Part>
+      </Parts>
+    </Part>
+  </Parts>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Helpers>
+    <Helper name="nacelle_right_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed005" position="3.22003,-3.64301,1.54657" direction="1.0,0.0,0.0" part="nacelle_right_50_debris1" />
+    <Helper name="nacelle_right_50_debris1_PFX_DebrisFX_metal_8m_once_trail045" position="3.21006,-2.98064,1.53699" direction="1.0,0.0,0.0" part="nacelle_right_50_debris1" />
+    <Helper name="nacelle_right_50_debris1_PFX_DetachFX_explode_4m_once_fixed046" position="3.32219,-3.4961,1.31155" direction="1.0,0.0,0.0" part="nacelle_right_50_debris1" />
+    <Helper name="nacelle_right_50_debris1_PFX_DetachFX_smoke_1m_loop_trail" position="3.32219,-3.13277,1.36092" direction="1.0,0.0,0.0" part="nacelle_right_50_debris1" />
+    <Helper name="nacelle_right_75_debris2_PFX_DebrisFX_metal_8m_once_trail052" position="1.91652,-3.75433,1.4301" direction="-1.0,0.0,0.0" part="nacelle_right_75_debris2" />
+    <Helper name="nacelle_right_75_debris2_PFX_DetachFX_explode_4m_once_fixed053" position="1.91017,-3.23886,1.17839" direction="-1.0,0.0,0.0" part="nacelle_right_75_debris2" />
+    <Helper name="nacelle_right_75_debris2_PFX_DetachFX_smoke_1m_loop_trail003" position="1.88931,-3.60219,1.22314" direction="-1.0,0.0,0.0" part="nacelle_right_75_debris2" />
+    <Helper name="nacelle_right_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed012" position="1.90344,-3.09196,1.43457" direction="-1.0,0.0,0.0" part="nacelle_right_75_debris2" />
+    <Helper name="nacelle_right_50_debris2_PFX_DetachFX_sparks_2m_loop_fixed008" position="3.30297,0.354053,1.01562" direction="-0.707107,0.664463,-0.241845" part="nacelle_right_50_debris2" />
+    <Helper name="nacelle_right_50_debris2_PFX_DebrisFX_metal_8m_once_trail048" position="3.24711,0.345104,1.05377" direction="-1.0,0.0,0.0" part="nacelle_right_50_debris2" />
+    <Helper name="nacelle_right_50_debris2_PFX_DetachFX_explode_4m_once_fixed049" position="3.19988,0.425151,1.24083" direction="-1.0,0.0,0.0" part="nacelle_right_50_debris2" />
+    <Helper name="nacelle_right_75_debris1_PFX_DebrisFX_metal_8m_once_trail051" position="3.02649,0.056802,1.41926" direction="1.0,0.0,0.0" part="nacelle_right_75_debris1" />
+    <Helper name="nacelle_right_75_debris1_PFX_DetachFX_explode_4m_once_fixed052" position="3.11855,-0.458663,1.18491" direction="1.0,0.0,0.0" part="nacelle_right_75_debris1" />
+    <Helper name="nacelle_right_75_debris1_PFX_DetachFX_smoke_1m_loop_trail002" position="3.12285,-0.0953331,1.23409" direction="1.0,0.0,0.0" part="nacelle_right_75_debris1" />
+    <Helper name="nacelle_right_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed011" position="3.03725,-0.605572,1.42794" direction="1.0,0.0,0.0" part="nacelle_right_75_debris1" />
+    <Helper name="nose_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed010" position="-0.537161,4.83849,0.635528" direction="-0.707107,0.664463,-0.241843" part="nose_50_debris1" />
+    <Helper name="nose_50_debris1_PFX_DebrisFX_metal_8m_once_trail050" position="-0.56503,4.82955,0.573897" direction="-1.0,0.0,0.0" part="nose_50_debris1" />
+    <Helper name="nose_50_debris1_PFX_DetachFX_explode_4m_once_fixed051" position="-0.741049,4.90959,0.494897" direction="-1.0,0.0,0.0" part="nose_50_debris1" />
+    <Helper name="nose_50_debris3_PFX_DetachFX_sparks_2m_loop_fixed009" position="0.759639,4.83849,0.442093" direction="-0.707107,0.664463,-0.241844" part="nose_50_debris3" />
+    <Helper name="nose_50_debris3_PFX_DebrisFX_metal_8m_once_trail049" position="0.692896,4.82954,0.453061" direction="-1.0,0.0,0.0" part="nose_50_debris3" />
+    <Helper name="nose_50_debris3_PFX_DetachFX_explode_4m_once_fixed050" position="0.57103,4.90959,0.602635" direction="-1.0,0.0,0.0" part="nose_50_debris3" />
+    <Helper name="body_75_debris4_PFX_DetachFX_sparks_2m_loop_fixed022" position="-0.341429,2.41533,1.79676" direction="-1.0,0.0,0.0" part="body_75_debris4" />
+    <Helper name="body_75_debris4_PFX_DebrisFX_metal_8m_once_trail062" position="-0.327155,2.14755,1.74687" direction="-1.0,0.0,0.0" part="body_75_debris4" />
+    <Helper name="body_75_debris4_PFX_DetachFX_explode_4m_once_fixed063" position="-0.264458,2.27458,1.83942" direction="-1.0,0.0,0.0" part="body_75_debris4" />
+    <Helper name="body_75_debris5_PFX_DetachFX_sparks_2m_loop_fixed021" position="0.299874,2.41533,1.81788" direction="-1.0,0.0,0.0" part="body_75_debris5" />
+    <Helper name="body_75_debris5_PFX_DebrisFX_metal_8m_once_trail061" position="0.25082,2.14755,1.83481" direction="-1.0,0.0,0.0" part="body_75_debris5" />
+    <Helper name="body_75_debris5_PFX_DetachFX_explode_4m_once_fixed062" position="0.290669,2.27458,1.73036" direction="-1.0,0.0,0.0" part="body_75_debris5" />
+    <Helper name="nacelle_left_50_debris2_PFX_DetachFX_sparks_2m_loop_fixed007" position="-3.20502,0.335047,1.19703" direction="-0.707107,0.664463,-0.241845" part="nacelle_left_50_debris2" />
+    <Helper name="nacelle_left_50_debris2_PFX_DebrisFX_metal_8m_once_trail047" position="-3.1925,0.326098,1.13056" direction="-1.0,0.0,0.0" part="nacelle_left_50_debris2" />
+    <Helper name="nacelle_left_50_debris2_PFX_DetachFX_explode_4m_once_fixed048" position="-3.29137,0.406145,0.96489" direction="-1.0,0.0,0.0" part="nacelle_left_50_debris2" />
+    <Helper name="nacelle_left_75_debris1_PFX_DebrisFX_metal_8m_once_trail054" position="-3.2294,-0.36306,0.878402" direction="-1.0,0.0,0.0" part="nacelle_left_75_debris1" />
+    <Helper name="nacelle_left_75_debris1_PFX_DetachFX_explode_4m_once_fixed055" position="-3.23575,0.152406,0.626697" direction="-1.0,0.0,0.0" part="nacelle_left_75_debris1" />
+    <Helper name="nacelle_left_75_debris1_PFX_DetachFX_smoke_1m_loop_trail005" position="-3.25661,-0.210925,0.671441" direction="-1.0,0.0,0.0" part="nacelle_left_75_debris1" />
+    <Helper name="nacelle_left_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed014" position="-3.24248,0.299314,0.882875" direction="-1.0,0.0,0.0" part="nacelle_left_75_debris1" />
+    <Helper name="nacelle_left_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed006" position="-3.32146,-3.64301,1.42231" direction="1.0,0.0,0.0" part="nacelle_left_50_debris1" />
+    <Helper name="nacelle_left_50_debris1_PFX_DebrisFX_metal_8m_once_trail046" position="-3.30818,-2.98064,1.41847" direction="1.0,0.0,0.0" part="nacelle_left_50_debris1" />
+    <Helper name="nacelle_left_50_debris1_PFX_DetachFX_explode_4m_once_fixed047" position="-3.16901,-3.4961,1.6283" direction="1.0,0.0,0.0" part="nacelle_left_50_debris1" />
+    <Helper name="nacelle_left_50_debris1_PFX_DetachFX_smoke_1m_loop_trail001" position="-3.21177,-3.13277,1.60361" direction="1.0,0.0,0.0" part="nacelle_left_50_debris1" />
+    <Helper name="nacelle_left_75_debris2_PFX_DebrisFX_metal_8m_once_trail053" position="-1.83623,-3.08934,1.4301" direction="1.0,0.0,0.0" part="nacelle_left_75_debris2" />
+    <Helper name="nacelle_left_75_debris2_PFX_DetachFX_explode_4m_once_fixed054" position="-1.82988,-3.60481,1.17839" direction="1.0,0.0,0.0" part="nacelle_left_75_debris2" />
+    <Helper name="nacelle_left_75_debris2_PFX_DetachFX_smoke_1m_loop_trail004" position="-1.80901,-3.24148,1.22314" direction="1.0,0.0,0.0" part="nacelle_left_75_debris2" />
+    <Helper name="nacelle_left_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed013" position="-1.82315,-3.75172,1.43457" direction="1.0,0.0,0.0" part="nacelle_left_75_debris2" />
+    <Helper name="wing_left_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed002" position="-4.59482,2.30552,-0.525847" direction="-1.0,0.0,0.0" part="wing_left_50_debris1" />
+    <Helper name="wing_left_50_debris1_PFX_DebrisFX_metal_8m_once_trail042" position="-4.58668,1.64315,-0.537012" direction="-1.0,0.0,0.0" part="wing_left_50_debris1" />
+    <Helper name="wing_left_50_debris1_PFX_DetachFX_explode_4m_once_fixed043" position="-4.73625,2.15862,-0.739555" direction="-1.0,0.0,0.0" part="wing_left_50_debris1" />
+    <Helper name="wing_left_75_debris1_PFX_DetachFX_explode_4m_once_fixed056" position="-4.30011,2.91838,-0.204811" direction="-1.0,0.0,0.0" part="wing_left_75_debris1" />
+    <Helper name="wing_left_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed015" position="-4.27721,3.05913,-0.0602334" direction="-1.0,0.0,0.0" part="wing_left_75_debris1" />
+    <Helper name="wing_left_75_debris1_PFX_DebrisFX_metal_8m_once_trail055" position="-4.43102,2.79135,0.00730276" direction="-1.0,0.0,0.0" part="wing_left_75_debris1" />
+    <Helper name="wing_left_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed019" position="-6.19281,4.27226,-2.37675" direction="0.0,1.0,0.0" part="wing_left_75_debris2" />
+    <Helper name="wing_left_75_debris2_PFX_DebrisFX_metal_8m_once_trail059" position="-6.3918,4.26753,-2.55645" direction="0.0,1.0,0.0" part="wing_left_75_debris2" />
+    <Helper name="wing_left_75_debris2_PFX_DetachFX_explode_4m_once_fixed060" position="-6.28048,4.20548,-2.48812" direction="0.0,1.0,0.0" part="wing_left_75_debris2" />
+    <Helper name="wing_left_50_debris3_PFX_DetachFX_sparks_2m_loop_fixed" position="-6.22588,-1.57257,-2.83253" direction="0.0,-1.0,0.0" part="wing_left_50_debris3" />
+    <Helper name="wing_left_50_debris3_PFX_DebrisFX_metal_8m_once_trail040" position="-6.23498,-1.64722,-2.75722" direction="0.0,-1.0,0.0" part="wing_left_50_debris3" />
+    <Helper name="wing_left_50_debris3_PFX_DetachFX_explode_4m_once_fixed041" position="-6.23498,-1.71947,-2.80575" direction="0.0,-1.0,0.0" part="wing_left_50_debris3" />
+    <Helper name="wing_left_50_debris3_PFX_DetachFX_sparks_2m_loop_fixed004" position="6.2564,-1.57257,-2.83253" direction="0.0,-1.0,0.0" part="wing_left_50_debris3" />
+    <Helper name="wing_left_50_debris3_PFX_DebrisFX_metal_8m_once_trail044" position="6.2473,-1.64722,-2.75722" direction="0.0,-1.0,0.0" part="wing_left_50_debris3" />
+    <Helper name="wing_left_50_debris3_PFX_DetachFX_explode_4m_once_fixed045" position="6.2473,-1.71947,-2.80575" direction="0.0,-1.0,0.0" part="wing_left_50_debris3" />
+    <Helper name="wing_left_75_debris3_PFX_DetachFX_sparks_2m_loop_fixed018" position="-6.31042,2.80237,-2.58856" direction="0.776411,-0.592044,0.21603" part="wing_left_75_debris3" />
+    <Helper name="wing_left_75_debris3_PFX_DebrisFX_metal_8m_once_trail058" position="-6.4956,2.93161,-2.78829" direction="0.776412,-0.592043,0.216031" part="wing_left_75_debris3" />
+    <Helper name="wing_left_75_debris3_PFX_DetachFX_explode_4m_once_fixed059" position="-6.42753,2.86173,-2.68336" direction="0.776412,-0.545536,0.315554" part="wing_left_75_debris3" />
+    <Helper name="wing_left_50_debris2_PFX_DetachFX_sparks_2m_loop_fixed001" position="-5.9444,2.29852,-2.22029" direction="0.0,-1.0,0.0" part="wing_left_50_debris2" />
+    <Helper name="wing_left_50_debris2_PFX_DebrisFX_metal_8m_once_trail041" position="-6.12037,2.40934,-2.27848" direction="0.0,-1.0,0.0" part="wing_left_50_debris2" />
+    <Helper name="wing_left_50_debris2_PFX_DetachFX_explode_4m_once_fixed042" position="-5.7415,1.98304,-2.02003" direction="0.0,-1.0,0.0" part="wing_left_50_debris2" />
+    <Helper name="wing_right_50_debris1_PFX_DetachFX_sparks_2m_loop_fixed003" position="4.6263,1.766,-0.560019" direction="1.0,0.0,0.0" part="wing_right_50_debris1" />
+    <Helper name="wing_right_50_debris1_PFX_DebrisFX_metal_8m_once_trail043" position="4.61815,2.42838,-0.571184" direction="1.0,0.0,0.0" part="wing_right_50_debris1" />
+    <Helper name="wing_right_50_debris1_PFX_DetachFX_explode_4m_once_fixed044" position="4.76773,1.91291,-0.773727" direction="1.0,0.0,0.0" part="wing_right_50_debris1" />
+    <Helper name="wing_right_75_debris1_PFX_DetachFX_sparks_2m_loop_fixed016" position="4.49012,3.05913,-0.119994" direction="-1.0,0.0,0.0" part="wing_right_75_debris1" />
+    <Helper name="wing_right_75_debris1_PFX_DebrisFX_metal_8m_once_trail056" position="4.58916,2.79135,-0.0231671" direction="-1.0,0.0,0.0" part="wing_right_75_debris1" />
+    <Helper name="wing_right_75_debris1_PFX_DetachFX_explode_4m_once_fixed057" position="4.52842,2.91838,-0.0496423" direction="-1.0,0.0,0.0" part="wing_right_75_debris1" />
+    <Helper name="wing_right_75_debris2_PFX_DetachFX_sparks_2m_loop_fixed020" position="6.29665,4.2536,-2.36282" direction="0.0,1.0,0.0" part="wing_right_75_debris2" />
+    <Helper name="wing_right_75_debris2_PFX_DebrisFX_metal_8m_once_trail060" position="6.43908,4.24887,-2.58999" direction="0.0,1.0,0.0" part="wing_right_75_debris2" />
+    <Helper name="wing_right_75_debris2_PFX_DetachFX_explode_4m_once_fixed061" position="6.39112,4.18681,-2.4685" direction="0.0,1.0,0.0" part="wing_right_75_debris2" />
+    <Helper name="wing_right_75_debris5_PFX_DetachFX_sparks_2m_loop_fixed017" position="6.11915,2.38647,-2.30325" direction="-0.422619,-0.640855,-0.640857" part="wing_right_75_debris5" />
+    <Helper name="wing_right_75_debris5_PFX_DebrisFX_metal_8m_once_trail057" position="6.00781,2.17623,-2.11807" direction="-0.422619,-0.640856,-0.640856" part="wing_right_75_debris5" />
+    <Helper name="wing_right_75_debris5_PFX_DetachFX_explode_4m_once_fixed058" position="6.06828,2.28685,-2.18614" direction="-0.422619,-0.742403,-0.519837" part="wing_right_75_debris5" />
+    <Helper name="nacelle_right_75_debris2_PFX_DetachFX_smoke_2m_loop_trail003" position="1.88931,-3.60219,1.22314" direction="-1.0,0.0,0.0" part="nacelle_right_75_debris2" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed064" position="3.26744,-3.4961,1.37253" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_smoke_2m_loop_trail006" position="3.26744,-3.13277,1.4219" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed023" position="3.16527,-3.64301,1.60755" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DebrisFX_metal_8m_once_trail063" position="3.15531,-2.98064,1.59797" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed065" position="1.97451,-3.56062,1.50413" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_smoke_2m_loop_trail007" position="1.94983,-3.19729,1.46138" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed024" position="1.94548,-3.70753,1.24951" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DebrisFX_metal_8m_once_trail064" position="1.9589,-3.04516,1.25283" direction="1.0,0.0,0.0" part="nacelle_right_100_debris1" />
+    <Helper name="nacelle_right_100_debris1_PFX_DetachFX_fire_4m_once_fixed070" position="3.11218,-4.68614,1.44313" direction="-0.0151345,-0.259418,-0.965647" part="nacelle_right_100_debris1" />
+    <Helper name="nose_100_debris1_PFX_DetachFX_smoke_2m_loop_trail016" position="0.0609919,7.62712,-0.0229414" direction="1.0,0.0,0.0" part="nose_100_debris1" />
+    <Helper name="nose_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed034" position="-0.148406,7.11689,-0.0554497" direction="1.0,0.0,0.0" part="nose_100_debris1" />
+    <Helper name="nose_100_debris1_PFX_DebrisFX_metal_8m_once_trail073" position="-0.14281,7.77926,-0.0680895" direction="1.0,0.0,0.0" part="nose_100_debris1" />
+    <Helper name="nose_100_debris1_PFX_DetachFX_explode_4m_once_fixed074" position="0.107385,7.26379,-0.0398266" direction="1.0,0.0,0.0" part="nose_100_debris1" />
+    <Helper name="body_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed035" position="-0.145804,-1.61009,1.24198" direction="1.0,0.0,0.0" part="body_100_debris1" />
+    <Helper name="body_100_debris1_PFX_DetachFX_explode_4m_once_fixed075" position="0.19174,-1.46318,1.18942" direction="1.0,0.0,0.0" part="body_100_debris1" />
+    <Helper name="body_100_debris1_PFX_DetachFX_smoke_2m_loop_trail017" position="0.15392,-1.09985,1.22115" direction="1.0,0.0,0.0" part="body_100_debris1" />
+    <Helper name="body_100_debris1_PFX_DebrisFX_metal_8m_once_trail074" position="-0.140208,-0.947719,1.22934" direction="1.0,0.0,0.0" part="body_100_debris1" />
+    <Helper name="nacelle_left_75_debris2_PFX_DetachFX_smoke_2m_loop_trail004" position="-1.80901,-3.24148,1.22314" direction="1.0,0.0,0.0" part="nacelle_left_75_debris2" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed066" position="-1.91843,-3.4961,1.37253" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_smoke_2m_loop_trail008" position="-1.91843,-3.13277,1.4219" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed025" position="-2.0206,-3.64301,1.60755" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DebrisFX_metal_8m_once_trail065" position="-2.03056,-2.98064,1.59797" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed067" position="-3.21136,-3.56062,1.50413" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_smoke_2m_loop_trail009" position="-3.23604,-3.19729,1.46138" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed026" position="-3.24039,-3.70753,1.24951" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DebrisFX_metal_8m_once_trail066" position="-3.22697,-3.04516,1.25283" direction="1.0,0.0,0.0" part="nacelle_left_100_debris1" />
+    <Helper name="nacelle_left_100_debris1_PFX_DetachFX_fire_4m_once_fixed069" position="-3.10751,-4.57058,1.2886" direction="0.0,0.422617,0.906308" part="nacelle_left_100_debris1" />
+    <Helper name="wing_left_100_debris2_PFX_DetachFX_smoke_2m_loop_trail015" position="-5.97498,3.31546,-2.0701" direction="1.0,0.0,0.0" part="wing_left_100_debris2" />
+    <Helper name="wing_left_100_debris2_PFX_DetachFX_sparks_2m_loop_fixed033" position="-6.12787,2.80522,-2.21683" direction="1.0,0.0,0.0" part="wing_left_100_debris2" />
+    <Helper name="wing_left_100_debris2_PFX_DebrisFX_metal_8m_once_trail072" position="-6.11603,3.46759,-2.22398" direction="1.0,0.0,0.0" part="wing_left_100_debris2" />
+    <Helper name="wing_left_100_debris2_PFX_DetachFX_explode_4m_once_fixed073" position="-5.9273,2.95213,-2.05732" direction="1.0,0.0,0.0" part="wing_left_100_debris2" />
+    <Helper name="wing_left_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed027" position="-4.61846,1.60159,-0.591669" direction="1.0,0.0,0.0" part="wing_left_100_debris1" />
+    <Helper name="wing_left_100_debris1_PFX_DetachFX_smoke_2m_loop_trail010" position="-4.49338,2.11183,-0.420615" direction="1.0,0.0,0.0" part="wing_left_100_debris1" />
+    <Helper name="wing_left_100_debris1_PFX_DebrisFX_metal_8m_once_trail067" position="-4.60557,2.26397,-0.59665" direction="1.0,0.0,0.0" part="wing_left_100_debris1" />
+    <Helper name="wing_left_100_debris1_PFX_DetachFX_explode_4m_once_fixed068" position="-4.44864,1.7485,-0.399751" direction="1.0,0.0,0.0" part="wing_left_100_debris1" />
+    <Helper name="wing_left_100_debris3_PFX_DetachFX_smoke_2m_loop_trail011" position="-3.23934,2.11183,-0.0229414" direction="1.0,0.0,0.0" part="wing_left_100_debris3" />
+    <Helper name="wing_left_100_debris3_PFX_DetachFX_sparks_2m_loop_fixed029" position="-3.44873,1.60159,-0.0554497" direction="1.0,0.0,0.0" part="wing_left_100_debris3" />
+    <Helper name="wing_left_100_debris3_PFX_DebrisFX_metal_8m_once_trail068" position="-3.44314,2.26397,-0.0680895" direction="1.0,0.0,0.0" part="wing_left_100_debris3" />
+    <Helper name="wing_left_100_debris3_PFX_DetachFX_explode_4m_once_fixed069" position="-3.19294,1.7485,-0.0398269" direction="1.0,0.0,0.0" part="wing_left_100_debris3" />
+    <Helper name="wing_right_100_debris2_PFX_DetachFX_smoke_2m_loop_trail014" position="5.82942,3.31546,-2.03594" direction="1.0,0.0,0.0" part="wing_right_100_debris2" />
+    <Helper name="wing_right_100_debris2_PFX_DetachFX_sparks_2m_loop_fixed032" position="5.64812,2.80522,-1.92624" direction="1.0,0.0,0.0" part="wing_right_100_debris2" />
+    <Helper name="wing_right_100_debris2_PFX_DebrisFX_metal_8m_once_trail071" position="5.64428,3.46759,-1.93952" direction="1.0,0.0,0.0" part="wing_right_100_debris2" />
+    <Helper name="wing_right_100_debris2_PFX_DetachFX_explode_4m_once_fixed072" position="5.85411,2.95213,-2.07869" direction="1.0,0.0,0.0" part="wing_right_100_debris2" />
+    <Helper name="wing_right_100_debris3_PFX_DetachFX_smoke_2m_loop_trail013" position="4.85846,2.11183,-0.692981" direction="1.0,0.0,0.0" part="wing_right_100_debris3" />
+    <Helper name="wing_right_100_debris3_PFX_DetachFX_sparks_2m_loop_fixed031" position="4.67715,1.60159,-0.583284" direction="1.0,0.0,0.0" part="wing_right_100_debris3" />
+    <Helper name="wing_right_100_debris3_PFX_DebrisFX_metal_8m_once_trail070" position="4.67332,2.26397,-0.596564" direction="1.0,0.0,0.0" part="wing_right_100_debris3" />
+    <Helper name="wing_right_100_debris3_PFX_DetachFX_explode_4m_once_fixed071" position="4.88314,1.7485,-0.735735" direction="1.0,0.0,0.0" part="wing_right_100_debris3" />
+    <Helper name="wing_right_100_debris1_PFX_DetachFX_smoke_2m_loop_trail012" position="3.57332,2.11183,-0.0229414" direction="1.0,0.0,0.0" part="wing_right_100_debris1" />
+    <Helper name="wing_right_100_debris1_PFX_DetachFX_sparks_2m_loop_fixed030" position="3.36392,1.60159,-0.0554497" direction="1.0,0.0,0.0" part="wing_right_100_debris1" />
+    <Helper name="wing_right_100_debris1_PFX_DebrisFX_metal_8m_once_trail069" position="3.36952,2.26397,-0.0680895" direction="1.0,0.0,0.0" part="wing_right_100_debris1" />
+    <Helper name="wing_right_100_debris1_PFX_DetachFX_explode_4m_once_fixed070" position="3.61971,1.7485,-0.0398269" direction="1.0,0.0,0.0" part="wing_right_100_debris1" />
+  </Helpers>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Actions>
+    <!-- SeatDriver Enter -->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="cockpit_use_helper" distance="1.5" bbMin="-0.4,-0.4,-0.4" bbMax="0.4,0.4,0.4" id="idPilotEnterPosActivation" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="SeatDriver" />
+        </Seats>
+      </Enter>
+    </Action>
+    <!-- Hatch Door -->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_start" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.3,0.8,2" id="idPilotEnterShipActivation" />
+        <Activation type="OnUsed" param1="helper" param2="ladder_use_helper" distance="1" bbMin="-0.3,-0.1,-0.3" bbMax="0.3,0.1,0.3" />
+      </Activations>
+      <Enter>
+        <Doors>
+          <Door value="HatchDoor" />
+        </Doors>
+      </Enter>
+    </Action>
+    <!-- Switch / avionics hatch -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="avionics_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.2" bbMax="0.2,0.1,0.2" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="AvionicsHatch" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="AvionicsHatch" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Switch / avionics hatch -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="shield_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.1" bbMax="0.2,0.1,0.2" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="ShieldHatch" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="ShieldHatch" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- ================================== -->
+    <!-- BEGIN Mustang BETA Specific Actions-->
+    <!-- ================================== -->
+    <!-- Mustang BETA Enter Rear Door -->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Enter" distance="1" bbMin="-0.5,-0.05,-0.3" bbMax="0.5,0.05,0.7" />
+        <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Exit" distance="1" bbMin="-0.5,-0.05,-0.3" bbMax="0.5,0.05,0.7" />
+      </Activations>
+      <Enter>
+        <Doors>
+          <Door value="MustangBetaRearDoor" />
+        </Doors>
+      </Enter>
+      <Exit>
+        <Doors>
+          <Door value="MustangBetaRearDoor" />
+        </Doors>
+      </Exit>
+    </Action>
+    <!-- Mustang BETA Enter Bed-->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Bed_Helper" distance="1" bbMin="-0.9,-0.4,-0.3" bbMax="0.9,0.25,0.3" id="" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="MustangBetaBedSeat" />
+        </Seats>
+      </Enter>
+    </Action>
+    <!-- Mustang BETA Enter Toilet-->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_toilet_helper" distance="1" bbMin="-0.35,-0.1,-0.8" bbMax="0.35,0.05,0.8" id="" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="MustangBetaToiletSeat" />
+        </Seats>
+      </Enter>
+    </Action>
+    <!-- Mustang BETA Enter Lounge-->
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge_helper" distance="1" bbMin="-0.3,-0.3,-0.1" bbMax="0.3,0.3,0.05" id="" />
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge2_helper" distance="1" bbMin="-0.6,-0.5,-0.1" bbMax="0.6,0.5,0.1" id="" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="MustangBetaLoungeSeat" />
+        </Seats>
+      </Enter>
+    </Action>
+    <!-- Mustang BETA Switch / drawer_a -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_drawer_a_helper" distance="1" bbMin="-0.3,-0.3,-0.08" bbMax="0.3,0.08,0.08" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="DrawerA" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="DrawerA" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / drawer_b -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_drawer_b_helper" distance="1" bbMin="-0.3,-0.3,-0.08" bbMax="0.3,0.08,0.08" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="DrawerB" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="DrawerB" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / drawer_c -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_drawer_c_helper" distance="1" bbMin="-0.3,-0.3,-0.08" bbMax="0.3,0.08,0.08" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="DrawerC" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="DrawerC" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / cabinet_door_a -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_cabinet_door_a_helper" distance="1" bbMin="-0.2,-0.3,-0.08" bbMax="0.2,0.08,0.08" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="CabinetDoorA" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="CabinetDoorA" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / cabinet_door_b -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_cabinet_door_b_helper" distance="1" bbMin="-0.2,-0.3,-0.08" bbMax="0.2,0.08,0.08" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="CabinetDoorB" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="CabinetDoorB" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / locker_door_a -->
+    <!-- disabling this until i can figure out a solution with the table being deployed -->
+    <!-- 		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="mustang_beta_locker_door_a_helper" distance="1" bbMin="-0.35,-0.1,-0.8" bbMax="0.35,0.05,0.8"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="LockerDoorB" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="LockerDoorB" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action> -->
+    <!-- Mustang BETA Switch / locker_door_b -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_locker_door_b_helper" distance="1" bbMin="-0.35,-0.1,-0.8" bbMax="0.35,0.05,0.8" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="LockerDoorB" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="LockerDoorB" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / electrical hatch -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_electrical_hatch_helper" distance="1" bbMin="-0.5,-0.1,-0.25" bbMax="0.5,0.1,0.25" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="ElectricalHatch" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="ElectricalHatch" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+    <!-- Mustang BETA Switch / close -->
+    <Action class="Switch">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_closet_helper" distance="1" bbMin="-0.5,-0.1,-0.25" bbMax="0.5,0.1,0.25" />
+      </Activations>
+      <States>
+        <State>
+          <AnimationStates>
+            <State animation="Closet" state="Open" />
+          </AnimationStates>
+        </State>
+        <State>
+          <AnimationStates>
+            <State animation="Closet" state="Close" />
+          </AnimationStates>
+        </State>
+      </States>
+    </Action>
+  </Actions>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Interior bbSize="3,6,2" bbCenter="0,4,0">
+    <Doors>
+      <Door name="HatchDoor">
+        <Enter startHelper="pilot_enter_pos_start" endHelper="pilot_enter_pos_end">
+          <State animation="Hatch" state="Open" />
+        </Enter>
+        <Exit startHelper="pilot_enter_pos_end" endHelper="pilot_enter_pos_start">
+          <State animation="Hatch" state="Open" />
+        </Exit>
+      </Door>
+      <Door name="MustangBetaRearDoor">
+        <Enter startHelper="v_mustang_beta_rear_exit_start" endHelper="v_mustang_beta_rear_exit_end" />
+        <Exit startHelper="v_mustang_beta_rear_enter_start" endHelper="v_mustang_beta_rear_enter_end" />
+      </Door>
+    </Doors>
+    <Views>
+      <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+        <Orbit speed="2.0" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+      </View>
+    </Views>
+  </Interior>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Seats>
+    <!-- SeatDriver's seat  -->
+    <Seat name="SeatDriver" enterHelper="pilot_enterCockpit_pos" sitHelper="pilot_sit_position" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" id="idPilotEnterSeat" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-40" maxPitch="60" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+        </View>
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
+          <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1" />
+        </View>
+      </Views>
+      <WaitFor>
+        <Enter>
+          <State animation="Seat" state="Open" />
+        </Enter>
+      </WaitFor>
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <SeatAction class="AnimatedAction">
+          <Actions>
+            <Action action="v_afterburner" animation="cockpit_mustang_throttle_button_1" vehicleAnimation="cockpit_mustang_throttle_button_1" isTrigger="1" />
+            <Action action="v_brake" animation="cockpit_mustang_throttle_button_2" vehicleAnimation="cockpit_mustang_throttle_button_2" isTrigger="1" />
+            <Action action="v_attack1_group1" animation="cockpit_mustang_joystick_finger_trigger" vehicleAnimation="cockpit_mustang_joystick_finger_trigger" isTrigger="1" />
+            <Action action="v_attack1_group2" animation="cockpit_mustang_joystick_button_3" vehicleAnimation="cockpit_mustang_joystick_button_3" isTrigger="1" />
+            <Action action="v_attack1_group3" animation="cockpit_mustang_joystick_button_3" vehicleAnimation="cockpit_mustang_joystick_button_3" isTrigger="1" />
+            <Action action="v_weapon_launch_missile" animation="cockpit_mustang_joystick_button_3" vehicleAnimation="cockpit_mustang_joystick_button_3" isTrigger="1" />
+            <Action action="v_weapon_launch_countermeasure" animation="cockpit_mustang_joystick_button_4" vehicleAnimation="cockpit_mustang_joystick_button_4" isTrigger="1" />
+          </Actions>
+        </SeatAction>
+        <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init the SeatActionMovement component that will start the engine on entry-->
+        <SeatAction class="Movement">
+          <Movement engine="1">
+          </Movement>
+        </SeatAction>
+        <!-- Weapons used / controlled by pilot of Mustang -->
+        <SeatAction class="SharedWeapons">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_weapon_class1_left_wing" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_weapon_class1_right_wing" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_weapon_class_4" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_countermeasure1_left" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_countermeasure2_left" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_countermeasure1_right" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_countermeasure2_right" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_class3_left" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <ItemPort part="hardpoint_class3_right" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- missiles used / controlled by pilot of Confed Hornet -->
+        <SeatAction class="SharedMissiles">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <!-- <ItemPort part="hardpoint_class3_left"	priority="0" active="0" actorRecoil="0" defaultGroup="3" />
+				<ItemPort part="hardpoint_class3_right"	priority="0" active="0" actorRecoil="0" defaultGroup="3" />
+               -->
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- countermeasures used / controlled by pilot of Mustang -->
+        <SeatAction class="SharedDefensive">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_countermeasure1_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure2_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure1_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure2_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_powerplant" />
+                <ItemPort part="pilotVisor" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_avionics_motherboard" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+                <ItemPort part="radar_helper" />
+                <ItemPort part="*light" />
+                <ItemPort part="*hardpoint_fuel" />
+                <ItemPort part="hardpoint_cockpit_audio" />
+                <ItemPort part="hardpoint_selfdestruct" />
+              </Items>
+            </Settings>
+          </SharedItems>
+        </SeatAction>
+        <SeatAction class="SharedThruster">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="*hardpoint_engine" />
+                <ItemPort part="*hardpoint_thruster" />
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <SeatAction class="SharedAutoWeapons">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_weapon_class1_left_wing" priority="1" />
+                <ItemPort part="hardpoint_weapon_class1_right_wing" priority="1" />
+                <ItemPort part="hardpoint_weapon_class_4" priority="1" />
+                <ItemPort part="hardpoint_countermeasure1_left" priority="1" />
+                <ItemPort part="hardpoint_countermeasure2_left" priority="1" />
+                <ItemPort part="hardpoint_countermeasure1_right" priority="1" />
+                <ItemPort part="hardpoint_countermeasure2_right" priority="1" />
+                <ItemPort part="hardpoint_class3_left" priority="1" />
+                <ItemPort part="hardpoint_class3_right" priority="1" />
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <!-- SeatActionAnimateControlInputs
+		     This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+		     Format is
+			    Parts               List of parts to animate
+				    ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+					    RotateX         Rotation around the X axis (pitch)
+					    RotateY         Roll
+					    RotateZ         Yaw
+						    input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+													    registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its workign set of action variables )
+													    or in the Variables section of the vehicle xml
+						    actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+						    direction=    forwards or backwards
+						    min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+						    max=
+						    sound=        The sound to play when animating the part
+						    stopSound=    The sound to play when stopping
+					    Animation
+						    manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (dpending on what kind of input was specified). If thsi si not set the animtion will
+													    play normally according to it's state parameters in the vehicle animation system.
+		     -->
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="main_cockpit_throttle">
+                <Rotate_X input="power" direction="-1" min="-40" max="20" />
+              </ControlPart>
+              <ControlPart part="main_cockpit_control_stick">
+                <Rotate_X input="pitch" direction="-1" min="-30" max="30" />
+                <Rotate_Y input="roll" direction="-1" min="-30" max="30" />
+                <Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-30" max="30" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+              <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_left" blendTime="0" />
+              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_right" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <DockingStation>
+        <Slots>
+          <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" />
+          </Slot>
+        </Slots>
+      </DockingStation>
+      <!-- <FixedVisorSettings default_fixed="1" scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.06" /> -->
+      <FixedVisorSettings default_fixed="0">
+        <FirstPerson scale="1.5" x_offset="0" y_offset="0" z_offset="0.065" />
+        <ThirdPerson scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.06" />
+      </FixedVisorSettings>
+      <Screens>
+        <Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
+          <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" x_offset="-0.05" y_offset="0" z_offset="-0.02" scale="1" />
+          <Slot name="Fuel Indicator" helper="UI_Helper" slot="FuelIndicator" x_offset="-0.195" z_offset="-0.011" scale="1" />
+          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" x_offset="0.11" z_offset="-0.075" />
+        </Screen>
+      </Screens>
+    </Seat>
+    <!-- MUSTANG BETA SPECIFIC SEATS -->
+    <Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0" />
+        </View>
+        <View class="ThirdPerson" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5" />
+        </View>
+      </Views>
+      <WaitFor />
+      <SeatActions />
+    </Seat>
+    <Seat name="MustangBetaToiletSeat" enterHelper="v_mustang_beta_toilet_mount_pos" sitHelper="v_mustang_beta_toilet_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0" />
+        </View>
+        <View class="ThirdPerson" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5" />
+        </View>
+      </Views>
+      <WaitFor>
+        <Enter>
+          <State animation="Toilet" state="Open" />
+        </Enter>
+        <Exit>
+          <State animation="Toilet" state="Open" />
+        </Exit>
+      </WaitFor>
+      <PostAction>
+        <Enter>
+          <State animation="Toilet" state="Close" />
+        </Enter>
+        <Exit>
+          <State animation="Toilet" state="Close" />
+        </Exit>
+      </PostAction>
+      <SeatActions />
+    </Seat>
+    <Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <SteerThirdPerson />
+          <FirstPerson offset="0,0,0" />
+        </View>
+        <View class="ThirdPerson" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0">
+          <ThirdPerson distance="8" heightOffset="1.5" speed="5" />
+        </View>
+      </Views>
+      <WaitFor>
+        <Enter>
+          <State animation="Table" state="Open" />
+        </Enter>
+        <Exit>
+          <State animation="Table" state="Open" />
+        </Exit>
+      </WaitFor>
+      <PostAction>
+        <Enter>
+          <State animation="Table" state="Close" />
+        </Enter>
+        <Exit>
+          <State animation="Table" state="Close" />
+        </Exit>
+      </PostAction>
+      <SeatActions />
+    </Seat>
+  </Seats>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <MovementParams>
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="90,110,90" maxAngularAcceleration="750,750,50" maxJerk="100.0" maxAngJerk="60.0" id="idMovementStats">
+      <SoundParams>
+        <AmbientSound sound="Sounds/spaceships_CNOU_Mustang:parts:ambient_interior" />
+        <PassByLoopSound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_loop" />
+        <PassBySound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <DuressSound sound="Sounds/spaceships:CNOU_Mustang/under_duress:under_duress" damage_floor="21.0" damage_buffer="80.0" />
+      </SoundParams>
+      <!--<Contrails>
+				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+				<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+			</Contrails>-->
+    </Spaceship>
+  </MovementParams>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Anvil_Hornet">
+    <!--
+	 <Exhaust insideWater="0" outsideWater="1">
+	 <Helpers>
+		<Helper value="main_engine_exhaust"/>
+	 </Helpers>
+	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+	</Exhaust>
+	-->
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- Mannequin information for vehicle -->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Mannequin tag="CNOU_Mustang" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_HumanAnims.adb" id="idMannequin" />
+  <Animations>
+    <!-- Default Animation States -->
+    <Action name="Hatch" state="Close" />
+    <Action name="Seat" state="Close" />
+    <Action name="CargoBay" state="Retract" />
+    <!-- 			<Action name="Landing_Gear" state="Deploy" /> -->
+  </Animations>
+  <!-- Vehicle Animations (to be replaced by mannequin)
+	Format is
+
+		Animation
+			name =        Vehicle Animtion name that all systems use when refering to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part =        This is the name of the parent VehiclePartAnimated of this animation. As there can be multipel CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer= if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation.
+										This is useful for animation sthat you need to guarentee will play.
+
+		State
+			name=         Name of state
+			animation=    this is the CGA ANM file name (sans the CGA name. For instance if teh CGA is Hornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+			speedDefault= Speed the animtion will play at. A negative numbers means the animtion will play backwards. Defaults to 1
+			speedMin=     defaults to -1
+			speedMax=     defaults to 1
+			isLooped=     Is animation looped
+			isLoopedEx=   Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+			isManual=     Is animation manually advanced
+			canRestart=   if true the animation can be iterrupted and started again before its finsihed playing. Defaults to false.
+			interrupt=    Can this animation be interupted by another one. Defaults to no.
+			startTime=    The time that the aniamtion will start at when played (in normlaized anaimtion time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+										until the animtion is requested to be played.
+			play=         Number of thimes this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+			nextState=    The next state to go to once this state has been played. If not defined the nextState is always the current state
+			sound=        Name of sound to played
+			helper=       (optional) vehicle helper location of sound
+
+			Materials
+				Material        Specifies the material which the material settign will be animated by the state's speed.
+					name=         name of material
+					setting=      material setting (e.g. opacity etc) to animate
+					min=          min value of setting
+					max=          max value of setting
+					invertValue=  invert setting
+
+		Action
+			name =        Name of Mannequin Fragment in the vehicle adb file
+			state =       Sets the Action to teh last frame of the fragment on init, String is the fragment tag(s)
+			play =        Plays this Action on init, String is the fragment tag(s)
+
+	-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is
+		name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
+		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+	 -->
+  <Attachments>
+  </Attachments>
+  <GeomTags>
+    <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <TagsList>
+      <Tags tag="HUD">
+        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
+        <Tags tag="hostile">
+          <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
+        </Tags>
+        <Tags tag="neutral">
+          <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
+        </Tags>
+      </Tags>
+      <Tags tag="over dragging">
+        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+      </Tags>
+      <Tags tag="ItemPreviewA">
+        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Alpha.mtl" id="idHoloGeometry_ItemPreviewA" />
+      </Tags>
+    </TagsList>
+  </GeomTags>
+  <!-- For Future Variants -->
+  <Modifications>
+    <Modification name="Beta">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Beta" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.54,0.29,0.44" />
+        <Elem idRef="idMain_Part" name="name" value="Mustang_Beta" />
+        <!-- <Elem idRef="idMain_Part" name="mass" value="1" /> -->
+        <Elem idRef="idShipVariantGeometry" name="filename" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta.cga" />
+        <Elem idRef="idShipVariantGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta_Damage.cga" />
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Beta_UI_Sel.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta.mtl" />
+        <Elem idRef="idMannequin" name="passengerADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta_HumanAnims.adb" />
+        <Elem idRef="idMannequin" name="vehicleADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta_Anims.adb" />
+      </Elems>
+    </Modification>
+    <Modification name="Delta">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Delta" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.51,0.31,0.43" />
+        <Elem idRef="idMain_Part" name="name" value="Mustang_Delta" />
+        <!-- <Elem idRef="idMain_Part" name="mass" value="1" /> -->
+        <Elem idRef="id_class1_leftwing" name="maxsize" value="2" />
+        <Elem idRef="id_class1_rightwing" name="maxsize" value="2" />
+        <Elem idRef="id_class3_left" name="skipPart" value="0" />
+        <Elem idRef="id_class3_right" name="skipPart" value="0" />
+        <Elem idRef="idShipVariantGeometry" name="filename" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Delta.cga" />
+        <Elem idRef="idShipVariantGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Delta_Damaged.cga" />
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Delta_UI.cga" />
+        <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Delta_UI.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Delta_UI_Sel.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Delta.mtl" />
+      </Elems>
+    </Modification>
+    <Modification name="Gamma">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Gamma" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.51,0.28,0.44" />
+        <Elem idRef="idMain_Part" name="name" value="Consolidated Outlands Mustang_Gamma" />
+        <Elem idRef="idMain_Part" name="mass" value="8000" />
+        <Elem idRef="idShipVariantGeometry" name="filename" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Gamma.cga" />
+        <Elem idRef="idShipVariantGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Gamma_Damage.cga" />
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Gamma_UI.cga" />
+        <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Gamma_UI.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Gamma_UI_Sel.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Gamma.mtl" />
+        <Elem idRef="idMannequin" name="passengerADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_HumanAnims.adb" />
+        <Elem idRef="idMannequin" name="vehicleADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_Anims.adb" />
+        <Elem idRef="idPilotEnterPosActivation" name="bbMin" value="-1,-0.5,0" />
+        <Elem idRef="idPilotEnterPosActivation" name="bbMax" value="1, 1, 1" />
+        <Elem idRef="idPilotEnterPosActivation" name="distance" value="1" />
+        <Elem idRef="idMovementStats" name="maxCruiseSpeed" value="270" />
+        <Elem idRef="idMovementStats" name="maxRetroThrust" value="240" />
+        <Elem idRef="idMovementStats" name="maxAngularVelocity" value="125,160,125" />
+        <Elem idRef="idMovementStats" name="maxDirectionalThrust" value="880" />
+        <Elem idRef="idMiddleEngineFlags" name="flags" value="Mid_Gamma" />
+        <!-- Different Enter and Use Helpers -->
+        <Elem idRef="idPilotEnterShipActivation" name="param2" value="" />
+        <Elem idRef="idPilotEnterPosActivation" name="param2" value="cockpit_use_helper2" />
+        <Elem idRef="idPilotEnterSeat" name="enterHelper" value="pilot_enterCockpit_pos2" />
+      </Elems>
+    </Modification>
+    <Modification name="Omega">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Omega" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.53,0.29,0.43" />
+        <Elem idRef="idMain_Part" name="name" value="Mustang_Omega" />
+        <Elem idRef="idMain_Part" name="mass" value="8000" />
+        <Elem idRef="idShipVariantGeometry" name="filename" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega.cga" />
+        <Elem idRef="idShipVariantGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_Damage.cga" />
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Omega_UI.cga" />
+        <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Omega_UI.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/UI/Ships/CNOU/CNOU_Mustang_Omega_UI_Sel.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega.mtl" />
+        <Elem idRef="idMannequin" name="passengerADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_HumanAnims.adb" />
+        <Elem idRef="idMannequin" name="vehicleADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_Anims.adb" />
+        <Elem idRef="idPilotEnterPosActivation" name="bbMin" value="-1,-0.5,0" />
+        <Elem idRef="idPilotEnterPosActivation" name="bbMax" value="1, 1, 1" />
+        <Elem idRef="idPilotEnterPosActivation" name="distance" value="1" />
+        <Elem idRef="idMovementStats" name="maxCruiseSpeed" value="270" />
+        <Elem idRef="idMovementStats" name="maxRetroThrust" value="240" />
+        <Elem idRef="idMovementStats" name="maxAngularVelocity" value="125,160,125" />
+        <Elem idRef="idMovementStats" name="maxDirectionalThrust" value="880" />
+        <Elem idRef="idMiddleEngineFlags" name="flags" value="Mid_Omega" />
+        <!-- Different Enter and Use Helpers -->
+        <Elem idRef="idPilotEnterShipActivation" name="param2" value="" />
+        <Elem idRef="idPilotEnterPosActivation" name="param2" value="cockpit_use_helper2" />
+        <Elem idRef="idPilotEnterSeat" name="enterHelper" value="pilot_enterCockpit_pos2" />
+      </Elems>
+    </Modification>
+  </Modifications>
+</Vehicle>

@@ -1,0 +1,40 @@
+<item name="LPB_Condensed_Matter_Reactor" class="VehicleItemPowerPlant" invisible="0" category="VehicleItem" interface="interface_LPB_Condensed_Matter_Reactor" >
+	<params>
+		<param name="itemType" value="PowerPlant" />
+		<param name="itemSubType" value="Power" />
+		<param name="itemDescription" value="Item_DescLPB_Condensed_Matter_Reactor" />
+		<param name="itemManufactor" value="LPLT" />
+		<param name="itemSize" value="2" />
+		<param name="itemTags" value="" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="Item_NameLPB_Condensed_Matter_Reactor" />
+		
+		<param name="inefficiency" value="0.3" />
+		<param name="hitpoints" value="150" />
+		<param name="mass" value="600" />
+	</params>
+
+	<Pipes>
+		<Pipe class="Power">
+			<Signature name="Electromagnetic" multiplier="1" />
+			<States>
+			<State state="Default">
+				<Value value="700" />
+			</State>
+			<State state="Off">
+				<Value value="0" />
+			</State>
+      </States>
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="100" rate="25" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Default">
+          <Pipe name="Power" value="0.1" />
+        </State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+</item>

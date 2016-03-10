@@ -1,0 +1,275 @@
+<item name="BRRA_HornetBall_160f_S1_Q2" class="VehicleTurret" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <param name="adb" value="hornetLaserCannonballTurretAnims.adb" />
+    <param name="actionController" value="itemControllerDef.xml" />
+    
+    <param name="itemType" value="Turret" />
+    <param name="itemSubType" value="BallTurret" />
+  	<param name="itemDescription" value="DESCRIBE ME!" />
+    <param name="itemManufactor" value="Broad &amp; Rabiee" />
+    <param name="itemSize" value="2" />
+	<param name="itemTags" value="flightReady" />
+	<param name="requiredPortTags" value="ANVL_Hornet_Base" />
+    <param name="display_name"	value="C4-160f Hornet Ball Turret" />
+	
+	<param name="inefficiency" value="0.3" />
+	<param name="hitpoints" value="100" />
+	<param name="mass" value="3000" />
+  </params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <States>
+        <State state="Active,Default"><Value value="-5" /></State>
+        <State state="Moving"><Value value="-10" /></State>
+        <State state="Off"><Value value="0" /></State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.75" />
+        <Critical value = "0.5" />
+        <Fail     value = "0.3" />
+      </StateLevels>
+    </Pipe>
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="200" rate="15" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active"><Value value="1" /></State>
+        <State state="Moving"><Value value="5" /></State>
+      </States>
+    </Pipe>
+  </Pipes>
+ 
+
+ <damagelevels>
+	<level damageRatio="0.50">
+		<DebrisList>
+			<Debris name="Ballturret_50_debris1" helper="BallTurret_50_GEO1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="Ballturret_50_debris2" helper="BallTurret_50_GEO2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="Ballturret_50_debris3" helper="BallTurret_50_GEO3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris3_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="Ballturret_50_debris4" helper="BallTurret_50_GEO4" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris4_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="Ballturret_50_debris5" helper="BallTurret_50_GEO5" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris5_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="Ballturret_50_debris6" helper="BallTurret_50_GEO6" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris6_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="Ballturret_50_debris7" helper="BallTurret_50_GEO7" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_50_debris7_PFX1" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+	<level damageRatio="1.0">
+		<DebrisList>
+			<Debris name="Ballturret_100_debris1" helper="BallTurret_100_GEO1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="BallTurret_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+    <!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
+    <thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga"/>
+	
+	<!-- Damage Meshes-->
+	<tags tag="damage_50">
+			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret_50.cga"/>
+	</tags>
+	<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret_100.cga"/>
+	</tags>
+	<!-- /Damage Meshes-->
+	
+	<tags tag="Hologram">
+	
+		<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+
+		<tags tag="ShipHologram">
+			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+		  
+			<tags tag="inactive">
+				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+			</tags>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+			</tags>
+			<tags tag="overCompareValid">
+				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+			</tags>
+			<tags tag="overCompareInvalid">
+				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+			</tags>
+		</tags>
+		
+		<tags tag="ItemList">
+			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+			<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+			</tags>
+		</tags>	
+		
+		<tags tag="ItemPreviewA">
+		  <thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+		</tags>
+		
+		<tags tag="ItemPreviewB">
+		  <thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
+		</tags>	
+		
+	</tags>
+	
+	<tags tag="HUD">
+
+		<thirdperson name="Objects\UI\Turrets\Hornet_Ball\ANVL_Ball_Turret_UI.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		<tags tag="damage_50">
+			<thirdperson name="Objects\UI\Turrets\Hornet_Ball\ANVL_Ball_Turret_UI.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects\UI\Turrets\Hornet_Ball\ANVL_Ball_Turret_UI.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+		
+	</tags>	
+
+	
+
+    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+  </geometry>
+	
+		<!--
+		<prefabs>
+			<prefab file = "Prefabs/ANVL_Hornet.xml" name ="Lights.Ball_Turret" root="ROOT" /> 
+		</prefabs>
+		-->
+		
+  <turretParams>
+	<yaw limits="-180, 180" speed="70" >
+	<!--<sound name="sounds/mounts_and_turrets:dev_yaw:start_run" 
+		stop="sounds/mounts_and_turrets:dev_yaw:stop" loop="0">
+		</sound>-->
+		<sound name="sounds/mounts_and_turrets:dev_yaw:start_run" 
+		stop="sounds/mounts_and_turrets:dev_yaw:stop" loop="0">
+		</sound>
+		<joint value="Ballturret" />
+	</yaw>
+	<pitch limits="-10, 10" speed="70" >
+	<!--<sound name="sounds/mounts_and_turrets:dev_pitch:start_run" 
+		stop="sounds/mounts_and_turrets:dev_pitch:stop" loop="0">
+		</sound>-->
+		<sound name="sounds/mounts_and_turrets:dev_pitch:start_run" 
+		stop="sounds/mounts_and_turrets:dev_pitch:stop" loop="0">
+		</sound>
+		<joint value="turret_pitch" />
+	</pitch>
+	<roll />
+  </turretParams>  
+	
+  <portParams>
+	<ports>
+		<ItemPort name="hardpoint_battery" minsize="1" maxsize="1" flags="invisible" display_name="battery" >
+			<Types>
+				<Type type="Battery" subtypes="Weapon" />
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="hardpoint_ai_module" minsize="1" maxsize="1" flags="invisible" display_name="ai module" >
+			<Types>
+				<Type type="AIModule" />
+			</Types>
+		</ItemPort>
+		<ItemPort name="TurretMount" minsize="1" maxsize="1" flags="turret_base" requiredTags="" >
+			<Types>
+				<Type type="Light" />
+			</Types>
+		</ItemPort>
+		<ItemPort name="Ballturret" minsize="1" maxsize="1" flags="turret" requiredTags="" >
+			<Types>
+				<Type type="Light" />
+			</Types>
+		</ItemPort>
+		<!-- Flags here are inverse because the Mantis Gatling turrets are inversed -->
+		<ItemPort name="hardpoint_class_1_left" minsize="1" maxsize="4" flags="turret right" display_name="Left Slot" requiredTags="">
+			<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<!-- Flags here are inverse because the Mantis Gatling turrets are inversed -->
+		<ItemPort name="hardpoint_class_1_right" minsize="1" maxsize="4" flags="turret left" display_name="Right Slot" requiredTags="">
+			<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+
+</item>

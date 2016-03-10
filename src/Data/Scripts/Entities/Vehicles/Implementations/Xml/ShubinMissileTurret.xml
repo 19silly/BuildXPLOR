@@ -1,0 +1,118 @@
+<Vehicle name="ShubinMissileTurret">
+ <Physics pushable="0">
+  <Buoyancy waterDensity="0" waterResistance="0"/>
+ </Physics>
+ <Parts>
+  <Part name="body" class="Animated" mass="10000000" disableCollision="0">
+   <Animated filename="Objects\brush\space\shubin\dfm_assets\shubin_dfm_turret\Shubin_DFM_Turret_Base.cga" filenameDestroyed=""/>
+   <Parts>
+	<Part name="hardpoint_turretbase" class="ItemPort">
+		<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+			<Types>
+				<Type type="WeaponMissile" subtypes="MissileTurretRack"/>
+			</Types>
+			<Pitch min ="0" max ="0" />
+			<Yaw min ="-180" max ="180" />
+		</ItemPort>
+	</Part>
+	<Part name="hardpoint_power_plant_attach" class="ItemPort">
+		<ItemPort minsize="1" maxsize="5" flags="invisible" display_name="Power Plant" displayPos="75,290">
+			<Types>
+				<Type type="PowerPlant" subtypes="Power_ANVL_Hornet"/>
+			</Types>
+		</ItemPort>
+	</Part>
+
+	<Part name="hardpoint_radiator_attach" class="ItemPort">
+		<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Cooler">
+			<Types>
+				<Type type="Cooler" subtypes="Cooler_ANVL_Hornet"/>
+			</Types>
+		</ItemPort>
+	</Part>
+	
+	<Part name ="hardpoint_avonics_motherboard" class = "ItemPort">
+		<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+			<Types>
+				<Type type="Avionics" subtypes="Motherboard"/>
+			</Types>
+		</ItemPort>
+	</Part>
+	
+		<Part name ="hardpoint_avonics_motherboard" class = "ItemPort">
+		<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+			<Types>
+				<Type type="Avionics" subtypes="Motherboard"/>
+			</Types>
+		</ItemPort>
+	</Part>
+	
+	<Part name="hardpoint_radar" class="ItemPort">
+		<ItemPort minsize="1" maxsize="1" flags="invisible"   display_name="Short Range Radar">
+			<Types>
+				<Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar"/>
+			</Types>
+		</ItemPort>
+	</Part>
+   </Parts>
+  </Part>
+ </Parts>
+	<Seats>
+		<!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
+		<Seat name="SeatDriver" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" updatePassengerTM ="0" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" visorType="targeting">
+			<!-- Begin views for this seat-->
+			<Views defaultFirstPerson="0" defaultThirdPerson="3">
+				<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
+				</View>
+			</Views>
+				
+			<!-- Begin actions for this seat-->
+			<SeatActions>
+				<!-- Weapons used / controlled by pilot of Confed Hornet -->
+				<SeatAction class="SharedMissiles">
+					<SharedWeapons>
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_turretbase"	priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+				
+				<!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+				<SeatAction class="SharedItems">
+					<SharedItems isAvailableDocked="1">
+						<Settings>
+							<Items>
+								<ItemPort part="hardpoint_power_plant_attach" />	
+								<ItemPort part="hardpoint_radiator_attach" />
+								<ItemPort part="hardpoint_avonics_motherboard" />
+								<ItemPort part="hardpoint_radar" />
+							</Items>
+						</Settings>
+					</SharedItems>
+				</SeatAction>
+			</SeatActions>
+			<Sounds inout="0" mood="1"/>
+		</Seat>
+	</Seats>
+	<MovementParams>
+		<Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="60" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
+			<SoundParams>
+				<SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+				<SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+			</SoundParams>
+			<Animations engine="Intake_Fans"/>
+		</Spaceship>
+	</MovementParams>
+ <Particles>
+  <Exhaust insideWater="0" outsideWater="1">
+   <Helpers />
+   <EngineStart effect=""/>
+   <EngineStop effect=""/>
+   <EngineRunning effect="" boostEffect="" baseSizeScale="1" minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" maxSpeed="20" maxSpeedSizeScale="1" maxSpeedCountScale="1" minPower="0" minPowerSizeScale="1" minPowerCountScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="1"/>
+  </Exhaust>
+  <DamageEffects />
+ </Particles>
+</Vehicle>

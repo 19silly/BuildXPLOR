@@ -1,0 +1,46 @@
+<!--
+	CameraParams
+	
+		Targets:
+			"Nothing" - looking out into space
+			"Default" - zoomed / focus look at mode  
+			
+		Parameters:
+			"fov" - field of view.
+			"focusRange" - range of the depth of field effect, focused on the current target.
+			"blurAmount" - strength of the blur effect.
+			"focusMin" - the closest point to the camera that can be in focus.
+			"focusMinScale" - strength of the blur effect for objects that are closer than focusMin.
+		
+	CameraSpeedParams
+	
+		Parameters:
+			"fov" - maximum amount of field of view shift by camera velocity.
+			"blurAmount" - maximum amount of blur added by camera velocity.
+			"velMin" - the camera velocity at which the parameter shift starts.
+			"velMax" - the camera velocity at which the maximum parameter shift is achieved.
+-->
+
+<DynamicCameraEffects>
+	<Context name="OnFoot">
+		<CameraParams target="Default" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="Zoomed" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="LookAroundDefault" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="LookAroundZoomed" fov="60.0" focusRange="0.0" blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="LookAroundCockpitZoomed" fov="60.0" focusRange="0.0" blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+	</Context>                                    
+	<Context name="VehicleSeat">                  
+		<CameraParams target="Default" fov="65.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="Zoomed" fov="33.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>  <!-- zoom looking into space when not in look-around mode-->
+		<CameraParams target="LookAroundDefault" fov="65.0" focusRange="0.0" blurAmount="0.0"  focusMin="4.0" focusMinScale="2.0"/>
+		<CameraParams target="LookAroundZoomed" fov="42.0" focusRange="3.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>  <!-- zoom looking into space -->
+		<CameraParams target="LookAroundCockpitZoomed" fov="45.0" focusRange="2.0" blurAmount="0.9" focusMin="1.0" focusMinScale="1.0"/>
+		<CameraSpeedParams fov="-8.0" blurAmount="0.1" velMin="100.0" velMax="300.0" />
+	</Context>
+    <Context name="mobiGlas">
+        <CameraParams target="Default" fov="55.0" focusRange="0.6"  blurAmount="0.5" focusMin="0.0" focusMinScale="0.0"/>
+        <CameraParams target="Zoomed" fov="35.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>
+        <CameraParams target="LookAroundDefault" fov="55.0" focusRange="4.0"  blurAmount="1.0" focusMin="0.0" focusMinScale="0.0"/>
+        <CameraParams target="LookAroundZoomed" fov="35.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>
+    </Context>
+</DynamicCameraEffects>

@@ -1,0 +1,118 @@
+<Mode name="DFM_SquadronBattle">
+
+	<Spawning class="DFMSpawning" teamGame="1" teamSpawnsType="Standard" usingLua="0" RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" ForceRespawnTimer="30" />
+
+	<!-- Will define ship values here -->
+	<Scoring class="DFMScoring" countscoredown="1">
+		<Player>
+			<Event type="DamageShip" points="1" />
+			<Event type="DestroyedShip" points="1" />
+			<Event type="DestroyedShipEjected" points="1" />
+			<Event type="PlayerKillEjected" points="1" />
+
+			<!-- Awards -->
+			<!-- <Event type="Award_UnaidedKill" points="100" /> -->
+			<Event type="Award_Untouchable" points="100" />
+			<Event type="Award_Ace" points="500" />
+			<Event type="Award_AceBonus" points="100" />
+			<Event type="Award_AceKill" points="1000" />
+			<Event type="Award_NemesisKill" points="300" />
+			<Event type="Award_RedemptionKill" points="300" />
+			<Event type="Award_ResurgentKill" points="300" />
+			<Event type="Award_RevengeKill" points="250" />
+			<Event type="Award_FirstBlood" points="500" />
+			<Event type="Award_UnderdogKill" points="1" /> <!-- Dynamic value -->
+			<Event type="Award_CrashRoberts" points="0" />
+			<Event type="Award_ForcedError" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			<Event type="Award_ForcedEject" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+
+			<!-- Squadron Battle Awards -->
+			<Event type="Award_KillAssist" points="200" />
+			<Event type="Award_Wingman" points="200" />
+			<Event type="Award_SquadronRevengeKill" points="200" />
+
+		</Player>
+		<Team>
+			<Event type="DamageShip" points="1" />
+			<Event type="DestroyedShip" points="1" />
+			<Event type="DestroyedShipEjected" points="1" />
+			<Event type="PlayerKillEjected" points="1" />
+
+			<!-- Team award Scoring -->
+			<Event type="Award_Untouchable" points="100" />
+			<Event type="Award_Ace" points="500" />
+			<Event type="Award_AceBonus" points="100" />
+			<Event type="Award_AceKill" points="1000" />
+			<Event type="Award_NemesisKill" points="300" />
+			<Event type="Award_RedemptionKill" points="300" />
+			<Event type="Award_ResurgentKill" points="300" />
+			<Event type="Award_RevengeKill" points="250" />
+			<Event type="Award_FirstBlood" points="500" />
+			<Event type="Award_UnderdogKill" points="1" /> <!-- Dynamic value -->
+			<Event type="Award_CrashRoberts" points="0" />
+			<Event type="Award_ForcedError" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			<Event type="Award_ForcedEject" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			<Event type="Award_GoodNight" points="100" />
+			<Event type="Award_LightsOut" points="100" />
+
+			<!-- Squadron Battle Awards -->
+			<Event type="Award_KillAssist" points="200" />
+			<Event type="Award_Wingman" points="200" />
+			<Event type="Award_SquadronRevengeKill" points="200" />
+		</Team>
+	</Scoring>
+
+	<AssistScoring class="DFMAssistScoring" maxTimeBetweenAttackAndKillForAssist='15000' />
+
+	<PlayerStats class="DFMPlayerStats" />
+	<StatsRecording class="AuthoritativeStats" />
+
+	<State class="DFMState">
+		<StartStrings startMatch="ui_msg_ia_matchstart" />
+		<Prematch requiredPlayers="2" gameStartTimer="3"/>
+	</State>
+
+	<Teams class="StandardTwoTeams" />
+
+	<VictoryConditions class="DFMVictoryConditionsTeam"  VictoryScoringType="Score" TimeLimit="20" ScoreLimit="100000"  NextKillWins="1" />
+
+	<PlayerSetup class="StandardSetup" />
+
+	<DamageHandling class="DFMDamageHandling">
+		<Table path="Scripts/GameRules/MPDamageTable.xml" />
+	</DamageHandling>
+
+	<ActorAction class="MPActorAction" />
+
+	<Spectator class="DFMSpectator" eatsActorActions="1" enableFree="1" enableFollow="1" enableKiller="0" timeFromDeathTillAutoSpectate="5000" />
+
+	<!-- Custom Match Settings -->
+	<OptionBindings>
+		<OptionBinding>
+			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "20000" Max = "250000" Step = "2500"	DefaultValue = "100000" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		<OptionBinding>
+			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "20" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		<!--
+		<OptionBinding>
+			<Option		Name = "StartingTickets" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesStartingTickets" Description = "@dfm_ac_ui_RulesStartingTickets"	Min = "1"	Max = "60"	Step = "1"	DefaultValue = "20" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+		<!--
+		<OptionBinding>
+			<Option		Name = "CockpitView" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesCockpitView" Description = "@dfm_ac_ui_RulesCockpitView"	DefaultValue = "true" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+		<!--
+		<OptionBinding>
+			<Option		Name = "FriendlyFire" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesFriendlyFire" Description = "@dfm_ac_ui_RulesFriendlyFire"	DefaultValue = "false" />
+			<Strategy OptionBindingStrategy = "eLatePointer" />
+		</OptionBinding>
+		-->
+	</OptionBindings>
+</Mode>
