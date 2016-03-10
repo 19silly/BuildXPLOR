@@ -49,23 +49,24 @@ namespace BuildXPLOR
                             if (file == "Data/Scripts.pak")
                             {
                                 Console.WriteLine("Downloading PAK: {0}", file);
-
-                                webClient.DownloadFile(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file), "scripts.pak");
+                                String scriptsPak = String.Format("scripts-{0}.pak", Path.GetFileNameWithoutExtension(filePath));
+                                String scriptsZip = String.Format("scripts-{0}.pak.zip", Path.GetFileNameWithoutExtension(filePath));
+                                webClient.DownloadFile(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file), scriptsPak);
 
                                 Process process = new Process();
                                 ProcessStartInfo startInfo = new ProcessStartInfo();
                                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                                 startInfo.FileName = String.Format("{0}/{1}", Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase), "pakdecrypt.exe");
-                                startInfo.Arguments = "scripts.pak";
+                                startInfo.Arguments = scriptsPak;
                                 process.StartInfo = startInfo;
                                 process.Start();
                                 process.WaitForExit();
-                                using (var pakStream = File.OpenRead("scripts.pak.zip"))
+                                using (var pakStream = File.OpenRead(scriptsZip))
                                 {
                                     ExtractPAK(pakStream, Path.Combine(outDir, Path.GetDirectoryName(file)));
                                 }
-                                File.Delete("scripts.pak");
-                                File.Delete("scripts.pak.zip");
+                                File.Delete(scriptsPak);
+                                File.Delete(scriptsZip);
                             }
                             else
                             {
@@ -123,6 +124,7 @@ namespace BuildXPLOR
                 ".chr",       // Models and Animations
                 ".chrm",      // Models and Animations
                 ".chrparams", // Models and Animations
+                ".mtl",       // Models and Animations
                 ".swf",       // Flash
                 ".ogg",       // Sounds
                 ".wem",       // Sounds
