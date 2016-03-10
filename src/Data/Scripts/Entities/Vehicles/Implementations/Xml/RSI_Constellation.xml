@@ -197,16 +197,7 @@
                 </Controllers>
               </ItemPort>
             </Part>
-            <Part name="hardpoint_cockpit_selfdestruct" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
-                <Types>
-                  <Type type="SelfDestruct" />
-                </Types>
-                <Controllers>
-                  <Controller port="hardpoint_seat_pilot" active="1" />
-                </Controllers>
-              </ItemPort>
-            </Part>
+            <Part name="hardpoint_selfdestruct" class="ItemPort" />
             <Part name="hardpoint_radar" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
                 <Types>
@@ -215,13 +206,6 @@
                 <Controllers>
                   <Controller port="hardpoint_seat_pilot" active="1" />
                 </Controllers>
-              </ItemPort>
-            </Part>
-			<Part name="hardpoint_armor" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="invisible" display_name="Armor Slot">
-                <Types>
-                  <Type type="Armor" />
-                </Types>
               </ItemPort>
             </Part>
             <Part name="hardpoint_seat_copilot_left" class="ItemPort">
@@ -350,7 +334,7 @@
                 </Observers>
               </ItemPort>
             </Part>
-            <Part name="wing_left" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+            <Part name="wing_left" class="AnimatedJoint" damageMax="500" detachRatio="1" detachBaseForce="-11,-1,1" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
                 <DetachFx joint="wing_left" partName="nose" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-5.041,-0.540327,0.588852" rot_offset="-0.996702,-0.079221,-0.0175626" helperID="wing_left_PFX_DetachFX_explode_8m_Flash015" />
                 <DetachFx joint="wing_left" partName="nose" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-5.76166,-6.18399,0.16934" rot_offset="0.936215,-0.327798,-0.126687" helperID="wing_left_PFX_DetachFX_explode_8m_Flash016" />
@@ -391,7 +375,7 @@
                 <Part name="turbine_cover_wingl_top_rear_in" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0.2,0.2,0.6" detachRandomForce="0.2,0.2,0.5" detachRandomRotation="7,7,7" detachProbability="1" />
               </Parts>
             </Part>
-            <Part name="wing_right" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+            <Part name="wing_right" class="AnimatedJoint" damageMax="500" detachRatio="1" detachBaseForce="11,-1,1" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
                 <DetachFx joint="wing_right" partName="nose" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="6.06382,1.32461,-0.169998" rot_offset="-0.176306,-0.98393,-0.0282527" helperID="wing_right_PFX_DetachFX_explode_2m_Fireless037" />
                 <DetachFx joint="wing_right" partName="nose" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="5.31744,-0.540325,-0.255801" rot_offset="-0.996702,-0.0792203,-0.0175623" helperID="wing_right_PFX_DetachFX_explode_8m_Flash017" />
@@ -514,11 +498,11 @@
                 </Controllers>
               </ItemPort>
             </Part>
-            <Part name="neck" class="AnimatedJoint" damageMax="9000" mass="1" detachRatio="1" detachBaseForce="0,-.2,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachNetworkSync="1">
+            <Part name="neck" class="AnimatedJoint" damageMax="9000" mass="1" detachRatio="1" detachBaseForce="0,-4,0" detachRandomForce="0, 0.5, 0" detachRandomRotation="0.5,0,0" detachProbability="1" detachNetworkSync="1">
               <DamageBehaviors>
                 <DamageBehavior class="DetachPart" damageRatioMin="1">
                   <DetachPart>
-					<Part name="neck" Probability="1" />
+                    <Part name="neck" Probability="1" />
                     <Part name="wing_left" Probability=".3" />
                     <Part name="wing_right" Probability=".3" />
                   </DetachPart>
@@ -887,7 +871,7 @@
                         <Part name="turbine_cover_nacellel_top_rear_in" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="-0.2,0.3,0.6" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="7,7,7" detachProbability="1" />
                       </Parts>
                     </Part>
-                    <Part name="nacelle_bottom_right" class="AnimatedJoint" damageMax="1500" detachRatio="1" detachBaseForce="8,-2.5,-4" detachRandomForce="2, 2, 2" detachRandomRotation="40.5,40,40.3" detachProbability="1">
+                    <Part name="nacelle_bottom_right" class="AnimatedJoint" damageMax="1500" detachRatio="1" detachBaseForce="12,-3,-3" detachRandomForce="2, 1, 1" detachRandomRotation="40.5,40,40.3" detachProbability="1">
                       <Effects>
                         <DetachFx joint="nacelle_bottom_right" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="4.29117,-12.4798,-3.20607" rot_offset="0.936215,-0.327798,-0.126687" helperID="nacelle_bottom_right_PFX_DetachFX_explode_8m_Flash001" />
                         <DetachFx joint="nacelle_bottom_right" partName="body" effect="Constellation.nacelle_alt.electrical_arcing" pos_offset="4.72814,-6.27875,-2.57252" rot_offset="0.991445,-0.127432,-0.0282511" helperID="nacelle_bottom_right_PFX_DetachFX_explode_8m_Flash" />
@@ -1899,14 +1883,15 @@
         <precisionMode minVel="" maxVel="50" scanLen="50.0" />
         <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
         <maxVelocity normal="150" />
-        <linearJerk pos="19.7,19.7,19.7" neg="19.7,19.7,19.7" />
-        <linearScale pos="1.0, 1.0, 1.0" neg="1.0, 1.0, 1.0" />
+        <linearJerk pos="69.7,69.7,69.7" neg="69.7,69.7,69.7" />
+        <linearScale pos="0.9, 1.0, 1.0" neg="0.9, 1.0, 1.0" />
         <maxAngVelocity normal="55,90,55" boost="" />
-        <angularJerk pos="3.496, 22.8832, 3.496" neg="3.496, 22.8832, 3.496" />
-        <angularScale pos="0.2622, 0.9457, 0.5985" neg="0.2622, 0.9457, 0.5985" />
+        <angularJerk pos="1.496, 9.8832, 1.496" neg="1.496, 9.8832, 1.496" />
+        <angularScale pos="0.2622, 0.8457, 0.5985" neg="0.2622, 0.8457, 0.5985" />
         <maxGyro scale="0.2" velScale="0.5" />
         <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
         <errorTorque maxAlpha="13.75,13.75,13.75" maxAngle="1.8,1.8,1.8" />
+		<precisionMode minScale="0.01" maxScale="0.5"/>
       </IFCS>
     </Spaceship>
     <!--     <WeaponMount>
@@ -2034,12 +2019,14 @@
   <GeomVisibility>
     <PartGeomVisibility animatedPartName="RSI_Constellation">
       <Portals>
-        <Portal name="LiftPortal" startsActive="0" partName="RSI_Constellation" prefabName="Interiors.Interior_Neck" portalName="portal_lift" searchDepth="2" />
+        <Portal name="LiftPortal" startsActive="0" portalName="portal_lift" />
       </Portals>
       <AnimTriggers>
         <AnimTrigger animationName="Elevator">
           <StateTriggers>
             <StateTrigger stateName="Deploy" triggerOnStart="1" portalName="LiftPortal" portalActive="1" />
+            <StateTrigger stateName="Deploy" triggerOnEnd="1" portalName="LiftPortal" portalActive="0" />
+            <StateTrigger stateName="Retract" triggerOnStart="1" portalName="LiftPortal" portalActive="1" />
             <StateTrigger stateName="Retract" triggerOnEnd="1" portalName="LiftPortal" portalActive="0" />
           </StateTriggers>
         </AnimTrigger>
