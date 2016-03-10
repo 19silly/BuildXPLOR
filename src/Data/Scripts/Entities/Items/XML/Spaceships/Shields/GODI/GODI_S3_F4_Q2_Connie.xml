@@ -1,0 +1,68 @@
+<item name="GODI_S3_F4_Q2_Connie" class="VehicleItemShield" invisible="0" category="VehicleItem" interface="interface_GODI_S3_F4_Q2_Connie" >
+	<params>
+		<param name="itemType" value="Shield" />
+		<param name="itemSize" value="3" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="RSI_Constellation_Base" />
+		<param name="itemManufactor" value="GODI" />
+		<param name="itemDescription" value="item_DescGODI_S3_F4_Q2" />
+		<param name="display_name"	value="item_NameGODI_S3_F4_Q2" />
+		<param name="hitpoints" value="200" />
+		<param name="mass" value="150" />
+	</params>
+ 
+ <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="shield">
+			<Signature name="Electromagnetic" multiplier="0.25" />
+			<Pool capacity="-800" rate="-120" critical="1"/>
+      <StateLevels>
+        <Warning  value = "0.50" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+
+      <States>
+        <State state="Default">
+          <Value value="-75"	/><!-- Base consumption -->
+          <!-- <Variable name="allocated_hitpoints" value="-1" critical="0"/> --><!-- 1 unit of shield hitpoints allocated = 1 units of power -->
+          <Variable name="total_regen" value="-15" critical="0"/><!-- 1 unit of shield regen allocated = 0.1 units of power -->
+        </State>
+          <State state="Off">
+              <Value value="0" />
+          </State>
+      </States>
+    </Pipe>
+      <Pipe class="Heat" prioType="manageable" prioGroup="shield">
+      <Signature name="Infrared" poolMultiplier="0.1" />
+      <Pool capacity="100" rate="5.5" critical="1"/>
+      <States>
+        <State state="Active"><Value value="5.5" /></State>
+      </States>
+    </Pipe>
+</Pipes>
+ 
+<shield>
+	<data>
+    <param name="shieldFaceType" value="Quadrant" />
+    <param name="shieldMaxHitpoints" value="15200" />
+    <param name="shieldMaxRegenRate" value="120" />
+    <param name="shieldRegenDelay" value="14" />
+    <param name="shieldMaxHPShift" value="0.4" />
+    <param name="shieldMaxRegenShift" value="0.4" />
+    <param name="shieldHpAllocRate" value="180" />
+	
+	<param name="shieldDamageAbsorbFactor" value="0.4"/> <!-- Shield will take this much PHYSICAL Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbFactor_Energy" value="1" /> <!-- Shield will take this much ENERGY Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbFactor_Distortion" value="1" /> <!-- Shield will take this much DISTORTION Damage and then pass the rest -->
+	
+	<param name="shieldDamageAbsorbSplashFactor" value="1.25"/> <!-- Shield will take this much PHYSICAL SPLASH Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbSplashFactor_Energy" value="1" /> <!-- Shield will take this much ENERGY SPLASH Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbSplashFactor_Distortion" value="1" /> <!-- Shield will take this much DISTORTION SPLASH Damage and then pass the rest -->
+
+    <param name="materialPath" value="Materials/Shield/shield_GODI_Q2" />
+    <param name="meshPath" value="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet_Shield.obj" />
+    <param name="maxLevelModifier" value="0.2" />
+  </data>
+</shield>
+
+</item>
