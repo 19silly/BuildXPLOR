@@ -1,8 +1,8 @@
-<Mission Name="Mission0" Description="" Time="12:00" MusicScript="" Script="" CGFCount="332">
+<Mission Name="Mission0" Description="" Time="12:00" MusicScript="" Script="" CGFCount="324">
  <Environment>
   <Fog ViewDistance="8000" ViewDistanceLowSpec="1000" LDRGlobalDensMult="1"/>
   <Terrain DetailLayersViewDistRatio="1"/>
-  <EnvState GravityVector="0,0,-9.8" WindVector="0,0,0" BreezeGeneration="0" BreezeStrength="0.f" BreezeMovementSpeed="0.f" BreezeVariation="0.f" BreezeLifeTime="0.f" BreezeCount="0" BreezeSpawnRadius="0.f" BreezeSpread="0.f" BreezeRadius="0.f" ConsoleMergedMeshesPool="2750" TerrainEnabled="1" ShowTerrainSurface="false" SunEnabled="1" SunShadowsMinSpec="1" SunShadowsAdditionalCascadeMinSpec="0" SunShadowsClipPlaneRange="256" UseLayersActivation="0" SunLinkedToTOD="1" RadarEnvironmentalNoise="0" DisableSkyScattering="0"/>
+  <EnvState GravityVector="0,0,-9.8" WindVector="0,0,0" BreezeGeneration="0" BreezeStrength="0.f" BreezeMovementSpeed="0.f" BreezeVariation="0.f" BreezeLifeTime="0.f" BreezeCount="0" BreezeSpawnRadius="0.f" BreezeSpread="0.f" BreezeRadius="0.f" ConsoleMergedMeshesPool="2750" TerrainEnabled="1" ShowTerrainSurface="false" SunEnabled="1" SunShadowsMinSpec="1" SunShadowsAdditionalCascadeMinSpec="0" UseLayersActivation="0" SunLinkedToTOD="1" RadarEnvironmentalNoise="0" DisableSkyScattering="0"/>
   <Stars StarsMaskTexture="" SmallStarsTilingFactor="6" SmallStarsIntensity="1" SmallStarsFalloff="10" BigStarsTilingFactor="2" BigStarsFalloff="15" BigStarsCenterDensity="50" BigStarsGlobalDensity="50" BigStarsContrast="5" BigStarsIntensity="3"/>
   <VolFogShadows Enable="0" EnableForClouds="0"/>
   <CloudShadows CloudShadowTexture="" CloudShadowSpeed="0,0,0" CloudShadowTiling="1" CloudShadowBrightness="1" CloudShadowInvert="0"/>
@@ -10,7 +10,7 @@
   <Ocean WaterOceanRendering="1" WaterOceanBottomEnabled="1" Material="EngineAssets/Materials/Water/Ocean_default" CausticDepth="8" CausticIntensity="1" CausticsTilling="1"/>
   <OceanAnimation WindDirection="1" WindSpeed="4" WavesSpeed="1" WavesAmount="1.5" WavesSize="0.4"/>
   <Moon Latitude="240" Longitude="45" Size="0.5" Texture="Textures/Skys/Night/half_moon.dds"/>
-  <DynTexSource Width="256" Height="256"/>
+  <PhysicsGrid UseExtentsFromTerrain="1" CellSize="16.0" CellDimension="16" Cyclic="1"/>
   <Lighting SunRotation="240" SunHeight="80" Algorithm="3" Lighting="1" Shadows="1" ShadowIntensity="100" ILQuality="1" HemiSamplQuality="5" Longitude="90" DawnTime="355" DawnDuration="10" DuskTime="365" DuskDuration="10" SunVector="-0.51961529,-0.29999995,-0.79999989"/>
  </Environment>
  <TimeOfDay Time="12" TimeStart="12" TimeEnd="12" TimeAnimSpeed="0">
@@ -308,6 +308,16 @@
   <Ammo />
  </Weapons>
  <Objects>
+  <Entity Name="Light-049" Pos="970.80560624599457,1053.0889491438866,25.650028616189957" EntityClass="Light" EntityId="271" EntityGuid="44F91F3022951800" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="ATS_Verb_Test" Pos="980.2240161895752,1023.938196182251,20.923006534576416" EntityClass="AudioTriggerSpot" EntityId="42" EntityGuid="4597791FE2701D00" CastShadowMinSpec="1" Layer="Audio_MDB">
    <Properties fAudioSignature="0" bEnabled="0" bIsManagedAudioObject="0" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="Play_Reverb_Test" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName="" nVoiceCount="1"/>
   </Entity>
@@ -367,6 +377,9 @@
    </Properties>
   </Entity>
   <Object Type="Decal" Name="Decal001-019" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="980.32258453848772,1068.2459694258869,20.594504821609007" Rotate="0.054802183,0.10754149,0.002405795,0.99268615" Scale="1.1503361,1.150336,1.1503361" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
+  <Entity Name="SES_pu_elevator_doors" Pos="979.98581682864813,1026.0794628008014,22.706320046447217" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AudioTriggerSpot" EntityId="252" EntityGuid="41541A768C57E404" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties fAudioSignature="0" bEnabled="1" bIsManagedAudioObject="0" fMaxDelay="5" fMinDelay="2" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName="" nVoiceCount="1"/>
+  </Entity>
   <Entity Name="Light-161" Pos="982.54654784013803,1026.9740648367442,25.152883909456751" Rotate="0.27053192,0.65344107,-0.2706641,0.65312189" EntityClass="Light" EntityId="196" EntityGuid="43E35781928EEF04" CastShadowMinSpec="8" Layer="Lights">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -480,16 +493,6 @@
   <Entity Name="AutomaticDoorPanel-007" Material="objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int" Pos="968,1051.841215133667,19.990400314331055" Rotate="0.70710683,-0,0,-0.70710671" EntityClass="AutomaticDoorPanel" EntityId="91" EntityGuid="4FC0EAE374545B10" CastShadowMinSpec="1" Layer="Gameplay_MDB">
    <Properties fAcceleration="2" sAxis="x" objModel="objects/buildingsets/human/shop/india/mmhc/int/bar_mmhc_door_entrance_r.cgf" fRange="2" fSpeed="2" fStopTime="0.5"/>
   </Entity>
-  <Entity Name="Light-006" Pos="981.63397593117077,1022.2277936477266,22.615832566283643" Rotate="-0.061628528,0.061628394,-0.70441592,0.70441616" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="244" EntityGuid="4E9888FBC6867710" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
-    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
   <Entity Name="FishFlockTank-001" Pos="985.09794807434082,1054.0000286102295,23.128169059753418" EntityClass="FishFlockTank" EntityId="92" EntityGuid="48D9271BDA05B110" CastShadowMinSpec="1" Layer="Gameplay_MDB">
    <Properties bActivate="1" MaxAnimationDistance="15" OnUpdatePeriod="10" PreSimulateTime="0" SuckerFishAttractorDecay="1" SuckerFishProbabilityToBeInFront="0.75" VisibilityDist="30">
     <MaxHalfDistFromOrigin x="0.89" y="3.99" z="2"/>
@@ -596,26 +599,6 @@
     </Entities>
    </Area>
   </Entity>
-  <Entity Name="Light-049" Pos="973.31061613559723,1050.5746750533581,25.650028616189957" EntityClass="Light" EntityId="267" EntityGuid="431D933EEB3A0F14" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
-  <Entity Name="Light-007" Pos="981.63397629333451,1025.5780182664059,23.526567219756544" Rotate="0.06162842,0.061628543,0.70441604,0.70441604" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="238" EntityGuid="4193EA45B8E21414" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
-    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
   <Entity Name="Light-162" Pos="982.77511060961808,1040.5461477194913,25.147231876198521" Rotate="0.65344113,-0.27053186,0.65312183,0.27066416" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="190" EntityGuid="4B82F8E89031EF15" CastShadowMinSpec="8" Layer="Lights">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -635,6 +618,31 @@
     <Shape bAreaLight="1" fPlaneHeight="0.05" fPlaneWidth="1.5" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
+  </Entity>
+  <Entity Name="AutomaticDoor_Elevator" Pos="979.95943152764323,1025.9215838997673,20.501821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AutomaticDoor" EntityId="248" EntityGuid="447E20BD374C3317" CastShadowMinSpec="1" Layer="Gameplay">
+   <EntityLinks>
+    <Link TargetId="242" Name="NewLink"/>
+    <Link TargetId="249" Name="NewLink"/>
+   </EntityLinks>
+   <Properties bActivatePortal="0" fAutoCloseDelay="0.5" fAutoLockDelay="-1" vectorFront="1,0,0" bInterruptClose="0" fInterruptTransitionTime="0" bLocked="0" bLockedBackwards="0" bLockedForwards="0" objModel="" iSecurityLevel="0" bStartOpen="0" bUsable="0" bUsableWhenLocked="1" vectorUseArea="7,6,6" fUseAreaZOffset="0">
+    <AudioTriggers audioTriggerAccessDeniedStart="" audioTriggerAccessDeniedStop="" audioTriggerDoorClosedStart="" audioTriggerDoorClosedStop="" audioTriggerDoorCloseStart="" audioTriggerDoorCloseStop="" audioTriggerDoorClosingStart="Play_MCLF_hangar_business_elevator_door_close_slide" audioTriggerDoorClosingStop="Play_MCLF_hangar_business_elevator_door_close_stop" audioTriggerDoorLockStart="" audioTriggerDoorLockStop="" audioTriggerDoorOpenedStart="" audioTriggerDoorOpenedStop="" audioTriggerDoorOpeningStart="Play_MCLF_hangar_business_elevator_door_open_slide" audioTriggerDoorOpeningStop="Play_MCLF_hangar_business_elevator_door_open_stop" audioTriggerDoorOpenStart="" audioTriggerDoorOpenStop="" audioTriggerDoorUnlockStart="" audioTriggerDoorUnlockStop=""/>
+    <AutoLockDirection bBackwards="1" bForwards="1"/>
+    <CloseState Animation="" BlastAnimation=""/>
+    <OpenState Animation="" BlastAnimation=""/>
+   </Properties>
+   <Area Id="-1" Group="-1" Proximity="5" Priority="0" BoxMin="-3.5,-3,0" BoxMax="3.5,3,6">
+    <SoundData>
+     <Side1 ObstructSound="0"/>
+     <Side2 ObstructSound="0"/>
+     <Side3 ObstructSound="0"/>
+     <Side4 ObstructSound="0"/>
+     <Side5 ObstructSound="0"/>
+     <Side6 ObstructSound="0"/>
+    </SoundData>
+    <Entities>
+     <Entity Id="248"/>
+    </Entities>
+   </Area>
   </Entity>
   <Entity Name="Light-186" Pos="965.49949891492724,1057.000234823674,24.002061128616333" Rotate="0.70710671,0,0.70710683,0" EntityClass="Light" EntityId="70" EntityGuid="419BEB2AD65BC817" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
@@ -694,6 +702,15 @@
   <Entity Name="AutomaticDoorPanel-004" Pos="980.0396578636238,1026.0753758491446,21" Rotate="1,0,0,1.2326367e-007" EntityClass="AutomaticDoorPanel" EntityId="56" EntityGuid="4FAD213696089E1B" CastShadowMinSpec="1" Layer="Gameplay">
    <Properties fAcceleration="3" sAxis="x" objModel="objects/buildingsets/human/shop/india/mmhc/int/bar_mmhc_door_entrance_r.cgf" fRange="-1" fSpeed="2" fStopTime="0.5"/>
   </Entity>
+  <Entity Name="TransportElevatorConsole-001" Pos="981.95943154554027,1023.3987154213083,22.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="TransportElevatorConsole" EntityId="239" EntityGuid="4CA0FB0FFBE3BC1B" CastShadowMinSpec="1" Layer="Gameplay">
+   <EntityLinks>
+    <Link TargetId="233" Name="player_position"/>
+    <Link TargetId="232" Name="player_lookAt"/>
+   </EntityLinks>
+   <Properties HitPoints="0" initialSetup="" bMounted="0" bNetworkSync="1" eiPhysicsType="2" bPickable="0" soclasses_SmartObjectClass="" bSpecialSelect="0" bUsable="1">
+    <Respawn nRemovalTimer="30" bRemove="0" bRespawn="0" nTimer="30" bUnique="0"/>
+   </Properties>
+  </Entity>
   <Object Type="Decal" Name="Decal_FT01_Caustic_01" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_org_caustic" Pos="980.49189740419388,1069.7257983610034,21.5231743901968" Rotate="0.96592581,0.25881898,0,0" Scale="2.9605999,2.9605999,2.9605999" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="Light-093" Pos="975.31885328143835,1043.2394649176858,25.152883909482625" Rotate="0.49987784,0.50012219,-0.50012201,0.49987784" EntityClass="Light" EntityId="176" EntityGuid="473AFF9924F9E21D" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
@@ -706,6 +723,16 @@
    </Properties>
   </Entity>
   <Object Type="Group" Name="1-014" Pos="982.75937905519788,1033.3226368727162,25.150057892827636" Rotate="0.70710683,0,0,0.70710677" Scale="1,1,1"/>
+  <Entity Name="Light_Console_Emitter02" Pos="981.73607624820033,1023.7408608449147,22.43530988600105" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="258" EntityGuid="425105CA4314891E" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
+    <Color clrDiffuse="0.686685,0.814847,0.887923" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="AutomaticDoor-002" Pos="980,1042,21" Rotate="0.70710683,0,0,0.70710677" EntityClass="AutomaticDoor" EntityId="93" EntityGuid="4025B7EF054C031F" CastShadowMinSpec="1" Layer="Gameplay_MDB">
    <EntityLinks>
     <Link TargetId="94" Name="NewLink"/>
@@ -797,16 +824,6 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-046" Pos="974.94999980926514,1055.7442388236523,25.591504007577896" Rotate="0.67559016,0,0.73727739,0" Scale="1.0000001192092896,1,1.0000001192092896" EntityClass="Light" EntityId="261" EntityGuid="486E3857763E8823" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
-    <Color clrDiffuse="1,0.3564,0.168269" fDiffuseMultiplier="0.5" fSpecularMultiplier="1"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="140" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="1" fPlaneHeight="8" fPlaneWidth="0.1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
   <Entity Name="Light-027" Pos="969.48273208923638,1040.4978350074962,23.096633050590754" Rotate="0.92387956,0,0,-0.38268346" EntityClass="Light" EntityId="76" EntityGuid="48F2CA1BEAFBC625" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="10" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -817,12 +834,12 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light_Console_PanelR" Pos="981.67712343206256,1024.0264552964697,22.431215046904981" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="243" EntityGuid="484BCCE34D7AE525" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
-    <Color clrDiffuse="0.863157,0.879623,0.879623" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
+  <Entity Name="Light-005" Pos="981.63397640800781,1022.2277936477266,23.526567219756544" Rotate="-0.061628528,0.061628394,-0.70441592,0.70441616" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="255" EntityGuid="426DCC60D4403127" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
+    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
@@ -832,21 +849,6 @@
    <Properties fAcceleration="3" sAxis="y" objModel="objects/buildingsets/human/shop/india/mmhc/int/bar_mmhc_exit_door_right.cgf" fRange="1" fSpeed="2" fStopTime="0.5"/>
   </Entity>
   <Object Type="Group" Name="Group007-001" Pos="978.65000014305122,1061.7499995946885,27.249999946355821" Scale="1,1,1"/>
-  <Entity Name="AS_elevator_tone" Pos="981.97211057255959,1025.5192654749962,19.92562600877136" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="230" EntityGuid="45A52B74FB0CBF29" CastShadowMinSpec="1" Layer="Gameplay">
-   <Area Id="0" Group="1" Proximity="0" Priority="40" Height="6.5">
-    <Points>
-     <Point Pos="0,0,0" ObstructSound="1"/>
-     <Point Pos="-0.093680859,-0.50585604,0" ObstructSound="0"/>
-     <Point Pos="-0.098470449,-3.5716572,0" ObstructSound="1"/>
-     <Point Pos="0.17016792,-3.9630442,0" ObstructSound="1"/>
-     <Point Pos="3.40377,-4.0110602,0" ObstructSound="1"/>
-     <Point Pos="3.4280229,-0.040925503,0" ObstructSound="1"/>
-    </Points>
-    <Entities>
-     <Entity Id="246"/>
-    </Entities>
-   </Area>
-  </Entity>
   <Entity Name="Probe_Hallway_a" Pos="976,1037.625,23.625" EntityClass="EnvironmentLight" EntityId="229" EntityGuid="42C5A71EE43F5B2A" CastShadowMinSpec="1" Layer="Lights_MDB">
    <Properties bActive="1" BoxSizeX="25" BoxSizeY="9" BoxSizeZ="15" _bCheapLight="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -865,11 +867,7 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="AAA_elevator_tone" Pos="979.22443122694654,1017.609900504321,19.925626515410841" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AudioAreaAmbience" EntityId="246" EntityGuid="4E121DDF76C7E52A" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties fAudioSignature="0" bEnabled="1" audioEnvironmentEnvironment="Intimate_Room" fEnvironmentDistance="3" audioTriggerPlayTrigger="Play_LCAM_hangar_business_elevator_tone_02" audioRTPCRtpc="area_fade_distance" fRtpcDistance="3" eiSoundObstructionType="1" audioTriggerStopTrigger="" audioSwitchSwitch="" audioStateSwitchStateFar="" audioStateSwitchStateInside="" audioStateSwitchStateNear=""/>
-  </Entity>
   <Object Type="Decal" Name="Decal001-027" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="980.91769354674034,1069.7644423134625,20.719187208946096" Rotate="0.50461406,-0.056131519,0.097236149,-0.85601354" Scale="0.83974552,0.83974546,0.8397454" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
-  <Entity Name="player_lookat" Pos="981.87993085479059,1023.9324640270266,22.348686455748975" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="TagPoint" EntityId="232" EntityGuid="46F7AE610CEEB42D" CastShadowMinSpec="1" Layer="Gameplay"/>
   <Object Type="Decal" Name="Decal001-015" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="986.47564470837824,1053.7184947181377,21.128400429413887" Rotate="0.096261866,-0.046366934,0.047701918,0.99313056" Scale="1.3147999,1.3148,1.3148" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Object Type="Group" Name="1-013" Pos="977.45987809527253,1040.5329381604679,25.150057892827636" Rotate="-0.38268337,0,0,0.92387956" Scale="1,1,1"/>
   <Entity Name="Light_UpperDeckTV-001" Pos="963.86223166808486,1059.5706506967545,21.988469034433365" Rotate="0.70256138,0.080046758,0.080046758,-0.70256138" EntityClass="Light" EntityId="78" EntityGuid="4A56AF3FA694BF2F" CastShadowMinSpec="8" Layer="Lights_MDB">
@@ -933,10 +931,27 @@
    </Properties>
   </Entity>
   <Entity Name="Review Camera" Pos="977.25,1054.25,21" EntityClass="CameraSource" EntityId="214" EntityGuid="442AEF8FE089F233" CastShadowMinSpec="1" Layer="BaseGeo_MDB"/>
-  <Entity Name="player_position-console" Pos="980.80764428565851,1023.9324639903239,21.009002803824842" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="CharacterAttachHelper" EntityId="233" EntityGuid="457CC7FB47FCC434" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties BoneName="Bip01 Head" bNetworkSync="1"/>
-  </Entity>
   <Object Type="Group" Name="1-003" Pos="969.2378896176815,1049.3272375254892,25.150057892853511" Rotate="0.70710677,0,0,-0.70710677" Scale="1,1,1"/>
+  <Entity Name="Light-078" Pos="973.97499976754193,1038.1499999761581,25.49999999962747" Rotate="0.70710671,0,0.70710683,0" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="272" EntityGuid="421DEE3B45B97535" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="10" _nVersion="0">
+    <Color clrDiffuse="1,0.737911,0.467784" fDiffuseMultiplier="25" fSpecularMultiplier="1"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.25" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture="textures/lights/ies_profiles/ies3.tif"/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light-006" Pos="981.63397593117077,1022.2277936477266,22.615832566283643" Rotate="-0.061628528,0.061628394,-0.70441592,0.70441616" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="244" EntityGuid="4164035518AA1537" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
+    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="Light-173" Pos="982.75937905519788,1034.6796266140416,25.152883909456751" Rotate="1.8776682e-008,0.7072795,6.5482098e-008,0.70693403" Scale="1,1,1.0000001192092896" EntityClass="Light" EntityId="204" EntityGuid="422E5AEADEBD6837" CastShadowMinSpec="8" Layer="Lights">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -958,16 +973,6 @@
   <Entity Name="ParticleEffect-Water_Shards_02" Pos="987.625,1054,25.375" Rotate="0.5,0.5,0.5,0.5" EntityClass="ParticleEffect" EntityId="33" EntityGuid="4314CD16E7CE7938" CastShadowMinSpec="1" Layer="Particles_MDB">
    <Properties bActive="1" esAttachForm="" esAttachType="" nClipToVisArea="2" Comment="" bCountPerUnit="0" CountScale="1" bNetworkSync="0" ParticleEffect="mmhc_fx.Water.Shards" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="1" soclasses_SmartObjectClass="" SpeedScale="1" Strength="-1" TimeScale="1">
     <Audio bEnableAudio="1" bIsManagedAudioObject="0" audioRTPCRtpc="particlefx"/>
-   </Properties>
-  </Entity>
-  <Entity Name="Light-001" Pos="979.89399404347296,1023.9085572521055,25.239665268920362" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="236" EntityGuid="4EF3F532D22A9639" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
-    <Color clrDiffuse="0.630757,0.791298,0.768151" fDiffuseMultiplier="2.5" fSpecularMultiplier="0.75"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.5" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_02.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
   <Object Type="Group" Name="1-007" Pos="982.76117672819873,1057.326590198325,25.150057892853511" Rotate="0.70710677,0,0,0.70710677" Scale="1,1,1"/>
@@ -993,6 +998,16 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="Light_Console_PanelL" Pos="981.6771234237101,1024.2704781343391,22.431215046904981" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="256" EntityGuid="42CD56D4723A1D3D" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
+    <Color clrDiffuse="0.863157,0.879623,0.879623" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="Light-163" Pos="982.77511060961808,1040.5461477194913,25.152883909456751" Rotate="0.65312189,0.27066419,-0.65344107,0.27053192" Scale="1,1,1.0000001192092896" EntityClass="Light" EntityId="191" EntityGuid="4721C7D44789A53D" CastShadowMinSpec="8" Layer="Lights">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -1000,16 +1015,6 @@
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
     <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
     <Shape bAreaLight="1" fPlaneHeight="0.01" fPlaneWidth="0.2" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
-  <Entity Name="Light_Console_Emitter03" Pos="981.70337571068433,1023.7408608437954,22.360009669326246" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="247" EntityGuid="4A784ECE02BADB3D" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
-    <Color clrDiffuse="0.686685,0.814847,0.887923" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
@@ -1081,6 +1086,103 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="FlowgraphEntity_Elevator" Pos="979.95943159610033,1023.9215830145502,22.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="FlowgraphEntity" EntityId="253" EntityGuid="46AB3ADD090F5544" CastShadowMinSpec="1" Layer="Gameplay">
+   <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+    <Nodes>
+     <Node Id="26" Class="Logic:Any" pos="-380,-700,0" flags="0" InHideMask="1023" OutHideMask="1">
+      <Inputs />
+     </Node>
+     <Node Id="27" Class="Logic:Any" pos="-380,-560,0" flags="0">
+      <Inputs />
+     </Node>
+     <Node Id="28" Name="Lock_Door" Class="_comment" pos="-390,-740,0" flags="0"/>
+     <Node Id="29" Name="Unlock_Door" Class="_comment" pos="-390,-590,0" flags="0"/>
+     <Node Id="31" Class="Multiplayer:CheckCVar" pos="-1200,-740,0" flags="0">
+      <Inputs CVar="g_enableTransportConsole"/>
+     </Node>
+     <Node Id="35" Class="Game:Start" pos="-1370,-740,0" flags="0">
+      <Inputs InGame="1" InEditor="1"/>
+     </Node>
+     <Node Id="41" Class="Math:Equal" pos="-860,-720,0" flags="0">
+      <Inputs A="0" B="1"/>
+     </Node>
+     <Node Id="44" Name="Check_for_Cvar_to_activate_elevator_access" Class="_commentbox" pos="-1380,-783.06451,0" flags="0">
+      <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+      <ResizeBorder X="0" Y="0" Width="680" Height="200"/>
+      <NodeSize Width="680" Height="227.8308"/>
+     </Node>
+     <Node Id="63" Class="entity:TransportElevatorConsole" pos="-1140,-20,0" flags="0" EntityGUID="{FBE3BC1B-FB0F-4CA0-9CE8-B89F45E42675}" EntityGUID_64="4CA0FB0FFBE3BC1B">
+      <Inputs entityId="0" Hide="0" UnHide="0" Use="0" UserId="0"/>
+     </Node>
+     <Node Id="64" Class="Actor:PlayerLookAt" pos="-590,10,0" flags="0" EntityGUID="{D3E480A5-1773-4669-BC3A-F88FD0386C49}" EntityGUID_64="46691773D3E480A5">
+      <Inputs entityId="0" Force="1" InterpolationTime="0.2"/>
+     </Node>
+     <Node Id="65" Class="Logic:Sequentializer" pos="-890,20,0" flags="0">
+      <Inputs Closed="0" Reverse="0"/>
+     </Node>
+     <Node Id="66" Name="Using_the_console_once_with_the_sequentializer_=_ACTIVE_Using_the_console_a_second_time_=_INACTIVE" Class="_commentbox" pos="-1170,-50.439804,0" flags="0">
+      <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+      <ResizeBorder X="0" Y="0" Width="770" Height="260"/>
+      <NodeSize Width="943.18872" Height="287.83081"/>
+     </Node>
+     <Node Id="69" Class="entity:Light" pos="0,450,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{BF2402B4-D9BE-4439-9C0B-4B4249E0848F}" EntityGUID_64="4439D9BEBF2402B4">
+      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
+     </Node>
+     <Node Id="71" Class="entity:Light" pos="0,660,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{4B25A3E6-3E92-43E3-8349-4424ED373BD7}" EntityGUID_64="43E33E924B25A3E6">
+      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
+     </Node>
+     <Node Id="73" Class="entity:Light" pos="-190,550,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{1239DEE5-6CCA-497D-80F9-154785E29BB1}" EntityGUID_64="497D6CCA1239DEE5">
+      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
+     </Node>
+     <Node Id="75" Class="entity:Light" pos="-360,550,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{723A1D3D-56D4-42CD-BD26-439866981EB9}" EntityGUID_64="42CD56D4723A1D3D">
+      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
+     </Node>
+     <Node Id="76" Class="Logic:Any" pos="-520,530,0" flags="0" InHideMask="1023" OutHideMask="1">
+      <Inputs />
+     </Node>
+     <Node Id="77" Class="Logic:Any" pos="-520,630,0" flags="0" InHideMask="1023" OutHideMask="1">
+      <Inputs />
+     </Node>
+     <Node Id="79" Class="entity:Light" pos="0,550,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{4314891E-05CA-4251-BC8D-CF07EE5108DC}" EntityGUID_64="425105CA4314891E">
+      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
+     </Node>
+     <Node Id="84" Name="Console_activation/Deactivation_lights" Class="_commentbox" pos="-580,408.69009,0" flags="0">
+      <Inputs TextSize="1" Color="0.266356,0.715694,0.693872" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+      <ResizeBorder X="0" Y="0" Width="760" Height="310"/>
+      <NodeSize Width="760" Height="337.83081"/>
+     </Node>
+     <Node Id="90" Class="entity:AutomaticDoor" pos="-210,-740,0" flags="0" EntityGUID="{374C3317-20BD-447E-9C7A-F4C4AADB40DD}" EntityGUID_64="447E20BD374C3317">
+      <Inputs entityId="0"/>
+     </Node>
+    </Nodes>
+    <Edges>
+     <Edge nodeIn="90" nodeOut="26" portIn="Lock" portOut="out" enabled="1"/>
+     <Edge nodeIn="90" nodeOut="27" portIn="Unlock" portOut="out" enabled="1"/>
+     <Edge nodeIn="41" nodeOut="31" portIn="A" portOut="IntValue" enabled="1"/>
+     <Edge nodeIn="31" nodeOut="35" portIn="Get" portOut="output" enabled="1"/>
+     <Edge nodeIn="26" nodeOut="41" portIn="in1" portOut="false" enabled="1"/>
+     <Edge nodeIn="27" nodeOut="41" portIn="in1" portOut="true" enabled="1"/>
+     <Edge nodeIn="65" nodeOut="63" portIn="In" portOut="Used" enabled="1"/>
+     <Edge nodeIn="26" nodeOut="65" portIn="in2" portOut="Out1" enabled="1"/>
+     <Edge nodeIn="27" nodeOut="65" portIn="in2" portOut="Out1" enabled="1"/>
+     <Edge nodeIn="64" nodeOut="65" portIn="Enable" portOut="Out1" enabled="1"/>
+     <Edge nodeIn="64" nodeOut="65" portIn="Disable" portOut="Out2" enabled="1"/>
+     <Edge nodeIn="76" nodeOut="65" portIn="in1" portOut="Out1" enabled="1"/>
+     <Edge nodeIn="77" nodeOut="65" portIn="in1" portOut="Out2" enabled="1"/>
+     <Edge nodeIn="69" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
+     <Edge nodeIn="71" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
+     <Edge nodeIn="73" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
+     <Edge nodeIn="75" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
+     <Edge nodeIn="79" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
+     <Edge nodeIn="69" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
+     <Edge nodeIn="71" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
+     <Edge nodeIn="73" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
+     <Edge nodeIn="75" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
+     <Edge nodeIn="79" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
+    </Edges>
+    <GraphTokens />
+   </FlowGraph>
+  </Entity>
   <Object Type="Decal" Name="Decal001-022" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="983.22480092826299,1068.1507001155987,20.796477420750307" Rotate="0.55139881,-0.03372898,-0.096227854,0.82798666" Scale="1.1503361,1.150336,1.1503361" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="Light-201" Pos="981.24949891492724,1034.000234823674,25.002061128616333" Rotate="0.70710671,0,0.70710683,0" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="166" EntityGuid="4AC573C5F0B1C244" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
@@ -1119,6 +1221,9 @@
    </Properties>
   </Entity>
   <Entity Name="Camera_ArtReview_01" Pos="979.95367431640625,1040.7220458984375,22.191244125366211" Rotate="0.999376,-0.011657828,0.00038891751,-0.033340249" EntityClass="CameraSource" EntityId="221" EntityGuid="4D20840EF58F5648" CastShadowMinSpec="1" Layer="Not_exported"/>
+  <Entity Name="AutomaticDoorPanel_Elevator_Left" Pos="979.95943153405381,1025.7342960987135,20.876821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AutomaticDoorPanel" EntityId="242" EntityGuid="460AFEB01D87B148" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties fAcceleration="3" sAxis="y" objModel="objects/brush/planet/uee/generic_elevator/generic_elevator_door_l.cgf" fRange="1.5" fSpeed="3" fStopTime="0.25"/>
+  </Entity>
   <Entity Name="Light-182" Pos="961.74949891492724,1049.000234823674,24.002061128616333" Rotate="0.70710671,0,0.70710683,0" EntityClass="Light" EntityId="84" EntityGuid="431D5D24D4423049" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="4" fSpecularMultiplier="1"/>
@@ -1216,31 +1321,37 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="SES_pu_elevator_doors" Pos="979.98581682864813,1026.0794628008014,22.706320046447217" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AudioTriggerSpot" EntityId="252" EntityGuid="4599AF5D745D124D" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties fAudioSignature="0" bEnabled="1" bIsManagedAudioObject="0" fMaxDelay="5" fMinDelay="2" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName="" nVoiceCount="1"/>
+  <Entity Name="Light-048" Pos="973.94625425338745,1053.0889491438866,25.047560006380081" EntityClass="Light" EntityId="268" EntityGuid="41336B1C8742E44E" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
   </Entity>
-  <Entity Name="MannequinObject-003" Pos="970.37120000000004,1055.1057000000001,20" Rotate="0.70710671,0,0,-0.70710683" EntityClass="MannequinObject" EntityId="98" EntityGuid="4BABAC18FC20A14F" CastShadowMinSpec="1" Layer="Gameplay_MDB">
+  <Entity Name="MannequinObject-003" Pos="971.68370524520878,1055.1057000000001,20" Rotate="0.70710671,0,0,-0.70710683" EntityClass="MannequinObject" EntityId="98" EntityGuid="4BABAC18FC20A14F" CastShadowMinSpec="1" Layer="Gameplay_MDB">
    <Properties fileActionController="animations/mannequin/adb/playercontrollerdefs.xml" fileAnimDatabase3P="animations/mannequin/adb/playeranims.adb" objModel="objects/characters/human/male_v7_cdfs/uee/bartender/uee_bartender_m_base.cdf"/>
    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
     <Nodes>
      <Node Id="2" Class="Game:Start" pos="-390,-140,0" flags="0">
       <Inputs InGame="1" InEditor="1"/>
      </Node>
-     <Node Id="6" Class="Actor:PlayMannequinFragment" pos="460,-120,0" flags="0" GraphEntity="0">
-      <Inputs entityId="0" animstate_Fragment="interact" Tags="bartender_wipedownbar" Priority="0"/>
+     <Node Id="6" Class="Actor:PlayMannequinFragment" pos="460,-120,0" flags="1" GraphEntity="0">
+      <Inputs entityId="0" animstate_Fragment="interact" Tags="con_gestures_02" Priority="0"/>
      </Node>
      <Node Id="11" Class="Logic:Any" pos="210,-140,0" flags="0" InHideMask="1022" OutHideMask="1">
       <Inputs />
      </Node>
-     <Node Id="18" Class="Movement:MoveEntityTo" pos="-160,-110,0" flags="0" GraphEntity="0">
+     <Node Id="18" Class="Movement:MoveEntityTo" pos="-160,-60,0" flags="0" GraphEntity="0">
       <Inputs entityId="0" Destination="972,1055.11,20" DestinationEntity="0" DynamicUpdate="1" ValueType="0" Speed="5" EaseDistance="0" EaseOutDistance="0" CoordSys="0"/>
      </Node>
     </Nodes>
     <Edges>
-     <Edge nodeIn="18" nodeOut="2" portIn="Start" portOut="output" enabled="1"/>
+     <Edge nodeIn="11" nodeOut="2" portIn="in1" portOut="output" enabled="1"/>
      <Edge nodeIn="11" nodeOut="6" portIn="in2" portOut="Done" enabled="1"/>
      <Edge nodeIn="6" nodeOut="11" portIn="Play" portOut="out" enabled="1"/>
-     <Edge nodeIn="11" nodeOut="18" portIn="in1" portOut="Finish" enabled="1"/>
     </Edges>
     <GraphTokens />
    </FlowGraph>
@@ -1275,6 +1386,9 @@
    </Properties>
   </Entity>
   <Object Type="Decal" Name="Decal_FT01_Caustic_Outside_02" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_org_caustic" Pos="980.45415306091309,1066.7412817403674,22.288662614300847" Rotate="-3.9615973e-008,1.8473232e-008,-0.4226183,0.90630776" Scale="2.3439066,2.3439066,2.3439071" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
+  <Entity Name="player_position-console" Pos="980.80764428565851,1023.9324639903239,21.009002803824842" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="CharacterAttachHelper" EntityId="233" EntityGuid="413FE683ADEB4652" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties BoneName="Bip01 Head" bNetworkSync="1"/>
+  </Entity>
   <Entity Name="Light-181" Pos="972.38311967942991,1044.3469963913058,29.587611646950247" Rotate="0.5,-0.50000006,0.5,0.5" EntityClass="Light" EntityId="85" EntityGuid="46C2F47077CC2453" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="2" fSpecularMultiplier="1"/>
@@ -1304,103 +1418,6 @@
     <Shape bAreaLight="1" fPlaneHeight="0.1" fPlaneWidth="4" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
-  </Entity>
-  <Entity Name="FlowgraphEntity_Elevator" Pos="979.95943159610033,1023.9215830145502,22.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="FlowgraphEntity" EntityId="253" EntityGuid="4AA4D16CACA75554" CastShadowMinSpec="1" Layer="Gameplay">
-   <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
-    <Nodes>
-     <Node Id="26" Class="Logic:Any" pos="-380,-700,0" flags="0" InHideMask="1023" OutHideMask="1">
-      <Inputs />
-     </Node>
-     <Node Id="27" Class="Logic:Any" pos="-380,-560,0" flags="0">
-      <Inputs />
-     </Node>
-     <Node Id="28" Name="Lock_Door" Class="_comment" pos="-390,-740,0" flags="0"/>
-     <Node Id="29" Name="Unlock_Door" Class="_comment" pos="-390,-590,0" flags="0"/>
-     <Node Id="31" Class="Multiplayer:CheckCVar" pos="-1200,-740,0" flags="0">
-      <Inputs CVar="g_enableTransportConsole"/>
-     </Node>
-     <Node Id="35" Class="Game:Start" pos="-1370,-740,0" flags="0">
-      <Inputs InGame="1" InEditor="1"/>
-     </Node>
-     <Node Id="41" Class="Math:Equal" pos="-860,-720,0" flags="0">
-      <Inputs A="0" B="1"/>
-     </Node>
-     <Node Id="44" Name="Check_for_Cvar_to_activate_elevator_access" Class="_commentbox" pos="-1380,-783.06451,0" flags="0">
-      <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
-      <ResizeBorder X="0" Y="0" Width="680" Height="200"/>
-      <NodeSize Width="680" Height="227.8308"/>
-     </Node>
-     <Node Id="63" Class="entity:TransportElevatorConsole" pos="-1140,-20,0" flags="0" EntityGUID="{4A974794-8DCD-49CC-8597-AECE80CFCBF1}" EntityGUID_64="49CC8DCD4A974794">
-      <Inputs entityId="0" Hide="0" UnHide="0" Use="0" UserId="0"/>
-     </Node>
-     <Node Id="64" Class="Actor:PlayerLookAt" pos="-590,10,0" flags="0" EntityGUID="{0CEEB42D-AE61-46F7-9CD9-1E033A2F601D}" EntityGUID_64="46F7AE610CEEB42D">
-      <Inputs entityId="0" Force="1" InterpolationTime="0.2"/>
-     </Node>
-     <Node Id="65" Class="Logic:Sequentializer" pos="-890,20,0" flags="0">
-      <Inputs Closed="0" Reverse="0"/>
-     </Node>
-     <Node Id="66" Name="Using_the_console_once_with_the_sequentializer_=_ACTIVE_Using_the_console_a_second_time_=_INACTIVE" Class="_commentbox" pos="-1170,-50.439804,0" flags="0">
-      <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
-      <ResizeBorder X="0" Y="0" Width="770" Height="260"/>
-      <NodeSize Width="943.18872" Height="287.83081"/>
-     </Node>
-     <Node Id="69" Class="entity:Light" pos="0,450,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{2AF43576-ED5B-49D1-BF46-2B29475286B1}" EntityGUID_64="49D1ED5B2AF43576">
-      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
-     </Node>
-     <Node Id="71" Class="entity:Light" pos="0,660,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{02BADB3D-4ECE-4A78-BFDE-F2FE1B8DE389}" EntityGUID_64="4A784ECE02BADB3D">
-      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
-     </Node>
-     <Node Id="73" Class="entity:Light" pos="-190,550,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{4D7AE525-CCE3-484B-B14B-A36522BA5D59}" EntityGUID_64="484BCCE34D7AE525">
-      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
-     </Node>
-     <Node Id="75" Class="entity:Light" pos="-360,550,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{2E9CDA7C-AFEA-4AE3-9596-5BEE3FB0D581}" EntityGUID_64="4AE3AFEA2E9CDA7C">
-      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
-     </Node>
-     <Node Id="76" Class="Logic:Any" pos="-520,530,0" flags="0" InHideMask="1023" OutHideMask="1">
-      <Inputs />
-     </Node>
-     <Node Id="77" Class="Logic:Any" pos="-520,630,0" flags="0" InHideMask="1023" OutHideMask="1">
-      <Inputs />
-     </Node>
-     <Node Id="79" Class="entity:Light" pos="0,550,0" flags="0" InHideMask="511" OutHideMask="127" EntityGUID="{0DB60FEB-A1BC-4750-81DB-22E6567DD73B}" EntityGUID_64="4750A1BC0DB60FEB">
-      <Inputs entityId="0" Active="0" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
-     </Node>
-     <Node Id="84" Name="Console_activation/Deactivation_lights" Class="_commentbox" pos="-580,408.69009,0" flags="0">
-      <Inputs TextSize="1" Color="0.266356,0.715694,0.693872" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
-      <ResizeBorder X="0" Y="0" Width="760" Height="310"/>
-      <NodeSize Width="760" Height="337.83081"/>
-     </Node>
-     <Node Id="90" Class="entity:AutomaticDoor" pos="-210,-740,0" flags="0" EntityGUID="{B6BBDDA6-432E-43EE-96E3-2AC9F719B708}" EntityGUID_64="43EE432EB6BBDDA6">
-      <Inputs entityId="0"/>
-     </Node>
-    </Nodes>
-    <Edges>
-     <Edge nodeIn="90" nodeOut="26" portIn="Lock" portOut="out" enabled="1"/>
-     <Edge nodeIn="90" nodeOut="27" portIn="Unlock" portOut="out" enabled="1"/>
-     <Edge nodeIn="41" nodeOut="31" portIn="A" portOut="IntValue" enabled="1"/>
-     <Edge nodeIn="31" nodeOut="35" portIn="Get" portOut="output" enabled="1"/>
-     <Edge nodeIn="26" nodeOut="41" portIn="in1" portOut="false" enabled="1"/>
-     <Edge nodeIn="27" nodeOut="41" portIn="in1" portOut="true" enabled="1"/>
-     <Edge nodeIn="65" nodeOut="63" portIn="In" portOut="Used" enabled="1"/>
-     <Edge nodeIn="26" nodeOut="65" portIn="in2" portOut="Out1" enabled="1"/>
-     <Edge nodeIn="27" nodeOut="65" portIn="in2" portOut="Out1" enabled="1"/>
-     <Edge nodeIn="64" nodeOut="65" portIn="Enable" portOut="Out1" enabled="1"/>
-     <Edge nodeIn="64" nodeOut="65" portIn="Disable" portOut="Out2" enabled="1"/>
-     <Edge nodeIn="76" nodeOut="65" portIn="in1" portOut="Out1" enabled="1"/>
-     <Edge nodeIn="77" nodeOut="65" portIn="in1" portOut="Out2" enabled="1"/>
-     <Edge nodeIn="69" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
-     <Edge nodeIn="71" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
-     <Edge nodeIn="73" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
-     <Edge nodeIn="75" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
-     <Edge nodeIn="79" nodeOut="76" portIn="Enable" portOut="out" enabled="1"/>
-     <Edge nodeIn="69" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
-     <Edge nodeIn="71" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
-     <Edge nodeIn="73" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
-     <Edge nodeIn="75" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
-     <Edge nodeIn="79" nodeOut="77" portIn="Disable" portOut="out" enabled="1"/>
-    </Edges>
-    <GraphTokens />
-   </FlowGraph>
   </Entity>
   <Entity Name="Light-121" Pos="969.2378896176815,1049.3272375254892,25.147231876224396" Rotate="0.70727956,-1.2098661e-008,0.70693398,3.3214043e-008" Scale="0.99999994039535522,0.99999988079071045,0.99999988079071045" EntityClass="Light" EntityId="131" EntityGuid="4DEF54BAFEDD9954" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
@@ -1524,27 +1541,7 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-075" Pos="977.14993906021118,1053.0889491438866,25.023449778556824" EntityClass="Light" EntityId="270" EntityGuid="4C810DAEE0C95160" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
   <Object Type="Group" Name="Group004" Pos="975.9976294913829,1050.3190976996166,23.69079092586859" Scale="1,1,1"/>
-  <Entity Name="Light-078" Pos="973.97499976754193,1038.1499999761581,25.49999999962747" Rotate="0.70710671,0,0.70710683,0" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="272" EntityGuid="4EA5E3B40BB98362" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="10" _nVersion="0">
-    <Color clrDiffuse="1,0.737911,0.467784" fDiffuseMultiplier="25" fSpecularMultiplier="1"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.25" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture="textures/lights/ies_profiles/ies3.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
   <Entity Name="Light-069" Pos="976.59999947212611,1065.3098979807457,21.92398174069822" Rotate="0.7660445,0,0,-0.64278752" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="Light" EntityId="148" EntityGuid="4F3E6302682CB162" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="0.775822,0.737911,0.514918" fDiffuseMultiplier="0.03" fSpecularMultiplier="1"/>
@@ -1567,7 +1564,7 @@
   </Entity>
   <Object Type="Group" Name="Group008-002" Pos="981.25,1034,26.25" Scale="1,1,1"/>
   <Entity Name="MannequinObject-002" Pos="981.56391176844329,1034.0000002735724,21" Rotate="0.21643962,0,0,0.97629601" EntityClass="MannequinObject" EntityId="57" EntityGuid="48B12D05DB309364" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties fileActionController="animations/mannequin/adb/playercontrollerdefs.xml" fileAnimDatabase3P="animations/mannequin/adb/playeranims.adb" objModel="objects/characters/human/male_v7_cdfs/uee/senator/outfit/uee_m_senatory1_npc_head01.cdf"/>
+   <Properties fileActionController="animations/mannequin/adb/playercontrollerdefs.xml" fileAnimDatabase3P="animations/mannequin/adb/playeranims.adb" objModel="objects/characters/human/male_v7_cdfs/uee/civilian/uee_civilian_m_barpatron01_var15.cdf"/>
    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
     <Nodes>
      <Node Id="2" Class="Game:Start" pos="10,160,0" flags="0">
@@ -1579,9 +1576,13 @@
      <Node Id="11" Class="Logic:Any" pos="290,160,0" flags="0" InHideMask="1023" OutHideMask="1">
       <Inputs />
      </Node>
+     <Node Id="12" Class="Physics:PhysicsEnable" pos="290,250,0" flags="0" GraphEntity="0">
+      <Inputs entityId="0"/>
+     </Node>
     </Nodes>
     <Edges>
      <Edge nodeIn="11" nodeOut="2" portIn="in1" portOut="output" enabled="1"/>
+     <Edge nodeIn="12" nodeOut="2" portIn="Disable" portOut="output" enabled="1"/>
      <Edge nodeIn="11" nodeOut="6" portIn="in2" portOut="Done" enabled="1"/>
      <Edge nodeIn="6" nodeOut="11" portIn="Play" portOut="out" enabled="1"/>
     </Edges>
@@ -1598,8 +1599,10 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="AutomaticDoorPanel_Elevator_Right" Pos="979.95943153405381,1025.7342960987135,20.876821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AutomaticDoorPanel" EntityId="249" EntityGuid="4183FC565EF38566" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties fAcceleration="3" sAxis="y" objModel="objects/brush/planet/uee/generic_elevator/generic_elevator_door_r.cgf" fRange="-1.5" fSpeed="3" fStopTime="0.25"/>
+  <Entity Name="AreaTrigger-001" Pos="979.95943152764323,1025.9215838997673,23.001821040175855" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaTrigger" EntityId="245" EntityGuid="4802818417337465" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+    <MultiplayerOptions bNetworked="0" bPerPlayer="0"/>
+   </Properties>
   </Entity>
   <Entity Name="Light-098" Pos="987.78089365363121,1054.0000003576279,26.740846641361713" Rotate="0.70710677,0,0.70710683,0" EntityClass="Light" EntityId="104" EntityGuid="4D85A26FDEB22167" CastShadowMinSpec="8" Layer="Lights_MDB">
    <EntityLinks>
@@ -1610,16 +1613,6 @@
     <LightSound bSoundEnable="0" soundSoundName=""/>
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.5" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="1" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
     <Projector fProjectorFov="137.193" fProjectorNearPlane="0" texture_Texture="textures/lights/light_area_soft.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
-  <Entity Name="Light-004" Pos="978.26762560422492,1022.2277935325013,22.615832566283643" Rotate="0.70441598,0.70441604,-0.061628435,-0.061628357" EntityClass="Light" EntityId="237" EntityGuid="453716A0F18A3C67" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
-    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
@@ -1644,6 +1637,16 @@
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
     <Projector fProjectorFov="180" fProjectorNearPlane="0" texture_Texture=""/>
     <Shape bAreaLight="1" fPlaneHeight="1" fPlaneWidth="0.025" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light-075" Pos="977.14993906021118,1053.0889491438866,25.023449778556824" EntityClass="Light" EntityId="270" EntityGuid="4518D1802D951868" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
@@ -1678,15 +1681,14 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="AutomaticDoorPanel_Elevator_Left" Pos="979.95943153405381,1025.7342960987135,20.876821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AutomaticDoorPanel" EntityId="242" EntityGuid="4167D9344964836D" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties fAcceleration="3" sAxis="y" objModel="objects/brush/planet/uee/generic_elevator/generic_elevator_door_l.cgf" fRange="1.5" fSpeed="3" fStopTime="0.25"/>
-  </Entity>
-  <Entity Name="EnvironmentProbe002" Pos="979.96062941480614,1023.8104089117986,23.002451418899" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="EnvironmentLight" EntityId="259" EntityGuid="4B3E167719D5186F" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties bActive="1" BoxSizeX="4" BoxSizeY="4" BoxSizeZ="6" _bCheapLight="1" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="0.75"/>
-    <Options bAffectsThisAreaOnly="1" fAttenuationFalloffMax="0" _texture_deferred_cubemap="" bDeferredClipBounds="0" bIgnoresVisAreas="0" SortPriority="1"/>
-    <OptionsAdvanced texture_deferred_cubemap="Textures/cubemaps/elevator_sizeb/environmentprobe002_cm.tif"/>
-    <Projection fBoxHeight="6" fBoxLength="4" bBoxProject="1" fBoxWidth="4" bUseLightBox="0" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+  <Entity Name="Light-046" Pos="977.4550096988678,1050.5496750771999,25.591504007577896" Rotate="0.67559016,0,0.73727739,0" Scale="1.0000001192092896,1,1.0000001192092896" EntityClass="Light" EntityId="265" EntityGuid="4E66B4C000FE516D" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
+    <Color clrDiffuse="1,0.3564,0.168269" fDiffuseMultiplier="0.5" fSpecularMultiplier="1"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="140" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="1" fPlaneHeight="8" fPlaneWidth="0.1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
   <Entity Name="Light-114" Pos="977.40071590989828,1065.5018545389175,23.138078623768191" Rotate="0.53366029,0.53366017,0.46390387,-0.46390375" EntityClass="Light" EntityId="109" EntityGuid="4F56D9A55D10836F" CastShadowMinSpec="8" Layer="Lights_MDB">
@@ -1768,28 +1770,19 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-075" Pos="979.65494894981384,1050.5746750533581,25.023449778556824" EntityClass="Light" EntityId="266" EntityGuid="4D4FABCFF2393975" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+  <Entity Name="Light-001" Pos="979.89399404347296,1023.9085572521055,25.239665268920362" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="236" EntityGuid="4ACC5FD5BD3D6775" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
+    <Color clrDiffuse="0.630757,0.791298,0.768151" fDiffuseMultiplier="2.5" fSpecularMultiplier="0.75"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.5" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_02.tif"/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
   <Object Type="Decal" Name="Decal_FT01_Caustic_Outside_01" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_org_caustic" Pos="980.45415306091309,1066.7412817403674,22.288662614300847" Rotate="0.90630776,-0.4226183,0,0" Scale="2.3439071,2.3439071,2.3439071" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
-  <Entity Name="Light_Console_Emitter01" Pos="981.76781691254973,1023.7408608460011,22.510492323897779" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="235" EntityGuid="49D1ED5B2AF43576" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
-    <Color clrDiffuse="0.686685,0.814847,0.887923" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
-  <Entity Name="Light-009" Pos="978.26762578757484,1025.5780183597969,22.615832566283643" Rotate="0.7044161,-0.70441598,-0.06162836,0.061628453" Scale="1,0.99999994039535522,1" EntityClass="Light" EntityId="251" EntityGuid="4BC0D702501E4677" CastShadowMinSpec="8" Layer="Gameplay">
+  <Object Type="Group" Name="1-010" Pos="977.4729830881912,1026.9545860229991,25.150057892827636" Rotate="0.92387956,0,0,-0.38268343" Scale="1,1,1"/>
+  <Entity Name="Light-009" Pos="978.26762578757484,1025.5780183597969,22.615832566283643" Rotate="0.7044161,-0.70441598,-0.06162836,0.061628453" Scale="1,0.99999994039535522,1" EntityClass="Light" EntityId="251" EntityGuid="4E349C8DBB72787A" CastShadowMinSpec="8" Layer="Gameplay">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
     <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
@@ -1799,38 +1792,12 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-048" Pos="976.45126414299011,1050.5746750533581,25.047560006380081" EntityClass="Light" EntityId="264" EntityGuid="4F2AF049E7AD6878" CastShadowMinSpec="8" Layer="Lights_MDB">
+  <Entity Name="Light-048" Pos="976.45126414299011,1050.5746750533581,25.047560006380081" EntityClass="Light" EntityId="264" EntityGuid="4138B212FACCE07A" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
     <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
-  <Object Type="Group" Name="1-010" Pos="977.4729830881912,1026.9545860229991,25.150057892827636" Rotate="0.92387956,0,0,-0.38268343" Scale="1,1,1"/>
-  <Entity Name="AreaBox001" Pos="979.95943149341474,1026.9215838655389,21.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaBox" EntityId="231" EntityGuid="4839F1A5742C1B7C" CastShadowMinSpec="1" Layer="Gameplay">
-   <Area Id="-1" Group="0" Proximity="0" Priority="0" BoxMin="-2.5,-2.5,0" BoxMax="2.5,2.5,5">
-    <SoundData>
-     <Side1 ObstructSound="0"/>
-     <Side2 ObstructSound="0"/>
-     <Side3 ObstructSound="0"/>
-     <Side4 ObstructSound="0"/>
-     <Side5 ObstructSound="0"/>
-     <Side6 ObstructSound="0"/>
-    </SoundData>
-    <Entities>
-     <Entity Id="245"/>
-    </Entities>
-   </Area>
-  </Entity>
-  <Entity Name="Light_Console_PanelL" Pos="981.6771234237101,1024.2704781343391,22.431215046904981" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="256" EntityGuid="4AE3AFEA2E9CDA7C" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
-    <Color clrDiffuse="0.863157,0.879623,0.879623" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
@@ -1896,15 +1863,8 @@
    <Properties fAudioSignature="0" bEnabled="1" bIsManagedAudioObject="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="Play_NTWT_Water_Fish_Tank_Bubbles" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName="" nVoiceCount="1"/>
   </Entity>
   <Entity Name="Camera_ArtReview_04" Pos="974.02105712890625,1058.1422119140625,23.8114013671875" Rotate="0.98896307,-0.016044581,-0.0023892811,0.14727159" EntityClass="CameraSource" EntityId="219" EntityGuid="4658E313B617C784" CastShadowMinSpec="1" Layer="Not_exported"/>
-  <Entity Name="Light-046" Pos="974.94999980926514,1053.0639491677284,25.591504007577896" Rotate="0.67559016,0,0.73727739,0" Scale="1.0000001192092896,1,1.0000001192092896" EntityClass="Light" EntityId="269" EntityGuid="4C39AFECBA91FF84" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
-    <Color clrDiffuse="1,0.3564,0.168269" fDiffuseMultiplier="0.5" fSpecularMultiplier="1"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="140" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="1" fPlaneHeight="8" fPlaneWidth="0.1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
+  <Entity Name="AutomaticDoorPanel_Elevator_Right" Pos="979.95943153405381,1025.7342960987135,20.876821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AutomaticDoorPanel" EntityId="249" EntityGuid="48367D7908423085" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties fAcceleration="3" sAxis="y" objModel="objects/brush/planet/uee/generic_elevator/generic_elevator_door_r.cgf" fRange="-1.5" fSpeed="3" fStopTime="0.25"/>
   </Entity>
   <Entity Name="Light-113" Pos="977.40071590989828,1063.5018545389175,23.138078623768191" Rotate="0.53366029,0.53366017,0.46390387,-0.46390375" EntityClass="Light" EntityId="126" EntityGuid="4DB787BF7BF33F85" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="3" _nVersion="0">
@@ -1941,16 +1901,6 @@
     <Edges />
     <GraphTokens />
    </FlowGraph>
-  </Entity>
-  <Entity Name="Light-003" Pos="978.26762560422492,1022.2277935325013,23.526567219756544" Rotate="0.70441598,0.70441604,-0.061628435,-0.061628357" EntityClass="Light" EntityId="241" EntityGuid="4C904A265F1F1C89" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
-    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
   </Entity>
   <Object Type="Decal" Name="Decal001-003" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="985.0002346939873,1054.5590132623911,20.7719276517455" Rotate="0.26602814,-0.013047808,-0.064406179,0.96172273" Scale="0.75999999,0.75999999,0.75999999" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="Light-041" Pos="982.375,1069.375,25.403307542204857" Rotate="-0.39613879,0.62181342,-0.36299431,-0.56978703" EntityClass="Light" EntityId="130" EntityGuid="4B84D9A8809BDC89" CastShadowMinSpec="8" Layer="Lights_MDB">
@@ -2082,25 +2032,6 @@
     </Entities>
    </Area>
   </Entity>
-  <Entity Name="Light-049" Pos="970.80560624599457,1055.7692387998104,25.650028616189957" EntityClass="Light" EntityId="263" EntityGuid="424FE43C89333B94" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
-  <Entity Name="TransportElevatorConsole-001" Pos="981.95943154554027,1023.3987154213083,22.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="TransportElevatorConsole" EntityId="239" EntityGuid="49CC8DCD4A974794" CastShadowMinSpec="1" Layer="Gameplay">
-   <EntityLinks>
-    <Link TargetId="233" Name="player_position"/>
-    <Link TargetId="232" Name="player_lookAt"/>
-   </EntityLinks>
-   <Properties HitPoints="0" initialSetup="" bMounted="0" bNetworkSync="1" eiPhysicsType="2" bPickable="0" soclasses_SmartObjectClass="" bSpecialSelect="0" bUsable="1">
-    <Respawn nRemovalTimer="30" bRemove="0" bRespawn="0" nTimer="30" bUnique="0"/>
-   </Properties>
-  </Entity>
   <Entity Name="Light-147" Pos="976.29207332452927,1047.25,20.989999988935889" Rotate="1,0,0,8.7422777e-008" EntityClass="Light" EntityId="115" EntityGuid="4227482FD06B2895" CastShadowMinSpec="8" Layer="Lights_MDB">
    <EntityLinks>
     <Link TargetId="12" Name="NewLink"/>
@@ -2143,13 +2074,13 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-046" Pos="977.4550096988678,1050.5496750771999,25.591504007577896" Rotate="0.67559016,0,0.73727739,0" Scale="1.0000001192092896,1,1.0000001192092896" EntityClass="Light" EntityId="265" EntityGuid="469A1E4D84D97A9A" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
-    <Color clrDiffuse="1,0.3564,0.168269" fDiffuseMultiplier="0.5" fSpecularMultiplier="1"/>
+  <Entity Name="Light-048" Pos="973.94625425338745,1055.7692387998104,25.047560006380081" EntityClass="Light" EntityId="260" EntityGuid="46B74D6045D4C798" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="140" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="1" fPlaneHeight="8" fPlaneWidth="0.1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
@@ -2184,7 +2115,16 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="PrefabPivot001" Pos="977.95943159610033,1025.9215838313103,20.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="PrefabPivot" EntityId="234" EntityGuid="430BDC16A3F0D99D" CastShadowMinSpec="1" Layer="Gameplay"/>
+  <Entity Name="Light-007" Pos="981.63397629333451,1025.5780182664059,23.526567219756544" Rotate="0.06162842,0.061628543,0.70441604,0.70441604" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="238" EntityGuid="4B7901AE3D633D9E" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
+    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="bar_mmhc_chandelier_6-001" ParentId="211" EntityClass="GeomEntity" EntityId="212" EntityGuid="4B0E6116CB0A669E" CastShadowMinSpec="1" Layer="Props_MDB" Geometry="Objects/buildingsets/human/shop/india/mmhc/prop/bar_mmhc_chandelier_6.cgf">
    <Properties esFaction="">
     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
@@ -2246,6 +2186,21 @@
     </Points>
    </Area>
   </Entity>
+  <Entity Name="AreaBox001" Pos="979.95943149341474,1026.9215838655389,21.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaBox" EntityId="231" EntityGuid="47B43EF0E685D5A2" CastShadowMinSpec="1" Layer="Gameplay">
+   <Area Id="-1" Group="0" Proximity="0" Priority="0" BoxMin="-2.5,-2.5,0" BoxMax="2.5,2.5,5">
+    <SoundData>
+     <Side1 ObstructSound="0"/>
+     <Side2 ObstructSound="0"/>
+     <Side3 ObstructSound="0"/>
+     <Side4 ObstructSound="0"/>
+     <Side5 ObstructSound="0"/>
+     <Side6 ObstructSound="0"/>
+    </SoundData>
+    <Entities>
+     <Entity Id="245"/>
+    </Entities>
+   </Area>
+  </Entity>
   <Object Type="Decal" Name="Decal_FT01_Caustic_Wall_01" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_org_caustic" Pos="979.7756328471005,1071.5485612750053,23.770361691713333" Rotate="3.090862e-008,-3.0908623e-008,0.70710677,-0.70710677" Scale="3.9672036,3.9672041,3.9672036" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="FogVolume_Fishtank1" Pos="986.82500000000005,1054,20.796399999999998" EntityClass="FogVolume" EntityId="189" EntityGuid="4ED734FFD5988EA4" CastShadowMinSpec="1" Layer="Lights_MDB">
    <Properties bActive="1" color_Color="0.304987,0.527115,0.991102" DensityOffset="0" FallOffDirLati="270" FallOffDirLong="0" FallOffScale="0.5" FallOffShift="0" GlobalDensity="0.0015" fHDRDynamic="0" NearCutoff="0" SoftEdges="1" bUseGlobalFogColor="0" iVolumeType="1">
@@ -2263,32 +2218,8 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="player_lookat" Pos="981.87993085479059,1023.9324640270266,22.348686455748975" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="TagPoint" EntityId="232" EntityGuid="46691773D3E480A5" CastShadowMinSpec="1" Layer="Gameplay"/>
   <Object Type="Decal" Name="Decal001-025" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="980.42732151481323,1068.3520707301795,20.654215380112873" Rotate="0.71193063,-0.010032347,0.12738003,-0.69052768" Scale="0.87425548,0.8742553,0.87425548" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
-  <Entity Name="AutomaticDoor_Elevator" Pos="979.95943152764323,1025.9215838997673,20.501821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AutomaticDoor" EntityId="248" EntityGuid="43EE432EB6BBDDA6" CastShadowMinSpec="1" Layer="Gameplay">
-   <EntityLinks>
-    <Link TargetId="242" Name="NewLink"/>
-    <Link TargetId="249" Name="NewLink"/>
-   </EntityLinks>
-   <Properties bActivatePortal="0" fAutoCloseDelay="0.5" fAutoLockDelay="-1" vectorFront="1,0,0" bInterruptClose="0" fInterruptTransitionTime="0" bLocked="0" bLockedBackwards="0" bLockedForwards="0" objModel="" iSecurityLevel="0" bStartOpen="0" bUsable="0" bUsableWhenLocked="1" vectorUseArea="7,6,6" fUseAreaZOffset="0">
-    <AudioTriggers audioTriggerAccessDeniedStart="" audioTriggerAccessDeniedStop="" audioTriggerDoorClosedStart="" audioTriggerDoorClosedStop="" audioTriggerDoorCloseStart="" audioTriggerDoorCloseStop="" audioTriggerDoorClosingStart="Play_MCLF_hangar_business_elevator_door_close_slide" audioTriggerDoorClosingStop="Play_MCLF_hangar_business_elevator_door_close_stop" audioTriggerDoorLockStart="" audioTriggerDoorLockStop="" audioTriggerDoorOpenedStart="" audioTriggerDoorOpenedStop="" audioTriggerDoorOpeningStart="Play_MCLF_hangar_business_elevator_door_open_slide" audioTriggerDoorOpeningStop="Play_MCLF_hangar_business_elevator_door_open_stop" audioTriggerDoorOpenStart="" audioTriggerDoorOpenStop="" audioTriggerDoorUnlockStart="" audioTriggerDoorUnlockStop=""/>
-    <AutoLockDirection bBackwards="1" bForwards="1"/>
-    <CloseState Animation="" BlastAnimation=""/>
-    <OpenState Animation="" BlastAnimation=""/>
-   </Properties>
-   <Area Id="-1" Group="-1" Proximity="5" Priority="0" BoxMin="-3.5,-3,0" BoxMax="3.5,3,6">
-    <SoundData>
-     <Side1 ObstructSound="0"/>
-     <Side2 ObstructSound="0"/>
-     <Side3 ObstructSound="0"/>
-     <Side4 ObstructSound="0"/>
-     <Side5 ObstructSound="0"/>
-     <Side6 ObstructSound="0"/>
-    </SoundData>
-    <Entities>
-     <Entity Id="248"/>
-    </Entities>
-   </Area>
-  </Entity>
   <Entity Name="Light-039" Pos="982.62887058407068,1057.9833426326513,22.928603121396403" Rotate="-0.27059808,0.27059802,-0.65328145,-0.65328145" EntityClass="Light" EntityId="194" EntityGuid="486EE660FE1C9AA7" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="6" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="2" fSpecularMultiplier="1"/>
@@ -2343,9 +2274,18 @@
    </Properties>
   </Entity>
   <Object Type="Decal" Name="Decal001-016" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="987.27920658211224,1052.5775948140654,21.313063891400816" Rotate="0.98781437,-0.016017478,-0.087039776,-0.12802467" Scale="1.52,1.52,1.52" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
+  <Entity Name="Light-011" Pos="981.67713678723942,1023.9172824791621,22.431215046904981" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="240" EntityGuid="4AAE573EF7B47CAE" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
+    <Color clrDiffuse="0.863157,0.879623,0.879623" fDiffuseMultiplier="0.4" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Object Type="Decal" Name="Decal001-002" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="984.94271335075609,1055.4622707664967,20.823280268843519" Rotate="0.9083944,-0.0033819429,-0.064688094,-0.41306612" Scale="0.75999999,0.75999999,0.75999999" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
-  <Object Type="Group" Name="Group008-004" Pos="978.75,1034,26.25" Scale="1,1,1"/>
-  <Entity Name="Light-049" Pos="970.80560624599457,1053.0889491438866,25.650028616189957" EntityClass="Light" EntityId="271" EntityGuid="4E710394C9E752AF" CastShadowMinSpec="8" Layer="Lights_MDB">
+  <Entity Name="Light-075" Pos="977.14993906021118,1055.7692387998104,25.023449778556824" EntityClass="Light" EntityId="262" EntityGuid="483F7AF461BABBAE" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
@@ -2355,6 +2295,7 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Object Type="Group" Name="Group008-004" Pos="978.75,1034,26.25" Scale="1,1,1"/>
   <Entity Name="Light-092" Pos="975.31885328143835,1043.2394649176858,25.147231876224396" Rotate="0.50012219,-0.49987778,0.49987778,0.50012219" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="175" EntityGuid="4E1822B56565C2AF" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -2365,12 +2306,12 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-048" Pos="973.94625425338745,1053.0889491438866,25.047560006380081" EntityClass="Light" EntityId="268" EntityGuid="4DF53F86C233E2B0" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+  <Entity Name="Light-002" Pos="979.89399404347296,1023.9085572521055,23.526567219756544" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="257" EntityGuid="48AE89133D34ECB1" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
+    <Color clrDiffuse="0.630757,0.791298,0.768151" fDiffuseMultiplier="0.5" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="1" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
@@ -2391,6 +2332,17 @@
   <Entity Name="AAA_MMHC_Bar_Amb" Pos="970.68473243713379,1056.1291656494141,24.522810459136963" EntityClass="AudioAreaAmbience" EntityId="52" EntityGuid="4B7D24EF6FB55DB3" CastShadowMinSpec="1" Layer="Audio_MDB">
    <Properties fAudioSignature="0" bEnabled="1" audioEnvironmentEnvironment="Domestic_Living_Room_02" fEnvironmentDistance="3" audioTriggerPlayTrigger="Play_ENVA_Bar_Counter_Amb" audioRTPCRtpc="area_fade_distance" fRtpcDistance="3" eiSoundObstructionType="1" audioTriggerStopTrigger="" audioSwitchSwitch="" audioStateSwitchStateFar="" audioStateSwitchStateInside="" audioStateSwitchStateNear=""/>
   </Entity>
+  <Entity Name="Light_Console_Emitter01" Pos="981.76781691254973,1023.7408608460011,22.510492323897779" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="235" EntityGuid="4439D9BEBF2402B4" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
+    <Color clrDiffuse="0.686685,0.814847,0.887923" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="PrefabPivot001" Pos="977.95943159610033,1025.9215838313103,20.001821278594434" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="PrefabPivot" EntityId="234" EntityGuid="4E03E4A473538FB4" CastShadowMinSpec="1" Layer="Gameplay"/>
   <Entity Name="Probe_Hallway" Pos="979.99170000000004,1033.3538000074507,23.25" EntityClass="EnvironmentLight" EntityId="226" EntityGuid="4BB29D06DF3BA7B4" CastShadowMinSpec="1" Layer="Lights">
    <Properties bActive="1" BoxSizeX="8" BoxSizeY="18" BoxSizeZ="10" _bCheapLight="1" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -2482,6 +2434,16 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="Light-049" Pos="973.31061613559723,1050.5746750533581,25.650028616189957" EntityClass="Light" EntityId="267" EntityGuid="4BEA4B707F840FBB" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Object Type="Decal" Name="Decal001-007" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="984.43869599769823,1052.3319998681545,20.763823477347614" Rotate="0.18038046,-0.13315654,0.044297121,0.97353482" Scale="0.90440005,0.90440011,0.90440005" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="Light-157" Pos="980,1053.6065000000001,23.449999999999999" Rotate="0.70722896,0,-0.70698458,0" EntityClass="Light" EntityId="20" EntityGuid="49BE2776F03BFEBB" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
@@ -2511,6 +2473,16 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="Light-004" Pos="978.26762560422492,1022.2277935325013,22.615832566283643" Rotate="0.70441598,0.70441604,-0.061628435,-0.061628357" EntityClass="Light" EntityId="237" EntityGuid="4071A0A56ADA53C0" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
+    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Object Type="Decal" Name="Decal001" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="984.83397920499556,1055.7012398540974,20.791656521643745" Rotate="0.88670695,-0.023219239,-0.012087169,0.46159032" Scale="1.1932,1.1932,1.1932" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="bar_mmhc_chandelier_5-003" ParentId="210" EntityClass="GeomEntity" EntityId="211" EntityGuid="4B3E22D6971E5DC2" CastShadowMinSpec="1" Layer="Props_MDB" Geometry="Objects/buildingsets/human/shop/india/mmhc/prop/bar_mmhc_chandelier_5.cgf">
    <Properties esFaction="">
@@ -2527,16 +2499,6 @@
     <Edges />
     <GraphTokens />
    </FlowGraph>
-  </Entity>
-  <Entity Name="Light-010" Pos="978.26762531073769,1025.5780183597969,23.526567219756544" Rotate="0.7044161,-0.70441598,-0.06162836,0.061628453" Scale="1,0.99999994039535522,1" EntityClass="Light" EntityId="254" EntityGuid="4891B4279E43D3C3" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
-    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
   </Entity>
   <Entity Name="LightBox_Table1" Pos="972.05089999999996,1046.1143,21.48005037009716" EntityClass="LightBox" EntityId="10" EntityGuid="4F13C52BDB8BC0C4" CastShadowMinSpec="1" Layer="Lights_MDB">
    <Area Id="-1" Group="0" Proximity="0" Priority="0" BoxMin="-0.75,-0.75,0" BoxMax="0.75,0.75,0.1">
@@ -2574,7 +2536,7 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-008" Pos="981.63397629333451,1025.5780182664059,22.615832566283643" Rotate="0.06162842,0.061628543,0.70441604,0.70441604" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="250" EntityGuid="4C8DA43E9FBBBCC6" CastShadowMinSpec="8" Layer="Gameplay">
+  <Entity Name="Light-010" Pos="978.26762531073769,1025.5780183597969,23.526567219756544" Rotate="0.7044161,-0.70441598,-0.06162836,0.061628453" Scale="1,0.99999994039535522,1" EntityClass="Light" EntityId="254" EntityGuid="4A5C97FA3011CAC7" CastShadowMinSpec="8" Layer="Gameplay">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
     <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
@@ -2614,9 +2576,7 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Object Type="Decal" Name="Decal_FT01_Caustic_Wall_02" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_org_caustic" Pos="979.98144323006272,1069.8163549005985,23.770361691713333" Rotate="0.70710677,0.70710677,6.1817246e-008,2.5121479e-015" Scale="3.9672036,3.9672041,3.9672036" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
-  <Object Type="Group" Name="Group010-001" Pos="979.90000000000009,1029.8499999880792,26.400000000000002" Rotate="0.70710677,0,0,0.70710677" Scale="1,1,1"/>
-  <Entity Name="Light-075" Pos="977.14993906021118,1055.7692387998104,25.023449778556824" EntityClass="Light" EntityId="262" EntityGuid="4545EB28932F05CC" CastShadowMinSpec="8" Layer="Lights_MDB">
+  <Entity Name="Light-075" Pos="979.65494894981384,1050.5746750533581,25.023449778556824" EntityClass="Light" EntityId="266" EntityGuid="447B574F8B5827C9" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
@@ -2626,6 +2586,8 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Object Type="Decal" Name="Decal_FT01_Caustic_Wall_02" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_org_caustic" Pos="979.98144323006272,1069.8163549005985,23.770361691713333" Rotate="0.70710677,0.70710677,6.1817246e-008,2.5121479e-015" Scale="3.9672036,3.9672041,3.9672036" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
+  <Object Type="Group" Name="Group010-001" Pos="979.90000000000009,1029.8499999880792,26.400000000000002" Rotate="0.70710677,0,0,0.70710677" Scale="1,1,1"/>
   <Entity Name="Light-029" Pos="975.99678568542004,1043.3579931557178,23.10423369705677" Rotate="0.65328145,-0.27059805,0.27059811,0.65328151" EntityClass="Light" EntityId="22" EntityGuid="4C6E35B7017054CC" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -2664,8 +2626,21 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="Light-008" Pos="981.63397629333451,1025.5780182664059,22.615832566283643" Rotate="0.06162842,0.061628543,0.70441604,0.70441604" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="250" EntityGuid="4EDF444F2DAAE4CE" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
+    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="AutomaticDoorPanel-010" Pos="980,1042,21" Rotate="0.70710665,0,0,0.70710689" EntityClass="AutomaticDoorPanel" EntityId="100" EntityGuid="43587152B87E7DCF" CastShadowMinSpec="1" Layer="Gameplay_MDB">
    <Properties fAcceleration="3" sAxis="y" objModel="objects/buildingsets/human/shop/india/mmhc/int/bar_mmhc_exit_door_left.cgf" fRange="-1" fSpeed="2" fStopTime="0.5"/>
+  </Entity>
+  <Entity Name="AAA_elevator_tone" Pos="979.22443122694654,1017.609900504321,19.925626515410841" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AudioAreaAmbience" EntityId="246" EntityGuid="4769683A406283CF" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties fAudioSignature="0" bEnabled="1" audioEnvironmentEnvironment="Intimate_Room" fEnvironmentDistance="3" audioTriggerPlayTrigger="Play_LCAM_hangar_business_elevator_tone_02" audioRTPCRtpc="area_fade_distance" fRtpcDistance="3" eiSoundObstructionType="1" audioTriggerStopTrigger="" audioSwitchSwitch="" audioStateSwitchStateFar="" audioStateSwitchStateInside="" audioStateSwitchStateNear=""/>
   </Entity>
   <Entity Name="Fog_Ground" Pos="976,1054.4612773358822,20" EntityClass="FogVolume" EntityId="23" EntityGuid="4782F4F31398DFCF" CastShadowMinSpec="1" Layer="Lights_MDB">
    <Properties bActive="1" color_Color="0.0908417,0.205079,0.332452" DensityOffset="0" FallOffDirLati="90" FallOffDirLong="0" FallOffScale="0.5" FallOffShift="0" GlobalDensity="0.0025" fHDRDynamic="0" NearCutoff="0" SoftEdges="1" bUseGlobalFogColor="0" iVolumeType="1">
@@ -2677,10 +2652,20 @@
     <Audio bEnableAudio="1" bIsManagedAudioObject="0" audioRTPCRtpc="particlefx"/>
    </Properties>
   </Entity>
-  <Entity Name="AreaTrigger-001" Pos="979.95943152764323,1025.9215838997673,23.001821040175855" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaTrigger" EntityId="245" EntityGuid="4B7A189A817F52D1" CastShadowMinSpec="1" Layer="Gameplay">
-   <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
-    <MultiplayerOptions bNetworked="0" bPerPlayer="0"/>
-   </Properties>
+  <Entity Name="AS_elevator_tone" Pos="981.97211057255959,1025.5192654749962,19.92562600877136" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="230" EntityGuid="4BDE374C85BFF9D1" CastShadowMinSpec="1" Layer="Gameplay">
+   <Area Id="0" Group="1" Proximity="0" Priority="40" Height="6.5">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="1"/>
+     <Point Pos="-0.093680859,-0.50585604,0" ObstructSound="0"/>
+     <Point Pos="-0.098470449,-3.5716572,0" ObstructSound="1"/>
+     <Point Pos="0.17016792,-3.9630442,0" ObstructSound="1"/>
+     <Point Pos="3.40377,-4.0110602,0" ObstructSound="1"/>
+     <Point Pos="3.4280229,-0.040925503,0" ObstructSound="1"/>
+    </Points>
+    <Entities>
+     <Entity Id="246"/>
+    </Entities>
+   </Area>
   </Entity>
   <Entity Name="Light-176" Pos="982.4329833984375,1027.37158203125,22.78277587890625" Rotate="0.50000006,5.9604641e-008,0.70710683,0.49999994" EntityClass="Light" EntityId="24" EntityGuid="4A8AD1E5C3763AD2" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="6" _nVersion="0">
@@ -2789,6 +2774,16 @@
     </Points>
    </Area>
   </Entity>
+  <Entity Name="Light-049" Pos="970.80560624599457,1055.7692387998104,25.650028616189957" EntityClass="Light" EntityId="263" EntityGuid="4E353D24AA0B89DA" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="Light-148" Pos="976.95169012605731,1034.6796267001769,23.689052890567428" Rotate="0.70727956,-1.2098661e-008,0.70693398,3.3214043e-008" EntityClass="Light" EntityId="184" EntityGuid="400E9E7642FF9DDA" CastShadowMinSpec="8" Layer="Lights">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
     <Color clrDiffuse="0.445201,0.686685,1" fDiffuseMultiplier="0.1" fSpecularMultiplier="1"/>
@@ -2852,22 +2847,22 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Light-011" Pos="981.67713678723942,1023.9172824791621,22.431215046904981" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="240" EntityGuid="4919102D92B25EDF" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
-    <Color clrDiffuse="0.863157,0.879623,0.879623" fDiffuseMultiplier="0.4" fSpecularMultiplier="0"/>
+  <Entity Name="Camera_ArtReview_03" Pos="975.55572509765625,1054.6934814453125,21.615938186645508" Rotate="0.95484042,-0.12305168,0.034566194,-0.26822227" EntityClass="CameraSource" EntityId="216" EntityGuid="4752F274BAB987DF" CastShadowMinSpec="1" Layer="Not_exported"/>
+  <Entity Name="Light-003" Pos="978.26762560422492,1022.2277935325013,23.526567219756544" Rotate="0.70441598,0.70441604,-0.061628435,-0.061628357" EntityClass="Light" EntityId="241" EntityGuid="44F0DDBB038932E0" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
+    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
-  <Entity Name="Camera_ArtReview_03" Pos="975.55572509765625,1054.6934814453125,21.615938186645508" Rotate="0.95484042,-0.12305168,0.034566194,-0.26822227" EntityClass="CameraSource" EntityId="216" EntityGuid="4752F274BAB987DF" CastShadowMinSpec="1" Layer="Not_exported"/>
-  <Entity Name="Light-002" Pos="979.89399404347296,1023.9085572521055,23.526567219756544" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="257" EntityGuid="44E898AE3B5CCDE4" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
-    <Color clrDiffuse="0.630757,0.791298,0.768151" fDiffuseMultiplier="0.5" fSpecularMultiplier="0"/>
+  <Entity Name="Light_Console_PanelR" Pos="981.67712343206256,1024.0264552964697,22.431215046904981" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="243" EntityGuid="497D6CCA1239DEE5" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
+    <Color clrDiffuse="0.863157,0.879623,0.879623" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="1" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
     <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
     <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
@@ -2880,6 +2875,16 @@
     <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
     <Projector fProjectorFov="180" fProjectorNearPlane="0" texture_Texture=""/>
     <Shape bAreaLight="1" fPlaneHeight="1" fPlaneWidth="0.025" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
+  <Entity Name="Light_Console_Emitter03" Pos="981.70337571068433,1023.7408608437954,22.360009669326246" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="247" EntityGuid="43E33E924B25A3E6" CastShadowMinSpec="8" Layer="Gameplay">
+   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
+    <Color clrDiffuse="0.686685,0.814847,0.887923" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
@@ -2931,16 +2936,6 @@
     </SoundData>
    </Area>
   </Entity>
-  <Entity Name="Light_Console_Emitter02" Pos="981.73607624820033,1023.7408608449147,22.43530988600105" Rotate="0.70710671,3.0045229e-008,0.70710683,5.4248471e-008" Scale="1,0.99999994039535522,0.99999994039535522" EntityClass="Light" EntityId="258" EntityGuid="4750A1BC0DB60FEB" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="0" _bCheapLight="0" bForceDisableCheapLight="0" Radius="0.5" _nVersion="0">
-    <Color clrDiffuse="0.686685,0.814847,0.887923" fDiffuseMultiplier="0.2" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="160" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
-  </Entity>
   <Entity Name="Light-091" Pos="972.99899782985449,1056.2504696473479,22.504122260957956" Rotate="0.70710671,0,0.70710683,0" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="153" EntityGuid="46806DC79DA348EB" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="5" _nVersion="0">
     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="1"/>
@@ -2981,6 +2976,14 @@
     <Audio bEnableAudio="1" bIsManagedAudioObject="0" audioRTPCRtpc="particlefx"/>
    </Properties>
   </Entity>
+  <Entity Name="EnvironmentProbe002" Pos="979.96062941480614,1023.8104089117986,23.002451418899" Rotate="0.70710683,0,0,-0.70710677" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="EnvironmentLight" EntityId="259" EntityGuid="4DA44A4D93DFF8ED" CastShadowMinSpec="1" Layer="Gameplay">
+   <Properties bActive="1" BoxSizeX="4" BoxSizeY="4" BoxSizeZ="6" _bCheapLight="1" _nVersion="0">
+    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fSpecularMultiplier="0.75"/>
+    <Options bAffectsThisAreaOnly="1" fAttenuationFalloffMax="0" _texture_deferred_cubemap="" bDeferredClipBounds="0" bIgnoresVisAreas="0" SortPriority="1"/>
+    <OptionsAdvanced texture_deferred_cubemap="Textures/cubemaps/elevator_sizeb/environmentprobe002_cm.tif"/>
+    <Projection fBoxHeight="6" fBoxLength="4" bBoxProject="1" fBoxWidth="4" bUseLightBox="0" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="Light-038" Pos="980.25,1068.9182728007436,26.391098141670227" Rotate="0.70710677,0,0.70710683,0" EntityClass="Light" EntityId="28" EntityGuid="48AF5B4CF3A715F0" CastShadowMinSpec="8" Layer="Lights_MDB">
    <EntityLinks>
     <Link TargetId="13" Name="NewLink"/>
@@ -3014,6 +3017,16 @@
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
+  <Entity Name="Light-046" Pos="974.94999980926514,1055.7442388236523,25.591504007577896" Rotate="0.67559016,0,0.73727739,0" Scale="1.0000001192092896,1,1.0000001192092896" EntityClass="Light" EntityId="261" EntityGuid="42EAAD17DBDF9EF1" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
+    <Color clrDiffuse="1,0.3564,0.168269" fDiffuseMultiplier="0.5" fSpecularMultiplier="1"/>
+    <LightSound bSoundEnable="0" soundSoundName=""/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="140" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="1" fPlaneHeight="8" fPlaneWidth="0.1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
+   </Properties>
+  </Entity>
   <Entity Name="Light-099" Pos="982.30223181843758,1054.0000003576279,25.496631786227226" Rotate="0.4924235,0,0.87035573,0" EntityClass="Light" EntityId="29" EntityGuid="4E1E0ABF250648F2" CastShadowMinSpec="8" Layer="Lights_MDB">
    <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="11" _nVersion="0">
     <Color clrDiffuse="1,0.637597,0.337164" fDiffuseMultiplier="15" fSpecularMultiplier="1"/>
@@ -3026,13 +3039,13 @@
   </Entity>
   <Object Type="Group" Name="1-002" Pos="969.47459075599909,1043.4523106156848,25.150057892853511" Rotate="0.92387956,0,0,-0.38268346" Scale="1,1,1"/>
   <Object Type="Decal" Name="Decal001-028" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="981.76810445520096,1070.4478249438107,21.108831116493093" Rotate="-0.016400745,-0.31614256,-0.092580236,0.94404119" Scale="0.83974552,0.83974546,0.8397454" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
-  <Entity Name="Light-005" Pos="981.63397640800781,1022.2277936477266,23.526567219756544" Rotate="-0.061628528,0.061628394,-0.70441592,0.70441616" Scale="0.99999994039535522,1,0.99999994039535522" EntityClass="Light" EntityId="255" EntityGuid="4905F215DCC7C1F3" CastShadowMinSpec="8" Layer="Gameplay">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1.5" _nVersion="0">
-    <Color clrDiffuse="0.502886,0.752942,0.982251" fDiffuseMultiplier="2" fSpecularMultiplier="0"/>
+  <Entity Name="Light-046" Pos="974.94999980926514,1053.0639491677284,25.591504007577896" Rotate="0.67559016,0,0.73727739,0" Scale="1.0000001192092896,1,1.0000001192092896" EntityClass="Light" EntityId="269" EntityGuid="44C0DF84C58282F3" CastShadowMinSpec="8" Layer="Lights_MDB">
+   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="1" _nVersion="0">
+    <Color clrDiffuse="1,0.3564,0.168269" fDiffuseMultiplier="0.5" fSpecularMultiplier="1"/>
     <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="130" fProjectorNearPlane="0" texture_Texture="textures/lights/light_tube_soft_edge_01.tif"/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
+    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
+    <Projector fProjectorFov="140" fProjectorNearPlane="0" texture_Texture=""/>
+    <Shape bAreaLight="1" fPlaneHeight="8" fPlaneWidth="0.1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
    </Properties>
   </Entity>
@@ -3047,16 +3060,6 @@
      <Side6 ObstructSound="0"/>
     </SoundData>
    </Area>
-  </Entity>
-  <Entity Name="Light-048" Pos="973.94625425338745,1055.7692387998104,25.047560006380081" EntityClass="Light" EntityId="260" EntityGuid="48701834F820E2F4" CastShadowMinSpec="8" Layer="Lights_MDB">
-   <Properties bActive="1" _bCheapLight="1" bForceDisableCheapLight="0" Radius="2" _nVersion="0">
-    <Color clrDiffuse="1,1,1" fDiffuseMultiplier="0.3" fSpecularMultiplier="0"/>
-    <LightSound bSoundEnable="0" soundSoundName=""/>
-    <Options bAffectsThisAreaOnly="1" bAmbient="0" fAttenuationBulbSize="0.05" bAutoDetectClipBox="0" nCastShadows="0" bDeferredClipBounds="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" fFlareFOV="360" fFlareScale="1" bIgnoresVisAreas="0" fMaxShadowCastDist="0" fShadowBias="1" nShadowMinResPercent="0" fShadowResolutionScale="1" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="1"/>
-    <Projector fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
-    <Shape bAreaLight="0" fPlaneHeight="1" fPlaneWidth="1" vFadeDimensionsBottom="0" vFadeDimensionsFar="0" vFadeDimensionsLeft="0" vFadeDimensionsNear="0" vFadeDimensionsRight="0" vFadeDimensionsTop="0"/>
-    <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="" nLightStyle="0" fLuminance="0" bRandomAnimationPhase="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0"/>
-   </Properties>
   </Entity>
   <Object Type="Decal" Name="Decal001-005" Material="Objects/buildingsets/human/shop/india/mmhc/int/india_mmhc_int_rock_decal" Pos="984.8884672827553,1052.552898734808,20.800061326270225" Rotate="0.88221353,-0.0046544555,-0.1402542,-0.44945118" Scale="0.90440005,0.90440011,0.90440005" ProjectionType="0" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1"/>
   <Entity Name="Light-192" Pos="983.4472837338941,1037.6391523592176,24.113410174846649" Rotate="0.9238795,2.5091438e-008,0.38268346,-9.5626298e-008" EntityClass="Light" EntityId="114" EntityGuid="4053F0596B030EF5" ViewDistRatio="25" CastShadowMinSpec="8" Layer="Lights">
