@@ -1,18 +1,39 @@
-<ActivityTree>
- <Variables>
-  <Variable name="ExecuteSequence"/>
-  <Variable name="ExecuteInterruptibleSequence"/>
- </Variables>
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="subact_var_test01" value="somevalue02" type="string"/>
+  <Variable name="another test var" value="val val8" type="string"/>
+  <Variable name="newtestvar" type="string" value="a test value"/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+	<EvaluationParameter name="Priority" value="1" type="int"/>
+	<EvaluationParameter name="Probability" value="1" type="int"/>
+	<EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
  <SubActivityGraph>
   <Nodes>
-   <Task name="Root" id="1" pos="420,-330,0" class="TreeNode"/>
-   <Task name="JeffTest" id="2" pos="461,-235,0" class="TreeNode">
-    <Input name="sampleInputAttr" value="input value3" type="string"/>
-    <Output name="sampleOutputAttr" value="12" type="int"/>
+   <Task name="Initialize" id="1" pos="270,-390,0" class="InitNode"/>
+   <Task name="JeffTest" id="2" pos="30,-140,0" class="TreeNode">
+    <Input name="sampleInputAttr" value="blah2" type="string"/>
+   </Task>
+   <Task name="Use" id="3" pos="445,-209,0" class="TreeNode">
+    <Input name="User" type="string"/>
+    <Input name="Usable" type="string"/>
+    <Input name="Use Channel" type="string"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+   <Task name="JeffTest" id="4" pos="60,-40,0" class="TreeNode">
+    <Input name="sampleInputAttr" value="input value" type="string"/>
+    <Output name="sampleOutputAttr" value="10" type="int"/>
+   </Task>
+   <Task name="JeffTest" id="5" pos="185.01424,78.096466,0" class="TreeNode">
+    <Input name="sampleInputAttr" value="input value" type="string"/>
+    <Output name="sampleOutputAttr" value="10" type="int"/>
    </Task>
   </Nodes>
   <Edges>
    <Edge nodeIn="2" nodeOut="1" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="4" nodeOut="2" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="5" nodeOut="4" portIn="in" portOut="outSuccess" enabled="1"/>
   </Edges>
  </SubActivityGraph>
-</ActivityTree>
+</SubActivityData>

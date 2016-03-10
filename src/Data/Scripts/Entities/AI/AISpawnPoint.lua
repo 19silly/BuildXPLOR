@@ -4,6 +4,9 @@
  - @author	Chad Zamzow
 --]]
 
+-- Global value to track the number of AISpawnPoints so we can assign unique
+-- names to spawned entities in cases where we autogenerate the name
+AISpawnPointInstanceCounter = 0
 
 --[[
  - @class	AISpawnPoint
@@ -148,6 +151,11 @@ function AISpawnPoint:OnReset()
 	self.nSpawnCounter		= 0
 	self.iWaveID			= self.Properties.AIWavesXML.iWaveID
 	self.wavesTable			= {}
+	
+	if (self.nInstance == nil) then
+		AISpawnPointInstanceCounter = AISpawnPointInstanceCounter + 1
+		self.nInstance = AISpawnPointInstanceCounter
+	end
 end
 
 
@@ -242,7 +250,7 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 		if (argArchetype == "") then
 			params.archetype = memberParams.sArchetype
 			if (memberParams.sName == "") then
-				params.name = params.archetype.."_s"
+				params.name = params.archetype.."_"..self.nInstance
 			else
 				params.name = memberParams.sName
 			end

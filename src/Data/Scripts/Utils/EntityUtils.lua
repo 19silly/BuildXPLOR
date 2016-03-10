@@ -105,7 +105,6 @@ function MakeTargetableByAI( entity )
 	function entity:RegisterWithAI()
 		if (self.Properties.esFaction ~= "") then
 			CryAction.RegisterWithAI(self.id, AIOBJECT_TARGET);
-			AI.ChangeParameter(self.id, AIPARAM_FACTION, self.Properties.esFaction);
 		end
 	end
 
@@ -242,13 +241,15 @@ function MakeKillable( entity )
 			end
 
 			if (not self.friendlyFire) then
-				local reaction = AI.GetReactionOf(self.id, hit.shooterId);
+				if (System.GetEntity(hit.shooterId) ~= nil) then
+					local reaction = AI.GetReactionOf(self.id, hit.shooterId);
 
-				if (reaction == Friendly) then
-					self:ActivateOutput("Health", self:GetHealthRatio() * 100);
-					self:Event_Hit();
+					if (reaction == Friendly) then
+						self:ActivateOutput("Health", self:GetHealthRatio() * 100);
+						self:Event_Hit();
 
-					return false;
+						return false;
+					end
 				end
 			end
 

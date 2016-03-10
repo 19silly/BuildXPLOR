@@ -1,0 +1,387 @@
+<item name="behr_rifle_ballistic_01" class="Weapon" category="WeaponPersonal" priority="12" weaponParams="1">
+	<params>
+		<param name="giveable" value="1" />
+		<param name="pickable" value="1" />
+		<param name="usable" value="1" />
+		<param name="selectable" value="1" />
+		<param name="mountable" 	value="0" />
+		<param name="twoHanded" value="1" />
+
+		<param name="pose" value="stocked" />
+		<param name="itemClass" value="stocked" />
+		<param name="slidePose" value="stocked" />
+		<param name="suffix" value="shoulder" />
+
+		<param name="mass" value="3" />
+		<param name="drop_impulse" value="2" />
+		<param name="melee_attack_firemode" value="melee" />
+		<param name="select_delayed_grab_3P" value="1" />
+
+		<param name="deselectTime" value="0.5"   />
+		<param name="fast_select"  value="1" />
+		<param name="has_first_select" value="0" />
+		<param name="select" value="select" />
+		<param name="select_empty" value="select_empty" />
+
+		<param name="sprintToFireDelay" value="0.0" />
+		<param name="sprintToZoomDelay" value="0.0" />
+		<param name="autoReloadDelay" value="0.5" />
+		<param name="runToSprintBlendTime" value="0.2" />
+		<param name="sprintToRunBlendTime" value="0.2" />
+
+		<param name="itemType" value="WeaponPersonal" />
+		<param name="itemSubType" value="Medium" />
+		<param name="itemSize" value="1" />
+		<param name="itemManufactor" value="BEHR" />
+
+		<param name="usesMagazines" value="1" />
+		<param name="magazine_type_name" value="behr_rifle_ballistic_01_mag" />
+		<param name="extra_magazines" value="4" />
+
+		<param name="stat_accuracy" value="7" />
+		<param name="stat_rate_of_fire" value="7" />
+		<param name="stat_mobility" value="7" />
+		<param name="stat_damage" value="3" />
+		<param name="stat_range" value="5" />
+
+		<param name="tag" value="behr_rifle_ballistic_01" />
+		<param name="adb" value="Items/Weapons/FPS/behr_rifle_ballistic_01.adb" />
+
+		<param name="tags" value="587,818"/>
+		<param name="price" value="99999"/>
+		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/SMG_Behring_P4SC.tif" />
+	</params>
+
+	<FPSDebug>
+		<param name="alerted_position" value="-0.1,0.15,-0.13" />
+		<param name="ironsight_position" value="-0.2, 0, -0.087" />
+	</FPSDebug>
+
+	<WeaponOffset>
+		<param name="alerted_position" value="0,0,0" />
+		<param name="alerted_rotation" value="0,0,0" />
+	</WeaponOffset>
+
+	<MovementModifiers speedScale="1.0" rotationScale="1.0" >
+		<Ironsight speedScale="1.0" rotationScale="0.33" mouseRotationScale="0.9" />
+	</MovementModifiers>
+
+	<ai_descriptor handler="instant" draw_time="2" burstBulletCountMin="5" burstBulletCountMax="9" burstPauseTimeMin="0.4" burstPauseTimeMax="0.9" singleFireTriggerTime="-1" pressureMultiplier="1" coverFireTime="3.0" />
+
+	<geometry>
+		<firstperson name="Objects/fps_weapons/weapons/behr/machineguns/behr_p4sc.cdf"/>
+		<thirdperson name="Objects/fps_weapons/weapons/behr/machineguns/behr_p4sc.cdf"/>
+	</geometry>
+
+	<firemodes>
+		<firemode type="default">
+			<fire>
+				<param name="tag" value="rapid"/>
+				<param name="reticle" value="SMG" />
+				<param name="hit_type" value="10mm_pistol_ballistic" />
+				<param name="rate" value="700" />
+				<param name="auto_fire" value="1" />
+				<param name="ammoDamageMultiplier" value="1" />
+				<param name="changeFMFireDelayFraction" value="1.0" />
+				<param name="bullet_chamber" value="0" />
+				<param name="lowAmmoWarningFraction" value="0.26"/>
+				<param name="helper_fp" value="muzzle_flash" />
+				<param name="helper_tp" value="muzzle_flash" />
+				<param name="nearmiss_signal" value="OnNearMiss" />
+				<param name="reload_time" value="1.8" />
+				<param name="fillAmmoReloadFraction" value="0.60" />
+				<param name="endReloadFraction" value="0.90" />
+				<param name="knocks_target" value="0"/>
+				<param name="min_damage_for_knockDown" value="0"/>
+				<param name="min_damage_for_knockDown_leg" value="10"/>
+				<param name="holdbreath_ffeedback_damp" value="1.0" />
+				<param name="holdbreath_fire_anim_damp" value="1.0" />
+				<param name="ironsight_fire_anim_damp" value="1.0" />
+				<param name="sound_radius" value="50.0" />
+
+				<param name="accuracy_fade_in_per_shot" value="0.2" />
+				<param name="accuracy_fade_out_time"    value="0.3" />
+			</fire>
+			<!-- See CSingle::UpdateRecoil() to see how it works. -->
+			<recoil>
+				<!-- These params are in degrees. -->
+				<param name="startCamMove"       value="0.0"       />
+				<param name="max"                value="15.0, 35.0" />
+				<param name="shot_kick_first"    value="0.8"       />
+				<param name="shot_kick"          value="0.6"       />
+				<param name="decay"              value="3.2"       />
+				<param name="end_decay"          value="35.0"      />
+
+				<param name="camRotScalar"       value="1.6"       /><!-- Amplifies the camera rotation during hip fire. -->
+
+				<!-- 1.0 is 100% to the left. O.0 is all the way to the right, or 0% to the left. 0.5 is in the middle. -->
+				<param name="pull_left_percent"  value="0.5" />
+
+				<param name="shot_random"        value="0.0" />
+				<param name="shot_random_z"      value="0.0" />
+				<param name="recoil_time"        value="0.0" />
+				<param name="impulse"            value="0.0" />
+				<param name="angular_impulse"    value="1.0" />
+
+				<overrides>
+					<override name="ADS">
+						<param name="startCamMove"       value="45.0"       />					
+						<param name="max"                value="10.0, 40.0" />
+						<param name="shot_kick_first"    value="1.25"       />						
+					</override>
+
+					<override name="stabalize">
+						<param name="shot_random"  value="0.0"  />			
+					</override>
+
+					<override name="crouch">
+					</override>
+
+					<override name="prone">
+						<param name="max"                value="4.0, 15.0" />					
+					</override>
+				</overrides>
+			</recoil>
+
+			<spread>
+				<param name="min" value="1.0" />
+				<param name="max" value="3.0" />
+				<param name="attack" value="0.9" />
+				<param name="decay" value="0.3" />
+				<param name="end_decay" value="0.3"  />
+				<param name="speed_m" value="1.0" />
+				<param name="rotation_m" value="1.0" />
+				<param name="spread_jump_m" value="1.0" />
+				<param name="spread_crouch_m" value="1.0" />
+				<param name="speed_holdBreathActive_m" value="0.25" />
+				<param name="spread_holdBreathActive_m" value="0.5" />
+			</spread>
+
+			<tracer>
+				<firstperson frequency="1" controlTrail="1" helper="muzzle_flash" />
+				<thirdperson frequency="1" controlTrail="1" helper="muzzle_flash" />
+			</tracer>
+			
+
+			<muzzleflash>
+				<firstperson effect="illfonic_weapons_behr_rifle_ballistic_01.5mm_rifle_ballistic.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="" scale="1" />
+				<thirdperson effect="illfonic_weapons_behr_rifle_ballistic_01.5mm_rifle_ballistic.3rd_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="" scale="1" />
+			</muzzleflash>
+
+			<muzzlesmoke>
+				<firstperson effect="" helper="muzzle_flash" />
+				<thirdperson effect="" helper="muzzle_flash" />
+			</muzzlesmoke>
+
+			<reject>
+				<firstperson effect="illfonic_weapons_behr_rifle_ballistic_01.5mm_rifle_ballistic.1st_ShellEject" helper="shells" /> 
+				<thirdperson effect="illfonic_weapons_behr_rifle_ballistic_01.5mm_rifle_ballistic.1st_ShellEject" helper="shells" />
+			</reject>
+
+			<animation>
+				<param name="useBaseModifier" value="1" />
+			</animation>
+		</firemode>
+
+		<firemode name="Rapid" type="Rapid">
+			<rapid>
+				<param name="min_speed" value="0.001" />
+				<param name="max_speed" value="0.001" />
+				<param name="acceleration" value="2.35" />
+				<param name="deceleration" value="-3.0" />
+				<param name="min_firingTimeToStop" value="0" />
+				<param name="start_fire_audio_trigger" value="Play_WPFA_BEHR_BSMG_P4SC" />
+				<param name="stop_fire_audio_trigger" value="Stop_WPFA_BEHR_BSMG_P4SC" />
+				<param name="start_muzzle_fire_audio_trigger" value="" />
+				<param name="stop_muzzle_fire_audio_trigger" value="" />
+			</rapid>
+		</firemode>
+
+		<firemode name="Single" type="Single">
+		</firemode>
+
+		<firemode name="melee" type="Melee">
+			<melee>
+				<param name="helper" value="collision" />
+				<param name="offset" value="0.35" />
+				<param name="damage" value="3" />
+				<param name="slide_damage" value="3" />
+				<param name="damage_AI" value="3" />
+				<param name="impulse" value="100"/>
+				<param name="impulse_actor" value="300" />
+				<param name="impulse_AI_to_Player" value="600"/>
+				<param name="impulse_vehicle" value="400"/>
+				<param name="impulse_up_percentage" value="0.4" />
+				<param name="range" value="1.8" />
+				<param name="delay" value="0.3" />
+				<param name="aiDelay" value="0.45" />
+				<param name="duration" value="0.3" />
+				<param name="use_melee_weapon_delay" value="0.0" />
+				<param name="knockdown_chance" value="20" />
+				<param name="sound_radius" value="2.0" />
+			</melee>
+		</firemode>
+
+	</firemodes>
+
+	<zoommodes>
+		<zoommode name="ironsight" type="IronSight">
+			<stereo>
+				<param name="eyeDistance" value="0.002" />
+				<param name="convergenceDistance" value="0.01" />
+			</stereo>
+			<zoom>
+				<param name="dof" value="1" />
+				<param name="dof_focusMin" value="0.0" />
+				<param name="dof_focusMax" value="300.0" />
+				<param name="dof_focusLimit" value="200.0" />
+				<param name="dof_shoulderMinZ" value="0.15" />
+				<param name="dof_shoulderMinZScale" value="0.0" />
+				<param name="dof_minZ" value="0.08" />
+				<param name="dof_minZScale" value="3" />
+				
+				<param name="zoom_in_time" value="0.2" />
+				<param name="zoom_in_time_from_lowered" value="0.4" />
+				<param name="zoom_smooth_time" value="0.0" />
+				<param name="zoom_out_time" value="0.2" />
+				<param name="zoom_out_delay" value="0.05" />
+				<param name="muzzle_flash_scale" value="1.5"/>
+
+				<stages>
+					<stage value="1.05" />
+				</stages>
+			</zoom>
+
+			<spreadMod>
+				<param name="max_mod" value="0.25" />
+				<param name="first_attack_mod" value="1" />
+				<param name="attack_mod" value="0.5" />
+				<param name="decay_mod" value="0.5" />
+				<param name="speed_m_mod" value="0.8" />
+				<param name="min_mod" value="0.001" />
+				<param name="rotation_m_mod" value="0.5" />
+				<param name="spread_crouch_m_mod" value="0.75" />
+				<param name="spread_prone_m_mod" value="0.5" />
+				<param name="spread_jump_m_mod" value="1.0" />
+				<param name="spread_slide_m_mod" value="1.0"/>
+				<param name="spread_holdBreathActive_m_mod" value="0.75"  />
+			</spreadMod>
+
+		</zoommode>
+	</zoommodes>
+
+	<sway>
+		<!-- The translation is based off the ratio of the scale to maxScale, when you hit the max scale you hit the translation max. So, choose maxX/maxY carefully for one thing. -->
+		<param name="maxTranslateRightHandX" value="0.0" />
+		<param name="maxTranslateRightHandY" value="0.0" />
+
+		<param name="maxTranslateLeftHandX" value="0.0" />
+		<param name="maxTranslateLeftHandY" value="0.0" />
+
+		<!-- This is the scale when player is standing and doing nothing. You don't need to even have this here, defaults to 1, it's just a sample for stance overrides. -->
+		<param name="scale" value="1.0" />
+
+		<!-- This is to prevent the breath swaying from getting too large, depends on the coolDownRate.
+		 The larger the max scale the longer it'll take for the player to cool down.-->
+		<param name="maxScale" value="3.0" />
+
+		<!-- Increases the sway scale by this per second until the scale reaches maxScale -->
+		<param name="increaseRate" value="0.2" />
+		<!-- Decreases the sway scale by this per second until the scale reaches the baseScale -->
+		<param name="decreaseRate" value="0.15" />
+
+		<!-- speed is the amount of time for a full sway cycle. -->
+		<param name="speedScale" value="1.0" />
+		<param name="maxSpeedScale" value="1" />
+
+		<!-- Weapon rotation in degrees while breathing. -->
+		<param name="breathRotMax" value="1.0" />
+
+		<!-- Weapon rotation leading/canting. -->
+		<param name="rotLeadRollMax"       value="20.0"  /> <!-- Max rotation angle in degrees while moving gun around. -->
+		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
+		<param name="rotLeadRollSmooth"    value="0.10"  /> <!-- Smoothing value for rotation leading -->
+
+		<!-- This is the maximum amount of time the player can hold their breath after stabilizing the gun before
+		they need to gasp for air. -->
+		<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve.
+		.5 is 50% jitter and 50% bowditch curve.
+		The reason for this is because the curves aren't layered, they're merged together. -->
+		<param name="rightHandCurveJitterRatioX" value="0.35" />
+		<param name="rightHandCurveJitterRatioY" value="0.35" />
+		<param name="leftHandCurveJitterRatioX"  value="0.35" />
+		<param name="leftHandCurveJitterRatioY"  value="0.35" />
+
+		<overrides>
+			<!-- Params override base, or you can have them compound. Example:
+				<override name="stabalizeAfter">
+					<param name="increaseRate" value="2.0" />         // This one overrides, notice there's no `type` attribute.
+					<param name="scale"        value="4" type="mult"/>// This one multiplies, notice the `mult` `type` attribute.
+				</override>
+
+				param `type` can be one of { mult, add }, or nonexistant to override default value.
+			 -->
+			<override name="weaponNeutral">
+			</override>
+			<override name="weaponLowered">
+			</override>
+			<override name="weaponReady">
+			</override>
+
+			<override name="ADS">
+				<param name="rotLeadRollMax"       value="8.0"  />
+				<param name="rotLeadRollRateRange" value="750.0" />				
+				<param name="maxTranslateLeftHandX" value="0.002" />
+				<param name="maxTranslateLeftHandY" value="0.003" />
+				<param name="Scale" value="1" />
+				<param name="maxScale" value="5" />
+			</override>
+
+			<override name="stabalize">
+				<param name="scale" value=".05"/>
+				<param name="decreaseRate" value="10" type="mult"/>
+				<param name="speedScale" value="0.5" />
+				<param name="maxSpeedScale" value="0.5" />
+			</override>
+
+			<override name="stabalizeAfter">
+				<param name="increaseRate" value="4.0" />
+				<param name="scale" value="4"/>
+			</override>
+
+			<override name="crouch">
+				<param name="scale" value="0.8" />
+			</override>
+
+			<override name="prone">
+				<param name="scale" value="0.5" />
+			</override>
+
+		</overrides>
+
+		<!-- * Scales are multiplied together depending on the player state, so you won't necessarily see the exact value in this XML.
+		   For instance holding your breath and zooming your weapon: baseValue * stanceScale * zoomScale * stabalizeScale * firingScale * movementScale -->
+	</sway>
+
+	<!-- Define the item ports for the weapon -->
+	<portParams>
+		<ports>
+			<ItemPort name="magazine_attach" minsize="1" maxsize="1" display_name="Magazine Slot">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			<ItemPort name="sight_attachment" minsize="1" maxsize="1" display_name="Sight Attachment Slot">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="IronSight"/>
+				</Types>
+			</ItemPort>
+		</ports>
+	</portParams>
+
+	<mobiGlas>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1"/>
+		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
+	</mobiGlas>
+
+</item>

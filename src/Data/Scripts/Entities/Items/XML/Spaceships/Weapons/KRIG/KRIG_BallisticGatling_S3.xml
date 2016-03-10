@@ -42,12 +42,18 @@
 			
 			<rapid>
 				<param name="anim_max_speed" value="1.0" />
-				<param name="min_rate" value="300" />
-				<param name="min_speed" value="1" />
+				<param name="min_rate" value="200" />
+				<param name="min_speed" value="0" />
 				<param name="max_speed" value="6.0" />
-				<param name="acceleration" value="2" />
-				<param name="deceleration" value="-2" />
+				<param name="acceleration" value="1" />
+				<param name="deceleration" value="-0.8" />
 				<param name="barrel_attachment" value="barrel_rotate" />
+				<param name="start_fire_audio_trigger" value="Play_WPHA_KRIG_BG_S3_Fire" />
+				<param name="stop_fire_audio_trigger" value="Stop_WPHA_KRIG_BG_S3_Fire" />
+				<param name="start_muzzle_fire_audio_trigger" value="" />
+				<param name="stop_muzzle_fire_audio_trigger" value="" />
+				<param name="start_rotation_audio_trigger" value="" />
+				<param name="stop_rotation_audio_trigger" value="" />
 			</rapid>
 			
 			<tracer>
@@ -59,7 +65,8 @@
 				<param name="min" value="0" />
 				<param name="max" value="3" />
 				<param name="attack" value="0.3" />
-				<param name="decay" value="0.45" />
+				<param name="decayRate" value="0.45" />
+				<param name="instability" value="0.01" />
 			</spread>
 
 			<pools>
@@ -100,7 +107,7 @@
 	-->
 
     <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
-      <Pool capacity="700" rate="50" critical="1"/> <!-- rate = capped removal rate --> <!-- rate="50" --> <!-- We should remove the "rate" to rely on the cooling capacity of the ship/coolers -->   
+      <Pool capacity="700" rate="75" critical="1"/> <!-- rate = capped removal rate --> <!-- rate="50" --> <!-- We should remove the "rate" to rely on the cooling capacity of the ship/coolers -->   
 	  <Signature name="Infrared" poolMultiplier="0.1" />
 	  <States>
         <State state="Active">
@@ -128,12 +135,12 @@
 	<ports>
 		<ItemPort name="ammo_box_01" minsize="1" maxsize="4" flags="right" display_name="Ammo Box #1">
 			<Types>
-				<Type type="AmmoBox" subtypes="25mm_AMMO"/>
+				<Type type="AmmoBox" subtypes="35mm_AMMO"/>
 			</Types>
 		</ItemPort>
 		<ItemPort name="ammo_box_02" minsize="1" maxsize="4" flags="left" display_name="Ammo Box #2">
 			<Types>
-				<Type type="AmmoBox" subtypes="25mm_AMMO"/>
+				<Type type="AmmoBox" subtypes="35mm_AMMO"/>
 			</Types>
 		</ItemPort>
 	</ports>
@@ -145,8 +152,8 @@
 	
    <defaultLoadout>
     <Items>
-      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_800rd_25mm" />
-      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_800rd_25mm" />
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_600rd_35mm" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_600rd_35mm" />
     </Items>
   </defaultLoadout>
   

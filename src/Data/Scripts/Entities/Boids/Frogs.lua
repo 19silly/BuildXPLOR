@@ -12,15 +12,16 @@ Frogs =
 		},
 		Boid =
 		{
-			nCount = 10,
+			nCount = 10, --[0,1000,1,"Specifies how many individual objects will be spawned."]
 			object_Model = "objects/characters/animals/amphibians/toad/toad.cdf",
-			--Size = 1,
-			--SizeRandom = 0,
-			Mass = 1,
+			Mass = 10,
 			bInvulnerable = false,
 		},
 		Options =
 		{
+			bPickableWhenAlive = 1,
+			bPickableWhenDead = 1,
+			PickableMessage = "",
 			bFollowPlayer = 0,
 			bObstacleAvoidance = 1,
 			VisibilityDist = 50,
@@ -34,13 +35,13 @@ Frogs =
 		},
 	},
 
-	Sounds =
+	Audio =
 	{
-		"Sounds/environment:boids:idle_frog",    -- idle
-		"Sounds/environment:boids:scared_frog",  -- scared
-		"Sounds/environment:boids:death_frog",   -- die
-		"Sounds/environment:boids:idle_frog",    -- pickup
-		"Sounds/environment:boids:scared_frog",  -- throw
+		"Play_idle_frog",		-- idle
+		"Play_scared_frog",	-- scared
+		"Play_death_frog",	-- die
+		"Play_scared_frog",	-- pickup
+		"Play_scared_frog",	-- throw
 	},
 
 	Animations =
@@ -60,10 +61,10 @@ Frogs =
 	params={x=0,y=0,z=0},
 }
 
-
+-------------------------------------------------------
 function Frogs:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
-  self:SetFlagsExtended(ENTITY_FLAG_EXTENDED_NEEDS_MOVEINSIDE, 0);
+	self:SetFlagsExtended(ENTITY_FLAG_EXTENDED_NEEDS_MOVEINSIDE, 0);
 end
 
 -------------------------------------------------------
@@ -81,6 +82,7 @@ function Frogs:OnInit()
 	self:CacheResources()
 end
 
+-------------------------------------------------------
 function Frogs:CacheResources()
 	self:PreLoadParticleEffect( self.Properties.ParticleEffects.waterJumpSplash );
 end
@@ -106,12 +108,9 @@ function Frogs:CreateFlock()
 
 	local params = self.params;
 
-	params.count = Boid.nCount;
+	params.count = __max(0, Boid.nCount);
 	params.model = Boid.object_Model;
 
-	-- Scaling doesn't work good...disable for now
-	-- params.boid_size = Boid.Size;
-	-- params.boid_size_random = Boid.SizeRandom;
 	params.boid_size = 1;
 	params.boid_size_random = 0;
 	params.min_speed = Movement.SpeedMin;
@@ -120,7 +119,6 @@ function Frogs:CreateFlock()
 	params.factor_align = 0;
 
 	params.spawn_radius = Options.Radius;
-	--params.boid_radius = Boid.boid_radius;
 	params.gravity_at_death = -9.81;
 	params.boid_mass = Boid.Mass;
 	params.invulnerable = Boid.bInvulnerable;
@@ -129,8 +127,12 @@ function Frogs:CreateFlock()
 	params.follow_player = Options.bFollowPlayer;
 	params.avoid_obstacles = Options.bObstacleAvoidance;
 	params.max_view_distance = Options.VisibilityDist;
-
-	params.Sounds = self.Sounds;
+	
+	params.pickable_alive = Options.bPickableWhenAlive;
+	params.pickable_dead = Options.bPickableWhenDead;
+	params.pickable_message = Options.PickableMessage;
+	
+	params.Audio = self.Audio;
 	params.Animations = self.Animations;
 
 	if (self.flock == 0) then
@@ -147,9 +149,13 @@ function Frogs:OnPropertyChange()
 	self:OnShutDown();
 	if (self.Properties.Options.bActivate == 1) then
 		self:CreateFlock();
+		self:Event_Activate();
+	else
+		self:Event_Deactivate();
 	end
 end
 
+-------------------------------------------------------
 function Frogs:OnWaterSplash(pos)
 	Particle.SpawnEffect(self.Properties.ParticleEffects.waterJumpSplash, pos, g_Vectors.v001, self.Properties.ParticleEffects.fEffectScale);
 end
@@ -177,12 +183,15 @@ function Frogs:Event_Deactivate()
 	end
 end
 
+-------------------------------------------------------
 function Frogs:OnProceedFadeArea( player,areaId,fadeCoeff )
 	if (self.flock ~= 0) then
 		Boids.SetFlockPercentEnabled( self,fadeCoeff*100 );
 	end
 end
 
+-------------------------------------------------------
+-------------------------------------------------------
 Frogs.FlowEvents =
 {
 	Inputs =

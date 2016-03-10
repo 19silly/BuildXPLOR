@@ -35,21 +35,6 @@ function SinglePlayer:OnReset(toGame)
 end
 
 ----------------------------------------------------------------------------------------------------
--- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
-
-
-----------------------------------------------------------------------------------------------------
-function SinglePlayer:OnShoot(shooter)
-	if (shooter and shooter.OnShoot) then
-		if (not shooter:OnShoot()) then
-			return false;
-		end
-	end
-	
-	return true;
-end
-
-----------------------------------------------------------------------------------------------------
 function SinglePlayer:IsUsable(srcId, objId)
 	if not objId then return 0 end;
 
@@ -127,12 +112,6 @@ function SinglePlayer:OnUsableMessage(srcId, objId, objEntityId, usableId)
 		UIAction.StartAction("DisplayUseText", {msg}); --this triggers the UIAction "DisplayUseText" and pass the msg as argument (see FlowGraph UIActions how to send msg to flash)
 	end
 end
-
-
-----------------------------------------------------------------------------------------------------
-function SinglePlayer:OnLongHover(srcId, objId)
-end
-
 
 ----------------------------------------------------------------------------------------------------
 function SinglePlayer:EndLevel( params )
@@ -282,9 +261,7 @@ end
 
 ----------------------------------------------------------------------------------------------------
 function SinglePlayer.Server:OnInit()
-	self.fallHit={};
-	self.explosionHit={};
-	self.collisionHit={};
+
 end
 
 
@@ -334,11 +311,6 @@ end
 
 ----------------------------------------------------------------------------------------------------
 function SinglePlayer.Server:OnClientEnteredGame( channelId, player, loadingSaveGame )
-end
-
-----------------------------------------------------------------------------------------------------
-function SinglePlayer:GetDamageAbsorption(actor, hit)
-	return 0
 end
 
 
@@ -391,17 +363,14 @@ function SinglePlayer:ProcessActorDamage(hit)
 			if (sai and not tai) then
 				-- AI vs. player
 				totalDamage = AI.ProcessBalancedDamage(shooterId, target.id, dmgMult*hit.damage, hit.type);
-				totalDamage = totalDamage*(1-self:GetDamageAbsorption(target, hit));
-					--totalDamage = dmgMult*hit.damage*(1-target:GetDamageAbsorption(hit.type, hit.damage));
 			elseif (sai and tai) then
 				-- AI vs. AI
 				totalDamage = AI.ProcessBalancedDamage(shooterId, target.id, dmgMult*hit.damage, hit.type);
-				totalDamage = totalDamage*(1-self:GetDamageAbsorption(target, hit));
 			else
-				totalDamage = dmgMult*hit.damage*(1-self:GetDamageAbsorption(target, hit));
+				totalDamage = dmgMult*hit.damage;
 			end
 		else
-			totalDamage = dmgMult*hit.damage*(1-self:GetDamageAbsorption(target, hit));
+			totalDamage = dmgMult*hit.damage;
 		end
 	end
 

@@ -5,6 +5,7 @@ CharacterAttachHelper = {
 	Properties =
 	{
 		BoneName = "Bip01 Head",
+        bNetworkSync = 1,
 	},
 }
 

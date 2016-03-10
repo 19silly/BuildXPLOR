@@ -27,7 +27,7 @@ InteractiveEntity =
 		},
 		Sound =
 		{
-			soundSound = "Sounds/vehicles:vehicle_accessories:light",
+			soundSound = "",
 			soundTurnOnSound = "",
 			soundTurnOffSound = "",
 			soundIdleSound = "",
@@ -526,13 +526,16 @@ function InteractiveEntity:Play()
 	self:Stop(0);
 	local snd=self.Properties.Sound.soundSound;
 	local on=self.Properties.Sound.soundTurnOnSound;
-	local sndFlags=bor(SOUND_DEFAULT_3D, 0);
+	-- REINSTANTIATE!!!
+	--local sndFlags=bor(SOUND_DEFAULT_3D, 0);
 	if(on~="")then
-	  self:StopIdleSound();
-		self.soundid=self:PlaySoundEvent(on,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		self:StopIdleSound();
+		-- REINSTANTIATE!!!
+		--self.soundid=self:PlaySoundEvent(on,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 	end;
 	if(snd~="")then
-		self.soundid=self:PlaySoundEvent(snd,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		-- REINSTANTIATE!!!
+		--self.soundid=self:PlaySoundEvent(snd,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 	end;
 end;
 
@@ -545,9 +548,10 @@ end
 
 function InteractiveEntity:PlayIdleSound()
 	if(self.idleSoundId==nil and self.health>0 and self.Properties.Sound.soundIdleSound~="") then
-		local sndFlags = SOUND_DEFAULT_3D;
-		sndFlags = bor( sndFlags, FLAG_SOUND_LOOP );
-		self.idleSoundId=self:PlaySoundEvent(self.Properties.Sound.soundIdleSound,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		-- REINSTANTIATE!!!
+		--local sndFlags = SOUND_DEFAULT_3D;
+		--sndFlags = bor( sndFlags, FLAG_SOUND_LOOP );
+		--self.idleSoundId=self:PlaySoundEvent(self.Properties.Sound.soundIdleSound,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 	end
 end
 
@@ -559,8 +563,9 @@ function InteractiveEntity:Stop(stopsound)
 	end;
 	if(stopsound==1)then
 		local snd=self.Properties.Sound.soundTurnOffSound;
-		local sndFlags=bor(SOUND_DEFAULT_3D,0);
-		self.turnoffsoundid=self:PlaySoundEvent(snd,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		-- REINSTANTIATE!!!
+		--local sndFlags=bor(SOUND_DEFAULT_3D,0);
+		--self.turnoffsoundid=self:PlaySoundEvent(snd,self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 	end;
 	self:PlayIdleSound();
 end;
@@ -821,7 +826,7 @@ InteractiveEntity.Server.TurnedOff =
 InteractiveEntity.Server.Destroyed=
 {
 	OnBeginState = function( self )
-	  self:StopIdleSound();
+		self:StopIdleSound();
 		self:RemoveEffect();
 		self:Explode();
 		self:ActivateOutput("Destroyed",1);

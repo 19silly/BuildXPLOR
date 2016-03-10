@@ -2,30 +2,46 @@ ConversationBubble =
 {
 	Properties = {
 		bEnabled = 1,
-		fInnerRadius = 1.5,		--[0,25,0.01,"Radius of the Optimum Bubble"]
-		fOuterRadius = 1.5,		--[0,25,0.01,"Enter-Exit Bubble (additional radius around the inner bubble)"]
-		fHeight = 0.8,			--[0,25,0.01,"Height of the Bubbles"]
-		fOffsetZ = -0.1,		--[-25,25,0.01,"Offset of the bubble around the pivot point.\nMight need to change this on slopes."]
-		--sConversation = "",		--["Name of the Conversation to play when Optimum Bubble is entered"]
-		esDialogName = "", --["Name of the Conversation to play when Optimum Bubble is entered"]
+		bTriggerOnce = 0,
+		bPlayerTriggerFromOuterRadius = 0, 	
+		iPriority = 0,						--[-10,10,1,"Priority of bubble if 2 valid bubbles overlap the highest priority one is chosen"]
+		fInnerRadius = 1.5,					--[0,25,0.01,"Radius of the Optimum Bubble"]
+		fOuterRadius = 1.5,					--[0,25,0.01,"Enter-Exit Bubble (additional radius around the inner bubble)"]
+		fHeight = 0.8,						--[0,25,0.01,"Height of the Bubbles"]
+		fOffsetZ = -0.1,					--[-25,25,0.01,"Offset of the bubble around the pivot point.\nMight need to change this on slopes."]
+		fFOVOverride = -1.0,				--[-1,90,0.01,"Override default Field of View set in DynamicCameraEffects DataForge records"]
+		fDOFOverride = -1.0,				--[-1,10,0.01,"Override default Depth of Field set in DynamicCameraEffects DataForge records"]"
+		storyForgeRecord_DialogName = "", 	--["Name of the Conversation to play when Optimum Bubble is entered"]
 		
-		sNPC1EntityName = "",		
 		NPC1 = {
+			sEntityName = "",
+			sfCharacterRecord_CharacterName = "",
+			bAllowLookAtInConversation = 1,
+			bAllowUpperBodyTurn = 1,
 			bAllowLowerBodyTurn = 1,
 			bAllowTalkTriggerFromBehind = 0,
 		},
-		sNPC2EntityName = "",
 		NPC2 = {
+			sEntityName = "",
+			sfCharacterRecord_CharacterName = "",
+			bAllowLookAtInConversation = 1,
+			bAllowUpperBodyTurn = 1,
 			bAllowLowerBodyTurn = 1,
 			bAllowTalkTriggerFromBehind = 0,
 		},
-		sNPC3EntityName = "",
 		NPC3 = {
+			sEntityName = "",
+			sfCharacterRecord_CharacterName = "",
+			bAllowLookAtInConversation = 1,
+			bAllowUpperBodyTurn = 1,
 			bAllowLowerBodyTurn = 1,
 			bAllowTalkTriggerFromBehind = 0,
 		},
-		sNPC4EntityName = "",
 		NPC4 = {
+			sEntityName = "",
+			sfCharacterRecord_CharacterName = "",
+			bAllowLookAtInConversation = 1,
+			bAllowUpperBodyTurn = 1,
 			bAllowLowerBodyTurn = 1,
 			bAllowTalkTriggerFromBehind = 0,
 		},

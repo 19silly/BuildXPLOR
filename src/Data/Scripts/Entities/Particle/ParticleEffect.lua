@@ -5,7 +5,6 @@ ParticleEffect = {
 		Comment="",
 		
 		bActive=1,              -- Activate on startup
-		bEnableSound=1,         -- Allowed to play its sound event?
 		bPrime=1,               -- Starts in equilibrium state, as if activated in past
 		Scale=1,                -- Scale entire effect size.
 		SpeedScale=1,           -- Scale particle emission speed
@@ -18,6 +17,12 @@ ParticleEffect = {
 		PulsePeriod=0,          -- Restart continually at this period.
 		bNetworkSync=0,          -- Do I want to be bound to the network?
 		bRegisterByBBox=0,      -- Register In VisArea by BoundingBox, not by Position
+
+		Audio =
+		{
+			bEnableAudio=1,             -- Toggles update of audio data. CIG mkorotyaev changed to "on" by default
+			audioRTPCRtpc="particlefx", -- The default audio RTPC name used.
+		}
 	},
 	Editor = {
 		Model="Editor/Objects/Particles.cgf",

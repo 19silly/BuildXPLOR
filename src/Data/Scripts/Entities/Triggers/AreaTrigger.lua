@@ -37,7 +37,6 @@ AreaTrigger =
 	{
 		Model = "Editor/Objects/T.cgf",
 		Icon = "AreaTrigger.bmp",
-		ShowBounds = 1,
 		IsScalable = false;
 		IsRotatable = false;
 	},
@@ -90,8 +89,8 @@ end
 
 
 function AreaTrigger:Enable(enable)
-  self.enabled=enable;
-  self:RegisterForAreaEvents(enable and 1 or 0);
+	self.enabled=enable;
+	self:RegisterForAreaEvents(enable and 1 or 0);
 end
 
 
@@ -101,17 +100,17 @@ end
 
 
 function AreaTrigger:OnSave(props)
-    props.enabled = self.enabled;
-		props.triggered = self.triggered;
-		props.triggeredOnce = self.triggeredOnce;
+	props.enabled = self.enabled;
+	props.triggered = self.triggered;
+	props.triggeredOnce = self.triggeredOnce;
 end
 
 
 function AreaTrigger:OnLoad(props)
-  	self:OnReset();
-		self.enabled = props.enabled;
-		self.triggered = props.triggered;
-		self.triggeredOnce = props.triggeredOnce;
+	self:OnReset();
+	self.enabled = props.enabled;
+	self.triggered = props.triggered;
+	self.triggeredOnce = props.triggeredOnce;
 end
 
 
@@ -122,7 +121,7 @@ function AreaTrigger:CanTrigger(entityId)
 
 	local Properties = self.Properties;
 
-  if (Properties.bOnlyPlayers ~= 0 and (not entity.actor or not entity.actor:IsPlayer())) then
+	if (Properties.bOnlyPlayers ~= 0 and (not entity.actor or not entity.actor:IsPlayer())) then
 		return false;
 	end
 
@@ -309,7 +308,6 @@ function AreaTrigger.Client:ClEnter(entityId, insideCount)
 end
 
 
-
 function AreaTrigger.Client:ClLeave(entityId, inside)
 	self.insideCount = inside;
 	self.inside[entityId] = nil;
@@ -324,7 +322,6 @@ function AreaTrigger.Client:ClLeave(entityId, inside)
 end
 
 
-
 function AreaTrigger:Event_Enable()
 	self:Enable(true);
 
@@ -336,10 +333,11 @@ function AreaTrigger:Event_Enable()
 	-- end;
 	-- CIG END
 
-  self:ActivateOutput("NrOfEntitiesInside", self.insideCount);
+	self:ActivateOutput("NrOfEntitiesInside", self.insideCount);
 
 	BroadcastEvent(self, "Enable");
 end
+
 
 function AreaTrigger:Event_Disable()
 	self:Enable(false);

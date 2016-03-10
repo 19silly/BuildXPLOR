@@ -10,12 +10,13 @@ AIBase =
 {
 	PropertiesInstance =
 	{
-		esAIProfileCharacter	= "Base",
-		esAIProfileBase			= "Base",
+		esAIProfileCharacter	= "<None>",
+		esAIProfileBase			= "<None>",
 		esAIProfileCombat		= "<None>",
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+		esAIProfileActivity		= "<None>",
 
 	 	AITerritoryAndWave =
 	 	{
@@ -46,6 +47,13 @@ AIBase =
 
 	Properties =
 	{
+		esAIProfileCharacter	= "Base",
+		esAIProfileBase			= "Base",
+		esAIProfileCombat		= "<None>",
+		esAIProfileFlight		= "<None>",
+		esAIProfileTargeting	= "<None>",
+		esAIProfileRace			= "<None>",
+
 		aibehavior_behaviour = "",
 		aicharacter_character = "",
 		esFaction = "Civilians",		
@@ -120,13 +128,11 @@ AIBase =
 	OnActionStart = function(entity)
 		entity:Log("OnActionStart")
 		entity:SuspendGoTo(entity)
-		AI.SetBehaviorVariable(entity.id, "PerformingAction", true)
 	end,
 
 	OnActionEnd = function(entity)
 		entity:Log("OnActionEnd")
 		entity:ResumeGoTo(entity)
-		AI.SetBehaviorVariable(entity.id, "PerformingAction", false)
 	end,
 	
 	EnableBehaviorTreeEvaluation = function(entity)

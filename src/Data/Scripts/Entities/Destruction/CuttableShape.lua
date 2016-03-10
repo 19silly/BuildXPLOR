@@ -9,7 +9,13 @@ CuttableShape =
 	Properties = 
 	{
 		CutMargin = 0.03,
+		AutoCompleteTheshold = 0.9,
+		MeleeCompleteTheshold = 1,
 		SegmentsPerLine = 24,
+		HeatRequiredPerSegment = 0,
+		HeatDissipationPerSecond = 1,
+		bStartActive = 0,
+		ParticleEffect = "PAW_FX.PAW_Laser_Impact.PAW_Laser_Impact_FX",
 	},
 
   Editor=

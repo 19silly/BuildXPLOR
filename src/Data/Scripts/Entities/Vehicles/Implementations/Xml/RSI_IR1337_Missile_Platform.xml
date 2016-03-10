@@ -73,7 +73,7 @@
 									</Part>
 
 						<Part name="weapon_mount" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+							<ItemPort minsize="1" maxsize="10" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
 
 							<Pitch min ="-20" max ="20" />
 							<Yaw min ="-45" max ="15" />
@@ -179,20 +179,25 @@
 				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
 					<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
 				</View>
-				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
-				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
-					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
+				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0" />
 			</Views>
-			
 			<WaitFor>
 				<Enter>
 					<State animation="Chair" state="Deploy" />
 				</Enter>
+				<Exit>
+					<State animation="Chair" state="Deploy" />
+				</Exit>
 			</WaitFor>
-			
+			<PostAction>
+				<Enter>
+					<State animation="Chair" state="Retract" />
+				</Enter>
+				<Exit>
+					<State animation="Chair" state="Retract" />
+				</Exit>
+			</PostAction>
 						<FixedVisorSettings default_fixed="0" >
 				<FirstPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.1" />
 				<ThirdPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.065" />

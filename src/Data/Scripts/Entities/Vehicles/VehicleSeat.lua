@@ -52,27 +52,6 @@ function VehicleSeat:IsFree(userId)
   return self.seat:IsFree(userId);
 end
 
-
---------------------------------------------------------------------------
-function VehicleSeat:GetExitPos()
-	local vehicle = System.GetEntity(self.vehicleId);
-	local exitPos = {x=0,y=0,z=0};
-	
-	if (self.exitHelper) then
-		exitPos = vehicle.vehicle:MultiplyWithWorldTM(vehicle:GetVehicleHelperPos(self.exitHelper));
-	elseif (self.enterHelper) then
-		exitPos = vehicle.vehicle:MultiplyWithWorldTM(vehicle:GetVehicleHelperPos(self.enterHelper));
-	end
-	
-	--FIXME:if the model dont have the right helper use the vehicle position instead
-	if (LengthSqVector(exitPos) == 0) then
-		CopyVector(exitPos, vehicle.State.pos);
-		exitPos.z = exitPos.z + 1;
-	end
-
-	return exitPos;
-end
-
 --------------------------------------------------------------------------
 function VehicleSeat:IsPassengerReady()
 	return true;

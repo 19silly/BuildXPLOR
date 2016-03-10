@@ -5,7 +5,7 @@ FogVolume =
 	Properties =
 	{
 		bActive = 1, --[0,1,1,"If true, fog volume will be enabled."]
-		VolumeType = 0, --[0,1,1,"Specifies the volume type. The following types are currently supported: 0 - Ellipsoid, 1 - Cube."
+		iVolumeType = 0, --[0,1,1,"Specifies the volume type. The following types are currently supported: 0 - Ellipsoid, 1 - Cube."
 		Size = { x = 1, y = 1, z = 1 },
 		color_Color = { x = 1, y = 1, z = 1 },
 		fHDRDynamic = 0, --[-10,20,0.01,"Specifies how much brighter than the default 255,255,255 white the fog is."]

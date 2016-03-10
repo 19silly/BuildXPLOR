@@ -1,6 +1,6 @@
 Script.ReloadScript("scripts/gamerules/GameRulesUtils.lua");
 
-DFM_Tutorial= {};
+DFM_Tutorial = {};
 
 GameRulesSetStandardFuncs(DFM_Tutorial);
 

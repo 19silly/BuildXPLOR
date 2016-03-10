@@ -597,8 +597,10 @@ function SoundBox:Play()
 		end
 	end
 	
+	-- REINST
+	-- self.soundid = self:PlaySoundEvent(soundName, v3Offset, g_Vectors.v010, sndFlags, 0, SOUND_SEMANTIC_SOUNDSPOT);
 	
-	self.soundid = self:PlaySoundEvent(soundName, v3Offset, g_Vectors.v010, sndFlags, 0, SOUND_SEMANTIC_SOUNDSPOT);
+	self.soundid = nil;
 	
 	if debugSoundBox == true then	
 		System.LogToConsole( "Play Sound ID: "..tostring(self.soundid).." "..soundName.." ("..tostring(v3Offset.x)..", "..tostring(v3Offset.y)..", "..tostring(v3Offset.z)..") SoundWall: "..soundWall);

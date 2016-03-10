@@ -1,40 +1,44 @@
-<ammo name="CNOU_Flare" class="Countermeasure">
+<!-- 
+	WARNING!! THIS FILE WAS AUTO GENERATED 
+-->
 
-    <geometry>
-      <!--<firstperson name="objects/weapons/spaceships/ammo/missiles/HRmissile.cgf" /> -->
-    </geometry>
+<ammo name="CNOU_Flare" class="Countermeasure">
+	
+  <geometry>
+    <!--<firstperson name="objects/weapons/spaceships/ammo/missiles/HRmissile.cgf" /> -->
+  </geometry>
 
   <flags>
     <param name="ServerSpawn" value="1" />
   </flags> 
 
-    <whiz>
-      <param name="sound" value="sounds/physics:bullet_whiz:bullet_whiz_small" />
-      <param name="speed" value="22" />
-    </whiz>
+  <whiz>
+    <param name="play_trigger" value="Play_WPWB_WPFA_Bullet_Whiz" />
+    <param name="speed" value="22" />
+  </whiz>
 
-    <physics type="particle">
-      <param name="mass" value="2.0" />
-      <param name="speed" value="75" />
-      <param name="radius" value="0.5" />
-      <param name="air_resistance" value="0" />
-      <param name="water_resistance" value="0" />
-      <param name="gravity" value="0, 0, 0" />
-      <param name="water_gravity" value="0, 0, 0" />
-      <param name="material" value="mat_metal" />
-      <param name="pierceability" value="1" />
-      <pierceabilityLevels>
-        <param name="level3" value="0" />
-        <param name="level2" value="60" />
-        <param name="level1" value="85" />
-        <param name="maxPenetrationThickness" value="10.4" />
-      </pierceabilityLevels>
-      <param name="no_spin" value ="0"/>
-      <param name="single_contact" value="0" />
-      <param name="no_path_alignment" value ="1"/>
-      <param name="constant_orientation" value ="1"/>
-      <param name="no_self_collisions" value ="1"/>
-    </physics>
+  <physics type="particle">
+    <param name="mass" value="2" />
+    <param name="speed" value="75" />
+    <param name="radius" value="0.5" />
+    <param name="air_resistance" value="0" />
+    <param name="water_resistance" value="0" />
+    <param name="gravity" value="0, 0, 0" />
+    <param name="water_gravity" value="0, 0, 0" />
+    <param name="material" value="mat_metal" />
+    <param name="pierceability" value="1" />
+    <pierceabilityLevels>
+      <param name="level3" value="0" />
+      <param name="level2" value="60" />
+      <param name="level1" value="85" />
+      <param name="maxPenetrationThickness" value="10.4" />
+    </pierceabilityLevels>
+    <param name="no_spin" value ="0"/>
+    <param name="single_contact" value="0" />
+    <param name="no_path_alignment" value ="1"/>
+    <param name="constant_orientation" value ="1"/>
+    <param name="no_self_collisions" value ="1"/>
+  </physics>
 
   <EntityEffects>
     <effect name="Counter_Measures_All.Heat_Flare_A_ALL.Heat_Flare_A_01" enable="0" tag="active">
@@ -46,15 +50,25 @@
     <param name="launchParticle" value="Counter_Measures_All.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/>
 
     <flare>
-      <signal name="Infrared" signalStart="1600" signalEnd="1600" />
-	  <signal name="Electromagnetic" signalStart="1600" signalEnd="1600" />
+      <signal name="Infrared" signalStart="1200" signalEnd="1200" />
+	  <signal name="Electromagnetic" signalStart="1200" signalEnd="1200" />
     </flare>
   </Countermeasure>
 
-    <params>
-      <param name="lifetime" value="3" />
-      <param name="showtime" value="1" />
-	  <param name="itemTags" value="flightReady" />
-    </params>
+  <params>
+    <param name="lifetime" value="3" />
+    <param name="showtime" value="1" />
+	<param name="itemTags" value="flightReady" />
+  </params>
 
-  </ammo>
+  <trail>
+    <param name="play_trigger" value="Play_WPCN_CNOU_Flare_Launch" />
+    <param name="stop_trigger" value="Stop_WPCN_CNOU_Flare_Burn" />
+  </trail>
+
+  <explosion>
+    <param name="sound" value="" />
+    <param name="failed_sound" value="" />
+  </explosion>
+	
+</ammo>

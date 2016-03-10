@@ -1,0 +1,89 @@
+<item name="utfl_melee_01" class="Weapon" category="WeaponPersonal" priority="1" weaponParams="1" >
+	<params>
+		<param name="display_name" value="FSK-8" />
+		<param name="giveable" value="1" />
+		<param name="pickable" value="1" />
+		<param name="usable" value="1" />
+		<param name="selectable" value="1" />
+		<param name="mountable" 	value="0" />
+		<param name="pose" value="combatknife" /> <!-- Defined in Mannequin?? -->
+		<param name="itemClass" value="combatknife" /> <!-- Defined in Mannequin?? -->
+		<param name="slidePose" value="combatknife" /> <!-- Defined in Mannequin?? -->
+		<param name="suffix" value="shoulder" /> <!-- Defined in Mannequin?? -->
+		<param name="droppable" value="0" />
+		<param name="pose" value="nw" />
+		<param name="mass" value="0.3" />
+		<param name="melee_attack_firemode" value="melee" />
+		<param name="raiseable" value="true" />
+		<param name="raise_distance" value="0.50" />
+		
+		<!-- For Item Port Types -->
+		<param name="itemType" value="WeaponPersonal" />
+		<param name="itemSubType" value="Knife" />
+		<param name="itemSize" value="1" />
+		<param name="itemManufactor" value="" />
+		
+		<param name="tag" value="Knife_UltiFlex_FSK-8" />
+		<param name="adb" value="Items/Weapons/FPS/Knife_UltiFlex_FSK-8.adb" />
+		
+		<param name="tags" value="151,866"/>
+		<param name="price" value="99999"/>
+		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/missing.tif" />
+		
+	</params>
+		
+	<geometry>
+		<firstperson name="Objects/Weapons/UltiFlex_FSK-8/UltiFlex_FSK-8.cdf" />
+		<thirdperson name="Objects/Weapons/UltiFlex_FSK-8/UltiFlex_FSK-8.cdf" />
+	</geometry>
+	<actions>
+		<action name="select">
+			<animation target="firstperson" name="select_01" />
+			<animation target="owner" name="select" />
+		</action>
+		<action name="deselect">
+			<animation target="firstperson" name="deselect_01" />
+			<animation target="owner" name="deselect" />
+		</action>
+		<action name="idle">
+			<animation target="firstperson" name="idle_01" />
+			<animation target="owner" name="melee_idle" />
+		</action>
+
+		<action name="melee">
+			<animation target="firstperson" name="strike_01" />
+			<animation target="firstperson" name="melee_punch_right" />
+			<animation target="owner" name="punch" />
+			<sound target="firstperson" name="" radius="5" static="0" />
+			<sound target="thirdperson" name="" radius="5" static="0" />
+		</action>
+		
+		<action name="hit">
+			<sound target="firstperson" name="" radius="5" />
+			<sound target="thirdperson" name="" radius="5" />
+		</action>
+	</actions>
+	<firemodes>
+		<firemode name="melee" type="Melee">
+			<melee>
+				<param name="reticle" value="None" />
+				<param name="helper" value="collision" />
+				<!--<param name="offset" value="0.85" />-->
+				<param name="damage" value="110" />
+				<param name="impulse" value="10" />
+				<param name="delay" value="0.50" />
+				<param name="duration" value="0.85" />
+    <param name="sound_radius" value="2.0" />
+			</melee>
+			<actions>
+				<param name="attack" value="melee" />
+			</actions>
+		</firemode>
+	</firemodes>
+	
+	<mobiGlas>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1"/>
+		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
+	</mobiGlas>
+	
+</item>

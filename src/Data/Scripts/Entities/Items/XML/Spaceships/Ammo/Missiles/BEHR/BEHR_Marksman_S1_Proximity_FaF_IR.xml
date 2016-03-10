@@ -20,10 +20,9 @@
 		<param name="requiredPortTags"	value="" />
 		<param name="display_name"		value="BEHR Marksman" />
 		<param name="mass" 				value="20" />
-		<param name="tags" value="1016"/>
-		<param name="price" value="1000"/>
-		<param name="price" value="10000"/>
-		<param name="itemImage" value="UI/mobiGlas/assets/PNG/DumpersDepot_items/BEHR_Marksman_S1_Proximity_FaF_IR.tif"/>
+		<param name="tags" 				value="1016"/>
+		<param name="price" 			value="10000"/>
+		<param name="itemImage" 		value="UI/mobiGlas/assets/PNG/DumpersDepot_items/BEHR_Marksman_S1_Proximity_FaF_IR.tif"/>
 	</params>
 	
 	<geometry>
@@ -33,18 +32,22 @@
 			<attachment target="thirdperson" name="exhaust" bone="exhaust"/>
 		</boneAttachments>
 	</geometry>
-	
+
+	<AudioPreloads>
+		<Preload name = "SC_WPMR_BEHR"/>
+	</AudioPreloads>
+
 	<missile>
 		<param name="guidanceType" 					value="FireAndForget" />	
+		<param name="trackingSignalMin" 		value="1.5" />
 		<param name="trackingSignalType" 			value="Infrared" />
 		<param name="trackingSignalAmplifier" 		value="30" />
 		<param name="trackingSignalAmplifierSeeking"	value="15" />
 		<param name="trackerNoiseAmplifier"			value="2.3" />
-		<param name="trackingDistanceMax"			value="4200" />
-		<param name="trackingAngle"					value="90" />
-		<param name="lockTime" 						value="2.0" />
+		<param name="trackingDistanceMax"			value="6300" />
+		<param name="trackingAngle"					value="30" />
 		
-		<param name="lifetime" 						value="10" />
+		<param name="lifetime" 						value="15" />
 		<param name="ignitiontime" 					value="0.5" />
 		
 		<param name="maxSpeed" 						value="500" />
@@ -57,9 +60,10 @@
 		
 		<param name="trailHelper" 					value="exhaust" />
 		<param name="trailEffect" 					value="weapon_fx.missile.trail" />
-		<param name="launchSound" 					value="sounds/weapons:BEHR_Marksman_S1_Proximity_FaF_IR:boost" />
-		<param name="ejectSound" 					value="sounds/weapons:BEHR_Marksman_S1_Proximity_FaF_IR:launch" />
-		<param name="trailSound" 					value="sounds/weapons:BEHR_Marksman_S1_Proximity_FaF_IR:missile" />	
+		<param name="launchSound" 					value="Play_WPMR_BEHR_Marksman_S1_Proximity_Boost" />
+		<param name="ejectSound" 					value="Play_WPMR_BEHR_Marksman_S1_Proximity_Launch" />
+		<param name="trailSound" 					value="Play_WPMR_BEHR_Marksman_S1_Proximity_Missile" />	
+		<param name="trailStopSound" 				value="Stop_WPMR_BEHR_Marksman_S1_Proximity_Missile" />	
 		
 		<Shake>
 			<param name="offsetPosition" 			value="0.05,0.05,0.05" />
@@ -78,14 +82,15 @@
 		<param name="pressure" 						value="2000" />
 		<param name="max_radius" 					value="40" />
 		<param name="aitype" 						value="rpg" />  <!-- this is a hack to determine whether missile is hostile or friendly -->
-		<param name="damage" 						value="105" />
+		<param name="damage" 						value="175" />
+		<param name="damage_distortion" 			value="270" />
 		
 		<!-- Art and Audio -->
 		<param name="decal" 						value="textures/decal/explo_decal.dds" />
 		<param name="effect"						value="weapon_fx.missile.explosion" />
 		<param name="failed_effect"					value="weapon_fx.missile.explosion_failed" />
-		<param name="sound" 						value="sounds/weapons:BEHR_Marksman_S1_Proximity_FaF_IR:explode_hit" />
-		<param name="failed_sound" 					value="sounds/weapons:BEHR_Marksman_S1_Proximity_FaF_IR:explode_miss" />
+		<param name="sound" 						value="Play_WPMR_BEHR_Marksman_S1_Proximity_Explode_Hit" />
+		<param name="failed_sound" 					value="Play_WPMR_BEHR_Marksman_S1_Proximity_Explode_Miss" />
 	</explosion>
 	
 </item>

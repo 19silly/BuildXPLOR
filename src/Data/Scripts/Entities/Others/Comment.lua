@@ -18,11 +18,11 @@ Comment =
 {
 	Properties =
 	{
-		Text = "",
-		fSize = 1.2,
+		Text = "This is a comment",
+		fSize = 1.2,	--[0.0, 100.0 , 0.1, ""]
 		bHidden = 0,
-		fMaxDist = 100,
-		nCharsPerLine = 30,
+		fMaxDist = 100,	--[0.0 ,255.0 , 0.1, ""]
+		nCharsPerLine = 30,	--[1, 255, 1, ""]
 		bFixed = 0,
 		clrDiffuse = { x=1,y=0.5,z=0 },
 	},
@@ -35,11 +35,9 @@ Comment =
 	hidden = 0,
 	lines = {},
 	lineCount = 0,
+	fMaxDistSquared = 0,
+	bNoUpdateInGame = 1,
 }
- 
-g_cl_comment = 1;
-
-System.AddCCommand("cl_comment", "g_cl_comment=tonumber(%1)", "Hide/Unhide comments");
 
 
 -------------------------------------------------------
@@ -52,28 +50,46 @@ function Comment:OnSave(table)
   table.hidden = self.hidden;
 end
 
-
+-------------------------------------------------------
 function Comment:OnInit()	
-	if (System.IsEditor()) then
-		-- this entity is updated every frame even in pure game and is used only by the editor.
-		self:SetUpdatePolicy( ENTITY_UPDATE_VISIBLE );
-		self:Activate(1);
-	else	
-		self:Activate(0);
-	end	
-	
+	-- Delete when not in dev-mode.
+	if (not System.IsDevModeEnable() ) then
+		self:DeleteThis();
+		return;
+	end
+
 	self:OnReset();
 end
 
+-------------------------------------------------------
 function Comment:OnSpawn()
-	Log "WARNING: Comment entity is deprecated. Use the Misc->Comment object instead."
 end
 
+-------------------------------------------------------
 function Comment:OnPropertyChange()
 	self:OnReset();
 end
 
+-------------------------------------------------------
 function Comment:OnReset()
+	-- Comment is only Active(OnUpdate() will be called) when in Editor or when cl_comment > 0
+	local cl_comment = System.GetCVar("cl_comment")
+	if (System.IsEditor() or cl_comment > 0) then
+		self:SetUpdatePolicy( ENTITY_UPDATE_VISIBLE );
+		self:Activate(1)
+	else
+		self:Activate(0);
+	end
+
+	-- bNoUpdateInGame is checked in OnUpdate() to account for in-editor game mode.
+	if (cl_comment == 0) then
+		self.bNoUpdateInGame = 1;
+	else
+		self.bNoUpdateInGame = 0;
+	end
+
+	self.fMaxDistSquared = self.Properties.fMaxDist * self.Properties.fMaxDist;
+
 	self.hidden = self.Properties.bHidden;
 	self.lines = {};
 	
@@ -105,80 +121,79 @@ function Comment:OnReset()
 	
 	self.lines[curLine] = curText;
 	self.lineCount = curLine;
+
+	self:OnUpdate(0);
 end
 
+-------------------------------------------------------
 function Comment:OnUpdate(delta)
-	
-	if (self.hidden ~= 0 or self:IsHidden()) then
+	if (self.hidden ~= 0 or self:IsHidden() or self.Properties.Text =="" or (self.bNoUpdateInGame == 1 and not System.IsEditing())) then
 		return;
 	end
+
+	-- calculate alpha
+	local alpha = 0;
+	local factor = 0;
+
+	if (self.fMaxDistSquared>0) then
+		local mypos = g_Vectors.temp_v1;
+
+		self:GetWorldPos(mypos);
+		SubVectors(mypos, mypos, System.GetViewCameraPos());
+
+		local distSquared = LengthSqVector(mypos);
+		factor = distSquared;
+
+		if (self.Properties.fMaxDist >= 255.0) then
+			alpha = 1.0;
+		elseif (distSquared<self.fMaxDistSquared) then
+			alpha = distSquared/self.fMaxDistSquared;
+			alpha = 1.0 - alpha*alpha;
+		end
+	end
 	
-	local text = self.Properties.Text;
+	-- draw text
+	local increment = System.GetViewCameraUpDir();
 	
-	if (text ~= "" and g_cl_comment == 1) then
+	if (alpha>0.001) then
+		local pos = self:GetWorldPos( g_Vectors.temp_v1 );
 		
-		local alpha = 1;
-		local maxdist = self.Properties.fMaxDist;
-		local factor = 0;
+		factor = math.sqrt(factor);
+		factor = (self.Properties.fSize/60) * factor * System.GetViewCameraFov();	
 		
-		if (g_localActor and maxdist>0) then
-			
-			local mypos = g_Vectors.temp_v1;
-			local ppos = g_Vectors.temp_v2;
-			
-			self:GetWorldPos(mypos);
-			g_localActor:GetWorldPos(ppos);
-			SubVectors(mypos,mypos,ppos);
-			
-			local dist = LengthSqVector(mypos);
-			factor = dist;
-						
-			if (dist<maxdist*maxdist) then
-				alpha = dist/(maxdist*maxdist);
-				alpha = 1.0 - alpha*alpha;
-			else
-				alpha = 0;
-			end
+		local incrementAll = g_Vectors.temp_v4;
+		FastScaleVector(increment, increment, factor);
+		FastScaleVector(incrementAll, increment, (self.lineCount / 2 + 1));
+		
+		-- start all the way at the top
+		FastSumVectors(pos, pos, incrementAll);
+		
+		local textColor = { x=0, y=1, z=0 };	-- default color is for (bFixed == 1)
+		if (self.Properties.bFixed ~= 1) then
+			textColor = {x=self.Properties.clrDiffuse.x, y=self.Properties.clrDiffuse.y, z=self.Properties.clrDiffuse.z};
 		end
 		
-		local increment = g_Vectors.temp_v3;
-		g_localActor:GetDirectionVector(2, increment);
-		
-		if (alpha>0.001) then
-			local pos = self:GetWorldPos( g_Vectors.temp_v1 );
-			factor = math.sqrt(factor);
-			factor = (self.Properties.fSize/60) * factor;			
-			
-       		local incrementAll = g_Vectors.temp_v4;
-       		FastScaleVector(increment, increment, factor);
-       		FastScaleVector(incrementAll, increment, (self.lineCount - 1));
-       		
-       		-- start all the way at the top
-		    FastSumVectors(pos, pos, incrementAll);
-						
-			for i,val in ipairs(self.lines) do
-				if (self.Properties.bFixed == 1) then
-					System.DrawLabel( pos, self.Properties.fSize, val, 0, 1, 0, alpha);
-				else
-					System.DrawLabel( pos, self.Properties.fSize, val, self.Properties.clrDiffuse.x, self.Properties.clrDiffuse.y, self.Properties.clrDiffuse.z, alpha );
-				end
-				-- decrement the increment
-				FastDifferenceVectors(pos, pos, increment);
-			end
+		for i,val in ipairs(self.lines) do
+			System.DrawLabel( pos, self.Properties.fSize, val, textColor.x, textColor.y, textColor.z, alpha );
+			-- decrement the increment
+			FastDifferenceVectors(pos, pos, increment);
 		end
 	end
 end
 
+-------------------------------------------------------
 function Comment:Event_UnHide(sender)	
 	BroadcastEvent(self, "UnHide");
 	self.hidden = 0;
 end
 
+-------------------------------------------------------
 function Comment:Event_Hide(sender)	
 	BroadcastEvent(self, "Hide");
 	self.hidden = 1;
 end
 
+-------------------------------------------------------
 Comment.FlowEvents =
 {
 	Inputs =

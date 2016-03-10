@@ -2,7 +2,7 @@ Birds =
 {
 	type = "Birds",
 	MapVisMask = 0,
-	ENTITY_DETAIL_ID=1,
+	ENTITY_DETAIL_ID = 1,
 
 	Properties =
 	{
@@ -46,16 +46,17 @@ Birds =
 		},
 		Boid =
 		{
-			nCount = 10,
+			nCount = 10, --[0,1000,1,"Specifies how many individual objects will be spawned."]
 			object_Model = "objects/characters/animals/birds/pigeon/pigeon_lf.chr",
-			--Size = 1,
-			--SizeRandom = 0,
 			gravity_at_death = -9.81,
 			Mass = 10,
 			bInvulnerable = false,
 		},
 		Options =
 		{
+			bPickableWhenAlive = 0,
+			bPickableWhenDead = 1,
+			PickableMessage = "",
 			bFollowPlayer = 0,
 			bNoLanding = 0,
 			bStartOnGround = 1,
@@ -85,14 +86,12 @@ Birds =
 }
 
 -------------------------------------------------------
-
 function Birds:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
   self:SetFlagsExtended(ENTITY_FLAG_EXTENDED_NEEDS_MOVEINSIDE, 0);
 end
 
 -------------------------------------------------------
-
 function Birds:InitFlock()
 	self.flock = 0;
 	self.currpos = {x=0,y=0,z=0};
@@ -102,7 +101,6 @@ function Birds:InitFlock()
 end
 
 -------------------------------------------------------
-
 function Birds:OnInit()
 
 	--self:NetPresent(0);
@@ -140,12 +138,9 @@ function Birds:CreateFlock()
 
 	local params = self.params;
 
-	params.count = Boid.nCount;
+	params.count = __max(0, Boid.nCount);
 	params.model = Boid.object_Model;
 
-	-- Scaling doesn't work good...disable for now
-	-- params.boid_size = Boid.Size;
-	-- params.boid_size_random = Boid.SizeRandom;
 	params.boid_size = 1;
 	params.boid_size_random = 0;
 	params.min_height = Movement.HeightMin;
@@ -179,8 +174,11 @@ function Birds:CreateFlock()
 	params.max_animation_distance = Options.AnimationDist;
 	params.spawn_from_point = Options.bSpawnFromPoint;
 
+	params.pickable_alive = Options.bPickableWhenAlive;
+	params.pickable_dead = Options.bPickableWhenDead;
+	params.pickable_message = Options.PickableMessage;
+	
 	params.spawn_radius = Options.Radius;
-	--params.boid_radius = Boid.boid_radius;
 	params.gravity_at_death = Boid.gravity_at_death;
 	params.boid_mass = Boid.Mass;
 	params.invulnerable = Boid.bInvulnerable;
@@ -217,6 +215,9 @@ function Birds:OnPropertyChange()
 	self:OnShutDown();
 	if (self.Properties.Options.bActivate == 1) then
 		self:CreateFlock();
+		self:Event_Activate();
+	else
+		self:Event_Deactivate();
 	end
 end
 
@@ -262,6 +263,8 @@ function Birds:OnProceedFadeArea( player,areaId,fadeCoeff )
 	end
 end
 
+-------------------------------------------------------
+-------------------------------------------------------
 Birds.FlowEvents =
 {
 	Inputs =

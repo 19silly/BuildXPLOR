@@ -143,6 +143,7 @@
 											<Transition to="Disturbance" onEvent="OnEnemyHeard"/>
 											<Transition to="Disturbance" onEvent="OnThreateningSoundHeard"/>
 											<Transition to="Disturbance" onEvent="OnInterestingSoundHeard"/>
+											<Transition to="Disturbance" onEvent="OnSuspectedSoundHeard"/>
 										</Transitions>
 
 										<BehaviorTree>
@@ -155,7 +156,15 @@
 
 												<PullDownThreatLevel/>
 
-												<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+												<SuppressFailure>
+												
+													<LuaGate code="return entity.PropertiesInstance.AI.bGoBackToStartOnIdle">
+
+														<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+
+													</LuaGate>
+
+												</SuppressFailure>
 
 												<ExecuteLua code="entity.actor:HolsterItem(true)"/>
 
@@ -177,7 +186,22 @@
 
 													<Case>
 
-														<Animate name="ZZ_AI_idleBreak" loop="1"/>
+														<Sequence>
+
+															<!-- ensure that we also move back to our initial position after an interruptible sequence was played back -->
+															<SuppressFailure>
+
+																<LuaGate code="return entity.PropertiesInstance.AI.bGoBackToStartOnIdle">
+
+																	<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+
+																</LuaGate>
+
+															</SuppressFailure>
+
+															<Animate name="ZZ_AI_idleBreak" loop="1"/>
+
+														</Sequence>
 
 													</Case>
 
@@ -451,7 +475,19 @@
 
 																	<Log message="trying to find cover"/>
 
-																	<QueryTPS name="SDKGrunt_CoverToShootFrom_LimitedTravelDistance" register="Cover"/>
+																	<Parallel successMode="any">
+
+																		<Parallel successMode="all">
+
+																			<QueryTPS name="SDKGrunt_CoverToShootFrom_LimitedTravelDistance" register="Cover"/>
+
+																			<Wait duration="1.0"/>
+
+																		</Parallel>
+
+																		<Shoot at="Target" fireMode="PanicSpread" stance="Alerted" duration="999"/>
+
+																	</Parallel>
 
 																	<Log message="moving to found cover"/>
 
@@ -513,7 +549,19 @@
 
 																<Sequence>
 
-																	<QueryTPS name="SDKGrunt_OpenCombat_LimitedTravelDistance" register="RefPoint"/>
+																	<Parallel successMode="any">
+
+																		<Parallel successMode="all">
+
+																			<QueryTPS name="SDKGrunt_OpenCombat_LimitedTravelDistance" register="RefPoint"/>
+
+																			<Wait duration="1.0"/>
+
+																		</Parallel>
+
+																		<Shoot at="Target" fireMode="PanicSpread" stance="Alerted" duration="999"/>
+
+																	</Parallel>
 
 																	<!-- move to the queried combat position; while doing so, start shooting after a small random time of 1-2seconds -->
 																	<Parallel successMode="any">

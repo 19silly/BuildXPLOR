@@ -23,14 +23,12 @@ Elevator =
 
 		objModel = "Objects/props/industrial/lifts/te_elevator/te_elevator_cabin_b.cgf",
 
-		Sounds =
+		Audio =
 		{
-			soundSoundOnStartUp = "Sounds/environment:city:atrium_elevator_start",
-			soundSoundOnMoveUp = "Sounds/physics:objects/fridge:run_loop",
-			soundSoundOnStopUp = "Sounds/environment:city:atrium_elevator_stop",
-			soundSoundOnStartDown = "Sounds/environment:city:atrium_elevator_start",
-			soundSoundOnMoveDown = "Sounds/physics:objects/fridge:run_loop",
-			soundSoundOnStopDown = "Sounds/environment:city:atrium_elevator_stop",
+			audioTriggerStartUpAudioTrigger = "",
+			audioTriggerStopUpAudioTrigger = "",
+			audioTriggerStartDownAudioTrigger = "",
+			audioTriggerStopDownAudioTrigger = "",
 		},
 
 		bAutomatic = 0,
@@ -70,6 +68,14 @@ Elevator =
 	{
 		Icon = "elevator.bmp",
 		IconOnTop = 0,
+	},
+
+	AudioTriggers = 
+	{
+		hAudioStartUpTriggerID = nil,
+		hAudioStopUpTriggerID = nil,
+		hAudioStartDownTriggerID = nil,
+		hAudioStopDownTriggerID = nil,
 	},
 }
 
@@ -145,6 +151,7 @@ function Elevator.Server:OnStartGame()
 end
 
 function Elevator:OnDestroy()
+	self:StopAllAudioTriggers();
 end
 
 
@@ -184,7 +191,7 @@ function Elevator:OnLoad(tbl)
 	self:Activate(tbl.active and 1 or 0)
 
 	if (tbl.active) then
-		self:Sound(self.Properties.Sounds.soundSoundOnMoveUp, true);
+		self:PlayAudio(self.audioTriggerStartUpAudioTrigger);
 	end
 end
 
@@ -194,13 +201,8 @@ function Elevator:Reset()
 	self:DoPhysicalize();
 
 	self.scp:Reset();
-
-	self:SoundOff(self.Properties.Sounds.soundSoundOnStartUp);
-	self:SoundOff(self.Properties.Sounds.soundSoundOnMoveUp);
-	self:SoundOff(self.Properties.Sounds.soundSoundOnStopUp);
-	self:SoundOff(self.Properties.Sounds.soundSoundOnStartDown);
-	self:SoundOff(self.Properties.Sounds.soundSoundOnMoveDown);
-	self:SoundOff(self.Properties.Sounds.soundSoundOnStopDown);
+	self:StopAllAudioTriggers();
+	self:LookupAudioTriggerIDs();
 
 	local initial=self.Properties.nInitialFloor;
 
@@ -286,12 +288,22 @@ function Elevator:UpdateSlide(frameTime)
 
 		if (self.prevFloor > self.currFloor) then
 			self:ActivateOutput("StoppedSlidingDown", 1)
-			self:SoundOff(self.Properties.Sounds.soundSoundOnMoveDown);
-			self:Sound(self.Properties.Sounds.soundSoundOnStopDown);
+			if (self.AudioTriggers.hAudioStopDownTriggerID ~= nil) then
+				self:PlayAudio(self.AudioTriggers.hAudioStopDownTriggerID);
+			else
+				if (self.AudioTriggers.hAudioStartDownTriggerID ~= nil) then
+					self:StopAudioTrigger(self.AudioTriggers.hAudioStartDownTriggerID, false);
+				end
+			end
 		else
 			self:ActivateOutput("StoppedSlidingUp", 1)
-			self:SoundOff(self.Properties.Sounds.soundSoundOnMoveUp);
-			self:Sound(self.Properties.Sounds.soundSoundOnStopUp);
+			if (self.AudioTriggers.hAudioStopUpTriggerID ~= nil) then
+				self:PlayAudio(self.AudioTriggers.hAudioStopUpTriggerID);
+			else
+				if (self.AudioTriggers.hAudioStartUpTriggerID ~= nil) then
+					self:StopAudioTrigger(self.AudioTriggers.hAudioStartUpTriggerID, false);
+				end
+			end
 		end
 
 		if (self.isServer) then
@@ -376,12 +388,10 @@ function Elevator:Slide(floor)
 
 
 		if (self.currFloor > floor) then
-			self:Sound(self.Properties.Sounds.soundSoundOnStartDown);
-			self:Sound(self.Properties.Sounds.soundSoundOnMoveDown, true);
+			self:PlayAudio(self.AudioTriggers.hAudioStartUpTriggerID);
 			self:ActivateOutput("StartedSlidingDown", 1)
 		else
-			self:Sound(self.Properties.Sounds.soundSoundOnStartUp);
-			self:Sound(self.Properties.Sounds.soundSoundOnMoveUp, true);
+			self:PlayAudio(self.AudioTriggers.hAudioStartDownTriggerID);
 			self:ActivateOutput("StartedSlidingUp", 1)
 		end
 
@@ -402,31 +412,21 @@ function Elevator:Slide(floor)
 end
 
 
-function Elevator:Sound(snd, loop)
-	if (not snd or snd=="") then
-		return;
-	end
 
-	if (loop and not self.soundIds) then
-		self.soundIds={};
-	end
-
-	local id=self:PlaySoundEvent(snd, g_Vectors.v000, g_Vectors.v010, SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
-	--local id=self:PlaySoundEventEx(snd, SOUND_DEFAULT_3D, 0, 1, g_Vectors.v000, 0, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
-
-	if (loop) then
-		self.soundIds[snd] = id;
-	end
+----------------------------------------------------------------------------------------
+function Elevator:LookupAudioTriggerIDs()
+	self.AudioTriggers.hAudioStartUpTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerStartUpAudioTrigger);
+	self.AudioTriggers.hAudioStopUpTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerStopUpAudioTrigger);
+	self.AudioTriggers.hAudioStartDownTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerStartDownAudioTrigger);
+	self.AudioTriggers.hAudioStopDownTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerStopDownAudioTrigger);
 end
 
-
-function Elevator:SoundOff(snd)
-	if (self.soundIds and self.soundIds[snd]) then
-		self:StopSound(self.soundIds[snd]);
-		self.soundIds[snd]=nil;
+------------------------------------------------------------------------------------------------------
+function Elevator:PlayAudio(hTriggerID)
+	if (hTriggerID ~= nil) then
+		self:ExecuteAudioTrigger(hTriggerID);
 	end
 end
-
 
 function Elevator:Up(callFloor)
 	callFloor = callFloor or (self.currFloor + 1)

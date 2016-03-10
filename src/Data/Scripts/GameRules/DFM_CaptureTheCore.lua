@@ -1,6 +1,6 @@
 Script.ReloadScript("scripts/gamerules/GameRulesUtils.lua");
 
-DFM_CaptureTheCore= {};
+DFM_CaptureTheCore = {};
 
 GameRulesSetStandardFuncs(DFM_CaptureTheCore);
 

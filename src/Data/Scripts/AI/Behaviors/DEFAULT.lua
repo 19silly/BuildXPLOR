@@ -63,25 +63,7 @@ local Behavior = CreateAIBehavior("DEFAULT", {
 	
 	---------------------------------------------
 	LOOK_AT_MOUNTED_WEAPON_DIR = function(self,entity,sender)
-			local pos = g_Vectors.temp;
-			-- workaround to make the guy not snap the MG orientation
-			local weapon = entity.AI.current_mounted_weapon;
-			if ( weapon == nil ) then
-				AI.LogEvent("WARNING: weapon is nil in LOOK_AT_MOUNTED_WEAPON_DIR for "..entity:GetName());
-			else
-				FastSumVectors(pos,weapon:GetPos(),weapon.item:GetMountedDir());
-				FastSumVectors(pos,pos,weapon.item:GetMountedDir());
-				AI.SetRefPointPosition(entity.id,pos);
-				AI.SetRefPointDirection(entity.id,weapon.item:GetMountedDir());
-				local targetType = AI.GetTargetType(entity.id);
-	--			if(targetType==AITARGET_NONE or targetType==AITARGET_FRIENDLY) then 
-	--				entity:SelectPipe(0,"mounted_weapon_look_around");
-	--			else
-	--				entity:SelectPipe(0,"do_nothing");
-	--			end
-	--	   	entity:InsertSubpipe(0, "look_at_refpoint_if_no_target");
-				AI.Signal(SIGNALFILTER_SENDER, 1, "SHARED_USE_THIS_MOUNTED_WEAPON", entity.id);
-			end
+		AI.LogEvent("WARNING: mounted weapon not supported "..entity:GetName());
 	end,
 	
 	---------------------------------------------
@@ -116,27 +98,10 @@ local Behavior = CreateAIBehavior("DEFAULT", {
 			weapon = nil;
 		end
 
-		if(weapon and Game.IsMountedWeaponUsableWithTarget(entity.id,weapon.id,MaxDistanceToMountedWeapon,entity.AI.SkipTargetCheck)) then 
-			weapon.reserved = entity;
-			entity.AI.current_mounted_weapon = weapon;
-			local parent = weapon:GetParent();
-			if(parent and parent.vehicle) then 
-				-- the weapon is mounted on a vehicle
-				g_SignalData.fValue = mySeat;
-				g_SignalData.id = parent.id;
-				g_SignalData.iValue2 = 0; -- no "fast entering"
-				g_SignalData.iValue = -148; -- this is just a random number used as goal pipe id
-				AI.Signal(SIGNALFILTER_SENDER, 1, "ACT_ENTERVEHICLE", entity.id, g_SignalData);
-			else
-				AI.Signal(SIGNALFILTER_SENDER, 0, "USE_MOUNTED_WEAPON", entity.id);
-			end
-			AI.ModifySmartObjectStates(entity.id,"Busy");				
-		else
-			if(weapon) then 
-				AI.ModifySmartObjectStates(weapon.id,"Idle,-Busy");				
-			end
-			AI.ModifySmartObjectStates(entity.id,"-Busy");			
+		if(weapon) then 
+			AI.ModifySmartObjectStates(weapon.id,"Idle,-Busy");				
 		end
+		AI.ModifySmartObjectStates(entity.id,"-Busy");			
 	end,
 
 	---------------------------------------------

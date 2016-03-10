@@ -13,9 +13,9 @@ RaceRing =
 			fCloseAmount = 0.0,
 		},
 
-		object_Model_InnerRing 		= "objects/brush/space/dfm/dfm_newhorizonspeedway/architecture/race_ring/race_ring.cga",
-		object_Model_OuterRing 		= "objects/brush/space/dfm/dfm_newhorizonspeedway/architecture/race_ring/race_ring_outer_ring.cga",
-		object_Model_Iris	 		= "objects/brush/space/dfm/dfm_newhorizonspeedway/architecture/race_ring/race_ring_iris.chr",
+		object_Model_InnerRing 		= "objects/dfm/dfm_newhorizonspeedway/architecture/race_ring/race_ring.cga",
+		object_Model_OuterRing 		= "objects/dfm/dfm_newhorizonspeedway/architecture/race_ring/race_ring_outer_ring.cga",
+		object_Model_Iris	 		= "objects/dfm/dfm_newhorizonspeedway/architecture/race_ring/race_ring_iris.chr",
 		AnimName_Open 				= "open",
 	},
 	

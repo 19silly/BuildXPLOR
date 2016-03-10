@@ -209,9 +209,6 @@ function AnimObject:OnSpawn()
 		CryAction.ForceGameObjectUpdate(self.id, true);
 		self:Activate(1);
 	end
-
-	self.linkedEntities = {};
-	self.relinkInProgress = 0;
 end
 
 ------------------------------------------------------------------------------------------------------
@@ -439,20 +436,6 @@ function AnimObject.Client:OnUpdate(dt)
 		end
 	end
 
-	local count = self:CountLinks();
-	for v = 0, count-1, 1 do
-		local link = self:GetLink(v);
-		if(link) then
-			local name = self:GetLinkName(link.id);
-			if( name ) then
-				local pos = self:GetHelperPos(name,false);
-				local angles = self:GetHelperAngles(name,false);
-				link:SetWorldAngles(angles);
-				link:SetWorldPos(pos);
-			end
-		end
-	end
-
 end
 
 -------------------------------------------------------
@@ -554,61 +537,6 @@ function AnimObject:OnSave(table)
 		table.externalAnim_loop = self.externalAnim_loop;
 		table.animTime = self:GetAnimationTime(0,self.externalAnim_layer);
 	end
-end
-
--------------------------------------------------------
-function AnimObject:OnEntityLinkedToBone(linkedEntityId)
-
-	if(self.relinkInProgress ~= 0) then
-		return;
-	end
-
-	local linkIndex = self:GetEntityLinkIndex(linkedEntityId);
-	if(linkIndex ~= 0) then
-		table.remove(self.linkedEntities, linkIndex);
-	end
-	table.insert(self.linkedEntities, linkedEntityId);
-
-end
-
--------------------------------------------------------
-function AnimObject:OnEntityUnlinkedFromBone(linkedEntityId)
-
-	if(self.relinkInProgress ~= 0) then
-		return;
-	end
-
-	local linkIndex = self:GetEntityLinkIndex(linkedEntityId);
-	if(linkIndex ~= 0) then
-		table.remove(self.linkedEntities, linkIndex);
-	end
-
-end
-
--------------------------------------------------------
-function AnimObject:GetEntityLinkIndex(linkedEntityId)
-	for index, entityId in ipairs(self.linkedEntities) do
-		if (entityId == linkedEntityId) then
-			return index;
-		end
-	end
-	return 0;
-end
-
--------------------------------------------------------
-function AnimObject:RelinkAllEntities()
-
-	-- Do not allow modifications to the list while relinking
-	self.relinkInProgress = 1;
-
-	for index, entityId in pairs(self.linkedEntities) do
-		local linkedEntity = System.GetEntity(entityId);
-		if(linkedEntity ~= nil) then
-			linkedEntity:RelinkBoneAttachments();
-		end
-	end
-
-	self.relinkInProgress = 0;
 end
 
 ------------------------------------------------------------------------------------------------------

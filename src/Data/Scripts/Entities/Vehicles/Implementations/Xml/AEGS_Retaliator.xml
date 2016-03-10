@@ -400,68 +400,67 @@
 				</OptimalStates>  -->
               </ItemPort>
             </Part>
-            <Part name="interior_helper" class="AnimatedJoint" damageMax="200">
-              <Parts>
-				<Part name="animated_cockpit" mass="1" class="Animated" scopeContext="Cockpit" helper="animated_cockpit">
-					<Animated filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_cockpit_a.cga" id="idCockpitPart"/>
-					<Parts>
-						<Part name="interior_cockpit" class="ItemPort" >
-						
-							<ItemPort minsize="1" maxsize="1" flags="cockpit">
-								<Types>
-								  <Type type="Interior" subtypes="Retaliator" />
-								</Types>
-							</ItemPort>
-						</Part>
-					</Parts>
-				</Part>
-				<Part name="animated_cockpit_entrance" mass="1" class="Animated" scopeContext="CockpitEntrance" helper="animated_cockpit_entrance">
-					<Animated filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_cockpit_entrance.cga" id="idCockpitEntrancePart"/>
-					<Parts>
-						<Part name="interior_cockpit_entrance" class="ItemPort" >
-							<ItemPort minsize="1" maxsize="1" flags="cockpit_entrance">
-								<Types>
-								  <Type type="Interior" subtypes="Retaliator" />
-								</Types>
-							</ItemPort>
-						</Part>
-					</Parts>
-				</Part>
+			
+<!-- 			<Part name="interior_helper" class="Interior" mass="1" scopeContext="">
+				<Interior filename="objects/spaceships/ships/aegs/retaliator/aegs_retaliator_no_collide.cga" bbSize="10,60,10" bbCenter="0,0,0" gravity="0,0,-9.8" enableLocalGrid="0">
+				</Interior>
+				<Parts>
+					<Part name="animated_cockpit" mass="1" class="InteriorNode" >
+						 <InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_cockpit_a.cga" >
+							<Prefab name="AEGS_Retaliator_interior.cockpit.cockpit_all" helper="interior_cockpit"/>
+						 </InteriorNode>
+					</Part>
+				</Parts>
+			</Part> -->
+           <Part name="interior_helper" class="Interior" mass="1" scopeContext="">
+				<Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81"> <!-- no geo but could (as it is an 'animated' part) -->
+					<PhysProxy filename="objects/spaceships/ships/aegs/retaliator/aegs_retaliator_no_collide.cgf" />
+				</Interior>
+				<Parts>
+				
 				<Part name="animated_liftleft" mass="1" class="Animated" scopeContext="LiftLeft" helper="animated_liftleft">
 					<Animated filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_lift.cga" />
 				</Part>
 				<Part name="animated_liftright" mass="1" class="Animated" scopeContext="LiftRight" helper="animated_liftright">
 					<Animated filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_lift.cga" />
 				</Part>
-                <Part name="interior_gunner_a" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="gunner_a">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+					<Part name="animated_cockpit" mass="1" class="InteriorNode"   helper="animated_cockpit" >
+						 <InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_cockpit_a.cga" >
+							<Prefab name="AEGS_Retaliator_interior.cockpit.cockpit_all" helper="interior_cockpit" />
+						 </InteriorNode>
+					</Part>
+					
+					<Part name="animated_cockpit_entrance" mass="1" class="InteriorNode" scopeContext="CockpitEntrance" helper="animated_cockpit_entrance">
+						<InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_cockpit_entrance.cga" >
+							<Prefab name="AEGS_Retaliator_interior.cockpit_entrance.cockpit_entrance_all" helper="interior_cockpit_entrance" />
+						 </InteriorNode>
+					</Part>
+				
+					<Part name="animated_gunner_a" mass="1" class="InteriorNode" helper="animated_gunner_a">
+						<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_turret_entrance_a.cga" >
+							<Prefab name="AEGS_Retaliator_interior.gunner_a.gunner_a_all" helper="interior_gunner_a" />
+						</InteriorNode>
+					</Part>
+                
+				<Part name="animated_bay_a" mass="1" class="InteriorNode" helper="animated_bay_a">
+					<InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_bomb_bay_front.cga" >
+						<Prefab name="AEGS_Retaliator_interior.bay_a.bay_a_all" helper="interior_bay_a" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_bay_a" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="bay_a">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_captains_quarter_a" mass="1" class="InteriorNode" helper="animated_captains_quarter_a">
+					<InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_captains_quarters_a.cga" >
+						<Prefab name="AEGS_Retaliator_interior.captains_quarter_a.captains_quarter_a_all" helper="interior_captains_quarter_a" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_captains_quarter_a" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="captains_quarter_a">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_captains_quarter_b" mass="1" class="InteriorNode" helper="animated_captains_quarter_b">
+					<InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_captains_quarters_b.cga" >
+						<Prefab name="AEGS_Retaliator_interior.captains_quarter_b.captains_quarter_b_all" helper="interior_captains_quarter_b" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_captains_quarter_b" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="captains_quarter_b">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
-				</Part>
-               
+				
                 <Part name="exterior_lighting" class="ItemPort" >
 					<ItemPort minsize="1" maxsize="1" flags="exterior_lighting">
 						<Types>
@@ -469,90 +468,91 @@
 						</Types>
 					</ItemPort>
 				</Part>
-                <Part name="interior_frnt_left_cor" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="frnt_left_cor">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_frnt_left_cor" mass="1" class="InteriorNode" helper="animated_frnt_left_cor">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_bomb_cor_l.cga" >
+						<Prefab name="AEGS_Retaliator_interior.frnt_left_cor.frnt_left_cor_all" helper="interior_frnt_left_cor" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_gunner_c" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="gunner_c">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_gunner_c" mass="1" class="InteriorNode" helper="animated_gunner_c">
+					<InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_turret_entrance_c.cga" >
+						<Prefab name="AEGS_Retaliator_interior.gunner_c.gunner_c_all" helper="interior_gunner_c" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_ladder_top" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="ladder_top">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+                
+				<Part name="animated_ladder_top" mass="1" class="InteriorNode" helper="animated_ladder_top">
+					<InteriorNode filename="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_ladders_top.cga" >
+						<Prefab name="AEGS_Retaliator_interior.ladder_top.ladder_top_all" helper="interior_ladder_top" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_bay_b" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="bay_b">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_bay_b" mass="1" class="InteriorNode" helper="animated_bay_b">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_bomb_bay_back.cga" >
+						<Prefab name="AEGS_Retaliator_interior.bay_b.bay_b_all" helper="interior_bay_b" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_engroom" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="engroom">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_engroom" mass="1" class="InteriorNode" helper="animated_engroom">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_engineering_room.cga" >
+						<Prefab name="AEGS_Retaliator_interior.engroom.engroom_all" helper="interior_engroom" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_entrance" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="entrance">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+                
+				<Part name="animated_entrance" mass="1" class="InteriorNode" helper="animated_entrance">
+					 <InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_entrance.cga">
+						<Prefab name="AEGS_Retaliator_Interior.entrance.entrance_all" helper="interior_entrance" />
+					 </InteriorNode>
 				</Part>
-                <Part name="interior_escape_pods" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="escape_pods">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+                
+				<Part name="animated_escape_pods" mass="1" class="InteriorNode" helper="animated_escape_pods">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_sleeping_quarters.cga">
+						<Prefab name="AEGS_Retaliator_Interior.escape_pods.escape_pods_all" helper="interior_escape_pods" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_gunnery" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="gunnery">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+                
+				<Part name="animated_gunnery" mass="1" class="InteriorNode" helper="animated_gunnery">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_gun_storage.cga">
+						<Prefab name="AEGS_Retaliator_Interior.gunnery.gunnery_all" helper="interior_gunnery" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_hygiene" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="hygiene">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+                
+				<Part name="animated_hygiene" mass="1" class="InteriorNode" helper="animated_hygiene">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_hygiene.cga">
+						<Prefab name="AEGS_Retaliator_Interior.hygiene.hygiene_all" helper="interior_hygiene" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_rear_cor" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="rear_corridor">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+                
+				<Part name="animated_rear_cor_l" mass="1" class="InteriorNode" helper="animated_rear_cor_l">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_rear_cor_l.cga">
+						<Prefab name="AEGS_Retaliator_Interior.rear_cor_l.rear_cor_l_all" helper="interior_rear_cor_l" />
+					</InteriorNode>
 				</Part>
-                <Part name="interior_turret_rear_mid" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="turret_rear_mid">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_rear_cor_r" mass="1" class="InteriorNode" helper="animated_rear_cor_r">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_rear_cor_r.cga">
+						<Prefab name="AEGS_Retaliator_Interior.rear_cor_r.rear_cor_r_all" helper="interior_rear_cor_r" />
+					</InteriorNode>
 				</Part>
-				<Part name="interior_turrets_rear" class="ItemPort" >
-					<ItemPort minsize="1" maxsize="1" flags="turrets_rear">
-						<Types>
-						  <Type type="Interior" subtypes="Retaliator" />
-						</Types>
-					</ItemPort>
+				
+				<Part name="animated_turret_rear_mid" mass="1" class="InteriorNode" helper="animated_turret_rear_mid">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_turret_rear_mid.cga">
+						<Prefab name="AEGS_Retaliator_Interior.turret_rear_mid.turret_rear_mid_all" helper="interior_turret_rear_mid" />
+					</InteriorNode>
 				</Part>
+                
+				<Part name="animated_turrets_rear_r" mass="1" class="InteriorNode" helper="animated_turrets_rear_r">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_turret_rear_right.cga">
+						<Prefab name="AEGS_Retaliator_Interior.turrets_rear_r.turrets_rear_r_all" helper="interior_turrets_rear_r" />
+					</InteriorNode>
+				</Part>
+				
+				<Part name="animated_turrets_rear_l" mass="1" class="InteriorNode" helper="animated_turrets_rear_l">
+					<InteriorNode filename="objects/spaceships/ships/aegs/retaliator/aegs_ret_turret_rear_left.cga">
+						<Prefab name="AEGS_Retaliator_Interior.turrets_rear_l.turrets_rear_l_all" helper="interior_turrets_rear_l" />
+					</InteriorNode>
+				</Part>
+                
               </Parts>
             </Part>
           </Parts>
@@ -688,9 +688,7 @@
     </Doors>
 
     <Views>
-      <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-        <Orbit speed="2.0" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
-      </View>
+      <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
     </Views>
   </Interior>
   <!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
@@ -717,12 +715,8 @@
             <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
           </CameraEffects>
         </View>
-        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
-        </View>
-        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
-          <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1" />
-        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
       </Views>
       <!-- Begin actions for this seat-->
       <SeatActions>
@@ -746,10 +740,10 @@
           <SharedWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_class1_left_wing" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <!-- <ItemPort part="hardpoint_class1_left_wing" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
                 <ItemPort part="hardpoint_class1_right_wing" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
                 <ItemPort part="hardpoint_class2_nose" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
-                <ItemPort part="hardpoint_class_5" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_class_5" priority="0" active="1" actorRecoil="0" defaultGroup="0" /> -->
               </Items>
             </Settings>
           </SharedWeapons>
@@ -759,8 +753,8 @@
           <SharedWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_weapon_missilerack_left_wing" priority="0" active="0" actorRecoil="0" defaultGroup="3" />
-                <ItemPort part="hardpoint_weapon_missilerack_right_wing" priority="0" active="0" actorRecoil="0" defaultGroup="3" />
+                <!-- <ItemPort part="hardpoint_weapon_missilerack_left_wing" priority="0" active="0" actorRecoil="0" defaultGroup="3" />
+                <ItemPort part="hardpoint_weapon_missilerack_right_wing" priority="0" active="0" actorRecoil="0" defaultGroup="3" /> -->
               </Items>
             </Settings>
           </SharedWeapons>
@@ -770,8 +764,8 @@
           <SharedWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_countermeasure_launcher_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
-                <ItemPort part="hardpoint_countermeasure_launcher_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <!-- <ItemPort part="hardpoint_countermeasure_launcher_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure_launcher_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" /> -->
               </Items>
             </Settings>
           </SharedWeapons>
@@ -781,19 +775,19 @@
           <SharedItems>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_powerplant" />
-                <ItemPort part="pilotVisor" />
-                <ItemPort part="hardpoint_radiator_left" />
-                <ItemPort part="hardpoint_radiator_right" />
-                <ItemPort part="hardpoint_avionics_motherboard" />
-                <ItemPort part="hardpoint_radar" />
+                <!-- <ItemPort part="hardpoint_powerplant" /> -->
+                <!-- <ItemPort part="pilotVisor" /> -->
+                <!-- <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" /> -->
+                <!-- <ItemPort part="hardpoint_avionics_motherboard" /> -->
+                <!-- <ItemPort part="hardpoint_radar" />
                 <ItemPort part="hardpoint_shield_generator" />
                 <ItemPort part="hardpoint_seat" />
                 <ItemPort part="radar_helper" />
                 <ItemPort part="*light" />
-                <ItemPort part="*hardpoint_fuel" />
+                <ItemPort part="*hardpoint_fuel" /> -->
                 <ItemPort part="hardpoint_cockpit_audio" />
-                <ItemPort part="hardpoint_selfdestruct" />
+                <!-- <ItemPort part="hardpoint_selfdestruct" /> -->
               </Items>
             </Settings>
           </SharedItems>
@@ -813,12 +807,12 @@
           <SharedAutoWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_class1_left_wing" priority="1" />
+                <!-- <ItemPort part="hardpoint_class1_left_wing" priority="1" />
                 <ItemPort part="hardpoint_class1_right_wing" priority="1" />
                 <ItemPort part="hardpoint_class2_nose" priority="1" />
                 <ItemPort part="hardpoint_class_5" priority="1" />
                 <ItemPort part="hardpoint_weapon_missilerack_left_wing" priority="1" />
-                <ItemPort part="hardpoint_weapon_missilerack_right_wing" priority="1" />
+                <ItemPort part="hardpoint_weapon_missilerack_right_wing" priority="1" /> -->
               </Items>
             </Settings>
           </SharedAutoWeapons>
@@ -880,11 +874,12 @@
         </SeatAction>
       </SeatActions>
       <Sounds inout="0" mood="1" />
+	  <!-- FIX ME!! -->
       <DockingStation>
         <Slots>
-          <Slot name="First" itemPort="Radar_Helper">
+          <!-- <Slot name="First" itemPort="Radar_Helper">
             <Tag name="Radar" scale="0.2" />
-          </Slot>
+          </Slot> -->
         </Slots>
       </DockingStation>
       <FixedVisorSettings default_fixed="0">
@@ -892,12 +887,9 @@
         <ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
       </FixedVisorSettings>
       <Screens>
-        <Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
-          <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" x_offset="-0.05" y_offset="0.4" z_offset="-0.02" scale="1" />
-          <Slot name="Landing System" helper="UI_Helper" slot="LandingSystemIndicator" x_offset="-0.05" y_offset="0.4" z_offset="-0.02" scale="1" />
-          <Slot name="Fuel Indicator" helper="UI_Helper" slot="FuelIndicator" x_offset="-0.195" y_offset="0.4" z_offset="-0.011" scale="1" />
-          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" x_offset="0.11" y_offset="0.4" z_offset="-0.065" />
-        </Screen>
+        <Screen name="Fixed UI" element="ShipInterface" screen="RetaliatorInterfaceScreen" number="1">
+			<Container name="HUDScreen" helper="UI_Helper" container="HUDScreen" z_offset="0.1" scale="0.85" />
+		</Screen>
       </Screens>
       <WaitFor>
         <Exit>
@@ -917,20 +909,20 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
     <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="180" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,90,90" maxBoostAngularVelocity="90,270,180" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="20.0" id="idMovementStats">
-      <SoundParams dmgBufferDecay="0.2">
-        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <RunSound running_sound="" />
-        <AmbientSound running_sound="" />
-        <PassByLoopSound sound="Sounds/spaceships:oj_300i/pass_by:pass_by_loop" />
-        <PassBySound sound="Sounds/spaceships:oj_300i/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
-        <DuressSound sound="Sounds/spaceships:oj_300i/under_duress:under_duress" damage_floor="21.0" damage_buffer="80.0" />
-      </SoundParams>
+	  <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
+		<EngineStartSound sound="" />
+		<EngineRunSound sound="" />
+		<EngineStopSound sound="" />
+		<AmbienceSound sound="" />
+		<PassByLoopSound sound="Play_SSPB_ORIG_300_PassBy_Loop" />
+		<PassBySound sound="Play_SSPB_ORIG_300_PassBy_800ms_0to100meters" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+		<DuressSound sound="Play_SSDM_ORIG_300_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
+	  </AudioParams>
       <Animations />
-      <Contrails>
+<!--       <Contrails>
         <Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
         <Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
-      </Contrails>
+      </Contrails> -->
     </Spaceship>
 	
 	<!-- HAX TO MAKE RIGID NOT MOVE -->
@@ -940,9 +932,9 @@
         <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
         <RunSound running_sound="" />
         <AmbientSound running_sound="" />
-        <PassByLoopSound sound="Sounds/spaceships:oj_300i/pass_by:pass_by_loop" />
-        <PassBySound sound="Sounds/spaceships:oj_300i/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
-        <DuressSound sound="Sounds/spaceships:oj_300i/under_duress:under_duress" damage_floor="21.0" damage_buffer="80.0" />
+        <PassByLoopSound sound="Play_SSPB_ORIG_300_PassBy_Loop" />
+        <PassBySound sound="Play_SSPB_ORIG_300_PassBy_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <DuressSound sound="Play_SSDM_ORIG_300_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
       </SoundParams>
       <Animations />
       <Contrails>

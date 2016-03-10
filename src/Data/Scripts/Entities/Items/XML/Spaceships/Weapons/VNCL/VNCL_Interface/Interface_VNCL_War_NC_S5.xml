@@ -1,0 +1,190 @@
+<interface name="interface_VNCL_War_NC_S5">
+	<!-- 
+	This is the model and vfx template for Laser Cannons.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	  <params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+	
+   <firemodes>
+    <firemode name="Auto" type="Automatic">
+      <fire>
+		<param name="start_fire_audio_trigger" value="Play_WPHA_NC_VNCL_S5_Q1_Fire" />
+		<param name="audio_looped" value="0" />
+		<param name="ammo_type" value="VNCL_NC_S5_Q1_BOLT" />
+        <param name="rate" value="60" />
+        <!-- <param name="damage" value="42" /> -->
+        <param name="clip_size" value="-1" />
+        <param name="max_clips" value="0" />
+        <param name="ooatracer_treshold" value="-1" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+        <!-- <param name="secondary_damage" value="1" /> -->
+        <!-- <param name="ai_vs_player_damage" value="42" /> -->
+        <param name="helper_fp" value="muzzle_out" />
+        <param name="helper_tp" value="muzzle_out" />
+		<param name="fireLocatorType" value = "circle" />
+      </fire>
+      <muzzleflash>
+        <firstperson effect="Spaceships\Weapons\VNCL_War_NC_S5.muz" helper="muzzle_out" />
+        <thirdperson effect="Spaceships\Weapons\VNCL_War_NC_S5.muz" helper="muzzle_out" />
+      </muzzleflash>
+	  <pools>
+		<!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-80" />
+        <pool class="Heat" value="50" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+ <damagelevels>
+	<level damageRatio="0.25">
+		<DebrisList>
+			<Debris name="base_25_debris1" helper="base_25_GEO3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_25_debris1_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_25_GEO3" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_25_debris2" helper="base_25_GEO4" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_25_debris2_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_25_GEO4" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_25_debris4" helper="base_25_GEO7" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_25_debris4_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_25_GEO7" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+	<level damageRatio="0.50">
+		<DebrisList>
+			<Debris name="base_50_debris1" helper="base_50_GEO3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_50_derbis1_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_50_GEO3" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_50_debris2" helper="base_50_GEO4" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_50_derbis2_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_50_GEO4" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+	<level damageRatio="0.75">
+		<DebrisList>
+			<Debris name="base_75_debris" helper="base_75_GEO1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="barrel_75_debris_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_75_GEO1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris1" helper="base_75_GEO2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="barrel_75_debris_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_75_GEO2" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris2" helper="base_75_GEO3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="barrel_75_debris_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_75_GEO3" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris3" helper="base_75_GEO4" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="barrel_75_debris_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_75_GEO4" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris4" helper="base_75_GEO5" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="barrel_75_debris_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_75_GEO5" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris5" helper="base_75_GEO6" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="barrel_75_debris_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_75_GEO6" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" helper="base_100_GEO1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_100_debris1_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_100_GEO1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris5" helper="base_100_GEO2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="SC_Smoke_FX.Smoke_ALL.smoke_1m_loop_trail" helper="base_100_debris2_PFX" />
+					<Effect effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" helper="base_100_GEO2" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
+    <!-- default fallback -->
+    <thirdperson name="Objects/Spaceships/Weapons/VNCL/NC_S5_Q1/VNCL_NC_S5_Q1.cga"/>
+	
+	<!-- Damage Geometry -->
+	<tags tag="damage_25">
+			<thirdperson name="Objects/Spaceships/Weapons/VNCL/NC_S5_Q1/VNCL_NC_S5_Q1_25.cga"/>
+	</tags>
+	<tags tag="damage_50">
+			<thirdperson name="Objects/Spaceships/Weapons/VNCL/NC_S5_Q1/VNCL_NC_S5_Q1_50.cga"/>
+	</tags>
+	<tags tag="damage_75">
+			<thirdperson name="Objects/Spaceships/Weapons/VNCL/NC_S5_Q1/VNCL_NC_S5_Q1_75.cga"/>
+	</tags>
+	<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Weapons/VNCL/NC_S5_Q1/VNCL_NC_S5_Q1_100.cga"/>
+	</tags>
+	<!-- /Damage Geometry -->
+ 
+	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->
+	<tags tag="Hologram">
+		<thirdperson name="Objects/Spaceships/Weapons/VNCL/NC_S5_Q1/VNCL_NC_S5_Q1.cga" material=""/>
+	</tags>
+	
+	<tags tag="HUD">
+		<thirdperson name="Objects\UI\Weapons\VNCL\NC_S5_Q1\VNCL_NC_S5_Q1_UI.cgf" material="materials/item_selection/material_hologram_default.mtl"/>
+		<tags tag="damage_50">
+			<thirdperson name="Objects\UI\Weapons\VNCL\NC_S5_Q1\VNCL_NC_S5_Q1_UI.cgf" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects\UI\Weapons\VNCL\NC_S5_Q1\VNCL_NC_S5_Q1_UI.cgf" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+	</tags>
+
+    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+    <boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
+    </boneAttachments>
+  </geometry>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+  
+</interface>

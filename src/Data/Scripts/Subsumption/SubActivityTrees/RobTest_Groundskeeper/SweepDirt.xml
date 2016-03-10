@@ -1,0 +1,50 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="DirtPile" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="107" pos="-300,-360,0" class="InitNode"/>
+   <Task name="Pathfind" id="108" pos="-330,80,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="DirtPile"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Speed" type="string"/>
+   </Task>
+   <Task name="Find Object" id="109" pos="-360,-100,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject:Usables:Trash:Paper"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="entityid" value="DirtPile"/>
+   </Task>
+   <Task name="Play Animation" id="110" pos="-380,250,0" class="TreeNode">
+    <Input name="Animator" type="entityid"/>
+    <Input name="Animation ID" type="string" value="usable"/>
+    <Input name="Animation Tag" type="string" value="sweep_dirt"/>
+   </Task>
+   <Task name="Destroy Object" id="111" pos="-410,380,0" class="TreeNode">
+    <Input name="Object to Destroy" type="entityid" value="DirtPile"/>
+   </Task>
+   <Task name="Compute" id="112" pos="-510,490,0" class="TreeNode">
+    <Input name="Mathematical Expression" type="string" value="Activity.NumTrash + 1"/>
+    <Output name="Result" type="float" value="NumTrash"/>
+   </Task>
+   <Task name="Compare" id="113" pos="-430,-210,0" class="TreeNode">
+    <Input name="Mathematical Expression" type="string" value="Activity.NumTrash &gt;= 2"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="113" nodeOut="107" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="108" nodeOut="109" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="110" nodeOut="108" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="109" nodeOut="113" portIn="in" portOut="outFail" enabled="1"/>
+   <Edge nodeIn="111" nodeOut="110" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="112" nodeOut="111" portIn="in" portOut="outSuccess" enabled="1"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

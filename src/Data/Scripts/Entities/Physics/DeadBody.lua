@@ -8,18 +8,13 @@ DeadBody =
 	DeadBodyParams =
 	{
 		max_time_step = 0.025,
-		gravityz = -7.5,
 		sleep_speed = 0.025,
 		damping = 0.3,
-		freefall_gravityz = -9.81,
 		freefall_damping = 0.1,
 
 		lying_mode_ncolls = 4,
-		lying_gravityz = -5.0,
 		lying_sleep_speed = 0.065,
 		lying_damping = 1.5,
-		sim_type = 1,
-		lying_simtype = 1,
 	},
 
 	PhysParams =
@@ -29,13 +24,9 @@ DeadBody =
 		eyeheight = 1.7,
 		sphereheight = 1.2,
 		radius = 0.45,
+		stiffness_scale = 0,
 		lod = 1,
-	},
-
-	BulletImpactParams =
-	{
-		stiffness_scale = 73,
-		max_time_step = 0.01
+		retain_joint_vel = 0,
 	},
 
 	Properties =
@@ -43,12 +34,15 @@ DeadBody =
 		soclasses_SmartObjectClass = "",
 		bResting = 0,
 		object_Model = "objects/characters/human/male/uee_marine_anglo_01.cdf",
-		lying_gravityz = -5.0,
 		lying_damping = 1.5,
 		bCollidesWithPlayers = 0,
 		bPushableByPlayers = 0,
 		Mass = 80,
+		Stiffness = 0,
+		MaxTimeStep = 0.025,
+		bExtraStiff = 0,
 		bNoFriendlyFire = 0,
+		PoseAnim = "",
 
 		Buoyancy=
 		{
@@ -166,6 +160,12 @@ function DeadBody:PhysicalizeThis()
 	local Properties = self.Properties;
 	local status = 1;
 
+	self.PhysParams.retain_joint_vel = 0;
+	if (Properties.PoseAnim ~= "") then
+		self:StartAnimation( 0, Properties.PoseAnim, 0,0,1,1,1,0,1 );
+		self.PhysParams.retain_joint_vel = 1; --this is just to retain the positions of non-physical bones
+	end
+
 	local bPushableByPlayers = Properties.bPushableByPlayers;
 	local bCollidesWithPlayers = Properties.bCollidesWithPlayers;
 
@@ -175,6 +175,7 @@ function DeadBody:PhysicalizeThis()
 	end
 
 	self.PhysParams.mass = Properties.Mass;
+	self.PhysParams.stiffness_scale = Properties.Stiffness*(1-Properties.bExtraStiff*2);
 
 	self:Physicalize( 0, PE_ARTICULATED, self.PhysParams );
 
@@ -184,9 +185,7 @@ function DeadBody:PhysicalizeThis()
 	if (Properties.lying_damping) then
 		self.DeadBodyParams.lying_damping = Properties.lying_damping;
 	end
-	if (Properties.lying_gravityz) then
-		self.DeadBodyParams.lying_gravityz = Properties.lying_gravityz;
-	end
+	self.DeadBodyParams.max_time_step = Properties.MaxTimeStep;
 	self:SetPhysicParams(PHYSICPARAM_SIMULATION, self.DeadBodyParams);
 	self:SetPhysicParams(PHYSICPARAM_ARTICULATED, self.DeadBodyParams);
 

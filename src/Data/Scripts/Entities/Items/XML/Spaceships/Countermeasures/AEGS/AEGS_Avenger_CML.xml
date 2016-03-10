@@ -73,20 +73,29 @@
 
   <actions>
     <action name="fire">
-      <sound target="thirdperson" name="Sounds/countermeasures:orig:launch" radius="150" static="1"/>
+      <sound target="thirdperson" name="Play_WPCM_ORIG_Launch" radius="150" static="1"/>
 	  <!--<param name="in_out" var="in_out" />
 			</sound>-->
     </action>
   </actions>
 
-  <firemodes>
-    <firemode name="Weapon" type="Single">
+ <firemodes>
+    <firemode name="Weapon" type="Burst">
+	 <!-- 4 shots over 1 second, 1.5 seconds between button presses-->
       <fire>
-        <param name="rate" value="120" />
+        <param name="rate" value="240" />
         <param name="clip_size" value="0" /> <!-- Clip size needs to be 0 for CounterMeasures to work -->
         <param name="muzzleFromFiringLocator" value="1" /> <!-- turning off muzzle flashes form following the barrels -->.
         <param name="fireLocatorType" value = "default" />
       </fire>
+	  
+	  <burst>
+		<param name="rate" value="40" />
+		<param name="nshots" value="1" />
+		<param name="noSound" value="0" />
+		<param name="retriggeronhold" value="0" />
+		<param name="spreadAngle" value="120" />
+	  </burst>
 
       <muzzleflash>
         <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->

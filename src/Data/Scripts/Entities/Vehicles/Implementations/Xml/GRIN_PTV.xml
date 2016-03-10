@@ -353,9 +353,7 @@
         </SteerThirdPerson>
       </View>
 	  <!-- CIG dtracy: Disabling Debug Views for Demo -->
-	  <!--<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-        </View>
+	  <!--<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
 	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
         <FirstPerson helper="debugview1" offset="0,0,0" />
       </View>
@@ -368,7 +366,7 @@
     </Views>
     <SeatActions>
      <SeatAction class="Sound">
-      <Sound isAvailableDocked="1" sound="sounds/vehicles:greycat_ptv_functionality:horn" helper="engineSmokeOut" id="seatActionSound1"/>
+	  <Audio isAvailableDocked="1" startTrigger="Play_VHLW_GRIN_PTV_Horn" stopTrigger="Stop_VHLW_GRIN_PTV_Horn" helper="engineSmokeOut" id="seatActionSound1"/>
      </SeatAction>
      <!--<SeatAction class="ShakeParts">
       <Parts>
@@ -480,7 +478,7 @@
 	   />
    <ViewAdjustmentPowerLock lateral="0.2" lateralCent="8" rotate="15" rotateCent="7" maxRotate="35" maxLateralDisp="0.17" rotateSpeed="2.9" dispSpeed="5.7" maxForwardDisp="0.05" forwardResponse="0.08"/>
    <WheeledLegacy damping="0.11" engineIdleRPM="1000" engineMaxRPM="5000" engineMinRPM="1000" stabilizer="0.49999999" maxTimeStep="0.050000001" minEnergy="66" suspDampingMin="0" suspDampingMax="0" suspDampingMaxSpeed="3" damagedWheelSpeedInfluenceFactor="0.2" />
-   <SoundParams engineSoundPosition="engineSmokeOut" runSoundDelay="0.0" roadBumpMinSusp="10" roadBumpMinSpeed="6" roadBumpIntensity="0.30000001" maxSlipSpeed="11">
+   <AudioParams engineSoundPosition="engineSmokeOut" runSoundDelay="0.0" roadBumpMinSusp="10" roadBumpMinSpeed="6" roadBumpIntensity="0.30000001" maxSlipSpeed="11">
 	   <Skidding
 			skidLerpSpeed="10.0"
 			skidCentrifugalFactor="0.3"
@@ -489,7 +487,12 @@
 			skidLateralfactor="1.0"
 			skidForwardFactor="0.8"
 		   />
-   </SoundParams>
+		 <EngineStartSound sound="Play_VHLW_GRIN_PTV_Engine_Start_Run" />
+		 <EngineRunSound sound="" />
+		 <EngineStopSound sound="Stop_VHLW_GRIN_PTV_Engine_Start_Run" />
+		 <TyreSquealSound sound="Play_VHLW_GRIN_PTV_Tire_Squeals" />
+		 <AmbienceSound sound="" />
+   </AudioParams>
   </ArcadeWheeled>
  </MovementParams>
  <!-- FIX ME!!

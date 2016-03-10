@@ -24,11 +24,12 @@ DestroyablePiece =
 			MinParentsDestroyed = 1,
 		},
 
-		Sounds =
+		Audio =
 		{
-			sound_Dead = "",
-			sound_Dying = "",
-			sound_ParentsDead = "",
+			audioTriggerAliveTriggerName = "",
+			audioTriggerDeadTriggerName = "",
+			audioTriggerDyingTriggerName = "",
+			audioTriggerParentsDeadTriggerName = "",
 		},
 
 		Physics = -- Particle pieces always physicalised as rigid bodies
@@ -49,6 +50,15 @@ DestroyablePiece =
 	{
 		IsScalable = false,
 	},
+
+	hAudioAliveTriggerID = nil,
+	hAudioDyingTriggerID = nil,
+	hAudioDeadTriggerID = nil,
+	hAudioParentsDeadTriggerID = nil,
+	bAudioCached = false,
+	bAliveAudioPlaying = false,
+	bPlayAudioOnUnhide = false,
+	audioAnchorEnt = nil,
 }
 
 local BasePhysicsProperties = {
@@ -103,7 +113,7 @@ function DestroyablePiece:OnLoad(table)
 			bGoIntoRigidBody = true;
 		end
 		
-		if (bGoIntoRigidBody == true) then
+		if (bGoIntoRigidBody) then
 			-- temprarolly set bRigidBody to 1, because EntityCommon checks it!
 			local aux = self.Properties.Physics.bRigidBody;
 			self.Properties.Physics.bRigidBody = 1;
@@ -139,9 +149,17 @@ function DestroyablePiece:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
 end
 
+----------------------------------------------------------------------------------------
+function DestroyablePiece:OnDestroy()
+	self:StopAllAudio();
+	self:UnloadAudioPreloads();
+end
+
 --------------------------------------------------
 function DestroyablePiece:CommonInit()
 	self.bReloadGeoms = 1;
+	self:_LookupAudioTriggerIDs();
+	self:LoadAudioPreloads(PreloadType.Async);
 	if (not self.bInitialized) then
 		self.LastHit = {
 			impulse = {x=0,y=0,z=0},
@@ -174,12 +192,18 @@ end
 
 --------------------------------------------------
 function DestroyablePiece:OnPropertyChange()
+	self:StopAllAudio();
+	self:UnloadAudioPreloads();
 	self.bReloadGeoms = 1;
-	self:Reload();
+	-- self:Reload();
+	self:_LookupAudioTriggerIDs();
+	self:LoadAudioPreloads(PreloadType.Async);
+	self:PlayAudio(self.hAudioAliveTriggerID);
 end
 
 --------------------------------------------------
 function DestroyablePiece:OnShutDown()
+	self:StopAllAudio();
 end
 
 --------------------------------------------------
@@ -228,7 +252,7 @@ function DestroyablePiece:Reload()
 	end
 
 	-- stop old sounds
-	self:StopAllSounds();
+	self:StopAllAudio();
 	self.bReloadGeoms = 0;
 	self:GotoState("Alive");
 
@@ -269,9 +293,9 @@ end
 --------------------------------------------------
 function DestroyablePiece:PlayDeathEffects(hit)
 	self:RemoveEffect();
-	if (self.parents_dead ~= true) then
-		if (self.enable_effects ~= false) then
-			self:PlaySoundEvent(self.Properties.Sounds.sound_Dead, g_Vectors.v000,g_Vectors.v001, 0, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
+	if (not self.parents_dead) then
+		if (self.enable_effects) then
+			self:PlayAudio(self.hAudioDeadTriggerID);
 			if(hit) then
 				if(hit.type == "collision") then
 					Particle.SpawnEffect(self.Properties.Effects.CollisionDestroyedEffect, self:GetPos(), self:GetWorldDir(), 1.0);
@@ -302,7 +326,7 @@ function DestroyablePiece:Die(hit)
 		self.health = 0;
 	end
 
-	if (self.dead ~= true) then
+	if (not self.dead) then
 		self.dead = true;
 
 		self.bReloadGeoms = 1;
@@ -334,7 +358,7 @@ function DestroyablePiece:Die(hit)
 		self:GotoState("Dead");
 		BroadcastEvent(self, "Dead");
 
-		if (bHide == true) then
+		if (bHide) then
 			self:Hide(1);
 		end
 	end
@@ -342,7 +366,7 @@ end
 
 --------------------------------------------------
 function DestroyablePiece:ParentsDied()
-	if (self.parents_dead ~= true) then
+	if (not self.parents_dead) then
 		self.parents_dead = true;
 
 		self:Die();
@@ -350,8 +374,8 @@ function DestroyablePiece:ParentsDied()
 		self.bReloadGeoms = 1;
 		self:RemoveDecals();
 
-		if (self.enable_effects ~= false) then
-			self:PlaySoundEvent(self.Properties.Sounds.sound_ParentsDead, g_Vectors.v000, g_Vectors.v001, 0, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
+		if (self.enable_effects) then
+			self:PlayAudio(self.hAudioParentsDeadTriggerID);
 			Particle.SpawnEffect(self.Properties.Effects.ParentsDeadEffect, self:GetPos(), g_Vectors.v001, 1.0);
 		end
 
@@ -384,8 +408,8 @@ function DestroyablePiece.Server:OnHit(hit)
 
 	if (self.health <= 0) then
 		self:Die(hit);
-	elseif (self.enable_effects ~= false) then
-		self:PlaySoundEvent(self.Properties.Sounds.sound_Dying, g_Vectors.v000, g_Vectors.v001, 0, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
+	elseif (self.enable_effects) then
+		self:PlayAudio(self.hAudioDyingTriggerID);
 	end
 
 	if (NumberToBool(self.Properties.bActivateOnDamage)) then
@@ -413,6 +437,7 @@ end
 DestroyablePiece.Client.Alive =
 {
 	OnBeginState=function(self)
+		self:PlayAudio(self.hAudioAliveTriggerID);
 	end,
 }
 
@@ -438,12 +463,17 @@ end
 
 --------------------------------------------------
 function DestroyablePiece:Event_Hide()
+	self.bPlayAudioOnUnhide = self.bAliveAudioPlaying;
+	self:StopAllAudio();
 	self:Hide(1);
 	BroadcastEvent(self, "Hide");
 end
 
 --------------------------------------------------
 function DestroyablePiece:Event_UnHide()
+	if (self.bPlayAudioOnUnhide) then
+		self:PlayAudio(self.hAudioAliveTriggerID);
+	end
 	self:Hide(0);
 	BroadcastEvent(self, "UnHide");
 end
@@ -508,6 +538,117 @@ DestroyablePiece.FlowEvents =
 		HitBy = "entity"
 	},
 }
+
+-- CIG BEGIN - gphillipson
+-- audio functions
+----------------------------------------------------------------------------------------
+function DestroyablePiece:LoadAudioPreloads(eMethod)
+	if (self.bAudioCached == false) then
+		if(self.hAudioAliveTriggerID ~= nil) then
+			AudioUtils.LoadPreloadForTrigger(self.hAudioAliveTriggerID, eMethod);
+		end
+		if(self.hAudioDyingTriggerID ~= nil) then
+			AudioUtils.LoadPreloadForTrigger(self.hAudioDyingTriggerID, eMethod);
+		end
+		if(self.hAudioDeadTriggerID ~= nil) then
+			AudioUtils.LoadPreloadForTrigger(self.hAudioDeadTriggerID, eMethod);
+		end
+		if(self.hAudioParentsDeadTriggerID ~= nil) then
+			AudioUtils.LoadPreloadForTrigger(self.hAudioParentsDeadTriggerID, eMethod);
+		end
+		self.bAudioCached = true;
+	end
+end
+
+----------------------------------------------------------------------------------------
+function DestroyablePiece:UnloadAudioPreloads()
+	if (self.bAudioCached) then
+		if (self.hAudioAliveTriggerID ~= nil) then
+			AudioUtils.UnloadPreloadForTrigger(self.hAudioAliveTriggerID);
+		end
+		if (self.hAudioDyingTriggerID ~= nil) then
+			AudioUtils.UnloadPreloadForTrigger(self.hAudioDyingTriggerID);
+		end
+		if (self.hAudioDeadTriggerID ~= nil) then
+			AudioUtils.UnloadPreloadForTrigger(self.hAudioDeadTriggerID);
+		end
+		if (self.hAudioParentsDeadTriggerID ~= nil) then
+			AudioUtils.UnloadPreloadForTrigger(self.hAudioParentsDeadTriggerID);
+		end
+		self.bAudioCached = false;
+	end
+end
+
+----------------------------------------------------------------------------------------
+function DestroyablePiece:_LookupAudioTriggerIDs()
+	self.hAudioAliveTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerAliveTriggerName);	
+	self.hAudioDyingTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerDyingTriggerName);	
+	self.hAudioDeadTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerDeadTriggerName);
+	self.hAudioParentsDeadTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerParentsDeadTriggerName);
+end
+
+------------------------------------------------------------------------------------------------------
+function DestroyablePiece:PlayAudio(hTriggerID)
+	if (hTriggerID ~= self.hAudioAliveTriggerID or not self.bAliveAudioPlaying) then
+		if (self.audioAnchorEnt ~= nil) then
+			if (hTriggerID ~= nil) then
+				self:UpdateAudioProxyOffset();
+				self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+			end
+		else
+			if (hTriggerID ~= nil) then
+				self:UpdateAudioProxyOffset();
+				self:ExecuteAudioTrigger(hTriggerID);
+			end
+		end
+		if (hTriggerID == self.hAudioAliveTriggerID) then
+			self.bAliveAudioPlaying = true;
+		end
+	end
+end
+
+------------------------------------------------------------------------------------------------------
+function DestroyablePiece:UpdateAudioProxyOffset()
+	if (self.audioAnchorEnt ~= nil) then
+		self.audioAnchorEnt:SetCurrentAudioEnvironments();
+	else
+		self:SetAudioProxyOffset(g_Vectors.v000);
+		self:SetCurrentAudioEnvironments();
+	end
+end
+
+------------------------------------------------------------------------------------------------------
+function DestroyablePiece:StopAllAudio()
+	self.bAliveAudioPlaying = false;
+	if (self.hAudioAliveTriggerID ~= nil or 
+		self.hAudioDyingTriggerID ~= nil or 
+		self.hAudioDeadTriggerID ~= nil or
+		self.hAudioParentsDeadTriggerID ~= nil) then
+		if (self.audioAnchorEnt ~= nil) then
+			self.audioAnchorEnt:StopAllAudioTriggers();
+		else
+			self:StopAllAudioTriggers();
+		end
+	end
+end
+
+------------------------------------------------------------------------------------------------------
+function DestroyablePiece:LinksUpdated()
+	if (self.audioAnchorEnt == nil) then
+		local restartAliveAudio = self.bAliveAudioPlaying;
+		if (self.bAliveAudioPlaying) then
+			self:StopAllAudio();
+		end
+
+		-- Check for audio anchor point
+		self.audioAnchorEnt = self:GetAudioAnchorChild();
+
+		if (restartAliveAudio) then
+			self:PlayAudio(self.hAudioAliveTriggerID);
+		end
+	end
+end
+-- CIG END - gphillipson
 
 --------------------------------------------------
 MakeKillable(DestroyablePiece);

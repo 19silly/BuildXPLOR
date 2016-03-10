@@ -64,45 +64,12 @@ function GameRulesSetStandardFuncs(gamerules)
 
 -- ///////// OnUsableMessage /////////
 	if (not gamerules.OnUsableMessage) then
-		gamerules.OnUsableMessage = function(self, srcId, objId, objEntityId, usableId)
-			if srcId ~= g_localActorId then return end
-
-			local msg = "";
-
-			if objId then
-				obj = System.GetEntity(objId)
-				if obj then
-
-					if obj.GetUsableMessage then
-						msg = obj:GetUsableMessage(srcId, usableId)
-					else
-						local state = obj:GetState()
-						if state ~= "" then
-							state = obj[state]
-							if state.GetUsableMessage then
-								msg = state.GetUsableMessage(obj, srcId, usableId)
-							end
-						end
-					end
-				end
-			end
-
-			if(UIAction) then
-				UIAction.StartAction("DisplayUseText", {msg}); --this triggers the UIAction "DisplayUseText" and pass the msg as argument (see FlowGraph UIActions how to send msg to flash)
-			end
-		end
-	end
-
--- ///////// OnLongHover /////////
-	if (not gamerules.OnLongHover) then
-		gamerules.OnLongHover = function(self, srcId, objId)
-		end
+		gamerules.OnUsableMessage = SinglePlayer.OnUsableMessage;
 	end
 
 	if (not gamerules.ProcessActorDamage) then
 		gamerules.ProcessActorDamage = function(self, hit)
 			-- Using SinglePlayer ProcessActorDamage
-			gamerules.GetDamageAbsorption = SinglePlayer.GetDamageAbsorption;
 			local died = SinglePlayer.ProcessActorDamage(self, hit);
 			return died;
 		end

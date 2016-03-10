@@ -1,0 +1,38 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="BeerGlass" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="1" pos="-60,-300,0" class="InitNode"/>
+   <Task name="Find Object" id="2" pos="-200,-210,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject:Usables:Cups:BeerGlass"/>
+    <Input name="Use Channel" value="beerglass" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="entityid" value="BeerGlass"/>
+   </Task>
+   <Task name="Pathfind" id="3" pos="-180,-60,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="BeerGlass"/>
+    <Input name="Use Channel" value="beerglass" type="string"/>
+    <Input name="Speed" value="Walk" type="string"/>
+   </Task>
+   <Task name="Use" id="4" pos="-210,120,0" class="TreeNode">
+    <Input name="User" type="entityid"/>
+    <Input name="Usable" type="entityid" value="BeerGlass"/>
+    <Input name="Use Channel" type="string" value="beerglass"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="2" nodeOut="1" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="3" nodeOut="2" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="4" nodeOut="3" portIn="in" portOut="outSuccess" enabled="1"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

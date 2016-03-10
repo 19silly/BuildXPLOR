@@ -1,4 +1,4 @@
-<item name="Outlaw_Medium_Helmet" class="PlayerItemHelmet" invisible="0" category="helmet" priority="111">
+<item name="Outlaw_Medium_Helmet" class="PlayerItemHelmet" invisible="0" category="Suit" priority="111">
 	<params>
 		<param name="giveable" value="1" />
 		<param name="selectable" value="0" />
@@ -17,14 +17,15 @@
 	</params>
 
 	<geometry>
-		<firstperson name="Objects/Characters/Human/Males/Gear/Outlaw/light/Helmet_Interior/outlaw_light_helmet_int_m_base.cdf" />
+		<firstperson name="Objects/Characters/Human/Males/Gear/Outlaw/medium/Helmet_Interior/outlaw_medium_helmet_int.cdf" />
+		<thirdperson name="Objects/Characters/Human/male_cdfs/pirate/medium/pirate_medium_m_helmet_original.cdf" />
 	</geometry>
 	
 	<Helmet>
 		<param name="helmetMountName" value="headCam" />
 		<param name="visorElement" value="Visor_HUD" />
 		<param name="hudAttach" value="hud_attach" />
-		<param name="visorView" value="Visor_Fps_Outlaw" />
+		<param name="visorView" value="Visor_Fps_Outlaw_Medium" />
 			<!-- First person visor params -->
 		<param name="fpScaleX" value="0.63" />
 		<param name="fpScaleY" value="0.5" />
@@ -38,21 +39,52 @@
 		<param name="tpOffsetY" value="-0.02" />
 		<param name="tpHFov" value="120" />
 		<param name="tpVFov" value="120" />
+		
+		<!-- Depth of Field settings -->
+		<param name="dof_Active" value="1.0" />
+		<param name="dof_minZ" value="0.12" />
+		<param name="dof_minZScale" value="10.0" />
+		<param name="dof_focusMin" value="-1.0" />
+		<param name="dof_focusMax" value="-1.0" />
+		<param name="dof_blurAmount" value="1.0" />
 	</Helmet>
 
 	<helmetSway>
+		<param name="breathRotMax"       value="0.2" /><!-- Degrees the head/helmet move while breathing. -->
+
+		<!-- For clarification, this is based on acceleration or deceleration of the player, which handles physical collisions or fast movements. -->
+		<param name="collisionForceMax" value="400.0" /><!-- Max amount of force needed to hit the max rotation. This happens when colliding with objects, for ex. falling and hitting floor, etc. -->
+		<param name="collisionRotMax"   value="15.0" /><!-- Degrees of rotation when you get hit hard, ramps up to this depending on force. -->
+
+		<!-- Hit recoil back end still has room for improvement depending on numbers. -->
+		<param name="hitForceMax"     value="100" /><!-- Amount of force needed to trigger max rotation. This can be applied from force propulsion grenades, etc. -->
+		<param name="hitApplyTimeMax" value=".1" />
+		<param name="hitDecayTimeMax" value=".8" />
+		<param name="hitRotationMax"  value="20" />
+
+		<param name="lagPitchMax"   value="2.0" />	<!-- Max pitch degrees that the helmet can lag. -->
+		<param name="lagYawMax"     value="2.0" />		<!-- Max yaw degrees that the helmet can lag. -->
+		<param name="lagSmoothRate" value=".075" />	<!-- Smoothing rate of helmet follow. Pretty arbitrary, anything higher than .5 is loose, .125 is pretty tight, .075 even tighter. -->
+
 		<param name="peekPercentPitchMaxStart" value="0.5" />	<!-- Percent head can pitch up before peek kicks in. -->
 		<param name="peekPercentPitchMinStart" value="0.5" />	<!-- Percent head can pitch down before peek kicks in. -->
 		<param name="peekPitchMaxRange" value="10.0" />			<!-- Degrees the helmet moves when looking all the way up. -->
 		<param name="peekPitchMinRange" value="10.0" />			<!-- Degrees the helmet moves when looking all the way down. -->
 
-		<param name="lagPitchMax" value="5.0" />	<!-- Max pitch degrees that the helmet can lag. -->
-		<param name="lagYawMax" value="5.0" />		<!-- Max yaw degrees that the helmet can lag. -->
-		<param name="lagSmoothRate" value=".075" />	<!-- Smoothing rate of helmet follow. Pretty arbitrary, anything higher than .5 is loose, .125 is pretty tight, .075 even tighter. -->
+		<param name="recoilMaxX" value="45" />
+		<param name="recoilMaxY" value="2.0" />
+		<param name="recoilMaxZ" value="45" />
 
-		<param name="breathMaxRotation" value="1.4" /><!-- Degrees the head/helmet move while breathing. -->
+		<param name="stepApplyTimeMax" value="0.3" />
+		<param name="stepApplyTimeMin" value="0.1" />
+		<param name="stepDecayTimeMax" value="0.3" />
+		<param name="stepDecayTimeMin" value="0.1" />
+		<param name="stepRandRotX" 	   value="14" /> <!-- may not have much of an effect -->
+		<param name="stepRandRotY"     value="0.7" /><!-- may not have much of an effect -->
+		<param name="stepRandRotZ"     value="14" /> <!-- may not have much of an effect -->
+		<param name="stepRotMax"       value="1.25" />
 	</helmetSway>
-	
+
 	<light>
 		<param name="projectTexture" value="materials/lights/gobos/common/hardsquare_neutral.tif" />
 		<param name="projectorFOV" value="110.0" />
@@ -63,7 +95,7 @@
 		<param name="HDRDynamic" value="0.0" />
 		<param name="distance" value="0.2" />
 	</light>
-	
+
 	<portParams>
 		<ports>
 			<ItemPort minsize="1" maxsize="1" name="HUD_Helper" display_name="HUD DockingStation Helper">
@@ -71,21 +103,22 @@
 					<Type type="Display" />
 				</types>
 			</ItemPort>
-			
+
 			<ItemPort minsize="1" maxsize="1" name="radar" display_name="Radar Helper">
 				<types>
 					<Type type="Radar" />
 				</types>
 			</ItemPort>
-			
+
 			<ItemPort minsize="1" maxsize="1" name="radar_display" display_name="Radar Display">
 				<types>
 					<Type type="Display" />
 				</types>
+				<HostItemScale scale="0.6" />
 			</ItemPort>
 		</ports>
 	</portParams>
-	
+
 	<DockingStation>
 		<Slots>
 			<Slot name="First" itemPort="HUD_Helper">

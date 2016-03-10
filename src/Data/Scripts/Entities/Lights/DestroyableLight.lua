@@ -753,7 +753,7 @@ function DestroyableLight:SwitchOnOff( wantOn )
 			self:SwitchOnOffChildren( wantOn );
 		elseif (self.lightOn~=true and wantOn) then
 		self.lightOn = true;
-			self:PlaySound( self.Properties.Sound.soundTurnOn );
+		self:PlaySound( self.Properties.Sound.soundTurnOn );
 		BroadcastEvent( self, "LightOn" );
 			self:ShowCorrectLight();
 			self:SwitchOnOffChildren( wantOn );
@@ -917,7 +917,8 @@ end
 function DestroyableLight:PlaySound( soundName )
 	if ( soundName and soundName~="") then
 		local sndFlags=SOUND_DEFAULT_3D;
-		self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		-- Reinstate
+		--self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 	end
 end
 
@@ -925,7 +926,9 @@ function DestroyableLight:PlaySoundLoop( soundName )
 	if ( soundName and soundName~="") then
 		local sndFlags=SOUND_DEFAULT_3D;
 		sndFlags = bor( sndFlags, FLAG_SOUND_LOOP );
-		local id = self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		local id = 0;
+		-- Reinstate
+		--id = self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 		return id;
 	end
 end
@@ -944,14 +947,16 @@ end
 
 function DestroyableLight:StopIdleSound()
 	if (self.idleSoundId~=0) then
-		Sound.StopSound(self.idleSoundId);
+		-- Reinstate
+		--Sound.StopSound(self.idleSoundId);
 		self.idleSoundId = 0;
 	end
 end
 
 function DestroyableLight:StopRunSound()
 	if (self.runSoundId~=0) then
-		Sound.StopSound(self.runSoundId);
+		-- Reinstate
+		--Sound.StopSound(self.runSoundId);
 		self.runSoundId = 0;
 	end
 end

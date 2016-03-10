@@ -22,7 +22,8 @@ UIEntity = {
 
 ------------------------------------------------------------------------------------------------------
 function UIEntity:OnSpawn()
-	self:SetFromProperties();	
+	self:SetFromProperties();
+	self:SetFlags(ENTITY_FLAG_NO_SAVE, 0);
 end
 
 

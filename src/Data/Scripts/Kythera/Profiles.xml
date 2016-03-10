@@ -11,7 +11,7 @@
    <MinFireAngleCos type="float">0.9</MinFireAngleCos>
    <Accuracy type="float">0.8</Accuracy>
    <MaxInaccuracySpreadDegrees type="float">45.0</MaxInaccuracySpreadDegrees>
-   <PerceptionObscuredTime type="float">10.000000</PerceptionObscuredTime>
+   <PerceptionObscuredTime type="float">5.000000</PerceptionObscuredTime>
    <PerceptionMemoryTime type="float">60.000000</PerceptionMemoryTime>
    <PerceivedLevelDecayRate type="float">0.2</PerceivedLevelDecayRate>
    <PerceivedLevelMemoryMultiplier type="float">5.0</PerceivedLevelMemoryMultiplier>
@@ -22,6 +22,7 @@
    <VisionSecondaryConeMultiplier type="float">5.0</VisionSecondaryConeMultiplier>
    <VisionDistanceScale type="float">5.0</VisionDistanceScale>
    <VisionBasePerceptionScale type="float">1.0</VisionBasePerceptionScale>
+   <HearingDistanceScale type="float">1.0</HearingDistanceScale>
    <HearingBasePerceptionScale type="float">1.0</HearingBasePerceptionScale>
    <IronsightApproachPreference type="string">WhenStationary</IronsightApproachPreference>
    <IronsightEngagePreference type="string">Always</IronsightEngagePreference>
@@ -29,8 +30,9 @@
    <MinSuspiciousTime type="float">5.0</MinSuspiciousTime>
    <MaxSuspiciousDecayTime type="float">10.0</MaxSuspiciousDecayTime>
    <MinEngagementRange type="float">5.000000</MinEngagementRange>
-   <MaxEngagementRange type="float">20.000000</MaxEngagementRange>
+   <MaxEngagementRange type="float">50.000000</MaxEngagementRange>
    <MinTimeInCover type="float">5.000000</MinTimeInCover>
+   <MemoryTargetInvestigateDelay type="float">30.000000</MemoryTargetInvestigateDelay>
    <SlowdownAtPathEnd type="bool">true</SlowdownAtPathEnd>  
   </Base>
 
@@ -57,6 +59,10 @@
    <DefaultTask type="string">PU</DefaultTask>
    <SelectionTree type="string">ST_CharacterPU</SelectionTree>
   </PU>
+  
+  <Pirate id="1337924751" inheritanceParent="1337908400" type="bb">
+   <SelectionTree type="string">ST_Pirate</SelectionTree>
+  </Pirate>
  </Character>
  
  <Base id="1337908176" type="bb"> 
@@ -95,7 +101,7 @@
    <OptimalFiringRange type="float">1500.000000</OptimalFiringRange>
   </Drone>
   
-  <DroneMissiles id="1587743278" inheritanceParent="1337909952" type="bb">
+  <DroneMissiles id="1587743278" inheritanceParent="1587743267" type="bb">
    <TargetSelector type="string">TS_ShipDefault</TargetSelector>
    <ThreatLevel type="float">1.00000</ThreatLevel>
    <MinFireAngleCos type="float">0.01</MinFireAngleCos>
@@ -105,7 +111,483 @@
    <MissileCooldownTime type="float">30.000000</MissileCooldownTime>
   </DroneMissiles>
   
+  <!--BASE-->  
   <Base id="1337909952" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+  <!-- FLIGHT -->
+   <AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">100.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">5</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">2</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">2</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">5</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">5</EngageNonFireTime>
+   <MinEvadeTime type="float">5</MinEvadeTime>
+   <OptimalRetreatRange type="float">600</OptimalRetreatRange>
+   <MaxTurnProportion type="float">0.055</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.85</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  
+   <!-- TARGETING -->
+   <ApproachRange type="float">1100</ApproachRange>
+   <OptimalFiringRange type="float">700</OptimalFiringRange>
+   <AimingDispersionMax type="float">6</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">45.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.26</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.985</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.005</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1100</MaxFireDistance>
+   <FireDistanceHysteresis type="float">14.0</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">7</PerceptionObscuredTime>
+   <ForwardBias type="float">80</ForwardBias>
+   <ImmediateThreatBias type="float">550</ImmediateThreatBias>
+   <LowHealthBias type="float">20</LowHealthBias>
+   <PlayerBias type="float">450</PlayerBias>
+   <TailingBias type="float">100</TailingBias>
+   <TargetBias type="float">250</TargetBias> 
+   <!-- COMBAT -->
+   <FireReactionTime type="float">0.1</FireReactionTime>
+   <CMLaunchDelay type="float">3.0</CMLaunchDelay>
+   <CMLaunchChance type="float">0.7</CMLaunchChance>
+   <RecentDamageDecayRate type="float">60</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">700</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">500</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">400</RecentDamageToRetreat>
+   <RetreatRunTime type="float">3</RetreatRunTime>  
+   <!-- MISSILES -->
+   <EnableMissiles type="bool">True</EnableMissiles>
+   <MissileCooldownTime type="float">35</MissileCooldownTime>  
+   <!-- UNIQUE -->
+   <MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">1</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
+  </Base>
+   
+   <!--PERFECT-->   
+  <Perfect id="1337909948" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+ <!-- FLIGHT -->
+   <AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">40.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">8</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">4</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">2</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">3</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">10</EngageNonFireTime>
+   <MinEvadeTime type="float">2</MinEvadeTime>
+   <OptimalRetreatRange type="float">200</OptimalRetreatRange>
+   <MaxRetreatTime type="float">3</MaxRetreatTime>
+   <MaxTurnProportion type="float">0.4</MaxTurnProportion>
+   <SpeedMultiplier type="float">1</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  
+   <!-- TARGETING -->
+   <ApproachRange type="float">1100</ApproachRange>
+   <OptimalFiringRange type="float">200</OptimalFiringRange>
+   <AimingDispersionMax type="float">0</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">10.00000</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.999</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.0001</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">600</MaxFireDistance>
+   <FireDistanceHysteresis type="float">10</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">15</PerceptionObscuredTime>
+   <ForwardBias type="float">200</ForwardBias>
+   <ImmediateThreatBias type="float">1050</ImmediateThreatBias>
+   <LowHealthBias type="float">200</LowHealthBias>
+   <PlayerBias type="float">800</PlayerBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">800</TargetBias> 
+   <!-- COMBAT -->
+   <FireReactionTime type="float">0</FireReactionTime>
+   <CMLaunchDelay type="float">0</CMLaunchDelay>
+   <CMLaunchChance type="float">1</CMLaunchChance>
+   <RecentDamageDecayRate type="float">100</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">950</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">400</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">200</RecentDamageToRetreat>
+   <RetreatRunTime type="float">1.5</RetreatRunTime>  
+   <!-- MISSILES -->
+   <EnableMissiles type="bool">true</EnableMissiles>
+   <MissileCooldownTime type="float">30</MissileCooldownTime>  
+   <!-- UNIQUE -->
+   <MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">1</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
+  </Perfect>
+  
+  <!--HARD-->
+  <Hard id="1587743269" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+  <!-- FLIGHT -->
+   <AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">80.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">4</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">3</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">3</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">4</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">6</EngageNonFireTime>
+   <MinEvadeTime type="float">4</MinEvadeTime>
+   <OptimalRetreatRange type="float">300</OptimalRetreatRange>
+   <MaxRetreatTime type="float">2</MaxRetreatTime>
+   <MaxTurnProportion type="float">0.18</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.8</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  
+   <!-- TARGETING -->
+   <ApproachRange type="float">1100</ApproachRange>
+   <OptimalFiringRange type="float">500</OptimalFiringRange>
+   <AimingDispersionMax type="float">6</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">140.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.5</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.987</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.005</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1100</MaxFireDistance>
+   <FireDistanceHysteresis type="float">12.0</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">7</PerceptionObscuredTime>
+   <ForwardBias type="float">200</ForwardBias>
+   <ImmediateThreatBias type="float">300</ImmediateThreatBias>
+   <LowHealthBias type="float">300</LowHealthBias>
+   <PlayerBias type="float">600</PlayerBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">500</TargetBias> 
+   <!-- COMBAT -->
+   <FireReactionTime type="float">0.2</FireReactionTime>
+   <CMLaunchDelay type="float">2</CMLaunchDelay>
+   <CMLaunchChance type="float">0.6</CMLaunchChance>
+   <RecentDamageDecayRate type="float">150</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">900</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">500</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">400</RecentDamageToRetreat>
+   <RetreatRunTime type="float">2</RetreatRunTime>  
+   <!-- MISSILES -->
+   <EnableMissiles type="bool">true</EnableMissiles>
+   <MissileCooldownTime type="float">45</MissileCooldownTime>  
+   <!-- UNIQUE -->
+   <MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">0.25</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
+  </Hard>
+
+  <!--BALANCED-->  
+  <Balanced id="1587743268" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>  
+  <!-- FLIGHT -->
+   <AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">80.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">5</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">3</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">3</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">5</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">6</EngageNonFireTime>
+   <MinEvadeTime type="float">4</MinEvadeTime>
+   <OptimalRetreatRange type="float">500</OptimalRetreatRange>
+   <MaxRetreatTime type="float">2.5</MaxRetreatTime>
+   <MaxTurnProportion type="float">0.15</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.75</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Medium</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  
+   <!-- TARGETING -->
+   <ApproachRange type="float">1100</ApproachRange>
+   <OptimalFiringRange type="float">400</OptimalFiringRange>
+   <AimingDispersionMax type="float">12</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">120.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.65</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.954</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.005</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1100</MaxFireDistance>
+   <FireDistanceHysteresis type="float">16.0</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">6</PerceptionObscuredTime>
+   <ForwardBias type="float">200</ForwardBias>
+   <ImmediateThreatBias type="float">300</ImmediateThreatBias>
+   <LowHealthBias type="float">150</LowHealthBias>
+   <PlayerBias type="float">600</PlayerBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">350</TargetBias> 
+   <!-- COMBAT -->
+   <FireReactionTime type="float">0.2</FireReactionTime>
+   <CMLaunchDelay type="float">3</CMLaunchDelay>
+   <CMLaunchChance type="float">0.4</CMLaunchChance>
+   <RecentDamageDecayRate type="float">100</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">700</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">500</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">400</RecentDamageToRetreat>
+   <RetreatRunTime type="float">2.5</RetreatRunTime>  
+   <!-- MISSILES -->
+   <EnableMissiles type="bool">false</EnableMissiles>
+   <MissileCooldownTime type="float">50</MissileCooldownTime>  
+   <!-- UNIQUE -->
+   <MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">0.5</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
+  </Balanced>
+
+  <!--EASY-->  
+  <Easy id="1587743267" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+  <!-- FLIGHT -->
+   <AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">100.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">5</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">4</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">4</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">5</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">6</EngageNonFireTime>
+   <MinEvadeTime type="float">4</MinEvadeTime>
+   <OptimalRetreatRange type="float">300</OptimalRetreatRange>
+   <MaxRetreatTime type="float">3</MaxRetreatTime>
+   <MaxTurnProportion type="float">0.12</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.7</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  
+   <!-- TARGETING -->
+   <ApproachRange type="float">1100</ApproachRange>
+   <OptimalFiringRange type="float">500</OptimalFiringRange>
+   <AimingDispersionMax type="float">16</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">100.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.75</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.960</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.005</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1100</MaxFireDistance>
+   <FireDistanceHysteresis type="float">12</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">6</PerceptionObscuredTime>
+   <ForwardBias type="float">200</ForwardBias>
+   <ImmediateThreatBias type="float">300</ImmediateThreatBias>
+   <LowHealthBias type="float">50</LowHealthBias>
+   <PlayerBias type="float">600</PlayerBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">400</TargetBias> 
+   <!-- COMBAT -->
+   <FireReactionTime type="float">0.2</FireReactionTime>
+   <CMLaunchDelay type="float">4</CMLaunchDelay>
+   <CMLaunchChance type="float">0.1</CMLaunchChance>
+   <RecentDamageDecayRate type="float">80</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">600</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">400</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">300</RecentDamageToRetreat>
+   <RetreatRunTime type="float">3</RetreatRunTime>  
+   <!-- MISSILES -->
+   <EnableMissiles type="bool">false</EnableMissiles>
+   <MissileCooldownTime type="float">90</MissileCooldownTime>  
+   <!-- UNIQUE -->
+   <MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">1</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
+  </Easy>
+  
+  <Teammate id="1587745426" type="bb">
+  <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>  
+  <!-- FLIGHT -->
+   <AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">80.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">5</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">3</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">2</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">4</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">5</EngageNonFireTime>
+   <MinEvadeTime type="float">4</MinEvadeTime>
+   <OptimalRetreatRange type="float">500</OptimalRetreatRange>
+   <MaxRetreatTime type="float">2.5</MaxRetreatTime>
+   <MaxTurnProportion type="float">0.15</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.75</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Medium</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  
+   <!-- TARGETING -->
+   <ApproachRange type="float">1100</ApproachRange>
+   <OptimalFiringRange type="float">400</OptimalFiringRange>
+   <AimingDispersionMax type="float">12</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">100.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.65</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.875</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.005</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1100</MaxFireDistance>
+   <FireDistanceHysteresis type="float">16.0</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">6</PerceptionObscuredTime>
+   <ForwardBias type="float">200</ForwardBias>
+   <ImmediateThreatBias type="float">300</ImmediateThreatBias>
+   <LowHealthBias type="float">150</LowHealthBias>
+   <PlayerBias type="float">300</PlayerBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">350</TargetBias> 
+   <!-- COMBAT -->
+   <FireReactionTime type="float">0.2</FireReactionTime>
+   <CMLaunchDelay type="float">2</CMLaunchDelay>
+   <CMLaunchChance type="float">0.5</CMLaunchChance>
+   <RecentDamageDecayRate type="float">100</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">700</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">600</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">500</RecentDamageToRetreat>
+   <RetreatRunTime type="float">2.5</RetreatRunTime>  
+   <!-- MISSILES -->
+   <EnableMissiles type="bool">false</EnableMissiles>
+   <MissileCooldownTime type="float">50</MissileCooldownTime>  
+   <!-- UNIQUE -->
+   <MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">1</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
+   
+   <!--OLD TEAMMATE STATS-->
+   <!--<KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>-->
+<!-- FLIGHT -->
+   <!--<AvoidCollisionTime type="float">3.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">100.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">7.0</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">5.0</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">3.0</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">5.0</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">4</EngageNonFireTime>
+   <MinEvadeTime type="float">3.0</MinEvadeTime>
+   <OptimalRetreatRange type="float">300</OptimalRetreatRange>
+   <MaxTurnProportion type="float">0.25</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.85</SpeedMultiplier>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>  -->
+<!-- TARGETING -->
+   <!--<ApproachRange type="float">1350</ApproachRange>
+   <OptimalFiringRange type="float">1150</OptimalFiringRange>
+   <AimingDispersionMax type="float">14</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">40.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.2</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.97</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.01</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1350</MaxFireDistance>
+   <FireDistanceHysteresis type="float">25</FireDistanceHysteresis>
+   <PerceptionObscuredTime type="float">8</PerceptionObscuredTime>
+   <ForwardBias type="float">100</ForwardBias>
+   <ImmediateThreatBias type="float">250</ImmediateThreatBias>
+   <LowHealthBias type="float">30</LowHealthBias>
+   <PlayerBias type="float">100</PlayerBias>
+   <TailingBias type="float">150</TailingBias>
+   <TargetBias type="float">150</TargetBias> -->
+<!-- COMBAT -->
+   <!--<FireReactionTime type="float">0.15</FireReactionTime>
+   <CMLaunchDelay type="float">2.5</CMLaunchDelay>
+   <CMLaunchChance type="float">0.5</CMLaunchChance>
+   <RecentDamageDecayRate type="float">50</RecentDamageDecayRate>
+   <RecentDamageMaximum type="float">800</RecentDamageMaximum>
+   <RecentDamageToEscape type="float">500</RecentDamageToEscape>
+   <RecentDamageToRetreat type="float">200</RecentDamageToRetreat>
+   <RetreatRunTime type="float">4.5</RetreatRunTime> -->
+<!-- MISSILES -->
+   <!--<EnableMissiles type="bool">false</EnableMissiles>
+   <MissileCooldownTime type="float">10</MissileCooldownTime>-->
+<!-- UNIQUE -->
+   <!--<MaxThreatAmount type="float">-1</MaxThreatAmount>
+   <ThreatLevel type="float">1</ThreatLevel>
+   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>-->
+  </Teammate>
+ </Base>
+ 
+ <!--FLIGHT PROFILES-->
+ <Flight id="1337925824" type="bb">
+  <Cocky id="1337927456" type="bb">
+   <AvoidCollisionTime type="float">2.0</AvoidCollisionTime>  
+   <AvoidTolerance type="float">60.0</AvoidTolerance>
+   <BreakToAvoidMinTime type="float">3</BreakToAvoidMinTime>
+   <BreakToAvoidMaxTime type="float">4</BreakToAvoidMaxTime>
+   <BreakToEscapeMinTime type="float">2</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">3</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">6.0</EngageNonFireTime>   
+   <MinEvadeTime type="float">3.0</MinEvadeTime>
+   <OptimalRetreatRange type="float">300</OptimalRetreatRange>
+   <MaxTurnProportion type="float">0.25</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.9</SpeedMultiplier>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.1</UnpredictabilityTimescale>     
+  </Cocky>
+  
+  <Cautious id="1337926048" type="bb">
+   <AvoidCollisionTime type="float">4.0</AvoidCollisionTime> 
+   <AvoidTolerance type="float">140.0</AvoidTolerance>
+   <BreakToAvoidMinTime type="float">5</BreakToAvoidMinTime> 
+   <BreakToAvoidMaxTime type="float">7</BreakToAvoidMaxTime>   
+   <BreakToEscapeMinTime type="float">5</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">7</BreakToEscapeMaxTime>
+   <MinEvadeTime type="float">6.0</MinEvadeTime>
+   <EngageNonFireTime type="float">6.0</EngageNonFireTime>
+   <OptimalRetreatRange type="float">800</OptimalRetreatRange>
+   <MaxTurnProportion type="float">0.15</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.75</SpeedMultiplier>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale> 
+  </Cautious>
+  
+  <Reckless id="1337959845" type="bb">
+   <AvoidCollisionTime type="float">2.0</AvoidCollisionTime>
+   <AvoidTolerance type="float">40.0</AvoidTolerance>
+   <BreakToAvoidMinTime type="float">1.5</BreakToAvoidMinTime>   
+   <BreakToAvoidMaxTime type="float">3</BreakToAvoidMaxTime>
+   <BreakToEscapeMaxTime type="float">2.0</BreakToEscapeMaxTime>
+   <BreakToEscapeMinTime type="float">2.5</BreakToEscapeMinTime>
+   <EngageNonFireTime type="float">3.0</EngageNonFireTime>
+   <MinEvadeTime type="float">2.5</MinEvadeTime>
+   <RecentDamageToEscape type="float">800.0</RecentDamageToEscape>
+   <OptimalRetreatRange type="float">300</OptimalRetreatRange>
+   <MaxTurnProportion type="float">0.3</MaxTurnProportion>
+   <SpeedMultiplier type="float">0.94</SpeedMultiplier>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.25</UnpredictabilityTimescale>
+  </Reckless>
+  
+    <Cowardly id="1337948956" type="bb">
+   <AvoidCollisionTime type="float">5.0</AvoidCollisionTime>  
+   <AvoidTolerance type="float">160.0</AvoidTolerance>
+   <BreakToAvoidMaxTime type="float">10</BreakToAvoidMaxTime>
+   <BreakToAvoidMinTime type="float">5</BreakToAvoidMinTime>
+   <BreakToEscapeMinTime type="float">4</BreakToEscapeMinTime>
+   <BreakToEscapeMaxTime type="float">5</BreakToEscapeMaxTime>
+   <EngageNonFireTime type="float">7.0</EngageNonFireTime>
+   <MaxTurnProportion type="float">0.25</MaxTurnProportion>   
+   <MinEvadeTime type="float">5.0</MinEvadeTime>
+   <OptimalRetreatRange type="float">600</OptimalRetreatRange>
+   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
+   <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>     
+  </Cowardly>
+  
+  <!-- Placing Tutorial section here until correct section has been created. Requested by - JDadley --> 
+  <Tutorial id="1337909952" type="bb">
    <KytheraControl type="bool">true</KytheraControl>
    <DefaultTask type="string">Defend</DefaultTask>
    <SelectionTree type="string">ST_ShipDefault</SelectionTree>
@@ -122,15 +604,15 @@
    <MinFireAngleCos type="float">0.960000</MinFireAngleCos>
    <MaxFireDistance type="float">1500.000000</MaxFireDistance>
    <AvoidTolerance type="float">40.000000</AvoidTolerance>
-   <MinEvadeTime type="float">3.25000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">9.00000</BreakToAvoidMinTime>
+   <MinEvadeTime type="float">4.25000</MinEvadeTime>
+   <BreakToAvoidMinTime type="float">6.00000</BreakToAvoidMinTime>
    <FireAngleCosHysteresis type="float">0.020000</FireAngleCosHysteresis>
    <CloselyChasedDistance type="float">150.000000</CloselyChasedDistance>
    <InFrontCosAngle type="float">0.850000</InFrontCosAngle>
    <OptimalFiringRange type="float">1050.000000</OptimalFiringRange>
    <BehindCosAngle type="float">-0.850000</BehindCosAngle>
-   <FireReactionTime type="float">0.20000</FireReactionTime>
-   <RecentDamageMaximum type="float">800.00000</RecentDamageMaximum>
+   <FireReactionTime type="float">0.30000</FireReactionTime>
+   <RecentDamageMaximum type="float">1000.00000</RecentDamageMaximum>
    <LowHealthBias type="float">10.00000</LowHealthBias>
    <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">13.5000</BreakToAvoidMaxTime>
@@ -141,445 +623,88 @@
    <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">1500.000000</ApproachRange>
-   <TailingBias type="float">75.000000</TailingBias>
+   <TailingBias type="float">100.000000</TailingBias>
    <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
    <EnableMissiles type="bool">false</EnableMissiles>
    <EnableGuns type="bool">true</EnableGuns>
    <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
    <CMLaunchDelay type="float">0.0</CMLaunchDelay>
    <CMLaunchChance type="float">0.0</CMLaunchChance>
-   <SpeedMultiplier type="float">0.6375</SpeedMultiplier>   
-   <MaxTurnProportion type="float">0.30000</MaxTurnProportion>
-   <RecentDamageToRetreat type="float">200.00000</RecentDamageToRetreat>
+   <SpeedMultiplier type="float">0.5</SpeedMultiplier>   
+   <MaxTurnProportion type="float">0.05000</MaxTurnProportion>
+   <RecentDamageToRetreat type="float">400.00000</RecentDamageToRetreat>
    <RetreatRunTime type="float">4.5</RetreatRunTime>
-   <OptimalRetreatRange type="float">300.0</OptimalRetreatRange>
-   <PlayerBias type="float">100.0</PlayerBias>
+   <OptimalRetreatRange type="float">400.0</OptimalRetreatRange>
+   <PlayerBias type="float">250.0</PlayerBias>
    <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
    <UnpredictabilityTimescale type="float">0.0</UnpredictabilityTimescale>
    <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
    <ThreatLevel type="float">1.00000</ThreatLevel>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Base>
-  
-  <Perfect id="1337909948" type="bb">
-   <KytheraControl type="bool">true</KytheraControl>
-   <DefaultTask type="string">Attack</DefaultTask>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
-   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
-   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
-   <PerceptionObscuredTime type="float">15.000000</PerceptionObscuredTime>
-   <FireDistanceHysteresis type="float">10.000000</FireDistanceHysteresis>
-   <AvoidCollisionTime type="float">3.000000</AvoidCollisionTime>
-   <ForwardBias type="float">200.000000</ForwardBias>
-   <LeadingAccuracy type="float">1.00000</LeadingAccuracy>
-   <AimingDispersionMax type="float">0.000000</AimingDispersionMax>
-   <ImmediateThreatBias type="float">1.000000</ImmediateThreatBias>
-   <MinFireAngleCos type="float">0.9990</MinFireAngleCos>
-   <MaxFireDistance type="float">600.000000</MaxFireDistance>
-   <AvoidTolerance type="float">40.000000</AvoidTolerance>
-   <MinEvadeTime type="float">2.00000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">4.000000</BreakToAvoidMinTime>
-   <FireAngleCosHysteresis type="float">0.000100</FireAngleCosHysteresis>
-   <CloselyChasedDistance type="float">80.000000</CloselyChasedDistance>
-   <InFrontCosAngle type="float">0.850000</InFrontCosAngle>
-   <OptimalFiringRange type="float">200.000000</OptimalFiringRange>
-   <BehindCosAngle type="float">-0.850000</BehindCosAngle>
-   <FireReactionTime type="float">0.000000</FireReactionTime>
-   <RecentDamageMaximum type="float">500.000000</RecentDamageMaximum>
-   <LowHealthBias type="float">200.000000</LowHealthBias>
-   <EngageNonFireTime type="float">10.000000</EngageNonFireTime>
-   <BreakToAvoidMaxTime type="float">8.000000</BreakToAvoidMaxTime>
-   <RecentDamageToEscape type="float">400.000000</RecentDamageToEscape>
-   <RecentDamageToRetreat type="float">200.00000</RecentDamageToRetreat>
-   <RecentDamageDecayRate type="float">100.000000</RecentDamageDecayRate>
-   <TargetBias type="float">800.000000</TargetBias>
-   <BreakToEscapeMinTime type="float">2.000000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">3.00000</BreakToEscapeMaxTime>
-   <ApproachRange type="float">1100.000000</ApproachRange>
-   <TailingBias type="float">200.000000</TailingBias>
-   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
-   <CMLaunchDelay type="float">0.0</CMLaunchDelay>
-   <CMLaunchChance type="float">1.0</CMLaunchChance>
-   <EnableMissiles type="bool">false</EnableMissiles>
-   <SpeedMultiplier type="float">1.0</SpeedMultiplier>
-   <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
-   <ThreatLevel type="float">1.00000</ThreatLevel>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Perfect>
-  
-  <Hard id="1587743269" type="bb">
-   <KytheraControl type="bool">true</KytheraControl>
-   <DefaultTask type="string">Attack</DefaultTask>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
-   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
-   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
-   <PerceptionObscuredTime type="float">11.000000</PerceptionObscuredTime>
-   <FireDistanceHysteresis type="float">15.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
-   <LeadingAccuracy type="float">1.0000</LeadingAccuracy>
-   <AimingDispersionMax type="float">5.0000</AimingDispersionMax>
-   <ImmediateThreatBias type="float">1050.000000</ImmediateThreatBias>
-   <MinFireAngleCos type="float">0.998000</MinFireAngleCos>
-   <MaxFireDistance type="float">1500.000000</MaxFireDistance>
-   <AvoidTolerance type="float">40.000000</AvoidTolerance>
-   <MinEvadeTime type="float">3.25000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">4.00000</BreakToAvoidMinTime>
-   <FireAngleCosHysteresis type="float">0.002000</FireAngleCosHysteresis>
-   <CloselyChasedDistance type="float">150.000000</CloselyChasedDistance>
-   <InFrontCosAngle type="float">0.850000</InFrontCosAngle>
-   <OptimalFiringRange type="float">800.000</OptimalFiringRange>
-   <BehindCosAngle type="float">-0.850000</BehindCosAngle>
-   <FireReactionTime type="float">0.20000</FireReactionTime>
-   <RecentDamageMaximum type="float">800.00000</RecentDamageMaximum>
-   <LowHealthBias type="float">10.00000</LowHealthBias>
-   <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
-   <BreakToAvoidMaxTime type="float">5.0000</BreakToAvoidMaxTime>
-   <RecentDamageToEscape type="float">350.000000</RecentDamageToEscape>
-   <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <TargetBias type="float">50.000000</TargetBias>
-   <AvoidCollisionTime type="float">3.00000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">3.00000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
-   <ApproachRange type="float">1000.000000</ApproachRange>
-   <TailingBias type="float">75.000000</TailingBias>
-   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
-   <EnableMissiles type="bool">true</EnableMissiles>
-   <MissileCooldownTime type="float">30.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.5</CMLaunchDelay>
-   <CMLaunchChance type="float">0.5</CMLaunchChance>
-   <SpeedMultiplier type="float">0.7500</SpeedMultiplier>   
-   <MaxTurnProportion type="float">0.42500</MaxTurnProportion>
-   <RetreatRunTime type="float">2.25</RetreatRunTime>
-   <OptimalRetreatRange type="float">500.0</OptimalRetreatRange>
-   <PlayerBias type="float">670.0</PlayerBias>
-   <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
-   <ThreatLevel type="float">1.00000</ThreatLevel>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Hard>
-  
-  <Balanced id="1587743268" type="bb">
-   <KytheraControl type="bool">true</KytheraControl>
-   <DefaultTask type="string">Attack</DefaultTask>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
-   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
-   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
-   <PerceptionObscuredTime type="float">7.000000</PerceptionObscuredTime>
-   <FireDistanceHysteresis type="float">20.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
-   <LeadingAccuracy type="float">0.8000</LeadingAccuracy>
-   <AimingDispersionMax type="float">15.00000</AimingDispersionMax>
-   <ImmediateThreatBias type="float">550.000000</ImmediateThreatBias>
-   <MinFireAngleCos type="float">0.985000</MinFireAngleCos>
-   <MaxFireDistance type="float">1500.000000</MaxFireDistance>
-   <AvoidTolerance type="float">40.000000</AvoidTolerance>
-   <MinEvadeTime type="float">2.25000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">3.00000</BreakToAvoidMinTime>
-   <FireAngleCosHysteresis type="float">0.005000</FireAngleCosHysteresis>
-   <CloselyChasedDistance type="float">150.000000</CloselyChasedDistance>
-   <InFrontCosAngle type="float">0.850000</InFrontCosAngle>
-   <OptimalFiringRange type="float">700.000000</OptimalFiringRange>
-   <BehindCosAngle type="float">-0.850000</BehindCosAngle>
-   <FireReactionTime type="float">0.20000</FireReactionTime>
-   <RecentDamageMaximum type="float">1000.00</RecentDamageMaximum>
-   <LowHealthBias type="float">10.00000</LowHealthBias>
-   <EngageNonFireTime type="float">5.00000</EngageNonFireTime>
-   <BreakToAvoidMaxTime type="float">5.0000</BreakToAvoidMaxTime>
-   <RecentDamageToEscape type="float">800.000000</RecentDamageToEscape>
-   <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <TargetBias type="float">50.000000</TargetBias>
-   <AvoidCollisionTime type="float">3.50000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
-   <ApproachRange type="float">800.000000</ApproachRange>
-   <TailingBias type="float">75.000000</TailingBias>
-   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
-   <EnableMissiles type="bool">false</EnableMissiles>
-   <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.75</CMLaunchDelay>
-   <CMLaunchChance type="float">0.3</CMLaunchChance>
-   <SpeedMultiplier type="float">0.7500</SpeedMultiplier>   
-   <MaxTurnProportion type="float">0.37500</MaxTurnProportion>
-   <RetreatRunTime type="float">3.50</RetreatRunTime>
-   <OptimalRetreatRange type="float">500.0</OptimalRetreatRange>
-   <PlayerBias type="float">358.0</PlayerBias>
-   <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
-   <ThreatLevel type="float">1.00000</ThreatLevel>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Balanced>
-  
-  <Easy id="1587743267" type="bb">
-   <KytheraControl type="bool">true</KytheraControl>
-   <DefaultTask type="string">Attack</DefaultTask>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
-   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
-   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
-   <PerceptionObscuredTime type="float">4.000000</PerceptionObscuredTime>
-   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
-   <LeadingAccuracy type="float">0.5000</LeadingAccuracy>
-   <AimingDispersionMax type="float">20.50000</AimingDispersionMax>
-   <ImmediateThreatBias type="float">150.000000</ImmediateThreatBias>
-   <MinFireAngleCos type="float">0.960000</MinFireAngleCos>
-   <MaxFireDistance type="float">1200.000000</MaxFireDistance>
-   <AvoidTolerance type="float">40.000000</AvoidTolerance>
-   <MinEvadeTime type="float">2.5000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">3.00000</BreakToAvoidMinTime>
-   <FireAngleCosHysteresis type="float">0.020000</FireAngleCosHysteresis>
-   <CloselyChasedDistance type="float">150.000000</CloselyChasedDistance>
-   <InFrontCosAngle type="float">0.850000</InFrontCosAngle>
-   <OptimalFiringRange type="float">900.000000</OptimalFiringRange>
-   <BehindCosAngle type="float">-0.850000</BehindCosAngle>
-   <FireReactionTime type="float">0.20000</FireReactionTime>
-   <RecentDamageMaximum type="float">800.00000</RecentDamageMaximum>
-   <LowHealthBias type="float">10.00000</LowHealthBias>
-   <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
-   <BreakToAvoidMaxTime type="float">6.5000</BreakToAvoidMaxTime>
-   <RecentDamageToEscape type="float">500.000000</RecentDamageToEscape>
-   <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <TargetBias type="float">50.000000</TargetBias>
-   <AvoidCollisionTime type="float">4.00000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
-   <ApproachRange type="float">1000.000000</ApproachRange>
-   <TailingBias type="float">75.000000</TailingBias>
-   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
-   <EnableMissiles type="bool">false</EnableMissiles>
-   <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.0</CMLaunchDelay>
-   <CMLaunchChance type="float">0.0</CMLaunchChance>
-   <SpeedMultiplier type="float">0.6375</SpeedMultiplier>   
-   <MaxTurnProportion type="float">0.30000</MaxTurnProportion>
-   <RetreatRunTime type="float">3.5</RetreatRunTime>
-   <OptimalRetreatRange type="float">300.0</OptimalRetreatRange>
-   <PlayerBias type="float">100.0</PlayerBias>
-   <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
-   <ThreatLevel type="float">1.00000</ThreatLevel>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Easy>
-  
-  <Teammate id="1587745426" type="bb">
-   <KytheraControl type="bool">true</KytheraControl>
-   <DefaultTask type="string">Attack</DefaultTask>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
-   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
-   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
-   <PerceptionObscuredTime type="float">8.000000</PerceptionObscuredTime>
-   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
-   <LeadingAccuracy type="float">0.3000</LeadingAccuracy>
-   <AimingDispersionMax type="float">20.50000</AimingDispersionMax>
-   <ImmediateThreatBias type="float">150.000000</ImmediateThreatBias>
-   <MinFireAngleCos type="float">0.960000</MinFireAngleCos>
-   <MaxFireDistance type="float">1500.000000</MaxFireDistance>
-   <AvoidTolerance type="float">40.000000</AvoidTolerance>
-   <MinEvadeTime type="float">3.25000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">6.00000</BreakToAvoidMinTime>
-   <FireAngleCosHysteresis type="float">0.020000</FireAngleCosHysteresis>
-   <CloselyChasedDistance type="float">150.000000</CloselyChasedDistance>
-   <InFrontCosAngle type="float">0.850000</InFrontCosAngle>
-   <OptimalFiringRange type="float">1050.000000</OptimalFiringRange>
-   <BehindCosAngle type="float">-0.850000</BehindCosAngle>
-   <FireReactionTime type="float">0.20000</FireReactionTime>
-   <RecentDamageMaximum type="float">800.00000</RecentDamageMaximum>
-   <LowHealthBias type="float">10.00000</LowHealthBias>
-   <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
-   <BreakToAvoidMaxTime type="float">9.0000</BreakToAvoidMaxTime>
-   <RecentDamageToEscape type="float">500.000000</RecentDamageToEscape>
-   <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <TargetBias type="float">50.000000</TargetBias>
-   <AvoidCollisionTime type="float">4.00000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
-   <ApproachRange type="float">1350.000000</ApproachRange>
-   <TailingBias type="float">75.000000</TailingBias>
-   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
-   <EnableMissiles type="bool">false</EnableMissiles>
-   <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.0</CMLaunchDelay>
-   <CMLaunchChance type="float">0.0</CMLaunchChance>
-   <SpeedMultiplier type="float">0.6375</SpeedMultiplier>   
-   <MaxTurnProportion type="float">0.30000</MaxTurnProportion>
-   <RetreatRunTime type="float">4.5</RetreatRunTime>
-   <OptimalRetreatRange type="float">300.0</OptimalRetreatRange>
-   <UncertaintyAwareness type="float">1.0</UncertaintyAwareness>
-   <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
-   <ThreatLevel type="float">1.00000</ThreatLevel>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Teammate>
- </Base>
- 
- <Flight id="1337925824" type="bb">
-  <Cocky id="1337927456" type="bb">
-   <AvoidTolerance type="float">35.000000</AvoidTolerance>
-   <BreakToAvoidMinTime type="float">2.000000</BreakToAvoidMinTime>
-   <BreakToAvoidMaxTime type="float">3.500000</BreakToAvoidMaxTime>
-   <AvoidCollisionTime type="float">2.500000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">1.500000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">2.000000</BreakToEscapeMaxTime>
-   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
-   <EngageNonFireTime type="float">8.000000</EngageNonFireTime>
-  </Cocky>
-  
-  <Cautious id="1337926048" type="bb">
-   <AvoidTolerance type="float">70.000000</AvoidTolerance>
-   <AvoidCollisionTime type="float">5.0000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">4.000000</BreakToEscapeMinTime>
-   <MinEvadeTime type="float">4.000000</MinEvadeTime>
-   <RecentDamageToEscape type="float">150.000000</RecentDamageToEscape>
-   <BreakToEscapeMaxTime type="float">4.500000</BreakToEscapeMaxTime>
-   <SplineSkillLevel type="string">AI:SkillLevel:Medium</SplineSkillLevel>
-   <EngageNonFireTime type="float">15.000000</EngageNonFireTime>
-  </Cautious>
-  
-  <Reckless id="1337959845" type="bb">
-   <AvoidCollisionTime type="float">2.000000</AvoidCollisionTime>
-   <AvoidTolerance type="float">25.000000</AvoidTolerance>
-   <BreakToAvoidMaxTime type="float">2.00000</BreakToAvoidMaxTime>
-   <BreakToAvoidMinTime type="float">1.000000</BreakToAvoidMinTime>
-   <BreakToEscapeMaxTime type="float">3.50000</BreakToEscapeMaxTime>
-   <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
-   <MinEvadeTime type="float">0.750000</MinEvadeTime>
-   <RecentDamageToEscape type="float">600.000000</RecentDamageToEscape>
-   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
-  </Reckless>
-  
-  <Balanced id="1337959415" type="bb">
-   <AvoidTolerance type="float">55.000000</AvoidTolerance>
-   <MinEvadeTime type="float">2.25000</MinEvadeTime>
-   <BreakToAvoidMinTime type="float">3.00000</BreakToAvoidMinTime>
-   <BreakToAvoidMaxTime type="float">5.0000</BreakToAvoidMaxTime>
-   <AvoidCollisionTime type="float">3.50000</AvoidCollisionTime>
-   <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
-   <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
-   <SpeedMultiplier type="float">0.7500</SpeedMultiplier>  
-   <MaxTurnProportion type="float">0.37500</MaxTurnProportion>
-   <RetreatRunTime type="float">3.50</RetreatRunTime>
-   <OptimalRetreatRange type="float">500.0</OptimalRetreatRange>
-   <EngageNonFireTime type="float">5.00000</EngageNonFireTime>
-  </Balanced>
+   <AllowFiringWhenMaxThreatExceeded type="bool">true</AllowFiringWhenMaxThreatExceeded>
+  </Tutorial>
+
  </Flight>
  
+ <!--COMBAT PROFILES-->
  <Combat id="1337931904" type="bb">
-  <TriggerHappy id="1337934176" type="bb">
-   <FireDistanceHysteresis type="float">50.000000</FireDistanceHysteresis>
-   <LeadingAccuracy type="float">0.100000</LeadingAccuracy>
-   <AimingDispersionMax type="float">20.000000</AimingDispersionMax>
-   <MinFireAngleCos type="float">0.800000</MinFireAngleCos>
-   <MaxFireDistance type="float">450.000000</MaxFireDistance>
-   <FireAngleCosHysteresis type="float">0.004000</FireAngleCosHysteresis>
-   <FireReactionTime type="float">0.60000</FireReactionTime>
-   <ApproachRange type="float">400.000000</ApproachRange>
-   <EnableMissiles type="bool">true</EnableMissiles>
-   <MissileCooldownTime type="float">7.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.1</CMLaunchDelay>
-   <CMLaunchChance type="float">0.8</CMLaunchChance>
-   <SpeedMultiplier type="float">1.0000</SpeedMultiplier>
+ 
+  <TriggerHappy id="1337929872" type="bb">
+   <ApproachRange type="float">900</ApproachRange>
+   <OptimalFiringRange type="float">500</OptimalFiringRange>
+   <AimingDispersionMax type="float">22.0</AimingDispersionMax>
+   <AimingDispersionMaxVel type="float">100.0</AimingDispersionMaxVel>
+   <LeadingAccuracy type="float">1.6</LeadingAccuracy>
+   <MinFireAngleCos type="float">0.8</MinFireAngleCos>
+   <FireAngleCosHysteresis type="float">0.05</FireAngleCosHysteresis>
+   <MaxFireDistance type="float">1100</MaxFireDistance>
+   <FireDistanceHysteresis type="float">20.0</FireDistanceHysteresis>
   </TriggerHappy>
-  
+ 
   <Aggressive id="1337938640" type="bb">
-   <LeadingAccuracy type="float">0.800000</LeadingAccuracy>
-   <MinFireAngleCos type="float">0.995000</MinFireAngleCos>
-   <OptimalFiringRange type="float">200.000000</OptimalFiringRange>
-   <FireAngleCosHysteresis type="float">0.002000</FireAngleCosHysteresis>
-   <TargetBias type="float">500.000000</TargetBias>
-   <ApproachRange type="float">900.000000</ApproachRange>
-   <EnableMissiles type="bool">true</EnableMissiles>
-   <MissileCooldownTime type="float">7.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.1</CMLaunchDelay>
-   <CMLaunchChance type="float">0.8</CMLaunchChance>
-   <SpeedMultiplier type="float">1.0000</SpeedMultiplier>
+   <ApproachRange type="float">900</ApproachRange>
+   <OptimalFiringRange type="float">300</OptimalFiringRange>
+   <RetreatRunTime type="float">2.5</RetreatRunTime>  
   </Aggressive>
   
   <Sniper id="1337936672" type="bb">
-   <FireDistanceHysteresis type="float">150.000000</FireDistanceHysteresis>
-   <LeadingAccuracy type="float">1.00000</LeadingAccuracy>
-   <AimingDispersionMax type="float">1.000000</AimingDispersionMax>
-   <MaxFireDistance type="float">900.000000</MaxFireDistance>
-   <FireAngleCosHysteresis type="float">0.000100</FireAngleCosHysteresis>
-   <OptimalFiringRange type="float">750.000000</OptimalFiringRange>
-   <FireReactionTime type="float">0.100000</FireReactionTime>
-   <ApproachRange type="float">1000.000000</ApproachRange>
-   <SpeedMultiplier type="float">0.2</SpeedMultiplier>
-   <EnableMissiles type="bool">true</EnableMissiles>  
-   <MissileCooldownTime type="float">7.000000</MissileCooldownTime> 
-   <CMLaunchDelay type="float">0.1</CMLaunchDelay>
-   <CMLaunchChance type="float">0.8</CMLaunchChance>
-   <SpeedMultiplier type="float">1.0000</SpeedMultiplier>   
+   <OptimalFiringRange type="float">1000</OptimalFiringRange>
+   <LeadingAccuracy type="float">1.4</LeadingAccuracy>
   </Sniper>
 
-  <Balanced id="1337955135" type="bb">
-   <LeadingAccuracy type="float">0.8000</LeadingAccuracy>
-   <AimingDispersionMax type="float">15.00000</AimingDispersionMax>
-   <MinFireAngleCos type="float">0.985000</MinFireAngleCos>
-   <MaxFireDistance type="float">1500.000000</MaxFireDistance>
-   <FireAngleCosHysteresis type="float">0.005000</FireAngleCosHysteresis>
-   <OptimalFiringRange type="float">700.000000</OptimalFiringRange>
-   <FireReactionTime type="float">0.20000</FireReactionTime>
-   <RecentDamageMaximum type="float">800.00000</RecentDamageMaximum>
-   <RecentDamageToEscape type="float">800.000000</RecentDamageToEscape>
-   <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <ApproachRange type="float">800.000000</ApproachRange>
-   <EnableMissiles type="bool">true</EnableMissiles>
-   <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
-   <CMLaunchDelay type="float">0.75</CMLaunchDelay>
-   <CMLaunchChance type="float">0.3</CMLaunchChance>
-   <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
-  </Balanced>  
-  
  </Combat>
  
+ <!--TARGETING PROFILES-->
  <Targeting id="1337929648" type="bb">
-  <Merciless id="1337929872" type="bb">
-   <PerceptionObscuredTime type="float">12.000000</PerceptionObscuredTime>
-   <TargetBias type="float">800.000000</TargetBias>
-  </Merciless>
   
   <Opportunist id="1337930640" type="bb">
-   <PerceptionObscuredTime type="float">4.000000</PerceptionObscuredTime>
-   <ForwardBias type="float">200.000000</ForwardBias>
-   <ImmediateThreatBias type="float">10.000000</ImmediateThreatBias>
-   <LowHealthBias type="float">800.000000</LowHealthBias>
-   <TailingBias type="float">300.000000</TailingBias>
+   <ForwardBias type="float">250</ForwardBias>
+   <LowHealthBias type="float">750</LowHealthBias>
+   <TailingBias type="float">500</TailingBias>
+   <TargetBias type="float">500</TargetBias>
   </Opportunist>
   
   <AttentionDeficit id="1337460640" type="bb">
-   <PerceptionObscuredTime type="float">3.000000</PerceptionObscuredTime>
-   <ForwardBias type="float">200.000000</ForwardBias>
-   <ImmediateThreatBias type="float">10.000000</ImmediateThreatBias>
-   <LowHealthBias type="float">10.000000</LowHealthBias>
-   <TailingBias type="float">200.000000</TailingBias>
+   <ForwardBias type="float">750</ForwardBias>
+   <ImmediateThreatBias type="float">1000</ImmediateThreatBias>
+   <LowHealthBias type="float">0</LowHealthBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">100</TargetBias>
+   <PerceptionObscuredTime type="float">3</PerceptionObscuredTime>
   </AttentionDeficit> 
   
-  <Balanced id="1337567945" type="bb">
-   <PerceptionObscuredTime type="float">8.000000</PerceptionObscuredTime>
-   <ForwardBias type="float">50.000000</ForwardBias>
-   <ImmediateThreatBias type="float">550.000000</ImmediateThreatBias>
-   <LowHealthBias type="float">10.00000</LowHealthBias>
-   <TargetBias type="float">50.000000</TargetBias>
-   <TailingBias type="float">75.000000</TailingBias>
-   <PlayerBias type="float">358.0</PlayerBias>
-   <MaxThreatAmount type="float">-1.00000</MaxThreatAmount>
-   <ThreatLevel type="float">1.00000</ThreatLevel>
-  </Balanced>
+  <Merciless id="1337934176" type="bb">
+   <ForwardBias type="float">100</ForwardBias>
+   <ImmediateThreatBias type="float">100</ImmediateThreatBias>
+   <LowHealthBias type="float">0</LowHealthBias>
+   <TailingBias type="float">200</TailingBias>
+   <TargetBias type="float">1000</TargetBias>
+   <PerceptionObscuredTime type="float">10</PerceptionObscuredTime>
+  </Merciless>
+  
  </Targeting>
 
  <Race id="1337903184" type="bb">
-  <ShortMemory id="1337903504" type="bb">
-   <PerceptionObscuredTime type="float">2.000000</PerceptionObscuredTime>
-  </ShortMemory>
-  
-  <BalancedMemory id="1337903504" type="bb">
-   <PerceptionObscuredTime type="float">5.000000</PerceptionObscuredTime>
-  </BalancedMemory>
-  
-  <LongMemory id="1337903504" type="bb">
-   <PerceptionObscuredTime type="float">8.000000</PerceptionObscuredTime>
-  </LongMemory>
+
   
   <UEE id="1337903504" type="bb">
    <RaceName type="string">Uee</RaceName>

@@ -1,0 +1,51 @@
+<Mode name='FPS_Practice'>
+	<Spawning class='MPSpawningWithLives' teamGame='0' numLives='0' teamSpawnsType='None' initialAutoSpawnTimer='0'/>
+	
+	<Scoring class='StandardScoring' noFriendlyFire="0">
+		<Player>
+			<Event type='PlayerKill'              points='100' />
+			<Event type='PlayerTeamKill'          points='-100' />
+			<Event type='PlayerKillAssist'        points='40' />
+			<Event type='Tagged_PlayerKillAssist' points='25' />
+		</Player>
+	</Scoring>
+	
+	<ScoreRewards enabled='1' />
+	
+	<AssistScoring class='AssistScoring'
+							 maxTimeBetweenAttackAndKillForAssist='7000'
+							 maxAssistScore='99'
+							 assistScoreMultiplier='0.5'
+	/>
+	
+	<PlayerStats class='FPSPlayerStats' />
+	
+	<State class='FPSPracticeState'>
+		<StartStrings startMatch='ui_msg_tia_matchstart' />
+		<Prematch gameStartTimer="5" />
+	</State>
+	
+	<PlayerSetup class='FPSSetup'>
+		<PlayerLoadout>
+			<Loadout mapName="FPSModule/TE_GoldHorizon"
+							Team1Loadout="Scripts/Loadouts/Player/Marine_Light_Armor_Loadout.xml"
+							AllowCustomLoadout ="1"
+							LockCharacterBetweenMatches = "0"
+							Team1Name="UEE Marines"
+			/>
+		</PlayerLoadout>
+	</PlayerSetup>
+	
+	<DamageHandling class='MPDamageHandling'>
+		<Table path='Scripts/GameRules/MPDamageTable.xml' />
+	</DamageHandling>
+	
+	<ActorAction class='MPActorAction' />
+	
+	<Spectator class='FPSSpectator' eatsActorActions='1' enableFree='1' enableFollow='1' enableKiller='1' timeFromDeathTillAutoSpectate='5000' />
+	
+	<!-- Valid  Practice Maps -->
+	<Maps>
+		<Map name='TE_GoldHorizon' />
+	</Maps>
+</Mode>

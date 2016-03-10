@@ -9,7 +9,7 @@ Light =
 		bActive = 1, --[0,1,1,"Turns the light on/off."]
 		_bCheapLight = 0,
 		bForceDisableCheapLight = 0, --[0,100,1,"Automatic memory optimization of lights, based on settings."]
-		Radius = 10, --[0,100,1,"Specifies how far from the source the light affects the surrounding area."]
+		Radius = 10, --[0,100000,1,"Specifies how far from the source the light affects the surrounding area."]
 		Style =
 		{
 			nLightStyle = 0, --[0,88,1,"Specifies a preset animation for the light to play."] --CIG_BEGIN increased allowed number of styles to match Engine/Shaders/HWScripts/CryFX/Light.cfx
@@ -27,14 +27,14 @@ Light =
 		Projector =
 		{
 			texture_Texture = "",
-			fProjectorFov = 90, --[0,160,1,"Specifies the Angle on which the light texture is projected."]
+			fProjectorFov = 90, --[0,180,1,"Specifies the Angle on which the light texture is projected."]
 			fProjectorNearPlane = 0, --[-100,100,0.1,"Set the near plane for the projector, any surfaces closer to the light source than this value will not be projected on."]
 		},
 		Color =
 		{
 			clrDiffuse = { x=1,y=1,z=1 },
-			fDiffuseMultiplier = 1, --[0,100,0.1,"Control the strength of the diffuse color."]
-			fSpecularMultiplier = 0.5, --[0,100,0.1,"Control the strength of the specular brightness."] -- 0.5 by default to compensate standard material diffuse color of 0.5
+			fDiffuseMultiplier = 1, --[0,50000,0.01,"Control the strength of the diffuse color."]
+			fSpecularMultiplier = 1.0, --[0,1,0.1,"Control the strength of the specular brightness."]
 		},
 		Options =
 		{
@@ -54,7 +54,7 @@ Light =
 			flare_Flare = "",
 			fFlareFOV = 360, --[0,360,1,"FOV for the flare."]
 			fFlareScale = 1,  -- CIG Tom Davies - Add scaling
-			fAttenuationBulbSize = 0.05,
+			fAttenuationBulbSize = 0.05, --[0,50000,0.1,"Specifies the radius of the area light bulb."]
 			-- CIG BEGIN - dhumphries @ Illfonic
 			bAutoDetectClipBox = 0,
 			fMaxShadowCastDist = 0,
@@ -62,13 +62,9 @@ Light =
 		},
 		Shape =
 		{
-			bAreaLight = 0, --[0,1,1,"Used to turn the selected light entity into an Area Light."]
-			bTextureReflection = 1, --[0,1,1,"Renders the texture in the reflection, as well as in the projection."]
-			fDiffuseSoftness = 0.75, --[0,1,0.05,"Control the softness of the projected texture."]
+			bAreaLight = 0, --[0,1,1,"Used to turn the selected light entity into a Rectangular Area Light."]
 			fPlaneWidth = 1, --[0,100,0.1,"Set the width of the Area Light shape."]
 			fPlaneHeight = 1, --[0,100,0.1,"Set the height of the Area Light shape."]
-			fLightFov = 180, --[0,180,1,"Control the size/shape of the cone or Field of View of the light projection."]
-			texture_Texture = "",
 			vFadeDimensionsLeft =0,
 			vFadeDimensionsRight =0,
 			vFadeDimensionsNear =0,
@@ -109,7 +105,6 @@ end
 function Light:CacheResources(requesterName)
 	local textureFlags = 0;
 	Game.CacheResource(requesterName, self.Properties.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
-	Game.CacheResource(requesterName, self.Properties.Shape.texture_Texture, eGameCacheResourceType_Texture, 0);
 end
 
 function Light:OnShutDown()
@@ -255,10 +250,6 @@ function Light:LoadLightToSlot( nSlot )
 	lt.area_light = Shape.bAreaLight;
 	lt.area_width = Shape.fPlaneWidth;
 	lt.area_height = Shape.fPlaneHeight;
-	lt.area_fov = Shape.fLightFov;
-	lt.area_spec_tex = Shape.bTextureReflection;
-	lt.area_diffuse_softness = Shape.fDiffuseSoftness;
-	lt.reflection_texture = Shape.texture_Texture;
 	lt.fade_dimensions_left = Shape.vFadeDimensionsLeft;
 	lt.fade_dimensions_right = Shape.vFadeDimensionsRight;
 	lt.fade_dimensions_near = Shape.vFadeDimensionsNear;

@@ -53,7 +53,7 @@ FishFlockTank =
 			Boid =
 			{
 				nCount = 0,
-				object_Model = "objects/brush/planet/uee/animals/fish/fish_gold_prop_animal_02.chr",
+				object_Model = "objects/animals/fish/fish_gold_prop_animal_02.chr",
 				SizeRandom = 0,
 				Size = 0.4,
 				EmergencyScale = 1,
@@ -95,8 +95,8 @@ FishFlockTank =
 			{
 				nCount = 0,
 				esModelSelectionType = "RoundRobin",
-				object_Model = "objects/brush/planet/uee/animals/fish/Fish_Small_prop_animal_01.chr",
-				object_Model1 = "objects/brush/planet/uee/animals/fish/fish_small_prop_animal_02.chr",
+				object_Model = "objects/animals/fish/fish_small_prop_animal_01.chr",
+				object_Model1 = "objects/animals/fish/fish_small_prop_animal_02.chr",
 				SizeRandom = 0,
 				Size = 0.75,
 				EmergencyScale = 1,
@@ -137,7 +137,7 @@ FishFlockTank =
 			Boid =
 			{
 				nCount = 1,
-				object_Model = "objects/brush/planet/uee/animals/fish/fish_clean_prop_animal_02.chr",
+				object_Model = "objects/animals/fish/fish_clean_prop_animal_02.chr",
 				SizeRandom = 0,
 				Size = 0.4,
 				EmergencyScale = 1,
@@ -180,7 +180,7 @@ FishFlockTank =
 			Boid =
 			{
 				nCount = 0,
-				object_Model = "objects/brush/planet/uee/animals/fish/CleanerFish_clean_prop_animal_01.chr",
+				object_Model = "objects/animals/fish/cleanerfish_clean_prop_animal_01.chr",
 				SizeRandom = 0,
 				Size = 0.5,
 				EmergencyScale = 1,
@@ -233,7 +233,7 @@ FishFlockTank =
 			Boid =
 			{
 				nCount = 0,
-				object_Model = "objects/brush/planet/uee/animals/fish/Fish_JellyFish_prop_animal_01.cgf",
+				object_Model = "objects/animals/fish/fish_jellyfish_prop_animal_01.cgf",
 				SizeRandom = 0,
 				Size = 0.5,
 				EmergencyScale = 0.5,

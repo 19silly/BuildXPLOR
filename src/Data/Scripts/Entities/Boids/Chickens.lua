@@ -2,7 +2,7 @@ Chickens =
 {
 	type = "Boids",
 	MapVisMask = 0,
-	ENTITY_DETAIL_ID=1,
+	ENTITY_DETAIL_ID = 1,
 
 	Properties = 
 	{
@@ -29,16 +29,17 @@ Chickens =
 		},
 		Boid =
 		{
-			nCount = 10,
+			nCount = 10, --[0,1000,1,"Specifies how many individual objects will be spawned."]
 			object_Model = "objects/characters/animals/birds/rooster/rooster.cdf",
-			--Size = 1,
-			--SizeRandom = 0,
 			gravity_at_death = -9.81,
 			Mass = 10,
 			bInvulnerable = false,
 		},
 		Options =
 		{
+			bPickableWhenAlive = 1,
+			bPickableWhenDead = 1,
+			PickableMessage = "",
 			bFollowPlayer = 0,
 			bAvoidWater = 1,
 			bNoLanding = 0,
@@ -49,14 +50,15 @@ Chickens =
 		},
 	},
 
-	Sounds =
+	Audio =
 	{
-		"Sounds/environment:boids:idle_chicken",    -- idle 
-		"Sounds/environment:boids:scared_chicken",  -- scared
-		"Sounds/environment:boids:death_chicken",   -- die
-		"Sounds/environment:boids:scared_chicken",  -- pickup
-		"Sounds/environment:boids:scared_chicken",  -- throw
+		"Play_idle_chicken",		-- idle
+		"Play_scared_chicken",	-- scared
+		"Play_death_chicken",		-- die
+		"Play_scared_chicken",	-- pickup
+		"Play_scared_chicken",	-- throw
 	},
+	
 	Animations =
 	{
 		"walk_loop",	-- walking
@@ -73,7 +75,7 @@ Chickens =
 	params={x=0,y=0,z=0},
 }
 
-
+-------------------------------------------------------
 function Chickens:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
   self:SetFlagsExtended(ENTITY_FLAG_EXTENDED_NEEDS_MOVEINSIDE, 0);
@@ -104,6 +106,7 @@ end
 --function Chickens:OnSave(table)
 --end
 
+-------------------------------------------------------
 function Chickens:GetFlockType()
 	return Boids.FLOCK_CHICKENS;
 end
@@ -118,12 +121,9 @@ function Chickens:CreateFlock()
 
 	local params = self.params;
 
-	params.count = Boid.nCount;
+	params.count = __max(0, Boid.nCount);
 	params.model = Boid.object_Model;
 
-	-- Scaling doesn't work good...disable for now
-	-- params.boid_size = Boid.Size;
-	-- params.boid_size_random = Boid.SizeRandom;
 	params.boid_size = 1;
 	params.boid_size_random = 0;
 	params.min_height = Movement.HeightMin;
@@ -145,7 +145,6 @@ function Chickens:CreateFlock()
 	params.factor_avoid_land = Movement.FactorAvoidLand;
 
 	params.spawn_radius = Options.Radius;
-	--params.boid_radius = Boid.boid_radius;
 	params.gravity_at_death = Boid.gravity_at_death;
 	params.boid_mass = Boid.Mass;
 	params.invulnerable = Boid.bInvulnerable;
@@ -154,12 +153,15 @@ function Chickens:CreateFlock()
 
 	params.max_anim_speed = Movement.MaxAnimSpeed;
 	params.follow_player = Options.bFollowPlayer;
+	params.pickable_alive = Options.bPickableWhenAlive;
+	params.pickable_dead = Options.bPickableWhenDead;
+	params.pickable_message = Options.PickableMessage;
 	params.avoid_water = Options.bAvoidWater;
 	params.no_landing = Options.bNoLanding;
 	params.avoid_obstacles = Options.bObstacleAvoidance;
 	params.max_view_distance = Options.VisibilityDist;
 
-	params.Sounds = self.Sounds;
+	params.Audio = self.Audio;
 	params.Animations = self.Animations;
 
 	if (self.flock == 0) then
@@ -176,6 +178,9 @@ function Chickens:OnPropertyChange()
 	self:OnShutDown();
 	if (self.Properties.Options.bActivate == 1) then
 		self:CreateFlock();
+		self:Event_Activate();
+	else
+		self:Event_Deactivate();
 	end
 end
 
@@ -202,12 +207,15 @@ function Chickens:Event_Deactivate()
 	end
 end
 
+-------------------------------------------------------
 function Chickens:OnProceedFadeArea( player,areaId,fadeCoeff )
 	if (self.flock ~= 0) then
 		Boids.SetFlockPercentEnabled( self,fadeCoeff*100 );
 	end
 end
 
+-------------------------------------------------------
+-------------------------------------------------------
 Chickens.FlowEvents =
 {
 	Inputs =

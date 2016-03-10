@@ -14,8 +14,9 @@
 StateEntity = {
 	Client = {},
 	Server = {},
+	
 	Properties = {
-		fileStates = "libs/GameObjectStates/TestEntity.xml",
+		dataCoreRecord_States = "GOSTEntityStateMachine.TestEntity",
 	},
 	Editor =
 	{

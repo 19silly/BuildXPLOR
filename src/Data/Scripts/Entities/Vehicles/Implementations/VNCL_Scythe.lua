@@ -1,4 +1,4 @@
-VCLN_Scythe =
+VNCL_Scythe =
 {
 
 	foreignCollisionDamageMult = 1.0,
@@ -12,8 +12,8 @@ VCLN_Scythe =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_VNCL_Scythe.xml",  --FIX ME! Needs to be created
-
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_VNCL_Scythe.xml",
+		
 		Perception =
 		{
 			camoScale = 1,
@@ -32,16 +32,16 @@ VCLN_Scythe =
 	Server = {},
 }
 
-VCLN_Scythe.AIProperties = 
+VNCL_Scythe.AIProperties = 
 {
-  AIType = AIOBJECT_STARFIGHTER,
+  AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "ScytheIdle",
+    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {
-    aicharacter_character = "Vanduul_Scythe",
+    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

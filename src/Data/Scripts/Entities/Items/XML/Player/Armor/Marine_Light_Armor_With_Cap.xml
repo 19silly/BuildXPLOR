@@ -1,4 +1,4 @@
-<item name="Marine_Light_Armor_With_Cap" class="PlayerItemArmor" invisible="0" category="armor" priority="111" >
+<item name="Marine_Light_Armor_With_Cap" class="PlayerItemArmor" invisible="0" category="Suit" priority="111" >
 	<params>
 		<param name="giveable" value="0" />
 		<param name="selectable" value="0" />
@@ -6,8 +6,8 @@
 		<param name="mountable" value="1" />
 		<param name="usable" value="1" />
 		<param name="arms" value="0" />
-		<param name="itemType" value="BodyArmor" />
-		<param name="itemSubType" value="LightArmor" />
+		<param name="itemType" value="Suit" />
+		<param name="itemSubType" value="Armor" />
 		<param name="itemManufactor" value="CDS" />
 		<param name="itemSize" value="1" />
 		<param name="display_name" value="Marine Light Armor" />
@@ -17,30 +17,54 @@
 		<firstperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_originalwithsnoopy.cdf"/>
 		<thirdperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_originalwithsnoopy.cdf"/>
 	</geometry>
-
+	
+	<playerArmor type="Light">
+		<param name="footstepEffect" value="footstep_player" />
+		<param name="remoteFootstepEffect" value="footstep" />
+		<param name="foleyEffect" value="foley_armour_light" />
+		<param name="remoteFoleyEffectName" value="foley_armour_light" />
+	</playerArmor>
+	
 	<breathing>
 		<param name="exhaleTimeMin" value="2.0" />
 		<param name="inhaleTimeMin" value="2.4" />
 		<param name="exhaleTimeMax" value=".55" />
 		<param name="inhaleTimeMax" value=".65" />
-		
+
+		<param name="holdBreathInhaleTime" value="1.4" />
+		<param name="holdBreathTimeMin"    value="10"  />
+		<param name="holdBreathTimeMax"    value="2"   />
+
+		<param name="calmBreathingTimeMin" value="0.0"  />
+		<param name="calmBreathingTimeMax" value="15.0" />
+
 		<overrides>
 			<override name="ADS">
-				<param name="exhaleHoldTimeMin" value="1" />
-				<param name="inhaleHoldTimeMin" value="1" />
+				<param name="exhaleHoldTimeMin" value="1"   />
+				<param name="inhaleHoldTimeMin" value="1"   />
 				<param name="exhaleHoldTimeMax" value="0.2" />
 				<param name="inhaleHoldTimeMax" value="0.2" />
 			</override>
 		</overrides>
 	</breathing>
 	
+	<stamina>
+		<param name="timeUntilDrained" value="30.0" />
+		<param name="rechargeScaler" value="1" />
+	</stamina>
+	
 	<portParams>
 		<ports>
 			<!-- Helmet -->
-			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1" flags="nophys">
+			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1" flags="nophys unlootable body_attach">
 				<Types>
 					<Type type="Suit" subtypes="Helmet,Hat"/>
 				</Types>
+				<Helper>
+					<Tags tag="fp">
+						  <Helper helper="headcam"/>
+					</Tags>
+				</Helper>
 			</ItemPort>
 			
 			<!-- Eyeware -->
@@ -57,7 +81,7 @@
 				</Types>
 			</ItemPort>
 
-			<!-- mobiGlas -->	
+			<!-- mobiGlas -->
 			<ItemPort minsize="1" maxsize="1" name="mobiglas_attach" display_name="mobiGlas wrist slot" flags="nophys">
 				<Types>
 					<Type type="MobiGlas"/>
@@ -67,7 +91,7 @@
 			<!--Right Hand Attach -->
 			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select nophys">
 				<Types>
-					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
+					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife,SATABall"/>
 				</Types>
 			</ItemPort>
 			
@@ -101,18 +125,18 @@
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</types>
 			</ItemPort>
-			
-			<!-- 1 x Small Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach nophys" display_name="Small Weapon 1">
+
+	        <!-- 1x sidearm weapon on the right leg -->
+			<ItemPort minsize="1" maxsize="1" name="wep_sidearm_leg_right" flags="body_attach nophys" display_name="Small Weapon 1">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Small"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 1 x Medium Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="medium_attach_1" flags="body_attach nophys" display_name="Medium Weapon 1">
+			<ItemPort minsize="1" maxsize="1" name="wep_stocked_chest_left" flags="body_attach default nophys" display_name="Medium Weapon 1" selectTag="front">
 				<Types>
-					<Type type="WeaponPersonal" subtypes="Small,Medium"/>
+					<Type type="WeaponPersonal" subtypes="Medium"/>
 				</Types>
 			</ItemPort>
 			

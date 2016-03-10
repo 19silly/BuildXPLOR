@@ -1,0 +1,62 @@
+<Mode name='FPS_SATABall'>
+
+	<Spawning class='FPSSpawning' teamGame='1' teamSpawnsType='Standard' usingLua='0' midRoundJoining='1' allowMidRoundJoiningBeforeFirstDeath='1' />
+
+	<Scoring class='StandardScoring' noFriendlyFire="0">
+    <Player>
+      <Event type='PlayerKill'              points='100' />
+      <Event type='PlayerTeamKill'          points='-100' />
+      <Event type='PlayerKillAssist'        points='40' />
+      <Event type='Tagged_PlayerKillAssist' points='25' />
+    </Player>
+    <Team>
+      <Event type='PlayerKill' points='1' />
+    </Team>
+	</Scoring>
+
+	<ScoreRewards enabled='1' />
+
+	<AssistScoring class='AssistScoring' maxTimeBetweenAttackAndKillForAssist='7000' maxAssistScore='99' assistScoreMultiplier='0.5' />
+
+	<PlayerStats class='FPSPlayerStats' />
+	<StatsRecording class='StandardStatsRecording' />
+
+	<Teams class='StandardTwoTeams' />
+
+	<State class='FPSState'>
+		<StartStrings startMatch='ui_msg_tia_matchstart' />
+		<Prematch gameStartTimer="10" />
+	</State>
+	
+	<VictoryConditions class='FPSVictoryConditionsTeam' TimeLimit="5" />
+
+	<PlayerSetup class='FPSSetup'>
+		<PlayerLoadout>
+			<Loadout mapName="FPSModule/TE_BattleArena" Team1Loadout="Scripts/Loadouts/Player/BattleArena_Yellow_Loadout.xml" Team2Loadout="Scripts/Loadouts/Player/BattleArena_Purple_Loadout.xml" AllowCustomLoadout ="0" LockCharacterBetweenMatches = "0" Team1Name="Angeli Aero" Team2Name="Jata ZGCC" DisablePlayerBleedOut="1" HeadShotStunnedTime = "15" BodyShotStunnedTime="10" Announcer="BattleArena" />
+		</PlayerLoadout>
+	</PlayerSetup>
+
+	<DamageHandling class='MPDamageHandling' vehicleDestroyedRemovalTimer='15'>
+		<Table path='Scripts/GameRules/MPDamageTable.xml' />
+	</DamageHandling>
+
+	<ActorAction class='MPActorAction' />
+
+	<Spectator class='FPSSpectator' eatsActorActions='1' enableFree='0' enableFollow='1' enableKiller='1' timeFromDeathTillAutoSpectate='5000' />
+
+	<Rounds class='FPSRounds' resetScores='0' showRoundStartingMessageEverySpawn='1' numberOfRounds="7" roundWinLimit="4" roundNumForHalfTime="3">
+		<EndStrings>
+			<VictoryStrings reason="TimeLimitReached" winMessage="Round Winner!" loseMessage="Round Loser!" />
+			<VictoryStrings reason="TeamKilled" winMessage="Round Winner!" loseMessage="Round Loser!" />
+			<Strings reason="TimeLimitReached" winMessage="Match Winner!" loseMessage="Match Loser!" drawMessage="Match was a Draw!" />
+			<Strings reason="TeamKilled" winMessage="Match Winner!" loseMessage="Match Loser!" drawMessage="Match was a Draw!" />
+		</EndStrings>
+	</Rounds>
+			
+	<!-- Valid Arena Commander Maps -->
+	<Maps>
+		<Map name="TE_BattleArena"/>
+	</Maps>
+
+</Mode>
+

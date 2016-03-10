@@ -1,0 +1,216 @@
+<interface name="Interface_AEGS_BallisticRepeater_S5">
+	<!-- 
+	This is the model and vfx template for Ballistic Repeaters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+	
+<firemodes>
+	<firemode>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.flak_cannon.muz_withSmokeDischarge" helper="muzzle_out_01" scale="1" />
+		<thirdperson effect="weapon_fx.flak_cannon.muz_withSmokeDischarge" helper="muzzle_out_01" scale="1" /> 
+      </muzzleflash>
+	  
+	  <reject>
+		<firstperson effect="weapon_fx.flak_cannon.shell_eject" helper="shell_ejector" scale="1" />
+		<thirdperson effect="weapon_fx.flak_cannon.shell_eject" helper="shell_ejector" scale="1" />
+	  </reject>
+	</firemode>
+</firemodes>
+
+  <damagelevels>
+	<level damageRatio="0.50">
+		<EffectsList>
+			<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
+		</EffectsList>
+		<DebrisList>
+			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1"/>
+				</EffectsList>
+			</Debris>
+			<Debris name="base_50_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_base_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_50_debris1_PFX1"  />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_1_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_50_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+		</DebrisList> 
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_100_debris1_PFX1" />
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_100_debris1_PFX2" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_1_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_100_debris1_PFX1" />
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_100_debris1_PFX2" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_2_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_2_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="barrel_tip_3_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_3_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<!-- Missing barrel_tip_1_100_PFX1/PFX2; not debris, don't know where to put it -->
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+  
+	<!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+    <boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out_01" bone="muzzle_out_01" />
+      <attachment target="thirdperson" name="muzzle_out_02" bone="muzzle_out_02" />
+    </boneAttachments>
+	
+    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
+    <!-- default fallback -->
+    <thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga"/>
+
+<!-- 	<tags tag="damage_25">
+		<thirdperson name="%modelname_damage_25%"/>
+	</tags> -->
+	
+	<tags tag="damage_50">
+		<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga"/>
+	</tags>
+	
+<!-- 	<tags tag="damage_75">
+		<thirdperson name="%modelname_damage_75%"/>
+	</tags> -->
+	
+	<tags tag="damage_100">
+		<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga"/>
+	</tags>
+	
+	<tags tag="HUD">
+		<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		<tags tag="damage_50">
+			<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+	</tags>
+
+	<tags tag="Hologram">
+	
+		<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+
+		<tags tag="ShipHologram">
+			<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		  
+			<tags tag="inactive">
+				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="over dragging">
+				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="overCompareValid">
+				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+			<tags tag="overCompareInvalid">
+				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+		</tags>
+		
+		<tags tag="ItemList">
+			<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="over dragging">
+				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			</tags>
+		</tags>	
+		
+		<tags tag="ItemPreviewA">
+		  <thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		</tags>
+		
+		<tags tag="ItemPreviewB">
+		  <thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\Test\aegs_dual_flak_cannon_s5.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+		</tags>	
+		
+	</tags>
+
+  </geometry>
+  
+  <portParams>  <!-- Fill me with accurate GeomTag Data -->
+	<ports>
+		<ItemPort name="ammo_box_01">
+			<GeomTags>
+			  <!-- <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags> -->
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="ammo_box_02">
+			<GeomTags>
+			  <!-- <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags> -->
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+  
+</interface>

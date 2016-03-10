@@ -11,6 +11,7 @@
 --  - 10:5:2005 : Created by Filippo De Luca
 --
 --------------------------------------------------------------------------
+Script.ReloadScript("scripts/Entities/Sound/Shared/AudioUtils.lua");
 
 Door =
 {
@@ -18,13 +19,13 @@ Door =
 	{
 		soclasses_SmartObjectClass = "Door",
 		fileModel = "Objects/architecture/buildings/fishing_houses/fishing_door_c.cgf",
-		Sounds =
+		Audio =
 		{
-			soundSoundOnMove = "",
-			soundSoundOnStop = "",
-			soundSoundOnStopClosed = "",
-			fVolume = 200,
-			fRange = 50,
+			audioTriggerOnMoveOpenTrigger = "",
+			audioTriggerOnMoveCloseTrigger = "",
+			audioTriggerOnStopTrigger = "",
+			audioTriggerOnClosedTrigger = "",
+			eiSoundObstructionType = 1, -- Anything greater than 1 will be reset to 2.
 		},
 		Rotation =
 		{
@@ -53,13 +54,33 @@ Door =
 		bNetworkSync = 1, --[1,1,1,"DO NOT MODIFY"]
 	},
 
+    SpawnInfoTable =
+	{
+		fileModel = "",
+		fUseDistance = 2.5,
+		bLocked = 0,
+		bSquashPlayers = 0,
+		bActivatePortal = 0,
+		bUsable = 1,
+		UseMessage = "@use_door",
+		fRSpeed = 200.0,
+		fRAcceleration = 500.0,
+		fRStopTime = 0.125,
+		fRRange = 90,
+		sRAxis = "z",
+		bRRelativeToUser = 1,
+		sRFrontAxis = "y",
+		fSSpeed = 2.0,
+		fSAcceleration = 3.0,
+		fSStopTime = 0.5,
+		fSRange = 0,
+		sSAxis = "x",
+	},
 	PhysParams =
 	{
 		mass = 0,
 		density = 0,
 	},
-
-	sounds = {},
 
 	Server = {},
 	Client = {},
@@ -69,7 +90,13 @@ Door =
 		Icon = "door.bmp",
 		IconOnTop = 1,
 	},
-
+	
+	hOnMoveOpenTriggerID = nil,
+	hOnMoveCloseTriggerID = nil,
+	hOnStopTriggerID = nil,
+	hOnClosedTriggerID = nil,
+	tObstructionType = {},
+	bIsActive = 0,
 }
 
 DoorVars =
@@ -107,6 +134,56 @@ Net.Expose {
 	ServerProperties = {
 	},
 };
+function Door:OnSpawnInfoRead()
+	self.Properties.fileModel = self.SpawnInfoTable.fileModel;
+	self.Properties.fUseDistance = self.SpawnInfoTable.fUseDistance;
+	self.Properties.bLocked = self.SpawnInfoTable.bLocked;
+	self.Properties.bSquashPlayers = self.SpawnInfoTable.bSquashPlayers;
+	self.Properties.bActivatePortal = self.SpawnInfoTable.bActivatePortal;
+	self.Properties.bUsable = self.SpawnInfoTable.bUsable;
+	self.Properties.UseMessage = self.SpawnInfoTable.UseMessage;
+	self.Properties.Rotation.fSpeed = self.SpawnInfoTable.fRSpeed;
+	self.Properties.Rotation.fAcceleration = self.SpawnInfoTable.fRAcceleration;
+	self.Properties.Rotation.fStopTime = self.SpawnInfoTable.fRStopTime;
+    self.Properties.Rotation.fRange = self.SpawnInfoTable.fRRange;
+    self.Properties.Rotation.sAxis = self.SpawnInfoTable.sRAxis;
+    self.Properties.Rotation.bRelativeToUser = self.SpawnInfoTable.bRRelativeToUser;
+    self.Properties.Rotation.sFrontAxis = self.SpawnInfoTable.sRFrontAxis;
+
+    self.Properties.Slide.fSpeed = self.SpawnInfoTable.fSSpeed;
+    self.Properties.Slide.fAcceleration = self.SpawnInfoTable.fSAcceleration;
+    self.Properties.Slide.fStopTime = self.SpawnInfoTable.fSStopTime;
+    self.Properties.Slide.fRange = self.SpawnInfoTable.fSRange;
+    self.Properties.Slide.sAxis = self.SpawnInfoTable.sSAxis;
+end
+----------------------------------------------------------------------------------------
+function Door:_LookupTriggerIDs()
+	self.hOnMoveOpenTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerOnMoveOpenTrigger);
+	self.hOnMoveCloseTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerOnMoveCloseTrigger);
+	self.hOnStopTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerOnStopTrigger);
+	self.hOnClosedTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerOnClosedTrigger);
+end
+
+----------------------------------------------------------------------------------------
+function Door:_LookupObstructionSwitchIDs()
+	-- cache the obstruction switch and state IDs
+	self.tObstructionType = AudioUtils.LookupObstructionSwitchAndStates();
+end
+
+----------------------------------------------------------------------------------------
+function Door:_SetObstruction()
+	local nStateIdx = self.Properties.Audio.eiSoundObstructionType + 1;
+	
+	if ((self.tObstructionType.hSwitchID ~= nil) and (self.tObstructionType.tStateIDs[nStateIdx] ~= nil)) then
+		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx]);
+	end
+end
+
+----------------------------------------------------------------------------------------
+function Door:_Activate(activate)
+	self.bIsActive = activate;
+	self:Activate(activate);
+end
 
 -------------------------------------------------------
 function Door:OnLoad(table)
@@ -119,6 +196,7 @@ function Door:OnLoad(table)
 	self.currPos = table.currPos
 	self.modelPos = table.modelPos
 	self.locked = table.locked
+	self.bIsActive = table.bIsActive
 end
 
 -------------------------------------------------------
@@ -132,6 +210,7 @@ function Door:OnSave(table)
 	table.currPos = self.currPos
 	table.modelPos = self.modelPos
 	table.locked = self.locked
+	table.bIsActive = self.bIsActive
 end
 
 
@@ -141,6 +220,7 @@ end
 
 
 function Door:OnReset()
+
 	self:Reset();
 end
 
@@ -151,12 +231,35 @@ end
 
 
 function Door:OnSpawn()
+    self.isServer=CryAction.IsServer();
+	self.isClient=CryAction.IsClient();
+	if (self.isServer) then
+		self.SpawnInfoTable = 
+		{
+            fileModel = self.Properties.fileModel,
+	        fUseDistance = self.Properties.fUseDistance,
+	        bLocked = self.Properties.bLocked,
+	        bSquashPlayers = self.Properties.bSquashPlayers,
+	        bActivatePortal = self.Properties.bActivatePortal,
+	        bUsable = self.Properties.bUsable,
+	        UseMessage = self.Properties.UseMessage,
+	        fRSpeed = self.Properties.Rotation.fSpeed,
+	        fRAcceleration = self.Properties.Rotation.fAcceleration,
+	        fRStopTime = self.Properties.Rotation.fStopTime,
+            fRRange = self.Properties.Rotation.fRange,
+            sRAxis = self.Properties.Rotation.sAxis,
+            bRRelativeToUser = self.Properties.Rotation.bRelativeToUser,
+            sRFrontAxis = self.Properties.Rotation.sFrontAxis,
+            fSSpeed = self.Properties.Slide.fSpeed,
+            fSAcceleration = self.Properties.Slide.fAcceleration,
+            fSStopTime = self.Properties.Slide.fStopTime,
+            fSRange = self.Properties.Slide.fRange,
+            sSAxis = self.Properties.Slide.sAxis,
+		};
+	end
 	CryAction.CreateGameObjectForEntity(self.id);
 	CryAction.BindGameObjectToNetwork(self.id);
 	CryAction.ForceGameObjectUpdate(self.id, true);
-
-	self.isServer=CryAction.IsServer();
-	self.isClient=CryAction.IsClient();
 
 	self:Reset(1);
 end
@@ -205,7 +308,7 @@ function Door:Reset(onSpawn)
 		CreateDoor(self);
 	end
 
-	self:Activate(0);
+	self:_Activate(0);
 
 	if (onSpawn) then
 		self:ResetAction();
@@ -270,6 +373,16 @@ function Door:Reset(onSpawn)
 	else
 		self:ActivateOutput("UnLock", true);
 	end
+	
+	if (self.Properties.Audio.eiSoundObstructionType < 0) then
+		self.Properties.Audio.eiSoundObstructionType = 0;
+	elseif (self.Properties.Audio.eiSoundObstructionType > 1) then
+		self.Properties.Audio.eiSoundObstructionType = 2;
+	end
+	
+	self:_LookupTriggerIDs();
+	self:_LookupObstructionSwitchIDs();
+	self:_SetObstruction();
 end
 
 
@@ -402,23 +515,22 @@ function Door:Update(frameTime)
 		self:UpdateSlide(frameTime);
 	end
 
-	if ((not self.slideUpdate) and (not self.rotationUpdate)) then
-		self:Activate(0);
+	if ((not self.slideUpdate) and (not self.rotationUpdate) and self.bIsActive == 1) then
+		self:_Activate(0);
 		stopped=true;
 	end
 
-	--update sounds
-	if (stopped and (not self.stopSoundPlayed)) then
-		local soundsP = self.Properties.Sounds;
-		if (soundsP.soundSoundOnStop~="") then
-			Sound.Play(soundsP.soundSoundOnStop, self:GetWorldPos(), SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
+	-- update audio
+	if (stopped) then
+		if (self.action == DOOR_CLOSE) then
+			if (self.hOnClosedTriggerID ~= nil) then
+				self:ExecuteAudioTrigger(self.hOnClosedTriggerID);
+			end
+		else
+			if (self.hOnStopTriggerID ~= nil) then
+				self:ExecuteAudioTrigger(self.hOnStopTriggerID);
+			end
 		end
-
-		if (self.action==DOOR_CLOSE and soundsP.soundSoundOnStopClosed~="") then
-			Sound.Play(soundsP.soundSoundOnStopClosed, self:GetWorldPos(), SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
-		end
-
-		self.stopSoundPlayed = true;
 	end
 end
 
@@ -433,6 +545,10 @@ function Door.Server:OnInitClient(channelId)
 		local open=(self.action == DOOR_OPEN);
 		self.onClient:ClSlide(channelId, open);
 	end
+	
+	self:_LookupTriggerIDs();
+	self:_LookupObstructionSwitchIDs();
+	self:_SetObstruction();
 end
 
 
@@ -502,7 +618,7 @@ function Door:Slide(open)
 
 	self.slideUpdate = 1;
 
-	self:Activate(1);
+	self:_Activate(1);
 	self:Sound(open);
 end
 
@@ -534,18 +650,21 @@ function Door:Rotate(open, fwd)
 
 	self.rotationUpdate = 1;
 
-	self:Activate(1);
+	self:_Activate(1);
 	self:Sound(open);
 end
 
 
 function Door:Sound(open)
-	--sounds
-	local soundsP = self.Properties.Sounds;
-	if (soundsP.soundSoundOnMove~="") then
-		Sound.Play(soundsP.soundSoundOnMove, self:GetWorldPos(), SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
+	if (open) then
+		if (self.hOnMoveOpenTriggerID ~= nil) then
+			self:ExecuteAudioTrigger(self.hOnMoveOpenTriggerID);
+		end
+	else
+		if (self.hOnMoveCloseTriggerID ~= nil) then
+			self:ExecuteAudioTrigger(self.hOnMoveCloseTriggerID);
+		end
 	end
-	self.stopSoundPlayed = nil;
 end
 
 

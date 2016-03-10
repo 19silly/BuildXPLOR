@@ -45,6 +45,7 @@ PlayerHeavy =
 		},
 
 		fileModel = "Objects/Characters/Human/sdk_player/sdk_player.cdf",
+		shadowFileModel = "Objects/Characters/Human/sdk_player/sdk_player.cdf",
 		clientFileModel = "Objects/Characters/Human/sdk_player/sdk_player.cdf",
 	},
 

@@ -48,6 +48,12 @@ VehicleBaseAI =
 	--AI related	properties
 	Properties = 
 	{	
+		esAIProfileBase			= "Base",
+		esAIProfileCombat		= "<None>",
+		esAIProfileFlight		= "<None>",
+		esAIProfileTargeting	= "<None>",
+		esAIProfileRace			= "<None>",
+
 		soclasses_SmartObjectClass = "",
 		bAutoGenAIHidePts = 0,
 
@@ -376,7 +382,6 @@ function VehicleBaseAI:ChangeFaction(driver, isEntered)
 
 	-- driver out - reset species
 	if(isEntered == 0 or isEntered == nil) then
-		AI.ChangeParameter(self.id, AIPARAM_FACTION, "");	
 		self.AI.hostileSet=nil;
 		return
 	end
@@ -390,7 +395,6 @@ function VehicleBaseAI:ChangeFaction(driver, isEntered)
 	
 	-- vehicle does not hide driver OR
 	-- driver exposed himself by shooting/damaging enemy
-	AI.ChangeParameter(self.id, AIPARAM_FACTION, faction);
 	self.AI.hostileSet=1;
 end
 

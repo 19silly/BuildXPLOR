@@ -362,9 +362,7 @@
 		<Doors>
 		</Doors>
 		<Views>
-			<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-				<Orbit speed="2.0" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-			</View>
+			<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
 		</Views>
 	</Interior>
 	
@@ -393,12 +391,8 @@
 						<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
 					</CameraEffects>
 				</View>
-				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
-				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
-					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
+				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
 			</Views>
 			
  			<WaitFor>
@@ -556,8 +550,8 @@
 			</FixedVisorSettings>
 			
 			<Screens>
-				<Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
-					<Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" scale="0.85" y_offset="0" z_offset="0.1"/>
+				<Screen name="Fixed UI" element="ShipInterface" screen="RedeemerInterfaceScreen" number="1">
+					<Container name="HUDScreen" helper="UI_Helper" container="HUDScreen" z_offset="0.1" scale="0.85" />
 				</Screen>
 			</Screens>
 			
@@ -569,9 +563,7 @@
 			<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
 				<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" turretLookMin="-10,0,-50" turretLookMax="40,0,50" />
 			</View>
-			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
-				<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-			</View>
+			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0" />
 		  </Views>
 		  <WaitFor>
 
@@ -602,8 +594,10 @@
 		<SeatAction class ="PassengerIK">
 			<PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
 				<Limbs>
-					<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_left" blendTime="0"/>
-					<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_right" blendTime="0"/>
+						<Limb tag ="LeftArmThrottle" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_left" blendTime="0"/>
+						<Limb tag ="RightArmJoystick" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_right" blendTime="0"/>
+						<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_attach" blendTime="0" />
+						<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_attach" blendTime="0" />
 				</Limbs>
 			</PassengerIK>
 		</SeatAction>
@@ -616,9 +610,7 @@
 			<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
 				<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" turretLookMin="-10,0,-50" turretLookMax="40,0,50" />
 			</View>
-			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
-				<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-			</View>
+			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0" />
 		  </Views>
 		  <WaitFor>
 
@@ -718,12 +710,15 @@
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 	<MovementParams>
 		<Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="280" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="120,140,120" maxAngularAcceleration="240,180,270" maxJerk="100.0" maxAngJerk="60.0">
-			<SoundParams>
-				<AmbientSound sound="Sounds/spaceships_CNOU_Mustang:parts:ambient_interior"/>
-				<PassByLoopSound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_loop" />
-				<PassBySound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
-				<DuressSound sound="Sounds/spaceships:CNOU_Mustang/under_duress:under_duress" damage_floor="21.0" damage_buffer="80.0"/>
-			</SoundParams>
+		  <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
+			<EngineStartSound sound="" />
+			<EngineRunSound sound="" />
+			<EngineStopSound sound="" />
+			<AmbienceSound sound="Play_SSAM_CNOU_Mustang_Interior_Cockpit" />
+			<PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
+			<PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+			<DuressSound sound="Play_SSDM_CNOU_Mustang_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
+		  </AudioParams>
 			<!--<Contrails>
 				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
 				<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />

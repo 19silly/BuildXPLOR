@@ -26,9 +26,9 @@ SCLadder02 =
 
 		ViewLimits =
 		{
-			horizontalViewLimit 		= 30,	-- horizontal view limit while climbing ladders
-			verticalUpViewLimit 		= 0,	-- vertical view limit for looking up while climbing ladders
-			verticalDownViewLimit 		= 0,	-- vertical view limit for looking down while climbing ladders
+			horizontalViewLimit 		= 90,	-- horizontal view limit while climbing ladders
+			verticalUpViewLimit 		= 35,	-- vertical view limit for looking up while climbing ladders
+			verticalDownViewLimit 		= 35,	-- vertical view limit for looking down while climbing ladders
 		},
 		Offsets =
 		{

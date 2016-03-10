@@ -44,7 +44,7 @@ RigidBodyLight =
 		{
 			_nVersion = -1,
 			bUseThisLight = 1,
-			Radius = 10,
+			Radius = 10, --[0,100,1,"Specifies how far from the source the light affects the surrounding area."]
 			fAttenuationBulbSize = 0.05,
 			vOffset = {x=0, y=0, z=0},
 			vDirection = {x=0, y=1, z=0},
@@ -355,7 +355,8 @@ end
 function RigidBodyLight:PlaySound( soundName )
 	if ( soundName and soundName~="") then
 		local sndFlags=SOUND_DEFAULT_3D;
-		self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		-- Reinstate
+		-- self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 	end
 end
 
@@ -363,7 +364,9 @@ function RigidBodyLight:PlaySoundLoop( soundName )
 	if ( soundName and soundName~="") then
 		local sndFlags=SOUND_DEFAULT_3D;
 		sndFlags = bor( sndFlags, FLAG_SOUND_LOOP );
-		local id = self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+		local id = 0;
+		-- Reinstate
+		-- local id = self:PlaySoundEvent( soundName, self.Properties.Sound.vOffset,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 		return id;
 	end
 end
@@ -382,14 +385,16 @@ end
 
 function RigidBodyLight:StopIdleSound()
 	if (self.idleSoundId~=0) then
-		Sound.StopSound(self.idleSoundId);
+		-- Reinstate
+		-- Sound.StopSound(self.idleSoundId);
 		self.idleSoundId = 0;
 	end
 end
 
 function RigidBodyLight:StopRunSound()
 	if (self.runSoundId~=0) then
-		Sound.StopSound(self.runSoundId);
+		-- Reinstate
+		-- Sound.StopSound(self.runSoundId);
 		self.runSoundId = 0;
 	end
 end

@@ -1,10 +1,10 @@
-BaldEagle = 
+BaldEagle =
 {
 	type = "Birds",
 	MapVisMask = 0,
-	ENTITY_DETAIL_ID=1,
+	ENTITY_DETAIL_ID = 1,
 
-	Properties = 
+	Properties =
 	{
 		Flocking =
 		{
@@ -29,16 +29,17 @@ BaldEagle =
 		},
 		Boid =
 		{
-			nCount = 10,
+			nCount = 10, --[0,1000,1,"Specifies how many individual objects will be spawned."]
 			object_Model = "objects/characters/animals/birds/bald_eagle/eagle.chr",
-			--Size = 1,
-			--SizeRandom = 0,
 			gravity_at_death = -9.81,
 			Mass = 10,
 			bInvulnerable = false,
 		},
 		Options =
 		{
+			bPickableWhenAlive = 0,
+			bPickableWhenDead = 1,
+			PickableMessage = "",
 			bFollowPlayer = 0,
 			bNoLanding = 0,
 			bObstacleAvoidance = 0,
@@ -48,7 +49,6 @@ BaldEagle =
 			bSpawnFromPoint = 0,
 		},
 	},
-
 	Animations =
 	{
 		"fly_loop", -- flying
@@ -56,15 +56,14 @@ BaldEagle =
 		"walk_loop", -- walk
 		"idle_loop", -- idle
 	},
-
-	Editor = {
+	Editor =
+	{
 		Icon = "Bird.bmp"
 	},
-
 	params={x=0,y=0,z=0},
 }
 
-
+-------------------------------------------------------
 function BaldEagle:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
 end
@@ -92,12 +91,9 @@ function BaldEagle:CreateFlock()
 
 	local params = self.params;
 
-	params.count = Boid.nCount;
+	params.count = __max(0, Boid.nCount);
 	params.model = Boid.object_Model;
 
-	-- Scaling doesn't work good...disable for now
-	-- params.boid_size = Boid.Size;
-	-- params.boid_size_random = Boid.SizeRandom;
 	params.boid_size = 1;
 	params.boid_size_random = 0;
 	params.min_height = Movement.HeightMin;
@@ -125,6 +121,10 @@ function BaldEagle:CreateFlock()
 
 	params.fov_angle = Flocking.FieldOfViewAngle;
 
+	params.pickable_alive = Options.bPickableWhenAlive;
+	params.pickable_dead = Options.bPickableWhenDead;
+	params.pickable_message = Options.PickableMessage;
+	
 	params.max_anim_speed = Movement.MaxAnimSpeed;
 	params.follow_player = Options.bFollowPlayer;
 	params.no_landing = Options.bNoLanding;
@@ -147,6 +147,9 @@ function BaldEagle:OnPropertyChange()
 	self:OnShutDown();
 	if (self.Properties.Options.bActivate == 1) then
 		self:CreateFlock();
+		self:Event_Activate();
+	else
+		self:Event_Deactivate();
 	end
 end
 
@@ -154,7 +157,7 @@ end
 function BaldEagle:Event_Activate()
 
 	if (self.Properties.Options.bActivate == 0) then
-		if (self.flock==0) then
+		if (self.flock == 0) then
 			self:CreateFlock();
 		end
 	end
@@ -173,6 +176,7 @@ function BaldEagle:Event_Deactivate()
 	end
 	self:ActivateOutput("Deactivate", true);
 end
+
 -------------------------------------------------------
 function BaldEagle:Event_AttractTo(sender, point)
 	Boids.SetAttractionPoint(self, point);
@@ -190,6 +194,8 @@ function BaldEagle:OnProceedFadeArea( player,areaId,fadeCoeff )
 	end
 end
 
+-------------------------------------------------------
+-------------------------------------------------------
 BaldEagle.FlowEvents =
 {
 	Inputs =

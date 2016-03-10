@@ -32,7 +32,7 @@ ProximityTrigger =
 
 		OnlySelectedEntity = "None",
 
-		bKillOnTrigger = 0,
+		bRemoveOnTrigger = 0,
 		bTriggerOnce = 0,
 		ScriptCommand = "",
 		PlaySequence = "",
@@ -419,9 +419,13 @@ function ProximityTrigger:Trigger(entityId, inside)
 	end
 
 	self:ActivateOutput("Sender", entityId or NULL_ENTITY);
-
+	
 	if(AI ~= nil) then
 		self:ActivateOutput("Faction", AI.GetFactionOf(entityId or NULL_ENTITY) or "");
+	end
+	
+	if(self.Properties.bRemoveOnTrigger == 1 and Game.IsPlayer(entityId) == false)then
+		System.RemoveEntity(entityId);
 	end
 end
 

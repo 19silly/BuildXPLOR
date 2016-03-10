@@ -112,7 +112,7 @@
 			<Parts>
 
 						<Part name="weapon_mount" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+							<ItemPort minsize="1" maxsize="10" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
 							<Types>
 								<Type type="Turret" subtypes="GunTurret"/>
 							</Types>
@@ -125,7 +125,7 @@
 						</Part>
 
 						<Part name="weapon_mount_top" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+							<ItemPort minsize="1" maxsize="10" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
 							<Types>
 								<Type type="Turret" subtypes="GunTurret"/>
 							</Types>
@@ -135,7 +135,7 @@
 						</Part>
 						
 						<Part name="weapon_mount_right" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+							<ItemPort minsize="1" maxsize="10" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
 							<Types>
 								<Type type="Turret" subtypes="GunTurret"/>
 							</Types>
@@ -145,7 +145,7 @@
 						</Part>
 						
 						<Part name="weapon_mount_left" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
+							<ItemPort minsize="1" maxsize="10" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" >
 							<Types>
 								<Type type="Turret" subtypes="GunTurret"/>
 							</Types>
@@ -274,13 +274,22 @@
 					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
 				</View>
 			</Views>
-			
 			<WaitFor>
 				<Enter>
 					<State animation="Chair" state="Deploy" />
 				</Enter>
+				<Exit>
+					<State animation="Chair" state="Deploy" />
+				</Exit>
 			</WaitFor>
-			
+			<PostAction>
+				<Enter>
+					<State animation="Chair" state="Retract" />
+				</Enter>
+				<Exit>
+					<State animation="Chair" state="Retract" />
+				</Exit>
+			</PostAction>
 			<!-- Begin actions for this seat-->
 			<SeatActions>
 				<!-- Weapons used / controlled by pilot of Confed Hornet -->

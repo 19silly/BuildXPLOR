@@ -24,12 +24,10 @@ SpawnGroup = {
 	
 	Properties=
 	{
-		objModel 								= "",
+		objModelForSpawnGroup					= "",
 		teamName								= "",
-		spawnText								= "",
 		bEnabled								= 1,
 		bDefault								= 0,
-		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
 	},
 }
 
@@ -45,10 +43,8 @@ SpawnGroup.NetSetup={
 };
 
 ----------------------------------------------------------------------------------------------------
-function SpawnGroup:OnSpawn()
-	self:Activate(1);
-
-	local model = self.Properties.objModel;
+function SpawnGroup:LoadModel()
+	local model = self.Properties.objModelForSpawnGroup;
 	if (string.len(model) > 0) then
 		local ext = string.lower(string.sub(model, -4));
 
@@ -62,6 +58,11 @@ function SpawnGroup:OnSpawn()
 	self:Physicalize(0, PE_STATIC, {mass=0});
 end
 
+----------------------------------------------------------------------------------------------------
+function SpawnGroup:OnSpawn()
+	self:Activate(1);
+	self:LoadModel();
+end
 
 ----------------------------------------------------------------------------------------------------
 function SpawnGroup.Server:OnInit()
@@ -77,6 +78,11 @@ end
 
 
 ----------------------------------------------------------------------------------------------------
+function SpawnGroup:OnPropertyChange()
+	self:LoadModel();
+end
+
+----------------------------------------------------------------------------------------------------
 function SpawnGroup.Server:OnShutDown()
 	if (g_gameRules) then
 		g_gameRules.game:RemoveSpawnGroup(self.id);
@@ -90,6 +96,7 @@ function SpawnGroup:AddSpawnPoints(linkName)
 	local link = self:GetLinkTarget(linkName, i);
 	while (link) do
 		g_gameRules.game:AddSpawnLocationToSpawnGroup(self.id, link.id);
+		link:Enable(true);
 		-- CIG BEGIN: DGarcia @ IllFonic - Enable Spawners that are attached to spawn group
 		g_gameRules.game:EnableSpawnLocation(link.id, false, "");
 		-- CIG END
@@ -98,19 +105,20 @@ function SpawnGroup:AddSpawnPoints(linkName)
 	end
 	--Log("Added %d spawnpoints (linkName %s) for group %s",i,linkName,self:GetName());
 end
--- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
 
--- CIG BEGIN: DGarcia @ IllFonic - Added function to remove spawn points attached to spawn group
+----------------------------------------------------------------------------------------------------
 function SpawnGroup:RemoveSpawnPoints(linkName)
 	local i = 0;
 	local link = self:GetLinkTarget(linkName, i);
 	while (link) do
-		g_gameRules.game:DisableSpawnLocation(link.id, false);
+		g_gameRules.game:RemoveSpawnLocationFromSpawnGroup(self.id, link.id);
+		link:Enable(false);
 		i = i+1;
 		link = self:GetLinkTarget(linkName, i);
 	end
+	--Log("Removed %d spawnpoints (linkName %s) for group %s",i,linkName,self:GetName());
 end
--- CIG END
+
 ----------------------------------------------------------------------------------------------------
 function SpawnGroup:Enable(enable)
 	if (not g_gameRules) then
@@ -130,11 +138,10 @@ function SpawnGroup:Enable(enable)
 		self:AddSpawnPoints("disruptor");
 	else
 		g_gameRules.game:RemoveSpawnGroup(self.id);
-		-- CIG BEGIN: DGarcia @ IllFonic - Remove spawn points attached to spawn group
+
 		self:RemoveSpawnPoints("spawn");
 		self:RemoveSpawnPoints("spawnpoint");		
 		self:RemoveSpawnPoints("disruptor");
-		-- CIG END
 	end
 end
 

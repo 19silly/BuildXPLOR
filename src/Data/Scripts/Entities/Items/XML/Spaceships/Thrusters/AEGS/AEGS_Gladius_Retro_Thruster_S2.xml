@@ -17,7 +17,31 @@
 	<power_grouping>
         <param name="powerGrouping" value ="thruster.auxiliary" />
     </power_grouping>
-	   
+
+  <geometry>
+		<!-- Default -->
+		<thirdperson name="Objects/Spaceships/Thrusters/AEGS/Winnowing_D1/AEGS_WinnowingD1_Omni_Thruster.cga" material="Objects/VFX/MeshEffects/Particle_Transparent_Meshes/fx_transparent_material.mtl"/>
+
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+		<tags tag="Hologram">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/Winnowing_D1/AEGS_WinnowingD1_Omni_Thruster.cga" material="Objects/VFX/MeshEffects/Particle_Transparent_Meshes/fx_transparent_material.mtl"/>
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/Winnowing_D1/AEGS_WinnowingD1_Omni_Thruster.cga" material="Objects/VFX/MeshEffects/Particle_Transparent_Meshes/fx_transparent_material.mtl"/>
+			<tags tag="damage_50">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/Winnowing_D1/AEGS_WinnowingD1_Omni_Thruster.cga" material="Objects/VFX/MeshEffects/Particle_Transparent_Meshes/fx_transparent_material.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/Winnowing_D1/AEGS_WinnowingD1_Omni_Thruster.cga" material="Objects/VFX/MeshEffects/Particle_Transparent_Meshes/fx_transparent_material.mtl"/>
+		</tags>	
+		</tags>	
+		
+		<boneAttachments>
+			<attachment target="thirdperson" name="nozzle_exhaust" bone="exhaust" />
+    </boneAttachments>
+	</geometry>
+	
 	<Pipes>
 		<Pipe class="Power" prioType="manageable" prioGroup="thruster">
 		  <Pool capacity="-100" rate="-10" />
@@ -46,7 +70,7 @@
 		<Pipe class="Fuel" prioType="critical">
 			<States>
 				<State state="Default"><Value value="0" /></State>
-				<State state="Boost"><Value value="-75" /></State>
+				<State state="Boost"><Value value="-175" /></State>
 			</States>
 		</Pipe>
 	</Pipes>
@@ -58,7 +82,15 @@
 	</gimbal> 
 	
 	<thrusters>
-	  <thruster flags="maneuver orientation" maxThrust="450000" maneuverScale="" rotationScale="" retroScale="" boostScale="" >
+	  <thruster flags="maneuver orientation" maxThrust="450000" maneuverScale="" rotationScale="" retroScale="" boostScale="2.4" >
+		  <exhausts>
+			  <exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.1">
+				  <effect name="" helper="nozzle_exhaust" enable = "0" tag ="run">
+					  <strength var="thrust" />
+				  </effect>
+			  </exhaust>
+		  </exhausts>	  
+	  
 	  </thruster>
   </thrusters>
   

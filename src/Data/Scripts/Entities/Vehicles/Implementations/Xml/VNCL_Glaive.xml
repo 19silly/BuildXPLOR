@@ -35,7 +35,7 @@
                 </Effects>
               </DamageBehavior>
               <DamageBehavior class="AudioFeedback" damageRatioMin="0.1" damageRatioMax="0.95">
-                <Sound sound="Sounds/spaceships:vncl_scythe/damage:hull_damage" cooldown="1" />
+                <Sound sound="" cooldown="1" />
               </DamageBehavior>
             </DamageBehaviors>
           </DamagesSubGroup>
@@ -1630,12 +1630,8 @@
 				<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
 			</CameraEffects>
 		</View>
-        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
-        </View>
-        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
-          <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
-        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
       </Views>
       <WaitFor>
         <Enter>
@@ -1810,14 +1806,15 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
     <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="250" maxBoostSpeed="240" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="120,120,120" maxAngularAcceleration="720,720,720">
-      <SoundParams runSoundDelay="1" rpmPitchSpeed="1.2">
-        <SoundParam engineSoundPosition="engineSoundPos" />
-        <RunSound running_sound="" />
-        <AmbientSound sound="Sounds/spaceships.vncl_scythe/parts:ambient_interior" />
-        <PassByLoopSound sound="Sounds/spaceships:vncl_glaive/pass_by:pass_by_loop" />
-        <PassBySound sound="Sounds/spaceships:vncl_glaive/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
-        <DuressSound sound="Sounds/spaceships:anvl_hornet/under_duress:under_duress" damage_floor="22.0" damage_buffer="90.0" />
-      </SoundParams>
+	  <AudioParams engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
+		<EngineStartSound sound="" />
+		<EngineRunSound sound="" />
+		<EngineStopSound sound="" />
+		<AmbienceSound sound="Play_SSAM_VNCL_Scythe_Cockpit" />
+		<PassByLoopSound sound="Play_SSPB_VNCL_Glaive_Loop" />
+		<PassBySound sound="Play_SSPB_VNCL_Glaive_800ms_0to100mtrs" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+		<DuressSound sound="Play_SSDM_ANVL_Hornet_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
+	  </AudioParams>
       <Animations engine="Intake_Fans" />
       <Contrails>
         <Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="25" />
@@ -1829,7 +1826,7 @@
   </MovementParams>
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <Sounds>
-    <Sound running_sound="Sounds/spaceships:anvl_hornet/parts:ambient_interior" />
+    <Sound running_sound="Play_SSAM_ANVL_Hornet_Cockpit" />
     <!-- <ZoneSound sound="example" zone="cockpit" /> Not implemented yet -->
   </Sounds>
   <Particles mfxRow="vfx_Anvil_Hornet">

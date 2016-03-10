@@ -1,0 +1,32 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="TrashObject" type="string" Value="dstsfd"/>
+  <Variable name="to2" type="string" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="1" pos="-50,-530,0" class="InitNode"/>
+   <Task name="Find Object" id="2" pos="-120,-380,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="string" value="to2"/>
+   </Task>
+   <Task name="Pathfind" id="3" pos="-141,-231,0" class="TreeNode">
+    <Input name="Pathfinder" type="string"/>
+    <Input name="Destination" type="string" value="to2"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Speed" type="string" value="Walk"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="2" nodeOut="1" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="3" nodeOut="2" portIn="in" portOut="outSuccess" enabled="1"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

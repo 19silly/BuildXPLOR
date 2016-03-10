@@ -2,7 +2,7 @@ CTCRing =
 {
 	Properties =
 	{
-		object_Model 		= "objects/brush/space/uee/asteroid_infrastructures/ring_optimized/optm_ring_centre.cga",
+		object_Model 		= "objects/space/3d/dfm/infrastructure/ring_optimized/optm_ring_centre.cga",
 		AnimName 			= "ring_idle_spin",
 		fAnimAcceleration 	= 0.125,
 		fNoCoreAnimSpeed 	= 0.0,

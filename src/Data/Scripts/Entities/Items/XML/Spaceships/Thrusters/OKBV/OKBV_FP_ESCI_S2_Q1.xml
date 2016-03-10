@@ -16,6 +16,7 @@
 		<param name="itemTags" value="flightReady" />
 		<param name="requiredPortTags" value="RSI_Aurora_Base" />
 		<param name="display_name"	value="OKB Voskhod Energia IV" /> <!--This is the correct name, we need to change the file name and so on to match this at some point -->
+		<param name="mass" value="500" />
 	</params>
 
     <power_grouping>
@@ -81,7 +82,7 @@
 		<Pipe class="Fuel" prioType="critical">
 			<States>
 				<State state="Default"><Value value="0" /></State>
-				<State state="Boost"><Value value="-20" /></State>
+				<State state="Boost"><Value value="-200" /></State>
 			</States>
 		</Pipe>
 	</Pipes>
@@ -90,7 +91,7 @@
 		</gimbal>
   
   <thrusters>
-	  <thruster flags="main rear" maxThrust="500000" >
+	  <thruster flags="main rear" maxThrust="140000" >
 		  <exhausts>
 			  <exhaust scale="1.0" animation="nozzle" helper="engine_exhaust" effectStopThreshold="0.1">
 				  <effect name="thruster_fx.Templates.Thrust-12" helper="engine_exhaust" enable ="0" tag = "run">
@@ -125,17 +126,17 @@
 					  <specular var="boost" min="0.5" multiplier="0.5" />
 					  <HDRDynamic var="thrust" min="0.5" multiplier="2" />
 				  </light> -->
-				  <sound name="sounds/thrusters:dstc_blue:start_run" enable ="0" tag = "run" loop="0" helper="engine_sound">
+				  <sound name="Play_SSTP_DSTC_FP_G4GI_S3_Q1_Start_Run" enable ="0" tag = "run" loop="0" helper="engine_sound">
 					  <param name="rpm" var="thrust" lerpTime="0.2" />
 					  <param name="boost" var="boost" lerpTime="0.9" />
 					  <param name="in_out" var="in_out" />
 				  </sound>
-				  <sound name="sounds/thrusters:dstc_blue:stop" enable ="0" tag = "stop" loop="0">
+				  <sound name="Stop_SSTP_DSTC_FP_G4GI_S3_Q1_Start_Run" enable ="0" tag = "stop" loop="0">
 				  <param name="rpm" var="thrust" lerpTime="0.5" />
 				  <param name="boost" var="boost" lerpTime="0.2" />
 				  <param name="in_out" var="in_out" />
 				  </sound>
-				  <sound name="sounds/afterburner:dstc_blue:run" enable ="0" tag = "boost" helper="engine_boost_sound">
+				  <sound name="Play_SSTP_OD_DSTC_FP_G4GI_S3_Q1_Start_Run" enable ="0" tag = "boost" helper="engine_boost_sound">
 					  <param name="boost" var="boost" lerpTime="0.4" />
 					  <param name="in_out" var="in_out" />
 				  </sound>

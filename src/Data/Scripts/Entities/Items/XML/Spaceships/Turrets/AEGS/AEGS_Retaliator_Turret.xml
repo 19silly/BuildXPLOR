@@ -4,12 +4,12 @@
     <param name="selectable" 	value="0" />
     <param name="pickable" 		value="0" />
     <param name="mountable" 	value="1" />
-    <param name="usable"		 	value="0" />
+    <param name="usable"		 	value="1" />
     <param name="arms"			 	value="0" />
     <param name="adb" value="" />
     <param name="actionController" value="" />
     <param name="itemType" value="Turret" />
-    <param name="itemSubType" value="" />
+    <param name="itemSubType" value="MannedTurret" />
 	<param name="itemTags" value="flightReady" />
     <param name="itemManufactor" value="AEGS" />
     <param name="itemSize" value="3" />
@@ -17,7 +17,7 @@
   </params>
   
    <geometry>
-		<thirdperson name="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_turret.cga"/> <!-- need this here and to be an empty string to signify null geo in the code! -->
+		<thirdperson name="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_turret.cga"/>
 	</geometry>
 
   <turretParams>
@@ -31,7 +31,7 @@
   </turretParams>
   
 	<EntityEffects>
-		<sound name="Sounds/weapons:Turret:gimbal_movement" enable ="0" tag = "move" helper="top_turrettop_turret">
+		<sound name="" enable ="0" tag = "move" helper="top_turrettop_turret">
 			<param name="yaw" var="yaw_speed" multiplier="1" lerpTime="0.1" />   
 			<param name="pitch" var="pitch_speed" multiplier="1" lerpTime="0.1" />
 			<param name="in_out" var="in_out" />
@@ -40,16 +40,20 @@
   
    <portParams>
 	<ports>
-		<!-- since the geo is null at the top these ports are joints on the vehicle itself -->
 		<ItemPort name="turret_left" minsize="1" maxsize="1">
-		<Types>
-				<Type type="WeaponGun" subtypes="Gun"/>
-		</Types>
+			<Types>
+					<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
 		</ItemPort>
 		<ItemPort name="turret_right" minsize="1" maxsize="1">
-		<Types>
-				<Type type="WeaponGun" subtypes="Gun"/>
-		</Types>
+			<Types>
+					<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="turret_seat" minsize="1" maxsize="1" flags="seat" display_name="seathelper">
+			<Types>
+				<Type type="Seat"/>
+			</Types>
 		</ItemPort>
 	</ports>
   </portParams>
@@ -57,5 +61,13 @@
   <mobiGlas>
 	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
   </mobiGlas>
+  
+  <defaultLoadout>
+    <Items>
+      <Item portName="turret_left" itemName="KLWE_LaserRepeater_S1" />
+      <Item portName="turret_right" itemName="KLWE_LaserRepeater_S1" />
+      <Item portName="turret_seat" itemName="AEGS_Retaliator_Turret_Seat" />
+    </Items>
+  </defaultLoadout>
 
  </item>

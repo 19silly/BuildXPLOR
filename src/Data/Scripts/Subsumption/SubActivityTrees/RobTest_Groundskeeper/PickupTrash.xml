@@ -1,0 +1,56 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="trashObj" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="114" pos="-160,-280,0" class="InitNode"/>
+   <Task name="Find Object" id="115" pos="-230,-80,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject:Usables:Trash:Metal"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="entityid" value="trashObj"/>
+   </Task>
+   <Task name="Pathfind" id="116" pos="-210,80,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="trashObj"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Speed" type="string" value="Jog"/>
+   </Task>
+   <Task name="Play Animation" id="117" pos="-280,230,0" class="TreeNode">
+    <Input name="Animator" type="entityid"/>
+    <Input name="Animation ID" type="string" value="usable"/>
+    <Input name="Animation Tag" type="string" value="pickup_1h_ground"/>
+   </Task>
+   <Task name="Destroy Object" id="118" pos="-340,480,0" class="TreeNode">
+    <Input name="Object to Destroy" type="entityid" value="trashObj"/>
+   </Task>
+   <Task name="Compute" id="119" pos="-450,590,0" class="TreeNode">
+    <Input name="Mathematical Expression" type="string" value="Activity.NumRecycling + 1"/>
+    <Output name="Result" type="float" value="NumRecycling"/>
+   </Task>
+   <Task name="Play Animation" id="120" pos="-320,360,0" class="TreeNode">
+    <Input name="Animator" type="entityid"/>
+    <Input name="Animation ID" type="string" value="usable"/>
+    <Input name="Animation Tag" type="string" value="pickup_1h_ground"/>
+   </Task>
+   <Task name="Compare" id="121" pos="-310,-200,0" class="TreeNode">
+    <Input name="Mathematical Expression" type="string" value="Activity.NumRecycling &gt;= 3"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="121" nodeOut="114" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="116" nodeOut="115" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="115" nodeOut="121" portIn="in" portOut="outFail" enabled="1"/>
+   <Edge nodeIn="117" nodeOut="116" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="120" nodeOut="117" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="118" nodeOut="120" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="119" nodeOut="118" portIn="in" portOut="outSuccess" enabled="1"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

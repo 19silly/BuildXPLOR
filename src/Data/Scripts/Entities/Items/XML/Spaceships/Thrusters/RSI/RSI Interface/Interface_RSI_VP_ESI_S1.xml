@@ -1,0 +1,78 @@
+<interface name="Interface_RSI_VP_ESI_S1">
+	<!-- 
+	This is the model and vfx template for Thrusters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" /><!-- ONLY use if Thruster has special one-off params. All other params should remain in item.xml. -->
+	</params>
+
+
+
+  <damagelevels>
+	<!-- Fill me with damagelevels -->
+  </damagelevels>
+
+
+	<geometry>
+		<!-- Default -->
+		<thirdperson name="Objects\Spaceships\Thrusters\Hammer_Propulsion\HE_5_3\300i_HE_5_3_dummy.cga"/>
+		
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+
+		<boneAttachments>		
+			<attachment target="thirdperson" name="nozzle" bone="item_helper" geometry = "Objects\Spaceships\Thrusters\rsi\p52merlin\rsi_merlin_main_thruster.chr" scopeContext="nozzle" />
+			<attachment target="thirdperson" name="engine_exhaust" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_output" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_fuel" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_heat" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_light" bone="exhaust" orientation="0,0,-90"/>
+			<attachment target="thirdperson" name="engine_boost_light" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_sound" bone="exhaust" orientation="0,0,-180"/>
+			<attachment target="thirdperson" name="engine_boost_sound" bone="exhaust" orientation="0,0,-180"/>
+		</boneAttachments>
+	</geometry>
+  
+  <thrusters>
+	<thruster speed="40" acceleration="20">
+			<Pitch min ="-10" max ="10" />
+			<Yaw min ="-10" max ="10" />
+			<Exhausts>
+				<exhaust scale="1.0" animation="nozzle" helper="exhaust" effectStopThreshold="0.1" >
+					<effect name="Spaceships\Thrusters\RSI_VP_ESI_S1.Thruster_ALL.RSI_VP_ESI_S1" helper="engine_exhaust" enable ="0" tag = "run">
+						<strength var="thrust" />
+					</effect>
+					
+					<material enable ="1" slot="1" helper = "nozzle" matId= "3" tag = "run">
+						<param name="glow" var="thrust" min = "1" multiplier="50" />
+					</material>
+			
+						<sound name="Play_SSTP_RSI_ESI_S1_Start_Run" enable ="0" tag = "run" helper="engine_sound">
+							<param name="rpm" var="thrust" lerpTime="0.7" />
+							<param name="cruise_speed" var="cruise_speed" lerpTime="0.9" />
+							<param name="in_out" var="in_out" />
+						</sound>
+						
+						<sound name="Stop_SSTP_RSI_ESI_S1_Start_Run" enable ="0" tag = "stop" loop="0">
+							<param name="rpm" var="thrust" lerpTime="0.7" />
+							<param name="cruise_speed" var="cruise_speed" lerpTime="0.9" />
+							<param name="in_out" var="in_out" />
+						</sound>
+						
+						<sound name="Play_SSTP_OD_RSI_ESI_S1_Start_Run" enable ="0" tag = "boost" helper="engine_boost_sound">
+							<param name="boost" var="boost" lerpTime="0.5" />
+							<param name="in_out" var="in_out" />
+							<param name="rpm" var="thrust" lerpTime="0.5" />
+						</sound>				
+				</exhaust>
+			</Exhausts>
+	  </thruster>
+  </thrusters>
+
+</interface>

@@ -41,6 +41,13 @@ BasicActor =
 			bWrinkleMap = 0,
 		},
 
+		-- CIG BEGIN shall
+
+		Audio =
+		{
+			audioPreloadRequestBankName = "",
+		},
+		-- CIG END
 		-- Item ports descriptor
 		fileItemPortsDefinition = "Scripts/Entities/Items/XML/Player/PlayerItemPorts.xml",
 
@@ -685,7 +692,8 @@ function BasicActor:KnockedOutByDoor(hit,mass,vel)
 	local force=clamp((mass * vel) * 0.02, 0, 100);
 
 	if(force>3)then
-		self:PlaySoundEvent("sounds/physics:destructibles:wood_shatter",{x=0,y=0,z=0.6},g_Vectors.v010, SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_PLAYER_FOLEY);
+		-- REINSTANTIATE!!!
+		-- self:PlaySoundEvent("sounds/physics:destructibles:wood_shatter",{x=0,y=0,z=0.6},g_Vectors.v010, SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_PLAYER_FOLEY);
 		local hit = {};
 		self:Kill(hit);
 	end;
@@ -746,11 +754,11 @@ function BasicActor:Kill(hit)
 	-- Send event to music logic
 	if (self.MusicInfo) then
 		if (self.MusicInfo.headshot == true) then
-			MusicLogic.SetEvent(MUSICLOGICEVENT_ENEMY_HEADSHOT);
+			MusicSystem.SendEvent("MX_EnemyHeadshot"); -- CIG shall
 		elseif (self.MusicInfo.nonbullet == true) then
-			MusicLogic.SetEvent(MUSICLOGICEVENT_ENEMY_OVERRUN);
+			MusicSystem.SendEvent("MX_EnemyOverrun"); -- CIG shall
 		else
-			MusicLogic.SetEvent(MUSICLOGICEVENT_ENEMY_KILLED);
+			MusicSystem.SendEvent("MX_EnemyKilled"); -- CIG shall
 		end;
 		self.MusicInfo.headshot = false;
 		self.MusicInfo.nonbullet = false;
@@ -762,7 +770,7 @@ function BasicActor:Kill(hit)
 			AI.Signal(SIGNALFILTER_GROUPONLY_EXCEPT, 1, "OnPlayerDied", self.id);
 		end
 		if (self.MusicInfo) then
-			MusicLogic.SetEvent(MUSICLOGICEVENT_PLAYER_KILLED);
+			MusicSystem.SendEvent("MX_PlayerKilled");
 		end;
 	elseif ((AI.GetReactionOf(self.id, g_localActorId) == Friendly)) then
 
@@ -795,15 +803,6 @@ function BasicActor:Kill(hit)
 	if AI then
 
 		if(self.AI.usingMountedWeapon) then
-			local weaponId = self.AI.currentMountedWeaponId;
-			if( weaponId ) then
-				local weapon = System.GetEntity(weaponId);
-				if (weapon and weapon.class == "HMG") then
-					AI.Signal(SIGNALFILTER_GROUPONLY, 30, "OnGroupMemberDiedOnHMG",self.id);
-				elseif (weapon and weapon.class == "AGL") then
-					AI.Signal(SIGNALFILTER_GROUPONLY, 30, "OnGroupMemberDiedOnAGL",self.id);
-				end
-			end
 			AI.Signal(SIGNALFILTER_GROUPONLY, 30, "OnGroupMemberDiedOnMountedWeapon",self.id);
 		end
 
@@ -996,6 +995,13 @@ function BasicActor:SetActorModel(isClient)
 		end
 	end
 
+	-- Take care of shadow character
+	local shadowModel = self.Properties.shadowFileModel;
+	if (shadowModel and isClient and self.currShadowModel ~= shadowModel) then
+		self.currShadowModel = shadowModel;
+		self:LoadCharacter(5, self.Properties.shadowFileModel);
+	end
+
 	return hasChanged;
 end
 
@@ -1180,7 +1186,8 @@ function BasicActor:ScriptEvent(event,value,str)
 			local volume = 1.0;
 
 			if(self.actor:IsLocalClient()) then
-				local sound = self:PlaySoundEventEx("sounds/physics:foleys/npc:bodyfall_water_shallow", SOUND_DEFAULT_3D, 0, volume, g_Vectors.v000, -1, -1, SOUND_SEMANTIC_PLAYER_FOLEY);
+				-- REINSTANTIATE!!!
+				-- local sound = self:PlaySoundEventEx("sounds/physics:foleys/npc:bodyfall_water_shallow", SOUND_DEFAULT_3D, 0, volume, g_Vectors.v000, -1, -1, SOUND_SEMANTIC_PLAYER_FOLEY);
 			end
 		end
 	elseif (event == "sleep") then
@@ -1256,6 +1263,7 @@ function BasicActor:OnStanceChanged(newStance, oldStance)
 	else
 		stanceChangeSound = "sounds/physics:foleys/player:crouch_off";
 	end
-
-	self:PlaySoundEvent(stanceChangeSound, g_Vectors.v000, g_Vectors.v010, SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_PLAYER_FOLEY);
+	
+	-- REINSTANTIATE!!!
+	-- self:PlaySoundEvent(stanceChangeSound, g_Vectors.v000, g_Vectors.v010, SOUND_DEFAULT_3D, 0, SOUND_SEMANTIC_PLAYER_FOLEY);
 end

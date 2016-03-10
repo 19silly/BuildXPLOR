@@ -2,7 +2,7 @@ Fish =
 {
 	type = "Fish",
 	MapVisMask = 0,
-	ENTITY_DETAIL_ID=1,
+	ENTITY_DETAIL_ID = 1,
 
 	Properties =
 	{
@@ -30,11 +30,8 @@ Fish =
 		},
 		Boid =
 		{
-			nCount = 10,
+			nCount = 10, --[0,1000,1,"Specifies how many individual objects will be spawned."]
 			object_Model = "objects/characters/animals/fish/trout/trout_a.chr",
-			--Size = 1,
-			--SizeRandom = 0,
-			--Radius = 0.5,
 			gravity_at_death = -9.81,
 			Mass = 10,
 			bInvulnerable = false,
@@ -50,13 +47,13 @@ Fish =
 		},
 	},
 
-	BubblesEffect = "",	-- Underwater bubbles for fish breathing
-	SplashEffect = "",	-- Splash when fish touches water surface
-
-
-	Editor = {
+	Editor = 
+	{
 		Icon = "Fish.bmp"
 	},
+
+	BubblesEffect = "",		-- Underwater bubbles for fish breathing
+	SplashEffect = "",		-- Splash when fish touches water surface
 
 	params={x=0,y=0,z=0},
 	bubble_pos={x=0,y=0,z=0},
@@ -71,6 +68,7 @@ Fish =
 --function Birds:OnSave(table)
 --end
 
+-------------------------------------------------------
 function Fish:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
   self:SetFlagsExtended(ENTITY_FLAG_EXTENDED_NEEDS_MOVEINSIDE, 0);
@@ -97,6 +95,7 @@ function Fish:CacheResources()
 	self:PreLoadParticleEffect( self.BubblesEffect );
 	self:PreLoadParticleEffect( self.SplashEffect );
 end
+
 -------------------------------------------------------
 function Fish:OnShutDown()
 end
@@ -110,12 +109,9 @@ function Fish:CreateFlock()
 
 	local params = self.params;
 
-	params.count = Boid.nCount;
+	params.count = __max(0, Boid.nCount);
 	params.model = Boid.object_Model;
 
-	-- Scaling doesn't work good...disable for now
-	-- params.boid_size = Boid.Size;
-	-- params.boid_size_random = Boid.SizeRandom;
 	params.boid_size = 1;
 	params.boid_size_random = 0;
 	params.min_height = Movement.HeightMin;
@@ -138,7 +134,6 @@ function Fish:CreateFlock()
 	params.factor_random_accel = Movement.FactorRandomAcceleration;
 
 	params.spawn_radius = Options.Radius;
-	--params.boid_radius = Boid.boid_radius;
 	params.gravity_at_death = Boid.gravity_at_death;
 	params.boid_mass = Boid.Mass;
 	params.invulnerable = Boid.bInvulnerable;
@@ -162,13 +157,19 @@ end
 
 -------------------------------------------------------
 function Fish:OnPropertyChange()
-	self:CreateFlock();
+	if (self.Properties.Options.bActivate == 1) then
+		self:CreateFlock();
+		self:Event_Activate();
+	else
+		self:Event_Deactivate();
+	end
 end
 
 -------------------------------------------------------
 function Fish:OnSpawnBubble( pos )
 	Particle.SpawnEffect( self.BubblesEffect,pos,self.bubble_dir );
 end
+
 -------------------------------------------------------
 function Fish:OnSpawnSplash( pos )
 	Particle.SpawnEffect( self.SplashEffect,pos,self.bubble_dir );
@@ -190,12 +191,15 @@ function Fish:Event_Deactivate()
 	end
 end
 
+-------------------------------------------------------
 function Fish:OnProceedFadeArea( player,areaId,fadeCoeff )
 	if (self.flock ~= 0) then
 		Boids.SetFlockPercentEnabled( self,fadeCoeff*100 );
 	end
 end
 
+-------------------------------------------------------
+-------------------------------------------------------
 Fish.FlowEvents =
 {
 	Inputs =

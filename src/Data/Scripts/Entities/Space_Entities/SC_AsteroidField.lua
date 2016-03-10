@@ -2,7 +2,7 @@ Script.ReloadScript("scripts/Utils/EntityUtils.lua")
 
 SC_AsteroidField = {
 	Properties = {
-		object_Model = "objects/brush/space/planets/ring03.cgf",
+		object_Model = "objects/space/3d/planet/ring03.cgf",
 		celestialBodyType = "asteroid_field", -- drop down list?
 		distance = 0, -- distance from orbitingBody measured in AU	/ for "rings" the distance is the inner part of the ring and for "blobs" it is the center (maybe?)
 		heliocentricLong = 0, -- horizontal positional angle relative to the orbitingBody / 0 to 360 degrees

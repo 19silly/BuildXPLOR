@@ -61,7 +61,8 @@ local Behavior = CreateAIBehavior("InVehicleChangeSeat", "InVehicle",
 
 			entity.AI.changeSeatTimer= nil;
 			if ( entity.AI.theVehicle and entity.AI.theVehicle.vehicle ) then
-				entity.AI.theVehicle.vehicle:ChangeSeat( entity.id, 1, false );
+				entity.AI.theVehicle.vehicle:ExitVehicle( entity.id );
+				entity.AI.theVehicle.vehicle:EnterVehicle( entity.id, 1, false );
 				AI.Signal(SIGNALFILTER_SENDER, 1, "ChangeSeatEnd", entity.id);
 			else
 				entity:CancelSubpipe();

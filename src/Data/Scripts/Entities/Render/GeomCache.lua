@@ -15,6 +15,9 @@ GeomCache =
 		materialLastFrameStandInMaterial = "",
 		fStandInDistance = 0,
 		fStreamInDistance = 0,		
+		Physics = {
+			bPhysicalize = 0,
+		}		
 	},
 
 	Editor={
@@ -65,8 +68,19 @@ function GeomCache:SetFromProperties()
 	self:SetGeomCacheParams(Properties.bLooping, Properties.objectStandIn, Properties.materialStandInMaterial, Properties.objectFirstFrameStandIn, 
 		Properties.materialFirstFrameStandInMaterial, Properties.objectLastFrameStandIn, Properties.materialLastFrameStandInMaterial, 
 		Properties.fStandInDistance, Properties.fStreamInDistance);
+	self:SetGeomCacheStreaming(false, 0);
 
+	if (Properties.Physics.bPhysicalize == 1) then
+		local tempPhysParams = EntityCommon.TempPhysParams;
+		self:Physicalize(0, PE_ARTICULATED, tempPhysParams);
+	end
+	
 	self:Activate(1);
+end
+
+function GeomCache:PhysicalizeThis()
+	local Physics = self.Properties.Physics;
+	EntityCommon.PhysicalizeRigid(self, 0, Physics, false);
 end
 
 function GeomCache:OnUpdate(dt)

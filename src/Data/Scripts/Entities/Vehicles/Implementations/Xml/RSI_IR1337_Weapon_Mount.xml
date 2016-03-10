@@ -133,7 +133,7 @@
                 </Part>
 				
 				<Part name="weapon_mount" class="ItemPort">
-					<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" portTags="AEGS_Avenger_Base" >
+					<ItemPort minsize="1" maxsize="10" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" portTags="" >
 					<Types>
 						<Type type="Turret" subtypes="GunTurret"/>
 					</Types>
@@ -146,7 +146,7 @@
 				<Part name="hardpoint_power_plant_attach" class="ItemPort">
 					<ItemPort minsize="1" maxsize="5" flags="invisible" display_name="Power Plant" displayPos="75,290" requiredTags="">
 						<Types>
-							<Type type="PowerPlant" subtypes="Power"/>
+							<Type type="PowerPlant" subtypes=""/>
 						</Types>
 
 					</ItemPort>
@@ -160,7 +160,7 @@
 					</ItemPort>
 				</Part>
 				
-				<Part name ="hardpoint_avonics_motherboard" class = "ItemPort">
+				<Part name ="hardpoint_avionics_motherboard" class = "ItemPort">
 					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
 						<Types>
 							<Type type="Avionics" subtypes="Motherboard"/>
@@ -230,17 +230,35 @@
 		canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" visorType="pilot">
 			<!-- Begin views for this seat-->
 			<Views defaultFirstPerson="0" defaultThirdPerson="3">
-				<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
-					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
+				<View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+				  <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-40" maxPitch="60" />
 				</View>
+				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+				  <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+				  <CameraEffects minSpeed="102" maxSpeed="280">
+					<FOV maxOffset="20.0f" />
+					<DOF stength="0.25f" offsetLag="0.8f" />
+					<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+				  </CameraEffects>
+				</View>
+				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
 			</Views>
-			
 			<WaitFor>
 				<Enter>
 					<State animation="Chair" state="Deploy" />
 				</Enter>
+				<Exit>
+					<State animation="Chair" state="Deploy" />
+				</Exit>
 			</WaitFor>
-			
+			<PostAction>
+				<Enter>
+					<State animation="Chair" state="Retract" />
+				</Enter>
+				<Exit>
+					<State animation="Chair" state="Retract" />
+				</Exit>
+			</PostAction>	
 			<!-- Begin actions for this seat-->
 			<SeatActions>
 				<!-- Weapons used / controlled by pilot of Confed Hornet -->
@@ -262,7 +280,7 @@
 								<ItemPort part="pilotVisor" /> 
 								<ItemPort part="hardpoint_power_plant_attach" />	
 								<ItemPort part="hardpoint_radiator_attach" />
-								<ItemPort part="hardpoint_avonics_motherboard" />
+								<ItemPort part="hardpoint_avionics_motherboard" />
 								<ItemPort part="hardpoint_radar" />
 								<ItemPort part="Radar_Helper" />								
 							</Items>
@@ -293,11 +311,11 @@
 				<ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
 			</FixedVisorSettings>
 			<Screens>
-				<Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
+				<!-- <Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
 					<Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" scale="0.45" y_offset="0" z_offset="0.0" />
 					<Slot name="Fuel Indicator" helper="UI_Helper" slot="FuelIndicator" scale="0.45" x_offset="-0.065" y_offset="0" z_offset="0.009" />
 					<Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" scale="0.45" x_offset="0.071" y_offset="0" z_offset="-0.02" />
-				</Screen>
+				</Screen> -->
 			</Screens>
 		</Seat>
 	</Seats>
@@ -314,6 +332,8 @@
 	<Mannequin tag="Weapon_Mount" controllerDef="Animations/Mannequin/ADB/Vehicles/Weapon_Mount/Weapon_Mount_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/Weapon_Mount/Weapon_Mount_Anims.adb" passengerADB="Animations/Mannequin/ADB/Vehicles/Weapon_Mount/Weapon_Mount_HumanAnims.adb" id="idMannequin"/>
 
 	<Animations>
+    <Action name="Chair" state="Retract" />
+	
 	</Animations>
 
 	<!-- Attachments

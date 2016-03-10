@@ -72,7 +72,7 @@
 		</level>
 -->		
 	<level damageRatio="1.00">
-		<Explosion probability="1" pressure="1000" radius="15" damage="50" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" sound="Sounds/damage_fx:damage_fx:ship_destroyed_explosion" />
+		<Explosion probability="1" pressure="1000" radius="15" damage="50" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" sound="Play_SSDM_Shared_Engine_Damaged_100" />
 		<DebrisList>
 			<Debris name="DragonSTCBlue_Nozzle_100_debris_01" mass="10" impulse="0,10,0" >
 				<EffectsList>
@@ -133,30 +133,34 @@
 		
 	</geometry>
   
-  <thrusters>
-	<thruster>
+ <thrusters>
+	  <thruster flags="main rear" maxThrust="350000" >
 		  <exhausts>
 			  <exhaust scale="1.0" animation="nozzle" helper="engine_exhaust" effectStopThreshold="0.1">
-				  <effect name="Gladius_Thruster.Gladius_Thruster_ALL.DSTC_Gladius_G4GI_S2_Q1" helper="engine_exhaust" enable ="0" tag = "run">
+				  <effect name="Spaceships\Thrusters\DSTC_Gladius_G4GI_S2_Q1.Thruster_ALL.DSTC_Gladius_G4GI_S2_Q1" helper="engine_exhaust" enable ="0" tag = "run">
 					  <strength var="thrust" />
 					  <size var="thrust" min="1" multiplier="1.0" />
-					  <speed var="thrust" min="0.25" multiplier="1.0" />
+					  <speed var="thrust" min="0.25" multiplier="2.0" />
 				  </effect>
-				  <material enable ="0" slot="1" helper = "nozzle" matId= "21" tag = "run">
-					  <param name="glow" var="thrust" min = "1" multiplier="51" />
-				  </material>
-				  <sound name="sounds/thrusters:dstc_gladius:start_run" enable ="0" tag = "run" loop="0" helper="engine_sound">
+					<material enable ="0" slot="1" matId= "6" tag = "run">
+						<param name="glow" var="thrust" min = "0.5" multiplier="50" />
+					</material>
+						
+				  <sound name="Play_SSTP_DSTC_Gladius_S2_Q1_Start_Run" enable ="0" tag = "run" loop="0" helper="engine_sound">
 					  <param name="rpm" var="thrust" lerpTime="0.2" />
 					  <param name="boost" var="boost" lerpTime="0.9" />
 					  <param name="in_out" var="in_out" />
 				  </sound>
-				  <sound name="sounds/thrusters:dstc_gladius:stop" enable ="0" tag = "stop" loop="0">
-				  <param name="rpm" var="thrust" lerpTime="0.5" />
-				  <param name="boost" var="boost" lerpTime="0.2" />
-				  <param name="in_out" var="in_out" />
-				  </sound>
-				  <sound name="sounds/afterburner:dstc_gladius:run" enable ="0" tag = "boost" helper="engine_boost_sound">
+				 
+				  <sound name="Play_SSTP_DSTC_OD_Gladius_S2_Q1_Start_Run" enable ="0" tag = "boost" helper="engine_boost_sound">
 					  <param name="boost" var="boost" lerpTime="0.4" />
+					  <param name="in_out" var="in_out" />
+					  <param name="rpm" var="thrust" lerpTime="0.9" />
+				  </sound>
+				  
+			      <sound name="Play_SSPP_ANVL_Hornet_Cockpit_Power" enable ="0" tag = "run" helper="engine_sound">
+					  <param name="rpm" var="thrust" lerpTime="0.6" />
+					  <param name="cruise_speed" var="cruise_speed" />
 					  <param name="in_out" var="in_out" />
 				  </sound>
 			  </exhaust>

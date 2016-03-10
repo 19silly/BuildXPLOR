@@ -20,6 +20,9 @@
 		<param name="requiredPortTags"	value="AEGS_Gladius_Base" />
 		<param name="display_name"		value="FSKI Arrester" />
 		<param name="mass" 				value="120" />
+		<param name="tags" 				value=""/>
+		<param name="price" 			value=""/>
+		<param name="itemImage" 		value=""/>
 	</params>
 	
 	<geometry>
@@ -29,16 +32,21 @@
 			<attachment target="thirdperson" name="exhaust" bone="exhaust"/>
 		</boneAttachments>
 	</geometry>
-	
+
+	<AudioPreloads>
+		<Preload name = "SC_WPMR_FSKI"/>
+	</AudioPreloads>
+
 	<missile>
 		<param name="guidanceType" 					value="SignatureLock" />	
+		<param name="trackingSignalMin" 		value="1.5" />
 		<param name="trackingSignalType" 			value="CrossSection" />
 		<param name="trackingSignalAmplifier" 		value="30" />
 		<param name="trackingSignalAmplifierSeeking"	value="15" />
 		<param name="trackerNoiseAmplifier"			value="2.3" />
-		<param name="trackingDistanceMax"			value="4200" />
-		<param name="trackingAngle"					value="60" />
-		<param name="lockTime" 						value="2.0" />
+		<param name="trackingDistanceMax"			value="6300" />
+		<param name="trackingAngle"					value="20" />
+		<param name="lockTime" 						value="5.0" />
 		
 		<param name="lifetime" 						value="10" />
 		<param name="ignitiontime" 					value="0.5" />
@@ -53,9 +61,10 @@
 		
 		<param name="trailHelper" 					value="exhaust" />
 		<param name="trailEffect" 					value="weapon_fx.missile.trail" />
-		<param name="launchSound" 					value="sounds/weapons:FSKI_Arrester_S3_Proximity_TL_CS:boost" />
-		<param name="ejectSound" 					value="sounds/weapons:FSKI_Arrester_S3_Proximity_TL_CS:launch" />
-		<param name="trailSound" 					value="sounds/weapons:FSKI_Arrester_S3_Proximity_TL_CS:missile" />	
+		<param name="launchSound" 					value="Play_WPMR_FSKI_Arrester_S1_Proximity_Boost" />
+		<param name="ejectSound" 					value="Play_WPMR_FSKI_Arrester_S1_Proximity_Launch" />
+		<param name="trailSound" 					value="Play_WPMR_FSKI_Arrester_S1_Proximity_Missile" />	
+		<param name="trailStopSound" 				value="Stop_WPMR_FSKI_Arrester_S1_Proximity_Missile" />	
 		
 		<Shake>
 			<param name="offsetPosition" 			value="0.05,0.05,0.05" />
@@ -74,14 +83,15 @@
 		<param name="pressure" 						value="12000" />
 		<param name="max_radius" 					value="60" />
 		<param name="aitype" 						value="rpg" />  <!-- this is a hack to determine whether missile is hostile or friendly -->
-		<param name="damage" 						value="350" />
+		<param name="damage" 						value="500" />
+		<param name="damage_distortion" 			value="750" />
 		
 		<!-- Art and Audio -->
 		<param name="decal" 						value="textures/decal/explo_decal.dds" />
 		<param name="effect"						value="weapon_fx.missile.explosion" />
 		<param name="failed_effect"					value="weapon_fx.missile.explosion_failed" />
-		<param name="sound" 						value="sounds/weapons:FSKI_Arrester_S3_Proximity_TL_CS:explode_hit" />
-		<param name="failed_sound" 					value="sounds/weapons:FSKI_Arrester_S3_Proximity_TL_CS:explode_miss" />
+		<param name="sound" 						value="Play_WPMR_FSKI_Arrester_S1_Proximity_Explode_Hit" />
+		<param name="failed_sound" 					value="Play_WPMR_FSKI_Arrester_S1_Proximity_Explode_Miss" />
 	</explosion>
 	
 </item>

@@ -39,11 +39,13 @@ function AutomaticDoor1Piece:OnPropertyChange()
 	self:OnReset();
 	if ( self.Properties.fileOpenSound ~= self.CurrOpenSound ) then
 		self.CurrOpenSound=self.Properties.fileOpenSound;
-		self.OpenSound=Sound.Load3DSound(self.CurrOpenSound);
+		--REINST 
+		--self.OpenSound=Sound.Load3DSound(self.CurrOpenSound);
 	end
 	if ( self.Properties.fileCloseSound ~= self.CurrCloseSound ) then
 		self.CurrCloseSound=self.Properties.fileCloseSound;
-		self.CloseSound=Sound.Load3DSound(self.CurrCloseSound);
+		--REINST
+		--self.CloseSound=Sound.Load3DSound(self.CurrCloseSound);
 	end
 end
 
@@ -53,9 +55,11 @@ function AutomaticDoor1Piece:OnReset()
 	self:DrawObject( 0, 1 );
 	self:CreateStaticEntity( 100, 0 );
 	self.CurrOpenSound=self.Properties.fileOpenSound;
-	self.OpenSound=Sound.Load3DSound(self.CurrOpenSound);
+	--REINST
+	--self.OpenSound=Sound.Load3DSound(self.CurrOpenSound);
 	self.CurrCloseSound=self.Properties.fileCloseSound;
-	self.CloseSound=Sound.Load3DSound(self.CurrCloseSound);
+	--REINST
+	--self.CloseSound=Sound.Load3DSound(self.CurrCloseSound);
 	self:SetBBox({x=-(self.Properties.BBOX_Size.X*0.5),y=-(self.Properties.BBOX_Size.Y*0.5),z=-(self.Properties.BBOX_Size.Z*0.5)},
 	{x=(self.Properties.BBOX_Size.X*0.5),y=(self.Properties.BBOX_Size.Y*0.5),z=(self.Properties.BBOX_Size.Z*0.5)});
 	self:RegisterState("Opened");
@@ -290,9 +294,10 @@ AutomaticDoor1Piece["Client"]={
 			self:StartAnimation(0,"open");
 			--System.LogToConsole("CLIENT:Open");
 			if(self.OpenSound)then
-				Sound.SetSoundPosition(self.OpenSound, self:GetPos());
-				--System.LogToConsole("Automatic Door Open("..self:GetPos().x..","..self:GetPos().y..","..self:GetPos().z..",");
-				Sound.PlaySound(self.OpenSound);
+				--REINST
+				-- Sound.SetSoundPosition(self.OpenSound, self:GetPos());
+				-- System.LogToConsole("Automatic Door Open("..self:GetPos().x..","..self:GetPos().y..","..self:GetPos().z..",");
+				-- Sound.PlaySound(self.OpenSound);
 			end
 			self:Activate(1);
 		end,
@@ -324,9 +329,10 @@ AutomaticDoor1Piece["Client"]={
 			self:StartAnimation(0,"close");
 			--System.LogToConsole("CLIENT:Close");
 			if(self.CloseSound)then
-				Sound.SetSoundPosition(self.CloseSound, self:GetPos());
+				--REINST
+				--Sound.SetSoundPosition(self.CloseSound, self:GetPos());
 				--System.LogToConsole("Automatic Door Close("..self:GetPos().x..","..self:GetPos().y..","..self:GetPos().z..",");
-				Sound.PlaySound(self.CloseSound);
+				--Sound.PlaySound(self.CloseSound);
 			end
 			self:Activate(1);
 		end,

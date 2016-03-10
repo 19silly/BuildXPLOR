@@ -264,19 +264,21 @@ function AnimDoor.Server:OnUpdate(dt)
 end
 
 function AnimDoor:DoPlaySound(sndName)
-	self:DoStopSound();
-	if (sndName and sndName ~= "") then
-		local sndFlags=bor(SOUND_DEFAULT_3D, 0);
-		g_Vectors.temp = self:GetDirectionVector(1);
-		self.nSoundId=self:PlaySoundEvent(sndName, g_Vectors.v000, g_Vectors.temp, sndFlags, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
-	end
+--REINST
+	-- self:DoStopSound();
+	-- if (sndName and sndName ~= "") then
+		-- local sndFlags=bor(SOUND_DEFAULT_3D, 0);
+		-- g_Vectors.temp = self:GetDirectionVector(1);
+		-- self.nSoundId=self:PlaySoundEvent(sndName, g_Vectors.v000, g_Vectors.temp, sndFlags, 0, SOUND_SEMANTIC_MECHANIC_ENTITY);
+	-- end
 end;
 
 function AnimDoor:DoStopSound()
-	if(self.nSoundId ~= 0 and Sound.IsPlaying(self.nSoundId)) then
-		self:StopSound(self.nSoundId);
-	end
-	self.nSoundId = 0;
+	--REINST
+	-- if(self.nSoundId ~= 0 and Sound.IsPlaying(self.nSoundId)) then
+		-- self:StopSound(self.nSoundId);
+	-- end
+	-- self.nSoundId = 0;
 end
 
 function AnimDoor:DoPlayAnimation(direction, forceTime, useSound)

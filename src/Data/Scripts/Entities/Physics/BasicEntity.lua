@@ -256,3 +256,8 @@ MakeKillable(BasicEntity);
 AddHeavyObjectProperty(BasicEntity);
 AddInteractLargeObjectProperty(BasicEntity);
 SetupCollisionFiltering(BasicEntity);
+
+-- CIG Gordon McLean: Need to set these here, when they are set above it's before MakeUsable so are pointing to nil functions.
+BasicEntity.FlowEvents.Inputs.Used = { BasicEntity.Event_Used, "bool" }
+BasicEntity.FlowEvents.Inputs.EnableUsable = { BasicEntity.Event_EnableUsable, "bool" }
+BasicEntity.FlowEvents.Inputs.DisableUsable = { BasicEntity.Event_DisableUsable, "bool" }

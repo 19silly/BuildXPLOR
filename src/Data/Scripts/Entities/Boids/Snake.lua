@@ -17,9 +17,11 @@ Snake =
 			MaxAnimSpeed = 2,
 		},
 	},
-	Sounds =
+
+	Audio =
 	{
 	},
+	
 	Animations =
 	{
 		"walk_loop",   -- walking

@@ -63,7 +63,15 @@
 
 						<Stance name="Relaxed"/>
 
-						<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+						<SuppressFailure>
+
+							<LuaGate code="return entity.PropertiesInstance.AI.bGoBackToStartOnIdle">
+
+								<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+
+							</LuaGate>
+
+						</SuppressFailure>
 
 						<ExecuteLua code="entity.actor:HolsterItem(true)"/>
 

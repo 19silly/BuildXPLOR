@@ -1,0 +1,162 @@
+<item name="VNCL_MissileRack_Blade" class="VehicleMissileRack" invisible="0" category="VehicleWeapon" uniqueId="2" priority="30" weaponParams="1" >
+  <params>
+    <param name="giveable" value="0" />
+    <param name="selectable" value="0" />
+    <param name="pickable" value="0" />
+    <param name="mountable" value="1" />
+    <param name="usable" value="0" />
+    <param name="arms" value="0" />
+    <param name="itemType" value="WeaponMissile" />
+    <param name="itemSubType" value="MissileRack" />
+	<param name="itemDescription" value="item_DescVNCL_MissileRack_Blade" />
+    <param name="itemManufactor" value="Vanduul" />
+    <param name="itemSize" value="1" />
+	<param name="requiredPortTags" value="VNCL_Scythe_Base VNCL_Blade" />
+	<param name="itemTags" value="flightReady VNCL_Blade" />
+    <param name="display_name"	value="item_NameVNCL_MissileRack_Blade" />
+  </params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+	<States>
+      <State state="Idle,Default">
+        <Value value="-3" />
+        <!-- If not selected -->
+      </State>
+      <State state="Active">
+        <Value value="-10" />
+        <!-- If Idle it will use 10 energy points -->
+      </State>
+      <State state="Off">
+        <Value value="0" />
+      </State>
+      <State state="Targeting">
+        <Value value="-30" />
+        <!-- if shooting it will use 30 energy points -->
+      </State>
+	  </States>
+    </Pipe>
+    <Pipe class="Heat" >
+	<States>
+      <State state="Idle,Active,Targeting" transition="0.3">
+        <Value value="3"/>
+      </State>
+	  </States>
+    </Pipe>
+    <Pipe class="Avionics">
+	<States>
+      <State state="ManualControl">
+        <Value value="0"/>
+      </State>
+      <State state="AutoControl">
+        <Value value="20"/>
+      </State>
+	  </States>
+    </Pipe>
+  </Pipes>
+
+	<geometry>
+		<!-- As this vehicle weapon is remote to the player firing, no first person geometry -->
+		<thirdperson name="objects/default/primitive_sphere.cgf"/>
+		<tags tag="left">
+			<thirdperson name="objects/default/primitive_sphere.cgf" material=""/>
+		</tags> 
+
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->
+		<tags tag="Hologram">
+			<thirdperson name="objects/default/primitive_sphere.cgf" material=""/>			
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="objects/default/primitive_sphere.cgf" material=""/>
+		</tags>	
+
+
+	</geometry>
+	
+	<portParams>
+	<ports>
+		<ItemPort name="missile_01_attach" minsize="1" maxsize="1" display_name="Ordinance Slot #1">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_02_attach" minsize="1" maxsize="1" display_name="Ordinance Slot #2">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="missile_03_attach" minsize="1" maxsize="1" display_name="Ordinance Slot #3">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+
+  <missilerackparams>
+    <!-- <param name="detach_FX" value="spaceship_fx.Hornet.missile_detach" /> -->
+	<param name="delay_per_shot" value="0.2" />
+    <detach_vel>
+      <param value="0,0.5,0" />
+      <tags tag="left">
+        <param value="-1.5,0.5,0" />
+        <tags tag="top">
+          <param value="-1.5,0.5,0.5" />
+        </tags>
+        <tags tag="bottom">
+          <param value="-1.5,0.5,-0.5" />
+        </tags>
+      </tags>
+      <tags tag="right">
+        <param value="1.5,0.5,0" />
+        <tags tag="top">
+          <param value="1.5,0.5,0.5" />
+        </tags>
+        <tags tag="bottom">
+          <param value="1.5,0.5,-0.5" />
+        </tags>
+      </tags>
+    </detach_vel>
+  </missilerackparams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+</item>

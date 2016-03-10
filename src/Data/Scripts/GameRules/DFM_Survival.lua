@@ -1,6 +1,6 @@
 Script.ReloadScript("scripts/gamerules/GameRulesUtils.lua");
 
-DFM_Survival= {};
+DFM_Survival = {};
 
 GameRulesSetStandardFuncs(DFM_Survival);
 

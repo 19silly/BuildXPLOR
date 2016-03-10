@@ -20,9 +20,9 @@
 		<param name="requiredPortTags"	value="" />
 		<param name="display_name"		value="NOVP Rattler" />
 		<param name="mass" 				value="40" />
-		<param name="tags" value="1016"/>
-		<param name="price" value="18000"/>
-		<param name="itemImage" value="UI/mobiGlas/assets/PNG/DumpersDepot_items/NOVP_Rattler_S2_Cluster_TL_IR.tif"/>
+		<param name="tags" 				value="1016"/>
+		<param name="price" 			value="18000"/>
+		<param name="itemImage" 		value="UI/mobiGlas/assets/PNG/DumpersDepot_items/NOVP_Rattler_S2_Cluster_TL_IR.tif"/>
 	</params>
 	
 	<geometry>
@@ -32,18 +32,23 @@
 			<attachment target="thirdperson" name="exhaust" bone="exhaust"/>
 		</boneAttachments>
 	</geometry>
-	
+
+	<AudioPreloads>
+		<Preload name = "SC_WPMR_NOVP"/>
+	</AudioPreloads>
+
 	<missile>
 		<param name="guidanceType" 					value="SignatureLock" />	
+		<param name="trackingSignalMin" 		value="1.5" />
 		<param name="trackingSignalType" 			value="Infrared" />
 		<param name="trackingSignalAmplifier" 		value="30" />
 		<param name="trackingSignalAmplifierSeeking"	value="15" />
 		<param name="trackerNoiseAmplifier"			value="2.3" />
-		<param name="trackingDistanceMax"			value="3000" />
-		<param name="trackingAngle"					value="60" />
-		<param name="lockTime" 						value="2.0" />
+		<param name="trackingDistanceMax"			value="4500" />
+		<param name="trackingAngle"					value="20" />
+		<param name="lockTime" 						value="5.0" />
 		
-		<param name="lifetime" 						value="10" />
+		<param name="lifetime" 						value="15" />
 		<param name="ignitiontime" 					value="0.5" />
 	
 		<param name="maxSpeed" 						value="325" />
@@ -56,9 +61,10 @@
 		
 		<param name="trailHelper" 					value="exhaust" />
 		<param name="trailEffect" 					value="weapon_fx.missile.trail_small" />
-		<param name="launchSound" 					value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:boost" />
-		<param name="ejectSound" 					value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:launch" />
-		<param name="trailSound" 					value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:missile" />	
+		<param name="launchSound" 					value="Play_WPMR_NOVP_Rattler_S2_Cluster_Boost" />
+		<param name="ejectSound" 					value="Play_WPMR_NOVP_Rattler_S2_Cluster_Launch" />
+		<param name="trailSound" 					value="Play_WPMR_NOVP_Rattler_S2_Cluster_Missile" />	
+		<param name="trailStopSound" 				value="Stop_WPMR_NOVP_Rattler_S2_Cluster_Missile" />	
 		
 		<Shake>
 			<param name="offsetPosition" 			value="0.05,0.05,0.05" />
@@ -74,7 +80,7 @@
 			<param name="triggerTargetAngle" 		value="10" />
 			<param name="ejectSpeed" 				value="200" />
 			<param name="shotDelay" 				value="0.005" />
-			<param name="intialLaunchSound" 		value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:predetonate_explode" />
+			<param name="intialLaunchSound"			value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:predetonate_explode" />	
 		<Rockets>
 				<param helper="rocket_attach_0" rocketClass="NOVP_Rocket_Venom_S1_Strike_TL_IR" />	
 				<param helper="rocket_attach_1" rocketClass="NOVP_Rocket_Venom_S1_Strike_TL_IR" />	
@@ -94,14 +100,15 @@
 		<param name="pressure" 						value="4000" />
 		<param name="max_radius" 					value="45" />
 		<param name="aitype" 						value="rpg" />  <!-- this is a hack to determine whether missile is hostile or friendly -->
-		<param name="damage" 						value="120" />
+		<param name="damage" 						value="275" />
+		<param name="damage_distortion" 			value="550" />
 		
 		<!-- Art and Audio -->
 		<param name="decal" 						value="textures/decal/explo_decal.dds" />
 		<param name="effect"						value="weapon_fx.missile.explosion_small" />
 		<param name="failed_effect"					value="weapon_fx.missile.explosion_small" />
-		<param name="sound" 						value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:explode_hit" />
-		<param name="failed_sound" 					value="sounds/weapons:NOVP_Rattler_S2_Cluster_TL_IR:explode_miss" />
+		<param name="sound" 						value="Play_WPMR_NOVP_Rattler_S2_Cluster_Explode_Hit" />
+		<param name="failed_sound" 					value="Play_WPMR_NOVP_Rattler_S2_Cluster_Explode_Miss" />
 	</explosion>
 	
 </item>

@@ -1,0 +1,47 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="TrashCan_Recycling" type="entityid" Value=""/>
+  <Variable name="otherThing" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="187" pos="-240,-280,0" class="InitNode"/>
+   <Task name="Find Object" id="188" pos="-460,-30,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject:Usables:TrashCan:Recyclable"/>
+    <Input name="Use Channel" value="trashcan" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="entityid" value="TrashCan_Recycling"/>
+   </Task>
+   <Task name="Pathfind" id="189" pos="-460,130,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="TrashCan_Recycling"/>
+    <Input name="Use Channel" value="trashcan" type="string"/>
+    <Input name="Speed" type="string" value="Walk"/>
+   </Task>
+   <Task name="Use" id="190" pos="-490,270,0" class="TreeNode">
+    <Input name="User" type="entityid"/>
+    <Input name="Usable" type="entityid" value="TrashCan_Recycling"/>
+    <Input name="Use Channel" type="string" value="trashcan"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+   <Task name="Compute" id="191" pos="-600,430,0" class="TreeNode">
+    <Input name="Mathematical Expression" type="string" value="Activity.NumRecycling == 0"/>
+    <Output name="Result" type="float" value="NumRecycling"/>
+   </Task>
+   <Task name="Compare" id="192" pos="-390,-150,0" class="TreeNode">
+    <Input name="Mathematical Expression" type="string" value="Activity.NumRecycling &gt;= 3"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="192" nodeOut="187" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="189" nodeOut="188" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="188" nodeOut="192" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="191" nodeOut="189" portIn="in" portOut="outSuccess" enabled="1"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

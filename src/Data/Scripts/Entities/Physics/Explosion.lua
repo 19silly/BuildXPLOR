@@ -81,7 +81,7 @@ end
 ----------------------------------------------------------------------------------------------------
 function Explosion:Explode(shooterId)
 	local expl = self.Properties.Explosion;
-	g_gameRules:CreateExplosion(self.id, self.id, expl.Damage, self:GetWorldPos(), expl.Direction, expl.Radius, nil, expl.Pressure, expl.HoleSize, expl.ParticleEffect, expl.EffectScale, expl.MinRadius, expl.MinPhysRadius, expl.PhysRadius, 0, 0, expl.RadialBlurDistance, expl.Brightness, expl.AmmoName, expl.RadialBlurAmount, expl.BrightnessDistance); -- CIG - Added params for explosion effects. 0,0 are explosionType, soundRadius, we need to pass a specific number of params in order to get correct values
+	g_gameRules:CreateExplosion(self.id, self.id, expl.Damage, self:GetWorldPos(), expl.Direction, expl.Radius, nil, expl.Pressure, expl.HoleSize, expl.ParticleEffect, expl.EffectScale, expl.MinRadius, expl.MinPhysRadius, expl.PhysRadius, 4, 0, 0, expl.RadialBlurDistance, expl.Brightness, expl.AmmoName, expl.RadialBlurAmount, expl.BrightnessDistance); -- CIG - Added params for explosion effects. 0,0 are explosionType, soundRadius, we need to pass a specific number of params in order to get correct values
 	BroadcastEvent(self, "Explode");
 end
 

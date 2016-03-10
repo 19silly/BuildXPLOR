@@ -52,14 +52,14 @@ Human_x =
 		--CIG Rob J - copying in these params that were added to the player - as need to make AIs' look IK behave more smoothly in conversations 
 		lookIKMaxDegreesPerSecX = 3600,
 		lookIKMaxDegreesPerSecY = 3600,
-		lookIKSmoothingTime = 0.75,
+		lookIKSmoothingTime = 0.5,
 		lookIKSmoothingTimeInVehicle = 0,
-		lookIKSmoothingTimeMoving = 0,
+		lookIKSmoothingTimeMoving = 0.5,
 		lookIKSmoothingTimeZeroG = 0,
 
-		lookIKThresholdX = 0,
+		lookIKThresholdX = 340,
 		lookIKThresholdY = 0,
-		lookIKInThresholdMaxDegreesPerSecX = 5,
+		lookIKInThresholdMaxDegreesPerSecX = 360,
 		lookIKInThresholdMaxDegreesPerSecY = 5,
 
 		stepThresholdTime = 0.5, -- Duration (seconds) the current position deviation needs to be above stepThresholdDistance before the character steps
@@ -224,6 +224,20 @@ Human_x =
 			bCanBeGrabbed = 1,
 			esGrabType = "Human"
 		},
+
+		LipSync =
+		{
+			esLipSyncType = "LipSync_TransitionQueue",	-- can be either "LipSync_TransitionQueue" or "LipSync_FacialInstance" (the legacy one) at the moment
+			bEnabled = true,
+
+			-- these settings will be used by "LipSync_TransitionQueue"
+			TransitionQueueSettings =
+			{
+				nCharacterSlot = 0,
+				nAnimLayer = 11,
+				sDefaultAnimName = "facial_chewing_01",
+			}
+		}
 	},
 
 	AIMovementAbility =
@@ -704,6 +718,8 @@ function Human_x:OnResetCustom()
 	self.lastImmediateThreatPos = {x=0, y=0, z=0}
 	self.deadGroupMemberCount = 0
 	self.suspiciousSoundInvestigationCount = 0
+
+	self.actor:AcquireOrReleaseLipSyncExtension();
 end
 
 function Human_x:OnDestroy()
@@ -866,65 +882,14 @@ function Human_x:CheckForMountedWeapons()
 end
 
 function Human_x:FindValidMountedWeapon()
-	local weaponName = AI.FindObjectOfType(self:GetPos(), 10, AIOBJECT_MOUNTEDWEAPON)--, AIFAF_VISIBLE_TARGET)
-	if (weaponName) then
-		local weaponEntity = System.GetEntityByName(weaponName)
-		if (weaponEntity and not weaponEntity.inUse and Game.IsMountedWeaponUsableWithTarget(self.id, weaponEntity.id)) then
-			return weaponEntity
-		end
-	end
+
 end
 
 function Human_x:OnUseMountedWeaponRequest(weaponId)
-	self:PrepareForMountedWeaponUse(weaponId)
 end
 
 function Human_x:PrepareForMountedWeaponUse(weaponId, pipeID)
-	local weapon;
-	if (weaponId) then
-		weapon = System.GetEntity(weaponId);
-	else
-		-- find nearby mounted available mounted weapon
-		-- check if nobody else is trying to use it
-	end
-
-	if (not weapon) then
-		return false;
-	end
-
-	if (weapon.item:IsUsed() and weapon.item:GetOwnerId() ~= self.id) then
-		return false;
-	end
-
-	local pos = g_Vectors.temp_v1;
-	local dir = weapon.item:GetMountedDir(g_Vectors.temp_v2);
-	local pivot = weapon:GetWorldPos(g_Vectors.temp_v3);
-	FastDifferenceVectors(pos, pivot, dir);
-
-	local toFloor = g_Vectors.temp_v4;
-	toFloor.x = 0;
-	toFloor.y = 0;
-	toFloor.z = -2;
-
-	if (Physics.RayWorldIntersection(pos, toFloor, 2, ent_terrain + ent_static + ent_rigid + ent_sleeping_rigid, self.id, nil, g_HitTable) > 0) then
-		pos.z = g_HitTable[1].pos.z;
-	end
-
-	AI.SetRefPointPosition(self.id, pos);
-	AI.SetRefPointDirection(self.id, dir);
-
-	self.AI.currentMountedWeaponId = weaponId;
-	self.AI.currentMountedWeaponInitialDir = dir;
-	self.AI.currentMountedWeaponPivot = pivot;
-	weapon.inUse = true
-
-	if (not self.AI.theVehicle and (not self.AI.usingMountedWeapon)) then
-		AI.SetBehaviorVariable(self.id, "MovingToMountedWeapon", true);
-	else
-		return false;
-	end
-
-	return true;
+	return false;
 end
 
 function Human_x:ForceReleaseOfMountedGun()
@@ -977,12 +942,6 @@ function Human_x:UseMountedWeapon()
 				AI.SetRefPointDirection(self.id, dir);
 
 				self.AI.usingMountedWeapon = true
-
-				if (weapon.class == "HMG") then
-					AI.PlayCommunication(self.id, "AIUsesMountedGun", "Group", 3.0)
-				elseif (weapon.class == "AGL") then
-					AI.PlayCommunication(self.id, "AIUsesAGL", "Group", 3.0)
-				end
 			end
 		else
 			--TODO(márcio): Fail Behavior
@@ -1043,7 +1002,7 @@ function Human_x:CanShootMountedWeapon()
 	end
 
 	local weapon = System.GetEntity(self.AI.currentMountedWeaponId);
-	if ((not weapon) or (not Game.IsMountedWeaponUsableWithTarget(self.id, weapon.id, 0))) then
+	if (not weapon) then
 		return false;
 	end
 
@@ -1100,6 +1059,9 @@ function Human_x:IsUsable(user)
 			return 2; -- CIG jlind: Lootable
 		end
 	else
+		if (self.actor:CanBeDragged(user.id)) then
+			return 3;
+		end
 		return 1;
 	end
 	return 0;
@@ -1108,13 +1070,17 @@ end
 function Human_x:GetUsableMessage(userId, idx)
 	if (idx == 2) then -- CIG jlind: Lootable
 		return "@usable_loot";
+	elseif (idx == 3) then
+	  return "@usable_drag";
 	end
 	return "";
 end
 
 function Human_x:OnUsed(user, idx)
-	if(idx == 2) then -- CIG jlind: Lootable
+	if (idx == 2) then -- CIG jlind: Lootable
 		return user.actor:StartLooting(self.id);
+	elseif (idx == 3) then
+		return self.actor:StartDragging(user.id);
 	end
 	return 0;
 end

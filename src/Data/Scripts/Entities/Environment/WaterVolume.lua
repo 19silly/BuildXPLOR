@@ -6,9 +6,9 @@ WaterVolume =
 	{
 		NoSplash = 0,
 		StreamSpeed = 0,
-		FogDensity = 0.1,
-		color_FogColor = {x=0.2,y=0.2,z=0.8},
-		FogColorMultiplier = 1,
+		FogDensity = 0.5,
+		color_FogColor = {x=0.005,y=0.01,z=0.02},
+		FogColorMultiplier = 0.5,
 		bFogColorAffectedBySun = 1,
 		FogShadowing = 0.5,
 		bCapFogAtVolumeDepth = 0,
@@ -22,17 +22,18 @@ WaterVolume =
 		ViewDistanceRatio = 100, 
 		MinSpec = 0,
 		MaterialLayerMask = 0,
-		bAwakeAreaWhenMoving = 0,
+		bAwakeAreaWhenMoving = 0, --[0,1,1,"Entities in area are physically awake when game volume is moving"]
 		bIsRiver = 0,
-		MultiplayerOptions = {
+		MultiplayerOptions = 
+		{
 			bNetworked		= 0,
 		},
 	},
 
 	Editor = 
 	{
-		Model="Editor/Objects/T.cgf",
-		Icon="Water.bmp",
+		Model = "Editor/Objects/T.cgf",
+		Icon = "Water.bmp",
 		ShowBounds = 1,
 		IsScalable = false;
 		IsRotatable = true;

@@ -1,0 +1,38 @@
+<item name="AEGS_Gladius_Default_S1" class="VehicleItemCooler" invisible="0" category="VehicleItem" interface="interface_AEGS_Gladius_Default_S1">
+	<params>
+		<param name="itemType" value="Cooler" />
+		<param name="itemSubType" value="" />
+		<param name="itemManufactor" value="AEGS" />
+		<param name="itemDescription" value="item_DescAEGS_Gladius_Default_S1" />
+		<param name="itemSize" value="1" />
+		<param name="itemTags" value="" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="item_NameAEGS_Gladius_Default_S1" />
+		<param name="hitpoints" value="200" />
+		<param name="mass" value="10" />
+	</params>
+	
+    <Pipes>
+		<Pipe class="Power" prioType="critical">
+			<StateLevels>
+				<Warning  value = "0.99" />
+				<Critical value = "0.89" />
+				<Fail     value = "0.79" />
+			</StateLevels>
+		
+			<States>
+				<State state="Active,Default"><Value value="-30" /></State>
+				<State state="Off"><Value value="0" /></State>
+			</States>
+		</Pipe>
+		<Pipe class="Heat" prioType="critical">
+		<Signature name="Infrared" multiplier="1" />
+			<States>
+				<State state="Active">
+				<Pipe name="Power" value="-20" />
+				</State> <!-- fabs( power recieved ) * -10 -->
+			</States>
+		</Pipe>
+	</Pipes>
+	
+</item>

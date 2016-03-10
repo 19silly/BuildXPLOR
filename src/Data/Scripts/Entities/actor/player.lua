@@ -38,6 +38,7 @@ Player =
 		},
 
 		fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
+		shadowFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
 		clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
 
 		-- Loadout descriptor
@@ -201,7 +202,7 @@ Player =
 				stanceId = STANCE_ZEROG,
 				maxSpeed = 5.2,
 				heightCollider = 1.1,
-				pivot = {x=0.0,y=0.0,z=0.9},
+				pivot = {x=0.0,y=0.0,z=0.0},
 				size = {x=0.2,y=0.2,z=0.4},
 				viewOffset = {x=0,y=0.15,z=1.69},
 				weaponOffset = {x=0.2,y=0.0,z=1.35},
@@ -328,6 +329,7 @@ function Player:SetIsMultiplayer()
 	self.Properties.Damage.health = 100;
 	-- Moon Collider BEGIN arutkowski - Handle setting of new rig (using and/or idiom to approximate ternary operator in Lua)
 	self.Properties.fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
+	self.Properties.shadowFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
 	self.Properties.clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
 	-- Moon Collider END
 

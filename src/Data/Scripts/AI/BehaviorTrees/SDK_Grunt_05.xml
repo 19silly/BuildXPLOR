@@ -87,7 +87,15 @@
 
 								<Stance name="Relaxed"/>
 
-								<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+								<SuppressFailure>
+
+									<LuaGate code="return entity.PropertiesInstance.AI.bGoBackToStartOnIdle">
+
+										<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+
+									</LuaGate>
+
+								</SuppressFailure>
 
 								<ExecuteLua code="entity.actor:HolsterItem(true)"/>
 
@@ -109,8 +117,23 @@
 
 									<Case>
 
-										<Animate name="ZZ_AI_idleBreak" loop="1"/>
-										
+										<Sequence>
+
+											<!-- ensure that we also move back to our initial position after an interruptible sequence was played back -->
+											<SuppressFailure>
+
+												<LuaGate code="return entity.PropertiesInstance.AI.bGoBackToStartOnIdle">
+
+													<Move to="InitialPosition" speed="Walk" stance="Relaxed"/>
+
+												</LuaGate>
+
+											</SuppressFailure>
+
+											<Animate name="ZZ_AI_idleBreak" loop="1"/>
+
+										</Sequence>
+
 									</Case>
 
 								</Priority>

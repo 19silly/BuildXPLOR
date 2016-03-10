@@ -6,10 +6,6 @@
 	
 	<Tests setName="utils">
 		<FeatureTest name="UtilPlayerSpawn">
-			<!-- Let's make the player regenerate health really quickly... -->
-			<DoConsoleCommand command="pl_health.normal_threshold_time_to_regenerateMP 0.25" />
-			<DoConsoleCommand command="pl_health.normal_regeneration_rateMP 1000" />
-			
 			<SetResponseToHittingCCCPoint response="restartSubroutine" checkpointName="PlayerState_SvDoNotReviveTooSoonAfterDeath" />
 			<SetResponseToHittingCCCPoint response="failTest" checkpointName="HoldObjective_LocalPlayerEnterArea" customMessage="Player has spawned right next to a crash site! That's going to mess up the tests!" />
 			<TrySpawnPlayer localPlayer="true" />

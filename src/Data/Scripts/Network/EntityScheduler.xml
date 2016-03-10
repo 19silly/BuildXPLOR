@@ -5,6 +5,7 @@
 	
 	<!-- game rules -->
 	<Group name="GameRules" policy="rule"/>
+	<Class name="MissionObjective" policy="obj"/>
 	<Class name="MissionObjectiveManager" policy="rule"/>
 
 	<!-- actors -->
@@ -36,6 +37,7 @@
 	<Group name="VehicleItemFuelTank" policy="vitm" own="own"/>
 	<Group name="VehicleItemIdentifier" policy="vitm" own="own"/>
 	<Group name="VehicleItemLandingSystem" policy="vitm" own="own"/>
+	<Group name="VehicleItemMultiLight" policy="vitm" own="own" />
 	<Group name="VehicleItemRadar" policy="vitm" own="own"/>
 	<Group name="VehicleItemSeat" policy="vitm" own="own"/>
 	<Group name="VehicleItemTargetSelector" policy="vitm" own="own"/>
@@ -71,6 +73,8 @@
 	<Group name="LightningBolt" policy="proj"/>
 	<Group name="Countermeasure" policy="proj"/>
 	
+	<!-- seats -->
+	<Class name="SeatSerializer" policy="obj"/>
 
 	<!-- ===================================== -->
 	<!-- FPS -->
@@ -90,16 +94,19 @@
 
 	<!-- FPS Items -->
 	<Group name="PlayerItemArmor" policy="obj"/>
+	<Group name="PlayerItemEyeWare" policy="obj"/>
 	<Group name="PlayerItemHelmet" policy="obj"/>
 	<Group name="PlayerItemJetPack" policy="obj"/>
 	<Group name="Flashlight" policy="obj"/>
+  <Group name="MedPack" policy="obj" />	
 
-  <!-- FPS Gadgets -->
-  <Group name="Hologram" policy="obj"/>
-  <Group name="DeployablePersonalShield" policy="obj" />
-  <Group name="AreaDenialSystem" policy="obj" />
-  <Group name="PersonalShield" policy="obj" />
-  <Group name="PersonalMedicalAid" policy="obj" />
+	<!-- FPS Gadgets -->
+	<Group name="Hologram" policy="obj"/>
+	<Group name="DeployablePersonalShield" policy="obj" />
+	<Group name="AreaDenialSystem" policy="obj" />
+	<Group name="PersonalShield" policy="obj" />
+	<Group name="PersonalMedicalAid" policy="obj" />
+	<Group name="PersonalArcWelder" policy="obj" />
 		
 	<!-- FPS projectiles -->
 	<Group name="Bullet" policy="proj"/>
@@ -114,42 +121,48 @@
 	<!-- Stations -->
 	<Group name="EnergyRechargeStation" policy="obj"/>
 	<Group name="GravityGeneratorControl" policy="obj"/>
-  <Group name="AmmoCrate" policy="obj"/>
+	<Group name="AmmoCrate" policy="obj"/>
+	
+	<!-- SATA Ball -->
+	<Group name="SATABall" policy="proj"/>
 
 	<!-- Special classes -->
 	<Class name="EMPHitListener" policy="obj"/>
+	<Class name="HydraulicLeverSwitch" policy="obj"/>
 	<Class name="MT_PersonalMobiGlas" policy="obj"/>
-	
+	<Class name="PersonalArcWelder" policy="gun"/>
 
 	<!-- ===================================== -->
 	<!-- Hangar -->
 	<!-- ===================================== -->
 
 	<!-- Hangars -->
-	<Class name="Discount" policy="obj"/>
-	<Class name="Business" policy="obj"/>
-	<Class name="Deluxe" policy="obj"/>
-	<Class name="Asteroid" policy="obj"/>
+	<Class name="SelfLand" policy="obj"/>
+	<Class name="Aeroview" policy="obj"/>
+	<Class name="RevelYork" policy="obj"/>
+	<Class name="VFGIndustrial" policy="obj"/>
 	
 	<!-- Hangar Objects -->
 	<Class name="HangarEntity" policy="obj"/>
 	<Class name="HangarRoomSystem" policy="obj"/>
 	<Class name="DynamicHangarVehicleSpawn" policy="obj"/>
 	<Class name="DynamicHangarItemSpawn" policy="obj"/>
+	<Class name="HangarMultiSpawner" policy="obj"/>
 	
 	<Class name="SpawnSphere" policy="obj"/>
 	<Class name="TagRequestSpawner" policy="obj"/>
 	<Class name="DoorAnchor" policy="obj"/>
 	<Class name="TagRequestSpawnPoint" policy="obj"/>
-	
-	
+	<Class name="TransportElevatorConsole" policy="obj"/>
+		
+		
 	<Group name="Item" policy="obj"/>
 	<Group name="FxItem" policy="obj"/>
 	<Group name="InstantUseItem" policy="obj"/>
 	<Group name="ClothingCabinet" policy="obj"/>
 	<Group name="VehicleEquipmentDevice" policy="obj"/>
 	<Group name="HelmetStand" policy="obj"/>
-  <Group name="Jukebox" policy="obj"/>
+	<Group name="Jukebox" policy="obj"/>
 	<Group name="CalendarItem" policy="obj"/>
 	<Group name="CharacterCustomizationDevice" policy="obj"/>
 	<Group name="ArenaCommanderShipUI" policy="obj"/>
@@ -173,6 +186,8 @@
 	<Class name="DestroyableFrame" policy="phys" />
 	<Class name="DestroyableChunk" policy="phys" />
 	<Class name="DestroyableObject" policy="obj" />
+	<Class name="CuttableShape" policy="obj" />
+  <Class name="NodeSerializationManager" policy="phys" />
 
 	<!-- misc -->
 	<Class name="SpawnPoint" policy="obj"/>
@@ -184,15 +199,10 @@
 	<Class name="Hazard" policy="obj"/>
 	<Class name="AreaShape" policy="obj"/>
 	<Class name="AnimObject" policy="obj"/>
-	<Class name="TeamRandomSoundVolume" policy="obj"/>
-	<Class name="MusicMoodSelector" policy="obj"/>
 	<Class name="AreaBox" policy="obj"/>
 	<Class name="LightBox" policy="obj"/>
-	<Class name="LightShape" policy="obj"/>
 	<Class name="AreaSphere" policy="obj"/>
 	<Class name="ProximityTrigger" policy="obj"/>
-	<Class name="MusicThemeSelector" policy="obj"/>
-	<Class name="MusicEndTheme" policy="obj"/>
 	<Class name="WindArea" policy="obj"/>
 	<Class name="TagPoint" policy="obj"/>
 	<Class name="Lightning" policy="obj"/>
@@ -200,16 +210,15 @@
 	<Class name="SpectatorPoint" policy="obj"/>
 	<Class name="FogVolume" policy="obj"/>
 	<Class name="AreaTrigger" policy="obj"/>
-	<Class name="MusicPlayPattern" policy="obj"/>
-	<Class name="ForbiddenArea" policy="capt"/>
 	<Class name="AIAnchor" policy="obj"/>
 	<Class name="AISpawnPoint" policy="obj"/>
 	<Class name="AISpawnBundle" policy="obj"/>
+	<Class name="AITerritory" policy="obj"/>
+	<Class name="AIWave" policy="obj"/>
 	<Class name="HoloField" policy="obj"/>
 	<Class name="HazardBeam" policy="obj"/>
-  <Class name="CameraSource" policy="obj"/>
+	<Class name="CameraSource" policy="obj"/>
 	<Class name="Fog" policy="obj"/>
-	<Class name="MusicStinger" policy="obj"/>
 	<Class name="ParticleEffect" policy="obj"/>
 	<Class name="SmartObject" policy="obj"/>
 	<Class name="RaceCheckpoint" policy="obj"/>
@@ -222,7 +231,6 @@
 	<Class name="ExtractionPoint" policy="capt"/>
 	<Class name="ExtractionWeaponSpawn" policy="obj"/>
 	<Class name="AssaultIntel" policy="obj"/>
-	<Class name="AmmoCrateMP" policy="obj"/>
 	<Class name="VTOLSpawnPoint" policy="obj"/>
 	<Class name="DestroyableLight" policy="obj"/>
 	<Class name="RigidBody" policy="obj"/>
@@ -234,6 +242,7 @@
 	<Class name="Rain" policy="obj"/>
 	<Class name="HealthPack" policy="obj"/>
 	<Class name="Ladder" policy="obj"/>
+	<Class name="LandingArea" policy="obj"/>
 	<Class name="LedgeObject" policy="obj"/>	
 	<Class name="UIEntity" policy="obj"/>	
 	<Class name="LightningArc" policy="obj"/>
@@ -250,6 +259,9 @@
 	<Class name="Bottle_Trise_Cordial" policy="obj"/>
 	<Class name="Bottle_Tevarin_Ghost" policy="obj"/>
 	<Class name="FPS_TeamEliminationTrigger" policy="obj"/>		
+	<Class name="ConversationBubble" policy="obj"/>
+	<Class name="SCLadder02" policy="obj"/>
+	<Class name="SecurityNetworkEntity" policy="obj"/>
     		
 	<!-- basic physicalized objects -->
 	<Class name="Default" policy="phys"/>

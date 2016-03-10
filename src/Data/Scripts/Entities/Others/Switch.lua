@@ -37,8 +37,8 @@ Switch = {
 		},
 		Sound =
 		{
-			soundTurnOnSound = "Sounds/weapons:scar:switch_firemode_fp",
-			soundTurnOffSound = "Sounds/weapons:scar:switch_firemode_fp",
+			soundTurnOnSound = "",
+			soundTurnOffSound = "",
 		},
 		SwitchPos =
 		{
@@ -339,9 +339,11 @@ end;
 function Switch:PlaySound(sound)
 	if(sound and sound~="")then
 		local snd=self.Properties.Sound["sound"..sound];
-		local sndFlags=bor(SOUND_DEFAULT_3D, 0);
+		-- REINSTANTIATE!!!
+		--local sndFlags=bor(SOUND_DEFAULT_3D, 0);
 		if(snd and snd~="")then
-				self.soundid=self:PlaySoundEvent(snd,g_Vectors.v000,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+			-- REINSTANTIATE!!!
+			--self.soundid=self:PlaySoundEvent(snd,g_Vectors.v000,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
 		else
 			--System.Log("Failed to play "..sound.." sound!");
 		end;

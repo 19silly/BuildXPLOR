@@ -496,22 +496,23 @@ function AdvancedDoor:OnLoad(tbl)
 end;
 
 function AdvancedDoor:Play(open)
-	if(Sound.IsPlaying(self.sndid))then
-	else
-		self.sndid=nil;
-		local snd;
-		local sndFlags=bor(SOUND_DEFAULT_3D, 0);
-		if(open==1)then
-			if(self.locked==0)then
-				snd=self.Properties.Sound.soundOpenSound;
-			else
-				snd=self.Properties.Sound.soundLockedSound;
-			end;
-		else
-			snd=self.Properties.Sound.soundCloseSound;
-		end;
-		self.sndid=self:PlaySoundEvent(snd,g_Vectors.v000,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
-	end;
+	--REINST
+	-- if(Sound.IsPlaying(self.sndid))then
+	-- else
+		-- self.sndid=nil;
+		-- local snd;
+		-- local sndFlags=bor(SOUND_DEFAULT_3D, 0);
+		-- if(open==1)then
+			-- if(self.locked==0)then
+				-- snd=self.Properties.Sound.soundOpenSound;
+			-- else
+				-- snd=self.Properties.Sound.soundLockedSound;
+			-- end;
+		-- else
+			-- snd=self.Properties.Sound.soundCloseSound;
+		-- end;
+		-- self.sndid=self:PlaySoundEvent(snd,g_Vectors.v000,g_Vectors.v010,sndFlags,0,SOUND_SEMANTIC_MECHANIC_ENTITY);
+	-- end;
 end;
 
 function AdvancedDoor:CheckBreachDirection(user)

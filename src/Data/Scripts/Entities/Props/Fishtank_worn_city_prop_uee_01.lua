@@ -10,7 +10,7 @@ Fishtank_worn_city_prop_uee_01 = {
   	},
   
   Sources = {
-  		fishtankModel = "objects/brush/planet/uee/fishtank/fishtank_worn_city_prop_uee_01.cgf",
+  		fishtankModel = "objects/buildingsets/hangar/universal/fishtank/fishtank_worn_city_prop_uee_01.cgf",
 	},
   
 }

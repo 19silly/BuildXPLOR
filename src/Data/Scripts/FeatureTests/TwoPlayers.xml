@@ -5,12 +5,10 @@
 	
 	<Tests setName="utils">
 		<FeatureTest name="UtilBothSpawnReadyForTeleport" speed="5">
-			<DoConsoleCommand command="pl_health.normal_threshold_time_to_regenerateMP 0.25" />
 			<SetResponseToHittingCCCPoint response="restartSubroutine" checkpointName="PlayerState_SvDoNotReviveTooSoonAfterDeath" />
 			<SetResponseToHittingCCCPoint response="restartSubroutine" checkpointName="PlayerState_SvPerformRevive" />
 			<TrySpawnPlayer who="localPlayer" />
 			<WaitUntilPlayerIsAlive who="localPlayer|firstRemotePlayer" />
-			<DoConsoleCommand command="pl_health.normal_threshold_time_to_regenerateMP 6" />
 			<DoConsoleCommand command="pl_spawnCorpseOnDeath 0" />
 			<DoConsoleCommand command="g_playersWithDisabledDedicatedInputCrouch 0" />
 			<DoConsoleCommand command="g_DisableScoring 1" />
@@ -182,7 +180,6 @@
 		</FeatureTest>
 		
 		<FeatureTest name="UtilWaitForRemotePlayerHealthRecharge">
-			<DoConsoleCommand command="pl_health.normal_threshold_time_to_regenerateMP 0.25" />
 			<SetResponseToHittingCCCPoint response="expectedNext" checkpointName="PlayerState_OtherPlayerHealthRegenerate" />
 			<WaitUntilHitAllExpectedCCCPoints timeOut="20" />
 			<RunFeatureTest testName="UtilWaitForRemotePlayerFullHealth" />
@@ -232,7 +229,6 @@
 			<DoConsoleCommand command="g_scoreLimit 1000" />
 			<DoConsoleCommand command="g_timeLimit 60" />
 			<DoConsoleCommand command="sv_randomLoadoutMethod RandGenerated onSpawn" />
-			<DoConsoleCommand command="pl_health.normal_regeneration_rateMP 1000" />
 			<DoConsoleCommand command="pl_velocityInterpAlwaysSnap 1" />
 		</FeatureTest>
 		

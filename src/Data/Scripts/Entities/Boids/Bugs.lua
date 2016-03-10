@@ -20,7 +20,7 @@ Bugs =
 		},
 		Boid =
 		{
-			nCount = 5,
+			nCount = 5, --[0,1000,1,"Specifies how many individual objects will be spawned."]
 			object_Model1 = "objects/characters/animals/insects/butterfly/butterfly_blue.chr",
 			object_Model2 = "objects/characters/animals/insects/butterfly/butterfly_brown.chr",
 			object_Model3 = "objects/characters/animals/insects/butterfly/butterfly_fly.chr",
@@ -28,8 +28,6 @@ Bugs =
 			object_Model5 = "objects/characters/animals/insects/butterfly/butterfly_yellow.chr",
 			--object_Character = "",
 			Animation = "",
-			--Size = 1,
-			--SizeRandom = 0,
 			nBehaviour = 0, -- 0 = bugs, 1 = dragonfly, 2 = frog
 			bInvulnerable = false,
 		},
@@ -65,7 +63,6 @@ Bugs =
 		RandomMovement = 1,
 		bFollowPlayer = 0,
 		Radius = 10,
-		--boid_mass = 10,
 		bActivateOnStart = 1,
 		bNoLanding = 0,
 		AnimationSpeed = 1,
@@ -75,12 +72,12 @@ Bugs =
 
 	Animations =
 	{
-		"walk_loop",   -- walking
-		"idle01",      -- idle1
-		"idle01",      -- idle2
-		"idle01",      -- idle3
-		"idle01",      -- pickup
-		"idle01",      -- throw
+		"walk_loop",	-- walking
+		"idle01",		-- idle1
+		"idle01",		-- idle2
+		"idle01",		-- idle3
+		"idle01",		-- pickup
+		"idle01",		-- throw
 	},
 
 	Editor =
@@ -111,7 +108,7 @@ function Bugs:OnInit()
 	end
 end
 
-
+-------------------------------------------------------
 function Bugs:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
 	self:SetFlagsExtended(ENTITY_FLAG_EXTENDED_NEEDS_MOVEINSIDE, 0);
@@ -129,7 +126,7 @@ function Bugs:CreateFlock()
 	local Options = self.Properties.Options;
 
 	local params = self.params;
-	params.count = Boid.nCount;
+	params.count = __max(0, Boid.nCount);
 
 	params.behavior = Boid.nBehaviour;
 
@@ -141,9 +138,6 @@ function Bugs:CreateFlock()
 	params.model4 = Boid.object_Model5;
 	--params.character = Boid.object_Character;
 
-	-- Scaling doesn't work good...disable for now
-	-- params.boid_size = Boid.Size;
-	-- params.boid_size_random = Boid.SizeRandom;
 	params.boid_size = 1;
 	params.boid_size_random = 0;
 	params.min_height = Movement.HeightMin;
@@ -166,9 +160,7 @@ function Bugs:CreateFlock()
 	params.factor_avoid_land = Movement.FactorAvoidLand;
 
 	params.spawn_radius = Options.Radius;
-	--params.boid_radius = Boid.boid_radius;
 	params.gravity_at_death = Boid.gravity_at_death;
-	params.boid_mass = Boid.Mass;
 	params.invulnerable = Boid.bInvulnerable;
 
 	params.max_anim_speed = Movement.MaxAnimSpeed;
@@ -190,6 +182,9 @@ end
 function Bugs:OnPropertyChange()
 	if (self.Properties.Options.bActivate == 1) then
 		self:CreateFlock();
+		self:Event_Activate();
+	else
+		self:Event_Deactivate();
 	end
 end
 
@@ -215,12 +210,15 @@ function Bugs:Event_Deactivate( sender )
 	end
 end
 
+-------------------------------------------------------
 function Bugs:OnProceedFadeArea( player,areaId,fadeCoeff )
 	if (self.flock ~= 0) then
 		Boids.SetFlockPercentEnabled( self,fadeCoeff*100 );
 	end
 end
 
+-------------------------------------------------------
+-------------------------------------------------------
 Bugs.FlowEvents =
 {
 	Inputs =
