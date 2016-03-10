@@ -32,8 +32,9 @@
 
 		<param name="itemType" value="WeaponPersonal" />
 		<param name="itemSubType" value="Small" />
+		<param name="displayType" value="Hand Gun" />
 		<param name="itemSize" value="1" />
-		<param name="itemManufactor" value="GMNI" />
+		<param name="itemManufactor" value="Gemini" />
 
 		<param name="usesMagazines" value="1" />
 		<param name="magazine_type_name" value="gmni_pistol_ballistic_01_mag" />
@@ -49,7 +50,7 @@
 		<param name="adb" value="Items/Weapons/FPS/Pistol_Gemini_LH-86.adb" />
 
 		<param name="tags" value="586,819"/>
-		<param name="price" value="99999"/>
+		<param name="price" value="655"/>
 		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/Pistol_Gemini_LH-86.tif" />
 	</params>
 
@@ -59,8 +60,20 @@
 	</FPSDebug>
 
 	<WeaponOffset>
-		<param name="alerted_position" value="0,0,0" />
-		<param name="alerted_rotation" value="0,0,0" />
+		<param name="alerted_position" value="0,-0.05,0" />
+		<param name="alerted_rotation" value="1,0,-2.3" />
+
+		<overrides>
+			<override name="crouch">
+				<param name="alerted_position" value="0,-0.02,0.04" />
+				<param name="alerted_rotation" value="0.7,0,1" />
+			</override>
+
+			<override name="prone">
+				<param name="alerted_position" value="0,0.05,0.04" />
+				<param name="alerted_rotation" value="1,0,-0.05" />
+			</override>
+		</overrides>
 	</WeaponOffset>
 
 	<MovementModifiers  speedScale="1.0" rotationScale="1.0" >
@@ -78,9 +91,11 @@
 		<firemode type="default">
 			<fire>
 				<param name="tag" value="single"/>
-				<param name="reticle" value="CombustionPistol" />
+				<param name="reticle" value="SMG" />
+				<param name="reticleFade" value="0.0" />
+				<param name="reticleFadeSpeed" value="1" />
 				<param name="hit_type" value="10mm_pistol_ballistic" />
-				<param name="rate" value="500"/>
+				<param name="rate" value="450"/>
 				<param name="auto_fire" value="0" />
 				<param name="ammoDamageMultiplier" value="1" />
 				<param name="changeFMFireDelayFraction" value="1.0" />
@@ -103,21 +118,16 @@
 
 				<param name="accuracy_fade_in_per_shot" value="0.2" />
 				<param name="accuracy_fade_out_time"    value="0.5" />
-
-				<param name="start_fire_audio_trigger" value="Play_WPFA_GMNI_BP_LH_86_Fire" />
-				<param name="stop_fire_audio_trigger" value="" />
-				<param name="start_muzzle_fire_audio_trigger" value="" />
-				<param name="stop_muzzle_fire_audio_trigger" value="" />
 			</fire>
 
 			<spread>
-				<param name="min" value="0.25" />
-				<param name="max" value="3.0" />
+				<param name="min" value="2.0" />
+				<param name="max" value="5.0" />
 				<param name="attack" value="0.5" />
 				<param name="decay" value="1.75"  />
 				<param name="end_decay" value="1.75" />
-				<param name="speed_m" value="1.0" />
-				<param name="rotation_m" value="1.0" />
+				<param name="speed_m" value="0.5" />
+				<param name="rotation_m" value="0.0" />
 				<param name="spread_jump_m" value="2"   />
 				<param name="spread_crouch_m" value="1"  />
 				<param name="speed_holdBreathActive_m" value="0.25" />
@@ -174,8 +184,8 @@
 			</tracer>
 
 			<muzzleflash>
-				<firstperson effect="Illfonic_Weapons_gmni_pistol_ballistic_01.10mm_pistol_ballistic.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.Gemini_1st" scale="1.4" />
-				<thirdperson effect="Illfonic_Weapons_gmni_pistol_ballistic_01.10mm_pistol_ballistic.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.Gemini_3rd" scale="1.4" />
+				<firstperson effect="Illfonic_Weapons_gmni_pistol_ballistic_01.10mm_pistol_ballistic.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="" scale="1" />
+				<thirdperson effect="Illfonic_Weapons_gmni_pistol_ballistic_01.10mm_pistol_ballistic.3rd_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="" scale="1" />
 			</muzzleflash>
 			<muzzlesmoke>
 				<firstperson effect="" helper="smoke_effect" />
@@ -187,6 +197,14 @@
 			</reject>
 		</firemode>
 		<firemode name="Single" type="Single">
+			<fire>
+				<param name="localizedName" value="@FireMode_Single" />		
+
+				<param name="start_fire_audio_trigger" value="Play_WPFA_GMNI_BP_LH_86_Fire" />
+				<param name="stop_fire_audio_trigger" value="" />
+				<param name="start_muzzle_fire_audio_trigger" value="" />
+				<param name="stop_muzzle_fire_audio_trigger" value="" />
+			</fire>
 		</firemode>
 		<firemode name="melee" type="Melee">
 			<melee>
@@ -201,7 +219,7 @@
 				<param name="impulse_vehicle" value="400"/>
 				<param name="impulse_up_percentage" value="0.4" />
 				<param name="range" value="1.8" />
-				<param name="delay" value="0.1" />
+				<param name="delay" value="0.5" />
 				<param name="aiDelay" value="0.45" />
 				<param name="duration" value="0.3" />
 				<param name="use_melee_weapon_delay" value="0.0" />
@@ -219,7 +237,6 @@
 			</stereo>
 			<zoom>
 				<param name="dof" value="1" />
-<!-- 				<param name="dof_mask" value="textures/weapons/ironsight_blurmask2.dds" /> -->
 				<param name="dof_focusMin" value="50.0" />
 				<param name="dof_focusMax" value="100.0" />
 				<param name="dof_focusLimit" value="300.0" />
@@ -233,7 +250,7 @@
 				<param name="zoom_smooth_time" value="0.0" />
 				<param name="zoom_out_time" value="0.12" />
 				<param name="zoom_out_delay" value="0.05" />
-				<param name="muzzle_flash_scale" value="2.0" />
+				<param name="muzzle_flash_scale" value="1.2" />
 				<stages>
 					<stage value="1.01" />
 				</stages>
@@ -282,10 +299,16 @@
 		<!-- Weapon rotation in degrees while breathing. -->
 		<param name="breathRotMax" value="1.0" />
 
-		<!-- Weapon rotation leading/canting. -->
-		<param name="rotLeadRollMax"       value="10.0"  /> <!-- Max rotation angle in degrees while moving gun around. -->
+		<!-- Weapon canting. -->
+		<param name="rotLeadRollMax"       value="10.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
 		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
-		<param name="rotLeadRollSmooth"    value="0.10"  /> <!-- Smoothing value for rotation leading -->
+		<param name="movLeadRollMax"       value="10.0"  />
+		<param name="movLeadRollVelRange"  value="3.0"   /><!-- Sideways movement velocity range to hit max roll rotation. -->
+		<param name="leadRollSmooth"       value="0.10"  /><!-- Smoothing value for rotation leading -->
+
+		<param name="movLeadPitchMax"      value="4.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
+		<param name="movLeadPitchVelRange" value="7.0"  /><!-- Forward/backward movement velocity range to hit max pitch rotation. -->
+		<param name="movLeadPitchSmooth"   value="0.10" /><!-- Smoothing value for rotation leading -->
 
 		<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve.
 		.5 is 50% jitter and 50% bowditch curve.
@@ -313,8 +336,6 @@
 			</override>
 			
 			<override name="ADS">
-				<param name="rotLeadRollMax"       value="6.0"  />
-				<param name="rotLeadRollRateRange" value="750.0" />					
 				<param name="maxTranslateLeftHandX" value="0.002" />
 				<param name="maxTranslateLeftHandY" value="0.008" />
 				<param name="Scale" value="2.5" />
@@ -322,6 +343,11 @@
 				<param name="increaseRate" value="0.1" />
 				<param name="decreaseRate" value="0.07" />
 				<param name="speedScale" value="0.75" />
+
+				<param name="rotLeadRollMax"       value="6.0"   />
+				<param name="rotLeadRollRateRange" value="750.0" />
+				<param name="movLeadRollMax"       value="5.0"   />
+				<param name="movLeadPitchMax"      value="0.0"   />
 			</override>
 
 			<override name="stabalize">
@@ -362,8 +388,8 @@
 	</portParams>
 
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1"/>
-		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.35, 0, 0" arLongRange="8" arShortRange="5.5" arMinRange="1"/>
+		<mobiGlasARLabel arMovementType="Fixed" arZOrientationOffsetAngle="90" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 
 </item>

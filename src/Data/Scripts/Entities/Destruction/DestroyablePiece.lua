@@ -10,6 +10,7 @@ DestroyablePiece =
 	{
 		object_Model = "objects/props/industrial/barrels/barrel_c.cgf", -- Pre-destroyed model/submodel.
 		object_ModelDestroyed = "objects/props/industrial/barrels/barrel_d.cgf", -- Post-destroyed model/submodel (same as Model if blank).
+		bIsManagedAudioObject = false, -- CIG gphillipson specifies whether the AudioObject should be managed or not
 
 		Effects =
 		{
@@ -124,6 +125,12 @@ function DestroyablePiece:OnLoad(table)
 		self:PhysicalizeThis(self.currentSlot);
 	end
 
+	-- CIG BEGIN gphillipson added bIsManagedAudioObject flag
+	if self.Properties.bIsManagedAudioObject == nil then
+		self.Properties.bIsManagedAudioObject = false
+	end
+	-- CIG END
+
 	if (self:GetState() ~= table.state) then
 		self:GotoState(table.state)
 	end
@@ -158,8 +165,7 @@ end
 --------------------------------------------------
 function DestroyablePiece:CommonInit()
 	self.bReloadGeoms = 1;
-	self:_LookupAudioTriggerIDs();
-	self:LoadAudioPreloads(PreloadType.Async);
+
 	if (not self.bInitialized) then
 		self.LastHit = {
 			impulse = {x=0,y=0,z=0},
@@ -169,6 +175,11 @@ function DestroyablePiece:CommonInit()
 		self.bInitialized = 1;
 		self:GotoState("Alive");
 	end
+
+	self:_LookupAudioTriggerIDs();
+	self:LoadAudioPreloads(PreloadType.Async);
+	self:PlayAudio(self.hAudioAliveTriggerID);
+
 	g_gameRules.game:MakeMovementVisibleToAI("DestroyablePiece");
 end
 
@@ -214,6 +225,8 @@ function DestroyablePiece:OnReset()
 		self:Reload();
 	end
 
+	self:StopAllAudio();
+	self:PlayAudio(self.hAudioAliveTriggerID);
 	self:AwakePhysics(0);
 end
 
@@ -295,7 +308,11 @@ function DestroyablePiece:PlayDeathEffects(hit)
 	self:RemoveEffect();
 	if (not self.parents_dead) then
 		if (self.enable_effects) then
-			self:PlayAudio(self.hAudioDeadTriggerID);
+			if (self.hAudioDeadTriggerID) then
+				self:PlayAudio(self.hAudioDeadTriggerID);
+			else
+				self:_StopAudioTrigger(self.hAudioAliveTriggerID, true);
+			end
 			if(hit) then
 				if(hit.type == "collision") then
 					Particle.SpawnEffect(self.Properties.Effects.CollisionDestroyedEffect, self:GetPos(), self:GetWorldDir(), 1.0);
@@ -589,20 +606,22 @@ end
 
 ------------------------------------------------------------------------------------------------------
 function DestroyablePiece:PlayAudio(hTriggerID)
-	if (hTriggerID ~= self.hAudioAliveTriggerID or not self.bAliveAudioPlaying) then
-		if (self.audioAnchorEnt ~= nil) then
-			if (hTriggerID ~= nil) then
-				self:UpdateAudioProxyOffset();
-				self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+	if (not self.dead) then
+		if (hTriggerID ~= self.hAudioAliveTriggerID or not self.bAliveAudioPlaying) then
+			if (self.audioAnchorEnt ~= nil) then
+				if (hTriggerID ~= nil) then
+					self:UpdateAudioProxyOffset();
+					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+				end
+			else
+				if (hTriggerID ~= nil) then
+					self:UpdateAudioProxyOffset();
+					self:ExecuteAudioTrigger(hTriggerID);
+				end
 			end
-		else
-			if (hTriggerID ~= nil) then
-				self:UpdateAudioProxyOffset();
-				self:ExecuteAudioTrigger(hTriggerID);
+			if (hTriggerID == self.hAudioAliveTriggerID) then
+				self.bAliveAudioPlaying = true;
 			end
-		end
-		if (hTriggerID == self.hAudioAliveTriggerID) then
-			self.bAliveAudioPlaying = true;
 		end
 	end
 end
@@ -629,6 +648,18 @@ function DestroyablePiece:StopAllAudio()
 		else
 			self:StopAllAudioTriggers();
 		end
+	end
+end
+
+------------------------------------------------------------------------------------------------------
+function DestroyablePiece:_StopAudioTrigger(hTriggerID, bHardStop)
+	if (hTriggerID == self.hAudioAliveTriggerID) then
+		self.bAliveAudioPlaying = false;
+	end
+	if (self.audioAnchorEnt) then
+		self.audioAnchorEnt:StopAudioTrigger(hTriggerID, bHardStop);
+	else
+		self:StopAudioTrigger(hTriggerID, bHardStop);
 	end
 end
 

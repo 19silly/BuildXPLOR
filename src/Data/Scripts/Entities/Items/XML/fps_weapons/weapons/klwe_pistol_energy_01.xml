@@ -32,8 +32,9 @@
 
 		<param name="itemType" value="WeaponPersonal" />
 		<param name="itemSubType" value="Small" />
+		<param name="displayType" value="Hand Gun" />
 		<param name="itemSize" value="1" />
-		<param name="itemManufactor" value="KLWE" />
+		<param name="itemManufactor" value="Klaus and Werner" />
 
 		<param name="usesBattery" value="1" />
 		<param name="batteryDisplayUIElement" value="LaserPistolBattery" />
@@ -48,7 +49,7 @@
 		<param name="adb" value="Items/Weapons/FPS/Pistol_KW_Model-II-Arclight.adb" />
 
 		<param name="tags" value="586,819"/>
-		<param name="price" value="99999"/>
+		<param name="price" value="679"/>
 		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/Pistol_KW_Model-II-Arclight.tif" />
 	</params>
 
@@ -58,8 +59,20 @@
 	</FPSDebug>
 
 	<WeaponOffset>
-		<param name="alerted_position" value="0,0,0" />
-		<param name="alerted_rotation" value="0,0,0" />
+		<param name="alerted_position" value="0,-0.05,0" />
+		<param name="alerted_rotation" value="1,0,-2.3" />
+
+		<overrides>
+			<override name="crouch">
+				<param name="alerted_position" value="0,-0.02,0.04" />
+				<param name="alerted_rotation" value="0.7,0,1" />
+			</override>
+
+			<override name="prone">
+				<param name="alerted_position" value="0,0.05,0.04" />
+				<param name="alerted_rotation" value="1,0,-0.05" />
+			</override>
+		</overrides>
 	</WeaponOffset>
 
 	<MovementModifiers  speedScale="1.0" rotationScale="1.0" >
@@ -76,17 +89,20 @@
 	<firemodes>
 		<firemode type="default">
 			<fire>
+				<param name="localizedName" value="@FireMode_Single" />		
 				<param name="tag" value="single"/>
-				<param name="reticle" value="LaserPistol" />
+				<param name="reticle" value="SMG" />
+				<param name="reticleFade" value="0.0" />
+				<param name="reticleFadeSpeed" value="1" />
 				<param name="hit_type" value="6mm_pistol_laser" />
 				<param name="ammo_type" value="6mm_pistol_laser" />
-				<param name="rate" value="400" />
+				<param name="rate" value="550" />
 				<param name="auto_fire" value="0" />
 				<param name="ammoDamageMultiplier" value="1" />
 				<param name="bullet_chamber" value="0" />
 				<param name="lowAmmoWarningFraction" value="0.34"/>
 				<param name="shots_until_battery_needs_recharge" value="60" />
-				<param name="recharge_time" value="4.0" />
+				<param name="recharge_time" value="2.5" />
 				<param name="helper_fp" value="muzzle_flash" />
 				<param name="helper_tp" value="muzzle_flash" />
 				<param name="nearmiss_signal" value="OnNearMiss" />
@@ -146,18 +162,17 @@
 			</recoil>
 
 			<spread>
-				<param name="min" value="0" />
-				<param name="max" value="0.25" />
-				<param name="attack" value=".1" />
-				<param name="decay" value=".85" />
-				<param name="end_decay" value=".85" />
-				<param name="speed_m" value="1.5" />
-				<param name="rotation_m" value="1.0" />
-				<param name="spread_jump_m" value="2" />
-				<param name="spread_slide_m" value="0" />
-				<param name="spread_crouch_m" value="0" />
-				<param name="speed_holdBreathActive_m" value="0" />
-				<param name="spread_holdBreathActive_m" value="0" />
+				<param name="min" value="1.0" />
+				<param name="max" value="4.0" />
+				<param name="attack" value="1.4" />
+				<param name="decay" value="0.3" />
+				<param name="end_decay" value="0.3"  />
+				<param name="speed_m" value="0.5" />
+				<param name="rotation_m" value="0.0" />
+				<param name="spread_jump_m" value="1.0" />
+				<param name="spread_crouch_m" value="1.0" />
+				<param name="speed_holdBreathActive_m" value="0.25" />
+				<param name="spread_holdBreathActive_m" value="0.5" />
 			</spread>
 
 			<muzzleflash>
@@ -196,7 +211,7 @@
 				<param name="impulse_vehicle" value="400"/>
 				<param name="impulse_up_percentage" value="0.4" />
 				<param name="range" value="1.8" />
-				<param name="delay" value="0.1" />
+				<param name="delay" value="0.5" />
 				<param name="aiDelay" value="0.45" />
 				<param name="duration" value="0.3" />
 				<param name="use_melee_weapon_delay" value="0.0" />
@@ -215,7 +230,6 @@
 			</stereo>
 			<zoom>
 				<param name="dof" value="1" />
-<!-- 				<param name="dof_mask" value="textures/weapons/ironsight_blurmask2.dds" /> -->
 				<param name="dof_focusMin" value="50" />
 				<param name="dof_focusMax" value="300" />
 				<param name="dof_focusLimit" value="300.0" />
@@ -247,7 +261,7 @@
 				<param name="decay_mod" value="1.0" />
 				<param name="end_decay_mod" value="1.0" />
 				<param name="speed_m_mod" value="1.0" />
-				<param name="min_mod" value="1.0" />
+				<param name="min_mod" value="0.25" />
 				<param name="rotation_m_mod" value="1.0" />
 				<param name="spread_crouch_m_mod" value="1.0" />
 				<param name="spread_prone_m_mod" value="1.0" />
@@ -286,10 +300,16 @@
 		<!-- Weapon rotation in degrees while breathing. -->
 		<param name="breathRotMax" value="1.0" />
 
-		<!-- Weapon rotation leading/canting. -->
-		<param name="rotLeadRollMax"       value="10.0"  /> <!-- Max rotation angle in degrees while moving gun around. -->
+		<!-- Weapon canting. -->
+		<param name="rotLeadRollMax"       value="10.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
 		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
-		<param name="rotLeadRollSmooth"    value="0.10"  /> <!-- Smoothing value for rotation leading -->
+		<param name="movLeadRollMax"       value="10.0"  />
+		<param name="movLeadRollVelRange"  value="3.0"   /><!-- Sideways movement velocity range to hit max roll rotation. -->
+		<param name="leadRollSmooth"       value="0.10"  /><!-- Smoothing value for rotation leading -->
+
+		<param name="movLeadPitchMax"      value="4.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
+		<param name="movLeadPitchVelRange" value="7.0"  /><!-- Forward/backward movement velocity range to hit max pitch rotation. -->
+		<param name="movLeadPitchSmooth"   value="0.10" /><!-- Smoothing value for rotation leading -->
 
 		<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve.
 		.5 is 50% jitter and 50% bowditch curve.
@@ -317,8 +337,6 @@
 			</override>
 			
 			<override name="ADS">
-				<param name="rotLeadRollMax"       value="6.0"  />
-				<param name="rotLeadRollRateRange" value="750.0" />				
 				<param name="maxTranslateLeftHandX" value="0.002" />
 				<param name="maxTranslateLeftHandY" value="0.008" />
 				<param name="Scale" value="2.5" />
@@ -326,6 +344,11 @@
 				<param name="increaseRate" value="0.1" />
 				<param name="decreaseRate" value="0.07" />
 				<param name="speedScale" value="0.75" />
+
+				<param name="rotLeadRollMax"       value="6.0"   />
+				<param name="rotLeadRollRateRange" value="750.0" />
+				<param name="movLeadRollMax"       value="5.0"   />
+				<param name="movLeadPitchMax"      value="0.0"   />
 			</override>
 
 			<override name="stabalize">
@@ -371,8 +394,8 @@
 	</portParams>
 
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1"/>
-		<mobiGlasARLabel arMovementType="FacingPlayer" arColor="128, 128, 255" arShortDescription=""/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint="0.4, 0, 0" arLongRange="8" arShortRange="5.5" arMinRange="1"/>
+		<mobiGlasARLabel arMovementType="Fixed" arZOrientationOffsetAngle="90" arColor="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 
 </item>

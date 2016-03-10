@@ -817,19 +817,6 @@
         <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
         <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-10,0,170" motionBlur="0" />
       </Views>
-      <WaitFor>
-        <Enter>
-          <State animation="Canopy" state="Open" />
-        </Enter>
-        <Exit>
-          <State animation="Canopy" state="Open" />
-        </Exit>
-      </WaitFor>
-      <PostAction>
-        <Exit>
-          <State animation="Cockpit_Door" state="Retract" />
-        </Exit>
-      </PostAction>
       <!-- Begin actions for this seat-->
       <SeatActions>
         <SeatAction class="AnimatedAction">
@@ -1176,10 +1163,11 @@
 	</HUDAccess>
       <Screens>
         <Screen name="Turret UI" element="ShipInterface" screen="TempTurretInterfaceScreen" number="1">
-          <Container name="LeftMFD" container="LeftMFD" helper="gunner_screen_1" z_offset="-0.1" y_offset="-0.005" scale="0.33" />
-          <Container name="HideRightMFD" container="RightMFD" helper="gunner_screen_1" x_offset="0.0" y_offset="0.1" scale="0.01" />
-          <Container name="TargetInfo" container="TargetHoloScreen" helper="gunner_screen_1" z_offset="0.005" y_offset="-0.005" x_offset="0.03" scale="0.2" />
-          <Container name="Radar2D" container="Radar2DScreen" helper="gunner_screen_1" z_offset="0.005" y_offset="-0.005" x_offset="-0.0325" scale="0.2" />
+          <Container name="LeftMFD" itemPort="hardpoint_turret_center" container="LeftMFD" helper="gunner_screen_1" z_offset="-0.1" y_offset="-0.005" scale="0.33" />
+          <Container name="HideRightMFD" itemPort="hardpoint_turret_center" container="RightMFD" helper="gunner_screen_1" x_offset="0.0" y_offset="0.1" scale="0.01" />
+          <Container name="TargetInfo" itemPort="hardpoint_turret_center" container="TargetHoloScreen" helper="gunner_screen_1" z_offset="0.005" y_offset="-0.005" x_offset="0.03" scale="0.2" />
+          <Container name="Radar2D" itemPort="hardpoint_turret_center" container="Radar2DScreen" helper="gunner_screen_1" z_offset="0.005" y_offset="-0.005" x_offset="-0.0325" scale="0.2" />
+
         </Screen>
       </Screens>
     </Seat>

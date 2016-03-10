@@ -32,6 +32,7 @@ DestroyableObject =
 		bOnlyAllowPlayerToFullyDestroyObject = 0,
 		fDamageTreshold = 0, -- Only accept damage higher than this value.
 		bExplode = 1, -- Create explosion, using Explosion props
+		bIsManagedAudioObject = false, -- CIG gphillipson specifies whether the AudioObject should be managed or not
 
 		Vulnerability =
 		{
@@ -209,6 +210,12 @@ function DestroyableObject:OnLoad(table)
 		self:PhysicalizeThis(self.currentSlot);
 	end
 
+	-- CIG BEGIN gphillipson added bIsManagedAudioObject flag
+	if self.Properties.bIsManagedAudioObject == nil then
+		self.Properties.bIsManagedAudioObject = false
+	end
+	-- CIG END
+
 	if (self:GetState() ~= table.state) then
 	  self:GotoState(table.state)
 	end
@@ -245,6 +252,7 @@ function DestroyableObject:CommonInit()
 
 	self:_LookupAudioTriggerIDs();
 	self:LoadAudioPreloads(PreloadType.Async);
+	self:PlayAudio(self.hAudioAliveTriggerID);
 
 	g_gameRules.game:MakeMovementVisibleToAI("DestroyableObject");
 
@@ -311,6 +319,8 @@ function DestroyableObject:OnReset()
 		self:Reload();
 	end
 
+	self:StopAllAudio();
+	self:PlayAudio(self.hAudioAliveTriggerID);
 	self:AwakePhysics(0);
 
 	if (Kyt and self.Properties.Kythera.bIs3DObstacle == 1) then
@@ -501,7 +511,11 @@ function DestroyableObject:Explode()
 		self:PlayAudio(self.hAudioDyingTriggerID);
 	end
 
-	self:PlayAudio(self.hAudioDeadTriggerID);
+	if (self.hAudioDeadTriggerID) then
+		self:PlayAudio(self.hAudioDeadTriggerID);
+	else
+		self:_StopAudioTrigger(self.hAudioAliveTriggerID, true);
+	end
 
 	BroadcastEvent( self,"Explode" );
 
@@ -536,12 +550,12 @@ function DestroyableObject:Die(hit)
 		self.shooterId = NULL_ENTITY;
 	end
 
+	self:PlayAudio(self.hAudioDyingTriggerID);
+
 	self.dead = true;
 	if (self.health > 0) then
 		self.health = 0;
 	end
-
-	self:PlayAudio(self.hAudioDyingTriggerID);
 
 	-- if we didn't explode yet
 	if (not self.exploded) then
@@ -901,20 +915,22 @@ end
 
 ------------------------------------------------------------------------------------------------------
 function DestroyableObject:PlayAudio(hTriggerID)
-	if (hTriggerID ~= self.hAudioAliveTriggerID or not self.bAliveAudioPlaying) then
-		if (self.audioAnchorEnt ~= nil) then
-			if (hTriggerID ~= nil) then
-				self:UpdateAudioProxyOffset();
-				self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+	if (not self.dead) then
+		if (hTriggerID ~= self.hAudioAliveTriggerID or not self.bAliveAudioPlaying) then
+			if (self.audioAnchorEnt ~= nil) then
+				if (hTriggerID ~= nil) then
+					self:UpdateAudioProxyOffset();
+					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+				end
+			else
+				if (hTriggerID ~= nil) then
+					self:UpdateAudioProxyOffset();
+					self:ExecuteAudioTrigger(hTriggerID);
+				end
 			end
-		else
-			if (hTriggerID ~= nil) then
-				self:UpdateAudioProxyOffset();
-				self:ExecuteAudioTrigger(hTriggerID);
+			if (hTriggerID == self.hAudioAliveTriggerID) then
+				self.bAliveAudioPlaying = true;
 			end
-		end
-		if (hTriggerID == self.hAudioAliveTriggerID) then
-			self.bAliveAudioPlaying = true;
 		end
 	end
 end
@@ -940,6 +956,18 @@ function DestroyableObject:StopAllAudio()
 		else
 			self:StopAllAudioTriggers();
 		end
+	end
+end
+
+------------------------------------------------------------------------------------------------------
+function DestroyableObject:_StopAudioTrigger(hTriggerID, bHardStop)
+	if (hTriggerID == self.hAudioAliveTriggerID) then
+		self.bAliveAudioPlaying = false;
+	end
+	if (self.audioAnchorEnt) then
+		self.audioAnchorEnt:StopAudioTrigger(hTriggerID, bHardStop);
+	else
+		self:StopAudioTrigger(hTriggerID, bHardStop);
 	end
 end
 

@@ -31,8 +31,9 @@
 
 		<param name="itemType" value="WeaponPersonal" />
 		<param name="itemSubType" value="Medium" />
+		<param name="displayType" value="Rifle" />
 		<param name="itemSize" value="1" />
-		<param name="itemManufactor" value="KLWE" />
+		<param name="itemManufactor" value="Klaus and Werner" />
 
 		<param name="usesBattery" value="1" />
 
@@ -46,7 +47,7 @@
 		<param name="adb" value="Items/Weapons/FPS/Rifle_KW_ATT-4.adb" />
 
 		<param name="tags" value="587,818"/>
-		<param name="price" value="99999"/>
+		<param name="price" value="1879"/>
 		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/Rifle_KW_ATT-4.tif" />
 	</params>
 
@@ -56,8 +57,19 @@
 	</FPSDebug>
 
 	<WeaponOffset>
-		<param name="alerted_position" value="0,0,0" />
-		<param name="alerted_rotation" value="0,0,0" />
+		<param name="alerted_position" value="0,0.05,0" />
+		<param name="alerted_rotation" value="8,0,-1.1" />
+
+		<overrides>
+			<override name="crouch">
+				<!-- put params to override here -->
+			</override>
+
+			<override name="prone">
+				<param name="alerted_position" value="0,0.07,0.03" />
+				<param name="alerted_rotation" value="2,0,-2" />
+			</override>
+		</overrides>
 	</WeaponOffset>
 
 	<MovementModifiers speedScale="1.0" rotationScale="1.0" >
@@ -78,8 +90,11 @@
 	<firemodes>
 		<firemode type="default">
 			<fire>
+				<param name="localizedName" value="@FireMode_Rapid" />		
 				<param name="tag" value="rapid"/>
-				<param name="reticle" value="AssaultRifle" />
+				<param name="reticle" value="SMG" />
+				<param name="reticleFade" value="0.0" />
+				<param name="reticleFadeSpeed" value="1" />
 				<param name="hit_type" value="10mm_rifle_laser" />
 				<param name="ammo_type" value="10mm_rifle_laser" />
 				<param name="rate" value="450" />
@@ -88,7 +103,7 @@
 				<param name="changeFMFireDelayFraction" value="1.0" />
 				<param name="bullet_chamber" value="0" />
 				<param name="shots_until_battery_needs_recharge" value="120" />
-				<param name="recharge_time" value="15.0" />
+				<param name="recharge_time" value="5.0" />
 				<param name="lowAmmoWarningFraction" value="0.26"/>
 				<param name="helper_fp" value="muzzle_flash" />
 				<param name="helper_tp" value="muzzle_flash" />
@@ -147,17 +162,17 @@
 
 			<!-- If you don't want your gun to be ping-pong accurate, and make head-shots a bit harder, this will add some spread on top of your shots -->
 			<spread>
-				<param name="min" value="0.25" />
-				<param name="max" value="0.5" />
-				<param name="attack" value="0.5" />
-				<param name="decay" value="1" />
-				<param name="end_decay" value="0.0" />
-				<param name="speed_m" value="1.5" />
+				<param name="min" value="1.0" />
+				<param name="max" value="4.0" />
+				<param name="attack" value="1.4" />
+				<param name="decay" value="0.3" />
+				<param name="end_decay" value="0.3"  />
+				<param name="speed_m" value="0.5" />
 				<param name="rotation_m" value="0.0" />
-				<param name="spread_jump_m" value="2.0" />
-				<param name="spread_crouch_m" value="0.8" />
-				<param name="speed_holdBreathActive_m" value="1.0" />
-				<param name="spread_holdBreathActive_m" value="1.0" />
+				<param name="spread_jump_m" value="1.0" />
+				<param name="spread_crouch_m" value="1.0" />
+				<param name="speed_holdBreathActive_m" value="0.25" />
+				<param name="spread_holdBreathActive_m" value="0.5" />
 			</spread>
 
 			<tracer>
@@ -203,7 +218,7 @@
 				<param name="impulse_vehicle" value="400"/>
 				<param name="impulse_up_percentage" value="0.4" />
 				<param name="range" value="1.8" />
-				<param name="delay" value="0.1" />
+				<param name="delay" value="0.5" />
 				<param name="aiDelay" value="0.45" />
 				<param name="duration" value="0.3" />
 				<param name="use_melee_weapon_delay" value="0.0" />
@@ -222,14 +237,14 @@
 			</stereo>
 			<zoom>
 				<param name="dof" value="1" />
-<!-- 				<param name="dof_mask" value="textures/weapons/ironsight_blurmask2.dds" /> -->
+				<param name="dof_mask" value="textures/weapons/ironsight_blurmask_reddot.dds" />				
 				<param name="dof_focusMin" value="50.0" />
 				<param name="dof_focusMax" value="300.0" />
 				<param name="dof_focusLimit" value="300.0" />
 				<param name="dof_shoulderMinZ" value="0.15" />
 				<param name="dof_shoulderMinZScale" value="4.0" />
-				<param name="dof_minZ" value="0.15" />
-				<param name="dof_minZScale" value="3.0" />
+				<param name="dof_minZ" value="0.05" />
+				<param name="dof_minZScale" value="0" />
 
 				<param name="post_zoom_dof_scale" value="0.0" />
 				<param name="post_zoom_fov_enabled" value="0.0" />
@@ -245,8 +260,12 @@
 				<param name="zoom_out_delay" value="0.05" />
 				<param name="muzzle_flash_scale" value="1.45"/>
 
+				<param name="use_aux_geom_when_zoomed" value="1" />
+				<param name="zoom_in_swap_model_time" value="0.08" />
+				<param name="zoom_out_swap_model_time" value="0.12" />
+				
 				<stages>
-					<stage value="1.05" />
+					<stage value="1.2" />
 				</stages>
 			</zoom>
 
@@ -257,7 +276,7 @@
 				<param name="decay_mod" value="1.0" />
 				<param name="end_decay_mod" value="1.0" />
 				<param name="speed_m_mod" value="1.0" />
-				<param name="min_mod" value="1.0" />
+				<param name="min_mod" value="0.45" />
 				<param name="rotation_m_mod" value="1.0" />
 				<param name="spread_crouch_m_mod" value="1.0" />
 				<param name="spread_jump_m_mod" value="3.0" />
@@ -295,10 +314,16 @@
 		<!-- Weapon rotation in degrees while breathing. -->
 		<param name="breathRotMax" value="1.0" />
 
-		<!-- Weapon rotation leading/canting. -->
-		<param name="rotLeadRollMax"       value="20.0"  /> <!-- Max rotation angle in degrees while moving gun around. -->
+		<!-- Weapon canting. -->
+		<param name="rotLeadRollMax"       value="10.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
 		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
-		<param name="rotLeadRollSmooth"    value="0.10"  /> <!-- Smoothing value for rotation leading -->
+		<param name="movLeadRollMax"       value="10.0"  />
+		<param name="movLeadRollVelRange"  value="3.0"   /><!-- Sideways movement velocity range to hit max roll rotation. -->
+		<param name="leadRollSmooth"       value="0.10"  /><!-- Smoothing value for rotation leading -->
+
+		<param name="movLeadPitchMax"     value="4.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
+		<param name="movLeadPitchVelRange" value="7.0"  /><!-- Forward/backward movement velocity range to hit max pitch rotation. -->
+		<param name="movLeadPitchSmooth"   value="0.10" /><!-- Smoothing value for rotation leading -->
 
 		<!-- This is the maximum amount of time the player can hold their breath after stabilizing the gun before
 		they need to gasp for air. -->
@@ -327,12 +352,16 @@
 			</override>
 			
 			<override name="ADS">
-				<param name="rotLeadRollMax"       value="8.0"  />
-				<param name="rotLeadRollRateRange" value="750.0" />				
 				<param name="maxTranslateLeftHandX" value="0.002" />
 				<param name="maxTranslateLeftHandY" value="0.003" />
 				<param name="Scale" value="1" />
 				<param name="maxScale" value="5" />
+
+				<param name="rotLeadRollMax"       value="-4.0"   />
+				<param name="rotLeadRollRateRange" value="750.0" />
+				<param name="movLeadRollMax"       value="-4.0"   />
+				<param name="movLeadPitchMax"      value="0.0"   />
+				<param name="breathRotMax" value="0.25" />				
 			</override>
 
 			<override name="stabalize">
@@ -361,9 +390,25 @@
 		   For instance holding your breath and zooming your weapon: baseValue * stanceScale * zoomScale * stabalizeScale * firingScale * movementScale -->
 	</sway>
 
+	<portParams>
+		<ports>
+			<ItemPort name="sight_attachment" minsize="1" maxsize="1" display_name="Sight Attachment Slot">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="IronSight"/>
+				</Types>
+			</ItemPort>
+		</ports>
+	</portParams>
+
+	<accessories>
+		<initialsetup>
+			<accessory name="klwe_rifle_energy_01_reddot" itemPort="sight_attachment"/>
+		</initialsetup>
+	</accessories>
+	
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1"/>
-		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.1, 0, 0" arLongRange="8" arShortRange="5.5" arMinRange="1"/>
+		<mobiGlasARLabel arMovementType="Fixed" arZOrientationOffsetAngle="90" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 
 </item>

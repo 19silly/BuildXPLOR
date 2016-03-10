@@ -180,7 +180,6 @@
 				<param name="suffix" value="iron" />
 				<param name="suffixAG" value="_iron" />
 				<param name="dof" value="1" />
-				<param name="dof_mask" value="textures/weapons/ironzoom_blurmask.dds" />
 				<param name="dof_focusMin" value="1.0" />
 				<param name="dof_focusMax" value="-1.0" />
 				<param name="dof_focusLimit" value="300.0" />
@@ -259,10 +258,16 @@
 		<!-- Weapon rotation in degrees while breathing. -->
 		<param name="breathRotMax" value="1.0" />
 
-		<!-- Weapon rotation leading/canting. -->
-		<param name="rotLeadRollMax"       value="10.0"  /> <!-- Max rotation angle in degrees while moving gun around. -->
+		<!-- Weapon canting. -->
+		<param name="rotLeadRollMax"       value="10.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
 		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
-		<param name="rotLeadRollSmooth"    value="0.10"  /> <!-- Smoothing value for rotation leading -->
+		<param name="movLeadRollMax"       value="10.0"  />
+		<param name="movLeadRollVelRange"  value="3.0"   /><!-- Sideways movement velocity range to hit max roll rotation. -->
+		<param name="leadRollSmooth"       value="0.10"  /><!-- Smoothing value for rotation leading -->
+
+		<param name="movLeadPitchMax"      value="4.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
+		<param name="movLeadPitchVelRange" value="7.0"  /><!-- Forward/backward movement velocity range to hit max pitch rotation. -->
+		<param name="movLeadPitchSmooth"   value="0.10" /><!-- Smoothing value for rotation leading -->
 
 		<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve.
 			.5 is 50% jitter and 50% bowditch curve.
@@ -298,6 +303,11 @@
 				<param name="maxTranslateLeftHandY"  value="0.025" />
 
 				<param name="speedScale" value="0.5" />
+
+				<param name="rotLeadRollMax"       value="8.0"   />
+				<param name="rotLeadRollRateRange" value="750.0" />
+				<param name="movLeadRollMax"       value="5.0"   />
+				<param name="movLeadPitchMax"      value="2.0"   />
 			</override>
 
 			<override name="crouch">
@@ -372,8 +382,8 @@
 	</accessories>
 
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1"/>
-		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0, 0" arLongRange="8" arShortRange="4" arMinRange="3"/>
+		<mobiGlasARLabel arMovementType="Fixed" arZOrientationOffsetAngle="90" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 
 </item>

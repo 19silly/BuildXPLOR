@@ -42,8 +42,8 @@
 		<param name="stat_mobility" value="4" />
 		<param name="stat_damage" value="8" />
 
-		<param name="tag" value="Rifle_KW_ATT-4" />
-		<param name="adb" value="Items/Weapons/FPS/Rifle_KW_ATT-4.adb" />
+		<param name="tag" value="klwe_sniper_energy_01" />
+		<param name="adb" value="Items/Weapons/FPS/klwe_sniper_energy_01.adb" />
 
 		<param name="tags" value="587,818,1021"/>
 		<param name="price" value="99999"/>
@@ -56,8 +56,19 @@
 	</FPSDebug>
 
 	<WeaponOffset>
-		<param name="alerted_position" value="0,0,0" />
-		<param name="alerted_rotation" value="0,0,0" />
+		<param name="alerted_position" value="0,0.03,0" />
+		<param name="alerted_rotation" value="8,0,-1.1" />
+
+		<overrides>
+			<override name="crouch">
+				<!-- put params to override here -->
+			</override>
+
+			<override name="prone">
+				<param name="alerted_position" value="0,0.07,0.03" />
+				<param name="alerted_rotation" value="2,0,-2" />
+			</override>
+		</overrides>
 	</WeaponOffset>
 
 	<MovementModifiers speedScale="1.0" rotationScale="1.0" >
@@ -67,7 +78,7 @@
 	<ai_descriptor handler="instant" draw_time="2" burstBulletCountMin="1" burstBulletCountMax="10" burstPauseTimeMin="0.8" burstPauseTimeMax="3.5" singleFireTriggerTime="0.4" pressureMultiplier="1" coverFireTime="3.0" />
 
 	<ammos>
-		<ammo name="10mm_sniper_laser" extra="0" amount="15" capacity="15" />
+		<ammo name="10mm_sniper_laser" extra="0" amount="40" capacity="40" />
 	</ammos>
 
 	<geometry>
@@ -78,6 +89,7 @@
 	<firemodes>
 		<firemode type="default">
 			<fire>
+				<param name="localizedName" value="@FireMode_Single" />		
 				<param name="tag" value="charge"/>
 				<param name="reticle" value="" />
 				<param name="hit_type" value="10mm_rifle_laser" />
@@ -86,8 +98,8 @@
 				<param name="auto_fire" value="1" />
 				<param name="ammoDamageMultiplier" value="3.5" />
 				<param name="bullet_chamber" value="0" />
-				<param name="shots_until_battery_needs_recharge" value="15" />
-				<param name="recharge_time" value="5.0" />
+				<param name="shots_until_battery_needs_recharge" value="40" />
+				<param name="recharge_time" value="4.0" />
 				<param name="changeFMFireDelayFraction" value="1.0" />
 				<param name="lowAmmoWarningFraction" value="0.25"/>
 				<param name="helper_fp" value="muzzle_flash" />
@@ -175,52 +187,64 @@
 			</tracer>
 
 			<muzzleflash>
-				<firstperson effect="Illfonic_Weapons_klwe_rifle_energy_01.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.LaserRifle_Muzzleflash_3rd" time="0.04" />
-				<thirdperson effect="Illfonic_Weapons_klwe_rifle_energy_01.3rd_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.LaserRifle_Muzzleflash_3rd" time="0.04" />
+				<firstperson effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.LaserRifle_Muzzleflash_3rd" />
+				<thirdperson effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.3rd_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.LaserRifle_Muzzleflash_3rd" />
 			</muzzleflash>
+			<maxChargeMuzzleFlash>
+				<firstperson effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.1st_MuzzleFlash_Charged" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.Cannon_Behring_HP21I-Thunder" scale="1.5" />
+				<thirdperson effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.3rd_MuzzleFlash_Charged" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.Cannon_Behring_HP21I-Thunder" scale="1.5" />
+			</maxChargeMuzzleFlash>
 
 			<animation>
 				<param name="useBaseModifier" value="1" />
 			</animation>
 
 			<vents>
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_01" delay="0.03" />
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_02" delay="0.02" />
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_03" delay="0.01" />
+<!-- 				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_01" delay="0.15" />
+				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_02" delay="0.1" />
+				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_03" delay="0.05" />
 				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_04" delay="0" />
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_01" delay="0.03" />
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_02" delay="0.02" />
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_03" delay="0.01" />
-				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_04" delay="0" />
+				
+				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_01" delay="0.15" />
+				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_02" delay="0.1" />
+				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_03" delay="0.05" />
+				<vent effect="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_04" delay="0" /> -->
 			</vents>
 
 		</firemode>
 
 		<firemode name="Charge" type="Charge">
 			<fire>
-				<param name="start_fire_audio_trigger" value="Play_WPFA_KSAR_ESG_Devastator12_Fire" />
+				<param name="localizedName" value="@FireMode_Charge" />		
+				<param name="start_fire_audio_trigger" value="" />
 				<param name="stop_fire_audio_trigger" value="" />
 				<param name="start_muzzle_fire_audio_trigger" value="" />
 				<param name="stop_muzzle_fire_audio_trigger" value="" />
-				</fire>
+			</fire>
 			<charge>
-				<param name="ammoDamageMultiplier_perCharge" value="1.25" />
+				<param name="ammoDamageMultiplier_perCharge" value="1.5" />
 				<param name="min_charges" value="1" />
-				<param name="max_charges" value="5" />
-				<param name="time" value=".5" />
+				<param name="max_charges" value="4" />
+				<param name="charge_time" value="0.5" />
+				<param name="ammo_used_per_charge" value="1" />
+				<param name="overheat_time" value="8" />
+				<param name="cooldown_time" value="3" />
 				<param name="shoot_on_stop" value="1" />
-				
-
+				<param name="start_charging_audio_trigger" value="Play_WPFA_KLWE_LSR_01_Charging" />
+				<param name="interrupt_charging_audio_trigger" value="Stop_WPFA_KLWE_LSR_01_Charging" />
+				<param name="step_charged_audio_trigger" value="Play_WPFA_KLWE_LSR_01_Charging_Stage" />
+				<param name="fully_charged_audio_trigger" value="Play_WPFA_KLWE_LSR_01_Charged" />
+				<param name="fire_audio_trigger" value="Play_WPFA_KLWE_LSR_Arrowhead_Fire" />
 				
 				<chargingEffects>
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_l_01" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_l_02" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_l_03" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_l_04" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_r_01" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_r_02" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_r_03" />
-					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventCharge" helper="vent_r_04" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_04" chargeSpawn="1" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_03" chargeSpawn="2" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_02" chargeSpawn="3" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_l_01" chargeSpawn="4" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_04" chargeSpawn="1" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_03" chargeSpawn="2" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_02" chargeSpawn="3" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventGlow" helper="vent_r_01" chargeSpawn="4" />
 				</chargingEffects>
 				<chargedEffects>
 					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.VentFullyCharged" helper="vent_l_01" />
@@ -232,6 +256,16 @@
 					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.VentFullyCharged" helper="vent_r_03" />
 					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.VentFullyCharged" helper="vent_r_04" />
 				</chargedEffects>
+				<overheatEffects>
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_l_01" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_l_02" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_l_03" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_l_04" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_r_01" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_r_02" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_r_03" />
+					<effect value="Illfonic_Weapons_klwe_sniper_energy_01.10mm_rifle_laser.ventOverheat" helper="vent_r_04" />
+				</overheatEffects>
 			</charge>
 			<animation>
 				<param name="useBaseModifier" value="1" />
@@ -251,7 +285,7 @@
 				<param name="impulse_vehicle" value="400"/>
 				<param name="impulse_up_percentage" value="0.4" />
 				<param name="range" value="1.8" />
-				<param name="delay" value="0.1" />
+				<param name="delay" value="0.5" />
 				<param name="aiDelay" value="0.45" />
 				<param name="duration" value="0.3" />
 				<param name="use_melee_weapon_delay" value="0.0" />
@@ -276,25 +310,19 @@
 				<param name="dof_focusLimit" value="300.0" />
 				<param name="dof_shoulderMinZ" value="0.15" />
 				<param name="dof_shoulderMinZScale" value="4.0" />
-				<param name="dof_minZ" value="0.07" />
+				<param name="dof_minZ" value="0.2" />
 				<param name="dof_minZScale" value="3.0" />
 
-				<param name="post_zoom_dof_scale" value="0.0" />
-				<param name="post_zoom_fov_enabled" value="0.0" />
-				<param name="post_zoom_fov_rate" value="0.0" />
-				<param name="post_zoom_fov_delay" value="0.0" />
+				<param name="zoom_in_time" value="0.4" />
+				<param name="zoom_in_time_from_lowered" value="0.6" />
+				<param name="zoom_smooth_time" value="0.0" />
+				<param name="zoom_out_time" value="0.4" />
+				<param name="zoom_out_delay" value="0.05" />
 
 				<param name="use_aux_geom_when_zoomed" value="1" />
 				<param name="zoom_in_swap_model_time" value="0.08" />
 				<param name="zoom_out_swap_model_time" value="0.12" />
 				
-				<param name="zoom_in_time" value="0.2" />
-				<param name="zoom_in_time_from_lowered" value="0.4" />
-				<param name="zoom_fov_offset" value="0.0" />
-				<param name="zoom_fov_offset" value="0.0" />
-				<param name="zoom_smooth_time" value="0.0" />
-				<param name="zoom_out_time" value="0.2" />
-				<param name="zoom_out_delay" value="0.05" />
 				<param name="muzzle_flash_scale" value="1.05"/>
 				<stages>
 					<stage value="5" />
@@ -346,10 +374,16 @@
 		<!-- Weapon rotation in degrees while breathing. -->
 		<param name="breathRotMax" value="1.0" />
 
-		<!-- Weapon rotation leading/canting. -->
-		<param name="rotLeadRollMax"       value="20.0"  /> <!-- Max rotation angle in degrees while moving gun around. -->
+		<!-- Weapon canting. -->
+		<param name="rotLeadRollMax"       value="10.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
 		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
-		<param name="rotLeadRollSmooth"    value="0.10"  /> <!-- Smoothing value for rotation leading -->
+		<param name="movLeadRollMax"       value="10.0"  />
+		<param name="movLeadRollVelRange"  value="3.0"   /><!-- Sideways movement velocity range to hit max roll rotation. -->
+		<param name="leadRollSmooth"       value="0.10"  /><!-- Smoothing value for rotation leading -->
+
+		<param name="movLeadPitchMax"      value="4.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
+		<param name="movLeadPitchVelRange" value="7.0"  /><!-- Forward/backward movement velocity range to hit max pitch rotation. -->
+		<param name="movLeadPitchSmooth"   value="0.10" /><!-- Smoothing value for rotation leading -->
 
 		<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve.
 		.5 is 50% jitter and 50% bowditch curve.
@@ -377,13 +411,16 @@
 			</override>
 			
 			<override name="ADS">
-				<param name="rotLeadRollMax"       value="8.0"  />
-				<param name="rotLeadRollRateRange" value="750.0" />					
 				<param name="maxTranslateLeftHandX" value="0.0002" />
 				<param name="maxTranslateLeftHandY" value="0.0003" />
 				<param name="Scale"        value="1" />
 				<param name="maxScale"     value="5" />
 				<param name="breathRotMax" value="0.6" />
+
+				<param name="rotLeadRollMax"       value="8.0"   />
+				<param name="rotLeadRollRateRange" value="750.0" />
+				<param name="movLeadRollMax"       value="5.0"   />
+				<param name="movLeadPitchMax"      value="0.0"   />
 			</override>
 
 			<override name="ADS-stage2">

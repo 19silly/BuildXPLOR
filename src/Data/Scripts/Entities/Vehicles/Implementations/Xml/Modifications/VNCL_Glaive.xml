@@ -1,20 +1,822 @@
 <Modifications>
-
-
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!--/ VEHICLE PARTS                                                                                    /-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
   <Parts id="Partsxml">
-    <Part name="VNCL_Glaive_flightReady" class="Animated" mass="19000" disablePhysics="0" scopeContext="Ship">
-      <Animated filename="Objects/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive_flightReady.cga" filenameDestruction="Objects/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive_flightReady.cga" />
+    <Part name="VNCL_Glaive" class="Animated" disablePhysics="0" scopeContext="Ship">
+      <Animated filename="Objects/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive.cga" filenameDestruction="Objects/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive.cga" />
       <Parts>
-        <Part name="nose" class="AnimatedJoint">
+        <Part name="nose" class="AnimatedJoint" scopeContext="Ship" damageMax="1000" mass="100" id="idHealthNose">
+          <Effects>
+            <DetachFx joint="nose" partName="VNCL_Glaive" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.505264,-0.00396912,0.502184" rot_offset="-0.993805,-0.072391,0.084331" helperID="nose_PFX_DetachFX_explode_8m_Flash010" />
+            <DetachFx joint="nose" partName="VNCL_Glaive" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.457552,1.78626,0.557482" rot_offset="-0.993805,-0.072391,0.084331" helperID="nose_PFX_DetachFX_explode_2m_Fireless031" />
+            <DetachFx joint="nose" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="-0.032751,1.71936,-1.19192" rot_offset="0.00400805,-0.93195,-0.362565" helperID="nose_PFX_DebrisFX_metal_1m_loop_trail" />
+            <DetachFx joint="nose" partName="VNCL_Glaive" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="0.505264,0.833776,-0.314024" rot_offset="-0.993805,-0.072391,0.084331" helperID="nose_PFX_DetachFX_metal_1m_loop_trail" />
+            <DetachFx joint="nose" effect="SC_Fire_FX.Fire_ALL.fire_1m_loop_fixed" pos_offset="-0.032751,1.71936,-1.19192" rot_offset="0.00400805,-0.93195,-0.362565" helperID="nose_PFX_DebrisFX_fire_1m_loop_fixed" />
+            <DetachFx joint="nose" partName="VNCL_Glaive" effect="SC_Fire_FX.Fire_ALL.fire_1m_loop_fixed" pos_offset="0.505264,0.833776,-0.314024" rot_offset="-0.993805,-0.072391,0.084331" helperID="nose_PFX_DetachFX_fire_1m_loop_fixed" />
+            <DetachFx joint="nose" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="1.04468,1.89234,0.419481" rot_offset="-0.993805,-0.0723909,0.0843315" helperID="nose_SQUIB_.4m" />
+            <DetachFx joint="nose" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.521573,0.651725,0.419481" rot_offset="-0.993805,-0.0723909,0.0843315" helperID="nose_SQUIB_.4m005" />
+            <DetachFx joint="nose" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.969608,0.975199,0.911309" rot_offset="-0.993805,-0.0723909,0.0843315" helperID="nose_SQUIB_.4m006" />
+            <DetachFx joint="nose" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.969608,2.56442,-1.30394" rot_offset="-0.993805,-0.0723909,0.0843315" helperID="nose_SQUIB_.4m007" />
+            <DetachFx joint="nose" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.959644,2.2085,-1.30394" rot_offset="-0.993805,-0.0723909,0.0843315" helperID="nose_SQUIB_.4m008" />
+          </Effects>
+          <DamageBehaviors>
+            <DamageBehavior class="DetachPart" damageRatioMin="1">
+              <DetachPart>
+                <Part name="body" Probability="1" />
+                <Part name="wing_left_arm" Probability="1" />
+                <Part name="wing_right_arm" Probability="1" />
+              </DetachPart>
+            </DamageBehavior>
+            <DamageBehavior class="Group" damageRatioMin="1">
+              <Group name="Destroy" />
+            </DamageBehavior>
+          </DamageBehaviors>
           <Parts>
-            <Part name="hardpoint_radar" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" display_name="Short Range Radar">
+            <Part name="body" class="AnimatedJoint" scopeContext="Ship" damageMax="1200" mass="20876" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" id="idHealthBody">
+              <Effects>
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.0451102,-0.139414,1.09456" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.4m010" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.132138,1.12951,0.567695" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.4m011" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-1.73653,1.12951,0.301024" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.4m012" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-1.03485,0.101988,0.875059" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.4m013" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-1.73653,1.90056,-1.44518" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.4m014" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.189377,1.90056,-1.44518" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.4m015" />
+              </Effects>
+              <DamageBehaviors>
+                <DamageBehavior class="DetachPart" damageRatioMin="1">
+                  <DetachPart>
+                    <Part name="nose" Probability="1" />
+                    <Part name="wing_left_arm" Probability="1" />
+                    <Part name="wing_right_arm" Probability="1" />
+                  </DetachPart>
+                </DamageBehavior>
+                <DamageBehavior class="Group" damageRatioMin="1">
+                  <Group name="Destroy" />
+                </DamageBehavior>
+              </DamageBehaviors>
+              <Parts>
+                <Part name="hardpoint_thruster_top_front_right_fixed" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro -X -Z upper front right" display_name="Top Front Right Fixed Thruster" requiredTags="">
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.0, 6.0, 1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_countermeasures_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="left" display_name="Countermeasure Launcher Left">
+                    <Types>
+                      <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_countermeasures_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="right" display_name="Countermeasure Launcher Right">
+                    <Types>
+                      <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_engine_left" class="ItemPort">
+                  <ItemPort minsize="3" maxsize="3" flags="left" display_name="Main Thruster Left">
+                    <Types>
+                      <Type type="MainThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-1.2, -4.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_engine_right" class="ItemPort">
+                  <ItemPort minsize="3" maxsize="3" flags="right" display_name="Main Thruster Right">
+                    <Types>
+                      <Type type="MainThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="1.2, -4.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_intake_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Fuel Intake Left">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_intake_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Fuel Intake Right">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_tank_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="" display_name="Fuel Tank Left">
+                    <Types>
+                      <Type type="FuelTank" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_tank_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="" display_name="Fuel Tank Right">
+                    <Types>
+                      <Type type="FuelTank" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_power_plant_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="left" portTags="VNCL_Scythe_Item" requiredTags="VNCL_Scythe_Item" display_name="Power Plant Left">
+                    <Types>
+                      <Type type="PowerPlant" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_power_plant_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="right" portTags="VNCL_Scythe_Item" requiredTags="VNCL_Scythe_Item" display_name="Power Plant Right">
+                    <Types>
+                      <Type type="PowerPlant" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_radiator_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="left" display_name="Cooler Left" requiredTags="">
+                    <Types>
+                      <Type type="Cooler" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_radiator_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Cooler Right" requiredTags="">
+                    <Types>
+                      <Type type="Cooler" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_shield_generator" class="ItemPort">
+                  <ItemPort minsize="3" maxsize="3" flags="" requiredTags="VNCL_Scythe_Item" display_name="Shield Generator">
+                    <Types>
+                      <Type type="Shield" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_back_left_joint" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +X -Z upper rear left" display_name="Bottom Back Left Joint Thruster" requiredTags="">
+                    <Pitch min="0" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.0, -2.0, -1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_back_right_joint" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear right" display_name="Bottom Back Right Joint Thruster" requiredTags="">
+                    <Pitch min="0" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.0, -2.0, -1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_front_left_joint" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Bottom Front Left Joint Thruster" requiredTags="">
+                    <Pitch min="-20" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.0, 6.0, -1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_front_right_joint" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro -X -Z upper front right" display_name="Bottom Front Right Joint Thruster" requiredTags="">
+                    <Pitch min="-20" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.0, 6.0, -1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_retro_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z left" display_name="Left Retro Thruster" requiredTags="">
+                    <Pitch min="0" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-2.7, 7.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_retro_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z right" display_name="Right Retro Thruster" requiredTags="">
+                    <Pitch min="0" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="2.7, 7.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_side_back_left_fixed" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Side Back Left Fixed Thruster" requiredTags="">
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-4.0, -2.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_side_back_right_fixed" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation right" display_name="Side Back Right Fixed Thruster" requiredTags="">
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="4.0, -2.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_side_front_left_fixed" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation left" display_name="Side Front Left Fixed Thruster" requiredTags="">
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-4.0, 6.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_side_front_right_fixed" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro right" display_name="Side Front Right Fixed Thruster" requiredTags="">
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="4.0, 6.0, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_back_left_joint" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -X -Z upper rear right" display_name="Top Back Left Joint Thruster" requiredTags="">
+                    <Pitch min="-90" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.0, -2.0, 1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_back_right_joint" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Top Back Right Joint Thruster" requiredTags="">
+                    <Pitch min="-90" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.0, -2.0, 1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_front_left_fixed" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Top Front Left Fixed Thruster" requiredTags="">
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.0, 6.0, 1.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="wing_right_arm" class="AnimatedJoint" scopeContext="Ship" mass="100" damageMax="800" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" id="idHealthWingRight">
+                  <Effects>
+                    <DetachFx joint="wing_right_arm" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-2.52389,-2.7837,1.14464" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_arm_PFX_DetachFX_explode_8m_Flash006" />
+                    <DetachFx joint="wing_right_arm" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-2.52389,-1.26157,1.14464" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_arm_PFX_DetachFX_explode_2m_once_fixed" />
+                    <DetachFx joint="wing_right_arm" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-2.35267,-4.70237,1.14464" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_arm_SQUIB_.4m016" />
+                    <DetachFx joint="wing_right_arm" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-2.41496,-2.93273,1.14464" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_arm_SQUIB_.4m017" />
+                    <DetachFx joint="wing_right_arm" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-3.07355,-2.93273,2.1029" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_arm_SQUIB_.4m018" />
+                    <DetachFx joint="wing_right_arm" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-2.23879,-1.64589,1.14464" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_arm_SQUIB_.7m" />
+                  </Effects>
+                  <Parts>
+                    <Part name="wing_right_gun" class="AnimatedJoint" damageMax="650" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability=".4">
+                      <Parts>
+                        <Part name="hardpoint_gun_wing_right" class="ItemPort">
+                          <ItemPort minsize="5" maxsize="5" flags="right" portTags="Wrath" display_name="Gun Wing Right">
+                            <Types>
+                              <Type type="WeaponGun" subtypes="Gun" />
+                            </Types>
+                          </ItemPort>
+                        </Part>
+                        <Part name="wing_rightA" class="AnimatedJoint" damageMax="700" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_rightA" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.270502,1.15731,1.74291" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_PFX_DetachFX_explode_2m_Fireless032" />
+                            <DetachFx joint="wing_rightA" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.580576,5.56517,1.74291" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_PFX_DetachFX_explode_2m_once_fixed" />
+                            <DetachFx joint="wing_rightA" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.17593,8.92286,2.5376" rot_offset="-0.934621,0.355585,-0.00655943" helperID="wing_rightA_PFX_DetachFX_explode_2m_once_fixed001" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687293,11.6205,-0.0861917" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m010" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687293,9.65294,-0.0861911" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m011" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687293,7.56478,-0.0861902" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m012" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687299,5.64782,-0.0861899" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m013" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687299,2.91166,-0.086189" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m015" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687305,1.53321,-0.0861884" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m016" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.0687305,-0.136559,-0.086188" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_.7m017" />
+                            <DetachFx joint="SQUIB_.9m005" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="-0.0687299,8.07525,3.49677" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightASQUIB_.9m005" />
+                            <DetachFx joint="SQUIB_.9m006" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="-0.0687311,0.042052,2.04527" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightASQUIB_.9m006" />
+                            <DetachFx joint="SQUIB_.9m" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="0.270502,1.83227,1.96845" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightASQUIB_.9m" />
+                            <DetachFx joint="SQUIB_.9m004" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="-0.0687286,10.6913,2.31032" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightASQUIB_.9m004" />
+                            <DetachFx joint="wing_rightA" squibPhysical="40" squibEnergy="40" squibRadius="1.5" pos_offset="-0.0687305,4.27488,-0.0861893" rot_offset="-0.993805,-0.0723907,0.0843314" helperID="wing_rightA_SQUIB_1.5m014" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_right_blade" class="AnimatedJoint" mass="200" damageMax="100" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <DamageMultipliers>
+                                <DamageMultiplier damageType="collision" multiplier="0.01" />
+                              </DamageMultipliers>
+                              <Effects>
+                                <DetachFx joint="wing_right_blade" partName="wing_rightA" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.206131,3.70599,-1.9559" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_right_blade_PFX_DetachFX_explode_8m_Flash009" />
+                                <DetachFx joint="wing_right_blade" partName="wing_rightA" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.263533,-2.67054,-1.9559" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_right_blade_PFX_DetachFX_explode_2m_once_fixed" />
+                                <DetachFx joint="wing_right_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.263534,0.134568,-1.84373" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_right_blade_SQUIB_.7m02" />
+                                <DetachFx joint="wing_right_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.263534,5.31859,-1.89171" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_right_blade_SQUIB_.7m" />
+                                <DetachFx joint="wing_right_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.263534,3.00748,-1.87852" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_right_blade_SQUIB_.7m01" />
+                                <DetachFx joint="wing_right_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.263536,14.1015,-1.66087" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_right_blade_SQUIB_.7m03" />
+                              </Effects>
+                              <Parts>
+                                <Part name="hardpoint_blade_wing_right" class="ItemPort">
+                                  <ItemPort minsize="1" maxsize="1" flags="invisible" portTags="VNCL_Blade" deployAnim="Blade" deployAnimState="Deploy" retractAnimState="Retract" forceWait="1" display_name="Blade Wing Right">
+                                    <Types>
+                                      <Type type="WeaponMissile" subtypes="MissileRack" />
+                                    </Types>
+                                  </ItemPort>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="landing_gear_right" class="AnimatedJoint" />
+                            <Part name="wing_rightB" class="AnimatedJoint">
+                              <Effects />
+                              <Parts>
+                                <Part name="hardpoint_missile_rack_right" class="ItemPort">
+                                  <ItemPort minsize="3" maxsize="3" flags="right" display_name="Missile Rack Right">
+                                    <Types>
+                                      <Type type="WeaponMissile" subtypes="MissileRack" />
+                                    </Types>
+                                  </ItemPort>
+                                </Part>
+                                <Part name="wing_right_blade_lock" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                              </Parts>
+                            </Part>
+                            <Part name="wing_rightA_featherA_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_rightA_featherA_hinge" partName="wing_rightA" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.146425,0.0260382,-0.0216937" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_rightA_featherA_hinge_PFX_DetachFX_sparks_1m_once_fixed012" />
+                                <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.120103,-0.0128345,-0.0221912" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_rightA_featherA_hingeSQUIB_.3m" />
+                              </Effects>
+                              <Parts>
+                                <Part name="wing_rightA_featherA_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_rightA_featherA_end" partName="wing_rightA_featherA_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.153441,0.00914795,-0.220917" rot_offset="-0.0833735,0.782372,-0.617205" helperID="wing_rightA_featherA_end_PFX_DetachFX_sparks_1m_once_fixed011" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.115086,0.00919983,-0.21524" rot_offset="-0.0833735,0.782372,-0.617205" helperID="wing_rightA_featherA_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="wing_rightA_featherB_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="wing_rightA_featherB_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_rightA_featherB_end" partName="wing_rightA_featherB_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.0933438,0.00890381,-0.197946" rot_offset="-0.0833726,0.782372,-0.617205" helperID="wing_rightA_featherB_end_PFX_DetachFX_sparks_1m_once_fixed010" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.115192,0.0085553,-0.180235" rot_offset="-0.0833726,0.782372,-0.617205" helperID="wing_rightA_featherB_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="wing_rightA_featherC_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="wing_rightA_featherC_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_rightA_featherC_end" partName="wing_rightA_featherC_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.0865776,0.00904724,-0.171629" rot_offset="-0.0833734,0.782372,-0.617206" helperID="wing_rightA_featherC_end_PFX_DetachFX_sparks_1m_once_fixed009" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0439638,0.00970703,-0.204856" rot_offset="-0.0833734,0.782372,-0.617206" helperID="wing_rightA_featherC_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="wing_rightA_featherD_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_rightA_featherD_hinge" partName="wing_rightA" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.0514044,0.0321634,-0.0295532" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_rightA_featherD_hinge_PFX_DetachFX_sparks_1m_once_fixed015" />
+                                <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0653281,-0.00165741,-0.0299377" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_rightA_featherD_hingeSQUIB_.3m" />
+                              </Effects>
+                              <Parts>
+                                <Part name="wing_rightA_featherD_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_rightA_featherD_end" partName="wing_rightA_featherD_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.0610262,0.00881592,-0.22408" rot_offset="-0.0833745,0.782371,-0.617206" helperID="wing_rightA_featherD_end_PFX_DetachFX_sparks_1m_once_fixed008" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0323573,0.00861816,-0.204353" rot_offset="-0.0833745,0.782371,-0.617206" helperID="wing_rightA_featherD_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                    <Part name="wing_right_tailA" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_right_tailA" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.071395,-0.397205,0.118163" rot_offset="-0.993805,-0.0723913,0.0843327" helperID="wing_right_tailA_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_right_tailA" partName="wing_right_arm" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="0.0713947,0.00415009,0.0631369" rot_offset="0.0,-0.994023,-0.109172" helperID="wing_right_tailA_PFX_DetachFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_right_tailA" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="0.0713947,0.00415009,0.0631369" rot_offset="0.147373,-0.989081,0.0" helperID="wing_right_tailA_PFX_DebrisFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_right_tailA" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" pos_offset="0.0713947,0.00415009,0.0631369" rot_offset="-0.142207,-0.980209,-0.137725" helperID="wing_right_tailA_PFX_DebrisFX_sparks_2m_loop_fixed" />
+                        <DetachFx joint="wing_right_tailA" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.390405,-0.0913194,-0.166721" rot_offset="0.147373,-0.989081,0.0" helperID="wing_right_tailA_SQUIB_.4m" />
+                        <DetachFx joint="wing_right_tailA" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.408611,-0.0913199,0.156156" rot_offset="0.147373,-0.989081,0.0" helperID="wing_right_tailA_SQUIB_.4m002" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_right_tailB" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_right_tailB" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="0.141779,0.120679,0.0698337" rot_offset="0.130685,0.949607,-0.284898" helperID="wing_right_tailB_PFX_DebrisFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_right_tailB" partName="wing_right_arm" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="0.141779,0.0402446,0.0698338" rot_offset="0.197122,-0.975528,-0.0974095" helperID="wing_right_tailB_PFX_DetachFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_right_tailB" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="0.141779,0.120679,0.0698337" rot_offset="0.130685,0.949607,-0.284898" helperID="wing_right_tailB_PFX_DebrisFX_sparks_1m_loop_fixed" />
+                        <DetachFx joint="wing_right_tailB" partName="wing_right_arm" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" pos_offset="0.141779,0.0402446,0.0698338" rot_offset="0.197122,-0.975528,-0.0974095" helperID="wing_right_tailB_PFX_DetachFX_sparks_2m_loop_fixed" />
+                        <DetachFx joint="wing_right_tailB" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.329749,-0.120529,-0.0295212" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_tailB_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_right_tailB" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.477627,0.12068,0.0810495" rot_offset="0.130685,0.949607,-0.284898" helperID="wing_right_tailB_SQUIB_.4m" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_right_tailC" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_right_tailC" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="0.0106714,0.213923,-0.0558409" rot_offset="-0.446231,-0.308451,0.840081" helperID="wing_right_tailC_PFX_DebrisFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_right_tailC" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0106714,0.000371704,-0.0558409" rot_offset="0.621547,-0.646272,0.442731" helperID="wing_right_tailC_PFX_DebrisFX_explode_8m_Flash" />
+                        <DetachFx joint="wing_right_tailC" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="0.0106714,0.213923,-0.0558409" rot_offset="-0.167421,-0.982659,-0.0797015" helperID="wing_right_tailC_PFX_DebrisFX_sparks_1m_loop_fixed" />
+                        <DetachFx joint="wing_right_tailC" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.0106714,0.000371704,-0.0558409" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="wing_right_tailC_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_right_tailC" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.119355,-0.0685556,-0.0558409" rot_offset="0.621547,-0.646272,0.442731" helperID="wing_right_tailC_SQUIB_.4m" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_right_tailD" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_right_tailD" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0903418,-0.748101,0.0442654" rot_offset="-0.993805,-0.0723906,0.084332" helperID="wing_right_tailD_PFX_DetachFX_explode_8m_Flash003" />
+                        <DetachFx joint="wing_right_tailD" partName="wing_right_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.541564,-0.748101,0.439297" rot_offset="-0.993805,-0.0723906,0.084332" helperID="wing_right_tailD_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_right_tailD" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.282097,-1.12872,0.0442654" rot_offset="-0.993805,-0.0723906,0.084332" helperID="wing_right_tailD_SQUIB_.4m" />
+                        <DetachFx joint="wing_right_tailD" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.119169,-0.120296,0.0442651" rot_offset="-0.993805,-0.0723906,0.084332" helperID="wing_right_tailD_SQUIB_.4m003" />
+                      </Effects>
+                      <Parts>
+                        <Part name="wing_right_tailD_featherA_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_right_tailD_featherA_hinge" partName="wing_right_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.24821,-0.00251099,-0.187383" rot_offset="-0.0510383,-0.987972,-0.145964" helperID="wing_right_tailD_featherA_hinge_PFX_DetachFX_sparks_1m_once_fixed004" />
+                            <DetachFx joint="wing_right_tailD_featherA_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.189564,-0.039165,-0.180901" rot_offset="-0.0510383,-0.987972,-0.145964" helperID="wing_right_tailD_featherA_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_right_tailD_featherA_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_right_tailD_featherA_end" partName="wing_right_tailD_featherA_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.0801984,0.106059,-0.255531" rot_offset="-0.922026,0.385038,0.0401741" helperID="wing_right_tailD_featherA_end_PFX_DetachFX_sparks_1m_once_fixed" />
+                                <DetachFx joint="wing_right_tailD_featherA_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.135709,0.109706,-0.216181" rot_offset="-0.922026,0.385038,0.0401741" helperID="wing_right_tailD_featherA_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="wing_right_tailD_featherB_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_right_tailD_featherB_hinge" partName="wing_right_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.366713,-0.060661,-0.240612" rot_offset="0.997698,-0.0110936,-0.0668964" helperID="wing_right_tailD_featherB_hinge_PFX_DetachFX_sparks_1m_once_fixed005" />
+                            <DetachFx joint="wing_right_tailD_featherB_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.359258,-0.000166626,-0.222167" rot_offset="0.997698,-0.0110936,-0.0668964" helperID="wing_right_tailD_featherB_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_right_tailD_featherB_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_right_tailD_featherB_end" partName="wing_right_tailD_featherB_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.236474,0.157827,-0.213423" rot_offset="-0.395742,0.0199585,0.918145" helperID="wing_right_tailD_featherB_end_PFX_DetachFX_sparks_1m_once_fixed001" />
+                                <DetachFx joint="wing_right_tailD_featherB_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.21545,0.162469,-0.241255" rot_offset="-0.395742,0.0199585,0.918145" helperID="wing_right_tailD_featherB_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="wing_right_tailD_featherC_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_right_tailD_featherC_hinge" partName="wing_right_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.36516,0.00750977,-0.231838" rot_offset="0.135245,0.953251,0.270225" helperID="wing_right_tailD_featherC_hinge_PFX_DetachFX_sparks_1m_once_fixed006" />
+                            <DetachFx joint="wing_right_tailD_featherC_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.320413,0.0778491,-0.20232" rot_offset="0.135245,0.953251,0.270225" helperID="wing_right_tailD_featherC_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_right_tailD_featherC_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_right_tailD_featherC_end" partName="wing_right_tailD_featherC_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.164694,0.148101,-0.229066" rot_offset="-0.552527,0.0704312,0.830514" helperID="wing_right_tailD_featherC_end_PFX_DetachFX_sparks_1m_once_fixed002" />
+                                <DetachFx joint="wing_right_tailD_featherC_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.120352,0.122901,-0.172979" rot_offset="-0.552527,0.0704312,0.830514" helperID="wing_right_tailD_featherC_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="wing_right_tailD_featherD_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_right_tailD_featherD_hinge" partName="wing_right_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.472776,-0.0123187,-0.288595" rot_offset="-0.225879,0.973583,-0.0333987" helperID="wing_right_tailD_featherD_hinge_PFX_DetachFX_sparks_1m_once_fixed007" />
+                            <DetachFx joint="wing_right_tailD_featherD_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.386963,0.0118341,-0.266583" rot_offset="-0.225879,0.973583,-0.0333987" helperID="wing_right_tailD_featherD_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_right_tailD_featherD_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_right_tailD_featherD_end" partName="wing_right_tailD_featherD_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.162312,0.17384,-0.290801" rot_offset="-0.929301,-0.263306,-0.258979" helperID="wing_right_tailD_featherD_end_PFX_DetachFX_sparks_1m_once_fixed003" />
+                                <DetachFx joint="wing_right_tailD_featherD_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.120212,0.14644,-0.225596" rot_offset="-0.929301,-0.263306,-0.258979" helperID="wing_right_tailD_featherD_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_lights_starboard_wing" class="ItemPort">
+                      <!-- Body Rig attach point  -->
+                      <ItemPort minsize="1" maxsize="1" flags="starboardWing_lights" display_name="Starboard Lights">
+                        <Types>
+                          <Type type="Light" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="wing_left_arm" class="AnimatedJoint" scopeContext="Ship" mass="100" damageMax="800" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" id="idHealthWingLeft">
+                  <Effects>
+                    <DetachFx joint="wing_left_arm" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="2.52389,-2.7837,1.14464" rot_offset="0.993805,0.0723905,-0.084332" helperID="wing_left_arm_PFX_DetachFX_explode_8m_Flash006" />
+                    <DetachFx joint="wing_left_arm" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="2.52389,-1.26157,1.14464" rot_offset="0.993805,0.0723905,-0.084332" helperID="wing_left_arm_PFX_DetachFX_explode_2m_once_fixed" />
+                    <DetachFx joint="wing_left_arm" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="2.35266,-4.70237,1.14464" rot_offset="0.993805,0.0723905,-0.084332" helperID="wing_left_arm_SQUIB_.4m016" />
+                    <DetachFx joint="wing_left_arm" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="2.41496,-2.93273,1.14464" rot_offset="0.993805,0.0723905,-0.084332" helperID="wing_left_arm_SQUIB_.4m017" />
+                    <DetachFx joint="wing_left_arm" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="3.07355,-2.93273,2.1029" rot_offset="0.993805,0.0723905,-0.084332" helperID="wing_left_arm_SQUIB_.4m018" />
+                    <DetachFx joint="wing_left_arm" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="2.23879,-1.64589,1.14464" rot_offset="0.993805,0.0723905,-0.084332" helperID="wing_left_arm_SQUIB_.7m" />
+                  </Effects>
+                  <Parts>
+                    <Part name="wing_left_gun" class="AnimatedJoint" damageMax="650" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability=".4">
+                      <Parts>
+                        <Part name="hardpoint_gun_wing_left" class="ItemPort">
+                          <ItemPort minsize="5" maxsize="5" flags="left" portTags="Wrath" display_name="Gun Wing Left">
+                            <Types>
+                              <Type type="WeaponGun" subtypes="Gun" />
+                            </Types>
+                          </ItemPort>
+                        </Part>
+                        <Part name="wing_leftA" class="AnimatedJoint" damageMax="700" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_leftA" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.270501,-1.15731,-1.74291" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_PFX_DetachFX_explode_2m_Fireless032" />
+                            <DetachFx joint="wing_leftA" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.580574,-5.56517,-1.74291" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_PFX_DetachFX_explode_2m_once_fixed" />
+                            <DetachFx joint="wing_leftA" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.175931,-8.92286,-2.53759" rot_offset="-0.93462,0.355586,-0.00655895" helperID="wing_leftA_PFX_DetachFX_explode_2m_once_fixed001" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687311,-11.6205,0.0861935" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m010" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687305,-9.65294,0.0861926" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m011" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687305,-7.56478,0.0861911" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m012" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687305,-5.64782,0.0861902" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m013" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687305,-2.91166,0.0861893" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m015" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687311,-1.53321,0.0861887" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m016" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.0687305,0.13656,0.086188" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_.7m017" />
+                            <DetachFx joint="SQUIB_.9m005" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="0.0687311,-8.07525,-3.49677" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftASQUIB_.9m005" />
+                            <DetachFx joint="SQUIB_.9m006" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="0.0687311,-0.0420514,-2.04527" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftASQUIB_.9m006" />
+                            <DetachFx joint="SQUIB_.9m" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="-0.270501,-1.83227,-1.96845" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftASQUIB_.9m" />
+                            <DetachFx joint="SQUIB_.9m004" squibPhysical="40" squibEnergy="40" squibRadius=".9" pos_offset="0.0687305,-10.6913,-2.31032" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftASQUIB_.9m004" />
+                            <DetachFx joint="wing_leftA" squibPhysical="40" squibEnergy="40" squibRadius="1.5" pos_offset="0.0687305,-4.27488,0.0861896" rot_offset="-0.993805,-0.0723903,0.0843315" helperID="wing_leftA_SQUIB_1.5m014" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_left_blade" class="AnimatedJoint" mass="200" damageMax="100" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <DamageMultipliers>
+                                <DamageMultiplier damageType="collision" multiplier="0.01" />
+                              </DamageMultipliers>
+                              <Effects>
+                                <DetachFx joint="wing_left_blade" partName="wing_leftA" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.20613,-3.70599,1.9559" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_left_blade_PFX_DetachFX_explode_8m_Flash009" />
+                                <DetachFx joint="wing_left_blade" partName="wing_leftA" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.263533,2.67054,1.9559" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_left_blade_PFX_DetachFX_explode_2m_once_fixed" />
+                                <DetachFx joint="wing_left_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.263533,-0.134568,1.84373" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_left_blade_SQUIB_.7m02" />
+                                <DetachFx joint="wing_left_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.263533,-5.31859,1.89171" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_left_blade_SQUIB_.7m" />
+                                <DetachFx joint="wing_left_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.263533,-3.00748,1.87852" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_left_blade_SQUIB_.7m01" />
+                                <DetachFx joint="wing_left_blade" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.263533,-14.1015,1.66087" rot_offset="-0.83906,0.519527,0.161459" helperID="wing_left_blade_SQUIB_.7m03" />
+                              </Effects>
+                              <Parts>
+                                <Part name="hardpoint_blade_wing_left" class="ItemPort">
+                                  <ItemPort minsize="1" maxsize="1" flags="invisible" portTags="VNCL_Blade" deployAnim="Blade" deployAnimState="Deploy" retractAnimState="Retract" forceWait="1" display_name="Blade Wing Left">
+                                    <Types>
+                                      <Type type="WeaponMissile" subtypes="MissileRack" />
+                                    </Types>
+                                  </ItemPort>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="landing_gear_left" class="AnimatedJoint" />
+                            <Part name="wing_leftB" class="AnimatedJoint">
+                              <Effects />
+                              <Parts>
+                                <Part name="hardpoint_missile_rack_left" class="ItemPort">
+                                  <ItemPort minsize="3" maxsize="3" flags="left" display_name="Missile Rack Left">
+                                    <Types>
+                                      <Type type="WeaponMissile" subtypes="MissileRack" />
+                                    </Types>
+                                  </ItemPort>
+                                </Part>
+                                <Part name="wing_left_blade_lock" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                              </Parts>
+                            </Part>
+                            <Part name="wing_leftA_featherA_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_leftA_featherA_hinge" partName="wing_leftA" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.146426,-0.0260382,0.0216925" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_leftA_featherA_hinge_PFX_DetachFX_sparks_1m_once_fixed012" />
+                                <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.120102,0.0128345,0.0221893" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_leftA_featherA_hingeSQUIB_.3m" />
+                              </Effects>
+                              <Parts>
+                                <Part name="wing_leftA_featherA_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_leftA_featherA_end" partName="wing_leftA_featherA_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.153441,-0.00914673,0.220917" rot_offset="-0.0833742,0.782371,-0.617206" helperID="wing_leftA_featherA_end_PFX_DetachFX_sparks_1m_once_fixed011" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.115085,-0.00919861,0.21524" rot_offset="-0.0833742,0.782371,-0.617206" helperID="wing_leftA_featherA_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="wing_leftA_featherB_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="wing_leftA_featherB_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_leftA_featherB_end" partName="wing_leftA_featherB_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.0933441,-0.00890503,0.197946" rot_offset="-0.0833748,0.782371,-0.617207" helperID="wing_leftA_featherB_end_PFX_DetachFX_sparks_1m_once_fixed010" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.115192,-0.0085553,0.180235" rot_offset="-0.0833748,0.782371,-0.617207" helperID="wing_leftA_featherB_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="wing_leftA_featherC_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Parts>
+                                <Part name="wing_leftA_featherC_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_leftA_featherC_end" partName="wing_leftA_featherC_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.0865778,-0.00904541,0.17163" rot_offset="-0.0833741,0.782371,-0.617206" helperID="wing_leftA_featherC_end_PFX_DetachFX_sparks_1m_once_fixed009" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.0439645,-0.00970581,0.204857" rot_offset="-0.0833741,0.782371,-0.617206" helperID="wing_leftA_featherC_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                            <Part name="wing_leftA_featherD_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_leftA_featherD_hinge" partName="wing_leftA" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.0514044,-0.0321643,0.0295532" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_leftA_featherD_hinge_PFX_DetachFX_sparks_1m_once_fixed015" />
+                                <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.0653284,0.00165741,0.0299377" rot_offset="-0.27835,0.576425,0.768281" helperID="wing_leftA_featherD_hingeSQUIB_.3m" />
+                              </Effects>
+                              <Parts>
+                                <Part name="wing_leftA_featherD_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                                  <Effects>
+                                    <DetachFx joint="wing_leftA_featherD_end" partName="wing_leftA_featherD_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="0.0610265,-0.00881653,0.22408" rot_offset="-0.0833732,0.782372,-0.617206" helperID="wing_leftA_featherD_end_PFX_DetachFX_sparks_1m_once_fixed008" />
+                                    <DetachFx joint="SQUIB_.3m" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.0323575,-0.00861877,0.204352" rot_offset="-0.0833732,0.782372,-0.617206" helperID="wing_leftA_featherD_endSQUIB_.3m" />
+                                  </Effects>
+                                </Part>
+                              </Parts>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                    <Part name="wing_left_tailA" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_left_tailA" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.071395,0.397206,-0.118163" rot_offset="-0.993805,-0.072392,0.0843328" helperID="wing_left_tailA_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_left_tailA" partName="wing_left_arm" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="-0.071395,-0.00414963,-0.0631371" rot_offset="0.0,-0.994023,-0.109172" helperID="wing_left_tailA_PFX_DetachFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tailA" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="-0.071395,-0.00414963,-0.0631371" rot_offset="0.147373,-0.989081,0.0" helperID="wing_left_tailA_PFX_DebrisFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tailA" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" pos_offset="-0.071395,-0.00414963,-0.0631371" rot_offset="-0.142208,-0.980209,-0.137724" helperID="wing_left_tailA_PFX_DebrisFX_sparks_2m_loop_fixed" />
+                        <DetachFx joint="wing_left_tailA" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.390405,0.0913202,0.166721" rot_offset="0.147373,-0.989081,0.0" helperID="wing_left_tailA_SQUIB_.4m" />
+                        <DetachFx joint="wing_left_tailA" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.408611,0.0913208,-0.156156" rot_offset="0.147373,-0.989081,0.0" helperID="wing_left_tailA_SQUIB_.4m002" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_left_tailB" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_left_tailB" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="-0.141779,-0.12068,-0.0698336" rot_offset="0.130685,0.949608,-0.284898" helperID="wing_left_tailB_PFX_DebrisFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tailB" partName="wing_left_arm" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="-0.141779,-0.0402448,-0.0698338" rot_offset="0.197122,-0.975528,-0.0974093" helperID="wing_left_tailB_PFX_DetachFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tailB" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="-0.141779,-0.12068,-0.0698336" rot_offset="0.130685,0.949608,-0.284898" helperID="wing_left_tailB_PFX_DebrisFX_sparks_1m_loop_fixed" />
+                        <DetachFx joint="wing_left_tailB" partName="wing_left_arm" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" pos_offset="-0.141779,-0.0402448,-0.0698338" rot_offset="0.197122,-0.975528,-0.0974093" helperID="wing_left_tailB_PFX_DetachFX_sparks_2m_loop_fixed" />
+                        <DetachFx joint="wing_left_tailB" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.329748,0.120529,0.0295213" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="wing_left_tailB_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_left_tailB" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.477627,-0.120679,-0.0810493" rot_offset="0.130685,0.949608,-0.284898" helperID="wing_left_tailB_SQUIB_.4m" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_left_tailC" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_left_tailC" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="-0.0106714,-0.213923,0.0558405" rot_offset="-0.446231,-0.308451,0.840081" helperID="wing_left_tailC_PFX_DebrisFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tailC" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0106714,-0.000371704,0.0558405" rot_offset="0.621547,-0.646272,0.442732" helperID="wing_left_tailC_PFX_DebrisFX_explode_8m_Flash" />
+                        <DetachFx joint="wing_left_tailC" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="-0.0106714,-0.213923,0.0558405" rot_offset="-0.167421,-0.982659,-0.0797015" helperID="wing_left_tailC_PFX_DebrisFX_sparks_1m_loop_fixed" />
+                        <DetachFx joint="wing_left_tailC" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.0106714,-0.000371704,0.0558405" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="wing_left_tailC_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_left_tailC" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.119355,0.0685559,0.0558405" rot_offset="0.621547,-0.646272,0.442732" helperID="wing_left_tailC_SQUIB_.4m" />
+                      </Effects>
+                    </Part>
+                    <Part name="wing_left_tailD" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_left_tailD" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0903412,0.748102,-0.0442653" rot_offset="-0.993805,-0.0723909,0.0843324" helperID="wing_left_tailD_PFX_DetachFX_explode_8m_Flash003" />
+                        <DetachFx joint="wing_left_tailD" partName="wing_left_arm" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.541564,0.748103,-0.439297" rot_offset="-0.993805,-0.0723909,0.0843324" helperID="wing_left_tailD_PFX_DetachFX_explode_2m_once_fixed" />
+                        <DetachFx joint="wing_left_tailD" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.282095,1.12872,-0.0442656" rot_offset="-0.993805,-0.0723909,0.0843324" helperID="wing_left_tailD_SQUIB_.4m" />
+                        <DetachFx joint="wing_left_tailD" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.119169,0.120297,-0.0442653" rot_offset="-0.993805,-0.0723909,0.0843324" helperID="wing_left_tailD_SQUIB_.4m003" />
+                      </Effects>
+                      <Parts>
+                        <Part name="wing_left_tailD_featherA_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_left_tailD_featherA_hinge" partName="wing_left_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.24821,0.00251038,0.187383" rot_offset="-0.051038,-0.987972,-0.145964" helperID="wing_left_tailD_featherA_hinge_PFX_DetachFX_sparks_1m_once_fixed004" />
+                            <DetachFx joint="wing_left_tailD_featherA_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.189564,0.0391632,0.180901" rot_offset="-0.051038,-0.987972,-0.145964" helperID="wing_left_tailD_featherA_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_left_tailD_featherA_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_left_tailD_featherA_end" partName="wing_left_tailD_featherA_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.0801996,-0.106059,0.25553" rot_offset="-0.922026,0.385038,0.0401758" helperID="wing_left_tailD_featherA_end_PFX_DetachFX_sparks_1m_once_fixed" />
+                                <DetachFx joint="wing_left_tailD_featherA_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.135711,-0.109706,0.216182" rot_offset="-0.922026,0.385038,0.0401758" helperID="wing_left_tailD_featherA_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="wing_left_tailD_featherB_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_left_tailD_featherB_hinge" partName="wing_left_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.366712,0.0606592,0.240612" rot_offset="0.997698,-0.0110936,-0.0668959" helperID="wing_left_tailD_featherB_hinge_PFX_DetachFX_sparks_1m_once_fixed005" />
+                            <DetachFx joint="wing_left_tailD_featherB_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.359258,0.000164795,0.222167" rot_offset="0.997698,-0.0110936,-0.0668959" helperID="wing_left_tailD_featherB_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_left_tailD_featherB_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_left_tailD_featherB_end" partName="wing_left_tailD_featherB_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.236474,-0.157827,0.213424" rot_offset="-0.395741,0.019959,0.918145" helperID="wing_left_tailD_featherB_end_PFX_DetachFX_sparks_1m_once_fixed001" />
+                                <DetachFx joint="wing_left_tailD_featherB_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.215449,-0.162469,0.241254" rot_offset="-0.395741,0.019959,0.918145" helperID="wing_left_tailD_featherB_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="wing_left_tailD_featherC_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_left_tailD_featherC_hinge" partName="wing_left_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.36516,-0.00751038,0.231838" rot_offset="0.135246,0.953251,0.270225" helperID="wing_left_tailD_featherC_hinge_PFX_DetachFX_sparks_1m_once_fixed006" />
+                            <DetachFx joint="wing_left_tailD_featherC_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.320413,-0.0778485,0.202321" rot_offset="0.135246,0.953251,0.270225" helperID="wing_left_tailD_featherC_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_left_tailD_featherC_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_left_tailD_featherC_end" partName="wing_left_tailD_featherC_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.164694,-0.148101,0.229067" rot_offset="-0.552528,0.0704307,0.830513" helperID="wing_left_tailD_featherC_end_PFX_DetachFX_sparks_1m_once_fixed002" />
+                                <DetachFx joint="wing_left_tailD_featherC_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.120352,-0.122901,0.17298" rot_offset="-0.552528,0.0704307,0.830513" helperID="wing_left_tailD_featherC_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                        <Part name="wing_left_tailD_featherD_hinge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="wing_left_tailD_featherD_hinge" partName="wing_left_tailD" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.472776,0.0123181,0.288595" rot_offset="-0.225879,0.973583,-0.0333984" helperID="wing_left_tailD_featherD_hinge_PFX_DetachFX_sparks_1m_once_fixed007" />
+                            <DetachFx joint="wing_left_tailD_featherD_hinge" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.386963,-0.0118341,0.266584" rot_offset="-0.225879,0.973583,-0.0333984" helperID="wing_left_tailD_featherD_hinge_SQUIB_.3m" />
+                          </Effects>
+                          <Parts>
+                            <Part name="wing_left_tailD_featherD_end" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                              <Effects>
+                                <DetachFx joint="wing_left_tailD_featherD_end" partName="wing_left_tailD_featherD_hinge" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_once_fixed" pos_offset="-0.162312,-0.17384,0.290801" rot_offset="-0.929302,-0.263305,-0.258978" helperID="wing_left_tailD_featherD_end_PFX_DetachFX_sparks_1m_once_fixed003" />
+                                <DetachFx joint="wing_left_tailD_featherD_end" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.120213,-0.14644,0.225597" rot_offset="-0.929302,-0.263305,-0.258978" helperID="wing_left_tailD_featherD_end_SQUIB_.3m" />
+                              </Effects>
+                            </Part>
+                          </Parts>
+                        </Part>
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_lights_port_wing" class="ItemPort">
+                      <!-- Body Rig attach point  -->
+                      <ItemPort minsize="1" maxsize="1" flags="portWing_lights" display_name="Port Lights">
+                        <Types>
+                          <Type type="Light" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="$proxy_body_top" class="AnimatedJoint" damageMax="1" />
+                <Part name="$proxy_body_right" class="AnimatedJoint" damageMax="1" />
+                <Part name="$proxy_body_left" class="AnimatedJoint" damageMax="1" />
+                <Part name="$proxy_body_bottom" class="AnimatedJoint" damageMax="1" />
+                <Part name="hardpoint_lights_engine" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="engine_lights" display_name="Engine Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_lights_cockpit_int" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="cockpit_lights" display_name="Cockpit Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_lights_body" class="ItemPort">
+                  <!-- Body Rig attach point  -->
+                  <ItemPort minsize="1" maxsize="1" flags="body_lights" display_name="Body Lights">
+                    <Types>
+                      <Type type="Light" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="hardpoint_seat_pilot" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="" display_name="Pilot Seat">
                 <Types>
-                  <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
+                  <Type type="Seat" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_gun_nose_left" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="nose left" requiredTags="VNCL_Scythe_Item" display_name="Gun Nose Left">
+                <Types>
+                  <Type type="WeaponGun" subtypes="Gun" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_gun_nose_right" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="nose right" requiredTags="VNCL_Scythe_Item" display_name="Gun Nose Right">
+                <Types>
+                  <Type type="WeaponGun" subtypes="Gun" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_avionics_motherboard" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+                <Types>
+                  <Type type="Avionics" subtypes="Motherboard" />
                 </Types>
               </ItemPort>
             </Part>
@@ -30,368 +832,52 @@
                 <Types>
                   <Type type="Display" />
                 </Types>
+                <HostItemScale scale="0.6" />
               </ItemPort>
             </Part>
-            <Part name="hardpoint_seat_pilot" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="" display_name="Pilot Seat">
+            <Part name="hardpoint_cockpit_selfdestruct" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
                 <Types>
-                  <Type type="Seat" />
+                  <Type type="SelfDestruct" />
                 </Types>
               </ItemPort>
             </Part>
-            <Part name="hardpoint_gun_nose_left" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="nose left" display_name="Gun Nose Left">
+            <Part name="hardpoint_radar" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" display_name="Short Range Radar">
                 <Types>
-                  <Type type="WeaponGun" subtypes="Gun" />
+                  <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
                 </Types>
               </ItemPort>
             </Part>
-            <Part name="hardpoint_gun_nose_right" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="nose right" display_name="Gun Nose Right">
-                <Types>
-                  <Type type="WeaponGun" subtypes="Gun" />
-                </Types>
-              </ItemPort>
-            </Part>
-          </Parts>
-        </Part>
-        <Part name="body" class="AnimatedJoint">
-          <Parts>
-            <Part name="hardpoint_engine_left" class="ItemPort">
-              <ItemPort minsize="3" maxsize="3" flags="main rear left" display_name="Main Thruster Left">
-                <Types>
-                  <Type type="MainThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-1.2, -7.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_engine_right" class="ItemPort">
-              <ItemPort minsize="3" maxsize="3" flags="main rear right" display_name="Main Thruster Right">
-                <Types>
-                  <Type type="MainThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="1.2, -7.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_top_back_left_joint" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -X -Z upper rear right" display_name="Top Back Left Joint Thruster" requiredTags="">
-                <Pitch min="-90" max="0" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-3.0, -5.0, 1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_bottom_back_left_joint" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +X -Z upper rear left" display_name="Bottom Back Left Joint Thruster" requiredTags="">
-                <Pitch min="0" max="90" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-3.0, -5.0, -1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_bottom_front_left_joint" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Bottom Front Left Joint Thruster" requiredTags="">
-                <Pitch min="-20" max="90" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-3.0, 3.0, -1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_top_front_left_fixed" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Top Front Left Fixed Thruster" requiredTags="">
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-3.0, 3.0, 1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_side_back_left_fixed" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Side Back Left Fixed Thruster" requiredTags="">
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-4.0, -5.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_side_front_left_fixed" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation left" display_name="Side Front Left Fixed Thruster" requiredTags="">
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-4.0, 3.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_top_back_right_joint" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear left" display_name="Top Back Right Joint Thruster" requiredTags="">
-                <Pitch min="-90" max="0" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="3.0, -5.0, 1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_bottom_back_right_joint" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +Z lower rear right" display_name="Bottom Back Right Joint Thruster" requiredTags="">
-                <Pitch min="0" max="90" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="3.0, -5.0, -1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_top_front_right_fixed" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro -X -Z upper front right" display_name="Top Front Right Fixed Thruster" requiredTags="">
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="3.0, 3.0, 1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_side_back_right_fixed" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation right" display_name="Side Back Right Fixed Thruster" requiredTags="">
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="4.0, -5.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_side_front_right_fixed" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro right" display_name="Side Front Right Fixed Thruster" requiredTags="">
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="4.0, 3.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_retro_left" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z left" display_name="Left Retro Thruster" requiredTags="">
-                <Pitch min="0" max="0" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="-2.7, 4.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_retro_right" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z right" display_name="Right Retro Thruster" requiredTags="">
-                <Pitch min="0" max="0" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="2.7, 4.0, 0.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_thruster_bottom_front_right_joint" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation retro -X -Z upper front right" display_name="Bottom Front Right Joint Thruster" requiredTags="">
-                <Pitch min="-20" max="90" />
-                <Types>
-                  <Type type="ManneuverThruster" subtypes="" />
-                </Types>
-                <OptimalStates>
-                  <Fixup pos="3.0, 3.0, -1.0" />
-                </OptimalStates>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_avionics_motherboard" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
-                <Types>
-                  <Type type="Avionics" subtypes="Motherboard" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_power_plant_left" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="left" display_name="Power Plant Left">
-                <Types>
-                  <Type type="PowerPlant" subtypes="" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_power_plant_right" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="right" display_name="Power Plant Right">
-                <Types>
-                  <Type type="PowerPlant" subtypes="" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_fuel_intake_left" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Fuel Intake Left">
-                <Types>
-                  <Type type="FuelIntake" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_fuel_intake_right" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Fuel Intake Right">
-                <Types>
-                  <Type type="FuelIntake" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_fuel_tank_left" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="" display_name="Fuel Tank Left">
-                <Types>
-                  <Type type="FuelTank" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_fuel_tank_right" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="" display_name="Fuel Tank Right">
-                <Types>
-                  <Type type="FuelTank" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_radiator_left" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="left" display_name="Cooler Left" requiredTags="">
-                <Types>
-                  <Type type="Cooler" subtypes="" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_radiator_right" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="right" display_name="Cooler Right" requiredTags="">
-                <Types>
-                  <Type type="Cooler" subtypes="" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_shield_generator" class="ItemPort">
-              <ItemPort minsize="3" maxsize="3" flags="" display_name="Shield Generator">
-                <Types>
-                  <Type type="Shield" subtypes="" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_countermeasures_left" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="left" display_name="Countermeasure Launcher Left">
-                <Types>
-                  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_countermeasures_right" class="ItemPort">
-              <ItemPort minsize="2" maxsize="2" flags="right" display_name="Countermeasure Launcher Right">
-                <Types>
-                  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
-                </Types>
-              </ItemPort>
-            </Part>
-          </Parts>
-        </Part>
-        <Part name="wing_left_arm" class="AnimatedJoint">
-          <Parts>
-            <Part name="wing_left_gun" class="AnimatedJoint">
-              <Parts>
-                <Part name="hardpoint_gun_wing_left" class="ItemPort">
-                  <ItemPort minsize="5" maxsize="5" flags="left" display_name="Gun Wing Left">
-                    <Types>
-                      <Type type="WeaponGun" subtypes="Gun" />
-                    </Types>
-                  </ItemPort>
-                </Part>
-              </Parts>
-            </Part>
-            <Part name="wing_leftA" class="AnimatedJoint">
-              <Parts>
-                <Part name="wing_left_blade" class="AnimatedJoint" />
-                <Part name="wing_leftB" class="AnimatedJoint">
-                  <Parts>
-                    <Part name="hardpoint_missile_rack_left" class="ItemPort">
-                      <ItemPort minsize="3" maxsize="3" flags="left" display_name="Missile Rack Left">
-                        <Types>
-                          <Type type="WeaponMissile" subtypes="MissileRack" />
-                        </Types>
-                      </ItemPort>
-                    </Part>
-                  </Parts>
-                </Part>
-              </Parts>
-            </Part>
-          </Parts>
-        </Part>
-        <Part name="wing_right_arm" class="AnimatedJoint">
-          <Parts>
-            <Part name="wing_right_gun" class="AnimatedJoint">
-              <Parts>
-                <Part name="hardpoint_gun_wing_right" class="ItemPort">
-                  <ItemPort minsize="5" maxsize="5" flags="right" display_name="Gun Wing Right">
-                    <Types>
-                      <Type type="WeaponGun" subtypes="Gun" />
-                    </Types>
-                  </ItemPort>
-                </Part>
-              </Parts>
-            </Part>
-            <Part name="wing_rightA" class="AnimatedJoint">
-              <Parts>
-                <Part name="wing_right_blade" class="AnimatedJoint" />
-                <Part name="wing_rightB" class="AnimatedJoint">
-                  <Parts>
-                    <Part name="hardpoint_missile_rack_right" class="ItemPort">
-                      <ItemPort minsize="3" maxsize="3" flags="right" display_name="Missile Rack Right">
-                        <Types>
-                          <Type type="WeaponMissile" subtypes="MissileRack" />
-                        </Types>
-                      </ItemPort>
-                    </Part>
-                  </Parts>
-                </Part>
-              </Parts>
-            </Part>
+            <Part name="$proxy_nose_bottom" class="AnimatedJoint" damageMax="1" />
+            <Part name="$proxy_nose_interior" class="AnimatedJoint" damageMax="1" />
+            <Part name="$proxy_nose_left" class="AnimatedJoint" damageMax="1" />
+            <Part name="$proxy_nose_right" class="AnimatedJoint" damageMax="1" />
+            <Part name="$proxy_nose_top" class="AnimatedJoint" damageMax="1" />
           </Parts>
         </Part>
       </Parts>
     </Part>
   </Parts>
- 
- 
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--/ Mannequin                                                                                 /-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Mannequin tag="VNCL_Glaive" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive_HumanAnims.adb" id="idMannequin" />
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--/ Mannequin                                                                                 /-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!--/ VEHICLE GEOMTAGS                                                                                 /-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
- 
   <GeomTags id="GeomTagsxml">
-    <geom name="Objects/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive_flightReady.cga" material="" />
+    <geom name="Objects/Spaceships/Ships/VNCL/Glaive/VNCL_Glaive.cga" material="" />
     <TagsList>
       <Tags tag="over dragging">
-        <geom name="Objects/Spaceships/Ships/Glaive/VNCL_Glaive_flightReady.cga" material="" />
+        <geom name="Objects/Spaceships/Ships/Glaive/VNCL_Glaive.cga" material="" />
       </Tags>
       <Tags tag="ItemPreviewA">
-        <geom name="Objects/Spaceships/Ships/Glaive/VNCL_Glaive_flightReady.cga" material="" />
+        <geom name="Objects/Spaceships/Ships/Glaive/VNCL_Glaive.cga" material="" />
       </Tags>
     </TagsList>
   </GeomTags>
- 
- </Modifications>
+</Modifications>
