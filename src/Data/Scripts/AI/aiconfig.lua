@@ -8,7 +8,6 @@ Script.ReloadScript("Scripts/AI/Anchor.lua");
 Script.ReloadScript("Scripts/AI/Group.lua");
 
 Script.ReloadScript("Scripts/AI/pathfindProperties.lua");
-Script.ReloadScript("Scripts/AI/Characters/AICharacter.lua");
 Script.ReloadScript("Scripts/AI/AIGroupBehavior.lua");
 
 Script.ReloadScript("Scripts/AI/Formations/FormationManager.lua");
@@ -38,7 +37,7 @@ AICombatClasses = {};
 --this will reset all existing combat classes
 AI.AddCombatClass();	
 
---	ATTENTION!!! DON'T make the scale multiplyer 0 unlees you really need this class to be ignored
+--	ATTENTION!!! DON'T make the scale multiplyer 0 unless you really need this class to be ignored
 AICombatClasses.Player = 0;
 AICombatClasses.PlayerRPG = 1;
 AICombatClasses.Infantry = 2;
@@ -97,4 +96,4 @@ function AI:OnLoad(saved)
 	merge(AIBlackBoard,saved.AIBlackBoard);
 end
 
-AI.LogEvent("[AISSYSTEM] CONFIG SCRIPT FILE LOADED. --------------------------")
+AI.LogEvent("[AISYSTEM] CONFIG SCRIPT FILE LOADED. --------------------------")

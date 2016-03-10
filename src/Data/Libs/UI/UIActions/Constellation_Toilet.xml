@@ -1,0 +1,60 @@
+<Graph Description="" Group="ShipActions" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="UI:Action:Start" pos="-430,-130,0" flags="0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="2" Class="UI:Action:End" pos="350,-170,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="3" Class="UI:Util:FromArray" pos="-380,-40,0" flags="0">
+   <Inputs Array=""/>
+  </Node>
+  <Node Id="5" Class="Entity:EntityInfo" pos="-160,-130,0" flags="1">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="6" Class="Debug:DisplayMessage" pos="50,-170,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="2" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="7" Class="Debug:DisplayMessage" pos="60,170,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="2" posX="50" posY="90" fontSize="2" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="9" Class="Actor:LocalPlayer" pos="-240,-250,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="10" Class="Time:Delay" pos="90,-280,0" flags="0">
+   <Inputs delay="10" resetOnInput="0"/>
+  </Node>
+  <Node Id="11" Class="Entity:EntityInfo" pos="-160,-40,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="12" Class="Debug:DisplayMessage" pos="60,0,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="2" posX="50" posY="70" fontSize="2" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="13" Class="Debug:DisplayMessage" pos="60,330,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="2" posX="50" posY="110" fontSize="2" clr_Color="1,1,1" centered="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3" nodeOut="1" portIn="Array" portOut="Args" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="1" portIn="update" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="1" portIn="in" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="3" portIn="Get" portOut="Val1" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="3" portIn="entityId" portOut="Val1" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="3" portIn="Show" portOut="Val3" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="3" portIn="message" portOut="Val3" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="3" portIn="Get" portOut="Val2" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="3" portIn="entityId" portOut="Val2" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="3" portIn="Show" portOut="Val4" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="3" portIn="message" portOut="Val4" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="5" portIn="Show" portOut="Name" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="5" portIn="message" portOut="Name" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="9" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="9" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="9" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="9" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="10" portIn="EndAction" portOut="out" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="11" portIn="Show" portOut="Name" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="11" portIn="message" portOut="Name" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

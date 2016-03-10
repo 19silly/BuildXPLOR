@@ -1,0 +1,48 @@
+<item name="COOL_AEGS_SMAL_PL01" class="VehicleItemCooler" invisible="0" category="VehicleItem" interface="interface_COOL_AEGS_SMAL_PL01">
+	<params>
+		<param name="itemType" value="Cooler" />
+		<param name="itemSubType" value="" />
+		<param name="itemManufactor" value="AEGS" />
+		<param name="itemDescription" value="itemDesc_COOL_AEGS_SMAL_PL01" />
+		<param name="itemSize" value="1" />
+		<param name="itemTags" value="flightready" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="itemName_COOL_AEGS_SMAL_PL01" />
+		<param name="hitpoints" value="115" />
+		<param name="mass" value="115" />
+		<param name="heatRatio" value="4" />
+		<param name="flushRate" value="5" />
+	</params>
+	
+	<Pipes>
+    
+    <Pipe class="Power" prioType="critical" >
+      <Pool capacity="-300" rate="-4.5" />
+      <States>
+        <State state="Default">
+          <Value value="-60" ignorepool="1"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="critical" >
+      <Signature name="Infrared" poolMultiplier="0.9" />
+      <States>
+        <State state="Active">
+          <Pipe name="Power" value="-10" />
+        </State>
+      </States>
+    </Pipe>
+  
+  </Pipes>
+
+	
+</item>

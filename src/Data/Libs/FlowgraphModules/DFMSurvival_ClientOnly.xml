@@ -1,0 +1,297 @@
+<Graph isModule="1" moduleName="DFMSurvival_ClientOnly" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="WaveNumber" Type="Int" Input="1"/>
+  <Port Name="WaveWarningDuration" Type="Int" Input="1"/>
+  <Port Name="WaveIncoming" Type="Bool" Input="1"/>
+  <Port Name="WaveDead" Type="Bool" Input="1"/>
+  <Port Name="RestockingPhase" Type="Any" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DFMSurvival_ClientOnly" pos="-660,460,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DFMSurvival_ClientOnly" pos="5530,470,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="720" Class="Game:Announcer" pos="1850,1420,0" flags="0">
+   <Inputs Announcement="SVL_WaveDestroyed"/>
+  </Node>
+  <Node Id="722" Class="Game:Announcer" pos="2030,1070,0" flags="0">
+   <Inputs Announcement="SVL_BossWaveDefeated"/>
+  </Node>
+  <Node Id="1158" Class="Vehicle:ReloadAmmo" pos="2460,1200,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="1160" Class="Actor:GetVehicle" pos="2230,1190,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="1161" Class="Actor:LocalPlayer" pos="2230,1150,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1396" Class="Vehicle:ShowNotification" pos="2370,460,0" flags="0">
+   <Inputs SetMessage="@dfm_ui_Wave_param_Incoming" SetNumber="0" Parameter="0" IsWarning="0"/>
+  </Node>
+  <Node Id="1397" Class="Math:UpDownCounter" pos="1390,460,0" flags="0">
+   <Inputs Preset="3" HighLimit="3" LowLimit="1" Dec="0" Inc="0" Wrap="1"/>
+  </Node>
+  <Node Id="1438" Class="Time:Delay" pos="5110,560,0" flags="0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="1476" Class="Effects:SpawnParticleEffect" pos="4050,-10,0" flags="0">
+   <Inputs t_Activate="0" Position="0,0,0" Effect="Ship_Spawn_Effect.Ship_Spawn_Effects_ALL.Ship_Spawn_Small_FullTransition"/>
+  </Node>
+  <Node Id="1513" Class="Math:Compare" pos="1010,990,0" flags="0" InHideMask="255" OutHideMask="7">
+   <Inputs A="0" B="3"/>
+  </Node>
+  <Node Id="1514" Class="Math:Compare" pos="1010,1060,0" flags="0" InHideMask="255" OutHideMask="7">
+   <Inputs A="0" B="6"/>
+  </Node>
+  <Node Id="1515" Class="Math:Compare" pos="1010,1130,0" flags="0" InHideMask="255" OutHideMask="7">
+   <Inputs A="0" B="9"/>
+  </Node>
+  <Node Id="1516" Class="Math:Compare" pos="1010,1200,0" flags="0" InHideMask="255" OutHideMask="7">
+   <Inputs A="0" B="12"/>
+  </Node>
+  <Node Id="1517" Class="Math:Compare" pos="1010,1270,0" flags="0" InHideMask="255" OutHideMask="7">
+   <Inputs A="0" B="15"/>
+  </Node>
+  <Node Id="1518" Class="Game:Announcer" pos="2030,990,0" flags="0">
+   <Inputs Announcement="SVL_BossWaveIncoming"/>
+  </Node>
+  <Node Id="1519" Class="Game:Announcer" pos="1850,1340,0" flags="0">
+   <Inputs Announcement="SVL_WaveIncoming"/>
+  </Node>
+  <Node Id="1521" Class="Logic:Any" pos="1230,990,0" flags="0" InHideMask="991" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1531" Class="Mission:GameTokenGet" pos="250,1240,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber"/>
+  </Node>
+  <Node Id="1547" Class="Time:Delay" pos="20,1240,0" flags="0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="1548" Name="Delayed_for_betty_kill_speech" Class="_comment" pos="10,1190,0" flags="0"/>
+  <Node Id="1573" Class="Mission:GameToken" pos="2900,50,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.SpawnVector" compare_Value="false"/>
+  </Node>
+  <Node Id="1796" Name="If_any_boss_wave" Class="_comment" pos="990,960,0" flags="0"/>
+  <Node Id="1827" Class="Entity:GetPos" pos="3400,10,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="2179" Class="Math:Compare" pos="1010,1340,0" flags="0" InHideMask="255" OutHideMask="7">
+   <Inputs A="0" B="18"/>
+  </Node>
+  <Node Id="2181" Class="Entity:EntityInfo" pos="3400,170,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="2186" Class="Effects:SpawnParticleEffect" pos="4040,80,0" flags="0">
+   <Inputs t_Activate="0" Position="0,0,0" Effect="Ship_Spawn_Effect.Ship_Spawn_Effects_ALL.Ship_Spawn_Small_FullTransition_Boss"/>
+  </Node>
+  <Node Id="2188" Class="String:Compare" pos="3620,180,0" flags="0">
+   <Inputs A="VNCL_Glaive" B="" IgnoreCase="1"/>
+  </Node>
+  <Node Id="2193" Class="Actor:LocalPlayer" pos="3570,570,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2195" Class="Actor:LocalPlayer" pos="3570,760,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2197" Class="Audio:Trigger" pos="3570,800,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCCS_OSYS_Dfm_Vanduul_Wave_Spawn" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="2198" Class="Audio:Trigger" pos="3570,610,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCCS_OSYS_Dfm_Vanduul_Boss_Spawn" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="2200" Class="Mission:GameTokenSet" pos="-110,460,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2202" Class="Mission:GameToken" pos="250,1140,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber" compare_Value=""/>
+  </Node>
+  <Node Id="2203" Name="Spawn_effects" Class="_commentbox" pos="2890,-220.84328,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1800" Height="307"/>
+   <NodeSize Width="1800" Height="510.01154"/>
+  </Node>
+  <Node Id="2204" Class="Mission:GameToken" pos="2010,460,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber" compare_Value=""/>
+  </Node>
+  <Node Id="2205" Class="Mission:GameTokenSet" pos="-110,550,0" flags="0">
+   <Inputs gametoken_Token="WaveWarningDuration" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2206" Class="Mission:GameToken" pos="1020,460,0" flags="0">
+   <Inputs gametoken_Token="WaveWarningDuration" compare_Value=""/>
+  </Node>
+  <Node Id="2208" Class="Mission:GameTokenSet" pos="1030,280,0" flags="0">
+   <Inputs gametoken_Token="CountdownComplete" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="2209" Class="Mission:GameToken" pos="2900,460,0" flags="0">
+   <Inputs gametoken_Token="CountdownComplete" compare_Value="true"/>
+  </Node>
+  <Node Id="2210" Class="Mission:GameToken" pos="2010,530,0" flags="0">
+   <Inputs gametoken_Token="CountdownComplete" compare_Value="true"/>
+  </Node>
+  <Node Id="2211" Class="Mission:GameTokenSet" pos="1610,460,0" flags="0">
+   <Inputs gametoken_Token="CountdownNumber" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="2212" Class="Mission:GameToken" pos="2010,600,0" flags="0">
+   <Inputs gametoken_Token="CountdownNumber" compare_Value=""/>
+  </Node>
+  <Node Id="2214" Class="Mission:GameTokenCheck" pos="3300,610,0" flags="0">
+   <Inputs gametoken_Token="IsBossWave" CheckValue="true"/>
+  </Node>
+  <Node Id="2216" Class="Mission:GameTokenSet" pos="1380,990,0" flags="0">
+   <Inputs gametoken_Token="IsBossWave" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="2217" Class="Mission:GameTokenSet" pos="5530,550,0" flags="0">
+   <Inputs gametoken_Token="CountdownComplete" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2218" Class="Mission:GameTokenSet" pos="5530,650,0" flags="0">
+   <Inputs gametoken_Token="IsBossWave" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2220" Class="Logic:Any" pos="604.51294,1145.1046,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2221" Class="Mission:GameTokenSet" pos="-110,640,0" flags="0">
+   <Inputs gametoken_Token="WaveDead" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="2222" Class="Mission:GameTokenSet" pos="5530,750,0" flags="0">
+   <Inputs gametoken_Token="WaveDead" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2223" Class="Mission:GameToken" pos="-240,1240,0" flags="0">
+   <Inputs gametoken_Token="WaveDead" compare_Value="true"/>
+  </Node>
+  <Node Id="2227" Class="Mission:GameTokenCheck" pos="1480,1340,0" flags="0">
+   <Inputs gametoken_Token="WaveDead" CheckValue="false"/>
+  </Node>
+  <Node Id="2228" Class="Mission:GameTokenCheck" pos="1660,990,0" flags="0">
+   <Inputs gametoken_Token="WaveDead" CheckValue="false"/>
+  </Node>
+  <Node Id="2230" Class="Time:Delay" pos="2030,1190,0" flags="0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="2233" Class="Mission:GameTokenSet" pos="3300,460,0" flags="0">
+   <Inputs gametoken_Token="ExitModule" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="2234" Class="Mission:GameTokenSet" pos="2820,890,0" flags="0">
+   <Inputs gametoken_Token="ExitModule" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="2236" Class="Mission:GameToken" pos="4570,470,0" flags="0">
+   <Inputs gametoken_Token="ExitModule" compare_Value="true"/>
+  </Node>
+  <Node Id="2237" Class="Mission:GameTokenSet" pos="5530,850,0" flags="0">
+   <Inputs gametoken_Token="ExitModule" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2243" Class="Time:Delay" pos="580,460,0" flags="0">
+   <Inputs delay="0" resetOnInput="0"/>
+  </Node>
+  <Node Id="2249" Class="Mission:GameToken" pos="300,460,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber" compare_Value=""/>
+  </Node>
+  <Node Id="2259" Class="Time:TimedCounter" pos="800,460,0" flags="0">
+   <Inputs period="1" limit="0"/>
+  </Node>
+  <Node Id="2262" Class="Math:BooleanFrom" pos="-340,460,0" flags="0">
+   <Inputs Value="0"/>
+  </Node>
+  <Node Id="2264" Class="Logic:Any" pos="2610,890,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2265" Class="Mission:GameToken" pos="4570,560,0" flags="0">
+   <Inputs gametoken_Token="IsBossWave" compare_Value="true"/>
+  </Node>
+  <Node Id="2266" Class="Mission:GameTokenCheck" pos="4830,560,0" flags="0">
+   <Inputs gametoken_Token="WaveDead" CheckValue="true"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2200" nodeOut="1" portIn="Value" portOut="WaveNumber" enabled="1"/>
+  <Edge nodeIn="2205" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2205" nodeOut="1" portIn="Value" portOut="WaveWarningDuration" enabled="1"/>
+  <Edge nodeIn="2221" nodeOut="1" portIn="Trigger" portOut="WaveDead" enabled="1"/>
+  <Edge nodeIn="2221" nodeOut="1" portIn="Value" portOut="WaveDead" enabled="1"/>
+  <Edge nodeIn="2262" nodeOut="1" portIn="Value" portOut="WaveIncoming" enabled="1"/>
+  <Edge nodeIn="1158" nodeOut="1160" portIn="ReloadBullets" portOut="EntityID" enabled="1"/>
+  <Edge nodeIn="1158" nodeOut="1160" portIn="ReloadMissiles" portOut="EntityID" enabled="1"/>
+  <Edge nodeIn="1158" nodeOut="1160" portIn="entityId" portOut="EntityID" enabled="1"/>
+  <Edge nodeIn="1160" nodeOut="1161" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2211" nodeOut="1397" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2211" nodeOut="1397" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1438" portIn="RestockingPhase" portOut="out" enabled="1"/>
+  <Edge nodeIn="1514" nodeOut="1513" portIn="A==B" portOut="false" enabled="1"/>
+  <Edge nodeIn="1521" nodeOut="1513" portIn="in1" portOut="true" enabled="1"/>
+  <Edge nodeIn="1515" nodeOut="1514" portIn="A==B" portOut="false" enabled="1"/>
+  <Edge nodeIn="1521" nodeOut="1514" portIn="in2" portOut="true" enabled="1"/>
+  <Edge nodeIn="1516" nodeOut="1515" portIn="A==B" portOut="false" enabled="1"/>
+  <Edge nodeIn="1521" nodeOut="1515" portIn="in3" portOut="true" enabled="1"/>
+  <Edge nodeIn="1517" nodeOut="1516" portIn="A==B" portOut="false" enabled="1"/>
+  <Edge nodeIn="1521" nodeOut="1516" portIn="in4" portOut="true" enabled="1"/>
+  <Edge nodeIn="1521" nodeOut="1517" portIn="in5" portOut="true" enabled="1"/>
+  <Edge nodeIn="2179" nodeOut="1517" portIn="A==B" portOut="false" enabled="1"/>
+  <Edge nodeIn="2216" nodeOut="1521" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2220" nodeOut="1531" portIn="in2" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1531" nodeOut="1547" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1827" nodeOut="1573" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1827" nodeOut="1573" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2181" nodeOut="1573" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2181" nodeOut="1573" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1476" nodeOut="1827" portIn="Position" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2186" nodeOut="1827" portIn="Position" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="1521" nodeOut="2179" portIn="in6" portOut="true" enabled="1"/>
+  <Edge nodeIn="2227" nodeOut="2179" portIn="Trigger" portOut="false" enabled="1"/>
+  <Edge nodeIn="2188" nodeOut="2181" portIn="B" portOut="Class" enabled="1"/>
+  <Edge nodeIn="2188" nodeOut="2181" portIn="Compare" portOut="Class" enabled="1"/>
+  <Edge nodeIn="1476" nodeOut="2188" portIn="t_Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="2186" nodeOut="2188" portIn="t_Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="2198" nodeOut="2193" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2197" nodeOut="2195" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2220" nodeOut="2202" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1396" nodeOut="2204" portIn="Parameter" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1396" nodeOut="2204" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1397" nodeOut="2206" portIn="HighLimit" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1397" nodeOut="2206" portIn="Preset" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2259" nodeOut="2206" portIn="limit" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2214" nodeOut="2209" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2233" nodeOut="2209" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1396" nodeOut="2210" portIn="Hide" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1396" nodeOut="2212" portIn="SetNumber" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2197" nodeOut="2214" portIn="Play" portOut="False" enabled="1"/>
+  <Edge nodeIn="2198" nodeOut="2214" portIn="Play" portOut="True" enabled="1"/>
+  <Edge nodeIn="2228" nodeOut="2216" portIn="Trigger" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1513" nodeOut="2220" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1513" nodeOut="2220" portIn="A==B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1514" nodeOut="2220" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1515" nodeOut="2220" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1516" nodeOut="2220" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1517" nodeOut="2220" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="2179" nodeOut="2220" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1547" nodeOut="2223" portIn="in" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="720" nodeOut="2227" portIn="Play" portOut="False" enabled="1"/>
+  <Edge nodeIn="1519" nodeOut="2227" portIn="Play" portOut="True" enabled="1"/>
+  <Edge nodeIn="2264" nodeOut="2227" portIn="in2" portOut="False" enabled="1"/>
+  <Edge nodeIn="722" nodeOut="2228" portIn="Play" portOut="False" enabled="1"/>
+  <Edge nodeIn="1518" nodeOut="2228" portIn="Play" portOut="True" enabled="1"/>
+  <Edge nodeIn="2230" nodeOut="2228" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="2264" nodeOut="2228" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="1160" nodeOut="2230" portIn="Get" portOut="out" enabled="1"/>
+  <Edge nodeIn="2217" nodeOut="2236" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2218" nodeOut="2236" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2222" nodeOut="2236" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2237" nodeOut="2236" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2259" nodeOut="2243" portIn="start" portOut="out" enabled="1"/>
+  <Edge nodeIn="2243" nodeOut="2249" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1397" nodeOut="2259" portIn="Dec" portOut="count" enabled="1"/>
+  <Edge nodeIn="2208" nodeOut="2259" portIn="Trigger" portOut="finished" enabled="1"/>
+  <Edge nodeIn="2200" nodeOut="2262" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2234" nodeOut="2264" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2266" nodeOut="2265" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1438" nodeOut="2266" portIn="in" portOut="True" enabled="1"/>
+ </Edges>
+ <GraphTokens>
+  <Token Name="CountdownComplete" Type="" Default="false"/>
+  <Token Name="CountdownNumber" Type="" Default="0"/>
+  <Token Name="ExitModule" Type="" Default="false"/>
+  <Token Name="IsBossWave" Type="" Default="false"/>
+  <Token Name="WaveDead" Type="" Default="false"/>
+  <Token Name="WaveNumber" Type="" Default="0"/>
+  <Token Name="WaveWarningDuration" Type="" Default="0"/>
+ </GraphTokens>
+</Graph>

@@ -1,0 +1,39 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//  Crytek Engine Source File.
+//  Shader extension
+//  Copyright (C), Cloud Imperium Games, 2013.
+// -------------------------------------------------------------------------
+//  File name:   Hologram.ext
+//  Version:     v1.00
+//  Created:     24 Oct 2013 by Okka Kyaw
+//  Compilers:   
+//  Description: Hologram shader extension used by the editor
+//               for automatic shader generation
+// -------------------------------------------------------------------------
+//  History:
+//
+////////////////////////////////////////////////////////////////////////////
+
+
+Version (1.00)
+
+Property
+{
+  Name = %SKIP_POSTPROCESS
+  Mask = 0x1
+  Property    (Skip postprocessing)
+  Description (Disable glow, motion blur, depth of field, etc.)
+}
+
+// CIG BEGIN Jean Louchez
+Property
+{
+  Name = %ENABLE_TRANSPARENT_GLOW_PASS
+  Mask = 0x80000
+  DependencySet = $HW_TransparentGlowPass
+  DependencyReset = $HW_TransparentGlowPass
+  Property    (Enable Transparent Glow)
+  Description (Readonly - enabled when Opacity < 1 AND either of Glow Amount > 0 OR Enable Glow enabled in Advanced tab)
+}
+// CIG END

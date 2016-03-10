@@ -1,0 +1,94 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//  Crytek Engine Source File.
+//  Shader extension
+//  Copyright (C), Crytek Studios, 2001-2004.
+// -------------------------------------------------------------------------
+//  File name:   Cloth.ext
+//  Version:     v1.00
+//  Created:     10/07/2005 by Tiago Sousa
+//  Compilers:   
+//  Description: Cloth shader extension used by the editor
+//               for automatic shader generation (based on "Cloth" shader template)
+// -------------------------------------------------------------------------
+//  History:
+//
+////////////////////////////////////////////////////////////////////////////
+
+
+
+Version (1.00)
+
+UsesCommonGlobalFlags
+
+Property
+{
+  Name = %NORMAL_MAP
+  Mask = 0x1
+  Property    (Normal map)
+  Description (Use normal-map texture)
+  DependencySet = $TEX_Normals
+  DependencyReset = $TEX_Normals
+  Hidden
+}
+
+Property
+{
+  Name = %ANISO_SPECULAR
+  Mask = 0x100
+  Property    (Anisotropic specular)
+  Description (Use Anisotropic specular version)
+}
+
+Property
+{
+  Name = %VERTCOLORS
+  Mask = 0x200
+  Property    (Vertex Colors)
+  Description (Use vertex colors)
+}
+
+Property
+{ 
+  Name = %ALPHAGLOW
+  Mask = 0x4000
+  Property    (Glow in Diffuse alpha)
+  Description (Use alpha channel of diffuse texture for glow)
+}
+
+Property
+{
+  Name = %DETAIL_MAPPING
+  Mask = 0x40000
+  Property    (Detail mapping)
+  Description (Use Detail mapping)
+  DependencyReset = $TEX_Detail
+}
+
+Property
+{
+  Name = %WIND_BENDING
+  Mask = 0x40000000
+  Property    (Wind bending)
+  Description (Simulate wind effects)
+}
+
+Property
+{
+  Name = %ALPHAMASK_DETAILMAP
+  Mask = 0x80000000
+  Property    (DetailMap mask in Diffuse alpha)
+  Description (Use diffuse map alpha for masking detail maps)
+}
+
+// CIG BEGIN Jean Louchez
+Property
+{
+  Name = %ENABLE_TRANSPARENT_GLOW_PASS
+  Mask = 0x80000
+  DependencySet = $HW_TransparentGlowPass
+  DependencyReset = $HW_TransparentGlowPass
+  Property    (Enable Transparent Glow)
+  Description (Readonly - enabled when Opacity < 1 AND either of Glow Amount > 0 OR Enable Glow enabled in Advanced tab)
+}
+// CIG END

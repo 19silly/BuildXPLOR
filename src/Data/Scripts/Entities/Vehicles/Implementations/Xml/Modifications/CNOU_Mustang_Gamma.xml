@@ -120,6 +120,20 @@
                 </Types>
               </ItemPort>
             </Part>
+			<Part name="hardpoint_quantum_drive" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Drive" requiredTags="">
+					<Types>
+						<Type type="Avionics" subtypes="QDrive" />
+					</Types>
+				</ItemPort>
+			</Part>
+			<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Fuel Tank" requiredTags="">
+					<Types>
+						<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+					</Types>
+				</ItemPort>
+			</Part>
             <Part name="body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -852,6 +866,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="cockpit_use_helper2" distance="1" bbMin="-1,-0.5,0" bbMax="1, 1, 1" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_sit_position" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotZeroGEnterPosActivation" />
       </Activations>
       <Enter>
         <Seats>
@@ -909,13 +924,232 @@
     </Action>
 
   </Actions>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--/ VEHICLE SEATS                                                                                    /-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
+  <Seats id="Seatsxml">
+    <!-- SeatDriver's seat  -->
+    <Seat name="SeatDriver" enterHelper="pilot_enterCockpit_pos" sitHelper="pilot_sit_position" zerogEnterHelper="pilot_enterzerog_pos" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" id="idPilotEnterSeat" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-40" maxPitch="60" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
+      </Views>
+      <WaitFor>
+        <Enter>
+          <State animation="Seat" state="Open" />
+          <State animation="Canopy" state="Open" />
+		  </Enter>
+        <Exit>
+          <State animation="Canopy" state="Open" />
+        </Exit>
+      </WaitFor>
+      <PostAction>
+        <Enter>
+          <State animation="Canopy" state="Close" />
+        </Enter>
+		<Exit>
+          <State animation="Canopy" state="Close" />
+        </Exit>
+      </PostAction>	  
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <SeatAction class="AnimatedAction">
+          <Actions>
+            <Action action="v_afterburner" animation="cockpit_mustang_throttle_button_1" vehicleAnimation="cockpit_mustang_throttle_button_1" isTrigger="1" />
+            <Action action="v_brake" animation="cockpit_mustang_throttle_button_2" vehicleAnimation="cockpit_mustang_throttle_button_2" isTrigger="1" />
+            <Action action="v_attack1_group1" animation="cockpit_mustang_joystick_finger_trigger" vehicleAnimation="cockpit_mustang_joystick_finger_trigger" isTrigger="1" />
+            <Action action="v_attack1_group2" animation="cockpit_mustang_joystick_button_3" vehicleAnimation="cockpit_mustang_joystick_button_3" isTrigger="1" />
+            <Action action="v_attack1_group3" animation="cockpit_mustang_joystick_button_3" vehicleAnimation="cockpit_mustang_joystick_button_3" isTrigger="1" />
+            <Action action="v_weapon_launch_missile" animation="cockpit_mustang_joystick_button_3" vehicleAnimation="cockpit_mustang_joystick_button_3" isTrigger="1" />
+            <Action action="v_weapon_launch_countermeasure" animation="cockpit_mustang_joystick_button_4" vehicleAnimation="cockpit_mustang_joystick_button_4" isTrigger="1" />
+          </Actions>
+        </SeatAction>
+        <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init the SeatActionMovement component that will start the engine on entry-->
+        <SeatAction class="Movement">
+          <Movement engine="1">
+          </Movement>
+        </SeatAction>
+        <!-- Weapons used / controlled by pilot of Mustang -->
+        <SeatAction class="SharedWeapons">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_weapon_class1_left_wing" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_weapon_class1_right_wing" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_weapon_class_4" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_countermeasure1_left" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_countermeasure2_left" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_countermeasure1_right" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_countermeasure2_right" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_class3_left" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <ItemPort part="hardpoint_class3_right" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- missiles used / controlled by pilot of Confed Hornet -->
+        <SeatAction class="SharedMissiles">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <!-- <ItemPort part="hardpoint_class3_left"	priority="0" active="0" actorRecoil="0" defaultGroup="3" />
+				<ItemPort part="hardpoint_class3_right"	priority="0" active="0" actorRecoil="0" defaultGroup="3" />
+               -->
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- countermeasures used / controlled by pilot of Mustang -->
+        <SeatAction class="SharedDefensive">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_countermeasure1_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure2_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure1_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure2_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_powerplant" />
+                <ItemPort part="pilotVisor" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_avionics_motherboard" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+                <ItemPort part="hardpoint_seat" />
+                <ItemPort part="radar_helper" />
+                <ItemPort part="*light" />
+                <ItemPort part="*hardpoint_fuel" />
+                <ItemPort part="hardpoint_cockpit_audio" />
+                <ItemPort part="hardpoint_selfdestruct" />
+                <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
+              </Items>
+            </Settings>
+          </SharedItems>
+        </SeatAction>
+        <SeatAction class="SharedThruster">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="*hardpoint_engine" />
+                <ItemPort part="*hardpoint_thruster" />
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <SeatAction class="SharedAutoWeapons">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_weapon_class1_left_wing" priority="1" />
+                <ItemPort part="hardpoint_weapon_class1_right_wing" priority="1" />
+                <ItemPort part="hardpoint_weapon_class_4" priority="1" />
+                <ItemPort part="hardpoint_countermeasure1_left" priority="1" />
+                <ItemPort part="hardpoint_countermeasure2_left" priority="1" />
+                <ItemPort part="hardpoint_countermeasure1_right" priority="1" />
+                <ItemPort part="hardpoint_countermeasure2_right" priority="1" />
+                <ItemPort part="hardpoint_class3_left" priority="1" />
+                <ItemPort part="hardpoint_class3_right" priority="1" />
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <!-- SeatActionAnimateControlInputs
+		     This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+		     Format is
+			    Parts               List of parts to animate
+				    ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+					    RotateX         Rotation around the X axis (pitch)
+					    RotateY         Roll
+					    RotateZ         Yaw
+						    input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+													    registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its workign set of action variables )
+													    or in the Variables section of the vehicle xml
+						    actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+						    direction=    forwards or backwards
+						    min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+						    max=
+						    sound=        The sound to play when animating the part
+						    stopSound=    The sound to play when stopping
+					    Animation
+						    manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (dpending on what kind of input was specified). If thsi si not set the animtion will
+													    play normally according to it's state parameters in the vehicle animation system.
+		     -->
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="main_cockpit_throttle">
+                <Rotate_X input="power" direction="-1" min="-40" max="20" />
+              </ControlPart>
+              <ControlPart part="main_cockpit_control_stick">
+                <Rotate_X input="pitch" direction="-1" min="-30" max="30" />
+                <Rotate_Y input="roll" direction="-1" min="-30" max="30" />
+                <Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-30" max="30" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+              <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_left" blendTime="0" />
+              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_right" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <DockingStation>
+        <Slots>
+          <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" />
+          </Slot>
+        </Slots>
+      </DockingStation>
+      <!-- <FixedVisorSettings default_fixed="1" scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.06" /> -->
+      <FixedVisorSettings default_fixed="0">
+        <FirstPerson scale="1.5" x_offset="0" y_offset="0" z_offset="0.065" />
+        <ThirdPerson scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.06" />
+      </FixedVisorSettings>
+	<HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	</HUDAccess>
+      <ScreensRecord record="Screens_CNOU_Mustang_Pilot" />
+    </Seat>
+  </Seats>
 
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!--/ VEHICLE MANNEQUIN                                                                                /-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
-  <Mannequin tag="CNOU_Mustang" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_HumanAnims.adb" id="Mannequinxml" />
+  <Mannequin tag="CNOU_Mustang" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_HumanAnims.adb" id="Mannequinxml" />
 
   
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -942,6 +1176,25 @@
       </Tags>
     </TagsList>
   </GeomTags>  
+  
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!--/ IFCS                                                                                             /-->
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->  
+  
+        <IFCS id="IFCSxml">
+			<goalTimes opcomTime="3.9" ropcomTime=".7,.5,.7" cruisetime="8"/>  
+			<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->			
+
+			<maxVelocity normal="270" />
+			<linearJerk pos="196,300,196" neg="196,300,196" />
+			<linearScale pos="1.0, 1.0, 1.0" neg="1.0, 1.0, 1.0" />
+ 
+			<maxAngVelocity normal="95,130,95" boost="" />
+			<angularJerk pos="23.1, 71.1, 23.1" neg="23.1, 71.1, 23.1" />
+			<angularScale pos=".0667, .2112, .1035" neg=".0667, .2112, .1035" />
+			<maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+			<errorTorque maxAlpha="1,10,1" maxAngle="18,18,18" />
+		</IFCS>
 
   
   </Modifications>

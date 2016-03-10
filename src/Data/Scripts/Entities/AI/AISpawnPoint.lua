@@ -201,6 +201,10 @@ end
 function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile, argMissileProfile)
 	local name = self:GetName()
 	
+	if(not CryAction.IsServer()) then
+		return;
+	end
+
 	-- Load entity spawning parameters based on arguments
 	local params = {
 		class = self.class,
@@ -271,60 +275,70 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 		end
 	
 		-- Spawn the new AI entity
-		local entity = System.SpawnEntity(params, self.id)
+		local shouldActive = argArchetype ~= "" or paramsListSize == 1
+		local entity = System.SpawnEntity(params, self.id, true, shouldActive)
 		if entity then
-			if entity.class ~= self.class then
-				entityID = entity.id
-				
-				-- If there is a profile parameter, set it on the new AI entity
-				if (paramBaseProfile ~= "") then
-					entity.PropertiesInstance.esAIProfileBase = paramBaseProfile
-				end
-				if (paramCombatProfile ~= "") then
-					entity.PropertiesInstance.esAIProfileCombat = paramCombatProfile
-				end
-				if (paramFlightProfile ~= "") then
-					entity.PropertiesInstance.esAIProfileFlight = paramFlightProfile
-				end
-				if (paramTargetingProfile ~= "") then
-					entity.PropertiesInstance.esAIProfileTargeting = paramTargetingProfile
-				end
-				if (paramRaceProfile ~= "") then
-					entity.PropertiesInstance.esAIProfileRace = paramRaceProfile
-				end
-				if (paramMissileProfile ~= "") then
-					entity.PropertiesInstance.esAIProfileMissile = paramMissileProfile
-				end
-						
-				-- Add to the list of living AIs
-				Set.Add(self.liveAIs, entityID)
-				self:ActivateOutput("ActiveCount", Set.Size(self.liveAIs))
-			
-				-- Let AI know what spawned it
-				entity.AI.spawnPointID = self.id
-			
-				-- Inform linked AISpawnBundles of spawn
-				for spawnBundleID,v in pairs(self.linkedSpawnBundles) do
-					local spawnBundleEnt = System.GetEntity(spawnBundleID)
-					if(spawnBundleEnt) then
-						spawnBundleEnt:OnSpawn()
-					end			
-				end
-			else
-				-- Specified archetype was invalid if the spawned entity turns out to be another AISpawnPoint
-				System.Warning("<AISpawnPoint> " .. name .. " tried to spawn an entity, but didn't have a valid Archetype property.")
-				System.RemoveEntity(entity.id)
-			end
-		else
-			System.Warning("<AISpawnPoint> " .. name .. " failed to spawn an entity.")
+			AISpawnedAsync(entity, shouldActive)
 		end
-	
+				
 		-- If an archetype argument was used, don't spawn any more AI
 		if (argArchetype ~= "") then
 			break
 		end
 	end
-	
+		
+	-- Return nil if either no AI or multiple AI were spawned
+	return nil
+end
+
+function AISpawnPoint:AISpawnedAsync(entity, shouldActive)
+	if entity then
+		if entity.class ~= self.class then
+			entityID = entity.id
+				
+			-- If there is a profile parameter, set it on the new AI entity
+			if (paramBaseProfile ~= "") then
+				entity.PropertiesInstance.esAIProfileBase = paramBaseProfile
+			end
+			if (paramCombatProfile ~= "") then
+				entity.PropertiesInstance.esAIProfileCombat = paramCombatProfile
+			end
+			if (paramFlightProfile ~= "") then
+				entity.PropertiesInstance.esAIProfileFlight = paramFlightProfile
+			end
+			if (paramTargetingProfile ~= "") then
+				entity.PropertiesInstance.esAIProfileTargeting = paramTargetingProfile
+			end
+			if (paramRaceProfile ~= "") then
+				entity.PropertiesInstance.esAIProfileRace = paramRaceProfile
+			end
+			if (paramMissileProfile ~= "") then
+				entity.PropertiesInstance.esAIProfileMissile = paramMissileProfile
+			end
+						
+			-- Add to the list of living AIs
+			Set.Add(self.liveAIs, entityID)
+			self:ActivateOutput("ActiveCount", Set.Size(self.liveAIs))
+			
+			-- Let AI know what spawned it
+			entity.AI.spawnPointID = self.id
+			
+			-- Inform linked AISpawnBundles of spawn
+			for spawnBundleID,v in pairs(self.linkedSpawnBundles) do
+				local spawnBundleEnt = System.GetEntity(spawnBundleID)
+				if(spawnBundleEnt) then
+					spawnBundleEnt:OnSpawn()
+				end			
+			end
+		else
+			-- Specified archetype was invalid if the spawned entity turns out to be another AISpawnPoint
+			System.Warning("<AISpawnPoint> " .. name .. " tried to spawn an entity, but didn't have a valid Archetype property.")
+			System.RemoveEntity(entity.id)
+		end
+	else
+		System.Warning("<AISpawnPoint> " .. name .. " failed to spawn an entity.")
+	end
+
 	-- If an AI was successfully spawned...
 	if (entityID) then
 	
@@ -332,16 +346,12 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 		Script.SetTimerForFunction(100, "AISpawnPoint.DelayedBroadcastEventSpawned", self)
 		
 		-- If only one AI was spawned, use it as SpawnedEntityID output
-		if (i == 1) then
+		if (shouldActive ~= 0) then
 			self:ActivateOutput("SpawnedEntityID", entityID)
 			return entityID
 		end
 	end
-	
-	-- Return nil if either no AI or multiple AI were spawned
-	return nil
 end
-
 
 --------------------------------------------------------------------------------
 -- PRIVATE HELPER FUNCTIONS

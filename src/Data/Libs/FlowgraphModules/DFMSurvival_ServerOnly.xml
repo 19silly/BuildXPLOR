@@ -1,0 +1,259 @@
+<Graph isModule="1" moduleName="DFMSurvival_ServerOnly" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ServerOnly">
+ <ModuleInputsOutputs>
+  <Port Name="SpawnBundle1" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle2" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle3" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle4" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle5" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle6" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle7" Type="EntityId" Input="1"/>
+  <Port Name="SpawnBundle8" Type="EntityId" Input="1"/>
+  <Port Name="DefendVolume" Type="EntityId" Input="1"/>
+  <Port Name="WaveInit" Type="Bool" Input="1"/>
+  <Port Name="MaxWave" Type="Int" Input="1"/>
+  <Port Name="WaveWarningDuration" Type="Int" Input="1"/>
+  <Port Name="SpawnedEntity" Type="EntityId" Input="0"/>
+  <Port Name="WaveDead" Type="Bool" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DFMSurvival_ServerOnly" pos="-10,3680,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DFMSurvival_ServerOnly" pos="8860,3190,0" flags="0">
+   <Inputs SpawnedEntity="0" WaveDead="0"/>
+  </Node>
+  <Node Id="63" Class="entity:AISpawnBundle" pos="5011.0117,3633.6465,0" flags="0">
+   <Inputs entityId="0" Kill="0" Spawn="0" WaveID="0"/>
+  </Node>
+  <Node Id="89" Class="Mission:GameTokenSet" pos="3130,1730,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber" Value="" Networked="0"/>
+  </Node>
+  <Node Id="91" Class="Mission:GameToken" pos="1300,1910,0" flags="0">
+   <Inputs gametoken_Token="WaveInit" compare_Value="true"/>
+  </Node>
+  <Node Id="151" Class="Mission:GameTokenSet" pos="7950,3220,0" flags="0">
+   <Inputs gametoken_Token="WaveInit" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="161" Name="Player_Pos_Check/Spawn_Vanduul" Class="_commentbox" pos="1121.0117,2681.2419,0" flags="0">
+   <Inputs TextSize="1" Color="0.590619,0.715694,0.564712" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="5300" Height="1890"/>
+   <NodeSize Width="5300" Height="1954.4949"/>
+  </Node>
+  <Node Id="699" Class="Mission:GameTokenSet" pos="7170,3720,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WaveIncoming" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="700" Class="Time:Delay" pos="7630,3220,0" flags="0">
+   <Inputs delay="10" resetOnInput="0"/>
+  </Node>
+  <Node Id="711" Class="Mission:GameTokenSet" pos="3130,1940,0" flags="0">
+   <Inputs gametoken_Token="WaveIncoming" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="713" Class="Mission:GameTokenSet" pos="3130,1830,0" flags="0">
+   <Inputs gametoken_Token="WaveInit" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="1057" Class="Logic:Any" pos="6690,3720,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1060" Class="Mission:GameTokenSet" pos="5381.0117,3633.6465,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WaveDead" Value="true" Networked="0"/>
+  </Node>
+  <Node Id="1061" Class="Mission:GameToken" pos="7170,3220,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WaveDead" compare_Value="true"/>
+  </Node>
+  <Node Id="1062" Class="Mission:GameTokenSet" pos="7170,3840,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WaveDead" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="1398" Name="Initialise/Set_Wave_Number/Wave_Incoming" Class="_commentbox" pos="1140,1623.4996,0" flags="0">
+   <Inputs TextSize="1" Color="0.590619,0.715694,0.564712" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="2380" Height="600"/>
+   <NodeSize Width="2380" Height="664.49487"/>
+  </Node>
+  <Node Id="1400" Name="Token_Resets" Class="_commentbox" pos="6511.0117,3575.6775,0" flags="0">
+   <Inputs TextSize="1" Color="0.590619,0.715694,0.564712" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1120" Height="430"/>
+   <NodeSize Width="1120" Height="494.49487"/>
+  </Node>
+  <Node Id="1401" Name="Wave_Dead/Initialise" Class="_commentbox" pos="6511.0117,2685.594,0" flags="0">
+   <Inputs TextSize="1" Color="0.590619,0.715694,0.564712" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1920" Height="730"/>
+   <NodeSize Width="1920" Height="794.49487"/>
+  </Node>
+  <Node Id="1402" Name="." Class="_commentbox" pos="3090,1653.4952,0" flags="0">
+   <Inputs TextSize="1" Color="0.00802319,0.904661,0.043735" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="400" Height="320"/>
+   <NodeSize Width="400" Height="384.49487"/>
+  </Node>
+  <Node Id="1405" Name="." Class="_commentbox" pos="7911.0117,3115.6453,0" flags="0">
+   <Inputs TextSize="1" Color="0.896269,0.337164,0.921582" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="400" Height="160"/>
+   <NodeSize Width="400" Height="224.49489"/>
+  </Node>
+  <Node Id="1442" Name="." Class="_commentbox" pos="1270,1783.4591,0" flags="0">
+   <Inputs TextSize="1" Color="0.896269,0.337164,0.921582" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="400" Height="190"/>
+   <NodeSize Width="400" Height="254.49489"/>
+  </Node>
+  <Node Id="1467" Class="Math:UpDownCounter" pos="1770,1910,0" flags="0">
+   <Inputs Preset="0" HighLimit="19" LowLimit="1" Dec="0" Inc="0" Wrap="1"/>
+  </Node>
+  <Node Id="1540" Class="Math:Round" pos="2050,1910,0" flags="0">
+   <Inputs In="0"/>
+  </Node>
+  <Node Id="1648" Class="Time:Delay" pos="4791.0117,3693.6465,0" flags="0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="1686" Class="Logic:Any" pos="1681.0117,3633.6465,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1687" Class="Logic:Any" pos="2691.0117,4233.6465,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1688" Class="Logic:Any" pos="1401.0117,4233.6465,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1690" Class="Mission:GameTokenSet" pos="1601.0117,4233.6465,0" flags="0">
+   <Inputs gametoken_Token="DistanceToTest" Value="" Networked="0"/>
+  </Node>
+  <Node Id="1692" Class="Mission:GameTokenGet" pos="2261.0117,4233.6465,0" flags="0">
+   <Inputs gametoken_Token="DistanceToTest"/>
+  </Node>
+  <Node Id="1694" Class="Math:Add" pos="2041.0117,4233.6465,0" flags="0">
+   <Inputs A="0" B="1000"/>
+  </Node>
+  <Node Id="1695" Class="Mission:GameTokenSet" pos="3911.0117,4213.6465,0" flags="0">
+   <Inputs gametoken_Token="DistanceToTest" Value="" Networked="0"/>
+  </Node>
+  <Node Id="1700" Class="Game:Start" pos="3041.0117,4213.6465,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="1701" Class="Logic:Any" pos="3291.0117,4213.6465,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1704" Class="Mission:GameTokenGet" pos="1841.0117,3633.6465,0" flags="0">
+   <Inputs gametoken_Token="DistanceToTest"/>
+  </Node>
+  <Node Id="1805" Class="Math:Compare" pos="2350,1910,0" flags="0">
+   <Inputs A="0" B="18"/>
+  </Node>
+  <Node Id="1806" Class="Multiplayer:TriggerVictory" pos="3130,2180,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1807" Name="End_game_with_win_screen" Class="_comment" pos="3130,2140,0" flags="0"/>
+  <Node Id="1825" Class="Mission:GameTokenGet" pos="4441.0117,3693.6465,0" flags="0">
+   <Inputs gametoken_Token="WaveNumber"/>
+  </Node>
+  <Node Id="1826" Class="Mission:GameTokenSet" pos="5570,4060,0" flags="0">
+   <Inputs gametoken_Token="SpawnedEntity" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="1829" Class="Kythera:Task:Defend" pos="5571.0117,4203.6465,0" flags="0">
+   <Inputs entityId="0" volume="0"/>
+  </Node>
+  <Node Id="2152" Class="Mission:GameToken" pos="1271.0117,3633.6465,0" flags="0">
+   <Inputs gametoken_Token="WaveIncoming" compare_Value="true"/>
+  </Node>
+  <Node Id="2153" Class="Entity:CheckDistance" pos="2211.0117,3633.6465,0" flags="0">
+   <Inputs entityId="0" MinDistance="0" MaxDistance="0" Pos="0,0,0" Entity1="0" Entity2="0" Entity3="0" Entity4="0" Entity5="0" Entity6="0" Entity7="0" Entity8="0" Entity9="0" Entity10="0" Entity11="0" Entity12="0" Entity13="0" Entity14="0" Entity15="0" Entity16="0"/>
+  </Node>
+  <Node Id="2161" Class="Time:Delay" pos="3180,3700,0" flags="0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="2164" Class="Mission:GameTokenGet" pos="3180,3780,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WaveIncomingWarningDuration"/>
+  </Node>
+  <Node Id="2165" Class="Game:Start" pos="3000,3780,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="2166" Class="Actor:LocalPlayer" pos="2211.0117,3593.6465,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2177" Name="Reset_to_the_prefered_distance_to_spawn" Class="_comment" pos="3351.0117,4183.6465,0" flags="0"/>
+  <Node Id="2178" Name="Try_with_a_max_distance_of_the_prefered_distance_and_add_1000m_every_time_it_fails_until_it_finds_an_entity" Class="_comment" pos="1491.0117,3573.6465,0" flags="0"/>
+  <Node Id="2180" Class="Mission:GameTokenSet" pos="490,3900,0" flags="0">
+   <Inputs gametoken_Token="DefendVolume" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2181" Class="Mission:GameTokenSet" pos="490,4200,0" flags="0">
+   <Inputs gametoken_Token="WaveInit" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2183" Class="Mission:GameTokenSet" pos="490,4100,0" flags="0">
+   <Inputs gametoken_Token="MaxWave" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2184" Class="Mission:GameToken" pos="5510,4320,0" flags="0">
+   <Inputs gametoken_Token="DefendVolume" compare_Value=""/>
+  </Node>
+  <Node Id="2185" Class="Mission:GameToken" pos="8470,3190,0" flags="0">
+   <Inputs gametoken_Token="SpawnedEntity" compare_Value=""/>
+  </Node>
+  <Node Id="2187" Class="Math:SetNumber" pos="3540,4220,0" flags="0">
+   <Inputs in="6000"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity1" portOut="SpawnBundle1" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity2" portOut="SpawnBundle2" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity3" portOut="SpawnBundle3" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity4" portOut="SpawnBundle4" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity5" portOut="SpawnBundle5" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity6" portOut="SpawnBundle6" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity7" portOut="SpawnBundle7" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1" portIn="Entity8" portOut="SpawnBundle8" enabled="1"/>
+  <Edge nodeIn="2180" nodeOut="1" portIn="Trigger" portOut="DefendVolume" enabled="1"/>
+  <Edge nodeIn="2180" nodeOut="1" portIn="Value" portOut="DefendVolume" enabled="1"/>
+  <Edge nodeIn="2181" nodeOut="1" portIn="Trigger" portOut="WaveWarningDuration" enabled="1"/>
+  <Edge nodeIn="2181" nodeOut="1" portIn="Value" portOut="WaveWarningDuration" enabled="1"/>
+  <Edge nodeIn="2183" nodeOut="1" portIn="Trigger" portOut="MaxWave" enabled="1"/>
+  <Edge nodeIn="2183" nodeOut="1" portIn="Value" portOut="MaxWave" enabled="1"/>
+  <Edge nodeIn="1057" nodeOut="63" portIn="in1" portOut="Spawned" enabled="1"/>
+  <Edge nodeIn="1060" nodeOut="63" portIn="Trigger" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="1826" nodeOut="63" portIn="Trigger" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="1826" nodeOut="63" portIn="Value" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="1829" nodeOut="63" portIn="entityId" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="1829" nodeOut="63" portIn="sync" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="1467" nodeOut="91" portIn="Inc" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="151" nodeOut="700" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="699" nodeOut="1057" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1062" nodeOut="1057" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="700" nodeOut="1061" portIn="in" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1540" nodeOut="1467" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="89" nodeOut="1540" portIn="Value" portOut="outRounded" enabled="1"/>
+  <Edge nodeIn="1805" nodeOut="1540" portIn="A" portOut="outRounded" enabled="1"/>
+  <Edge nodeIn="1805" nodeOut="1540" portIn="A&lt;=B" portOut="outRounded" enabled="1"/>
+  <Edge nodeIn="63" nodeOut="1648" portIn="Spawn" portOut="out" enabled="1"/>
+  <Edge nodeIn="1704" nodeOut="1686" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1692" nodeOut="1687" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1686" nodeOut="1688" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="1688" nodeOut="1690" portIn="in1" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1694" nodeOut="1692" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1690" nodeOut="1694" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1690" nodeOut="1694" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="1701" nodeOut="1700" portIn="in1" portOut="output" enabled="1"/>
+  <Edge nodeIn="2187" nodeOut="1701" portIn="set" portOut="out" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1704" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="1704" portIn="MaxDistance" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="89" nodeOut="1805" portIn="Trigger" portOut="true" enabled="1"/>
+  <Edge nodeIn="711" nodeOut="1805" portIn="Trigger" portOut="true" enabled="1"/>
+  <Edge nodeIn="713" nodeOut="1805" portIn="Trigger" portOut="true" enabled="1"/>
+  <Edge nodeIn="1806" nodeOut="1805" portIn="Trigger" portOut="false" enabled="1"/>
+  <Edge nodeIn="63" nodeOut="1825" portIn="WaveID" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1648" nodeOut="1825" portIn="in" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1686" nodeOut="2152" portIn="in1" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="63" nodeOut="2153" portIn="entityId" portOut="FarEntity" enabled="1"/>
+  <Edge nodeIn="1687" nodeOut="2153" portIn="in1" portOut="NoEntInRange" enabled="1"/>
+  <Edge nodeIn="1701" nodeOut="2153" portIn="in2" portOut="FarEntity" enabled="1"/>
+  <Edge nodeIn="2161" nodeOut="2153" portIn="in" portOut="FarEntity" enabled="1"/>
+  <Edge nodeIn="1825" nodeOut="2161" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2161" nodeOut="2164" portIn="delay" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2164" nodeOut="2165" portIn="Trigger" portOut="output" enabled="1"/>
+  <Edge nodeIn="2153" nodeOut="2166" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="1829" nodeOut="2184" portIn="volume" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2185" portIn="SpawnedEntity" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1695" nodeOut="2187" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1695" nodeOut="2187" portIn="Value" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens>
+  <Token Name="DefendVolume" Type="" Default=""/>
+  <Token Name="DistanceToTest" Type="" Default="0"/>
+  <Token Name="MaxWave" Type="" Default="0"/>
+  <Token Name="SpawnedEntity" Type="" Default=""/>
+  <Token Name="WaveIncoming" Type="" Default="false"/>
+  <Token Name="WaveIntit" Type="" Default="false"/>
+  <Token Name="WaveNumber" Type="" Default="0"/>
+ </GraphTokens>
+</Graph>

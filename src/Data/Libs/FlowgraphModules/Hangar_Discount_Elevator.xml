@@ -1,0 +1,293 @@
+<Graph isModule="1" moduleName="Hangar_Discount_Elevator" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="TriggerElevator" Type="3" Input="1"/>
+  <Port Name="Elevator" Type="3" Input="1"/>
+  <Port Name="TriggerTop" Type="3" Input="1"/>
+  <Port Name="TriggerBottom" Type="3" Input="1"/>
+  <Port Name="GateElevator" Type="3" Input="1"/>
+  <Port Name="GateTop" Type="3" Input="1"/>
+  <Port Name="GateBottom" Type="3" Input="1"/>
+  <Port Name="TriggerLocalPhysics" Type="3" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Hangar_Discount_Elevator" pos="80,400,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Hangar_Discount_Elevator" pos="70,650,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="66" Class="Logic:Condition" pos="2500,90,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="72" Name="Triggers_outside_of_Elevator_shaft_to_help_player_call_elevator_to_their_current_floor" Class="_comment" pos="1560,680,0" flags="0"/>
+  <Node Id="73" Name="Trigger_calling_up" Class="_comment" pos="1260,920,0" flags="0"/>
+  <Node Id="74" Name="Trigger_calling_down" Class="_comment" pos="1250,470,0" flags="0"/>
+  <Node Id="75" Name="Elevator_shaft_large_trigger_box" Class="_comment" pos="1390,110,0" flags="0"/>
+  <Node Id="76" Name="if_current_floor_is_=_to_1_then_elevator_is_on_the_second_floor._0_means_the_elevator_is_on_the_base_floor" Class="_comment" pos="1940,0,0" flags="0"/>
+  <Node Id="78" Name="Elevator_shaft_logic" Class="_commentbox" pos="1360,-90.409378,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1200" Height="350"/>
+   <NodeSize Width="1200" Height="488.23212"/>
+  </Node>
+  <Node Id="79" Name="Outside_Elevator_Call_Logic" Class="_commentbox" pos="1210,329.58661,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1590" Height="660"/>
+   <NodeSize Width="1590" Height="798.23212"/>
+  </Node>
+  <Node Id="85" Class="Logic:Condition" pos="2360,680,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="86" Name="Set_up_the_doors_at_the_start." Class="_commentbox" pos="140,1557.8478,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1030" Height="800"/>
+   <NodeSize Width="1361.6044" Height="938.23212"/>
+  </Node>
+  <Node Id="87" Class="Animations:PlayAnimation" pos="3300,260,0" flags="0">
+   <Inputs entityId="0" anim_Animation="opening" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="88" Class="Animations:PlayAnimation" pos="3290,950,0" flags="0">
+   <Inputs entityId="0" anim_Animation="opening" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="110" Class="entity:Elevator" pos="1750,710,0" flags="0">
+   <Inputs entityId="0" Down="0" Up="0"/>
+  </Node>
+  <Node Id="119" Class="Math:Equal" pos="2020,740,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="125" Class="Logic:Condition" pos="2360,780,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="130" Class="Logic:Any" pos="3080,980,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="131" Class="Logic:Any" pos="3070,260,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="132" Class="Animations:PlayAnimation" pos="3240,1440,0" flags="0">
+   <Inputs entityId="0" anim_Animation="closing" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="136" Class="Logic:Any" pos="3070,1580,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="139" Name="Upper_Door_Open" Class="_commentbox" pos="3040,599.59088,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1660" Height="570"/>
+   <NodeSize Width="1660" Height="708.23212"/>
+  </Node>
+  <Node Id="140" Name="Upper_Door_Closed" Class="_commentbox" pos="3040,1269.5853,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1660" Height="650"/>
+   <NodeSize Width="1660" Height="788.23212"/>
+  </Node>
+  <Node Id="141" Name="Bottom_Door_Open" Class="_commentbox" pos="3040,-60.413078,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1660" Height="570"/>
+   <NodeSize Width="1660" Height="708.23212"/>
+  </Node>
+  <Node Id="142" Name="Bottom_Door_Closed" Class="_commentbox" pos="3050,-740.40912,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1660" Height="630"/>
+   <NodeSize Width="1660" Height="768.23212"/>
+  </Node>
+  <Node Id="143" Class="Animations:PlayAnimation" pos="3320,-200,0" flags="0">
+   <Inputs entityId="0" anim_Animation="closing" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="147" Class="Logic:Any" pos="3120,-400,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="150" Class="Animations:PlayAnimation" pos="840,1970,0" flags="0">
+   <Inputs entityId="0" anim_Animation="closing" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="155" Class="Animations:PlayAnimation" pos="3320,-420,0" flags="0">
+   <Inputs entityId="0" anim_Animation="closing" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="157" Class="Animations:PlayAnimation" pos="3290,490,0" flags="0">
+   <Inputs entityId="0" anim_Animation="opening" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="159" Class="Animations:PlayAnimation" pos="3290,730,0" flags="0">
+   <Inputs entityId="0" anim_Animation="opening" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="161" Class="Animations:PlayAnimation" pos="3240,1680,0" flags="0">
+   <Inputs entityId="0" anim_Animation="closing" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="163" Class="Animations:PlayAnimation" pos="840,1740,0" flags="0">
+   <Inputs entityId="0" anim_Animation="opened" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="168" Class="Animations:PlayAnimation" pos="840,2200,0" flags="0">
+   <Inputs entityId="0" anim_Animation="opened" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="173" Class="Logic:All" pos="4170,-370,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="177" Class="Logic:All" pos="3940,1470,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="184" Class="Logic:Gate" pos="2190,620,0" flags="0">
+   <Inputs Closed="1"/>
+  </Node>
+  <Node Id="185" Class="Logic:Gate" pos="2180,880,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="271" Class="entity:AreaTrigger" pos="1240,500,0" flags="0">
+   <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+  </Node>
+  <Node Id="272" Class="Math:Less" pos="1950,540,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="273" Class="Logic:OnChange" pos="1800,540,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="277" Class="entity:AreaTrigger" pos="1230,950,0" flags="0">
+   <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+  </Node>
+  <Node Id="278" Class="Math:Less" pos="1950,980,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="279" Class="Logic:OnChange" pos="1790,980,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="281" Class="entity:AreaTrigger" pos="1370,140,0" flags="0">
+   <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+  </Node>
+  <Node Id="282" Class="Math:Less" pos="2070,170,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="283" Class="Logic:OnChange" pos="1930,170,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="288" Class="Logic:Gate" pos="2320,90,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="289" Class="Logic:Any" pos="2210,180,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="290" Class="Logic:Any" pos="2140,60,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="291" Class="Logic:All" pos="4170,390,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="292" Class="Logic:All" pos="4160,780,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="293" Class="Logic:Any" pos="2020,840,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="294" Class="Logic:Any" pos="430,1820,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="295" Class="Time:Delay" pos="170,1820,0" flags="0">
+   <Inputs delay="0.01" resetOnInput="0"/>
+  </Node>
+  <Node Id="298" Class="entity:AreaTrigger" pos="440,-80,0" flags="0">
+   <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+  </Node>
+  <Node Id="299" Class="Physics:MovingPlatform" pos="840,-80,0" flags="0">
+   <Inputs entityId="0" EntityToPutOnPlatform="0"/>
+  </Node>
+  <Node Id="300" Class="Audio:Trigger" pos="3320,-580,0" flags="1">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCLF_hangar_discount_elevator_gate_opening" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="301" Class="Audio:Trigger" pos="3240,1910,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCLF_hangar_discount_elevator_catwalk_closing" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="302" Class="Audio:Trigger" pos="3290,1180,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCLF_hangar_discount_elevator_catwalk_opening" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="303" Class="Audio:Trigger" pos="3300,100,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCLF_hangar_discount_elevator_gate_closing" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="87" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="1" portIn="entityId" portOut="GateTop" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="1" portIn="entityId" portOut="Elevator" enabled="1"/>
+  <Edge nodeIn="132" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="143" nodeOut="1" portIn="entityId" portOut="GateBottom" enabled="1"/>
+  <Edge nodeIn="150" nodeOut="1" portIn="entityId" portOut="GateTop" enabled="1"/>
+  <Edge nodeIn="155" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="157" nodeOut="1" portIn="entityId" portOut="GateBottom" enabled="1"/>
+  <Edge nodeIn="159" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="161" nodeOut="1" portIn="entityId" portOut="GateTop" enabled="1"/>
+  <Edge nodeIn="163" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="168" nodeOut="1" portIn="entityId" portOut="GateBottom" enabled="1"/>
+  <Edge nodeIn="271" nodeOut="1" portIn="entityId" portOut="TriggerBottom" enabled="1"/>
+  <Edge nodeIn="277" nodeOut="1" portIn="entityId" portOut="TriggerTop" enabled="1"/>
+  <Edge nodeIn="281" nodeOut="1" portIn="entityId" portOut="TriggerElevator" enabled="1"/>
+  <Edge nodeIn="295" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="298" nodeOut="1" portIn="entityId" portOut="TriggerLocalPhysics" enabled="1"/>
+  <Edge nodeIn="299" nodeOut="1" portIn="entityId" portOut="Elevator" enabled="1"/>
+  <Edge nodeIn="300" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="301" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="302" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="303" nodeOut="1" portIn="entityId" portOut="GateElevator" enabled="1"/>
+  <Edge nodeIn="136" nodeOut="66" portIn="in1" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="147" nodeOut="66" portIn="in2" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="131" nodeOut="85" portIn="in1" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="136" nodeOut="85" portIn="in2" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="291" nodeOut="87" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="292" nodeOut="88" portIn="in2" portOut="Done" enabled="1"/>
+  <Edge nodeIn="119" nodeOut="110" portIn="A" portOut="CurrentFloor" enabled="1"/>
+  <Edge nodeIn="130" nodeOut="110" portIn="in2" portOut="StoppedSlidingUp" enabled="1"/>
+  <Edge nodeIn="131" nodeOut="110" portIn="in2" portOut="StoppedSlidingDown" enabled="1"/>
+  <Edge nodeIn="289" nodeOut="110" portIn="in1" portOut="StartedSlidingDown" enabled="1"/>
+  <Edge nodeIn="289" nodeOut="110" portIn="in2" portOut="StartedSlidingUp" enabled="1"/>
+  <Edge nodeIn="293" nodeOut="110" portIn="in1" portOut="StartedSlidingDown" enabled="1"/>
+  <Edge nodeIn="293" nodeOut="110" portIn="in2" portOut="StartedSlidingUp" enabled="1"/>
+  <Edge nodeIn="66" nodeOut="119" portIn="Condition" portOut="out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="119" portIn="Condition" portOut="out" enabled="1"/>
+  <Edge nodeIn="125" nodeOut="119" portIn="Condition" portOut="out" enabled="1"/>
+  <Edge nodeIn="130" nodeOut="125" portIn="in1" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="147" nodeOut="125" portIn="in3" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="130" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="159" nodeOut="130" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="292" nodeOut="130" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="302" nodeOut="130" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="131" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="157" nodeOut="131" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="291" nodeOut="131" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="303" nodeOut="131" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="177" nodeOut="132" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="132" nodeOut="136" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="161" nodeOut="136" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="177" nodeOut="136" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="301" nodeOut="136" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="173" nodeOut="143" portIn="in2" portOut="Done" enabled="1"/>
+  <Edge nodeIn="143" nodeOut="147" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="155" nodeOut="147" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="173" nodeOut="147" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="300" nodeOut="147" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="173" nodeOut="155" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="291" nodeOut="157" portIn="in2" portOut="Done" enabled="1"/>
+  <Edge nodeIn="292" nodeOut="159" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="177" nodeOut="161" portIn="in2" portOut="Done" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="173" portIn="Up" portOut="Out" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="177" portIn="Down" portOut="Out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="184" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="125" nodeOut="185" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="273" nodeOut="271" portIn="in" portOut="NrOfEntitiesInside" enabled="1"/>
+  <Edge nodeIn="184" nodeOut="272" portIn="In" portOut="false" enabled="1"/>
+  <Edge nodeIn="272" nodeOut="273" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="279" nodeOut="277" portIn="in" portOut="NrOfEntitiesInside" enabled="1"/>
+  <Edge nodeIn="185" nodeOut="278" portIn="In" portOut="false" enabled="1"/>
+  <Edge nodeIn="278" nodeOut="279" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="283" nodeOut="281" portIn="in" portOut="NrOfEntitiesInside" enabled="1"/>
+  <Edge nodeIn="288" nodeOut="282" portIn="In" portOut="false" enabled="1"/>
+  <Edge nodeIn="282" nodeOut="283" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="66" nodeOut="288" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="288" nodeOut="289" portIn="Close" portOut="out" enabled="1"/>
+  <Edge nodeIn="288" nodeOut="290" portIn="Open" portOut="out" enabled="1"/>
+  <Edge nodeIn="185" nodeOut="291" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="290" nodeOut="291" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="184" nodeOut="292" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="290" nodeOut="292" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="184" nodeOut="293" portIn="Close" portOut="out" enabled="1"/>
+  <Edge nodeIn="185" nodeOut="293" portIn="Close" portOut="out" enabled="1"/>
+  <Edge nodeIn="150" nodeOut="294" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="163" nodeOut="294" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="168" nodeOut="294" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="295" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="299" nodeOut="298" portIn="Enter" portOut="Enter" enabled="1"/>
+  <Edge nodeIn="299" nodeOut="298" portIn="Exit" portOut="Leave" enabled="1"/>
+  <Edge nodeIn="299" nodeOut="298" portIn="EntityToPutOnPlatform" portOut="Sender" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

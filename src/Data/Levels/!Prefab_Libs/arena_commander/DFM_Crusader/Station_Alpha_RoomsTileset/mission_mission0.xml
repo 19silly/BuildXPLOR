@@ -1,0 +1,2797 @@
+<Mission Name="Mission0" Description="" Time="12:00" MusicScript="" Script="" CGFCount="232">
+ <Environment>
+  <Fog ViewDistance="100000" ViewDistanceLowSpec="10000" LDRGlobalDensMult="1"/>
+  <Terrain DetailLayersViewDistRatio="1"/>
+  <EnvState GravityVector="0,0,0" WindVector="0,0,0" BreezeGeneration="0" BreezeStrength="0" BreezeMovementSpeed="0" BreezeVariation="0" BreezeLifeTime="0" BreezeCount="0" BreezeSpawnRadius="0" BreezeSpread="0.f" BreezeRadius="0" ConsoleMergedMeshesPool="2750" TerrainEnabled="1" ShowTerrainSurface="0" SunEnabled="1" SunShadowsMinSpec="1" SunShadowsAdditionalCascadeMinSpec="0" SunShadowsClipPlaneRange="10000" UseLayersActivation="0" SunLinkedToTOD="1" RadarEnvironmentalNoise="0" DisableSkyScattering="0"/>
+  <Stars StarsMaskTexture="" SmallStarsTilingFactor="6" SmallStarsIntensity="1" SmallStarsFalloff="10" BigStarsTilingFactor="2" BigStarsFalloff="15" BigStarsCenterDensity="50" BigStarsGlobalDensity="50" BigStarsContrast="5" BigStarsIntensity="3"/>
+  <VolFogShadows Enable="0" EnableForClouds="0"/>
+  <CloudShadows CloudShadowTexture="" CloudShadowSpeed="0,0,0" CloudShadowTiling="1" CloudShadowBrightness="1" CloudShadowInvert="0"/>
+  <SkyBox Material="Materials/Sky/Sky" MaterialLowSpec="Materials/Sky/Sky" Angle="0" Stretching="0.5"/>
+  <Ocean WaterOceanRendering="1" WaterOceanBottomEnabled="1" Material="Editor/Materials/Ocean_default" CausticDepth="8" CausticIntensity="1" CausticsTilling="1"/>
+  <OceanAnimation WindDirection="1" WindSpeed="4" WavesSpeed="1" WavesAmount="1.5" WavesSize="0.75"/>
+  <Moon Latitude="-175" Longitude="-5" Size="0.4" Texture="textures/lights/lens_flares/lens_flare1.dds"/>
+  <DynTexSource Width="256" Height="256"/>
+  <PhysicsGrid UseExtentsFromTerrain="1" CellSize="16" CellDimension="16" Cyclic="1"/>
+  <Lighting SunRotation="277" SunHeight="80" Algorithm="3" Lighting="1" Shadows="1" ShadowIntensity="100" ILQuality="1" HemiSamplQuality="5" Longitude="35" DawnTime="355" DawnDuration="10" DuskTime="365" DuskDuration="10" SunVector="-0.59552777,0.073121488,-0.79999989"/>
+ </Environment>
+ <TimeOfDay Time="12" TimeStart="12" TimeEnd="12" TimeAnimSpeed="0">
+  <Variable Name="HDR dynamic power factor" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sky brightening (terrain occlusion)" Value="0">
+   <Spline Keys="0:0.3:0,0.5:0:36,1:0.3:0,"/>
+  </Variable>
+  <Variable Name="Global illumination multiplier" Value="0">
+   <Spline Keys="0:1:0,0.5:0:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sun color" Color="1,1,1">
+   <Spline Keys="0:(0.843137:0.784314:0.666667):0,0.5:(1:1:1):36,1:(0.843137:0.784314:0.666667):0,"/>
+  </Variable>
+  <Variable Name="Sun color multiplier" Value="0">
+   <Spline Keys="0:2.4:0,0.5:0:36,1:2.4:0,"/>
+  </Variable>
+  <Variable Name="Sun specular multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Fog color" Color="0,0,0">
+   <Spline Keys="0:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog height (bottom)" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog layer density (bottom)" Value="0">
+   <Spline Keys="0:1:0,0.5:0:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Fog color (top)" Color="0,0,0">
+   <Spline Keys="0:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color (top) multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog height (top)" Value="0">
+   <Spline Keys="0:4000:0,0.5:0:36,1:4000:0,"/>
+  </Variable>
+  <Variable Name="Fog layer density (top)" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog color height offset" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog color (radial)" Color="0,0,0">
+   <Spline Keys="0:(0:0:0):0,1:(0:0:0):0,"/>
+  </Variable>
+  <Variable Name="Fog color (radial) multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Fog radial size" Value="0">
+   <Spline Keys="0:0.75:0,0.5:0:36,1:0.75:0,"/>
+  </Variable>
+  <Variable Name="Fog radial lobe" Value="0">
+   <Spline Keys="0:0.5:0,0.5:0:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Final density clamp" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Global density" Value="0">
+   <Spline Keys="0:0.02:0,0.5:0:36,1:0.02:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp start" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp end" Value="0">
+   <Spline Keys="0:100:0,0.5:0:36,1:100:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Ramp influence" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening" Value="0">
+   <Spline Keys="0:0.25:0,0.5:0:36,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening sun" Value="0">
+   <Spline Keys="0:1:0,0.5:0:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow darkening ambient" Value="0">
+   <Spline Keys="0:1:0,0.5:0:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Volumetric fog: Shadow range" Value="0.1">
+   <Spline Keys="0:0.1:0,0.5:0.1:36,1:0.1:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun intensity" Color="0.212231,0.212231,0.212231">
+   <Spline Keys="0:(0.833333:0.833333:1):0,0.5:(0.212231:0.212231:0.212231):36,1:(0.833333:0.833333:1):0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun intensity multiplier" Value="0">
+   <Spline Keys="0:30:0,0.5:0:65572,1:30:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Mie scattering" Value="5">
+   <Spline Keys="0:4.8:0,0.5:5:36,1:4.8:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Rayleigh scattering" Value="1">
+   <Spline Keys="0:2:0,0.5:1:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Sun anisotropy factor" Value="-0.995">
+   <Spline Keys="0:-0.995:0,1:-0.995:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (R)" Value="560">
+   <Spline Keys="0:750:0,0.5:560:36,1:750:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (G)" Value="560">
+   <Spline Keys="0:601:0,0.5:560:36,1:601:0,"/>
+  </Variable>
+  <Variable Name="Sky light: Wavelength (B)" Value="560">
+   <Spline Keys="0:555:0,0.5:560:36,1:555:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Horizon color" Color="0,0,0">
+   <Spline Keys="0:(0.870588:0.580392:0.184314):0,0.5:(0:0:0):36,1:(0.870588:0.580392:0.184314):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Horizon color multiplier" Value="1">
+   <Spline Keys="0:1:0,0.5:1:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith color" Color="0,0,0">
+   <Spline Keys="0:(0.0666667:0.14902:0.305882):0,0.5:(0:0:0):36,1:(0.0666667:0.14902:0.305882):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith color multiplier" Value="1">
+   <Spline Keys="0:0.25:0,0.5:1:36,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Zenith shift" Value="0.5">
+   <Spline Keys="0:0.25:0,0.5:0.5:36,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Star intensity" Value="0">
+   <Spline Keys="0:0:0,0.5:0:36,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon color" Color="0.212231,0.212231,0.212231">
+   <Spline Keys="0:(1:1:1):0,0.5:(0.212231:0.212231:0.212231):36,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona color" Color="0.212231,0.212231,0.212231">
+   <Spline Keys="0:(0.901961:1:1):0,0.5:(0.212231:0.212231:0.212231):36,1:(0.901961:1:1):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon inner corona scale" Value="0">
+   <Spline Keys="0:0.499:0,0.5:0:36,1:0.499:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona color" Color="0.212231,0.212231,0.212231">
+   <Spline Keys="0:(0.501961:0.784314:1):0,0.5:(0.212231:0.212231:0.212231):36,1:(0.501961:0.784314:1):0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona color multiplier" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Night sky: Moon outer corona scale" Value="0">
+   <Spline Keys="0:0.006:0,0.5:0:36,1:0.006:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun light multiplier" Value="1">
+   <Spline Keys="0:1.96:0,0.5:1:36,1:1.96:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sky light multiplier" Value="1">
+   <Spline Keys="0:0.8:0,0.5:1:36,1:0.8:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color" Color="0.212231,0.212231,0.212231">
+   <Spline Keys="0:(0.843137:0.784314:0.666667):0,0.5:(0.212231:0.212231:0.212231):36,1:(0.843137:0.784314:0.666667):0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color multiplier" Value="0">
+   <Spline Keys="0:1:0,0.5:0:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cloud shading: Sun custom color influence" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Sun shafts visibility" Value="0">
+   <Spline Keys="0:0.25:0,0.5:0:36,1:0.25:0,"/>
+  </Variable>
+  <Variable Name="Sun rays visibility" Value="0">
+   <Spline Keys="0:2.5:0,0.5:0:36,1:2.5:0,"/>
+  </Variable>
+  <Variable Name="Sun rays attenuation" Value="0">
+   <Spline Keys="0:5:0,0.5:0:36,1:5:0,"/>
+  </Variable>
+  <Variable Name="Sun rays suncolor influence" Value="0">
+   <Spline Keys="0:1:0,0.5:0:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Sun rays custom color" Color="0.212231,0.212231,0.212231">
+   <Spline Keys="0:(1:1:1):0,0.5:(0.212231:0.212231:0.212231):36,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Ocean fog color" Color="0.113725,0.40000001,0.55294102">
+   <Spline Keys="0:(0.113725:0.4:0.552941):0,0.5:(0.113725:0.4:0.552941):36,1:(0.113725:0.4:0.552941):0,"/>
+  </Variable>
+  <Variable Name="Ocean fog color multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Ocean fog density" Value="0.2">
+   <Spline Keys="0:0.2:0,0.5:0.2:36,1:0.2:0,"/>
+  </Variable>
+  <Variable Name="Skybox multiplier" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve shoulder scale" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve midtones scale" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve toe scale" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Film curve whitepoint" Value="4">
+   <Spline Keys="0:4:0,1:4:0,"/>
+  </Variable>
+  <Variable Name="Saturation" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Color balance" Color="1,1,1">
+   <Spline Keys="0:(1:1:1):0,1:(1:1:1):0,"/>
+  </Variable>
+  <Variable Name="Scene key" Value="0.18000001">
+   <Spline Keys="0:0.18:0,1:0.18:0,"/>
+  </Variable>
+  <Variable Name="Min exposure" Value="0.36000001">
+   <Spline Keys="0:0.36:0,1:0.36:0,"/>
+  </Variable>
+  <Variable Name="Max exposure" Value="2.8">
+   <Spline Keys="0:2.8:0,0.5:2.8:36,1:2.8:0,"/>
+  </Variable>
+  <Variable Name="Bloom amount" Value="1">
+   <Spline Keys="0:1:0,1:1:0,"/>
+  </Variable>
+  <Variable Name="Filters: grain" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Filters: photofilter color" Color="0.95200002,0.51700002,0.090000004">
+   <Spline Keys="0:(0.952:0.517:0.09):0,1:(0.952:0.517:0.09):0,"/>
+  </Variable>
+  <Variable Name="Filters: photofilter density" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Dof: focus range" Value="1000">
+   <Spline Keys="0:1000:0,1:1000:0,"/>
+  </Variable>
+  <Variable Name="Dof: blur amount" Value="0">
+   <Spline Keys="0:0:0,1:0:0,"/>
+  </Variable>
+  <Variable Name="Cascade 0: Bias" Value="0.1">
+   <Spline Keys="0:1:0,0.5:0.1:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cascade 0: Slope Bias" Value="0.1">
+   <Spline Keys="0:4:0,0.5:0.1:36,1:4:0,"/>
+  </Variable>
+  <Variable Name="Cascade 1: Bias" Value="0.1">
+   <Spline Keys="0:1:0,0.5:0.1:36,1:1:0,"/>
+  </Variable>
+  <Variable Name="Cascade 1: Slope Bias" Value="0.1">
+   <Spline Keys="0:2:0,0.5:0.1:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 2: Bias" Value="0.1">
+   <Spline Keys="0:1.9:0,0.5:0.1:36,1:1.9:0,"/>
+  </Variable>
+  <Variable Name="Cascade 2: Slope Bias" Value="0.1">
+   <Spline Keys="0:0.24:0,0.5:0.1:36,1:0.24:0,"/>
+  </Variable>
+  <Variable Name="Cascade 3: Bias" Value="0.1">
+   <Spline Keys="0:3:0,0.5:0.1:36,1:3:0,"/>
+  </Variable>
+  <Variable Name="Cascade 3: Slope Bias" Value="0.1">
+   <Spline Keys="0:0.24:0,0.5:0.1:36,1:0.24:0,"/>
+  </Variable>
+  <Variable Name="Cascade 4: Bias" Value="0.1">
+   <Spline Keys="0:2:0,0.5:0.1:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 4: Slope Bias" Value="0.1">
+   <Spline Keys="0:0.5:0,0.5:0.1:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 5: Bias" Value="0.1">
+   <Spline Keys="0:2:0,0.5:0.1:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 5: Slope Bias" Value="0.1">
+   <Spline Keys="0:0.5:0,0.5:0.1:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 6: Bias" Value="0.1">
+   <Spline Keys="0:2:0,0.5:0.1:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 6: Slope Bias" Value="0.1">
+   <Spline Keys="0:0.5:0,0.5:0.1:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Cascade 7: Bias" Value="0.1">
+   <Spline Keys="0:2:0,0.5:0.1:36,1:2:0,"/>
+  </Variable>
+  <Variable Name="Cascade 7: Slope Bias" Value="0.1">
+   <Spline Keys="0:0.5:0,0.5:0.1:36,1:0.5:0,"/>
+  </Variable>
+  <Variable Name="Shadow jittering" Value="2.5">
+   <Spline Keys="0:2.5:0,0.5:2.5:36,1:2.5:0,"/>
+  </Variable>
+ </TimeOfDay>
+ <Weapons>
+  <Used />
+  <Ammo />
+ </Weapons>
+ <Objects>
+  <Entity Name="Shape001-524" Pos="-89,-47,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="226" EntityGuid="4400A9B80F132502" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-566" Pos="-69,5,76" EntityClass="AreaShape" EntityId="128" EntityGuid="43D558D0C1F3C202" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-484" Pos="-37,-47,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="66" EntityGuid="47E2CB6CCE79F402" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-609" Pos="-38,-17,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="91" EntityGuid="4A34365B8B862B03" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-140" Pos="31,30,76" EntityClass="AreaShape" EntityId="17" EntityGuid="49111DDC72FCD404" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-507" Pos="-38,-31.000000238418579,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="189" EntityGuid="40F835B366609205" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot001-002" Pos="145,-28,76" EntityClass="PrefabPivot" EntityId="250" EntityGuid="49D032B9717CCA05" CastShadowMinSpec="1" Layer="Room_S_28x28x08_a"/>
+  <Entity Name="Shape001-606" Pos="-43,-21,76" EntityClass="AreaShape" EntityId="88" EntityGuid="46F2971996351406" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-519" Pos="-81,-47,76" EntityClass="AreaShape" EntityId="221" EntityGuid="4678DB12881C4207" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-608" Pos="-51,-21,76" EntityClass="AreaShape" EntityId="90" EntityGuid="4C8D14ECB7D08707" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-588" Pos="-51,5,76" EntityClass="AreaShape" EntityId="150" EntityGuid="4DAABCAA0527F907" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-553" Pos="-89,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="115" EntityGuid="469C37FE4833FB07" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-575" Pos="-38,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="137" EntityGuid="4671762DFE8D9B08" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-483" Pos="-12,-35.000000136914167,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="65" EntityGuid="4F75F1B9B27DC608" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot008" Pos="21,-50,76" EntityClass="PrefabPivot" EntityId="249" EntityGuid="4EBACD7A1DEF2D09" CastShadowMinSpec="1" Layer="Addon_S_12x08x08_c"/>
+  <Object Type="VisArea" Name="VisArea001-021" Pos="-64,30,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-64,30,76"/>
+    <Point Pos="-64,4,76"/>
+    <Point Pos="-90,4,76"/>
+    <Point Pos="-90,30,76"/>
+   </Points>
+  </Object>
+  <Object Type="Group" Name="Group002" Pos="25,17,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-571" Pos="-73,30,76" EntityClass="AreaShape" EntityId="133" EntityGuid="41B70E3EB5CD270D" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-552" Pos="-69,30,76" EntityClass="AreaShape" EntityId="114" EntityGuid="4CD432341ED3730E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-500" Pos="-63,-35.000000136914167,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="182" EntityGuid="40F1C5928342B40E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-611" Pos="-47,4,76" EntityClass="AreaShape" EntityId="93" EntityGuid="4CBEDC5B0FF2050F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-582" Pos="-39,5,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="144" EntityGuid="469C010F64A6E50F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot012-001" Pos="-127,-15,76" EntityClass="PrefabPivot" EntityId="240" EntityGuid="4E7DEAA070399A10" CastShadowMinSpec="1" Layer="Link_S_12x02x04_a"/>
+  <Object Type="Group" Name="Group002-003" Pos="-23,-35,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-580" Pos="-63,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="142" EntityGuid="4DB9D9A25B6A2213" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot006" Pos="-51,-39,72" Rotate="1,0,0,-8.7422777e-008" EntityClass="PrefabPivot" EntityId="259" EntityGuid="4549902899BB7D15" CastShadowMinSpec="1" Layer="Addons"/>
+  <Entity Name="Shape001-584" Pos="-63,5,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="146" EntityGuid="4CD93C28E855C916" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-573" Pos="-63,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="135" EntityGuid="4DED42C76E47FB17" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-444" Pos="-37,5,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="166" EntityGuid="4E59F4593D6C4719" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-130" Pos="11,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="2" EntityGuid="432383866F0B7219" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-448" Pos="-25,5,76" EntityClass="AreaShape" EntityId="170" EntityGuid="46D1FAC6DB56A319" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-037" Pos="222,-14,76" EntityClass="AreaShape" EntityId="27" EntityGuid="456328E5A8009C1A" CastShadowMinSpec="1" Layer="Room_S_20x08x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="20,-8,0" ObstructSound="0"/>
+     <Point Pos="20,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-446" Pos="-17,5,76" EntityClass="AreaShape" EntityId="168" EntityGuid="498EE549D322A81A" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-542" Pos="-65,-21,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="104" EntityGuid="4F8A4780BD31E21C" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot019-001" Pos="-181,-15,76" EntityClass="PrefabPivot" EntityId="246" EntityGuid="43748A5D9D941D1D" CastShadowMinSpec="1" Layer="Link_S_16x02x04_a"/>
+  <Entity Name="PrefabPivot006" Pos="21,-18,76" EntityClass="PrefabPivot" EntityId="239" EntityGuid="48B8240B9F62541D" CastShadowMinSpec="1" Layer="Addon_S_12x08x08_a"/>
+  <Entity Name="Shape001-549" Pos="-64,-17,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="111" EntityGuid="40B3A3521125861D" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-495" Pos="-38,-39,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="177" EntityGuid="4E0690CCD3FD401F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-523" Pos="-64,-35.000000136914167,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="225" EntityGuid="479BB5B02E51EB21" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-551" Pos="-73,4,76" EntityClass="AreaShape" EntityId="113" EntityGuid="4963072B8A637E23" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-604" Pos="-63,-21,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="86" EntityGuid="4AA4E62966C7F623" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-537" Pos="-65,3,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="99" EntityGuid="4137CBE1A8D40324" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-600" Pos="-63,-9.0000001369141671,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="82" EntityGuid="4811883F6F771725" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-597" Pos="-39,3,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="79" EntityGuid="4DF374FC19593525" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-452" Pos="-17,4,76" EntityClass="AreaShape" EntityId="213" EntityGuid="4C7ED1E4E321CF25" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-019" Pos="-133,-14,76" EntityClass="AreaShape" EntityId="24" EntityGuid="480596B8F392E927" CastShadowMinSpec="1" Layer="Link_S_12x02x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268562e-007,-2,0" ObstructSound="0"/>
+     <Point Pos="12,-2,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-577" Pos="-39,29,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="139" EntityGuid="44380FC6BE801829" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-473" Pos="-37,-39,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="56" EntityGuid="4080DEFC898F512A" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-031" Pos="191,-14,76" EntityClass="AreaShape" EntityId="19" EntityGuid="4B4D1D0D65C54F2B" CastShadowMinSpec="1" Layer="Room_S_24x12x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-12,0" ObstructSound="0"/>
+     <Point Pos="24,-12,0" ObstructSound="0"/>
+     <Point Pos="24,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot019" Pos="-181,-15,12" EntityClass="PrefabPivot" EntityId="254" EntityGuid="46A9DFFBE2A5532B" CastShadowMinSpec="1" Layer="Link_L_16x02x04_a"/>
+  <Entity Name="Shape001-465" Pos="-37,3,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="200" EntityGuid="4D26B48E0C03012C" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-585" Pos="-63,29,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="147" EntityGuid="4D7C843B29139E2E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot003" Pos="41,-34,76" EntityClass="PrefabPivot" EntityId="248" EntityGuid="433CBD72AF958C2F" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_b"/>
+  <Entity Name="Shape001-136" Pos="19,30,76" EntityClass="AreaShape" EntityId="37" EntityGuid="403EF020F7CBF430" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-015" Pos="-12,30,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-12,30,76"/>
+    <Point Pos="-12,4,76"/>
+    <Point Pos="-38,4,76"/>
+    <Point Pos="-38,30,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-119" Pos="36,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="38" EntityGuid="4687B2E61B383731" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-493" Pos="-63,-39,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="175" EntityGuid="4B9EE0513FC05631" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-015" Pos="15,-46,76" EntityClass="AreaShape" EntityId="36" EntityGuid="42545EF91C6FAF31" CastShadowMinSpec="1" Layer="Addon_S_12x08x08_c">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-568" Pos="-77,5,76" EntityClass="AreaShape" EntityId="130" EntityGuid="4E63ABA59BCC0634" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-451" Pos="-21,30,76" EntityClass="AreaShape" EntityId="173" EntityGuid="4BA003678D1CEC36" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-587" Pos="-38,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="149" EntityGuid="4CD0AAF8AE039A39" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="Group" Name="Group002-009" Pos="-49,-9,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-139" Pos="27,5,76" EntityClass="AreaShape" EntityId="39" EntityGuid="4DEDE91C321B413B" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-430" Pos="35,29,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="40" EntityGuid="4BBA8D1DD2B6123D" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-481" Pos="-37,-31.000000238418579,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="63" EntityGuid="4C594710E7A7683E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Comment-002" Pos="213.5,-18,77" EntityClass="Comment" EntityId="227" EntityGuid="4E306AB2D28DDF3E" CastShadowMinSpec="1" Layer="Room_S_24x12x04_a">
+   <Properties nCharsPerLine="30" clrDiffuse="1,0.5,0" bFixed="0" bHidden="0" fMaxDist="100" fSize="1.2" Text="Needs 01x01x04 pieces or cannot center"/>
+  </Entity>
+  <Entity Name="Shape001-516" Pos="-73,-47,76" EntityClass="AreaShape" EntityId="218" EntityGuid="4C306098146FE13F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-497" Pos="-39,-23,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="179" EntityGuid="41EF596396BC8C43" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-576" Pos="-47,5,76" EntityClass="AreaShape" EntityId="138" EntityGuid="484A3810F3D4A643" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-488" Pos="-25,-47,76" EntityClass="AreaShape" EntityId="70" EntityGuid="4D26C16045E90B45" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-513" Pos="-89,-39,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="215" EntityGuid="43B8436C31603845" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-467" Pos="-12,-5.0000002384185791,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="198" EntityGuid="4FD98BC68822E746" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-564" Pos="-89,5,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="126" EntityGuid="4026166C9FB54E47" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-440" Pos="-37,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="162" EntityGuid="4E7C691C43997248" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-138" Pos="23,30,76" EntityClass="AreaShape" EntityId="41" EntityGuid="456D5B80626E4F49" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot001-001" Pos="109,-100,76" EntityClass="PrefabPivot" EntityId="233" EntityGuid="46196168AA13774B" CastShadowMinSpec="1" Layer="Room_S_32x32x04_c"/>
+  <Entity Name="PrefabPivot001" Pos="109,-64,76" EntityClass="PrefabPivot" EntityId="235" EntityGuid="466FBA00B29B904B" CastShadowMinSpec="1" Layer="Room_S_32x32x04_b"/>
+  <Entity Name="Shape001-520" Pos="-89,-35.000000136914167,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="222" EntityGuid="4157B4B55789B44B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot016" Pos="175,-22,76" EntityClass="PrefabPivot" EntityId="245" EntityGuid="46A0725439126A4C" CastShadowMinSpec="1" Layer="Room_S_16x16x04_a"/>
+  <Object Type="Group" Name="Group002-006" Pos="-75,-9,76" Scale="1,1,1"/>
+  <Object Type="Group" Name="Group002-007" Pos="-75,17,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-498" Pos="-51,-22,76" EntityClass="AreaShape" EntityId="180" EntityGuid="4480819252F97B4D" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot012" Pos="-147,-15,76" EntityClass="PrefabPivot" EntityId="238" EntityGuid="4CF8B76CACF5094E" CastShadowMinSpec="1" Layer="Cap_S_12x01x04_a"/>
+  <Entity Name="Shape001-135" Pos="19,5,76" EntityClass="AreaShape" EntityId="42" EntityGuid="480EDFAC871B3A4E" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-482" Pos="-13,-47,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="64" EntityGuid="4BF5ED0D30C60D4F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-515" Pos="-64,-39,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="217" EntityGuid="4C0440D398C27A50" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-525" Pos="-89,-23,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="3" EntityGuid="4F2B5951A6E6E451" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-533" Pos="-89,-13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="95" EntityGuid="435A61D8E7057F53" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-489" Pos="-12,-43,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="71" EntityGuid="4816FC679D601A55" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-023" Pos="-56.999999300617695,-34.999998950926745,72" Rotate="1,0,0,-8.7422777e-008" EntityClass="AreaShape" EntityId="258" EntityGuid="4067B96302763455" CastShadowMinSpec="1" Layer="Addons">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-034" Pos="167,-38,76" EntityClass="AreaShape" EntityId="29" EntityGuid="492E08FE0D0A4255" CastShadowMinSpec="1" Layer="Room_S_16x16x04_b">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-16,0" ObstructSound="0"/>
+     <Point Pos="16,-16,0" ObstructSound="0"/>
+     <Point Pos="16,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-554" Pos="-81,30,76" EntityClass="AreaShape" EntityId="116" EntityGuid="40C36F972AB1E055" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-504" Pos="-63,-47,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="186" EntityGuid="44D8D0EA078CDB59" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-480" Pos="-37,-35.000000136914167,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="62" EntityGuid="449221D9E9C6285E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-518" Pos="-77,-22,76" EntityClass="AreaShape" EntityId="220" EntityGuid="4BE1C26B22E2745E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot013" Pos="-80,-15,76" EntityClass="PrefabPivot" EntityId="236" EntityGuid="4F0A2D664D09DB5E" CastShadowMinSpec="1" Layer="Link_S_06x02x04_a"/>
+  <Entity Name="Shape001-547" Pos="-64,-5.0000002384185791,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="109" EntityGuid="4B76DBBB4CD4915F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-586" Pos="-43,5,76" EntityClass="AreaShape" EntityId="148" EntityGuid="47CB33809ECEEF5F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot014" Pos="-80,-23,76" EntityClass="PrefabPivot" EntityId="244" EntityGuid="463AD9CDB3FE7260" CastShadowMinSpec="1" Layer="Link_S_06x02x04_b"/>
+  <Entity Name="Shape001-029" Pos="-189,-14,12" EntityClass="AreaShape" EntityId="15" EntityGuid="4D2D213C23E9CA61" CastShadowMinSpec="1" Layer="Link_L_16x02x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-2,0" ObstructSound="0"/>
+     <Point Pos="16,-2,0" ObstructSound="0"/>
+     <Point Pos="16,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-544" Pos="-89,-21,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="106" EntityGuid="416BE10E526DF161" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-522" Pos="-65,-47,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="224" EntityGuid="4B27EB3627B92962" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-486" Pos="-17,-47,76" EntityClass="AreaShape" EntityId="68" EntityGuid="4FF662C219070263" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-455" Pos="-12,-13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="210" EntityGuid="45743114B1A50664" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-014" Pos="35,-30,76" EntityClass="AreaShape" EntityId="34" EntityGuid="4213436028E92265" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_b">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot017-001" Pos="-50,-15,76" EntityClass="PrefabPivot" EntityId="252" EntityGuid="45FCB850E4513C66" CastShadowMinSpec="1" Layer="Cap_S_04x01x04_a"/>
+  <Entity Name="Shape001-578" Pos="-51,30,76" EntityClass="AreaShape" EntityId="140" EntityGuid="4B3E7BEC9A05CD66" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot016-001" Pos="175,-46,76" EntityClass="PrefabPivot" EntityId="230" EntityGuid="4C8CF9BAEEA76A68" CastShadowMinSpec="1" Layer="Room_S_16x16x04_b"/>
+  <Entity Name="Shape001-435" Pos="-12,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="157" EntityGuid="407DE34A84E6C369" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-565" Pos="-89,29,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="127" EntityGuid="4E3D5B154D921E6B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot004" Pos="41,-50,76" EntityClass="PrefabPivot" EntityId="231" EntityGuid="453F5B488BF74B6B" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_c"/>
+  <Entity Name="PrefabPivot010" Pos="-1,-34,76" EntityClass="PrefabPivot" EntityId="243" EntityGuid="43D347BE84B6706D" CastShadowMinSpec="1" Layer="Addon_S_16x08x08_b"/>
+  <Entity Name="Shape001-125" Pos="11,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="43" EntityGuid="477AACC692E2226E" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-142" Pos="11,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="44" EntityGuid="4AB138D7B6099F6F" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-501" Pos="-63,-31.000000238418579,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="183" EntityGuid="4BC1B493DB1DDC6F" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-509" Pos="-38,-43,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="191" EntityGuid="4361BA8391B4DF70" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-449" Pos="-12,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="171" EntityGuid="4DE1159D97E83471" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-581" Pos="-63,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="143" EntityGuid="47B78F610BB87373" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-013" Pos="35,-14,76" EntityClass="AreaShape" EntityId="18" EntityGuid="4565ED2365FBA073" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-491" Pos="-21,-22,76" EntityClass="AreaShape" EntityId="73" EntityGuid="41BD2DCFB8BBE474" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-559" Pos="-81,5,76" EntityClass="AreaShape" EntityId="121" EntityGuid="4A49BEAF0B4F2B76" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-018" Pos="-38,-22,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-38,-22,76"/>
+    <Point Pos="-38,-48,76"/>
+    <Point Pos="-64,-48,76"/>
+    <Point Pos="-64,-22,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-594" Pos="-55,4,76" EntityClass="AreaShape" EntityId="76" EntityGuid="4281F18F31B5F676" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-447" Pos="-12,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="169" EntityGuid="4B4861AD59ADAB78" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-035" Pos="-83,-22,76" EntityClass="AreaShape" EntityId="6" EntityGuid="4AF54CF1DA660D79" CastShadowMinSpec="1" Layer="Link_S_06x02x04_b">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268563e-007,-2,0" ObstructSound="0"/>
+     <Point Pos="6,-2,0" ObstructSound="0"/>
+     <Point Pos="6,3.4228542e-008,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-458" Pos="-25,4,76" EntityClass="AreaShape" EntityId="207" EntityGuid="4B8528FAF6EE9279" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-592" Pos="-43,4,76" EntityClass="AreaShape" EntityId="74" EntityGuid="43CDBE171C809679" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-557" Pos="-65,29,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="119" EntityGuid="4DAFAD0283820C7A" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-534" Pos="-81,4,76" EntityClass="AreaShape" EntityId="96" EntityGuid="44B151E129F5777A" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-591" Pos="-47,30,76" EntityClass="AreaShape" EntityId="153" EntityGuid="4A7BCF41F51B8B7B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-590" Pos="-63,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="152" EntityGuid="46B4267DBDF9F77B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-539" Pos="-81,-21,76" EntityClass="AreaShape" EntityId="101" EntityGuid="4375BEAF372E0C7C" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-022" Pos="-97,-14,76" EntityClass="AreaShape" EntityId="12" EntityGuid="47271CD6611F157E" CastShadowMinSpec="1" Layer="Cap_S_06x01x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268563e-007,-1,0" ObstructSound="0"/>
+     <Point Pos="6,-1,0" ObstructSound="0"/>
+     <Point Pos="6,3.4228542e-008,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="Group" Name="Group002-008" Pos="-49,17,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-478" Pos="-25,-22,76" EntityClass="AreaShape" EntityId="60" EntityGuid="46223CDC2706C381" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-540" Pos="-89,-9.0000001369141671,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="102" EntityGuid="4A817102CF616E82" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-574" Pos="-55,30,76" EntityClass="AreaShape" EntityId="136" EntityGuid="4B2C5CA91A86A182" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-025" Pos="95,-50,76" EntityClass="AreaShape" EntityId="31" EntityGuid="4E2DA47F5375F582" CastShadowMinSpec="1" Layer="Room_S_32x32x04_b">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-28,0" ObstructSound="0"/>
+     <Point Pos="28,-28,0" ObstructSound="0"/>
+     <Point Pos="28,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="Group" Name="Group002-001" Pos="-23,17,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-457" Pos="-13,3,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="208" EntityGuid="470B541CBA41BD85" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-503" Pos="-38,-35.000000136914167,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="185" EntityGuid="4866507199680886" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-443" Pos="-12,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="165" EntityGuid="41E6319B41597586" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-562" Pos="-65,5,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="124" EntityGuid="439A81A308E53887" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-532" Pos="-69,4,76" EntityClass="AreaShape" EntityId="94" EntityGuid="4B6679316AE99787" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-028" Pos="-40,-14,76" EntityClass="AreaShape" EntityId="23" EntityGuid="4C4A43E47AB4568A" CastShadowMinSpec="1" Layer="Link_S_04x02x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268563e-007,-2,0" ObstructSound="0"/>
+     <Point Pos="4,-2,0" ObstructSound="0"/>
+     <Point Pos="4,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-558" Pos="-77,30,76" EntityClass="AreaShape" EntityId="120" EntityGuid="4A6C9EBCE86F2D8B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-490" Pos="-37,-43,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="72" EntityGuid="4F38A3EB2ED63C8B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot009" Pos="-1,-18,76" EntityClass="PrefabPivot" EntityId="251" EntityGuid="4EA5FF4E57118F8B" CastShadowMinSpec="1" Layer="Addon_S_16x08x08_a"/>
+  <Entity Name="Shape001-531" Pos="-73,-22,76" EntityClass="AreaShape" EntityId="11" EntityGuid="47A93C0BEFC59A8B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-469" Pos="-12,-17,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="196" EntityGuid="4A41749D3F22CB8B" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-512" Pos="-69,-22,76" EntityClass="AreaShape" EntityId="214" EntityGuid="4FC271F432C7408C" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-442" Pos="-13,5,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="164" EntityGuid="40A42E904EBD588C" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-027" Pos="35,-62,76" EntityClass="AreaShape" EntityId="7" EntityGuid="49ED0905C5A4FB8D" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_d">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-511" Pos="-47,-22,76" EntityClass="AreaShape" EntityId="193" EntityGuid="4EB2337EA4B42C8E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-475" Pos="-12,-39,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="57" EntityGuid="4B56439938BFAE8E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-517" Pos="-65,-23,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="219" EntityGuid="4ADD0229BE8DC592" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-468" Pos="-25,-21,76" EntityClass="AreaShape" EntityId="197" EntityGuid="4BEBE0FE99B47595" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot005" Pos="41,-66,76" EntityClass="PrefabPivot" EntityId="234" EntityGuid="41552BEDE9F45798" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_d"/>
+  <Entity Name="PrefabPivot007" Pos="21,-34,76" EntityClass="PrefabPivot" EntityId="242" EntityGuid="46FF201C159C2399" CastShadowMinSpec="1" Layer="Addon_S_12x08x08_b"/>
+  <Entity Name="Shape001-487" Pos="-12,-31.000000238418579,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="69" EntityGuid="4D029EC31620A099" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-429" Pos="35,5,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="45" EntityGuid="4BB53200C282C799" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-561" Pos="-89,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="123" EntityGuid="404632CED62ED599" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-141" Pos="36,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="46" EntityGuid="4FFA003D2A25AA9B" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-570" Pos="-89,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="132" EntityGuid="4C54314A2FDEBE9C" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot006" Pos="-51,21,72" Rotate="4.3711388e-008,0,0,1" EntityClass="PrefabPivot" EntityId="257" EntityGuid="473B2A17C7E3339D" CastShadowMinSpec="1" Layer="Addons"/>
+  <Entity Name="Shape001-477" Pos="-13,-23,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="59" EntityGuid="44819AED35BA779E" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot018" Pos="203,-20,76" EntityClass="PrefabPivot" EntityId="237" EntityGuid="46F3AB54780DE19F" CastShadowMinSpec="1" Layer="Room_S_24x12x04_a"/>
+  <Object Type="Group" Name="Group002-004" Pos="-49,-35,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-563" Pos="-64,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="125" EntityGuid="411D61D1E55551A0" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-506" Pos="-43,-47,76" EntityClass="AreaShape" EntityId="188" EntityGuid="4CDDDED4F10E9FA0" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="Group" Name="Group002-002" Pos="-23,-9,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-016" Pos="35,-46,76" EntityClass="AreaShape" EntityId="16" EntityGuid="4563AE3D08CC6AA2" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_c">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-535" Pos="-64,-13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="97" EntityGuid="46E31E0C49CD6BA2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-438" Pos="-25,30,76" EntityClass="AreaShape" EntityId="160" EntityGuid="496A6D580407D3A2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-560" Pos="-89,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="122" EntityGuid="474E5107F42C2AA3" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-502" Pos="-39,-47,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="184" EntityGuid="491BD7D7F694AEA3" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-032" Pos="-189,-14,76" EntityClass="AreaShape" EntityId="26" EntityGuid="441D8035319C95A5" CastShadowMinSpec="1" Layer="Link_S_16x02x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-2,0" ObstructSound="0"/>
+     <Point Pos="16,-2,0" ObstructSound="0"/>
+     <Point Pos="16,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-470" Pos="-37,-17,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="195" EntityGuid="4FE022AAF80499A6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot002" Pos="41,-18,76" EntityClass="PrefabPivot" EntityId="229" EntityGuid="46200D181C436FA7" CastShadowMinSpec="1" Layer="Addon_S_12x08x04_a"/>
+  <Entity Name="Shape001-461" Pos="-37,-5.0000002384185791,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="204" EntityGuid="4F69596CE1257AA7" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-567" Pos="-64,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="129" EntityGuid="44EE210DAF21D6A7" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-121" Pos="11,5,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="47" EntityGuid="4296DBF6ACEEFDA9" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-496" Pos="-47,-47,76" EntityClass="AreaShape" EntityId="178" EntityGuid="426DF21BAF7DF4AB" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-023" Pos="-45.000000349691106,16.999999475463341,72" Rotate="4.3711388e-008,0,0,1" EntityClass="AreaShape" EntityId="256" EntityGuid="4366CABD543082AD" CastShadowMinSpec="1" Layer="Addons">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-464" Pos="-37,-21,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="201" EntityGuid="4C4B12BD01A1F1AD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-434" Pos="-29,30,76" EntityClass="AreaShape" EntityId="156" EntityGuid="48DA0E705188A7AE" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-541" Pos="-89,-5.0000002384185791,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="103" EntityGuid="43559A44A05239B0" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot017" Pos="-38,-15,76" EntityClass="PrefabPivot" EntityId="247" EntityGuid="4698ED896D145FB1" CastShadowMinSpec="1" Layer="Link_S_04x02x04_a"/>
+  <Entity Name="Shape001-538" Pos="-77,4,76" EntityClass="AreaShape" EntityId="100" EntityGuid="47796A775FB4C4B1" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-017" Pos="-12,-22,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-12,-22,76"/>
+    <Point Pos="-12,-48,76"/>
+    <Point Pos="-38,-48,76"/>
+    <Point Pos="-38,-22,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-432" Pos="-17,30,76" EntityClass="AreaShape" EntityId="154" EntityGuid="4FC07AB0B90C1FB3" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-436" Pos="-21,5,76" EntityClass="AreaShape" EntityId="158" EntityGuid="40279429616543B4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-536" Pos="-73,-21,76" EntityClass="AreaShape" EntityId="98" EntityGuid="4DF5C871B13D79B4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-005" Pos="36,30,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="36,30,76"/>
+    <Point Pos="36,4,76"/>
+    <Point Pos="10,4,76"/>
+    <Point Pos="10,30,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-476" Pos="-21,-47,76" EntityClass="AreaShape" EntityId="58" EntityGuid="4B3D46D591CCA5B6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-453" Pos="-37,-13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="212" EntityGuid="483738D46E6AB6B6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-431" Pos="11,29,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="48" EntityGuid="46AD8D7BC9CA42B7" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-023" Pos="15,-14,76" EntityClass="AreaShape" EntityId="33" EntityGuid="4B13D697E35F86B9" CastShadowMinSpec="1" Layer="Addon_S_12x08x08_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-019" Pos="-64,-22,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-64,-22,76"/>
+    <Point Pos="-64,-48,76"/>
+    <Point Pos="-90,-48,76"/>
+    <Point Pos="-90,-22,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-605" Pos="-63,3,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="87" EntityGuid="419AD9C3BADEF3BF" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-521" Pos="-89,-31.000000238418579,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="223" EntityGuid="4F3B7D8FD6192EC2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-607" Pos="-38,-5.0000002384185791,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="89" EntityGuid="4B217C6E52A56DC3" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-456" Pos="-21,-21,76" EntityClass="AreaShape" EntityId="209" EntityGuid="49EC310FE6207DC3" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-589" Pos="-38,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="151" EntityGuid="4FCFB753695674C5" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-548" Pos="-77,-21,76" EntityClass="AreaShape" EntityId="110" EntityGuid="4546591D772528C6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot015" Pos="-80,-31,76" EntityClass="PrefabPivot" EntityId="232" EntityGuid="43329506B7A62EC7" CastShadowMinSpec="1" Layer="Link_S_06x02x04_c"/>
+  <Entity Name="Shape001-572" Pos="-43,30,76" EntityClass="AreaShape" EntityId="134" EntityGuid="42671A2D7D8938C7" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-510" Pos="-63,-43,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="192" EntityGuid="42988748A8F75BC8" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-020" Pos="-64,4,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-64,4,76"/>
+    <Point Pos="-64,-22,76"/>
+    <Point Pos="-90,-22,76"/>
+    <Point Pos="-90,4,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-550" Pos="-89,-17,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="112" EntityGuid="4CA2CD08BB76C2C8" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-543" Pos="-64,-9.0000001369141671,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="105" EntityGuid="440DD43725BC05C9" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-527" Pos="-64,-31.000000238418579,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="10" EntityGuid="44C9726712E3F3CC" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-530" Pos="-89,-43,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="25" EntityGuid="40D93AA700AC4ACD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-437" Pos="-13,29,76" Rotate="0.70710689,0,0,0.70710665" Scale="0.99999994039535522,0.99999994039535522,1" EntityClass="AreaShape" EntityId="159" EntityGuid="47FCB695D9AABECD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-114" Pos="31,5,76" EntityClass="AreaShape" EntityId="49" EntityGuid="46C30D6F888E80CF" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-595" Pos="-38,-13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="77" EntityGuid="49D3EF5D45A43FD1" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-492" Pos="-43,-22,76" EntityClass="AreaShape" EntityId="174" EntityGuid="43F6C472195954D1" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-485" Pos="-37,-23,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="67" EntityGuid="49A736772CCE0ED2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-494" Pos="-55,-22,76" EntityClass="AreaShape" EntityId="176" EntityGuid="42833D0D029414D2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-472" Pos="-17,-22,76" EntityClass="AreaShape" EntityId="55" EntityGuid="40E8278BEBD752D2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-569" Pos="-64,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="131" EntityGuid="495784ADD4F760D2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-471" Pos="-21,4,76" EntityClass="AreaShape" EntityId="194" EntityGuid="42AD4AFE71717DD4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-018" Pos="-9,-14,76" EntityClass="AreaShape" EntityId="35" EntityGuid="42E760FE66048BD4" CastShadowMinSpec="1" Layer="Addon_S_16x08x08_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="16,-8,0" ObstructSound="0"/>
+     <Point Pos="16,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-601" Pos="-63,-5.0000002384185791,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="83" EntityGuid="4E2E1178215BC1D4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-459" Pos="-29,-21,76" EntityClass="AreaShape" EntityId="206" EntityGuid="4E26E2BCEE41EED4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-134" Pos="36,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="50" EntityGuid="4CF55F8EDD09EFD4" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-023" Pos="-38,30,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-38,30,76"/>
+    <Point Pos="-38,4,76"/>
+    <Point Pos="-64,4,76"/>
+    <Point Pos="-64,30,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-528" Pos="-77,-47,76" EntityClass="AreaShape" EntityId="13" EntityGuid="43B8EF6BFA635FD6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="Group" Name="Group002-005" Pos="-75,-35,76" Scale="1,1,1"/>
+  <Entity Name="Shape001-128" Pos="23,5,76" EntityClass="AreaShape" EntityId="51" EntityGuid="441CCD1794826AD7" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-002" Pos="95,-86,76" EntityClass="AreaShape" EntityId="28" EntityGuid="460B1833CC7B85D9" CastShadowMinSpec="1" Layer="Room_S_32x32x04_c">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-28,0" ObstructSound="0"/>
+     <Point Pos="28,-28,0" ObstructSound="0"/>
+     <Point Pos="28,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-024" Pos="167,-14,76" EntityClass="AreaShape" EntityId="8" EntityGuid="48F02A034FDDC7D9" CastShadowMinSpec="1" Layer="Room_S_16x16x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-16,0" ObstructSound="0"/>
+     <Point Pos="16,-16,0" ObstructSound="0"/>
+     <Point Pos="16,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-529" Pos="-64,-43,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="14" EntityGuid="4180D60C4704D0D9" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-115" Pos="36,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="52" EntityGuid="4AC8095639C409DA" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-024" Pos="-38,4,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-38,4,76"/>
+    <Point Pos="-38,-22,76"/>
+    <Point Pos="-64,-22,76"/>
+    <Point Pos="-64,4,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-555" Pos="-64,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="117" EntityGuid="442311908C24B0DA" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-479" Pos="-29,-47,76" EntityClass="AreaShape" EntityId="61" EntityGuid="4301F81717AB31DB" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot011" Pos="-94,-15,76" EntityClass="PrefabPivot" EntityId="241" EntityGuid="40FC1829767B95DB" CastShadowMinSpec="1" Layer="Cap_S_06x01x04_a"/>
+  <Entity Name="Shape001-499" Pos="-55,-47,76" EntityClass="AreaShape" EntityId="181" EntityGuid="4DD3133CDC2642DC" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-583" Pos="-38,16.999999863085833,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="145" EntityGuid="46B32B4483F157DD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-508" Pos="-51,-47,76" EntityClass="AreaShape" EntityId="190" EntityGuid="4E8BCACFE0FD14DE" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-033" Pos="-83,-14,76" EntityClass="AreaShape" EntityId="4" EntityGuid="4E3E00527760F6DF" CastShadowMinSpec="1" Layer="Link_S_06x02x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268563e-007,-2,0" ObstructSound="0"/>
+     <Point Pos="6,-2,0" ObstructSound="0"/>
+     <Point Pos="6,3.4228542e-008,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-474" Pos="-29,-22,76" EntityClass="AreaShape" EntityId="30" EntityGuid="47D47C979B3503E1" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Comment-001" Pos="193,-18,77" EntityClass="Comment" EntityId="228" EntityGuid="4C2824762C2068E3" CastShadowMinSpec="1" Layer="Room_S_24x12x04_a">
+   <Properties nCharsPerLine="30" clrDiffuse="1,0.5,0" bFixed="0" bHidden="0" fMaxDist="100" fSize="1.2" Text="Needs 01x01x04 pieces or cannot center"/>
+  </Entity>
+  <Entity Name="Shape001-463" Pos="-12,-9.0000001369141671,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="202" EntityGuid="4C1545295278CFE3" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-610" Pos="-63,-17,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="92" EntityGuid="439EE6EE666D53E4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-593" Pos="-63,-13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="75" EntityGuid="491E2B65EACE77E4" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-599" Pos="-55,-21,76" EntityClass="AreaShape" EntityId="81" EntityGuid="427BAB5EBCE510E6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-011" Pos="15,-30,76" EntityClass="AreaShape" EntityId="21" EntityGuid="49FC6DB7291156E7" CastShadowMinSpec="1" Layer="Addon_S_12x08x08_b">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="12,-8,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-450" Pos="-37,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="172" EntityGuid="4DFFBF4911387AE7" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-556" Pos="-73,5,76" EntityClass="AreaShape" EntityId="118" EntityGuid="4296FE07617F7CE7" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-545" Pos="-89,3,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="107" EntityGuid="4128A9D6C28AE7E7" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-596" Pos="-47,-21,76" EntityClass="AreaShape" EntityId="78" EntityGuid="4542CD752A3DA8E9" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-598" Pos="-51,4,76" EntityClass="AreaShape" EntityId="80" EntityGuid="43A5925EC72F6AEA" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-505" Pos="-63,-23,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="187" EntityGuid="431174BB7B8C15EB" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-021" Pos="-153,-14,76" EntityClass="AreaShape" EntityId="22" EntityGuid="4194072E6F8B47EC" CastShadowMinSpec="1" Layer="Cap_S_12x01x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268563e-007,-1,0" ObstructSound="0"/>
+     <Point Pos="12,-1,0" ObstructSound="0"/>
+     <Point Pos="12,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-433" Pos="-37,13,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="155" EntityGuid="48F511EE08692BF0" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="PrefabPivot020" Pos="232,-18,76" EntityClass="PrefabPivot" EntityId="253" EntityGuid="4CB78EC161793CF1" CastShadowMinSpec="1" Layer="Room_S_20x08x04_a"/>
+  <Entity Name="Shape001-030" Pos="-52,-14,76" EntityClass="AreaShape" EntityId="20" EntityGuid="4F807D4D31A63CF1" CastShadowMinSpec="1" Layer="Cap_S_04x01x04_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+     <Point Pos="4,-1,0" ObstructSound="0"/>
+     <Point Pos="4,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-460" Pos="-37,-9.0000001369141671,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="205" EntityGuid="4600A79B540DF6F1" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-546" Pos="-69,-21,76" EntityClass="AreaShape" EntityId="108" EntityGuid="4E0D479ABE6028F2" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-007" Pos="131,-14,76" EntityClass="AreaShape" EntityId="5" EntityGuid="4310407BBC0E3EF3" CastShadowMinSpec="1" Layer="Room_S_28x28x08_a">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-28,0" ObstructSound="0"/>
+     <Point Pos="28,-28,0" ObstructSound="0"/>
+     <Point Pos="28,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-036" Pos="-83,-30,76" EntityClass="AreaShape" EntityId="1" EntityGuid="4EED4E2442AFBCF3" CastShadowMinSpec="1" Layer="Link_S_06x02x04_c">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="1.0268563e-007,-2,0" ObstructSound="0"/>
+     <Point Pos="6,-2,0" ObstructSound="0"/>
+     <Point Pos="6,3.4228542e-008,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-124" Pos="11,9,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="53" EntityGuid="44F15BC6FC72EEF3" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-439" Pos="-29,5,76" EntityClass="AreaShape" EntityId="161" EntityGuid="4B451917899C7EF6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-445" Pos="-37,29,76" Rotate="2.3452182e-007,0,0,1" EntityClass="AreaShape" EntityId="167" EntityGuid="4645ACFE6D0CECF6" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-603" Pos="-38,-9.0000001369141671,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="85" EntityGuid="4078D1C52A745FF8" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-602" Pos="-39,-21,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="84" EntityGuid="4366EFB0623B63F8" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-462" Pos="-13,-21,76" Rotate="1,0,0,2.0504601e-008" EntityClass="AreaShape" EntityId="203" EntityGuid="4869F04F9DD86EF8" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0.99999988,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="1,4,0" ObstructSound="0"/>
+     <Point Pos="1.2434498e-014,4,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-454" Pos="-29,4,76" EntityClass="AreaShape" EntityId="211" EntityGuid="44487AC9C92EF1F9" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-579" Pos="-55,5,76" EntityClass="AreaShape" EntityId="141" EntityGuid="464F2F7F652CAEFA" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-116" Pos="27,30,76" EntityClass="AreaShape" EntityId="54" EntityGuid="420E504F1E1C7DFB" CastShadowMinSpec="1" Layer="Room__Template">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Object Type="VisArea" Name="VisArea001-016" Pos="-12,4,76" Scale="1,1,1" Height="0" DisplayFilled="1" AffectedBySun="0" IgnoreSkyColor="0" ViewDistRatio="100" SkyOnly="0" OceanIsVisible="0">
+   <Points>
+    <Point Pos="-12,4,76"/>
+    <Point Pos="-12,-22,76"/>
+    <Point Pos="-38,-22,76"/>
+    <Point Pos="-38,4,76"/>
+   </Points>
+  </Object>
+  <Entity Name="Shape001-514" Pos="-81,-22,76" EntityClass="AreaShape" EntityId="216" EntityGuid="4E6CCC44C5831EFD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-466" Pos="-17,-21,76" EntityClass="AreaShape" EntityId="199" EntityGuid="4F6C0BF6543590FD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-441" Pos="-37,20.999999761581421,76" Rotate="0.70710683,0,0,-0.70710677" EntityClass="AreaShape" EntityId="163" EntityGuid="4F8CF6B1322EAFFD" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.3691417e-007,0" ObstructSound="0"/>
+     <Point Pos="-4,-1.0000001,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-020" Pos="-9,-30,76" EntityClass="AreaShape" EntityId="32" EntityGuid="4A5F759CC37DCBFD" CastShadowMinSpec="1" Layer="Addon_S_16x08x08_b">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="8">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="0,-8,0" ObstructSound="0"/>
+     <Point Pos="16,-8,0" ObstructSound="0"/>
+     <Point Pos="16,0,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+  <Entity Name="Shape001-526" Pos="-69,-47,76" EntityClass="AreaShape" EntityId="9" EntityGuid="47C3CA87365731FF" CastShadowMinSpec="1" Layer="Rooms">
+   <Area Id="0" Group="0" Proximity="0" Priority="0" Height="4">
+    <Points>
+     <Point Pos="0,0,0" ObstructSound="0"/>
+     <Point Pos="-4,0,0" ObstructSound="0"/>
+     <Point Pos="-4,-1,0" ObstructSound="0"/>
+     <Point Pos="0,-1,0" ObstructSound="0"/>
+    </Points>
+   </Area>
+  </Entity>
+ </Objects>
+</Mission>

@@ -1,0 +1,26 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="MaterialFX:HUDStartFX" pos="700,430,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2" Class="MaterialFX:HUDEndFX" pos="1270,690,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="5369" Class="Image:ColorCorrection" pos="1270,400,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="1" Global_User_ColorC="0" Global_User_ColorM="0" Global_User_ColorY="0" Global_User_ColorK="0" Global_User_Brightness="1" Global_User_Contrast="1" Global_User_Saturation="1" Global_User_ColorHue="0"/>
+  </Node>
+  <Node Id="5371" Class="Actor:LocalPlayer" pos="1270,360,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="5373" Class="Time:Delay" pos="960,430,0" flags="0">
+   <Inputs delay="0.01" resetOnInput="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="5373" nodeOut="1" portIn="in" portOut="Started" enabled="1"/>
+  <Edge nodeIn="5369" nodeOut="5371" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="5373" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="5369" nodeOut="5373" portIn="Enabled" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

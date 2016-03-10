@@ -23,6 +23,7 @@ FishFlockTank =
 		MaxHalfDistFromOrigin = {x = 1.8, y = .65, z = .6},
 		OnUpdatePeriod = 10,
 		SuckerFishAttractVariation = {x = 0.25, y = 0; z = 0.15},
+		SuckerFishAttract = {x = 0, y = 2; z = 0},
 		SuckerFishAttractorDecay = 1,
 		SuckerFishProbabilityToBeInFront = 0.75,
 
@@ -314,9 +315,9 @@ function FishFlockTank:OnInit()
 
 	-- Random chance for fish to be on either side
 	if (math.random() < self.Properties.SuckerFishProbabilityToBeInFront) then
-		self.attractPoint = {x = 0, y = 2, z = 0};
+		self.attractPoint = {x = self.Properties.SuckerFishAttract.x, y = self.Properties.SuckerFishAttract.y, z = self.Properties.SuckerFishAttract.z};
 	else
-		self.attractPoint = {x = 0, y = -2, z = 0};
+		self.attractPoint = {x = self.Properties.SuckerFishAttract.x, y = -self.Properties.SuckerFishAttract.y, z = self.Properties.SuckerFishAttract.z};
 	end
 
 	self.UpdatedTime = 0;

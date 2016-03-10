@@ -1,0 +1,92 @@
+<interface name="interface_JOKR_DistortionCannon_S1">
+	<!-- 
+	This is the model and vfx template for Laser Cannons.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+	
+<firemodes>
+	<firemode>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.distortion_cannon.firefx" helper="muzzle_out" />
+        <thirdperson effect="weapon_fx.distortion_cannon.firefx" helper="muzzle_out"/>
+      </muzzleflash>
+	  
+
+	</firemode>
+</firemodes>
+
+  <damagelevels>
+	<level damageRatio="0.50">
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect=""  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect=""  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect=""  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris4" mass="10" impulse="0,10,0" >
+			</Debris>
+			<Debris name="base_100_debris5" mass="10" impulse="0,10,0" >
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+  
+	<boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
+    </boneAttachments>
+	
+    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
+    <!-- default fallback -->
+    <thirdperson name="Objects/Spaceships/Weapons/Joker/SuckerPunch/JOKR_DistortionCannon_SuckerPunch_S1.cga"/>
+		
+	<tags tag="damage_100">
+		<thirdperson name="Objects/Spaceships/Weapons/Joker/SuckerPunch/JOKR_DistortionCannon_SuckerPunch_S1_100.cga"/>
+	</tags>
+	
+	<tags tag="HUD">
+		<thirdperson name="Objects/Spaceships/Weapons/Joker/SuckerPunch/JOKR_DistortionCannon_SuckerPunch_S1.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+
+		<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Weapons/Joker/SuckerPunch/JOKR_DistortionCannon_SuckerPunch_S1_100.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+	</tags>	
+	
+	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->
+	<tags tag="Hologram">
+		<thirdperson name="Objects/Spaceships/Weapons/Joker/SuckerPunch/JOKR_DistortionCannon_SuckerPunch_S1.cga" material=""/>
+	</tags>
+    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+    
+  </geometry>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+  
+</interface>

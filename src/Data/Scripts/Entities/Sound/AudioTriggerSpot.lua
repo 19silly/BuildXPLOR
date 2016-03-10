@@ -22,6 +22,7 @@ AudioTriggerSpot = {
 		fMaxDelay = 2,
 		fAudioSignature = 0, -- CIG mkorotyaev to be used by the radar screen
 		bIsManagedAudioObject = false, -- CIG mkorotyaev specifies whether the AudioObject should be managed or not
+		nVoiceCount = 1, -- CIG mkorotyaev made the random playback polyphonic
 	},
 	
 	hOnTriggerID = nil,
@@ -33,6 +34,12 @@ AudioTriggerSpot = {
 	
 	-- CIG BEGIN shall
 	bCached = false,
+	-- CIG END
+	
+	-- CIG BEGIN mkorotyaev made the random playback polyphonic
+	nNextPlaybackProxyIdx = 0, -- proxy ID of the proxy where the next AudioTrigger will be executed
+	playbackProxies = {},
+	nPlaybackProxyCount = 0, -- there isn't an easy way to get an array object count in lua
 	-- CIG END
 }
 
@@ -53,12 +60,31 @@ function AudioTriggerSpot:_SetObstruction()
 	local nStateIdx = self.Properties.eiSoundObstructionType + 1;
 	
 	if ((self.tObstructionType.hSwitchID ~= nil) and (self.tObstructionType.tStateIDs[nStateIdx] ~= nil)) then
-		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx], self:GetDefaultAuxAudioProxyID());
+		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx], self:GetAllAuxAudioProxiesID()); -- CIG mkorotayev switched to GetAllAuxAudioProxiesID
 	end
 end
 
 ----------------------------------------------------------------------------------------
-function AudioTriggerSpot:_PlayFirstTime()	
+-- CIG BEGIN mkorotyaev made the random playback polyphonic
+function AudioTriggerSpot:_AdjustProxyList()
+	if self.Properties.bPlayRandom then
+		while (self.nPlaybackProxyCount > self.Properties.nVoiceCount) do
+			self:RemoveAuxAudioProxy(table.remove(self.playbackProxies));
+			self.nPlaybackProxyCount = self.nPlaybackProxyCount - 1;
+		end
+		while (self.nPlaybackProxyCount < self.Properties.nVoiceCount) do
+			table.insert(self.playbackProxies, self:CreateAuxAudioProxy());
+			self.nPlaybackProxyCount = self.nPlaybackProxyCount + 1;
+		end
+	end
+		
+	self.nNextPlaybackProxyIdx = 0;
+	self:SetAudioProxyOffset(g_Vectors.v000, self:GetAllAuxAudioProxiesID());
+end
+-- CIG END
+
+----------------------------------------------------------------------------------------
+function AudioTriggerSpot:_PlayFirstTime()
 	self:_SetObstruction();
 	self:SetCurrentAudioEnvironments();
 	
@@ -70,7 +96,6 @@ end
 ----------------------------------------------------------------------------------------
 function AudioTriggerSpot:_GenerateOffset()
 	local offset = {x=0,y=0,z=0}
-	local len = 0
 	
 	if (self.Properties.bPlayOnX) then
 		offset.x=randomF(-1,1);
@@ -114,6 +139,13 @@ function AudioTriggerSpot:OnSpawn()
 	self:_LookupTriggerIDs();
 	self:LoadPreload(PreloadType.Async);
 	-- CIG END
+	
+	-- CIG BEGIN mkorotyaev made the random playback polyphonic
+	self.playbackProxies = {self:GetDefaultAuxAudioProxyID()};
+	self.nPlaybackProxyCount = 1;
+	self.nNextPlaybackProxyIdx = 0;
+	self:_AdjustProxyList();
+	-- CIG END
 end
 
 -- CIG BEGIN shall
@@ -147,6 +179,14 @@ function AudioTriggerSpot:OnLoad(load)
 		self.Properties.bIsManagedAudioObject = false
 	end
 	-- CIG END
+	
+	-- CIG BEGIN mkorotyaev  made the random playback polyphonic
+	if not self.Properties.nVoiceCount then
+		self.Properties.nVoiceCount = 1
+	end
+	self:_AdjustProxyList();
+	self.nNextPlaybackProxyIdx = 0
+	-- CIG END
 end
 
 ----------------------------------------------------------------------------------------
@@ -164,9 +204,9 @@ function AudioTriggerSpot:OnPostLoad()
 end
 
 ----------------------------------------------------------------------------------------
-function AudioTriggerSpot:_Init()	
+function AudioTriggerSpot:_Init()
 	self.bIsPlaying = false;
-	self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
+	self:SetAudioProxyOffset(g_Vectors.v000, self:GetAllAuxAudioProxiesID()); -- CIG mkorotayev switched to GetAllAuxAudioProxiesID
 	self:NetPresent(0);
 end
 
@@ -184,8 +224,16 @@ function AudioTriggerSpot:OnPropertyChange()
 	elseif (self.Properties.eiSoundObstructionType > 1) then
 		self.Properties.eiSoundObstructionType = 2;
 	end
+	
+	-- CIG BEGIN mkorotyaev made the random playback polyphonic
+	if (self.Properties.nVoiceCount < 1) then
+		self.Properties.nVoiceCount = 1;
+	end
+	self:_AdjustProxyList();
+	nNextPlaybackProxyIdx = 0;
+	-- CIG END
 
-	self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
+	self:SetAudioProxyOffset(g_Vectors.v000, self:GetAllAuxAudioProxiesID()); -- CIG mkorotayev switched to GetAllAuxAudioProxiesID
 	self:_PlayFirstTime();
 end
 
@@ -258,30 +306,35 @@ function AudioTriggerSpot:Play()
 	-- CIG END
 
 	if ((self.hOnTriggerID ~= nil) and self.Properties.bEnabled) then
-		self:Stop(true); -- CIG - mkorotyaev
+		self:Stop(false, self.playbackProxies[self.nNextPlaybackProxyIdx+1]); -- CIG - mkorotyaev added Hard Stop parameter and the specific proxy ID
 		
 		local offset = self:_GenerateOffset();
-		if (LengthSqVector(offset) > 0.00001) then-- offset is longer than 1cm
-			self:SetAudioProxyOffset(offset, self:GetDefaultAuxAudioProxyID());
-			self:SetCurrentAudioEnvironments();
-		end
+		self:SetAudioProxyOffset(offset, self.playbackProxies[self.nNextPlaybackProxyIdx+1]); -- CIG - mkorotyaev added the specific proxy ID
+		self:SetCurrentAudioEnvironments();
 		
-		self:ExecuteAudioTrigger(self.hOnTriggerID, self:GetDefaultAuxAudioProxyID());
+		self:ExecuteAudioTrigger(self.hOnTriggerID, self.playbackProxies[self.nNextPlaybackProxyIdx+1]); -- CIG - mkorotyaev added the specific proxy ID
 		self.bIsPlaying = true;
 		
 		if (self.Properties.bPlayRandom) then
 			self:SetTimer(0, 1000 * randomF(self.Properties.fMinDelay, self.Properties.fMaxDelay));
+			self.nNextPlaybackProxyIdx = (self.nNextPlaybackProxyIdx+1) % self.nPlaybackProxyCount -- CIG mkorotyaev made random playback polyphonic
 		end
 	end
 end
 
 ----------------------------------------------------------------------------------------
-function AudioTriggerSpot:Stop(bHardStop) -- CIG - mkorotyaev Added bHardStop parameter
+function AudioTriggerSpot:Stop(bHardStop, proxyID) -- CIG - mkorotyaev Added bHardStop parameter and ProxyID parameter
+	-- CIG BEGIN mkorotyaev the Lua way of handling default parameter values 
+	if not proxyID then
+		proxyID = self:GetAllAuxAudioProxiesID();
+		self.nNextPlaybackProxyIdx = 0;
+	-- CIG END
+	end
 	if (self.bIsPlaying) then
 		if (self.hOffTriggerID ~= nil) then
-			self:ExecuteAudioTrigger(self.hOffTriggerID, self:GetDefaultAuxAudioProxyID());
+			self:ExecuteAudioTrigger(self.hOffTriggerID, proxyID); -- CIG - mkorotyaev switched to GetAllAuxAudioProxiesID
 		else
-			self:StopAudioTrigger(self.hOnTriggerID, bHardStop, self:GetDefaultAuxAudioProxyID()); -- CIG - mkorotyaev added bHardStop
+			self:StopAudioTrigger(self.hOnTriggerID, bHardStop, proxyID); -- CIG - mkorotyaev added bHardStop and switched to GetAllAuxAudioProxiesID
 		end
 		
 		self.bIsPlaying = false;

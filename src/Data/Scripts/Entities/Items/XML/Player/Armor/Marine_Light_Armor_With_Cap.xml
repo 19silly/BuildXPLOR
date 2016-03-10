@@ -19,41 +19,71 @@
 	</geometry>
 	
 	<playerArmor type="Light">
-		<param name="physical_damage_modifier" value="0.85" />
-		<param name="energy_damage_modifier" value=".9" />
+		<param name="physical_damage_modifier" value="0.6" />
+		<param name="energy_damage_modifier" value="0.6" />
 		<param name="distortion_damage_modifier" value="1.0" />
-		<!-- SPT - Gamescom2015 normalize all armors to be the same speed scale -->
-		<param name="armor_speed_scale" value="1.0" /> 
+		<param name="armor_speed_scale" value="1.0" hurt="1" />
+		<param name="bleedout_per_second" value="2" />
 		<param name="footstepEffect" value="footstep_player" />
 		<param name="remoteFootstepEffect" value="footstep" />
 		<param name="foleyEffect" value="foley_armour_light" />
 		<param name="remoteFoleyEffectName" value="foley_armour_light" />
+		<param name="hitEffect" value="playerhits_armour_heavy" />
+		<param name="remoteHitEffectName" value="playerhits_armour_heavy" />
 	</playerArmor>
 	
+	<decibel>
+		<param name="standStepDB" value="20" />
+		<param name="crouchStepDB" value="15" />
+		<param name="proneStepDB" value="10" />
+		<param name="stanceChangeDB" value="15" />
+		<param name="aimStanceChangeDB" value="5" />
+	</decibel>
+	
 	<stamina>
-		<param name="timeUntilDrained" value="30.0" />
-		<param name="rechargeScaler" value="1" />
+		<param name="timeUntilDrained" value="20.0" />
+		<param name="rechargeScaler" value="0.5" />
 	</stamina>
 
 	<breathing>
+		<audioTriggers>
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL01_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL01_Helmet_Exhale" />
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL02_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL02_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL03_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL03_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL04_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL04_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL05_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL05_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL06_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL06_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL07_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL07_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL08_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL08_Helmet_Exhale" />	
+			<Breath type="Inhale" SoundEvent="Play_CBBR_FPS_LVL09_Helmet_Inhale" />
+			<Breath type="Exhale" SoundEvent="Play_CBBR_FPS_LVL09_Helmet_Exhale" />	
+		</audioTriggers>
 		<param name="exhaleTimeMin" value="2.0" />
 		<param name="inhaleTimeMin" value="2.4" />
-		<param name="exhaleTimeMax" value=".55" />
-		<param name="inhaleTimeMax" value=".65" />
+		<param name="exhaleTimeMax" value="0.55" />
+		<param name="inhaleTimeMax" value="0.65" />
 
-		<param name="holdBreathInhaleTime" value="1.4" />
-		<param name="holdBreathTimeMin"    value="10"  />
-		<param name="holdBreathTimeMax"    value="2"   />
+		<param name="holdBreathInhaleTime" value="0.5" />
+		<param name="holdBreathTimeMin"    value="5"  />
+		<param name="holdBreathTimeMax"    value="0.5"   />
 
 		<param name="calmBreathingTimeMin" value="0.0"  />
 		<param name="calmBreathingTimeMax" value="15.0" />
 
 		<overrides>
 			<override name="ADS">
-				<param name="exhaleHoldTimeMin" value="1"   />
-				<param name="inhaleHoldTimeMin" value="1"   />
-				<param name="exhaleHoldTimeMax" value="0.2" />
-				<param name="inhaleHoldTimeMax" value="0.2" />
+				<param name="exhaleHoldTimeMin" value="0.25"   />
+				<param name="inhaleHoldTimeMin" value="0.2"   />
+				<param name="exhaleHoldTimeMax" value="0" />
+				<param name="inhaleHoldTimeMax" value="0" />
 			</override>
 		</overrides>
 	</breathing>
@@ -77,13 +107,6 @@
 						  <Helper helper="headcam" />
 					</Tags>
 				</Helper>
-			</ItemPort>
-			
-			<!-- Eyeware -->
-			<ItemPort minsize="1" maxsize="1" name="eyemount" display_name="Eye Mount" flags="invisible nophys">
-				<Types>
-					<Type type="Visor" subtypes="EyeWare"/>
-				</Types>
 			</ItemPort>
 			
 			<!--Ejection Seat Attachment Point-->
@@ -144,15 +167,15 @@
 				</types>
 			</ItemPort>
 			
-			<!-- 1 x Small Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach nophys" display_name="Small Weapon 1">
+	        <!-- 1x sidearm weapon on the right leg -->
+			<ItemPort minsize="1" maxsize="1" name="wep_sidearm_leg_right" flags="body_attach nophys" display_name="Small Weapon 1">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Small"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 1 x Medium Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="medium_attach_1" flags="body_attach default nophys" display_name="Medium Weapon 1" selectTag="front">
+			<ItemPort minsize="1" maxsize="1" name="wep_stocked_chest_left" flags="body_attach default nophys" display_name="Medium Weapon 1" selectTag="front">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Medium"/>
 				</Types>

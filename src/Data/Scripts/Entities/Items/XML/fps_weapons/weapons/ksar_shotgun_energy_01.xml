@@ -84,9 +84,33 @@
 		<firstperson name="Objects/fps_weapons/weapons_v7/ksar/shotguns/ksar_devastator_12.cdf" />
 		<thirdperson name="Objects/fps_weapons/weapons_v7/ksar/shotguns/ksar_devastator_12.cdf" />
 	</geometry>
+	
+	<decibel>
+		<param name="selectDB" value="5" />
+		<param name="deselectDB" value="5" />
+		<param name="reloadDB" value="15" />
+	</decibel>
+	
+	<Pipes>
+		<Pipe class="Decibel">
+			<Pool capacity="100" decayRate="-100" critical="1"/> 
+			<Signature name="Decibel" poolMultiplier="1" />
+			<States>
+				<State state="Default"><Value value="0" /></State>
+			</States>
+			<StateLevels>
+				<Warning  value = "0.5" />
+				<Critical value = "0.25" />
+				<Fail     value = "-1" /> <!-- never fail otherwise you cant shoot :( -->
+			</StateLevels>
+		</Pipe>
+	</Pipes>	
 
 	<firemodes>
 		<firemode type="default">
+			<pools>
+<!-- 				<pool class="Decibel" value="100" checkValue="0" /> -->
+			</pools>		
 			<fire>
 				<param name="localizedName" value="@FireMode_Single" />		
 				<param name="reticle" value="ElectricShotgun" />
@@ -97,7 +121,7 @@
 				<param name="auto_fire" value="1" />
 				<param name="ammo_type" value="12g_electric" />
 				<param name="shots_until_battery_needs_recharge" value="30" />
-				<param name="recharge_time" value="2.5" />
+				<param name="recharge_time" value="1.0" />
 				<param name="ammoDamageMultiplier" value="1" />
 				<param name="changeFMFireDelayFraction" value="1.0" />
 				<param name="bullet_chamber" value="0" />
@@ -121,6 +145,8 @@
 
 				<param name="accuracy_fade_in_per_shot" value="0.2" />
 				<param name="accuracy_fade_out_time"    value="0.5" />
+				
+				<param name="cover_blindfire_step_in_delay" value="1.75" />
 			</fire>
 
 			<!-- See CSingle::UpdateRecoil() to see how it works. -->

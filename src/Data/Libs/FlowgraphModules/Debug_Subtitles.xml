@@ -1,0 +1,69 @@
+<Graph isModule="1" moduleName="Debug_Subtitles" GOSTType="0" GOSTStateGroup="&lt;Unknown&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="CharacterName" Type="5" Input="1"/>
+  <Port Name="SubtitleText" Type="5" Input="1"/>
+  <Port Name="isDesigner" Type="6" Input="1"/>
+  <Port Name="DisplayTime" Type="2" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Debug_Subtitles" pos="-550,-150,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Debug_Subtitles" pos="720,-160,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="6" Class="Debug:DisplayMessage" pos="450,-160,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="0" posX="0.5" posY="0.8" fontSize="2" clr_Color="1,1,1" centered="1"/>
+  </Node>
+  <Node Id="8" Class="Math:BooleanFrom" pos="-160,50,0" flags="0">
+   <Inputs Value="0"/>
+  </Node>
+  <Node Id="10" Class="Math:SetColor" pos="110,50,0" flags="0">
+   <Inputs color_In="1,1,1"/>
+  </Node>
+  <Node Id="11" Class="Math:SetColor" pos="110,180,0" flags="0">
+   <Inputs color_In="0.791298,0.514918,0.0116122"/>
+  </Node>
+  <Node Id="13" Class="Logic:Any" pos="290,50,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="15" Class="String:Concat" pos="-230,-150,0" flags="0">
+   <Inputs String1="[" String2=""/>
+  </Node>
+  <Node Id="16" Class="String:Concat" pos="-40,-150,0" flags="0">
+   <Inputs String1="[" String2="] "/>
+  </Node>
+  <Node Id="17" Class="Time:Delay" pos="170,-150,0" flags="0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="18" Class="String:Concat" pos="-230,-70,0" flags="0">
+   <Inputs String1="[" String2="]\n"/>
+  </Node>
+  <Node Id="20" Class="Actor:LocalPlayer" pos="450,-210,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="6" nodeOut="1" portIn="Hide" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="1" portIn="DisplayTime" portOut="DisplayTime" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="Value" portOut="isDesigner" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="1" portIn="String2" portOut="CharacterName" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="1" portIn="Set" portOut="Start" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="1" portIn="delay" portOut="DisplayTime" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="1" portIn="String2" portOut="SubtitleText" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="6" portIn="Cancel" portOut="Hide" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="8" portIn="Set" portOut="False" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="8" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="10" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="11" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="13" portIn="clr_Color" portOut="out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="15" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="15" portIn="String1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="16" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="16" portIn="String1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="17" portIn="Success" portOut="out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="18" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="18" portIn="message" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="20" portIn="entityId" portOut="entityId" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

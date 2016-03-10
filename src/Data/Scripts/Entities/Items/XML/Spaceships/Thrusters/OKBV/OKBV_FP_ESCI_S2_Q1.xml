@@ -73,8 +73,9 @@
 			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
-				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
-				<State state="Idle"><Value value="20" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
 			</States>
 		</Pipe>
 
@@ -86,6 +87,14 @@
 		</Pipe>
 	</Pipes>
 	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+	
 	<gimbal type="fixed" >
 		</gimbal>
   
@@ -93,38 +102,15 @@
 	  <thruster flags="main rear" maxThrust="500000" >
 		  <exhausts>
 			  <exhaust scale="1.0" animation="nozzle" helper="engine_exhaust" effectStopThreshold="0.1">
-				  <effect name="thruster_fx.Templates.Thrust-12" helper="engine_exhaust" enable ="0" tag = "run">
+				  <effect name="Spaceships\Thrusters\DSTC_FP_G4GI_S2_Q1.Thruster_ALL.DSTC_FP_G4GI_S2_Q1" helper="engine_exhaust" enable ="0" tag = "run">
 				  <!--effect name="!test_ParticleArchetypes.somegroup.particleEffect" archetype="1" helper="engine_exhaust"-->
 					  <strength var="thrust" />
 				  </effect>
-  <!-- 				<effect name="thruster_fx.Hornet.HM_4_3_Output" helper="engine_output" enable ="0" tag = "run">
-					  <strength var="thrust" />
-					  <size var="thrust" min="1.0" multiplier="0.5" />
-					  <speed var="thrust" min="0.25" multiplier="1" />
-				  </effect>
-				  <effect name="thruster_fx.Hornet.HM_4_3_Fuel_Efficiency" helper="engine_fuel" enable ="0" tag = "run">
-					  <size var="thrust" min="1.0" multiplier="0.5" />
-					  <speed var="thrust" min="0.25" multiplier="1" />
-					  <strength var="thrust" min="0" multiplier="1" />
-				  </effect>
-				  <effect name="thruster_fx.Hornet.HM_4_3_Heat" helper="engine_heat" enable ="0" tag = "run">
-					  <strength var="thrust" />
-					  <size var="heat" min=".5" multiplier=".5" />
-				  </effect> -->
-				  <!-- light name="Engine_Flare" helper="engine_light" enable ="0" tag = "run">
-					  <radius var="thrust" min="2" multiplier="2" />
-					  <diffuse var="thrust" min="0.3" multiplier="0.7" />
-					  <specular var="thrust" min="0.4" multiplier="0.6" />
-				  </light -->
+
 				  <material enable ="0" slot="1" helper = "nozzle" matId= "21" tag = "run">
 					  <param name="glow" var="thrust" min = "1" multiplier="51" />
 				  </material>
-  <!-- 				<light name="!test_LightsArchetypes.groupname.light" archetype= "1" helper="engine_boost_light" enable ="0" tag="boost">
-					  <radius var="thrust" min="6" multiplier="8" />
-					  <diffuse var="thrust" min="0.5" multiplier="0.5" />
-					  <specular var="boost" min="0.5" multiplier="0.5" />
-					  <HDRDynamic var="thrust" min="0.5" multiplier="2" />
-				  </light> -->
+
 				  <sound name="Play_SSTP_DSTC_Blue_S2_Q1_Start_Run" enable ="0" tag = "run" helper="engine_sound">
 					  <param name="rpm" var="thrust" lerpTime="0.2" />
 					  <param name="boost" var="boost" lerpTime="0.9" />

@@ -1,4 +1,4 @@
-<item name="AEGS_Vanguard_Cockpit_Seat" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+﻿<item name="AEGS_Vanguard_Cockpit_Seat" class="VehicleItemSeat" invisible="0" category="VehicleItem">
   <params>
     <param name="giveable" 		value="0" />
     <param name="selectable" 	value="0" />
@@ -6,54 +6,154 @@
     <param name="mountable" 	value="1" />
     <param name="usable"		 	value="0" />
     <param name="arms"			 	value="0" />
-    <!-- FIX ME!!! --><param name="adb" value="hornetLaserGatlingAnims.adb" />
-	<!-- FIX ME!!! --><param name="actionController" value="itemControllerDef.xml" />
+    <param name="scopeContext"		value="Seat" />
+    <param name="adb" value="Items/Seats/Vanguard/AEGS_Vanguard_Cockpit_Seat_Anims.adb" />
+	<param name="actionController" value="Items/Seats/Vanguard/AEGS_Vanguard_Cockpit_Seat_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/Vanguard/AEGS_Vanguard_Cockpit_Seat_HumanAnims.adb" />
     <param name="itemType" value="Seat" />
     <param name="itemSubType" value="Pilot" />
-	<param name="itemDescription" value="" />
+		<param name="itemDescription" value="" />
     <param name="itemManufactor" value="AEGS" />
     <param name="itemSize" value="1" />
-	<param name="itemTags" value="flightReady" />
-	<param name="requiredPortTags" value="AEGS_Vanguard_Base" />
-	<param name="itemClass" value="1" />
-    <param name="display_name"	value="AEGS Vanguard Ejection Seat" />
+		<param name="itemTags" value="flightReady" />
+		<!--<param name="requiredPortTags" value="ANVL_Hornet_Base" />-->
+		<param name="itemClass" value="1" />
+    <param name="display_name" value="Vanguard Cockpit Seat" />
   	<vehicleItemStats>
-	</vehicleItemStats>
-  
+	</vehicleItemStats>  
   </params>
-  
-	<!-- cbrungardt @ IllFonic below is how you would setup a seat to be ejectable -->
-	<Eject>
-		<Anim name="Canopy" state="Eject"/>
-		<DetachParts>
-			<DetachPart name="Canopy" delayTime="1.3"/>
-		</DetachParts>
-		<!-- TODO cbrungardt @ IllFonic right now we only handle one seat thruster -->
-		<thruster effect="spaceships\seats\generic_seats.Seat_Effects.Seat_Thrusters" portName="thruster" />
-		<param name="EjectionSpeed" value="1000"/>
-		<param name="SafeDistance" value="250"/>
-	</Eject>
-	
-	<!-- stracy @ CIG ATX below are the paramaters used to tweak the GForce Reaction animations -->
-	<GForceReactions >
-		<Forward scale="-1.57079" blendTime="2.0" />
-		<Right scale="-1.57079" blendTime="2.0" />
-	</GForceReactions>
 
-  <geometry>
-    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
-    <!-- default fallback -->
-    <thirdperson name="Objects\Spaceships\Seats\AEGS\Gladius\AEGS_Gladius_Ejection_Seat.cga"/>
-	
-	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
-	<tags tag="Hologram">
-		<thirdperson name="Objects\Spaceships\Seats\AEGS\Gladius\AEGS_Gladius_Ejection_Seat.cga" material=""/>	
-	</tags>
-	
-
- 
-    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
-    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
-
-  </geometry>
- </item>
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Seats/AEGS/Vanguard/AEGS_Vanguard_Cockpit_Seat.cga"/>
+	</geometry>
+   <Seat name="SeatDriver" enterHelper="pilot_mount_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-45" maxPitch="45" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
+      </Views>
+      <Enter>
+        <State animation="SeatDriver" state="Enter" />
+      </Enter>
+      <Exit>
+        <State animation="SeatDriver" state="Exit" />
+      </Exit>
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <SeatAction class="AnimatedAction">
+          <Actions>
+            <Action action="v_weapon_launch_missile" animation="cockpit_cutlass_stick_button_3" vehicleAnimation="cockpit_cutlass_stick_button_3" />
+            <Action action="v_weapon_launch_countermeasure" animation="cockpit_cutlass_stick_button_4" vehicleAnimation="cockpit_cutlass_stick_button_4" />
+            <Action action="v_afterburner" animation="cockpit_cutlass_stick_button_5" vehicleAnimation="cockpit_cutlass_stick_button_5" isTrigger="1" />
+            <Action action="v_attack1_group1" animation="cockpit_cutlass_stick_button_1" vehicleAnimation="cockpit_cutlass_stick_button_1" isTrigger="1" />
+            <Action action="v_attack1_group2" animation="cockpit_cutlass_stick_button_2" vehicleAnimation="cockpit_cutlass_stick_button_2" isTrigger="1" />
+            <Action action="v_attack1_group3" animation="cockpit_cutlass_stick_button_2" vehicleAnimation="cockpit_cutlass_stick_button_2" isTrigger="1" />
+          </Actions>
+        </SeatAction>
+        <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init a the SeatActionMovement component that will start the engine on entry-->
+        <SeatAction class="Movement">
+          <Movement engine="1">
+          </Movement>
+        </SeatAction>
+        <!-- Weapons used / controlled by pilot of Cutlass -->
+        <SeatAction class="SharedWeapons"/>
+        <!-- missiles used / controlled by pilot of Cutlass -->
+        <SeatAction class="SharedMissiles"/>
+        <!-- counter messures used / controlled by pilot of Gladius -->
+        <SeatAction class="SharedDefensive"/>
+        <!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems"/>
+        <SeatAction class="SharedThruster"/>
+        <SeatAction class="SharedAutoWeapons"/>
+        <!-- SeatActionAnimateControlInputs
+				 This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+				 Format is
+					Parts               List of parts to animate
+						ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+							RotateX         Rotation around the X axis (pitch)
+							RotateY         Roll
+							RotateZ         Yaw
+								input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+															registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its working set of action variables )
+															or in the Variables section of the vehicle xml
+								actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+								direction=    forwards or backwards
+								min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+								max=
+								sound=        The sound to play when animating the part
+								stopSound=    The sound to play when stopping
+							Animation
+								manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (depending on what kind of input was specified). If this is not set the animation will
+															play normally according to it's state parameters in the vehicle animation system.
+				 -->
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart seatBone="joystick">
+                <Rotate_X input="pitch" direction="-1" min="-50" max="50" />
+                <Rotate_Y input="roll" direction="-1" min="-50" max="50" />
+                <Rotate_Z input="yaw" direction="-1"  min="-50" max="50" />
+              </ControlPart>
+              <ControlPart seatBone="thruster_arm_r">
+                <Rotate_X input="power" direction="-1" min="-50" max="50" />
+              </ControlPart>
+              <ControlPart seatBone="thuster_arm_l">
+                <Rotate_X input="power" direction="-1" min="-50" max="50" />
+              </ControlPart>
+			<ControlPart seatBone="foot_rest_right">
+				<Rotate_X input="roll" minRange="-1" maxRange="0" min="30" max="0"  />
+			</ControlPart>
+			<ControlPart seatBone="foot_rest_left">
+				<Rotate_X input="roll" minRange="0" maxRange="1" min="0" max="30" />
+			</ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+				<Limb tag="LeftArmThrottle" on="1" limb="LftArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_left_attach" blendTime="0" id="idPilotTrottleIK" />
+				<Limb tag="RightArmJoystick" on="1" limb="RgtArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_right_attach" blendTime="0" id="idPilotJoystickIK" />
+				<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" slot="1" IKTargetSystemType="seatBone" helper="left_pedal_attach" blendTime="0" />
+				<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" slot="1" IKTargetSystemType="seatBone" helper="right_pedal_attach" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <!-- FIX ME!! -->
+      <DockingStation>
+        <Slots>
+          <!-- <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" scale="0.2" />
+          </Slot> -->
+        </Slots>
+      </DockingStation>
+      <FixedVisorSettings default_fixed="0">
+        <FirstPerson scale="1" x_offset="0" y_offset="0.05" z_offset="0.03" />
+        <ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
+      </FixedVisorSettings>
+	  <HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	  </HUDAccess>
+      <ScreensRecord record="Screens_AEGS_Retaliator_Pilot" />
+        <Enter>
+          <State animation="Cockpit" state="Deploy" />
+        </Enter>
+	</Seat>
+</item>

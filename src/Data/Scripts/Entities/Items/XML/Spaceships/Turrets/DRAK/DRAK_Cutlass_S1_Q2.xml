@@ -4,8 +4,9 @@
     <param name="selectable" 	value="0" />
     <param name="pickable" 		value="0" />
     <param name="mountable" 	value="1" />
-    <param name="usable"		 	value="0" />
-    <param name="arms"			 	value="0" />
+	<param name="scopeContext"	value="Seat" />
+    <param name="usable"		value="0" />
+    <param name="arms"			value="0" />
     <param name="adb" value="Items/Seats/DRAK/DRAK_Cutlass_AC_Turret_Anims.adb" />
 	<param name="actionController" value="Items/Seats/DRAK/DRAK_Cutlass_AC_Turret_ControllerDefs.xml" />
 	<param name="userADB" value="Items/Seats/DRAK/DRAK_Cutlass_AC_Turret_HumanAnims.adb" />
@@ -171,9 +172,41 @@
   
   <mobiGlas>
 	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
-  </mobiGlas>
+	</mobiGlas>
+	<Actions>
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="turret_enter_helper" distance="0.75" bbMin="-0.5,-0.5,-0.5" bbMax="0.5,0.5,0.5" />
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="DRAK_AC_Turret" />
+				</Seats>
+			</Enter>
+		</Action>
+		<!-- Switch / TurretChair -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="TouchPanel_TurretChair_Helper" distance="1.0" bbMin="-0.08,-0.08,-0.08" bbMax="0.08,0.08,0.08" />
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="SeatDriver" state="Deploy" />
+					</AnimationStates>
+					<uiAction name="Interaction_Button" />
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="SeatDriver" state="Retract" />
+					</AnimationStates>
+					<uiAction name="Interaction_Button" />
+				</State>
+			</States>
+		</Action>
+	</Actions>
 <!-- Gunner -->
-    <Seat name="Gunner" enterHelper="turret_player_mount_pos" sitHelper="turret_sit_helper" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" visorType="turret" actionMap="spaceship">
+    <Seat name="DRAK_AC_Turret" enterHelper="turret_player_mount_pos" sitHelper="turret_sit_helper" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" visorType="turret" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
           <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
@@ -250,38 +283,5 @@
 	<Animations>
 		<!-- Default Animation States -->
 		<Action name="GunnerSeat" state="Retract" />
-	</Animations>
-	<Actions>
-		<!-- Seat / Gunner -->
-		<Action class="Enter">
-			<Activations>
-				<Activation type="OnUsed" param1="helper" param2="turret_enter_helper" distance="0.75" bbMin="-0.5,-0.5,-0.5" bbMax="0.5,0.5,0.5" />
-			</Activations>
-			<Enter>
-				<Seats>
-					<Seat value="Gunner" />
-				</Seats>
-			</Enter>
-		</Action>
-		<!-- Switch / TurretChair -->
-		<Action class="Switch">
-		  <Activations>
-			<Activation type="OnUsed" param1="helper" param2="TouchPanel_TurretChair_Helper" distance="1.0" bbMin="-0.08,-0.08,-0.08" bbMax="0.08,0.08,0.08" />
-		  </Activations>
-		  <States>
-			<State>
-			  <AnimationStates>
-				<State animation="GunnerSeat" state="Deploy" />
-			  </AnimationStates>
-			  <uiAction name="Interaction_Button" />
-			</State>
-			<State>
-			  <AnimationStates>
-				<State animation="GunnerSeat" state="Retract" />
-			  </AnimationStates>
-			  <uiAction name="Interaction_Button" />
-			</State>
-		  </States>
-		</Action>
-	</Actions>
+	</Animations>	
 </item>

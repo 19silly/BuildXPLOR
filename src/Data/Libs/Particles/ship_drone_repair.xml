@@ -1,0 +1,146 @@
+<ParticleLibrary Name="ship_drone_repair" SandboxVersion="0.0.0.11298" ParticleVersion="26">
+ <Particles Name="Repair.Beam">
+  <Params />
+  <Childs>
+   <Particles Name="CoreRays">
+    <Params Count="26.1343" Continuous="true" ParticleLifeTime="0.1,Random=0.411" RandomOffset="y=0.001" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/lightstreaks_01.tif" TextureTiling="TilesX=2" Alpha="ParticleAge=(;t=0.345,v=1;t=1)" Color="(x=0.068478175,y=0.1559265,z=0.4677838)" DiffuseLighting="0" EmissiveLighting="5" LightSource="Radius=0.45,Intensity=0.003" Size="0.391304,Random=0.405" Aspect="0.492754" PivotY="1" Speed="0.1" MoveRelEmitter="Yes"/>
+   </Particles>
+   <Particles Name="Orbs">
+    <Params Count="50" Continuous="true" ParticleLifeTime="0.5" RandomOffset="y=0.01" EmitAngle="13.5,Random=0.974" BlendType="Additive" Texture="textures/vfx/glows/core_ember_01.tif" Alpha="ParticleAge=(flags=32;t=0.145,v=1;t=1,flags=4)" Color="(x=0.18,y=0.514,z=0.686)" DiffuseLighting="0" EmissiveLighting="1" Size="0.002" Stretch="0.01,Random=0.973" Speed="0.5" Turbulence3DSpeed="0.43" TurbulenceSize="0.02" MoveRelEmitter="Yes" RandomAngles="y=360"/>
+   </Particles>
+   <Particles Name="laserCore">
+    <Params Count="100" Continuous="true" ParticleLifeTime="0.29" BlendType="Additive" Texture="textures/vfx/gadgets/medkit/medkitcore.tif" SoftParticle="true" Alpha="EmitterStrength=(v=1;t=0.5,v=0.61;t=1,v=1),ParticleAge=(t=0.016;t=0.08,v=1;t=0.92,v=1;t=0.99)" Color="(x=0.068478175,y=0.1559265,z=0.4677838)" DiffuseLighting="0" EmissiveLighting="0.215054" Size="1.94409,EmitterStrength=(v=1;t=0.06,v=1;t=0.498,v=0.455;t=1,v=1),ParticleAge=(v=0.25;t=1,v=1)" Connection="ConnectToOrigin=true,TextureFrequency=0.05" Speed="50" TurbulenceSize="EmitterStrength=(v=1;t=0.506,v=0.635,flags=32;t=1,v=1)" MoveRelEmitter="Yes" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" MaxCollisionEvents="1"/>
+   </Particles>
+   <Particles Name="trigger">
+    <Params Count="20" Continuous="true" ParticleLifeTime="0.5" BlendType="Additive" Texture="textures/vfx/gadgets/medkit/medkitcore.tif" Tessellation="true" SoftParticle="true" Alpha="EmitterStrength=(v=1;t=0.5,v=0.61;t=1,v=1),ParticleAge=(t=0.016;t=0.08,v=1;t=0.64,v=1;t=0.99)" Color="(x=0.157,y=0.616)" DiffuseLighting="0" EmissiveLighting="1" Size="0" Connection="TextureFrequency=0.2" Speed="50" TurbulenceSize="EmitterStrength=(v=1;t=0.506,v=0.635,flags=32;t=1,v=1)" MoveRelEmitter="Yes" PhysicsType="SimpleCollision" CollideStaticObjects="true" CollideDynamicObjects="true" MaxCollisionEvents="1" FinalCollision="Stop"/>
+    <Childs>
+     <Particles Name="impact_flare">
+      <Params SpawnIndirection="ParentCollide" Count="2" ParticleLifeTime="0.05,Random=1" Curvature="0" Color="(x=0.068478175,y=0.1559265,z=0.4677838),Random=0.216" DiffuseLighting="0" Flare="PAW_Lens_Flare.PAW.PAW_Contact_03" LightSource="Radius=6,Intensity=(10,Random=1)" Size="3,Random=0.264925" MoveRelEmitter="Yes"/>
+     </Particles>
+     <Particles Name="sparks">
+      <Params SpawnIndirection="ParentCollide" Count="7" ParticleLifeTime="3.5,Random=1" FocusAngle="180" EmitAngle="90,Random=1" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.01,Random=1,ParticleAge=(t=0.514,v=1;t=1,flags=4)" Stretch="0.015,ParticleAge=(v=1,flags=32;t=1)" MinPixels="1" Speed="1,Random=1" AirResistance="5,Random=0.5,WindScale=0" GravityScale="1,Random=0.261194" PhysicsType="SimpleCollision" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.37" Elasticity="0.693841" DynamicFriction="0.2"/>
+     </Particles>
+     <Particles Name="smoke">
+      <Params SpawnIndirection="ParentCollide" Count="1" MaintainDensity="4.7" ParticleLifeTime="2,Random=0.130841" FocusAngle="180" BlendType="Additive" Texture="textures/vfx/smoke/smoke_generic1_36frames_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5,AnimCurve=(flags=32;t=1,v=1)" SoftParticle="true" Alpha="0.5,Random=0.75974,ParticleAge=(t=0.506,v=1;t=1,flags=4)" DiffuseLighting="0.33" DiffuseBacklighting="1" Size="0.45,Random=0.4,ParticleAge=(v=0.16,flags=32;t=1,v=1)" Speed="0.15" AirResistance="1.01449,ParticleAge=(flags=32;t=1,v=1),WindScale=0" GravityScale="-0.1" RandomAngles="y=60"/>
+     </Particles>
+     <Particles Name="cluster_sparks_spurt">
+      <Params SpawnIndirection="ParentCollide" Count="1" ParticleLifeTime="0.5,Random=0.401869" FocusAngle="180" EmitAngle="70,Random=1" Curvature="0" Speed="1,Random=0.30597" AirResistance="RotationalDragScale=0,WindScale=0"/>
+      <Childs>
+       <Particles Name="spark">
+        <Params SpawnIndirection="ParentStart" Count="15,Random=0.224299" ParticleLifeTime="2,Random=1" EmitAngle="110,Random=1" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.01,Random=1,ParticleAge=(t=0.514,v=1;t=1,flags=4)" Stretch="0.015,ParticleAge=(v=1,flags=32;t=1)" MinPixels="1" Speed="2,Random=1" InheritVelocity="4" AirResistance="8,Random=0.5,WindScale=0" GravityScale="1,Random=0.261194" PhysicsType="SimpleCollision" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.5" Elasticity="0.912281" DynamicFriction="0.1"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="cluster_sparks1">
+      <Params SpawnIndirection="ParentCollide" Count="10" ParticleLifeTime="0.1,Random=0.401869" FocusAngle="180" EmitAngle="70,Random=1" Curvature="0" Speed="1,Random=0.776119" AirResistance="RotationalDragScale=0,WindScale=0"/>
+      <Childs>
+       <Particles Name="spark">
+        <Params SpawnIndirection="ParentStart" Count="15,Random=0.269159" ParticleLifeTime="0.2,Random=1" RandomOffset="x=0.001,y=0.001,z=0.001" EmitOffsetDir="true" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" TextureTiling="FlipChance=0.5" Alpha="ParticleAge=(t=0.737,v=1;t=1,flags=4)" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.01,Random=0.336449,ParticleAge=(t=0.545,v=1;t=1,flags=4)" Stretch="0.012,Random=1,ParticleAge=(t=0.51,v=1;t=1,flags=4)" MinPixels="1" Speed="2,Random=1" InheritVelocity="5" AirResistance="20,Random=0.75,RotationalDragScale=0,WindScale=0" GravityScale="1,Random=0.5" SortOffset="-0.359223"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="flare">
+    <Params Count="3" Continuous="true" ParticleLifeTime="0.2,Random=0.246753" BlendType="Additive" Alpha="ParticleAge=(;t=0.075,v=1;t=0.616,v=1;t=1)" Color="(x=0.39,y=0.7,z=0.98)" EmissiveLighting="2" Flare="PAW_Lens_Flare.PAW.PAW_Contact_03" FakeLight="true" LightSource="Radius=0.33,Intensity=(10,Random=0.258993)" Size="3,ParticleAge=(v=0.204,flags=32;t=1,v=1)" TurbulenceSize="EmitterStrength=(v=1;t=0.506,v=0.635,flags=32;t=1,v=1)" MoveRelEmitter="Yes"/>
+   </Particles>
+   <Particles Name="impactglows">
+    <Params Count="2" Continuous="true" ParticleLifeTime="0.1" BlendType="Additive" Texture="textures/vfx/gadgets/medkit/medkitcore.tif" Tessellation="true" SoftParticle="true" Alpha="EmitterStrength=(v=1;t=0.5,v=0.61;t=1,v=1),ParticleAge=(t=0.016;t=0.08,v=1;t=0.64,v=1;t=0.99)" Color="(x=0.157,y=0.616)" DiffuseLighting="0" EmissiveLighting="1" Size="0" Connection="TextureFrequency=0.2" Speed="23.7" TurbulenceSize="EmitterStrength=(v=1;t=0.506,v=0.635,flags=32;t=1,v=1)" MoveRelEmitter="Yes" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" MaxCollisionEvents="1" DynamicFriction="10"/>
+    <Childs>
+     <Particles Name="hotCenter">
+      <Params Inheritance="Parent" SpawnIndirection="ParentCollide" Count="0.8,Random=0.325" Continuous="false" ParticleLifeTime="0.05" PositionOffset="y=0.01" Texture="textures/vfx/glows/basic_glow1.tif" Tessellation="false" Color="(x=0.39,y=0.7,z=0.98)" EmissiveLighting="2" Flare="Illfonic_Station_Lawless_flares.ExteriorLights.smallMarker_02" FakeLight="true" LightSource="Radius=0.14,Intensity=2.58" Size="0.153,Random=0.308" Connection="TextureFrequency=1" Speed="0" PhysicsType="None" CollideTerrain="false" CollideStaticObjects="false" CollideDynamicObjects="false" MaxCollisionEvents="0" DynamicFriction="0"/>
+     </Particles>
+     <Particles Name="flareRound">
+      <Params Inheritance="Parent" SpawnIndirection="ParentCollide" Count="1" ParticleLifeTime="0.05" PositionOffset="y=0.01" Texture="textures/vfx/glows/basic_glow1.tif" Tessellation="false" SoftParticle="false" Alpha="ParticleAge=(;t=0.075,v=1;t=0.616,v=1;t=1)" Color="(x=0.39,y=0.7,z=0.98)" DiffuseLighting="1" EmissiveLighting="2" Flare="Illfonic_Station_Lawless_flares.ExteriorLights.smallMarker_02" FakeLight="true" LightSource="Radius=0.33,Intensity=0.87" Size="0.022,EmitterStrength=(v=1;t=0.49,v=0.682;t=1,v=1),ParticleAge=(v=0.204,flags=32;t=1,v=1)" Connection="TextureFrequency=1" Speed="0" PhysicsType="None" CollideTerrain="false" CollideStaticObjects="false" CollideDynamicObjects="false" MaxCollisionEvents="0" DynamicFriction="0"/>
+     </Particles>
+     <Particles Name="coreHot">
+      <Params Inheritance="Parent" SpawnIndirection="ParentCollide" Count="1" Continuous="false" ParticleLifeTime="0.05" Texture="textures/vfx/glows/glowsoft.tif" Tessellation="false" Alpha="0.583,Random=0.225,ParticleAge=(v=1;t=0.608,v=1;t=0.918,v=0.16;t=1)" Color="(x=0.514,y=0.65,z=0.855)" Size="0.196,Random=0.168" Aspect="ParticleAge=(v=0.773;t=1,v=1)" Connection="TextureFrequency=1" Speed="0" AirResistance="ParticleAge=(v=0.545;t=1,v=1)" PhysicsType="None" CollideTerrain="false" CollideStaticObjects="false" CollideDynamicObjects="false" MaxCollisionEvents="0" DynamicFriction="0"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="muzzleGlow">
+    <Params Count="1" MoveRelEmitter="Yes"/>
+    <Childs>
+     <Particles Name="core_01">
+      <Params Count="40,Random=0.226" Continuous="true" ParticleLifeTime="0.025" BlendType="Additive" Texture="textures/vfx/glows/glow_hard.tif" Alpha="ParticleAge=(v=1;t=0.667,v=1;t=0.918,v=0.16;t=1)" Color="(x=0.05,y=0.086,z=0.118)" DiffuseLighting="0" EmissiveLighting="2" Size="0.03,Random=0.234,ParticleAge=(v=1,flags=32;t=1,v=0.09,flags=4)" Aspect="ParticleAge=(v=0.773;t=1,v=1)" Stretch="0.011" Speed="10,Random=0.393" AirResistance="0.65,ParticleAge=(v=0.545;t=1,v=1)" MoveRelEmitter="Yes"/>
+     </Particles>
+     <Particles Name="core_02">
+      <Params Count="40" Continuous="true" ParticleLifeTime="0.025" BlendType="Additive" Texture="textures/vfx/glows/glow_medium.tif" Alpha="0.185" Color="(x=0.05,y=0.086,z=0.118)" DiffuseLighting="0" EmissiveLighting="2" Size="0.125,ParticleAge=(v=1,flags=32;t=1,v=0.067,flags=4)" Stretch="0.011" Speed="10" AirResistance="0.65,ParticleAge=(v=0.545;t=1,v=1)" MoveRelEmitter="Yes"/>
+     </Particles>
+     <Particles Name="Flare_02">
+      <Params Count="0.7,Random=0.109" Continuous="true" ParticleLifeTime="0.05" BlendType="Additive" Color="(x=0.05,y=0.086,z=0.118),ParticleAge=(t=0.016,v=(x=0.76,y=0.604,z=0.463);t=0.094,v=(x=0.376,y=0.173,z=0.067);t=0.86,v=(x=0.176,y=0.094,z=0.075))" DiffuseLighting="0" EmissiveLighting="1" Flare="Illfonic_WeaponFlares.horizontalLines" FakeLight="true" LightSource="Radius=10,Intensity=30" Size="0.218,Random=0.3" Aspect="1.5" MoveRelEmitter="Yes" SortOffset="-1"/>
+     </Particles>
+     <Particles Name="Flare_03">
+      <Params Count="0.51,Random=0.091" Continuous="true" ParticleLifeTime="0.05" BlendType="Additive" Color="(x=0.05,y=0.086,z=0.118),ParticleAge=(t=0.016,v=(x=0.76,y=0.604,z=0.463);t=0.094,v=(x=0.376,y=0.173,z=0.067);t=0.86,v=(x=0.176,y=0.094,z=0.075))" DiffuseLighting="0" EmissiveLighting="1" Flare="Illfonic_WeaponFlares.verticalLines" FakeLight="true" LightSource="Radius=10,Intensity=20" Size="0.218,Random=0.3" Aspect="1.5" MoveRelEmitter="Yes" SortOffset="-1"/>
+     </Particles>
+     <Particles Name="core_3">
+      <Params Count="40,Random=0.237" Continuous="true" ParticleLifeTime="0.025" BlendType="Additive" Texture="textures/vfx/glows/glowsoft.tif" SoftParticle="true" Alpha="0.233" Color="(x=0.05,y=0.086,z=0.118)" DiffuseLighting="0" EmissiveLighting="2" Size="0.65,Random=0.222,ParticleAge=(v=1;t=0.624,v=0.16;t=1,v=0.067,flags=4)" Stretch="0.011" Speed="10,Random=0.359" AirResistance="0.65,ParticleAge=(v=0.545;t=1,v=1)" MoveRelEmitter="Yes"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="beam_flare">
+    <Params Count="4" Continuous="true" ParticleLifeTime="0.1" Curvature="0" Color="(x=0.068478175,y=0.1559265,z=0.4677838),Random=0.216" DiffuseLighting="0" LightSource="Radius=6,Intensity=10" Size="3,Random=0.264925" MoveRelEmitter="Yes"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Repair.BeamImpact">
+  <Params Count="2" ParticleLifeTime="0.1,Random=1" Curvature="0" Color="(x=0.068478175,y=0.1559265,z=0.4677838),Random=0.216" DiffuseLighting="0" Flare="PAW_Lens_Flare.PAW.PAW_Contact_03" LightSource="Radius=6,Intensity=(10,Random=1)" Size="3,Random=0.264925" MoveRelEmitter="Yes"/>
+  <Childs>
+   <Particles Name="sparks">
+    <Params Count="20" ParticleLifeTime="2,Random=1" EmitAngle="90,Random=0.714019" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.005,Random=1,ParticleAge=(t=0.514,v=1;t=1,flags=4)" Stretch="0.015,ParticleAge=(v=1,flags=32;t=1)" MinPixels="1" Speed="0.2,Random=0.947761" AirResistance="5,Random=0.5,WindScale=0" GravityScale="1,Random=0.261194" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.693841" DynamicFriction="0.2"/>
+   </Particles>
+   <Particles Name="cluster_sparks">
+    <Params Count="6" ParticleLifeTime="0.1,Random=0.401869" EmitAngle="70,Random=1" Curvature="0" Speed="1,Random=0.776119" AirResistance="RotationalDragScale=0,WindScale=0"/>
+    <Childs>
+     <Particles Name="spark">
+      <Params SpawnIndirection="ParentStart" Count="30,Random=0.269159" ParticleLifeTime="0.2,Random=1" RandomOffset="x=0.001,y=0.001,z=0.001" EmitOffsetDir="true" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" TextureTiling="FlipChance=0.5" Alpha="ParticleAge=(t=0.737,v=1;t=1,flags=4)" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.0035,Random=0.336449,ParticleAge=(t=0.545,v=1;t=1,flags=4)" Stretch="0.012,Random=1,ParticleAge=(t=0.51,v=1;t=1,flags=4)" MinPixels="1" Speed="2,Random=1" InheritVelocity="5" AirResistance="20,Random=0.75,RotationalDragScale=0,WindScale=0" GravityScale="1,Random=0.5" SortOffset="-0.359223"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="smoke">
+    <Params Count="1,Random=0.635294" ParticleLifeTime="2,Random=0.130841" Curvature="0" BlendType="Additive" Texture="textures/vfx/smoke/smoke_generic1_36frames_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5,AnimCurve=(flags=32;t=1,v=1)" SoftParticle="true" Alpha="0.75,Random=0.575701,ParticleAge=(t=0.506,v=1;t=1,flags=4)" DiffuseLighting="0.33" DiffuseBacklighting="1" Size="0.25,Random=0.4,ParticleAge=(v=0.16,flags=32;t=1,v=1)" Speed="0.1" AirResistance="1.01449,ParticleAge=(flags=32;t=1,v=1),WindScale=0" GravityScale="-0.03" RandomAngles="y=60" CameraDistanceOffset="-1"/>
+   </Particles>
+   <Particles Name="cluster_sparks_spurt">
+    <Params Count="1" ParticleLifeTime="0.5,Random=0.401869" EmitAngle="90,Random=1" Curvature="0" Speed="1,Random=0.30597" AirResistance="RotationalDragScale=0,WindScale=0"/>
+    <Childs>
+     <Particles Name="spark">
+      <Params SpawnIndirection="ParentStart" Count="50,Random=0.224299" ParticleLifeTime="2,Random=1" EmitAngle="110,Random=1" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.005,Random=1,ParticleAge=(t=0.514,v=1;t=1,flags=4)" Stretch="0.015,ParticleAge=(v=1,flags=32;t=1)" MinPixels="1" Speed="3,Random=1" InheritVelocity="4" AirResistance="8,Random=0.5,WindScale=0" GravityScale="1,Random=0.261194" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.5" Elasticity="0.693841" DynamicFriction="0.2"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="decal">
+    <Params Enabled="false" Count="1" Continuous="true" ParticleLifeTime="1" Material="Materials/decals/damage_decals/laser_v1_hot" Size="2.86957"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Repair.BeamImpact_Single">
+  <Params Count="2" ParticleLifeTime="0.1,Random=1" Curvature="0" Color="(x=0.068478175,y=0.1559265,z=0.4677838),Random=0.216" DiffuseLighting="0" Flare="PAW_Lens_Flare.PAW.PAW_Contact_03" LightSource="Radius=6,Intensity=(10,Random=1)" Size="3,Random=0.264925" MoveRelEmitter="Yes"/>
+  <Childs>
+   <Particles Name="sparks">
+    <Params Count="20" ParticleLifeTime="2,Random=1" EmitAngle="90,Random=0.714019" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.005,Random=1,ParticleAge=(t=0.514,v=1;t=1,flags=4)" Stretch="0.015,ParticleAge=(v=1,flags=32;t=1)" MinPixels="1" Speed="0.2,Random=0.947761" AirResistance="5,Random=0.5,WindScale=0" GravityScale="1,Random=0.261194" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.693841" DynamicFriction="0.2"/>
+   </Particles>
+   <Particles Name="cluster_sparks">
+    <Params Count="6" ParticleLifeTime="0.1,Random=0.401869" EmitAngle="70,Random=1" Curvature="0" Speed="1,Random=0.776119" AirResistance="RotationalDragScale=0,WindScale=0"/>
+    <Childs>
+     <Particles Name="spark">
+      <Params SpawnIndirection="ParentStart" Count="30,Random=0.269159" ParticleLifeTime="0.2,Random=1" RandomOffset="x=0.001,y=0.001,z=0.001" EmitOffsetDir="true" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" TextureTiling="FlipChance=0.5" Alpha="ParticleAge=(t=0.737,v=1;t=1,flags=4)" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.0035,Random=0.336449,ParticleAge=(t=0.545,v=1;t=1,flags=4)" Stretch="0.012,Random=1,ParticleAge=(t=0.51,v=1;t=1,flags=4)" MinPixels="1" Speed="2,Random=1" InheritVelocity="5" AirResistance="20,Random=0.75,RotationalDragScale=0,WindScale=0" GravityScale="1,Random=0.5" SortOffset="-0.359223"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="smoke">
+    <Params Count="1,Random=0.635294" ParticleLifeTime="2,Random=0.130841" Curvature="0" BlendType="Additive" Texture="textures/vfx/smoke/smoke_generic1_36frames_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5,AnimCurve=(flags=32;t=1,v=1)" SoftParticle="true" Alpha="0.75,Random=0.575701,ParticleAge=(t=0.506,v=1;t=1,flags=4)" DiffuseLighting="0.33" DiffuseBacklighting="1" Size="0.25,Random=0.4,ParticleAge=(v=0.16,flags=32;t=1,v=1)" Speed="0.1" AirResistance="1.01449,ParticleAge=(flags=32;t=1,v=1),WindScale=0" GravityScale="-0.03" RandomAngles="y=60" CameraDistanceOffset="-1"/>
+   </Particles>
+   <Particles Name="cluster_sparks_spurt">
+    <Params Count="1" ParticleLifeTime="0.5,Random=0.401869" EmitAngle="90,Random=1" Curvature="0" Speed="1,Random=0.30597" AirResistance="RotationalDragScale=0,WindScale=0"/>
+    <Childs>
+     <Particles Name="spark">
+      <Params SpawnIndirection="ParentStart" Count="50,Random=0.224299" ParticleLifeTime="2,Random=1" EmitAngle="110,Random=1" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/sparks/fx_spark_test_03.tif" Color="(z=0.21586053),Random=1" DiffuseLighting="0" EmissiveLighting="100" Size="0.005,Random=1,ParticleAge=(t=0.514,v=1;t=1,flags=4)" Stretch="0.015,ParticleAge=(v=1,flags=32;t=1)" MinPixels="1" Speed="3,Random=1" InheritVelocity="4" AirResistance="8,Random=0.5,WindScale=0" GravityScale="1,Random=0.261194" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.5" Elasticity="0.693841" DynamicFriction="0.2"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="decal">
+    <Params Enabled="false" Count="1" Continuous="true" ParticleLifeTime="1" Material="Materials/decals/damage_decals/laser_v1_hot" Size="2.86957"/>
+   </Particles>
+  </Childs>
+ </Particles>
+</ParticleLibrary>

@@ -7,7 +7,11 @@
 
    <Parts id="Partsxml">
     <Part name="CNOU_Mustang_Beta" class="Animated" mass="13500" disablePhysics="0" scopeContext="Ship">
-      <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Beta_Damaged.cga" />
+			<Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Beta_Damaged.cga">
+				<PhysicsGrid enableLocalGrid="1" gravity="0,0,-9.81">
+					<PhysProxy filename="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Beta_No_Collide.cgf" />
+				</PhysicsGrid>
+			</Animated>
       <Parts>
         <Part name="body" class="AnimatedJoint" damageMax="600">
           <DamageBehaviors>
@@ -120,6 +124,20 @@
                 </Types>
               </ItemPort>
             </Part>
+			<Part name="hardpoint_quantum_drive" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Drive" requiredTags="">
+					<Types>
+						<Type type="Avionics" subtypes="QDrive" />
+					</Types>
+				</ItemPort>
+			</Part>
+			<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Fuel Tank" requiredTags="">
+					<Types>
+						<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+					</Types>
+				</ItemPort>
+			</Part>
             <Part name="body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -712,11 +730,6 @@
             <Part name="$lod2_v_back_rudder_right" class="AnimatedJoint" damageMax="550" />
           </Parts>
         </Part>
-		<Part name="interiorPhys_helper" class="Interior">
-		  <Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81">
-			<PhysProxy filename="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Beta_No_Collide.cgf" />
-		  </Interior>
-		</Part>
         <Part name="v_body" class="AnimatedJoint" damageMax="600">
           <DamageBehaviors>
             <DamageBehavior class="DamagePart" damageRatioMin="0.1">
@@ -954,6 +967,7 @@
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_start" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.3,0.8,2" />
         <Activation type="OnUsed" param1="helper" param2="ladder_use_helper" distance="1" bbMin="-0.3,-0.1,-0.3" bbMax="0.3,0.1,0.3" />
+		<Activation type="OnUsed" param1="helper" param2="pilot_zerog_enter_pos" distance="1.35" bbMin="-0.75,-0.75,-1.35" bbMax="0.75,0.75,0" activateOnlyInZeroG="1" />	
       </Activations>
       <Enter>
         <Doors>
@@ -964,7 +978,7 @@
     <!-- Switch / avionics hatch -->
     <Action class="Switch">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="avionics_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.2" bbMax="0.2,0.1,0.2" />
+        <Activation type="OnUsed" param1="helper" param2="avionics_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.2" bbMax="0.2,0.5,0.2" />
       </Activations>
       <States>
         <State>
@@ -982,7 +996,7 @@
     <!-- Switch / avionics hatch -->
     <Action class="Switch">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="shield_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.1" bbMax="0.2,0.1,0.2" />
+        <Activation type="OnUsed" param1="helper" param2="shield_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.1" bbMax="0.2,0.5,0.2" />
       </Activations>
       <States>
         <State>
@@ -1004,7 +1018,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Enter" distance="1" bbMin="-0.5,-0.05,-0.3" bbMax="0.5,0.05,0.7" />
-        <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Exit" distance="1" bbMin="-0.5,-0.05,-0.3" bbMax="0.5,0.05,0.7" />
+        <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Exit" distance="1" bbMin="-0.5,0,-0.3" bbMax="0.5,0.15,0.7" />
       </Activations>
       <Enter>
         <Doors>
@@ -1336,6 +1350,9 @@
                 <ItemPort part="*hardpoint_fuel" />
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
+                <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1405,8 +1422,10 @@
         <SeatAction class="PassengerIK">
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
-              <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_left" blendTime="0" />
+			  <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_left" blendTime="0" />
               <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_right" blendTime="0" />
+              <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_foot_ik" blendTime="0" />
+              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_foot_ik" blendTime="0" />
             </Limbs>
           </PassengerIK>
         </SeatAction>
@@ -1434,7 +1453,7 @@
     </Seat>
     <!-- MUSTANG BETA SPECIFIC SEATS -->
 	<!-- TURN INTERIORACCESS TO ON WHEN THE INTERIOR CODE IS FIXED! -->
-	<Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship">
+	<Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1447,7 +1466,7 @@
       <WaitFor />
       <SeatActions />
     </Seat>
-    <Seat name="MustangBetaToiletSeat" enterHelper="v_mustang_beta_toilet_mount_pos" sitHelper="v_mustang_beta_toilet_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="MustangBetaToiletSeat" enterHelper="v_mustang_beta_toilet_mount_pos" sitHelper="v_mustang_beta_toilet_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1475,7 +1494,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-	<Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship">
+	<Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />

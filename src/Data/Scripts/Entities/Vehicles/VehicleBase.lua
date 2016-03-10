@@ -322,15 +322,16 @@ function VehicleBase:OnActorSitDown(seatId, passengerId)
 
 	end
 	
-	local passengerFaction = AI.GetFactionOf(passenger.id);
+	-- Replace this logic with something not tied to CryAISystem
+--	local passengerFaction = AI.GetFactionOf(passenger.id);
 
 	-- set vehicle species to driver's 	
-	if (seat.isDriver and passengerFaction and self.ChangeFaction) then 
-		self:ChangeFaction(passenger, 1);
-		--System.Log("Changing species to "..passenger.Properties.species);
+--	if (seat.isDriver and passengerFaction and self.ChangeFaction) then 
+--		self:ChangeFaction(passenger, 1);
+--		--System.Log("Changing species to "..passenger.Properties.species);
 --		AI.ChangeParameter(self.id, AIPARAM_SPECIES, passenger.Properties.species);
-	else
-	end
+--	else
+--	end
 
 	if AI then
 		AI.Signal(SIGNALFILTER_SENDER, 1, "entered_vehicle", passengerId);

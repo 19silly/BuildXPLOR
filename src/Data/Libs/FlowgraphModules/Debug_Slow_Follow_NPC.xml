@@ -1,0 +1,48 @@
+<Graph isModule="1" moduleName="Debug_Slow_Follow_NPC" GOSTType="0" GOSTStateGroup="&lt;Unknown&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="FollowEntity" Type="3" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Debug_Slow_Follow_NPC" pos="190,360,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Debug_Slow_Follow_NPC" pos="1620,370,0" flags="1">
+   <Inputs />
+  </Node>
+  <Node Id="1495" Class="Actor:PlayerCinematicControl" pos="1370,440,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1500" Class="Entity:CheckDistance" pos="980,420,0" flags="0" InHideMask="2097151" OutHideMask="31">
+   <Inputs entityId="0" MinDistance="0" MaxDistance="2.5" Pos="0,0,0" Entity1="0" Entity2="0" Entity3="0" Entity4="0" Entity5="0" Entity6="0" Entity7="0" Entity8="0" Entity9="0" Entity10="0" Entity11="0" Entity12="0" Entity13="0" Entity14="0" Entity15="0" Entity16="0"/>
+  </Node>
+  <Node Id="1501" Class="Actor:LocalPlayer" pos="980,370,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1505" Class="Time:FrameDelay" pos="760,420,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1506" Class="Logic:Any" pos="1250,430,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1508" Class="Logic:Any" pos="630,420,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1509" Name="Slow_player_to_a_walk_when_close_to_a_specific_NPC" Class="_commentbox" pos="150,249.99988,0" flags="0">
+   <Inputs TextSize="1" Color="1,1,1" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="2210" Height="460"/>
+   <NodeSize Width="2210" Height="496.52081"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Cancel" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="1500" nodeOut="1" portIn="Entity1" portOut="FollowEntity" enabled="1"/>
+  <Edge nodeIn="1506" nodeOut="1" portIn="in2" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="1508" nodeOut="1" portIn="in1" portOut="Start" enabled="1"/>
+  <Edge nodeIn="1495" nodeOut="1500" portIn="RestrictToWalk" portOut="NearEntity" enabled="1"/>
+  <Edge nodeIn="1506" nodeOut="1500" portIn="in1" portOut="NoEntInRange" enabled="1"/>
+  <Edge nodeIn="1500" nodeOut="1501" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="1500" nodeOut="1505" portIn="Check" portOut="out" enabled="1"/>
+  <Edge nodeIn="1508" nodeOut="1505" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="1495" nodeOut="1506" portIn="ResetAll" portOut="out" enabled="1"/>
+  <Edge nodeIn="1505" nodeOut="1508" portIn="in" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

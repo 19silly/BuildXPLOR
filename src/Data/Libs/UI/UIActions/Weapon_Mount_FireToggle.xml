@@ -1,0 +1,73 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="UI:Action:Start" pos="-590,500,0" flags="0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="2" Class="UI:Action:End" pos="949.82355,79,0" flags="0">
+   <Inputs UseAsState="0" Args=""/>
+  </Node>
+  <Node Id="3" Class="UI:Util:FromArray" pos="-340,500,0" flags="0">
+   <Inputs Array=""/>
+  </Node>
+  <Node Id="5" Class="Entity:EntityInfo" pos="-170,500,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="13" Class="Vehicle:VehicleWeapons" pos="420,-20,0" flags="1" EntityGUID="{88B3A237-4697-4CFA-8103-BBC5BF59D422}" EntityGUID_64="4CFA469788B3A237">
+   <Inputs entityId="0" vSeat_seatName="SeatDriver" vWeapon_weaponPort="0: Class 2b Mount (Normal Turret Slot)" aimPos="0,0,0"/>
+  </Node>
+  <Node Id="28" Class="Entity:Material" pos="419.82355,139,0" flags="0">
+   <Inputs entityId="0" mat_Material="Objects/Spaceships/Weapon_Mount/Weapon_Mount_Firing.mtl"/>
+  </Node>
+  <Node Id="30" Class="Time:Delay" pos="559.82355,249,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="33" Class="Logic:Sequentializer" pos="330,480,0" flags="0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="35" Class="Logic:Any" pos="279.82355,109,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="36" Class="UI:Action:End" pos="939.82355,519,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="38" Class="Entity:Material" pos="519.82355,459,0" flags="0">
+   <Inputs entityId="0" mat_Material="Objects/Spaceships/Weapon_Mount/Weapon_Mount_Firing.mtl"/>
+  </Node>
+  <Node Id="39" Class="Time:Delay" pos="529.82355,579,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="40" Class="Entity:EntityInfo" pos="150,790,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="110" Class="Animations:PlayAnimation" pos="340,760,0" flags="0">
+   <Inputs entityId="0" anim_Animation="controls_nw_button" BlendInTime="0.2" Layer="1" Loop="0" ForceUpdate="0" PauseAnimGraph="0" ControlMovement="0"/>
+  </Node>
+  <Node Id="112" Class="Time:Delay" pos="60,520,0" flags="0">
+   <Inputs delay="0.5" resetOnInput="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3" nodeOut="1" portIn="Array" portOut="Args" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="3" portIn="Get" portOut="Val1" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="3" portIn="entityId" portOut="Val1" enabled="1"/>
+  <Edge nodeIn="40" nodeOut="3" portIn="Get" portOut="Val2" enabled="1"/>
+  <Edge nodeIn="40" nodeOut="3" portIn="entityId" portOut="Val2" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="5" portIn="entityId" portOut="Id" enabled="1"/>
+  <Edge nodeIn="28" nodeOut="5" portIn="entityId" portOut="Id" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="5" portIn="entityId" portOut="Id" enabled="1"/>
+  <Edge nodeIn="112" nodeOut="5" portIn="in" portOut="Id" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="30" portIn="EndAction" portOut="out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="33" portIn="StopFire" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="35" nodeOut="33" portIn="in1" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="33" portIn="Set" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="33" portIn="in" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="35" portIn="StartFire" portOut="out" enabled="1"/>
+  <Edge nodeIn="28" nodeOut="35" portIn="Set" portOut="out" enabled="1"/>
+  <Edge nodeIn="30" nodeOut="35" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="39" portIn="EndAction" portOut="out" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="40" portIn="Start" portOut="Id" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="40" portIn="entityId" portOut="Id" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="112" portIn="In" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

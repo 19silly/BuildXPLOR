@@ -92,9 +92,58 @@ Human_x =
 				name = "stand",
 				useCapsule = 1,
 			},
-			-- -2 is a magic number that gets ignored by CActor::SetupStance
 			{
-				stanceId = -2,
+				stanceId = STANCE_LOW_COVER,
+				normalSpeed = 0.5,
+				maxSpeed = 50.0,
+				heightCollider = 0.8,
+				heightPivot = 0.0,
+				size = {x=0.5,y=0.5,z=0.1},
+				modelOffset = {x=0.0,y=0.0,z=0},
+				viewOffset = {x=0,y=0.0,z=0.9},
+				weaponOffset = {x=0.2,y=0.0,z=0.85},
+
+				leanLeftViewOffset = {x=-0.75,y=0.0,z=0.9},
+				leanRightViewOffset = {x=0.75,y=0.0,z=0.95},
+				leanLeftWeaponOffset = {x=-0.75,y=0.0,z=0.6},
+				leanRightWeaponOffset = {x=0.8,y=0.0,z=0.8},
+
+				whileLeanedLeftViewOffset = {x=0.2,y=0.4,z=0.85},
+				whileLeanedRightViewOffset = {x=0.2,y=0.3,z=1.0},
+				whileLeanedLeftWeaponOffset = {x=0.25,y=0.4,z=0.8},
+				whileLeanedRightWeaponOffset = {x=0.25,y=0.1,z=0.8},
+
+				peekOverViewOffset = {x=0.1,y=0.0,z=1.5},
+				peekOverWeaponOffset = {x=0.1,y=0.0,z=1.4},
+				name = "coverLow",
+				useCapsule = 1,
+			},
+			{
+				stanceId = STANCE_HIGH_COVER,
+				normalSpeed = 1.0,
+				maxSpeed = 50.0,
+				heightCollider = 1.2,
+				heightPivot = 0.0,
+				size = {x=0.5,y=0.5,z=0.2},
+				modelOffset = {x=0,y=-0.0,z=0},
+				viewOffset = {x=0,y=0.10,z=1.625},
+				weaponOffset = {x=0.2,y=0.0,z=1.35},
+
+				leanLeftViewOffset = {x=-0.7,y=0.10,z=1.525},
+				leanRightViewOffset = {x=0.95,y=0.10,z=1.525},
+				leanLeftWeaponOffset = {x=-0.6,y=0.10,z=1.30},
+				leanRightWeaponOffset = {x=1.0,y=0.10,z=1.30},
+
+				whileLeanedLeftViewOffset = {x=0.1,y=0.1,z=1.5},
+				whileLeanedRightViewOffset = {x=0.25,y=0.2,z=1.55},
+				whileLeanedLeftWeaponOffset = {x=0.15,y=0.1,z=1.35},
+				whileLeanedRightWeaponOffset = {x=0.3,y=0.2,z=1.45},
+
+				peekOverViewOffset = {x=0.1,y=0.0,z=1.5},
+				peekOverWeaponOffset = {x=0.1,y=0.0,z=1.4},
+
+				name = "coverHigh",
+				useCapsule = 1,
 			},
 			--
 			{
@@ -138,10 +187,6 @@ Human_x =
 				peekOverWeaponOffset = {x=0.1,y=0.0,z=1.4},
 				name = "swim",
 				useCapsule = 1,
-			},
-			-- -2 is a magic number that gets ignored by CActor::SetupStance
-			{
-				stanceId = -2,
 			},
 		},
 

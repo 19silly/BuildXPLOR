@@ -1,0 +1,128 @@
+<item name="XIAN_Scout_Maneuvering" class="VehicleItemThruster" invisible="0" category="VehicleThruster">
+	<params>
+		<param name="giveable" 			value="0" />
+		<param name="selectable" 		value="0" />
+		<param name="pickable" 			value="0" />
+		<param name="mountable" 		value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+		<param name="adb" 				value="Spaceships/Thrusters/thrusterAnims.adb" />
+		<param name="actionController" 	value="Spaceships/Thrusters/thrusterControllerDefs.xml" />
+		<param name="itemType" 			value="ManneuverThruster" />
+		<param name="itemSubType" 		value="FlexThruster" />
+		<param name="itemDescription" 	value="XIAN Maneuvering Thruster" />
+		<param name="itemManufactor" 	value="ANVL" />
+		<param name="itemSize" 			value="2" />
+		<param name="itemTags" 			value="flightReady" />
+		<param name="requiredPortTags" 	value="XIAN_Scout_Base" />
+		<param name="display_name"		value="XIAN Maneuvering Thruster" />
+		<param name="mass" 				value="50" />
+		<param name="hitpoints"			value="50" />
+	</params>
+	
+	<power_grouping>
+        <param name="powerGrouping" value ="thruster.auxiliary" />
+    </power_grouping>
+	   
+	<Pipes>
+		<Pipe class="Power" prioType="manageable" prioGroup="thruster">
+		  <Pool capacity="-100" rate="-10" />
+		  <States>
+			<State state="Default">
+		  <Value value="0" />
+		  </State>
+		  </States>
+		  <StateLevels>
+			<Warning  value = "0.5" />
+			<Critical value = "0.3" />
+			<Fail     value = "0.1" />
+		  </StateLevels>
+		</Pipe>
+
+		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
+			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<States>
+				<State state="Off"><Value value="0" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
+			</States>
+		</Pipe>
+
+		<Pipe class="Fuel" prioType="critical">
+			<States>
+				<State state="Default"><Value value="0" /></State>
+				<State state="Boost"><Value value="-20" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+	
+	<gimbal type="flex" >
+		<pitch 	joint="" 		min ="" max ="" speed="" accel="" animation ="" />
+		<yaw 	joint=""		min ="0" max ="90" speed="240" accel="2400" animation ="yaw" />
+		<roll   joint="" 		min ="" max = "" speed="" accel="" animation ="" />
+	</gimbal> 
+	
+	<thrusters>
+	  <thruster flags="maneuver orientation retro" maxThrust="480000" maneuverScale="" rotationScale="" retroScale="" boostScale="" >
+	  </thruster>
+  </thrusters>
+
+   <geometry>
+		<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topbackleft.chr"/>
+
+		<tags tag="topfrontleft">
+			<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topfrontleft.chr"/>
+		</tags>
+		
+		<tags tag="topfrontright">
+			<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topfrontright.chr"/>
+		</tags>
+
+		<tags tag="Hologram">
+			<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topfrontleft.chr" material=""/>
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topfrontleft.chr" material=""/>
+			<tags tag="damage_50">
+			<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topfrontleft.chr" material=""/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects\Spaceships\Thrusters\anvl\flex_mk3\ANVL_Flex_MK3_topfrontleft.chr" material=""/>
+		</tags>	
+		</tags>	
+		
+		<boneAttachments>
+			<attachment target="thirdperson" name="nozzle_exhaust" bone="exhaust" />
+		</boneAttachments>
+	</geometry>
+  
+  <thrusters>
+	  <thruster>
+	      <exhausts>
+			  <exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.1">
+				  <effect name="Spaceships\Thrusters\ANVL_Flex_Mk3.Thruster_ALL.ANVL_Flex_Mk3" helper="nozzle_exhaust" enable = "0" tag ="run">
+					<strength var="thrust" />
+					<speed var="speed" multiplier="3" />	
+				  </effect>
+				  <sound name="Play_SSTM_ANVL_Flex_MK1_S2_Q1_Start_Run" enable ="0" tag = "run">
+					  <param name="rpm" var="thrust" lerpTime="2.8" />
+					  <param name="boost" var="boost" lerpTime="2" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+			  </exhaust>
+		  </exhausts>
+	  </thruster>
+  </thrusters>
+
+</item>

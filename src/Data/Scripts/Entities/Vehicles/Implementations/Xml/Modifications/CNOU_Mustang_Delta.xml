@@ -7,7 +7,11 @@
 
   <Parts id="Partsxml">
     <Part name="CNOU_Mustang_Delta" class="Animated" mass="13500" disablePhysics="0" scopeContext="Ship">
-      <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Delta.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Delta_Damaged.cga" />
+			<Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Delta.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Delta_Damaged.cga">
+				<PhysicsGrid enableLocalGrid="1" gravity="0,0,-9.81">
+					<PhysProxy filename="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_No_Collide.cgf" />
+				</PhysicsGrid>
+			</Animated>
       <Parts>
         <Part name="body" class="AnimatedJoint" damageMax="600">
           <DamageBehaviors>
@@ -120,6 +124,20 @@
                 </Types>
               </ItemPort>
             </Part>
+			<Part name="hardpoint_quantum_drive" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Drive" requiredTags="">
+					<Types>
+						<Type type="Avionics" subtypes="QDrive" />
+					</Types>
+				</ItemPort>
+			</Part>
+			<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Fuel Tank" requiredTags="">
+					<Types>
+						<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+					</Types>
+				</ItemPort>
+			</Part>
             <Part name="body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -199,11 +217,6 @@
                 </Types>
               </ItemPort>
             </Part>
-			<Part name="interiorPhys_helper" class="Interior">
-			  <Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81">
-				<PhysProxy filename="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_No_Collide.cgf" />
-			  </Interior>
-			</Part>
             <Part name="hardpoint_radar" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
                 <Types>

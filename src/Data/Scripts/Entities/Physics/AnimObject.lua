@@ -27,7 +27,7 @@ AnimObject =
 		},
 		Rendering =
 		{
-			bWrinkleMap = 0,
+			bWrinkleMap = 1,
 		},
 		Cinematic =
 		{
@@ -147,7 +147,6 @@ function AnimObject:LoadAndPhysicalizeModel()
 			self.ModelFile = self.Properties.object_Model;
 		end
 	-- CIG END
-		self:RenderAlways(self.Properties.Cinematic.bRenderAlways);
 
 		if (self.Properties.Physics.bPhysicalize == 1) then
 			self:PhysicalizeThis();
@@ -284,15 +283,6 @@ function AnimObject:Event_ModelUnload()
 	end
 end
 
-------------------------------------------------------------------------------------------------------
-function AnimObject:Event_RenderAlwaysEnable()
-	self:RenderAlways(1);
-end
-
-------------------------------------------------------------------------------------------------------
-function AnimObject:Event_RenderAlwaysDisable()
-	self:RenderAlways(0);
-end
 
 ------------------------------------------------------------------------------------------------------
 function AnimObject:DoStartAnimation()

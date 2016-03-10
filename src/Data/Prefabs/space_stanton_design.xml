@@ -1,0 +1,1174 @@
+<PrefabsLibrary Name="space_stanton_design">
+ <Prefab Name="Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_Gameplay" SubLibrary="" Id="{3ECCB5D2-FBCE-4D19-ADB2-F0A21D6DAD5C}" Library="space_stanton_design" LibFolders="" Footprint="2,2,2" Description="" Category="">
+  <Objects>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{CFC5E0F9-B95F-4F2B-A838-5DBBAB12B804}" Name="GravityBox-004" Pos="162.625,267.68746948242187,100.400390625" FloorNumber="-1" Rotate="0.70710677,0,0,-0.70710677" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="GravityBox">
+    <Properties bActive="1" fFallOffInner="0" bFilled="0" vectorGravity="0,0,-9.81" bNetworkSync="1" vectorSize="155,170,40" bUniform="1"/>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{1194F625-AE4F-4FCB-B1E9-747D50B5B5EA}" Name="LandingArea-001" Pos="140.125,320.99996948242187,109" FloorNumber="-1" Rotate="-4.2490377e-008,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="LandingArea">
+    <Properties bAlignDirection="0" fApproachDistance="500" DimX="25" DimY="31" DimZ="20" bEnabled="0" HUDDisplayName="" fHUDOffset="0" fTakeoffHoverAltitude="10" fTouchdownAltitude="4" fTouchdownHoverAltitude="8"/>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{AD4A9D77-450A-4B83-A5CE-E5DA8E83A4DF}" Name="GamescomLogic" Pos="218.5,296.87496948242187,97.375" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="FlowgraphEntity">
+    <FlowGraph Description="" Group="Design" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="2" Class="Game:Start" pos="-560,140,0" flags="0">
+       <Inputs InGame="1" InEditor="1"/>
+      </Node>
+      <Node Id="3" Class="Actor:LocalPlayer" pos="10,100,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="10" Class="Entity:BeamEntity" pos="10,140,0" flags="0">
+       <Inputs entityId="0" Position="0,0,0" Rotation="0,0,0" UseZeroRot="0" Scale="0,0,0" DestinationEntity="0" Memo=""/>
+      </Node>
+      <Node Id="12" Class="Entity:EntityId" pos="10,300,0" flags="0" EntityGUID="{2979ED8B-9170-4E21-A939-A2DF1A70DEEB}" EntityGUID_64="4E2191702979ED8B">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="16" Class="Vehicle:InitLanded" pos="-210,310,0" flags="0" EntityGUID="{158CE551-C348-463F-8EB4-572156D0FE3F}" EntityGUID_64="463FC348158CE551">
+       <Inputs entityId="0" LandingAreaId="0" DisablePhysics="1"/>
+      </Node>
+      <Node Id="18" Class="Entity:EntityId" pos="-210,250,0" flags="0" EntityGUID="{1194F625-AE4F-4FCB-B1E9-747D50B5B5EA}" EntityGUID_64="4FCBAE4F1194F625">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="21" Class="Vehicle:InitLanded" pos="-210,480,0" flags="0" EntityGUID="{158CE551-C348-463F-8EB4-572156D0FE3F}" EntityGUID_64="463FC348158CE551">
+       <Inputs entityId="0" LandingAreaId="0" DisablePhysics="1"/>
+      </Node>
+      <Node Id="22" Class="Entity:EntityId" pos="-210,420,0" flags="0" EntityGUID="{1194F625-AE4F-4FCB-B1E9-747D50B5B5EA}" EntityGUID_64="4FCBAE4F1194F625">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="24" Class="entity:LandingArea" pos="-210,30,0" flags="0" InHideMask="31" OutHideMask="511" EntityGUID="{1194F625-AE4F-4FCB-B1E9-747D50B5B5EA}" EntityGUID_64="4FCBAE4F1194F625">
+       <Inputs entityId="0" MatchYawAlignent="1" AutopilotEnabled="1"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="10" nodeOut="2" portIn="Beam" portOut="output" enabled="0"/>
+      <Edge nodeIn="16" nodeOut="2" portIn="Trigger" portOut="output" enabled="0"/>
+      <Edge nodeIn="21" nodeOut="2" portIn="Trigger" portOut="output" enabled="0"/>
+      <Edge nodeIn="24" nodeOut="2" portIn="Enabled" portOut="output" enabled="0"/>
+      <Edge nodeIn="10" nodeOut="3" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="12" portIn="DestinationEntity" portOut="Id" enabled="1"/>
+      <Edge nodeIn="16" nodeOut="18" portIn="LandingAreaId" portOut="Id" enabled="1"/>
+      <Edge nodeIn="21" nodeOut="22" portIn="LandingAreaId" portOut="Id" enabled="1"/>
+     </Edges>
+     <GraphTokens />
+    </FlowGraph>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{2979ED8B-9170-4E21-A939-A2DF1A70DEEB}" Name="SpawnPoint-001" Pos="221.25,302.62496948242187,96.0927734375" FloorNumber="-1" Rotate="-4.2490377e-008,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="SpawnPoint">
+    <Properties bDoVisTest="1" bEnabled="1" groupName="" bInitialSpawn="1" teamName=""/>
+   </Object>
+   <Object Prototype="{743552FD-59B9-4766-BF8A-4E9FD0E5ADFC}" PrototypeName="DefaultSpaceShips.AEGS.AEGS_Gladius" Type="EntityArchetype" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{158CE551-C348-463F-8EB4-572156D0FE3F}" Name="DRAK.DRAK_Cutlass-001" Pos="139.8125,319.81246948242187,104.625" FloorNumber="-1" Rotate="0.38268337,0,0,0.92387956" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1">
+    <Properties2 AIPilotName="" esAIProfileBase="&lt;None&gt;" esAIProfileCombat="&lt;None&gt;" esAIProfileFlight="&lt;None&gt;" esAIProfileRace="&lt;None&gt;" esAIProfileTargeting="&lt;None&gt;" bAutoDisable="1" aibehavior_behaviour="StarFighterIdle" bCircularPath="0" FormationType="" groupid="173" PathName="" bProvideAICover="1">
+     <AITerritoryAndWave aiterritory_Territory="&lt;None&gt;" aiwave_Wave="&lt;None&gt;"/>
+    </Properties2>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Moon_Yela_Design.AsteroidBelt" SubLibrary="" Id="{B2A10674-62A6-4562-8517-A49406946BCD}" Library="space_stanton_design" LibFolders="environments/generic/Generic_SpaceAmbience+" Footprint="2,2,2" Description="" Category="">
+  <Objects>
+   <Object Type="TagPoint" Layer="Yela_Particles" LayerGUID="{D522A16B-71B6-405E-87A6-E2C203CF84F3}" Id="{236CD2A9-770C-4B7D-95E4-C6017982DFB8}" Name="AsteroidBelt_Tagpoint" Pos="0,0,0" FloorNumber="-1" Rotate="1,1.2409218e-010,-4.2925636e-009,-4.6784545e-009" ColorRGB="16711680" GlobalInSegmentedWorld="0" EntityClass="TagPoint"/>
+   <Object Type="Entity" Layer="Yela_Particles" LayerGUID="{D522A16B-71B6-405E-87A6-E2C203CF84F3}" Id="{33D9C5D4-7321-4791-9DCA-61D5E6971458}" Name="AsteroidBelt_FG" Pos="-0.048024803400039673,-3.4924596548080444e-010,0.10298952460289001" FloorNumber="-1" Rotate="1,1.2409218e-010,-4.2925636e-009,-4.6784545e-009" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="FlowgraphEntity">
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientOnly">
+     <Nodes>
+      <Node Id="6319" Name="Particle_Effect_in_Asteroids" Class="_commentbox" pos="-820,-348.33804,0" flags="0">
+       <Inputs TextSize="1" Color="0.093059,0.093059,0.093059" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="4900" Height="3600"/>
+       <NodeSize Width="4900" Height="3627.6406"/>
+      </Node>
+      <Node Id="6398" Class="Entity:EntitiesInRange" pos="870,1190,0" flags="0">
+       <Inputs Entity1="0" Entity2="0" Range="42200"/>
+      </Node>
+      <Node Id="6399" Class="Entity:EntityId" pos="870,1130,0" flags="0" EntityGUID="{236CD2A9-770C-4B7D-95E4-C6017982DFB8}" EntityGUID_64="4B7D770C236CD2A9">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="6400" Class="Actor:LocalPlayer" pos="870,1320,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6401" Class="Game:Start" pos="620,1190,0" flags="0">
+       <Inputs InGame="1" InEditor="1"/>
+      </Node>
+      <Node Id="6405" Class="Mission:GameTokenSet" pos="3180,1170,0" flags="0">
+       <Inputs gametoken_Token="RadiusValue" Value="" Networked="0"/>
+      </Node>
+      <Node Id="6409" Class="Math:Sub" pos="1400,1190,0" flags="0">
+       <Inputs A="0" B="20000"/>
+      </Node>
+      <Node Id="6411" Class="Math:Div" pos="1900,1190,0" flags="0">
+       <Inputs A="12000" B="22000"/>
+      </Node>
+      <Node Id="6415" Class="Debug:DisplayMessage" pos="3330.8765,2539.502,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="400" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6416" Class="Actor:LocalPlayer" pos="3330.8765,2499.502,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6418" Class="String:Concat" pos="3040.8765,2539.502,0" flags="0">
+       <Inputs String1="RadiusValue: " String2=""/>
+      </Node>
+      <Node Id="6419" Class="Entity:GetPos" pos="1540,1900,0" flags="0" EntityGUID="{236CD2A9-770C-4B7D-95E4-C6017982DFB8}" EntityGUID_64="4B7D770C236CD2A9">
+       <Inputs entityId="0" CoordSys="1"/>
+      </Node>
+      <Node Id="6420" Class="Math:Abs" pos="2320,1900,0" flags="0">
+       <Inputs A="0"/>
+      </Node>
+      <Node Id="6421" Class="Math:Compare" pos="2500,1600,0" flags="0">
+       <Inputs A="0" B="2000"/>
+      </Node>
+      <Node Id="6422" Class="Actor:LocalPlayer" pos="1540,2060,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6423" Class="Entity:GetPos" pos="1540,2100,0" flags="0">
+       <Inputs entityId="0" CoordSys="1"/>
+      </Node>
+      <Node Id="6424" Class="Debug:DisplayMessage" pos="2710,1600,0" flags="0">
+       <Inputs entityId="0" message="within height" DisplayTime="0" posX="50" posY="350" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6426" Class="Vec3:SubVec3" pos="1990,1900,0" flags="0">
+       <Inputs A="0,0,0" B="0,0,0"/>
+      </Node>
+      <Node Id="6427" Class="Vec3:DotVec3" pos="2160,1900,0" flags="0">
+       <Inputs A="0,0,0" B="0,0,0"/>
+      </Node>
+      <Node Id="6430" Class="Actor:LocalPlayer" pos="2710,1560,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6436" Class="Debug:DisplayMessage" pos="1530,770,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="250" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6437" Class="Actor:LocalPlayer" pos="1530,730,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6438" Class="Debug:DisplayMessage" pos="1810,760,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="300" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6439" Class="Actor:LocalPlayer" pos="1810,720,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6440" Class="Math:Sub" pos="1580,1190,0" flags="0">
+       <Inputs A="0" B="22000"/>
+      </Node>
+      <Node Id="6447" Class="Debug:DisplayMessage" pos="2050,770,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="350" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6448" Class="Actor:LocalPlayer" pos="2050,730,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6450" Class="Math:Add" pos="1770,1190,0" flags="0">
+       <Inputs A="0" B="0"/>
+      </Node>
+      <Node Id="6510" Class="Logic:Gate" pos="1210,1190,0" flags="0">
+       <Inputs Closed="1"/>
+      </Node>
+      <Node Id="6512" Name="outer_ring_=_42000\ninner_ring_=_20000\ndepth_=_22000" Class="_comment" pos="892.87549,1003.5356,0" flags="0"/>
+      <Node Id="6520" Class="Mission:GameToken" pos="2770.8765,2539.502,0" flags="0">
+       <Inputs gametoken_Token="RadiusValue" compare_Value=""/>
+      </Node>
+      <Node Id="6545" Class="Math:Compare" pos="2530,1190,0" flags="0">
+       <Inputs A="0" B="0"/>
+      </Node>
+      <Node Id="6546" Class="Math:Compare" pos="2530,1360,0" flags="0">
+       <Inputs A="0" B="1"/>
+      </Node>
+      <Node Id="6552" Class="Logic:Any" pos="2790,1360,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="6556" Class="Math:Mul" pos="2080,1190,0" flags="0">
+       <Inputs A="0" B="-1"/>
+      </Node>
+      <Node Id="6560" Class="Math:Add" pos="2220,1190,0" flags="0">
+       <Inputs A="0" B="1"/>
+      </Node>
+      <Node Id="6562" Class="Math:Div" pos="2350,1190,0" flags="0">
+       <Inputs A="0" B="2"/>
+      </Node>
+      <Node Id="6563" Class="Mission:GameTokenSet" pos="2930,1360,0" flags="0">
+       <Inputs gametoken_Token="RadiusValue" Value="0" Networked="0"/>
+      </Node>
+      <Node Id="6571" Class="Mission:GameToken" pos="4160,1900,0" flags="0">
+       <Inputs gametoken_Token="RadiusValue" compare_Value="0"/>
+      </Node>
+      <Node Id="6572" Class="Mission:GameToken" pos="4160,1980,0" flags="0">
+       <Inputs gametoken_Token="HeightValue" compare_Value="0"/>
+      </Node>
+      <Node Id="6573" Class="Math:Compare" pos="5170,1900,0" flags="0">
+       <Inputs A="0" B="0.25"/>
+      </Node>
+      <Node Id="6575" Class="Math:Compare" pos="5170,2070,0" flags="0">
+       <Inputs A="0" B="0.5"/>
+      </Node>
+      <Node Id="6576" Class="Math:Compare" pos="5170,2320,0" flags="0">
+       <Inputs A="0" B="1"/>
+      </Node>
+      <Node Id="6579" Name="height_+-2000" Class="_comment" pos="2500,1560,0" flags="0"/>
+      <Node Id="6581" Class="Mission:GameTokenSet" pos="3280,1900,0" flags="0">
+       <Inputs gametoken_Token="HeightValue" Value="0" Networked="0"/>
+      </Node>
+      <Node Id="6582" Class="Debug:DisplayMessage" pos="3330,2880,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="425" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6583" Class="Actor:LocalPlayer" pos="3330,2840,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6584" Class="String:Concat" pos="3040,2880,0" flags="0">
+       <Inputs String1="HeightValue: " String2=""/>
+      </Node>
+      <Node Id="6585" Class="Mission:GameToken" pos="2770,2880,0" flags="0">
+       <Inputs gametoken_Token="HeightValue" compare_Value=""/>
+      </Node>
+      <Node Id="6593" Class="Debug:DisplayMessage" pos="7190,1970,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="25" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6597" Class="Actor:LocalPlayer" pos="7190,1930,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6598" Class="Debug:DisplayMessage" pos="5170,1580,0" flags="0">
+       <Inputs entityId="0" message="within height" DisplayTime="0" posX="50" posY="550" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6599" Class="Actor:LocalPlayer" pos="5170,1540,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6601" Class="Math:Div" pos="2710,1900,0" flags="0">
+       <Inputs A="0" B="2000"/>
+      </Node>
+      <Node Id="6602" Class="Debug:DisplayMessage" pos="2162.9089,1575.0344,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="250" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="6603" Class="Actor:LocalPlayer" pos="2162.9089,1535.0344,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6605" Class="Logic:Gate" pos="2480,1900,0" flags="0">
+       <Inputs Closed="1"/>
+      </Node>
+      <Node Id="6611" Class="Math:Sub" pos="2870,1900,0" flags="0">
+       <Inputs A="0" B="1"/>
+      </Node>
+      <Node Id="6613" Class="Math:Abs" pos="3060,1900,0" flags="0">
+       <Inputs A="0"/>
+      </Node>
+      <Node Id="6617" Class="Logic:Gate" pos="4520,1900,0" flags="0">
+       <Inputs Closed="1"/>
+      </Node>
+      <Node Id="6618" Class="Logic:Gate" pos="4520,2000,0" flags="0">
+       <Inputs Closed="1"/>
+      </Node>
+      <Node Id="6620" Class="Math:Mul" pos="4760,1900,0" flags="0">
+       <Inputs A="0" B="0"/>
+      </Node>
+      <Node Id="6622" Class="entity:ParticleEffect" pos="6750,2950,0" flags="0" EntityGUID="{24A1FF59-9A8F-4E79-9025-30915EF7FC2A}" EntityGUID_64="4E799A8F24A1FF59">
+       <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+      </Node>
+      <Node Id="6624" Class="entity:ParticleEffect" pos="6750,2630,0" flags="0" EntityGUID="{CCD02080-1FBF-4800-BB99-C4CC1F500E64}" EntityGUID_64="48001FBFCCD02080">
+       <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+      </Node>
+      <Node Id="6626" Class="entity:ParticleEffect" pos="6750,2790,0" flags="0" EntityGUID="{9ACCD266-7D22-4D91-AB63-CFE6FDA373E7}" EntityGUID_64="4D917D229ACCD266">
+       <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+      </Node>
+      <Node Id="6638" Class="Logic:Any" pos="4510,2360,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6640" Class="Mission:GameTokenSet" pos="4790,2360,0" flags="0">
+       <Inputs gametoken_Token="State" Value="none" Networked="0"/>
+      </Node>
+      <Node Id="6642" Class="Mission:GameToken" pos="6040,2630,0" flags="0">
+       <Inputs gametoken_Token="State" compare_Value="none"/>
+      </Node>
+      <Node Id="6643" Class="Mission:GameTokenSet" pos="5360,1900,0" flags="0">
+       <Inputs gametoken_Token="State" Value="light" Networked="0"/>
+      </Node>
+      <Node Id="6644" Class="Mission:GameTokenSet" pos="5360,2070,0" flags="0">
+       <Inputs gametoken_Token="State" Value="medium" Networked="0"/>
+      </Node>
+      <Node Id="6645" Class="Mission:GameTokenSet" pos="5360,2320,0" flags="0">
+       <Inputs gametoken_Token="State" Value="heavy" Networked="0"/>
+      </Node>
+      <Node Id="6646" Class="Mission:GameToken" pos="5710,2180,0" flags="0">
+       <Inputs gametoken_Token="State" compare_Value="medium"/>
+      </Node>
+      <Node Id="6647" Class="Mission:GameToken" pos="5740,2310,0" flags="0">
+       <Inputs gametoken_Token="State" compare_Value="heavy"/>
+      </Node>
+      <Node Id="6648" Class="Mission:GameToken" pos="6880,1970,0" flags="0">
+       <Inputs gametoken_Token="State" compare_Value=""/>
+      </Node>
+      <Node Id="6649" Class="Mission:GameTokenSet" pos="2721.1865,2072.4912,0" flags="0">
+       <Inputs gametoken_Token="HeightValue" Value="0" Networked="0"/>
+      </Node>
+      <Node Id="6650" Class="Time:FrameDelay" pos="4630,2360,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6652" Class="String:Compare" pos="6340,2790,0" flags="0">
+       <Inputs A="" B="light" IgnoreCase="1"/>
+      </Node>
+      <Node Id="6654" Class="Logic:Any" pos="6600,2790,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="6655" Class="Logic:Any" pos="6590,2950,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="6656" Class="String:Compare" pos="6340,2950,0" flags="0">
+       <Inputs A="" B="medium" IgnoreCase="1"/>
+      </Node>
+      <Node Id="6658" Class="Logic:Any" pos="7350,2630,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="6659" Class="Logic:Any" pos="7340,2790,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="6660" Class="Logic:Any" pos="7340,2950,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="6436" nodeOut="6398" portIn="message" portOut="Distance" enabled="1"/>
+      <Edge nodeIn="6510" nodeOut="6398" portIn="In" portOut="Distance" enabled="1"/>
+      <Edge nodeIn="6510" nodeOut="6398" portIn="Close" portOut="False" enabled="1"/>
+      <Edge nodeIn="6510" nodeOut="6398" portIn="Open" portOut="True" enabled="1"/>
+      <Edge nodeIn="6398" nodeOut="6399" portIn="Entity1" portOut="Id" enabled="1"/>
+      <Edge nodeIn="6398" nodeOut="6400" portIn="Entity2" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6398" nodeOut="6401" portIn="Enable" portOut="output" enabled="1"/>
+      <Edge nodeIn="6440" nodeOut="6409" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6450" nodeOut="6409" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6556" nodeOut="6411" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6415" nodeOut="6416" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6415" nodeOut="6418" portIn="Show" portOut="Out" enabled="0"/>
+      <Edge nodeIn="6415" nodeOut="6418" portIn="message" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6426" nodeOut="6419" portIn="B" portOut="Pos" enabled="1"/>
+      <Edge nodeIn="6427" nodeOut="6419" portIn="A" portOut="UpDir" enabled="1"/>
+      <Edge nodeIn="6421" nodeOut="6420" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6421" nodeOut="6420" portIn="A&lt;B" portOut="out" enabled="1"/>
+      <Edge nodeIn="6602" nodeOut="6420" portIn="message" portOut="out" enabled="1"/>
+      <Edge nodeIn="6605" nodeOut="6420" portIn="In" portOut="out" enabled="1"/>
+      <Edge nodeIn="6424" nodeOut="6421" portIn="Hide" portOut="false" enabled="1"/>
+      <Edge nodeIn="6424" nodeOut="6421" portIn="Show" portOut="true" enabled="0"/>
+      <Edge nodeIn="6605" nodeOut="6421" portIn="Close" portOut="false" enabled="1"/>
+      <Edge nodeIn="6605" nodeOut="6421" portIn="Open" portOut="true" enabled="1"/>
+      <Edge nodeIn="6649" nodeOut="6421" portIn="Trigger" portOut="false" enabled="1"/>
+      <Edge nodeIn="6423" nodeOut="6422" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6426" nodeOut="6423" portIn="A" portOut="Pos" enabled="1"/>
+      <Edge nodeIn="6427" nodeOut="6426" portIn="B" portOut="out" enabled="1"/>
+      <Edge nodeIn="6420" nodeOut="6427" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6424" nodeOut="6430" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6436" nodeOut="6437" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6438" nodeOut="6439" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6438" nodeOut="6440" portIn="message" portOut="out" enabled="1"/>
+      <Edge nodeIn="6450" nodeOut="6440" portIn="B" portOut="out" enabled="1"/>
+      <Edge nodeIn="6447" nodeOut="6448" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6411" nodeOut="6450" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6447" nodeOut="6450" portIn="message" portOut="out" enabled="1"/>
+      <Edge nodeIn="6409" nodeOut="6510" portIn="A" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6419" nodeOut="6510" portIn="Get" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6423" nodeOut="6510" portIn="Get" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6418" nodeOut="6520" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6418" nodeOut="6520" portIn="String2" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6546" nodeOut="6545" portIn="A&lt;=B" portOut="true" enabled="1"/>
+      <Edge nodeIn="6552" nodeOut="6545" portIn="in1" portOut="false" enabled="1"/>
+      <Edge nodeIn="6405" nodeOut="6546" portIn="Trigger" portOut="true" enabled="1"/>
+      <Edge nodeIn="6552" nodeOut="6546" portIn="in2" portOut="false" enabled="1"/>
+      <Edge nodeIn="6563" nodeOut="6552" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="6560" nodeOut="6556" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6562" nodeOut="6560" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6405" nodeOut="6562" portIn="Value" portOut="out" enabled="1"/>
+      <Edge nodeIn="6545" nodeOut="6562" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6545" nodeOut="6562" portIn="A&gt;B" portOut="out" enabled="1"/>
+      <Edge nodeIn="6546" nodeOut="6562" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6617" nodeOut="6571" portIn="In" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6618" nodeOut="6571" portIn="Open" portOut="Equal False" enabled="1"/>
+      <Edge nodeIn="6618" nodeOut="6571" portIn="Close" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6638" nodeOut="6571" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6617" nodeOut="6572" portIn="Open" portOut="Equal False" enabled="1"/>
+      <Edge nodeIn="6617" nodeOut="6572" portIn="Close" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6618" nodeOut="6572" portIn="In" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6638" nodeOut="6572" portIn="in2" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6575" nodeOut="6573" portIn="A&gt;B" portOut="true" enabled="1"/>
+      <Edge nodeIn="6643" nodeOut="6573" portIn="Trigger" portOut="false" enabled="1"/>
+      <Edge nodeIn="6576" nodeOut="6575" portIn="A&gt;B" portOut="true" enabled="1"/>
+      <Edge nodeIn="6644" nodeOut="6575" portIn="Trigger" portOut="false" enabled="1"/>
+      <Edge nodeIn="6645" nodeOut="6576" portIn="Trigger" portOut="false" enabled="1"/>
+      <Edge nodeIn="6582" nodeOut="6583" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6582" nodeOut="6584" portIn="Show" portOut="Out" enabled="0"/>
+      <Edge nodeIn="6582" nodeOut="6584" portIn="message" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6584" nodeOut="6585" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6584" nodeOut="6585" portIn="String2" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6593" nodeOut="6597" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6598" nodeOut="6599" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6611" nodeOut="6601" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6602" nodeOut="6603" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="6601" nodeOut="6605" portIn="A" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6613" nodeOut="6611" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6581" nodeOut="6613" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="6581" nodeOut="6613" portIn="Value" portOut="out" enabled="1"/>
+      <Edge nodeIn="6620" nodeOut="6617" portIn="A" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6620" nodeOut="6618" portIn="B" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6573" nodeOut="6620" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6573" nodeOut="6620" portIn="A&gt;B" portOut="out" enabled="1"/>
+      <Edge nodeIn="6575" nodeOut="6620" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6576" nodeOut="6620" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="6598" nodeOut="6620" portIn="Show" portOut="out" enabled="0"/>
+      <Edge nodeIn="6598" nodeOut="6620" portIn="message" portOut="out" enabled="1"/>
+      <Edge nodeIn="6660" nodeOut="6622" portIn="in1" portOut="Disable" enabled="1"/>
+      <Edge nodeIn="6660" nodeOut="6622" portIn="in2" portOut="Enable" enabled="1"/>
+      <Edge nodeIn="6658" nodeOut="6624" portIn="in1" portOut="Disable" enabled="1"/>
+      <Edge nodeIn="6658" nodeOut="6624" portIn="in2" portOut="Enable" enabled="1"/>
+      <Edge nodeIn="6659" nodeOut="6626" portIn="in1" portOut="Disable" enabled="1"/>
+      <Edge nodeIn="6659" nodeOut="6626" portIn="in2" portOut="Enable" enabled="1"/>
+      <Edge nodeIn="6650" nodeOut="6638" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="6624" nodeOut="6642" portIn="Enable" portOut="Equal False" enabled="1"/>
+      <Edge nodeIn="6624" nodeOut="6642" portIn="Disable" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6652" nodeOut="6642" portIn="Compare" portOut="Equal False" enabled="1"/>
+      <Edge nodeIn="6652" nodeOut="6642" portIn="A" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6654" nodeOut="6642" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6656" nodeOut="6642" portIn="A" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6593" nodeOut="6648" portIn="Show" portOut="Out" enabled="0"/>
+      <Edge nodeIn="6593" nodeOut="6648" portIn="message" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6640" nodeOut="6650" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="6626" nodeOut="6652" portIn="Enable" portOut="False" enabled="1"/>
+      <Edge nodeIn="6654" nodeOut="6652" portIn="in2" portOut="True" enabled="1"/>
+      <Edge nodeIn="6656" nodeOut="6652" portIn="Compare" portOut="False" enabled="1"/>
+      <Edge nodeIn="6626" nodeOut="6654" portIn="Disable" portOut="out" enabled="1"/>
+      <Edge nodeIn="6655" nodeOut="6654" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="6622" nodeOut="6655" portIn="Disable" portOut="out" enabled="1"/>
+      <Edge nodeIn="6622" nodeOut="6656" portIn="Enable" portOut="False" enabled="1"/>
+      <Edge nodeIn="6655" nodeOut="6656" portIn="in2" portOut="True" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Name="" Type="" Default="false"/>
+      <Token Name="" Type="" Default="false"/>
+      <Token Name="HeightValue" Type="" Default="0"/>
+      <Token Name="RadiusValue" Type="" Default="0"/>
+      <Token Name="State" Type="" Default="none"/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+   <Object Type="ParticleEntity" Layer="Yela_Particles" LayerGUID="{D522A16B-71B6-405E-87A6-E2C203CF84F3}" Id="{24A1FF59-9A8F-4E79-9025-30915EF7FC2A}" Name="Heavy_Dust_Particle" Pos="0,0,0" FloorNumber="-1" Rotate="1,1.2409218e-010,-4.2925636e-009,-4.6784545e-009" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="ParticleEffect">
+    <Properties bActive="0" esAttachForm="" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" bNetworkSync="0" ParticleEffect="Generic_SpaceAmbience.SpaceAmbience_Dust_Camera_Bind.spacedust_density_high" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="1" soclasses_SmartObjectClass="" SpeedScale="1" Strength="-1" TimeScale="1">
+     <Audio bEnableAudio="0" audioRTPCRtpc="particlefx"/>
+    </Properties>
+   </Object>
+   <Object Type="ParticleEntity" Layer="Yela_Particles" LayerGUID="{D522A16B-71B6-405E-87A6-E2C203CF84F3}" Id="{CCD02080-1FBF-4800-BB99-C4CC1F500E64}" Name="Light_Dust_Particle" Pos="0,0,0" FloorNumber="-1" Rotate="1,4.8172856e-018,-8.4880232e-035,1.4034821e-017" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="ParticleEffect">
+    <Properties bActive="0" esAttachForm="" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" bNetworkSync="0" ParticleEffect="Generic_SpaceAmbience.SpaceAmbience_Dust_Camera_Bind.spacedust_density_low" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="1" soclasses_SmartObjectClass="" SpeedScale="1" Strength="-1" TimeScale="1">
+     <Audio bEnableAudio="0" audioRTPCRtpc="particlefx"/>
+    </Properties>
+   </Object>
+   <Object Type="ParticleEntity" Layer="Yela_Particles" LayerGUID="{D522A16B-71B6-405E-87A6-E2C203CF84F3}" Id="{9ACCD266-7D22-4D91-AB63-CFE6FDA373E7}" Name="Medium_Dust_Particle" Pos="0,0,0" FloorNumber="-1" Rotate="1,4.8172856e-018,-8.4880232e-035,1.4034821e-017" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="ParticleEffect">
+    <Properties bActive="0" esAttachForm="" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" bNetworkSync="0" ParticleEffect="Generic_SpaceAmbience.SpaceAmbience_Dust_Camera_Bind.spacedust_density_medium" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="1" soclasses_SmartObjectClass="" SpeedScale="1" Strength="-1" TimeScale="1">
+     <Audio bEnableAudio="0" audioRTPCRtpc="particlefx"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_Shutters" SubLibrary="" Id="{8D9FF9C5-91DE-4069-AE7B-F318789CE5BB}" Library="space_stanton_design" LibFolders="" Footprint="2,2,2" Description="" Category="">
+  <Objects>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{FFE0629A-C9C8-4811-9427-C4783F428F9A}" Name="int_shutter4" Pos="164.5,298,33" FloorNumber="-1" Rotate="-7.4505806e-008,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AnimObject">
+    <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/dfm/dfm_crusader/station/interior/smallroom/roomsm_shutter_08x04x08_a.cga" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="0" UseMessage="">
+     <Animation bAlwaysUpdate="0" Animation="opened" bLoop="0" bPhysicalizeAfterAnimation="0" playerAnimationState="" bPlaying="1" Speed="1"/>
+     <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="0" bRigidBody="0" bRigidBodySimple="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Rendering bWrinkleMap="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{EA33FFAD-1944-488D-9D44-91A5A6443EB2}" Name="int_shutter3" Pos="172.5,298,33" FloorNumber="-1" Rotate="-7.4505806e-008,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AnimObject">
+    <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/dfm/dfm_crusader/station/interior/smallroom/roomsm_shutter_08x04x08_a.cga" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="0" UseMessage="">
+     <Animation bAlwaysUpdate="0" Animation="opened" bLoop="0" bPhysicalizeAfterAnimation="0" playerAnimationState="" bPlaying="1" Speed="1"/>
+     <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="0" bRigidBody="0" bRigidBodySimple="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Rendering bWrinkleMap="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{A02C2300-D9D2-44FB-B4CA-861F82D7820A}" Name="int_shutter2" Pos="180.5,298,33" FloorNumber="-1" Rotate="-7.4505806e-008,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AnimObject">
+    <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/dfm/dfm_crusader/station/interior/smallroom/roomsm_shutter_08x04x08_a.cga" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="0" UseMessage="">
+     <Animation bAlwaysUpdate="0" Animation="opened" bLoop="0" bPhysicalizeAfterAnimation="0" playerAnimationState="" bPlaying="1" Speed="1"/>
+     <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="0" bRigidBody="0" bRigidBodySimple="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Rendering bWrinkleMap="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{F712D213-45B7-4F45-9166-2A425755FA65}" Name="int_shutter1" Pos="188.5,298,33" FloorNumber="-1" Rotate="-7.4505806e-008,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AnimObject">
+    <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/dfm/dfm_crusader/station/interior/smallroom/roomsm_shutter_08x04x08_a.cga" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="0" UseMessage="">
+     <Animation bAlwaysUpdate="0" Animation="opened" bLoop="0" bPhysicalizeAfterAnimation="0" playerAnimationState="" bPlaying="1" Speed="1"/>
+     <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="0" bRigidBody="0" bRigidBodySimple="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Rendering bWrinkleMap="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{D54CAF05-D7A0-4C5B-A1EE-D5D890FF86C9}" Name="Shutter_Flowgraph" Pos="180.95034790039062,302.66244506835937,34.341316223144531" FloorNumber="-1" Rotate="0.70710683,0,0,0.70710671" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="FlowgraphEntity">
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="32" Class="Prefab:EventSource" pos="910,1860,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_Shutters" InstanceName="Shipyard_Shutters" EventName="Opened" EventId="6" EventIndex="1"/>
+      </Node>
+      <Node Id="35" Class="Animations:PlayAnimation" pos="270,1210,0" flags="0" EntityGUID="{FFE0629A-C9C8-4811-9427-C4783F428F9A}" EntityGUID_64="4811C9C8FFE0629A">
+       <Inputs entityId="0" anim_Animation="open" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="36" Class="Animations:PlayAnimation" pos="270,1500,0" flags="0" EntityGUID="{EA33FFAD-1944-488D-9D44-91A5A6443EB2}" EntityGUID_64="488D1944EA33FFAD">
+       <Inputs entityId="0" anim_Animation="open" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="37" Class="Animations:PlayAnimation" pos="270,1840,0" flags="0" EntityGUID="{A02C2300-D9D2-44FB-B4CA-861F82D7820A}" EntityGUID_64="44FBD9D2A02C2300">
+       <Inputs entityId="0" anim_Animation="open" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="38" Class="Animations:PlayAnimation" pos="270,2180,0" flags="0" EntityGUID="{F712D213-45B7-4F45-9166-2A425755FA65}" EntityGUID_64="4F4545B7F712D213">
+       <Inputs entityId="0" anim_Animation="open" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="41" Class="Mission:GameTokenCheck" pos="3590,-2300,0" flags="0">
+       <Inputs gametoken_Token="Shutter_Idle" CheckValue="true"/>
+      </Node>
+      <Node Id="43" Class="Mission:GameTokenCheck" pos="4070,-2310,0" flags="0">
+       <Inputs gametoken_Token="Shutter_State" CheckValue="opened"/>
+      </Node>
+      <Node Id="46" Name="Play_Error_Sound" Class="_comment" pos="3910,-2070,0" flags="0"/>
+      <Node Id="50" Class="Logic:All" pos="730,1860,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="54" Class="Mission:GameTokenSet" pos="4070,-2410,0" flags="0">
+       <Inputs gametoken_Token="Shutter_Idle" Value="false" Networked="0"/>
+      </Node>
+      <Node Id="55" Name="Open_Shutters" Class="_commentbox" pos="80,1016.3152,0" flags="0">
+       <Inputs TextSize="1" Color="0.093059,0.093059,0.093059" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1140" Height="1590"/>
+       <NodeSize Width="1140" Height="1617.6559"/>
+      </Node>
+      <Node Id="59" Class="Mission:GameTokenSet" pos="910,1960,0" flags="0">
+       <Inputs gametoken_Token="Shutter_State" Value="opened" Networked="0"/>
+      </Node>
+      <Node Id="637" Class="Audio:Trigger" pos="3910,-2040,0" flags="0">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCCS_Holotable_UI_Deny" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="640" Class="Audio:Trigger" pos="4070,-2560,0" flags="0">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCCS_Gamescom_UI_Console" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="646" Class="Audio:Trigger" pos="4290,140,0" flags="0" EntityGUID="{E8D298A3-3059-4595-9519-39AD743B1E26}" EntityGUID_64="45953059E8D298A3">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Servo" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="647" Class="Time:Delay" pos="4110,140,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="648" Class="Audio:Trigger" pos="4290,290,0" flags="0" EntityGUID="{E8D298A3-3059-4595-9519-39AD743B1E26}" EntityGUID_64="45953059E8D298A3">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="649" Class="Time:Delay" pos="4110,290,0" flags="0">
+       <Inputs delay="1.8" resetOnInput="0"/>
+      </Node>
+      <Node Id="650" Class="Audio:Trigger" pos="4290,440,0" flags="0" EntityGUID="{E8D298A3-3059-4595-9519-39AD743B1E26}" EntityGUID_64="45953059E8D298A3">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="651" Class="Time:Delay" pos="4110,440,0" flags="0">
+       <Inputs delay="2.6" resetOnInput="0"/>
+      </Node>
+      <Node Id="652" Class="Audio:Trigger" pos="4810,-2620,0" flags="0" EntityGUID="{B0E9372B-F788-410E-A1BD-8292EE38D735}" EntityGUID_64="410EF788B0E9372B">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Start" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="653" Class="Time:Delay" pos="4630,-2620,0" flags="0">
+       <Inputs delay="0.2" resetOnInput="0"/>
+      </Node>
+      <Node Id="654" Class="Audio:Trigger" pos="4270,-670,0" flags="0" EntityGUID="{8CDDAE2A-A2FD-42D3-B957-B7C37BC7BBFD}" EntityGUID_64="42D3A2FD8CDDAE2A">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Start_Motor" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="655" Class="Time:Delay" pos="4090,-670,0" flags="0">
+       <Inputs delay="3.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="658" Class="Audio:Trigger" pos="4270,-520,0" flags="0" EntityGUID="{8CDDAE2A-A2FD-42D3-B957-B7C37BC7BBFD}" EntityGUID_64="42D3A2FD8CDDAE2A">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Motor_Finish" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="659" Class="Time:Delay" pos="4090,-520,0" flags="0">
+       <Inputs delay="11.2" resetOnInput="0"/>
+      </Node>
+      <Node Id="660" Class="Audio:Trigger" pos="4270,-370,0" flags="0" EntityGUID="{8CDDAE2A-A2FD-42D3-B957-B7C37BC7BBFD}" EntityGUID_64="42D3A2FD8CDDAE2A">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Start_Motor" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="661" Class="Time:Delay" pos="4090,-370,0" flags="0">
+       <Inputs delay="11.8" resetOnInput="0"/>
+      </Node>
+      <Node Id="662" Class="Audio:Trigger" pos="4810,-2470,0" flags="0" EntityGUID="{B0E9372B-F788-410E-A1BD-8292EE38D735}" EntityGUID_64="410EF788B0E9372B">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Finish" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="663" Class="Time:Delay" pos="4630,-2470,0" flags="0">
+       <Inputs delay="0.5" resetOnInput="0"/>
+      </Node>
+      <Node Id="664" Class="Audio:Trigger" pos="4270,-220,0" flags="0" EntityGUID="{8CDDAE2A-A2FD-42D3-B957-B7C37BC7BBFD}" EntityGUID_64="42D3A2FD8CDDAE2A">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Motor_Finish" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="665" Class="Time:Delay" pos="4090,-220,0" flags="0">
+       <Inputs delay="16.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="668" Class="Audio:Trigger" pos="4290,590,0" flags="0" EntityGUID="{E8D298A3-3059-4595-9519-39AD743B1E26}" EntityGUID_64="45953059E8D298A3">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq_02" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="669" Class="Time:Delay" pos="4110,590,0" flags="0">
+       <Inputs delay="10.5" resetOnInput="0"/>
+      </Node>
+      <Node Id="670" Class="Audio:Trigger" pos="4290,740,0" flags="0" EntityGUID="{E8D298A3-3059-4595-9519-39AD743B1E26}" EntityGUID_64="45953059E8D298A3">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="671" Class="Time:Delay" pos="4110,740,0" flags="0">
+       <Inputs delay="14.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="672" Class="Audio:Trigger" pos="4240,-1480,0" flags="0" EntityGUID="{D8566FD5-290F-4E75-9084-C5A70DF46863}" EntityGUID_64="4E75290FD8566FD5">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Start_Motor" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="673" Class="Time:Delay" pos="4060,-1480,0" flags="0">
+       <Inputs delay="1.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="674" Class="Audio:Trigger" pos="4240,-1330,0" flags="0" EntityGUID="{D8566FD5-290F-4E75-9084-C5A70DF46863}" EntityGUID_64="4E75290FD8566FD5">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Motor_Finish" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="675" Class="Time:Delay" pos="4060,-1330,0" flags="0">
+       <Inputs delay="9.2" resetOnInput="0"/>
+      </Node>
+      <Node Id="676" Class="Audio:Trigger" pos="4240,-1030,0" flags="0" EntityGUID="{D8566FD5-290F-4E75-9084-C5A70DF46863}" EntityGUID_64="4E75290FD8566FD5">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Start_Motor" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="677" Class="Time:Delay" pos="4060,-1030,0" flags="0">
+       <Inputs delay="9.8" resetOnInput="0"/>
+      </Node>
+      <Node Id="678" Class="Audio:Trigger" pos="4240,-1180,0" flags="0" EntityGUID="{D8566FD5-290F-4E75-9084-C5A70DF46863}" EntityGUID_64="4E75290FD8566FD5">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutter_Open_Motor_Finish" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="679" Class="Time:Delay" pos="4060,-1180,0" flags="0">
+       <Inputs delay="14.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="680" Class="Time:Delay" pos="3860,-420,0" flags="0">
+       <Inputs delay="2" resetOnInput="0"/>
+      </Node>
+      <Node Id="681" Class="Time:Delay" pos="3840,-1260,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="682" Class="Time:Delay" pos="3860,440,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="683" Name="Audio_Logic_Shutter_Motor_L" Class="_commentbox" pos="3830,-1517.3312,0" flags="0">
+       <Inputs TextSize="1" Color="0.174647,1,0.144129" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="900" Height="613"/>
+       <NodeSize Width="900" Height="640.65594"/>
+      </Node>
+      <Node Id="684" Name="Audio_Logic_Shutter_Motor_R" Class="_commentbox" pos="3850,-707.3316,0" flags="0">
+       <Inputs TextSize="1" Color="0.184475,0.964686,0.155926" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="910" Height="613"/>
+       <NodeSize Width="910" Height="640.65594"/>
+      </Node>
+      <Node Id="685" Name="Audio_Logic_Shutter_01" Class="_commentbox" pos="3850,102.66836,0" flags="0">
+       <Inputs TextSize="1" Color="0.219526,0.964686,0.155926" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="970" Height="763"/>
+       <NodeSize Width="970" Height="790.65594"/>
+      </Node>
+      <Node Id="686" Class="Audio:Trigger" pos="4280,990,0" flags="0" EntityGUID="{41BF51EF-4FB9-4BE4-9B01-81B680E6238C}" EntityGUID_64="4BE44FB941BF51EF">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Servo" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="687" Class="Time:Delay" pos="4100,990,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="688" Class="Audio:Trigger" pos="4280,1140,0" flags="0" EntityGUID="{41BF51EF-4FB9-4BE4-9B01-81B680E6238C}" EntityGUID_64="4BE44FB941BF51EF">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="689" Class="Time:Delay" pos="4100,1140,0" flags="0">
+       <Inputs delay="1.8" resetOnInput="0"/>
+      </Node>
+      <Node Id="690" Class="Audio:Trigger" pos="4280,1290,0" flags="0" EntityGUID="{41BF51EF-4FB9-4BE4-9B01-81B680E6238C}" EntityGUID_64="4BE44FB941BF51EF">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="691" Class="Time:Delay" pos="4100,1290,0" flags="0">
+       <Inputs delay="2.6" resetOnInput="0"/>
+      </Node>
+      <Node Id="692" Class="Audio:Trigger" pos="4280,1440,0" flags="0" EntityGUID="{41BF51EF-4FB9-4BE4-9B01-81B680E6238C}" EntityGUID_64="4BE44FB941BF51EF">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq_02" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="693" Class="Time:Delay" pos="4100,1440,0" flags="0">
+       <Inputs delay="10.5" resetOnInput="0"/>
+      </Node>
+      <Node Id="694" Class="Audio:Trigger" pos="4280,1590,0" flags="0" EntityGUID="{41BF51EF-4FB9-4BE4-9B01-81B680E6238C}" EntityGUID_64="4BE44FB941BF51EF">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="695" Class="Time:Delay" pos="4100,1590,0" flags="0">
+       <Inputs delay="14.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="696" Class="Time:Delay" pos="3850,1290,0" flags="0">
+       <Inputs delay="1" resetOnInput="0"/>
+      </Node>
+      <Node Id="697" Name="Audio_Logic_Shutter_02" Class="_commentbox" pos="3840,962.66852,0" flags="0">
+       <Inputs TextSize="1" Color="0.219526,0.964686,0.155926" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="970" Height="763"/>
+       <NodeSize Width="970" Height="790.65594"/>
+      </Node>
+      <Node Id="698" Class="Audio:Trigger" pos="4270,1820,0" flags="0" EntityGUID="{1AE5241F-9625-49AE-87EB-112332370552}" EntityGUID_64="49AE96251AE5241F">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Servo" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="699" Class="Time:Delay" pos="4090,1820,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="700" Class="Audio:Trigger" pos="4270,1970,0" flags="0" EntityGUID="{1AE5241F-9625-49AE-87EB-112332370552}" EntityGUID_64="49AE96251AE5241F">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="701" Class="Time:Delay" pos="4090,1970,0" flags="0">
+       <Inputs delay="1.8" resetOnInput="0"/>
+      </Node>
+      <Node Id="702" Class="Audio:Trigger" pos="4270,2120,0" flags="0" EntityGUID="{1AE5241F-9625-49AE-87EB-112332370552}" EntityGUID_64="49AE96251AE5241F">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="703" Class="Time:Delay" pos="4090,2120,0" flags="0">
+       <Inputs delay="2.6" resetOnInput="0"/>
+      </Node>
+      <Node Id="704" Class="Audio:Trigger" pos="4270,2270,0" flags="0" EntityGUID="{1AE5241F-9625-49AE-87EB-112332370552}" EntityGUID_64="49AE96251AE5241F">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq_02" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="705" Class="Time:Delay" pos="4090,2270,0" flags="0">
+       <Inputs delay="10.5" resetOnInput="0"/>
+      </Node>
+      <Node Id="706" Class="Audio:Trigger" pos="4270,2420,0" flags="0" EntityGUID="{1AE5241F-9625-49AE-87EB-112332370552}" EntityGUID_64="49AE96251AE5241F">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="707" Class="Time:Delay" pos="4090,2420,0" flags="0">
+       <Inputs delay="14.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="708" Class="Time:Delay" pos="3840,2120,0" flags="0">
+       <Inputs delay="2" resetOnInput="0"/>
+      </Node>
+      <Node Id="709" Name="Audio_Logic_Shutter_03" Class="_commentbox" pos="3830,1792.6691,0" flags="0">
+       <Inputs TextSize="1" Color="0.219526,0.964686,0.155926" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="970" Height="763"/>
+       <NodeSize Width="970" Height="790.65594"/>
+      </Node>
+      <Node Id="710" Class="Audio:Trigger" pos="4270,2700,0" flags="0" EntityGUID="{D7D9F745-85E4-4275-8BA4-4B7FAEF80873}" EntityGUID_64="427585E4D7D9F745">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Servo" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="711" Class="Time:Delay" pos="4090,2700,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="712" Class="Audio:Trigger" pos="4270,2850,0" flags="0" EntityGUID="{D7D9F745-85E4-4275-8BA4-4B7FAEF80873}" EntityGUID_64="427585E4D7D9F745">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="713" Class="Time:Delay" pos="4090,2850,0" flags="0">
+       <Inputs delay="1.8" resetOnInput="0"/>
+      </Node>
+      <Node Id="714" Class="Audio:Trigger" pos="4270,3000,0" flags="0" EntityGUID="{D7D9F745-85E4-4275-8BA4-4B7FAEF80873}" EntityGUID_64="427585E4D7D9F745">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close_Seq" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="715" Class="Time:Delay" pos="4090,3000,0" flags="0">
+       <Inputs delay="2.6" resetOnInput="0"/>
+      </Node>
+      <Node Id="716" Class="Audio:Trigger" pos="4270,3150,0" flags="0" EntityGUID="{D7D9F745-85E4-4275-8BA4-4B7FAEF80873}" EntityGUID_64="427585E4D7D9F745">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Slide_Seq_02" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="717" Class="Time:Delay" pos="4090,3150,0" flags="0">
+       <Inputs delay="10.5" resetOnInput="0"/>
+      </Node>
+      <Node Id="718" Class="Audio:Trigger" pos="4270,3300,0" flags="0" EntityGUID="{D7D9F745-85E4-4275-8BA4-4B7FAEF80873}" EntityGUID_64="427585E4D7D9F745">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MCHD_Gamescom_Shutters_Slat_Mech_Close" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+      <Node Id="719" Class="Time:Delay" pos="4090,3300,0" flags="0">
+       <Inputs delay="14.7" resetOnInput="0"/>
+      </Node>
+      <Node Id="720" Class="Time:Delay" pos="3840,3000,0" flags="0">
+       <Inputs delay="3" resetOnInput="0"/>
+      </Node>
+      <Node Id="721" Name="Audio_Logic_Shutter_04" Class="_commentbox" pos="3830,2662.6665,0" flags="0">
+       <Inputs TextSize="1" Color="0.219526,0.964686,0.155926" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="970" Height="763"/>
+       <NodeSize Width="970" Height="790.65594"/>
+      </Node>
+      <Node Id="757" Class="Time:Delay" pos="3480,2090,0" flags="0">
+       <Inputs delay="0" resetOnInput="0"/>
+      </Node>
+      <Node Id="761" Class="Prefab:EventSource" pos="-930,100,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_Shutters" InstanceName="Shipyard_Shutters" EventName="Close" EventId="7" EventIndex="3"/>
+      </Node>
+      <Node Id="766" Class="Animations:PlayAnimation" pos="280,-600,0" flags="0" EntityGUID="{FFE0629A-C9C8-4811-9427-C4783F428F9A}" EntityGUID_64="4811C9C8FFE0629A">
+       <Inputs entityId="0" anim_Animation="close" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="767" Class="Animations:PlayAnimation" pos="280,-310,0" flags="0" EntityGUID="{EA33FFAD-1944-488D-9D44-91A5A6443EB2}" EntityGUID_64="488D1944EA33FFAD">
+       <Inputs entityId="0" anim_Animation="close" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="768" Class="Animations:PlayAnimation" pos="280,30,0" flags="0" EntityGUID="{A02C2300-D9D2-44FB-B4CA-861F82D7820A}" EntityGUID_64="44FBD9D2A02C2300">
+       <Inputs entityId="0" anim_Animation="close" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="769" Class="Animations:PlayAnimation" pos="280,370,0" flags="0" EntityGUID="{F712D213-45B7-4F45-9166-2A425755FA65}" EntityGUID_64="4F4545B7F712D213">
+       <Inputs entityId="0" anim_Animation="close" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="771" Class="Logic:All" pos="690,100,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="773" Name="Close_Shutters" Class="_commentbox" pos="90,-819.37146,0" flags="0">
+       <Inputs TextSize="1" Color="0.093059,0.093059,0.093059" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1140" Height="1590"/>
+       <NodeSize Width="1140" Height="1617.6559"/>
+      </Node>
+      <Node Id="774" Class="Mission:GameTokenSet" pos="870,100,0" flags="0">
+       <Inputs gametoken_Token="Shutter_State" Value="closed" Networked="0"/>
+      </Node>
+      <Node Id="779" Class="Mission:GameTokenCheck" pos="2600,520,0" flags="0">
+       <Inputs gametoken_Token="Shutter_Idle" CheckValue="true"/>
+      </Node>
+      <Node Id="780" Class="Mission:GameTokenCheck" pos="2920,520,0" flags="0">
+       <Inputs gametoken_Token="Shutter_State" CheckValue="opened"/>
+      </Node>
+      <Node Id="781" Class="Mission:GameTokenSet" pos="-660,100,0" flags="0">
+       <Inputs gametoken_Token="Shutter_State" Value="closing" Networked="0"/>
+      </Node>
+      <Node Id="782" Class="Mission:GameTokenSet" pos="-521.83057,1705.5944,0" flags="0">
+       <Inputs gametoken_Token="Shutter_State" Value="opening" Networked="0"/>
+      </Node>
+      <Node Id="784" Class="Prefab:EventSource" pos="-820,1710,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_Shutters" InstanceName="Shipyard_Shutters" EventName="Open" EventId="13" EventIndex="2"/>
+      </Node>
+      <Node Id="785" Class="Prefab:EventSource" pos="870,200,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_Shutters" InstanceName="Shipyard_Shutters" EventName="Closed" EventId="14" EventIndex="4"/>
+      </Node>
+      <Node Id="786" Name="Junk" Class="_commentbox" pos="2590,-2657.6555,0" flags="1">
+       <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="4785" Height="6094"/>
+       <NodeSize Width="4785" Height="6121.6558"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="50" nodeOut="35" portIn="in1" portOut="Done" enabled="1"/>
+      <Edge nodeIn="50" nodeOut="36" portIn="in2" portOut="Done" enabled="1"/>
+      <Edge nodeIn="50" nodeOut="37" portIn="in3" portOut="Done" enabled="1"/>
+      <Edge nodeIn="50" nodeOut="38" portIn="in4" portOut="Done" enabled="1"/>
+      <Edge nodeIn="43" nodeOut="41" portIn="Trigger" portOut="True" enabled="1"/>
+      <Edge nodeIn="54" nodeOut="41" portIn="Trigger" portOut="True" enabled="1"/>
+      <Edge nodeIn="637" nodeOut="41" portIn="Play" portOut="False" enabled="0"/>
+      <Edge nodeIn="640" nodeOut="41" portIn="Play" portOut="True" enabled="0"/>
+      <Edge nodeIn="32" nodeOut="50" portIn="FireEvent" portOut="Out" enabled="1"/>
+      <Edge nodeIn="59" nodeOut="50" portIn="Trigger" portOut="Out" enabled="1"/>
+      <Edge nodeIn="646" nodeOut="647" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="648" nodeOut="649" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="650" nodeOut="651" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="652" nodeOut="653" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="654" nodeOut="655" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="658" nodeOut="659" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="660" nodeOut="661" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="662" nodeOut="663" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="664" nodeOut="665" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="668" nodeOut="669" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="670" nodeOut="671" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="672" nodeOut="673" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="674" nodeOut="675" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="676" nodeOut="677" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="678" nodeOut="679" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="655" nodeOut="680" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="659" nodeOut="680" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="661" nodeOut="680" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="665" nodeOut="680" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="673" nodeOut="681" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="675" nodeOut="681" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="677" nodeOut="681" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="679" nodeOut="681" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="647" nodeOut="682" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="649" nodeOut="682" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="651" nodeOut="682" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="669" nodeOut="682" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="671" nodeOut="682" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="686" nodeOut="687" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="688" nodeOut="689" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="690" nodeOut="691" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="692" nodeOut="693" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="694" nodeOut="695" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="687" nodeOut="696" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="689" nodeOut="696" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="691" nodeOut="696" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="693" nodeOut="696" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="695" nodeOut="696" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="698" nodeOut="699" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="700" nodeOut="701" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="702" nodeOut="703" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="704" nodeOut="705" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="706" nodeOut="707" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="699" nodeOut="708" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="701" nodeOut="708" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="703" nodeOut="708" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="705" nodeOut="708" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="707" nodeOut="708" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="710" nodeOut="711" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="712" nodeOut="713" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="714" nodeOut="715" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="716" nodeOut="717" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="718" nodeOut="719" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="711" nodeOut="720" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="713" nodeOut="720" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="715" nodeOut="720" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="717" nodeOut="720" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="719" nodeOut="720" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="682" nodeOut="757" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="696" nodeOut="757" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="708" nodeOut="757" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="720" nodeOut="757" portIn="in" portOut="out" enabled="1"/>
+      <Edge nodeIn="781" nodeOut="761" portIn="Trigger" portOut="EventFired" enabled="1"/>
+      <Edge nodeIn="771" nodeOut="766" portIn="in1" portOut="Done" enabled="1"/>
+      <Edge nodeIn="771" nodeOut="767" portIn="in2" portOut="Done" enabled="1"/>
+      <Edge nodeIn="771" nodeOut="768" portIn="in3" portOut="Done" enabled="1"/>
+      <Edge nodeIn="771" nodeOut="769" portIn="in4" portOut="Done" enabled="1"/>
+      <Edge nodeIn="774" nodeOut="771" portIn="Trigger" portOut="Out" enabled="1"/>
+      <Edge nodeIn="785" nodeOut="771" portIn="FireEvent" portOut="Out" enabled="1"/>
+      <Edge nodeIn="780" nodeOut="779" portIn="Trigger" portOut="True" enabled="1"/>
+      <Edge nodeIn="680" nodeOut="780" portIn="in" portOut="False" enabled="1"/>
+      <Edge nodeIn="681" nodeOut="780" portIn="in" portOut="False" enabled="1"/>
+      <Edge nodeIn="757" nodeOut="780" portIn="in" portOut="False" enabled="1"/>
+      <Edge nodeIn="766" nodeOut="781" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="767" nodeOut="781" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="768" nodeOut="781" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="769" nodeOut="781" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="35" nodeOut="782" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="36" nodeOut="782" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="37" nodeOut="782" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="38" nodeOut="782" portIn="Start" portOut="OutValue" enabled="1"/>
+      <Edge nodeIn="782" nodeOut="784" portIn="Trigger" portOut="EventFired" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Name="Shutter_Idle" Type="" Default="true"/>
+      <Token Name="Shutter_State" Type="" Default="closed"/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{E8D298A3-3059-4595-9519-39AD743B1E26}" Name="ATS_Shutter_01" Pos="160.49058532714844,293.3812255859375,38.105144500732422" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{41BF51EF-4FB9-4BE4-9B01-81B680E6238C}" Name="ATS_Shutter_02" Pos="168.6856689453125,293.3812255859375,38.105144500732422" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{1AE5241F-9625-49AE-87EB-112332370552}" Name="ATS_Shutter_03" Pos="176.68521118164062,293.3812255859375,38.105144500732422" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{D7D9F745-85E4-4275-8BA4-4B7FAEF80873}" Name="ATS_Shutter_04" Pos="184.67430114746094,293.3812255859375,38.105144500732422" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{B0E9372B-F788-410E-A1BD-8292EE38D735}" Name="ATS_All_Shutters_Start_Finsh" Pos="176.46771240234375,296.3399658203125,41.465160369873047" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{D8566FD5-290F-4E75-9084-C5A70DF46863}" Name="ATS_All_Shutters_Motor_02" Pos="168.06523132324219,296.3399658203125,41.465160369873047" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{8CDDAE2A-A2FD-42D3-B957-B7C37BC7BBFD}" Name="ATS_All_Shutters_Motor_01" Pos="184.59469604492187,296.3399658203125,41.465160369873047" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="1" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="1" audioTriggerStopTriggerName=""/>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" SubLibrary="" Id="{8197BC54-ED5C-408C-A618-2A2C967F38FD}" Library="space_stanton_design" LibFolders="" Footprint="2,2,2" Description="" Category="">
+  <Objects>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{0A4F1D5D-50BB-4562-AED5-F83C8BD198DD}" Name="BedroomShutters" Pos="200.705078125,292.87496948242187,33.9697265625" FloorNumber="-1" Rotate="1.1852224e-007,0,0,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AnimObject">
+    <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/dfm/dfm_crusader/station/interior/smallroom/roomsm_shutter_06x03x04_a.cga" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="0" UseMessage="">
+     <Animation bAlwaysUpdate="0" Animation="closed" bLoop="0" bPhysicalizeAfterAnimation="0" playerAnimationState="" bPlaying="1" Speed="1.5"/>
+     <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="0" bRigidBody="0" bRigidBodySimple="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Rendering bWrinkleMap="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{EC1094E7-D9B2-4A3F-80C5-B01267C672D5}" Name="BedroomShutters_Flowgraph" Pos="199.744140625,289.62496948242187,36.25390625" FloorNumber="-1" Rotate="0.70710683,0,0,0.70710677" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="FlowgraphEntity">
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="2" Class="entity:AnimObject" pos="-890,80,0" flags="0" EntityGUID="{19859060-EDA9-491D-B66C-2D226EDED71B}" EntityGUID_64="491DEDA919859060">
+       <Inputs entityId="0" DisableUsable="0" EnableUsable="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" ModelLoad="0" ModelUnload="0" Ragdollize="0" Remove="0" ResetAnimation="0" ResetHealth="0" StartAnimation="0" StopAnimation="0" UnHide="0" Used="0"/>
+      </Node>
+      <Node Id="7" Class="Animations:PlayAnimation" pos="1670,-30,0" flags="0" EntityGUID="{0A4F1D5D-50BB-4562-AED5-F83C8BD198DD}" EntityGUID_64="456250BB0A4F1D5D">
+       <Inputs entityId="0" anim_Animation="open" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="43" Class="Mission:GameTokenCheck" pos="-90,80,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" CheckValue="opened"/>
+      </Node>
+      <Node Id="59" Class="Mission:GameTokenSet" pos="2030,-30,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" Value="opened" Networked="0"/>
+      </Node>
+      <Node Id="60" Class="Animations:PlayAnimation" pos="1670,190,0" flags="0" EntityGUID="{0A4F1D5D-50BB-4562-AED5-F83C8BD198DD}" EntityGUID_64="456250BB0A4F1D5D">
+       <Inputs entityId="0" anim_Animation="close" CharacterSlot="0" BlendInTime="0.2" Layer="0" Loop="0" ForceUpdate="1" PauseAnimGraph="0" ControlMovement="0"/>
+      </Node>
+      <Node Id="62" Class="Mission:GameTokenSet" pos="2030,190,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" Value="closed" Networked="0"/>
+      </Node>
+      <Node Id="64" Class="Prefab:EventSource" pos="-460,290,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" InstanceName="Shipyard_BedroomShutters" EventName="Open" EventId="3" EventIndex="1"/>
+      </Node>
+      <Node Id="65" Class="Prefab:EventSource" pos="2950,230,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" InstanceName="Shipyard_BedroomShutters" EventName="Closed" EventId="1" EventIndex="3"/>
+      </Node>
+      <Node Id="6651" Class="Prefab:EventSource" pos="-460,-30,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" InstanceName="Shipyard_BedroomShutters" EventName="Close" EventId="2" EventIndex="2"/>
+      </Node>
+      <Node Id="6654" Class="Mission:GameToken" pos="2560,230,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" compare_Value="closed"/>
+      </Node>
+      <Node Id="6655" Class="Mission:GameToken" pos="2560,50,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" compare_Value="opened"/>
+      </Node>
+      <Node Id="6656" Class="Prefab:EventSource" pos="2950,50,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" InstanceName="Shipyard_BedroomShutters" EventName="Opened" EventId="4" EventIndex="4"/>
+      </Node>
+      <Node Id="6659" Class="Mission:GameTokenCheck" pos="-460,80,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" CheckValue="opening"/>
+      </Node>
+      <Node Id="6660" Class="Mission:GameTokenCheck" pos="-460,180,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" CheckValue="closing"/>
+      </Node>
+      <Node Id="6661" Class="Prefab:EventSource" pos="2950,140,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" InstanceName="Shipyard_BedroomShutters" EventName="Closing" EventId="5" EventIndex="5"/>
+      </Node>
+      <Node Id="6662" Class="Mission:GameToken" pos="2560,140,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" compare_Value="closing"/>
+      </Node>
+      <Node Id="6663" Class="Mission:GameToken" pos="2560,-40,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" compare_Value="opening"/>
+      </Node>
+      <Node Id="6664" Class="Prefab:EventSource" pos="2950,-40,0" flags="0" InHideMask="51">
+       <Inputs PrefabName="space_stanton_design.Station_CrusaderShipyard_Design.Station_CrusaderShipyard_Cellin_BedroomShutters" InstanceName="Shipyard_BedroomShutters" EventName="Opening" EventId="6" EventIndex="6"/>
+      </Node>
+      <Node Id="6666" Class="Logic:Any" pos="270,-30,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="6667" Class="Logic:Any" pos="270,280,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="6668" Class="Mission:GameTokenSet" pos="430,-30,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" Value="closing" Networked="0"/>
+      </Node>
+      <Node Id="6669" Class="Mission:GameTokenSet" pos="420,280,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" Value="opening" Networked="0"/>
+      </Node>
+      <Node Id="6670" Class="Mission:GameTokenCheck" pos="-90,-30,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" CheckValue="opened"/>
+      </Node>
+      <Node Id="6671" Class="Mission:GameTokenCheck" pos="-90,290,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" CheckValue="closed"/>
+      </Node>
+      <Node Id="6675" Class="Multiplayer:DispatcherEx" pos="1420,-430,0" flags="0">
+       <Inputs Id="" Once="0" iVal="0" fVal="0" sVal="" eVal="0"/>
+      </Node>
+      <Node Id="6681" Class="Entity:EntityInfo" pos="340,-430,0" flags="0" EntityGUID="{0A4F1D5D-50BB-4562-AED5-F83C8BD198DD}" EntityGUID_64="456250BB0A4F1D5D">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="6683" Class="Game:Start" pos="120,-430,0" flags="0">
+       <Inputs InGame="1" InEditor="1"/>
+      </Node>
+      <Node Id="6686" Class="Mission:GameToken" pos="880,-30,0" flags="0">
+       <Inputs gametoken_Token="BedroomShutter_State" compare_Value=""/>
+      </Node>
+      <Node Id="6688" Class="Mission:GameTokenSet" pos="730,-430,0" flags="0">
+       <Inputs gametoken_Token="InstanceID" Value="" Networked="0"/>
+      </Node>
+      <Node Id="6690" Class="Mission:GameToken" pos="1020,-430,0" flags="0">
+       <Inputs gametoken_Token="InstanceID" compare_Value=""/>
+      </Node>
+      <Node Id="6691" Class="Mission:GameToken" pos="830,-540,0" flags="0">
+       <Inputs gametoken_Token="InstanceID" compare_Value=""/>
+      </Node>
+      <Node Id="6693" Class="String:Compare" pos="1430,-30,0" flags="0">
+       <Inputs A="" B="opening" IgnoreCase="1"/>
+      </Node>
+      <Node Id="6694" Class="String:Compare" pos="1430,190,0" flags="0">
+       <Inputs A="" B="closing" IgnoreCase="1"/>
+      </Node>
+      <Node Id="6696" Class="Multiplayer:Dispatcher" pos="1210,-30,0" flags="0">
+       <Inputs Once="0" iVal="0" fVal="0" sVal="" eVal="0"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="6659" nodeOut="2" portIn="Trigger" portOut="Used" enabled="1"/>
+      <Edge nodeIn="59" nodeOut="7" portIn="Trigger" portOut="Done" enabled="1"/>
+      <Edge nodeIn="6666" nodeOut="43" portIn="in2" portOut="True" enabled="1"/>
+      <Edge nodeIn="6667" nodeOut="43" portIn="in1" portOut="False" enabled="1"/>
+      <Edge nodeIn="62" nodeOut="60" portIn="Trigger" portOut="Done" enabled="1"/>
+      <Edge nodeIn="6671" nodeOut="64" portIn="Trigger" portOut="EventFired" enabled="1"/>
+      <Edge nodeIn="6670" nodeOut="6651" portIn="Trigger" portOut="EventFired" enabled="1"/>
+      <Edge nodeIn="65" nodeOut="6654" portIn="FireEvent" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6656" nodeOut="6655" portIn="FireEvent" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6660" nodeOut="6659" portIn="Trigger" portOut="False" enabled="1"/>
+      <Edge nodeIn="43" nodeOut="6660" portIn="Trigger" portOut="False" enabled="1"/>
+      <Edge nodeIn="6661" nodeOut="6662" portIn="FireEvent" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6664" nodeOut="6663" portIn="FireEvent" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="6668" nodeOut="6666" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="6669" nodeOut="6667" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="6666" nodeOut="6670" portIn="in1" portOut="True" enabled="1"/>
+      <Edge nodeIn="6667" nodeOut="6671" portIn="in2" portOut="True" enabled="1"/>
+      <Edge nodeIn="6688" nodeOut="6681" portIn="Trigger" portOut="Id" enabled="1"/>
+      <Edge nodeIn="6688" nodeOut="6681" portIn="Value" portOut="Id" enabled="1"/>
+      <Edge nodeIn="6696" nodeOut="6686" portIn="Trigger" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6696" nodeOut="6686" portIn="sVal" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6675" nodeOut="6690" portIn="Id" portOut="Out" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="6693" portIn="Start" portOut="True" enabled="1"/>
+      <Edge nodeIn="60" nodeOut="6694" portIn="Start" portOut="True" enabled="1"/>
+      <Edge nodeIn="6693" nodeOut="6696" portIn="A" portOut="sVal" enabled="1"/>
+      <Edge nodeIn="6693" nodeOut="6696" portIn="Compare" portOut="sVal" enabled="1"/>
+      <Edge nodeIn="6694" nodeOut="6696" portIn="A" portOut="sVal" enabled="1"/>
+      <Edge nodeIn="6694" nodeOut="6696" portIn="Compare" portOut="sVal" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Name="" Type="" Default="true"/>
+      <Token Name="BedroomShutter_State" Type="" Default="closed"/>
+      <Token Name="InstanceID" Type="" Default=""/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+   <Object Type="Entity" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{19859060-EDA9-491D-B66C-2D226EDED71B}" Name="BedroomShutters_Button" Pos="199.955078125,290.99996948242187,35.4697265625" FloorNumber="-1" Rotate="2.2573047e-007,-7.4505815e-009,2.7349008e-015,1" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AnimObject">
+    <Properties ActivatePhysicsDist="50" ActivatePhysicsThreshold="0" bCanTriggerAreas="0" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bInteractLargeObject="0" bMissionCritical="0" object_Model="objects/dfm/dfm_crusader/station/interior/smallroom/roomsm_corridor_room_button.cgf" bNoFriendlyFire="0" bPickable="0" soclasses_SmartObjectClass="" bUsable="1" UseMessage="Use">
+     <Animation bAlwaysUpdate="0" Animation="Default" bLoop="0" bPhysicalizeAfterAnimation="0" playerAnimationState="" bPlaying="1" Speed="1"/>
+     <Cinematic bOnDemandModelLoad="0" bRenderAlways="0"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bArticulated="0" bBulletCollisionEnabled="1" Density="-1" Mass="-1" bPhysicalize="1" bPushableByPlayers="0" bRigidBody="0" bRigidBodySimple="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_large_kickable="0" bT_gcc_missile="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Rendering bWrinkleMap="0"/>
+    </Properties>
+   </Object>
+   <Object Type="AudioTriggerSpot" Layer="Crusader_Shipyard_Cellin_Gameplay" LayerGUID="{1287CD29-20A4-4D7D-8A9F-35A941ECFDF7}" Id="{6629344A-4930-4AB6-A4A6-DAA938C6376D}" Name="ATS_ShuttersOpen-002" Pos="197.822265625,290.99996948242187,35.5771484375" FloorNumber="-1" Rotate="0.70710683,0,0,0.70710677" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="AudioTriggerSpot">
+    <Properties fAudioSignature="0" bEnabled="0" fMaxDelay="2" fMinDelay="1" bPlayOnX="0" bPlayOnY="0" bPlayOnZ="0" bPlayRandom="0" audioTriggerPlayTriggerName="" fRadiusRandom="10" bSerializePlayState="1" eiSoundObstructionType="0" audioTriggerStopTriggerName=""/>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="7" Class="Time:Delay" pos="120,-60,0" flags="0">
+       <Inputs delay="0.15" resetOnInput="0"/>
+      </Node>
+      <Node Id="51" Class="Multiplayer:DispatcherEx" pos="-320,-60,0" flags="1">
+       <Inputs Id="Music" Once="0" iVal="0" fVal="0" sVal="" eVal="0"/>
+      </Node>
+      <Node Id="53" Class="Math:Compare" pos="-80,-60,0" flags="1">
+       <Inputs A="0" B="2"/>
+      </Node>
+      <Node Id="55" Class="Logic:Any" pos="860,-70,0" flags="0">
+       <Inputs />
+      </Node>
+      <Node Id="56" Class="Audio:Trigger" pos="380,-60,0" flags="0" GraphEntity="0">
+       <Inputs entityId="0" audioTrigger_PlayTrigger="Play_LCMC_Celin_Shutters_Open" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="56" nodeOut="7" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="53" nodeOut="51" portIn="A" portOut="fVal" enabled="1"/>
+      <Edge nodeIn="53" nodeOut="51" portIn="A==B" portOut="fVal" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="53" portIn="in" portOut="true" enabled="1"/>
+      <Edge nodeIn="55" nodeOut="56" portIn="in1" portOut="Done" enabled="1"/>
+     </Edges>
+     <GraphTokens />
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

@@ -1,0 +1,40 @@
+#include "Common.cfi"
+#include "ShadeLib.cfi"
+#include "vertexLib.cfi"
+
+float Script : STANDARDSGLOBAL
+<
+  string Script =        
+				"Public;"
+				"ShaderType = General;"
+				"ShaderDrawType = General;"
+				"PreprType = MobiGlasAlphaMask;"
+>;
+
+vert2FragGeneral
+AlphaVS( app2vertGeneral IN )
+{
+  vert2FragGeneral OUT = (vert2FragGeneral) 0;
+
+	streamPos vertPassPos = (streamPos)0;
+  vs_shared_output(IN, OUT, vertPassPos, false);
+  
+  return OUT;
+}
+
+float4
+AlphaPS( in vert2FragGeneral IN ) : COLOR
+{ 
+  float4 cColor = tex2D( diffuseMapSampler, IN.baseTC );
+	return cColor;
+}
+
+technique General
+{
+  pass p0
+  {     
+    VertexShader = AlphaVS();
+    PixelShader = AlphaPS();
+  }
+}
+

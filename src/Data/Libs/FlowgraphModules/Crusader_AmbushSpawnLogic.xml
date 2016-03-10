@@ -1,0 +1,169 @@
+<Graph isModule="1" moduleName="Crusader_AmbushSpawnLogic" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ServerOnly">
+ <ModuleInputsOutputs>
+  <Port Name="AmbusherSpawnPointGroupID" Type="EntityId" Input="1"/>
+  <Port Name="AmbusherSpawnedAIGroupID" Type="EntityId" Input="1"/>
+  <Port Name="DefendArea" Type="EntityId" Input="1"/>
+  <Port Name="NumberOfAmbushers" Type="Int" Input="1"/>
+  <Port Name="VictimID" Type="EntityId" Input="1"/>
+  <Port Name="TriggerEntityID" Type="EntityId" Input="1"/>
+  <Port Name="SplineGroupID" Type="EntityId" Input="1"/>
+  <Port Name="AIDestroyBoundaryID" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Crusader_AmbushSpawnLogic" pos="-590,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Crusader_AmbushSpawnLogic" pos="3930,-10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2314" Class="entity:GroupEntity" pos="3130,160,0" flags="0">
+   <Inputs entityId="0" AddEntity="0" AddEntities="0" RemoveEntity="0" RemoveEntities="0"/>
+  </Node>
+  <Node Id="2377" Class="Iterator:GetEntitiesInGroup" pos="2430,160,0" flags="0">
+   <Inputs entityId="0" Manually="1"/>
+  </Node>
+  <Node Id="2434" Class="Logic:Condition" pos="2200,160,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="2439" Class="entity:AISpawnPoint" pos="2810,160,0" flags="0">
+   <Inputs entityId="0" Kill="0" Spawn="0" WaveID="0"/>
+  </Node>
+  <Node Id="2547" Class="Mission:GameToken" pos="2430,60,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbusherSpawnPointsGroupID" compare_Value=""/>
+  </Node>
+  <Node Id="2548" Class="Mission:GameToken" pos="3130,60,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbusherSpawnedAIGroupID" compare_Value=""/>
+  </Node>
+  <Node Id="2556" Class="Mission:GameTokenSet" pos="4360,220,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbushersCount" Value=""/>
+  </Node>
+  <Node Id="2573" Class="Mission:GameToken" pos="840,210,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbushersCount" compare_Value=""/>
+  </Node>
+  <Node Id="2574" Class="Time:Delay" pos="1940,160,0" flags="0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2581" Class="Mission:GameToken" pos="1310,380,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.NumberOfAmbushers" compare_Value=""/>
+  </Node>
+  <Node Id="2584" Class="Math:Compare" pos="1560,160,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="2587" Class="Math:Add" pos="4210,220,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="2589" Class="Mission:GameTokenGet" pos="3820,220,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbushersCount"/>
+  </Node>
+  <Node Id="2599" Class="Logic:Any" pos="1320,160,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2602" Class="Logic:Any" pos="990,10,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2604" Class="Time:FrameDelay" pos="1260,10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2810" Class="Mission:GameToken" pos="3820,550,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.DefendArea" compare_Value=""/>
+  </Node>
+  <Node Id="2821" Class="Mission:GameTokenSet" pos="-180,270,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbusherSpawnedAIGroupID" Value=""/>
+  </Node>
+  <Node Id="2822" Class="Mission:GameTokenSet" pos="-180,170,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AmbusherSpawnPointsGroupID" Value=""/>
+  </Node>
+  <Node Id="2823" Class="Mission:GameTokenSet" pos="-180,370,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.DefendArea" Value=""/>
+  </Node>
+  <Node Id="2824" Class="Mission:GameTokenSet" pos="-180,470,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.NumberOfAmbushers" Value=""/>
+  </Node>
+  <Node Id="2835" Class="Time:FrameDelay" pos="3650,400,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2859" Class="Mission:GameTokenSet" pos="4060,650,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Comms_Relay.SpawnEffectPosition" Value=""/>
+  </Node>
+  <Node Id="2866" Class="Module:Call_Crusader_FlySplineAndDefend" pos="3820,400,0" flags="0">
+   <Inputs Instanced="1" InstanceID="-1" ShipID="0" SplineGroup="0" DefendArea="0"/>
+  </Node>
+  <Node Id="2867" Class="Mission:GameTokenSet" pos="-180,570,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SplineGroupID" Value=""/>
+  </Node>
+  <Node Id="2868" Class="Mission:GameToken" pos="3820,300,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SplineGroupID" compare_Value=""/>
+  </Node>
+  <Node Id="3291" Class="entity:VehicleDestroyBoundary" pos="3820,900,0" flags="0">
+   <Inputs entityId="0" VehicleId="0"/>
+  </Node>
+  <Node Id="3292" Class="Mission:GameToken" pos="3820,800,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AIDestroyBoundaryID" compare_Value=""/>
+  </Node>
+  <Node Id="3293" Class="Mission:GameTokenSet" pos="-180,670,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.AIDestroyBoundaryID" Value=""/>
+  </Node>
+  <Node Id="3295" Class="Entity:GetPos" pos="3820,650,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2599" nodeOut="1" portIn="in1" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2602" nodeOut="1" portIn="in1" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="2821" nodeOut="1" portIn="Trigger" portOut="AmbusherSpawnedAIGroupID" enabled="1"/>
+  <Edge nodeIn="2821" nodeOut="1" portIn="Value" portOut="AmbusherSpawnedAIGroupID" enabled="1"/>
+  <Edge nodeIn="2822" nodeOut="1" portIn="Trigger" portOut="AmbusherSpawnPointGroupID" enabled="1"/>
+  <Edge nodeIn="2822" nodeOut="1" portIn="Value" portOut="AmbusherSpawnPointGroupID" enabled="1"/>
+  <Edge nodeIn="2823" nodeOut="1" portIn="Trigger" portOut="DefendArea" enabled="1"/>
+  <Edge nodeIn="2823" nodeOut="1" portIn="Value" portOut="DefendArea" enabled="1"/>
+  <Edge nodeIn="2824" nodeOut="1" portIn="Trigger" portOut="NumberOfAmbushers" enabled="1"/>
+  <Edge nodeIn="2824" nodeOut="1" portIn="Value" portOut="NumberOfAmbushers" enabled="1"/>
+  <Edge nodeIn="2867" nodeOut="1" portIn="Trigger" portOut="SplineGroupID" enabled="1"/>
+  <Edge nodeIn="2867" nodeOut="1" portIn="Value" portOut="SplineGroupID" enabled="1"/>
+  <Edge nodeIn="3293" nodeOut="1" portIn="Trigger" portOut="AIDestroyBoundaryID" enabled="1"/>
+  <Edge nodeIn="3293" nodeOut="1" portIn="Value" portOut="AIDestroyBoundaryID" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2314" portIn="Success" portOut="Emptied" enabled="1"/>
+  <Edge nodeIn="2589" nodeOut="2314" portIn="Trigger" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="2835" nodeOut="2314" portIn="in" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="2866" nodeOut="2314" portIn="ShipID" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="3291" nodeOut="2314" portIn="Add" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="3291" nodeOut="2314" portIn="VehicleId" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="3295" nodeOut="2314" portIn="Get" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="3295" nodeOut="2314" portIn="entityId" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="2434" nodeOut="2377" portIn="CondFalse" portOut="Done" enabled="1"/>
+  <Edge nodeIn="2434" nodeOut="2377" portIn="CondTrue" portOut="Started" enabled="1"/>
+  <Edge nodeIn="2439" nodeOut="2377" portIn="Spawn" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2439" nodeOut="2377" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2377" nodeOut="2434" portIn="Start" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="2377" nodeOut="2434" portIn="Next" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="2314" nodeOut="2439" portIn="AddEntity" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="2377" nodeOut="2547" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2314" nodeOut="2548" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2584" nodeOut="2573" portIn="A" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2599" nodeOut="2573" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2434" nodeOut="2574" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="2584" nodeOut="2581" portIn="B" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2574" nodeOut="2584" portIn="in" portOut="true" enabled="1"/>
+  <Edge nodeIn="2556" nodeOut="2587" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2556" nodeOut="2587" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="2587" nodeOut="2589" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2584" nodeOut="2599" portIn="A&lt;B" portOut="out" enabled="1"/>
+  <Edge nodeIn="2314" nodeOut="2602" portIn="DestroyAllEntities" portOut="out" enabled="1"/>
+  <Edge nodeIn="2604" nodeOut="2602" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="2866" nodeOut="2602" portIn="Cancel" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2604" portIn="Cancel" portOut="out" enabled="1"/>
+  <Edge nodeIn="2866" nodeOut="2810" portIn="DefendArea" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2866" nodeOut="2835" portIn="Call" portOut="out" enabled="1"/>
+  <Edge nodeIn="2866" nodeOut="2868" portIn="SplineGroup" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3291" nodeOut="3292" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2859" nodeOut="3295" portIn="Trigger" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2859" nodeOut="3295" portIn="Value" portOut="Pos" enabled="1"/>
+ </Edges>
+ <GraphTokens>
+  <Token Name="AIDestroyBoundaryID" Type="EntityId" Default=""/>
+  <Token Name="AmbusherSpawnPointsGroupID" Type="EntityId" Default=""/>
+  <Token Name="AmbusherSpawnedAIGroupID" Type="EntityId" Default=""/>
+  <Token Name="AmbushersCount" Type="Int" Default="0"/>
+  <Token Name="DefendArea" Type="EntityId" Default=""/>
+  <Token Name="NumberOfAmbushers" Type="Int" Default="0"/>
+  <Token Name="SplineGroupID" Type="EntityId" Default=""/>
+ </GraphTokens>
+</Graph>

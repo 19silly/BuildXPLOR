@@ -62,8 +62,9 @@
 			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
-				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
-				<State state="Idle"><Value value="20" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
 			</States>
 		</Pipe>
 
@@ -75,6 +76,14 @@
 		</Pipe>
 	</Pipes>
 	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+	
 	<gimbal type="joint" >
 		<pitch 	joint="PITCH_CONTROL" 	min ="-90" max ="90" speed="80" accel="40" animation ="" />
 		<yaw 	joint="YAW_CONTROL"		min ="-90" max ="90" speed="80" accel="40" animation ="" />
@@ -82,7 +91,7 @@
 	</gimbal> 
 	
 	<thrusters>
-	  <thruster flags="maneuver orientation" maxThrust="450000" maneuverScale="" rotationScale="" retroScale="" boostScale="2.4" >
+	  <thruster flags="retro" maxThrust="383591" retroScale="" boostScale="1.333" errorScale="0.33">
 		  <exhausts>
 			  <exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.1">
 				  <effect name="" helper="nozzle_exhaust" enable = "0" tag ="run">

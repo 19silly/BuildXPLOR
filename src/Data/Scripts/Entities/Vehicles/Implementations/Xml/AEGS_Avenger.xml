@@ -4,12 +4,12 @@
 //////////////////////////////////////////////////////////////////////////
 -->
 <Vehicle name="AEGS_Avenger" category="StarFighter" displayname="Aegis Dynamics Avenger" classname="Class 2" id="idVehicleClass" dockingclass="2" HudPaletteScheme="AEGS" requiredItemTags="" itemPortTags="AEGS_Avenger_Base" crossSectionMultiplier="0.52,0.37,0.51">
-<Shield shieldMesh="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/avenger_shield.obj" />
+  <Shield shieldMesh="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/avenger_shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
       <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
       <DamageMultiplier damageType="melee" multiplier="0" />
@@ -42,9 +42,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="AEGS_Avenger" />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -107,7 +107,11 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
     <Part name="AEGS_Avenger" class="Animated" mass="9000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
-      <Animated filename="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" filenameDestruction="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger_damaged.cga" id="idShipGeometry" />
+      <Animated filename="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" filenameDestruction="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger_damaged.cga" id="idShipGeometry">
+        <PhysicsGrid enableLocalGrid="1" gravity="0,0,-9.81">
+          <PhysProxy filename="Objects\Spaceships\Ships\AEGS\Avenger_PrisonerTransport\AEGS_Avenger_No_Collide.cgf" />
+        </PhysicsGrid>
+      </Animated>
       <DamageBehaviors>
         <DamageBehavior class="Group" damageRatioMin="1">
           <Group name="Destroy" />
@@ -124,6 +128,22 @@
             </DamageBehavior>
           </DamageBehaviors>
           <Parts>
+            <Part name="hardpoint_multilight_exterior" class="ItemPort">
+              <ItemPort minSize="1" maxsize="1">
+                <Types>
+                  <Type type="MultiLight" />
+                </Types>
+                <AttachmentPoints>
+                  <AttachmentPoint name="Body_Dorsal" bone="body" />
+                  <AttachmentPoint name="Body_Ventral" bone="body" />
+                  <AttachmentPoint name="Cockpit" bone="nose" />
+                  <AttachmentPoint name="Port_Tail" bone="tail_75_debris5" />
+                  <AttachmentPoint name="Port_Wing" bone="wing_left_75_debris2" />
+                  <AttachmentPoint name="Starboard_Tail" bone="tail_75_debris6" />
+                  <AttachmentPoint name="Starboard_Wing" bone="wing_right_75_debris2" />
+                </AttachmentPoints>
+              </ItemPort>
+            </Part>
             <Part name="hardpoint_avionics_motherboard" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
                 <Types>
@@ -197,7 +217,7 @@
                     <Types>
                       <Type type="Display" />
                     </Types>
-					<HostItemScale scale="0.9" />
+                    <HostItemScale scale="0.9" />
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_cockpit_audio" class="ItemPort">
@@ -214,12 +234,10 @@
                     </Types>
                   </ItemPort>
                 </Part>
-
               </Parts>
             </Part>
             <Part name="Canopy" class="AnimatedJoint" damageMax="450">
               <Parts>
-
               </Parts>
             </Part>
             <Part name="Nose_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -291,7 +309,6 @@
             </Part>
             <Part name="Nose_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="Nose_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
-
             <Part name="Body" class="AnimatedJoint" damageMax="1200">
               <DetachParents>
                 <DetachParent partName="Nose" seperateLink="0" />
@@ -309,26 +326,35 @@
               </DamageBehaviors>
               <Parts>
                 <Part name="hardpoint_powerplant" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="2" display_name="Power Plant" displayPos="75,290">
+                  <ItemPort minsize="1" maxsize="2" flags="invisible" display_name="Power Plant" displayPos="75,290">
                     <Types>
                       <Type type="PowerPlant" subtypes="" />
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="landingpad_helper" class="ItemPort">
-                 <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
-                  <Types>
-                    <Type type="LandingSystem"/>
-                  </Types>
-                 </ItemPort>
+                <Part name="hardpoint_quantum_drive" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Drive" requiredTags="">
+                    <Types>
+                      <Type type="Avionics" subtypes="QDrive" />
+                    </Types>
+                  </ItemPort>
                 </Part>
-                <Part name="interiorPhys_helper" class="Interior">
-				  <Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81">
-					<PhysProxy filename="Objects\Spaceships\Ships\AEGS\Avenger_PrisonerTransport\AEGS_Avenger_No_Collide.cgf" />
-				  </Interior>
+                <Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Fuel Tank" requiredTags="">
+                    <Types>
+                      <Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="landingpad_helper" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+                    <Types>
+                      <Type type="LandingSystem" />
+                    </Types>
+                  </ItemPort>
                 </Part>
                 <Part name="hardpoint_shield_generator" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="3" flags="" display_name="Shield Slot">
+                  <ItemPort minsize="1" maxsize="3" flags="invisible" display_name="Shield Slot">
                     <Types>
                       <Type type="Shield" subtypes="" />
                     </Types>
@@ -363,14 +389,14 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_radiator_left" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Wing Cooler Slot">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible left" display_name="Left Wing Cooler Slot">
                     <Types>
                       <Type type="Cooler" subtypes="" />
                     </Types>
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_radiator_right" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="1" flags="left" display_name="Right Wing Cooler Slot">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible right" display_name="Right Wing Cooler Slot">
                     <Types>
                       <Type type="Cooler" subtypes="" />
                     </Types>
@@ -467,7 +493,7 @@
                           <ItemPort minsize="1" maxsize="2" flags="left wing" display_name="Left Wing Class 1 Slot" displayPos="75,290">
                             <Types>
                               <Type type="Turret" subtypes="Gun,GunTurret" />
-							  <Type type="WeaponGun" subtypes="Gun" />
+                              <Type type="WeaponGun" subtypes="Gun" />
                             </Types>
                             <Pitch min="-15" max="5" />
                             <Yaw min="-10" max="10" />
@@ -504,7 +530,6 @@
                         </Part>
                       </Parts>
                     </Part>
- 
                   </Parts>
                 </Part>
                 <Part name="Wing_Left" damageMax="425" class="AnimatedJoint">
@@ -529,7 +554,7 @@
                           <ItemPort minsize="1" maxsize="2" flags="right wing" display_name="Right Wing Class 1 Slot" displayPos="75,290">
                             <Types>
                               <Type type="Turret" subtypes="Gun,GunTurret" />
-							  <Type type="WeaponGun" subtypes="Gun" />
+                              <Type type="WeaponGun" subtypes="Gun" />
                             </Types>
                             <Pitch min="-15" max="5" />
                             <Yaw min="-10" max="10" />
@@ -566,7 +591,6 @@
                         </Part>
                       </Parts>
                     </Part>
-
                   </Parts>
                 </Part>
                 <Part name="Intake_Right" damageMax="375" class="AnimatedJoint">
@@ -601,7 +625,6 @@
                         <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_explode_4m_once_fixed011" partName="Intake_Right" />
                       </Effects>
                     </Part>
-
                   </Parts>
                 </Part>
                 <Part name="Intake_Left" damageMax="375" class="AnimatedJoint">
@@ -636,7 +659,6 @@
                         <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_explode_4m_once_fixed010" partName="Intake_Left" />
                       </Effects>
                     </Part>
-
                   </Parts>
                 </Part>
                 <Part name="Tail" damageMax="650" class="AnimatedJoint">
@@ -813,10 +835,8 @@
                         <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris6_PFX_DetachFX_explode_1m_once_fixed017" partName="Tail" />
                       </Effects>
                     </Part>
-
                   </Parts>
                 </Part>
-
               </Parts>
             </Part>
           </Parts>
@@ -1076,7 +1096,7 @@
         <Activation type="OnVehicleEvent" event="DriverEnter" desiredState="Close" />
       </Activations>
       <States>
-        <State name="Open" >
+        <State name="Open">
           <AnimationStates>
             <State animation="Cargo_Door" state="Open" />
           </AnimationStates>
@@ -1262,9 +1282,9 @@
           <State animation="Hatch_Front" state="Enter" />
         </Enter>
       </WaitFor>
-	  <PostAction>
+      <PostAction>
         <Exit>
-       <State animation="Hatch_Front" state="Exit" />
+          <State animation="Hatch_Front" state="Exit" />
         </Exit>
       </PostAction>
       <!-- Begin actions for this seat-->
@@ -1336,11 +1356,13 @@
                 <ItemPort part="hardpoint_shield_generator" />
                 <ItemPort part="hardpoint_pilot_chair" />
                 <ItemPort part="radar_helper" />
-                <ItemPort part="*light" />
+                <ItemPort part="Hardpoint_Multilight_Exterior" />
                 <ItemPort part="*hardpoint_fuel" />
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
                 <ItemPort part="landingpad_helper" />
+                <ItemPort part="hardpoint_quantum_drive" />
+                <ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1430,16 +1452,16 @@
         <FirstPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
         <ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
       </FixedVisorSettings>
-	<HUDAccess primary="0">
-		<Tab name="Overview" />
-		<Tab name="Grouping" />
-		<Tab name="Power" />
-		<Tab name="Shield" />
-	</HUDAccess>
+      <HUDAccess primary="0">
+        <Tab name="Overview" />
+        <Tab name="Grouping" />
+        <Tab name="Power" />
+        <Tab name="Shield" />
+      </HUDAccess>
       <ScreensRecord record="Screens_AEGS_Avenger_Pilot" />
     </Seat>
     <!-- seat sleep_bed -->
-    <Seat name="Sleep_Door_Player" enterHelper="Pilot_BedEnter_Pos" sitHelper="Pilot_Bed_Pos" interiorAccess="0" canExitWhileMoving="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="Sleep_Door_Player" enterHelper="Pilot_BedEnter_Pos" sitHelper="Pilot_Bed_Pos" interiorAccess="0" canExitWhileMoving="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1472,14 +1494,11 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="225" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="110,160,110" maxAngularAcceleration="950,950,50" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="100.5,100.5,100.5" maxTorqueAngle="18,18,18" id="idMovementStats">
-      <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
-		<EngineStartSound sound="" />
-		<EngineRunSound sound="" />
-		<EngineStopSound sound="" />
-		<AmbienceSound sound="Play_SSAM_ORIG_300i_Interior" />
-		<PassByLoopSound sound="Play_SSPB_AEGS_Avenger_Loop" />
-        <PassBySound sound="Play_SSPB_AEGS_Avenger_800ms_0to100mtrs" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularAcceleration="720,720,720" id="idMovementStats">
+      <AudioParams dmgBufferDecay="0.2">
+        <PassByLoopSound sound="Play_SSPB_AEGS_Avenger_Loop" />
+        <PassBySound sound="Play_SSPB_AEGS_Avenger_600ms_0to100mtrs" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+		<PassBySound sound="Play_SSPB_AEGS_Avenger_2000ms_0to200mt" leadinTime="2" triggerDistance="250" cooldownTime="2.5" />
         <DuressSound sound="Play_SSDM_ORIG_300_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
       </AudioParams>
       <Animations />
@@ -1487,6 +1506,20 @@
         <!--<Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
         <!--<Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
       </Contrails>
+      <IFCS>
+		<goalTimes opcomTime="3.5" ropcomtime=".78, .5, .78" cruisetime="12"/> <!-- opcomTime ropcomTime cruiseTime -->
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+		
+		<maxVelocity normal="225" />
+		<linearScale pos="1.0, 1.0, 1.0" neg="1.0, 1.0, 1.0" />
+		<linearJerk pos="114,175,114" neg="114,175,114" />
+		
+		<maxAngVelocity normal="72,100,72" boost="" />
+		<angularScale pos=".2662, .1600, .2176" neg=".2662, .1600, .2176" />
+		<angularJerk pos="17.5, 67.28, 17.5" neg="17.5, 67.28, 17.5" />
+		<maxGyro scale="0.2" velScale="0.5"/> 
+	    <errorTorque maxAlpha="10,10,10" maxAngle="18,18,18" />
+      </IFCS>
     </Spaceship>
   </MovementParams>
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1494,7 +1527,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="AEGS_Avenger" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_red" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">

@@ -420,9 +420,9 @@ function ProximityTrigger:Trigger(entityId, inside)
 
 	self:ActivateOutput("Sender", entityId or NULL_ENTITY);
 	
-	if(AI ~= nil) then
-		self:ActivateOutput("Faction", AI.GetFactionOf(entityId or NULL_ENTITY) or "");
-	end
+--	if(AI ~= nil) then
+--		self:ActivateOutput("Faction", AI.GetFactionOf(entityId or NULL_ENTITY) or "");
+--	end
 	
 	if(self.Properties.bRemoveOnTrigger == 1 and Game.IsPlayer(entityId) == false)then
 		System.RemoveEntity(entityId);
@@ -575,12 +575,12 @@ function ProximityTrigger:CanTrigger(entity)
 		end
 	end
 
-	if (Properties.esFactionFilter ~= "") then
-		local faction = AI.GetFactionOf(entity.id) or "";
-		if (faction ~= Properties.esFactionFilter) then
-			return false
-		end
-	end
+--	if (Properties.esFactionFilter ~= "") then
+--		local faction = AI.GetFactionOf(entity.id) or "";
+--		if (faction ~= Properties.esFactionFilter) then
+--			return false
+--		end
+--	end
 
 	return true;
 end

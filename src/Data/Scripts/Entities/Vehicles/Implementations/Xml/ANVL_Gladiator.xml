@@ -20,9 +20,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+				<DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="ANVL_Gladiator"  />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -286,7 +286,7 @@
                       </Parts>
                     </Part>
                     <Part name="hardpoint_radiator_right" class="ItemPort">
-                      <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot">
+                      <ItemPort minsize="1" maxsize="1" flags="invisible right" display_name="Right Cooler Slot">
                         <Types>
                           <Type type="Cooler" subtypes="" />
                         </Types>
@@ -366,12 +366,26 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_power_plant_attach" class="ItemPort">
-                  <ItemPort minsize="2" maxsize="3" flags="" display_name="Power Plant" displayPos="75,290">
+                  <ItemPort minsize="2" maxsize="3" flags="invisible" display_name="Power Plant" displayPos="75,290">
                     <Types>
                       <Type type="PowerPlant" subtypes="" />
                     </Types>
                   </ItemPort>
                 </Part>
+				<Part name="hardpoint_quantum_drive" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Drive" requiredTags="">
+						<Types>
+							<Type type="Avionics" subtypes="QDrive" />
+						</Types>
+					</ItemPort>
+				</Part>
+				<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Fuel Tank" requiredTags="">
+						<Types>
+							<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+						</Types>
+					</ItemPort>
+				</Part>
                 <Part name="hardpoint_avionics_motherboard" class="ItemPort">
                   <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard" requiredTags="">
                     <Types>
@@ -587,7 +601,7 @@
                       </Parts>
                     </Part>
                     <Part name="hardpoint_radiator_left" class="ItemPort">
-                      <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Cooler Slot">
+                      <ItemPort minsize="1" maxsize="1" flags="invisible left" display_name="Left Cooler Slot">
                         <Types>
                           <Type type="Cooler" subtypes="" />
                         </Types>
@@ -634,7 +648,7 @@
              </ItemPort>
             </Part>
             <Part name="hardpoint_shield_generator" class="ItemPort">
-              <ItemPort minsize="2" maxsize="4" flags="" display_name="Shield Slot">
+              <ItemPort minsize="2" maxsize="4" flags="invisible" display_name="Shield Slot">
                 <Types>
                   <Type type="Shield" subtypes="" />
                 </Types>
@@ -766,6 +780,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="0" bbMin="-0.5,-0.5,0" bbMax="0.6,0.5,2.5" id="idPilotEnterPosActivation" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_enter_zerog_pos" distance="0" bbMin="-0.5,-0.5,0" bbMax="0.6,0.5,2.5" id="idPilotEnterPosActivation" />
       </Activations>
       <Enter>
         <Seats>
@@ -776,6 +791,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="gunner_enter_pos" distance="0" bbMin="-0.1,-0.3,0" bbMax="0.7,0.8,2.5" />
+        <Activation type="OnUsed" param1="helper" param2="gunner_enter_zerog_pos" distance="0" bbMin="-0.1,-0.3,0" bbMax="0.7,0.8,2.5" />
       </Activations>
       <Enter>
         <Seats>
@@ -789,7 +805,7 @@
   <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_exit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_exit_pos" zerogEnterHelper="pilot_enter_zerog_pos" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -899,6 +915,8 @@
                 <ItemPort part="hardpoint_fuel_intake_right" />
                 <ItemPort part="hardpoint_fuel_tank" />
                 <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1024,7 +1042,7 @@
     <ScreensRecord record="Screens_ANVL_Gladiator_Pilot" />
     </Seat>
     <!-- Gunner's Seat -->
-    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="copilot_sit_pos" exitHelper="copilot_exit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-90,0,-180" lookMax="90,0,180" isHUDSupported="1" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimalturret" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Gunner">
+    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="copilot_sit_pos"  exitHelper="copilot_exit_pos" zerogEnterHelper="gunner_enter_zerog_pos" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-90,0,-180" lookMax="90,0,180" isHUDSupported="1" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimalturret" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Gunner" passengerHasBreathing="0">
       <!-- Begin views for this seat-->
       <Views defaultFirstPerson="0" defaultThirdPerson="3">
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-180" rotationMax="50,0,180" motionBlur="0">
@@ -1148,16 +1166,12 @@
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="190" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,100.0,137.5" maxTorqueAngle="18,18,18">
-      <SoundParams dmgBufferDecay="0.19">
-        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <RunSound running_sound="" />
-        <AmbientSound sound="Play_SSAM_ANVL_Gladiator_Interior_Cockpit" />
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularAcceleration="720,720,720" >
+      <AudioParams dmgBufferDecay="0.19">
         <PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
-        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
         <DuressSound sound="Play_SSDD_ANVL_Gladiator_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
-      </SoundParams>
+      </AudioParams>
       <Animations engine="Intake_Fans" />
       <Contrails>
         <!--<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
@@ -1165,6 +1179,20 @@
         <!--<Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />-->
         <!--<Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />-->
       </Contrails>
+      <IFCS>
+		<goalTimes opcomTime="4.5" ropcomtime="1.07,.6,1.07" cruisetime="15"/> <!-- opcomTime ropcomTime cruiseTime -->
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+
+		<maxVelocity normal="190" />
+		<linearJerk pos="23.74,90,64.74" neg="23.74,90,64.74" />
+		<linearScale pos="1.6, 1.0, 1.0" neg="1.6, 1.0, 1.0" />
+
+		<maxAngVelocity normal="67.5,120,67.5" boost="" />
+        <angularJerk pos="6.43, 36.361, 6.4312" neg="6.43, 36.361, 6.4312" />
+		<angularScale pos="0.1179, 0.2523, 0.0983" neg="0.0943, 0.2014, 0.08" />
+        <maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+        <errorTorque maxAlpha="10,70.0,10" maxAngle="18,18,18" />
+	  </IFCS>
     </Spaceship>
   </MovementParams>
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
@@ -1173,7 +1201,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="ANVL_Gladiator" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_AI_ships" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">

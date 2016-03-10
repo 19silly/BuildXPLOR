@@ -513,9 +513,9 @@ function DestroyableObject:Explode()
 
 	if (self.hAudioDeadTriggerID) then
 		self:PlayAudio(self.hAudioDeadTriggerID);
-	else
-		self:_StopAudioTrigger(self.hAudioAliveTriggerID, true);
 	end
+
+	self:_StopAudioTrigger(self.hAudioAliveTriggerID, true);
 
 	BroadcastEvent( self,"Explode" );
 
@@ -920,12 +920,12 @@ function DestroyableObject:PlayAudio(hTriggerID)
 			if (self.audioAnchorEnt ~= nil) then
 				if (hTriggerID ~= nil) then
 					self:UpdateAudioProxyOffset();
-					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID, self.audioAnchorEnt:GetDefaultAuxAudioProxyID());
 				end
 			else
 				if (hTriggerID ~= nil) then
 					self:UpdateAudioProxyOffset();
-					self:ExecuteAudioTrigger(hTriggerID);
+					self:ExecuteAudioTrigger(hTriggerID, self:GetDefaultAuxAudioProxyID());
 				end
 			end
 			if (hTriggerID == self.hAudioAliveTriggerID) then
@@ -940,7 +940,7 @@ function DestroyableObject:UpdateAudioProxyOffset()
 	if (self.audioAnchorEnt ~= nil) then
 		self.audioAnchorEnt:SetCurrentAudioEnvironments();
 	else
-		self:SetAudioProxyOffset(g_Vectors.v000);
+		self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
 		self:SetCurrentAudioEnvironments();
 	end
 end
@@ -965,9 +965,9 @@ function DestroyableObject:_StopAudioTrigger(hTriggerID, bHardStop)
 		self.bAliveAudioPlaying = false;
 	end
 	if (self.audioAnchorEnt) then
-		self.audioAnchorEnt:StopAudioTrigger(hTriggerID, bHardStop);
+		self.audioAnchorEnt:StopAudioTrigger(hTriggerID, bHardStop, self.audioAnchorEnt:GetDefaultAuxAudioProxyID());
 	else
-		self:StopAudioTrigger(hTriggerID, bHardStop);
+		self:StopAudioTrigger(hTriggerID, bHardStop, self:GetDefaultAuxAudioProxyID());
 	end
 end
 

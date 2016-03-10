@@ -1,0 +1,36 @@
+<Graph isModule="1" moduleName="JumpGate" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="BeamedEntity" Type="EntityId" Input="1"/>
+  <Port Name="DestinationEntity" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_JumpGate" pos="-240,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_JumpGate" pos="710,10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="4" Class="Entity:BeamEntity" pos="310,10,0" flags="0">
+   <Inputs entityId="0" Position="0,0,0" Rotation="0,0,0" UseZeroRot="0" Scale="0,0,0" DestinationEntity="0" Memo=""/>
+  </Node>
+  <Node Id="6" Class="Actor:LocalPlayer" pos="310,-30,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="8" Class="Entity:GetPos" pos="20,90,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="10" Class="Debug:DisplayMessage" pos="430,220,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="250" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="4" nodeOut="1" portIn="Beam" portOut="Start" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="entityId" portOut="DestinationEntity" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="Get" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="4" portIn="Success" portOut="Done" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="6" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="8" portIn="Position" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="8" portIn="Rotation" portOut="Rotate" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="8" portIn="Show" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="8" portIn="message" portOut="Pos" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

@@ -1,0 +1,37 @@
+<Graph Description="" Group="Ingame" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="UI:Events:System:OnGameplayStarted" pos="-680,-290,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="2" Class="UI:Events:System:OnGameplayEnded" pos="-790,-110,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="3" Class="UI:Display:Display" pos="-340,-230,0" flags="0">
+   <Inputs uiElements_Element="Ingame2D" instanceID="-1"/>
+  </Node>
+  <Node Id="4" Class="Game:Start" pos="-710,-230,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="5" Class="Logic:Any" pos="-520,-230,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="6" Class="Logic:Any" pos="-520,-110,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="7" Class="UI:Events:MenuEvents:OnStartIngameMenu" pos="-820,-50,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="8" Class="UI:Events:MenuEvents:OnStopIngameMenu" pos="-820,-170,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="6" nodeOut="2" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="4" portIn="in1" portOut="output" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="5" portIn="show" portOut="out" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="6" portIn="hide" portOut="out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="7" portIn="in2" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="8" portIn="in2" portOut="onEvent" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

@@ -10,6 +10,11 @@ Item = {
 		initialSetup = "",
 		bNetworkSync = 1,
 	},
+
+	SpawnInfoTable =
+	{
+		bPickable = 0,
+	},
 	
 	Client = {},
 	Server = {},
@@ -43,6 +48,19 @@ function Item:OnLoad(props)
 	end
 end
 
+----------------------------------------------------------------------------------------------------
+function Item:OnSpawn()
+	if (CryAction.IsServer()) then
+		self.SpawnInfoTable = 
+		{
+      bPickable = self.Properties.bPickable,
+		};
+	end
+end
+
+function Item:OnSpawnInfoRead()
+	self.Properties.bPickable = self.SpawnInfoTable.bPickable;
+end
 
 ----------------------------------------------------------------------------------------------------
 function Item:IsUsable(user)
@@ -145,8 +163,10 @@ function MakeRespawnable(entity)
 	if (entity.Properties) then
 		entity.Properties.Respawn={
 			nTimer=30,
+      nRemovalTimer=30,
 			bUnique=0,
 			bRespawn=0,
+			bRemove=0,
 		};
 	end
 end

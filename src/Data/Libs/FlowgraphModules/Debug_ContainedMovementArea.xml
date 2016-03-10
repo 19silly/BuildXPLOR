@@ -1,0 +1,99 @@
+<Graph isModule="1" moduleName="Debug_ContainedMovementArea" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="TriggerID" Type="3" Input="1"/>
+  <Port Name="EnforceWalk" Type="6" Input="1"/>
+  <Port Name="LookAtID" Type="3" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Debug_ContainedMovementArea" pos="80,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Debug_ContainedMovementArea" pos="2350,-10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="176" Class="Actor:PlayerStaging" pos="990,220,0" flags="0">
+   <Inputs ViewLimitDir="0,0,0" InLocalSpace="1" ViewLimitYaw="0" ViewLimitPitch="0" LockPlayer="1" TryStance="-1"/>
+  </Node>
+  <Node Id="177" Class="Actor:PlayerStaging" pos="990,10,0" flags="0">
+   <Inputs ViewLimitDir="0,0,0" InLocalSpace="1" ViewLimitYaw="0" ViewLimitPitch="0" LockPlayer="0" TryStance="-1"/>
+  </Node>
+  <Node Id="178" Class="Actor:PlayerCinematicControl" pos="1410,10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="186" Class="Movement:MoveEntityTo" pos="1360,220,0" flags="0">
+   <Inputs entityId="0" Destination="0,0,0" DestinationEntity="0" DynamicUpdate="1" ValueType="0" Speed="1" EaseDistance="1" EaseOutDistance="1" CoordSys="0"/>
+  </Node>
+  <Node Id="187" Class="Actor:LocalPlayer" pos="1360,180,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="188" Class="Entity:EntityId" pos="1360,440,0" flags="0" EntityGUID="{F5A03792-D6AE-4642-8D1E-5419517B1C36}" EntityGUID_64="4642D6AEF5A03792">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="190" Class="entity:ProximityTrigger" pos="700,10,0" flags="0" EntityGUID="{F5A03792-D6AE-4642-8D1E-5419517B1C36}" EntityGUID_64="4642D6AEF5A03792">
+   <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+  </Node>
+  <Node Id="191" Class="Actor:PlayerLookAt" pos="980,460,0" flags="0">
+   <Inputs entityId="0" Force="1" InterpolationTime="0.2"/>
+  </Node>
+  <Node Id="192" Class="Entity:EntityId" pos="980,580,0" flags="0" EntityGUID="{F5A03792-D6AE-4642-8D1E-5419517B1C36}" EntityGUID_64="4642D6AEF5A03792">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="194" Class="Math:BooleanTo" pos="460,10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="195" Class="Math:BooleanTo" pos="460,70,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="196" Class="Logic:Any" pos="1250,430,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="198" Class="Time:FrameDelay" pos="2050,-10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="199" Class="Actor:PlayerStaging" pos="1790,80,0" flags="0">
+   <Inputs ViewLimitDir="0,0,0" InLocalSpace="1" ViewLimitYaw="0" ViewLimitPitch="0" LockPlayer="0" TryStance="-1"/>
+  </Node>
+  <Node Id="200" Class="Actor:PlayerCinematicControl" pos="2070,80,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="201" Class="Logic:Condition" pos="1220,10,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="202" Class="Math:Compare" pos="470,210,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="203" Class="Logic:Blocker" pos="820,460,0" flags="0">
+   <Inputs Block="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="188" nodeOut="1" portIn="entityId" portOut="TriggerID" enabled="1"/>
+  <Edge nodeIn="190" nodeOut="1" portIn="entityId" portOut="TriggerID" enabled="1"/>
+  <Edge nodeIn="191" nodeOut="1" portIn="Disable" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="192" nodeOut="1" portIn="entityId" portOut="LookAtID" enabled="1"/>
+  <Edge nodeIn="194" nodeOut="1" portIn="true" portOut="Start" enabled="1"/>
+  <Edge nodeIn="195" nodeOut="1" portIn="true" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="196" nodeOut="1" portIn="in2" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="199" nodeOut="1" portIn="Trigger" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="201" nodeOut="1" portIn="Condition" portOut="EnforceWalk" enabled="1"/>
+  <Edge nodeIn="202" nodeOut="1" portIn="B" portOut="LookAtID" enabled="1"/>
+  <Edge nodeIn="202" nodeOut="1" portIn="A&gt;=B" portOut="Start" enabled="1"/>
+  <Edge nodeIn="186" nodeOut="176" portIn="Start" portOut="Done" enabled="1"/>
+  <Edge nodeIn="196" nodeOut="177" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="201" nodeOut="177" portIn="In" portOut="Done" enabled="1"/>
+  <Edge nodeIn="186" nodeOut="187" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="186" nodeOut="188" portIn="DestinationEntity" portOut="Id" enabled="1"/>
+  <Edge nodeIn="176" nodeOut="190" portIn="Trigger" portOut="Leave" enabled="1"/>
+  <Edge nodeIn="177" nodeOut="190" portIn="Trigger" portOut="Enter" enabled="1"/>
+  <Edge nodeIn="203" nodeOut="190" portIn="In" portOut="Enter" enabled="1"/>
+  <Edge nodeIn="191" nodeOut="192" portIn="entityId" portOut="Id" enabled="1"/>
+  <Edge nodeIn="190" nodeOut="194" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="190" nodeOut="195" portIn="Disable" portOut="out" enabled="1"/>
+  <Edge nodeIn="186" nodeOut="196" portIn="Stop" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="198" portIn="Cancel" portOut="out" enabled="1"/>
+  <Edge nodeIn="198" nodeOut="199" portIn="in" portOut="Done" enabled="1"/>
+  <Edge nodeIn="200" nodeOut="199" portIn="ResetAll" portOut="Done" enabled="1"/>
+  <Edge nodeIn="178" nodeOut="201" portIn="RestrictToWalk" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="203" nodeOut="202" portIn="Block" portOut="result" enabled="1"/>
+  <Edge nodeIn="191" nodeOut="203" portIn="Enable" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

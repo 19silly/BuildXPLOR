@@ -93,13 +93,6 @@ AIBase =
 		end,
 
 		OnHit = function(self, hit)
-			if (self.PropertiesInstance.AI.bHostileIfAttacked and (tonumber(self.PropertiesInstance.AI.bHostileIfAttacked) ~= 0)) then
-				if (hit.shooterId and (hit.shooterId ~= g_localActorId) and (not AI.Hostile(self.id, hit.shooterId))) then
-					if ((hit.type ~= "collision") or (hit.damage > 50)) then
-						AI.AddPersonallyHostile(self.id, hit.shooterId)
-					end
-				end
-			end
 			return BasicActor.Server.OnHit(self, hit)
 		end
 	},

@@ -1,0 +1,30 @@
+<Graph isModule="1" moduleName="Crusader_SpawnEffectLogic" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientOnly">
+ <ModuleInputsOutputs>
+  <Port Name="SpawnedID" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Crusader_SpawnEffectLogic" pos="300,210,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Crusader_SpawnEffectLogic" pos="1920,210,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1476" Class="Effects:SpawnParticleEffect" pos="1300,212,0" flags="0">
+   <Inputs t_Activate="0" Position="0,0,0" Effect="Ship_Spawn_Effect.Ship_Spawn_Effects_ALL.Ship_warp_in_noship"/>
+  </Node>
+  <Node Id="2227" Class="Math:BooleanTo" pos="1070,212,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2530" Class="Entity:GetPos" pos="700,210,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Cancel" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="2530" nodeOut="1" portIn="entityId" portOut="SpawnedID" enabled="1"/>
+  <Edge nodeIn="2530" nodeOut="1" portIn="Get" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1476" portIn="Success" portOut="Done" enabled="1"/>
+  <Edge nodeIn="1476" nodeOut="2227" portIn="t_Activate" portOut="out" enabled="1"/>
+  <Edge nodeIn="1476" nodeOut="2530" portIn="Position" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2227" nodeOut="2530" portIn="true" portOut="Pos" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

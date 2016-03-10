@@ -1,0 +1,58 @@
+<Graph isModule="1" moduleName="Decompression" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="DecompressionEntity" Type="EntityId" Input="1"/>
+  <Port Name="Destination" Type="EntityId" Input="1"/>
+  <Port Name="Force" Type="Float" Input="1"/>
+  <Port Name="Time" Type="Float" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Decompression" pos="80,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Decompression" pos="1570,230,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="4" Class="Vec3:SubVec3" pos="680,100,0" flags="0">
+   <Inputs A="0,0,0" B="0,0,0"/>
+  </Node>
+  <Node Id="6" Class="Entity:EntityPos" pos="440,190,0" flags="0">
+   <Inputs entityId="0" pos="0,0,0" rotate="0,0,0" scale="0,0,0" CoordSys="1"/>
+  </Node>
+  <Node Id="8" Class="Entity:GetPos" pos="440,40,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="10" Class="Vec3:NormalizeVec3" pos="830,100,0" flags="0">
+   <Inputs vector="0,0,0"/>
+  </Node>
+  <Node Id="12" Class="Vec3:ScaleVec3" pos="1290,100,0" flags="0">
+   <Inputs vector="0,0,0" scale="0"/>
+  </Node>
+  <Node Id="14" Class="Interpol:Float" pos="1045.3481,212.91165,0" flags="0">
+   <Inputs StartValue="0" EndValue="0" Time="1" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="16" Class="Physics:ActionImpulse" pos="1570,70,0" flags="0">
+   <Inputs entityId="0" impulse="0,0,0" angImpulse="0,0,0" Point="0,0,0" partIndex="0" CoordSys="1"/>
+  </Node>
+  <Node Id="22" Class="Actor:RagdollizeCharacter" pos="440,-150,0" flags="0">
+   <Inputs entityId="0" ImpulseMin="0,0,0" ImpulseMax="0,0,0" AngImpulseMin="0,0,0" AngImpulseMax="0,0,0" ImpulseOrigin="0,0,0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="6" nodeOut="1" portIn="entityId" portOut="DecompressionEntity" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="entityId" portOut="Destination" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="Get" portOut="Start" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="1" portIn="StartValue" portOut="Force" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="1" portIn="Start" portOut="Start" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="1" portIn="Time" portOut="Time" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="1" portIn="entityId" portOut="DecompressionEntity" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="1" portIn="entityId" portOut="DecompressionEntity" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="1" portIn="Ragdollize" portOut="Start" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="4" portIn="vector" portOut="out" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="6" portIn="B" portOut="pos" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="8" portIn="A" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="10" portIn="vector" portOut="out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="12" portIn="activate" portOut="out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="12" portIn="impulse" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="14" portIn="Success" portOut="Done" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="14" portIn="scale" portOut="Value" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

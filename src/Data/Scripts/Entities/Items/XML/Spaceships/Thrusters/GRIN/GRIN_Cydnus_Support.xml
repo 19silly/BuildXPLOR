@@ -67,11 +67,12 @@
 
 		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
 			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
-			<Pool capacity="100" rate="20" critical="1" decayRate="10" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
-				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
-				<State state="Idle"><Value value="20" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
 			</States>
 		</Pipe>
 
@@ -82,6 +83,14 @@
 			</States>
 		</Pipe>
 	</Pipes>
+	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
 	
 	<gimbal type="fixed" >
 	</gimbal>

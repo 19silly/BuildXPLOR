@@ -1,0 +1,193 @@
+<HudAnimationsDef ObjectFolder="objects/ui/reticle/" >
+	<!-- Scan Def -->
+	<HudAnimationDef Name="Scan" ObjectName="bracket.cga" AdditionalAttachments="1" DoOriginOffsetScale="true" OriginOffsetScaleMin="0.08" OriginOffsetTargetBoundInc="32.0" LerpToWorldRate="0.5">
+		<!-- Locking -->
+		<ReticleDef State="LockingDef">
+			<MatrixStack>
+				<Push Input="_inv_origin_"/> 			<!-- Inverse of the attachment origin -->
+				<Push Input="Rotator"/>
+				<Push Input="Rotator2"/>
+				<Push Input="_target_orientation_"/> 	<!-- Ship or camera orientation -->
+				<Push Input="_origin_"/> 				<!-- Add the ttachment origin -->
+				<Push Input="_target_size_"/>
+			</MatrixStack>
+
+			<!-- Timelines -->
+			<Timelines>
+				<!-- Timeline that runs on the scanning progress -->
+				<Timeline FrameRate="1000" Timer="_progress_time_">
+					<!-- 0-1 Value from camera:1 to target:0 -->
+					<Track Type="Number" Name="_progress_">
+						<Key Frame="0" Value="1.0" TimerModifier="Stagger" EaseType="OutQuad"/>
+						<Key Frame="400" Value="0.2" TimerModifier="Stagger" EaseType="OutCubic"/>
+						<Key Frame="3000" Value="0.0" TimerModifier="Stagger" EaseType="OutCubic"/>
+						<Key Frame="0" Value="0.0" TimerModifier="Total" EaseType="None"/>
+					</Track>
+					
+					<Track Type="RotateZ" Name="Rotator" >
+						<Key Frame="0" Value="720" TimerModifier="None" EaseType="OutCubic"/>
+						<Key Frame="2500" Value="0" TimerModifier="Stagger" EaseType="OutCubic"/>
+						<Key Frame="0" Value="0" TimerModifier="Total" EaseType="None"/>
+					</Track>
+					<Track Type="RotateX" Name="Rotator2" >
+						<Key Frame="0" Value="-720" TimerModifier="None" EaseType="OutCubic"/>
+						<Key Frame="2500" Value="0" TimerModifier="Stagger" EaseType="OutCubic"/>
+						<Key Frame="0" Value="0" TimerModifier="Total" EaseType="None"/>
+					</Track>
+				</Timeline>
+			</Timelines>
+		</ReticleDef>
+
+		<!-- Locked -->
+		<ReticleDef State="LockedDef">
+			<MatrixStack>
+				<Push Input="_inv_origin_"/>
+				<Push Input="_target_orientation_"/>
+				<Push Input="_origin_"/>
+				<Push Input="_target_size_"/>
+			</MatrixStack>
+		</ReticleDef>
+
+		<!-- Lock Lost -->
+		<LockLostDef TranslationFrames="500" StaggerTime="1500" LerpToScreenRate="1.0" ProgressLength="1.0">
+			<MatrixStack>
+				<Push Input="_inv_origin_"/>
+				<Push Input="_target_orientation_"/>
+				<Push Input="_origin_"/>
+				<Push Input="_target_size_"/>
+			</MatrixStack>
+		</LockLostDef>
+	</HudAnimationDef>
+
+	<!-- Missile Def -->
+	<HudAnimationDef Name="Missile" ObjectName="circular_misslelock.cga" LerpToWorldRate="0.3" LockLostLength="1.0">
+		<ReticleDef State="LockingDef" AnimationName="lock">
+			<!-- Matridx order -->
+			<MatrixStack>
+				<!-- <Push Input="SkeletonScaler"/> -->
+				<Push Input="_inv_origin_"/>
+				<Push Input="Rotator"/>
+				<Push Input="Rotator2"/>
+				<Push Input="_target_orientation_"/>
+				<Push Input="Scaler"/>
+				<Push Input="_origin_"/>
+			</MatrixStack>`
+
+			<!-- Timers -->
+			<Timers>
+				<Timer Name="Default" Start="0" End="1" Count="0" />
+			</Timers>
+
+			<!-- Timelines -->
+			<Timelines>
+				<!-- Use the "Default" timer to constantly rotate -->
+				<Timeline FrameRate="30" Timer="Default">
+					<Track Type="RotateY" Name="ConstantRotationY">
+						<Key Frame="0" Value="0" />
+						<Key Frame="30" Value="360" />
+					</Track>
+				</Timeline>
+
+				<!-- Use the "_anim_time_" ID to do matching scale on the attachments -->
+				<Timeline FrameRate="30" Timer="_anim_time_">
+					<Track Type="Scale" Name="SkeletonScaler">
+						<Key Frame="0" Value="2.0" />
+						<Key Frame="30" Value="2.0" />
+					</Track>
+				</Timeline>
+				<!-- Use the "_missile_time_" missile lock time to stagger animate the attachments -->
+				<Timeline FrameRate="2000" Timer="_progress_time_">
+					<!-- 0-1 Value from camera:1 to target:0 -->
+					<Track Type="Number" Name="_progress_">
+						<Key Frame="0" Value="1.0" TimerModifier="Stagger" EaseType="OutQuad"/>
+						<Key Frame="1000" Value="0.0" TimerModifier="Stagger" EaseType="OutQuad"/>
+						<Key Frame="3000" Value="0.0" TimerModifier="Stagger" EaseType="None"/>
+						<Key Frame="0" Value="0.0" TimerModifier="Total" EaseType="None"/>
+					</Track>
+					<!-- Create a matrix called "Rotator" -->
+					<Track Type="RotateY" Name="Rotator">
+						<Key Frame="0" Value="0" TimerModifier="Stagger" EaseType="OutQuad"/>
+						<Key Frame="500" Value="45" TimerModifier="Stagger" EaseType="OutQuad"/>
+						<Key Frame="2300" Value="-180" TimerModifier="Stagger" EaseType="None"/>
+						<Key Frame="0" Value="0" TimerModifier="Total" EaseType="None"/>
+					</Track>
+					<!-- Create a matrix called "Scaler" -->
+					<Track Type="Scale" Name="Scaler">
+						<Key Frame="0" Value="0.7" TimerModifier="None" EaseType="OutCubic"/>
+						<Key Frame="1500" Value="0.5" TimerModifier="None" EaseType="OutQuad"/>
+						<Key Frame="1800" Value="0.3" TimerModifier="None" EaseType="OutQuad"/>
+						<Key Frame="0" Value="0.3" TimerModifier="Total" EaseType="None"/>
+					</Track>
+					<Track Type="RotateZ" Name="Rotator2">
+						<Key Frame="0" Value="0" TimerModifier="None" EaseType="OutQuad"/>
+						<Key Frame="100" Value="-180" TimerModifier="None" EaseType="OutQuad"/>
+						<Key Frame="1000" Value="0" TimerModifier="None" EaseType="OutQuad"/>
+						<Key Frame="1800" Value="360" TimerModifier="None" EaseType="OutQuad"/>
+						<Key Frame="3000" Value="360" TimerModifier="Stagger" EaseType="OutQuad"/>
+					</Track>					
+				</Timeline>
+			</Timelines>
+		</ReticleDef>
+
+		<!-- Locked -->
+		<ReticleDef State="LockedDef" AnimationName="lock">
+			<!-- Matrix order -->
+			<MatrixStack>
+				<Push Input="SkeletonScaler"/>
+				<Push Input="_inv_origin_"/>
+				<Push Input="_target_orientation_"/>
+				<Push Input="Scaler"/>
+				<Push Input="_origin_"/>
+			</MatrixStack>
+
+			<!-- Timelines -->
+			<Timelines>
+				<!-- Use the "_anim_time_" ID to do matching scale on the attachments -->
+				<Timeline FrameRate="30" Timer="_anim_time_">
+					<Track Type="Scale" Name="SkeletonScaler">
+						<Key Frame="0" Value="2.0" EaseType="OutCubic" />
+						<Key Frame="30" Value="1.0" />
+					</Track>
+				</Timeline>
+				<!-- Use dummy timeline to maintain scale -->
+				<Timeline FrameRate="1" Timer="_progress_time_">
+					<Track Type="Scale" Name="Scaler">
+						<Key Frame="0" Value="0.3"/>
+						<Key Frame="1" Value="0.3"/>
+					</Track>
+				</Timeline>
+			</Timelines>
+		</ReticleDef>
+
+		<!-- Lock Lost -->
+		<ReticleDef State="LockLostDef" AnimationName="lock">
+			<!-- Matrix order -->
+			<MatrixStack>
+				<Push Input="_inv_origin_"/>
+				<Push Input="_target_orientation_"/>
+				<Push Input="Scaler"/>
+				<Push Input="_origin_"/>
+			</MatrixStack>
+
+			<!-- Timelines -->
+			<Timelines>
+				<!-- Use the "_lock_lost_" time to stagger animate the attachments -->
+				<Timeline FrameRate="3000" Timer="_progress_time_">
+					<!-- 0-1 Value from camera:1 to target:0 -->
+					<Track Type="Number" Name="_progress_">
+						<Key Frame="0" Value="0.0" TimerModifier="Stagger"/>
+						<Key Frame="2000" Value="1.0" TimerModifier="Stagger"/>
+						<Key Frame="4000" Value="1.0" TimerModifier="Stagger"/>
+					</Track>
+				</Timeline>
+
+				<Timeline FrameRate="30" Timer="_progress_time_">
+					<Track Type="Scale" Name="Scaler">
+						<Key Frame="0" Value="0.3"/>
+						<Key Frame="15" Value="1.0"/>
+					</Track>
+				</Timeline>
+			</Timelines>
+		</ReticleDef>
+	</HudAnimationDef>
+</HudAnimationsDef>

@@ -83,8 +83,9 @@
 			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
-				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
-				<State state="Idle"><Value value="20" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
 			</States>
 		</Pipe>
 
@@ -95,6 +96,14 @@
 			</States>
 		</Pipe>
 	</Pipes>
+	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
 
 
 	
@@ -102,14 +111,14 @@
 	</gimbal> 
 	
   <thrusters>
-	  <thruster flags="maneuver orientation" maxThrust ="1125000" rotationScale="0.9" boostScale="1.5" >
+	  <thruster flags="maneuver orientation" maxThrust ="1290423" rotationScale="1" boostScale="1.1" >
 		  <exhausts>
 			  <exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.1">
 				  <effect name="Spaceships\Thrusters\AEGS_Thruster_Fixed_Hermes.Thruster_ALL.AEGS_Thruster_Fixed_Hermes" helper="nozzle_exhaust" enable = "0" tag ="run">
 					  <strength var="thrust" />
 				  </effect>
-				  <sound name="Play_SSTM_ANVL_Flex_MK1_S2_Q1_Start_Run" enable ="0" tag = "run">
-					  <param name="rpm" var="thrust" lerpTime="2.8" />
+				  <sound name="Play_SSTM_AEGS_Thruster_Fixed_Hermes_Start_Run" enable ="0" tag = "run">
+					  <param name="rpm" var="thrust" lerpTime="1.8" />
 					  <param name="boost" var="boost" lerpTime="2" />
 					  <param name="in_out" var="in_out" />
 				  </sound>

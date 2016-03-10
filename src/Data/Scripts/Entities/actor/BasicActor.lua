@@ -143,8 +143,8 @@ BasicActorParams =
 		mass_Player = 80, -- Rodney @ Illfonic
 		mass_Grunt = 180,
 
-		stiffness_scale = 73,
-		fallNPlayStiffness_scale = 100,
+		stiffness_scale = 2,
+		fallNPlayStiffness_scale = 4,
 
 		Living =
 		{

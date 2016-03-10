@@ -1,0 +1,63 @@
+<PrefabsLibrary Name="persistent_universe/uee/generic/NPCs">
+ <Prefab Name="NPC_con_gestures" SubLibrary="" Id="{E51F59DB-44B6-4EEC-9E36-9B19C9666BFE}" Library="persistent_universe/uee/generic/NPCs" LibFolders="" Footprint="1,1,2" Description="" Category="">
+  <Objects>
+   <Object Type="Entity" Layer="Gameplay_CLB" LayerGUID="{5769B82F-F12E-4C56-8B50-1A133380627D}" Id="{A4D96C18-E414-466D-ACDC-F838901565B8}" Name="MannequinObject-009" Pos="0,0,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" ShowHideUsingTimeOfDay="0" VisibleFrom="0" VisibleTo="0" ShowLinks="1" EntityClass="MannequinObject">
+    <Properties fileActionController="animations/mannequin/adb/playercontrollerdefs.xml" fileAnimDatabase3P="animations/mannequin/adb/playeranims.adb" objModel="objects/characters/human/male_v7_cdfs/uee/navy_bdu/uee_m_navy_bdu1.cdf"/>
+    <FlowGraph Description="" Group="NPC" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="1" Class="Actor:PlayMannequinFragment" pos="580,40,0" flags="0" InHideMask="255" OutHideMask="7" GraphEntity="0">
+       <Inputs entityId="0" animstate_Fragment="usable" Tags="con_gestures_01" Priority="0"/>
+      </Node>
+      <Node Id="2" Class="Game:Start" pos="10,160,0" flags="0">
+       <Inputs InGame="1" InEditor="1"/>
+      </Node>
+      <Node Id="5" Class="Actor:PlayMannequinFragment" pos="580,130,0" flags="0" InHideMask="255" OutHideMask="7" GraphEntity="0">
+       <Inputs entityId="0" animstate_Fragment="usable" Tags="con_gestures_02" Priority="0"/>
+      </Node>
+      <Node Id="6" Class="Actor:PlayMannequinFragment" pos="580,210,0" flags="0" InHideMask="255" OutHideMask="7" GraphEntity="0">
+       <Inputs entityId="0" animstate_Fragment="usable" Tags="con_gestures_03" Priority="0"/>
+      </Node>
+      <Node Id="7" Class="Actor:PlayMannequinFragment" pos="580,290,0" flags="0" InHideMask="255" OutHideMask="7" GraphEntity="0">
+       <Inputs entityId="0" animstate_Fragment="usable" Tags="con_gestures_04" Priority="0"/>
+      </Node>
+      <Node Id="8" Class="Logic:RandomSelect" pos="240,160,0" flags="0">
+       <Inputs outMin="1" outMax="1"/>
+      </Node>
+      <Node Id="9" Class="Logic:Any" pos="460,40,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="10" Class="Logic:Any" pos="460,130,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="11" Class="Logic:Any" pos="460,210,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="12" Class="Logic:Any" pos="460,290,0" flags="0" InHideMask="1023" OutHideMask="1">
+       <Inputs />
+      </Node>
+      <Node Id="17" Class="Actor:SetPlayerModel" pos="240,410,0" flags="1" GraphEntity="0">
+       <Inputs entityId="0" Model="uee_civilian_m_barpatron01_var1.cdf"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="9" nodeOut="1" portIn="in2" portOut="Done" enabled="1"/>
+      <Edge nodeIn="8" nodeOut="2" portIn="In" portOut="output" enabled="1"/>
+      <Edge nodeIn="17" nodeOut="2" portIn="Set" portOut="output" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="5" portIn="in2" portOut="Done" enabled="1"/>
+      <Edge nodeIn="11" nodeOut="6" portIn="in2" portOut="Done" enabled="1"/>
+      <Edge nodeIn="12" nodeOut="7" portIn="in2" portOut="Done" enabled="1"/>
+      <Edge nodeIn="9" nodeOut="8" portIn="in1" portOut="Out1" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="8" portIn="in1" portOut="Out2" enabled="1"/>
+      <Edge nodeIn="11" nodeOut="8" portIn="in1" portOut="Out3" enabled="1"/>
+      <Edge nodeIn="12" nodeOut="8" portIn="in1" portOut="Out4" enabled="1"/>
+      <Edge nodeIn="1" nodeOut="9" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="5" nodeOut="10" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="11" portIn="Play" portOut="out" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="12" portIn="Play" portOut="out" enabled="1"/>
+     </Edges>
+     <GraphTokens />
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

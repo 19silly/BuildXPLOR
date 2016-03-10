@@ -1,0 +1,96 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="UI:Events:System:OnSystemStarted" pos="-1210,-620,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="3" Name="Display_MainMenu_on_SystemStart,_LoadingError_or_Level_unload" Class="_commentbox" pos="-1220,-662.27124,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="740" Height="310"/>
+   <NodeSize Width="788.79285" Height="347.05258"/>
+  </Node>
+  <Node Id="6" Class="UI:Events:System:OnLoadingStart" pos="-1210,-240,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="9" Class="UI:Action:Control" pos="-740,-240,0" flags="0">
+   <Inputs uiActions_UIAction="MM_DisplayLoadingScreen" Strict="1" Args=""/>
+  </Node>
+  <Node Id="11" Class="UI:Display:Display" pos="-600,60,0" flags="0">
+   <Inputs uiElements_Element="MainMenu" instanceID="-1"/>
+  </Node>
+  <Node Id="14" Class="UI:Events:System:OnLoadingError" pos="-1200,-540,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="18" Class="Logic:Any" pos="-900,-610,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="20" Class="UI:Action:Control" pos="-550,450,0" flags="0">
+   <Inputs uiActions_UIAction="MM_DisplayIngameMenu" Strict="1" Args=""/>
+  </Node>
+  <Node Id="34" Class="UI:Events:MenuEvents:OnStartIngameMenu" pos="-1220,450,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="36" Class="UI:Util:ToArray" pos="-950,-240,0" flags="0">
+   <Inputs Count="3"/>
+  </Node>
+  <Node Id="58" Class="UI:Action:Control" pos="-790,-610,0" flags="0">
+   <Inputs uiActions_UIAction="MM_DisplayMenu" Strict="1" Args=""/>
+  </Node>
+  <Node Id="62" Class="UI:Events:System:OnUnloadComplete" pos="-1210,-390,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="63" Name="Unload_the_MainMenu_and_display_a_loadingscreen_on_level_loading" Class="_commentbox" pos="-1230,-293.14124,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="780" Height="170"/>
+   <NodeSize Width="816.20166" Height="207.05258"/>
+  </Node>
+  <Node Id="64" Name="Unload_Loadingscreen_und_start_HUD_UIAction_on_Start_Gameplay" Class="_commentbox" pos="-1230,-3.1409588,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1330" Height="280"/>
+   <NodeSize Width="1330" Height="317.05258"/>
+  </Node>
+  <Node Id="65" Name="Display/Hide_ingame_menu_-_Controlled_via_UIMenuEvents" Class="_commentbox" pos="-1240,385.98868,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1100" Height="590"/>
+   <NodeSize Width="1100" Height="627.05261"/>
+  </Node>
+  <Node Id="69" Class="UI:Events:System:OnPlayerSpawned" pos="-1210,60,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="78" Class="UI:Events:MenuEvents:OnStopIngameMenu" pos="-1220,780,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="80" Class="UI:Display:Display" pos="-540,780,0" flags="0">
+   <Inputs uiElements_Element="MainMenu" instanceID="-1"/>
+  </Node>
+  <Node Id="82" Class="UI:Functions:MenuEvents:HideMatchMakingScreen" pos="-270,250,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="84" Class="UI:Events:MenuEvents:OnLastSessionEnd" pos="-1210,-470,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="85" Class="UI:Events:MenuEvents:OnLastSessionEnd" pos="-1210,180,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="86" Class="Logic:Any" pos="-840,80,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="18" nodeOut="1" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Val3" portOut="Image" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Val1" portOut="Level" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Val2" portOut="Video" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="11" portIn="send" portOut="onUnload" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="14" portIn="in2" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="18" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="36" portIn="Args" portOut="Array" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="36" portIn="Start" portOut="OnSet" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="69" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="84" portIn="in3" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="85" portIn="in2" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="86" portIn="hide" portOut="out" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="86" portIn="unload" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

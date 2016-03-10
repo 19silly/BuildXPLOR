@@ -133,12 +133,12 @@ function AreaTrigger:CanTrigger(entityId)
 		return false;
 	end
 
-	if (Properties.esFactionFilter ~= "") then
-		local faction = AI.GetFactionOf(entity.id) or "";
-		if (faction ~= Properties.esFactionFilter) then
-			return false
-		end
-	end
+--	if (Properties.esFactionFilter ~= "") then
+--		local faction = AI.GetFactionOf(entity.id) or "";
+--		if (faction ~= Properties.esFactionFilter) then
+--			return false
+--		end
+--	end
 
 	return true;
 end
@@ -147,7 +147,7 @@ end
 function AreaTrigger:Trigger(entityId, enter)
 	self:ActivateOutput("NrOfEntitiesInside", self.insideCount);
 	self:ActivateOutput("Sender", entityId or NULL_ENTITY);
-	self:ActivateOutput("Faction", AI.GetFactionOf(entityId or NULL_ENTITY) or "");
+--	self:ActivateOutput("Faction", AI.GetFactionOf(entityId or NULL_ENTITY) or "");
 
 	if (enter) then
 		if(self.Properties.ScriptCommand and self.Properties.ScriptCommand~="")then

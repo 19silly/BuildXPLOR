@@ -62,7 +62,7 @@ namespace BuildXPLOR
                                 process.WaitForExit();
                                 using (var pakStream = File.OpenRead("scripts.pak.zip"))
                                 {
-                                    ExtractPAK(pakStream, outDir);
+                                    ExtractPAK(pakStream, Path.Combine(outDir, Path.GetDirectoryName(file)));
                                 }
                                 File.Delete("scripts.pak");
                                 File.Delete("scripts.pak.zip");
@@ -73,7 +73,7 @@ namespace BuildXPLOR
 
                                 using (var pakStream = webClient.OpenRead(String.Format("{0}/{1}/{2}", manifest.WebseedUrls[i++ % manifest.WebseedUrls.Length], manifest.KeyPrefix, file)))
                                 {
-                                    ExtractPAK(pakStream, outDir);
+                                    ExtractPAK(pakStream, Path.Combine(outDir, Path.GetDirectoryName(file)));
                                 }
                             }
                         }

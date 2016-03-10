@@ -1,0 +1,98 @@
+<interface name="interface_POWR_LPLT_SMAL_PL01">
+	<!-- 
+	This is the model and vfx template for Powerplants.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+
+
+	 <damagelevels>
+	<level damageRatio="0.50">
+		<DebrisList>
+			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.debris_fire_small" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="" />
+				</EffectsList>
+			</Debris>
+		</DebrisList> 
+	</level>
+	<level damageRatio="1.00">
+		<Explosion probability="1" pressure="1000" radius="15" damage="50" effect="Illfonic_Ship_Powerbolt_Explosion.Powerbolt_Explosion.Powerbolt_Explosion_Hornet_01" sound="Play_SSDM_Shared_Ship_Destroyed_Explosion"/>
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.electric_small" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.debris_fire_small" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.electric_small" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris4" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.debris_fire_small" helper="" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris5" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="damage_fx.uee.static.electric_small" helper="" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+
+	<geometry>
+		<!-- As this vehicle weapon is remote to the player firing, no first person geometry -->
+		<thirdperson name="Objects\Spaceships\templates\ship_items\components\Power_Plants_Light.cgf"/>
+				
+		<tags tag="HUD">
+			<thirdperson name="Objects\Spaceships\templates\ship_items\components\Power_Plants_Light.cgf" material="materials/item_selection/material_hologram_default.mtl"/>
+			
+			<tags tag="damage_50">
+				<thirdperson name="" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+			</tags>
+			<tags tag="damage_100">
+				<thirdperson name="" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+			</tags>	
+		</tags>
+		<!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+		<tags tag="Hologram">
+			<thirdperson name="Objects\Spaceships\templates\ship_items\components\Power_Plants_Light.cgf" material=""/>
+		</tags>
+		<!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+	</geometry>	
+  
+</interface>

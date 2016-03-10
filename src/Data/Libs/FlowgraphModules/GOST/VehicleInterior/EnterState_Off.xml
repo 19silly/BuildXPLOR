@@ -1,0 +1,38 @@
+<Graph isModule="1" moduleName="EnterState_Off" GOSTType="3" GOSTStateGroup="VehiclePower" GOSTState="Off" Description="" Group="gost\vehicleinterior" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Module:Start_EnterState_Off" pos="40,-360,0" flags="0"/>
+  <Node Id="2" Class="Module:End_EnterState_Off" pos="860,-350,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="5" Class="Vehicle:InteriorGravity" pos="340,-40,0" flags="0" GraphEntity="1">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="7" Class="Entity:Effects:TagState" pos="340,-360,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Tag="844||[0][0]" Force="1"/>
+  </Node>
+  <Node Id="8" Class="Entity:Effects:TagState" pos="340,-200,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Tag="843||[0][0]" Force="1"/>
+  </Node>
+  <Node Id="9" Name="Turn_off_default_lights" Class="_comment" pos="340,-400,0" flags="0"/>
+  <Node Id="12" Name="Turn_off_emergency_lights" Class="_comment" pos="340,-240,0" flags="0"/>
+  <Node Id="13" Name="Turn_off_gravity" Class="_comment" pos="340,-70,0" flags="0"/>
+  <Node Id="15" Class="Logic:All" pos="660,-370,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="22" Class="Audio:Switch" pos="340,-620,0" flags="1" GraphEntity="0">
+   <Inputs entityId="0" audioSwitch_SwitchName="SC_Ship_State" audioSwitchState_SwitchStateName1="Off" audioSwitchState_SwitchStateName2="" audioSwitchState_SwitchStateName3="" audioSwitchState_SwitchStateName4=""/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Cancel" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="1" portIn="Disable" portOut="Start" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="1" portIn="Disable" portOut="Start" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="Disable" portOut="Start" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="1" portIn="audioSwitchState_SetState1" portOut="Start" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="5" portIn="in3" portOut="Disabled" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="7" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="8" portIn="in2" portOut="Done" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="15" portIn="Success" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

@@ -1,0 +1,46 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="116" Class="UI:Functions:MainMenu:SetFloatingText" pos="150,-102,0" flags="0">
+   <Inputs instanceID="-1" text="THIS IS THE AWESOME PROTOTYPE - CHECK IT OUT!"/>
+  </Node>
+  <Node Id="117" Class="UI:Variable:Var" pos="150,148,0" flags="0">
+   <Inputs uiVariables_Variable="MainMenu:GameTitle" instanceID="-1"/>
+  </Node>
+  <Node Id="119" Class="Logic:Any" pos="-130,-52,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="120" Class="UI:Events:MainMenu:OnNextText" pos="-460,-52,0" flags="0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="121" Class="UI:Functions:MainMenu:SetFloatingText" pos="150,-32,0" flags="0">
+   <Inputs instanceID="-1" text="SOME MORE INFO ABOUT THIS GAME!!!"/>
+  </Node>
+  <Node Id="123" Class="UI:Functions:MainMenu:SetFloatingText" pos="150,78,0" flags="0">
+   <Inputs instanceID="-1" text=""/>
+  </Node>
+  <Node Id="124" Class="Logic:Sequentializer" pos="-30,-52,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="125" Name="If_you_pass_an_empty_string_it_will_diplsay_the_&quot;Scheduled_Transmission&gt;&quot;_message" Class="_comment" pos="140,38,0" flags="0"/>
+  <Node Id="126" Class="UI:Action:Start" pos="-460,20,0" flags="0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="128" Class="UI:Action:End" pos="-170,90,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="129" Class="UI:Display:UIElementListener" pos="-460,90,0" flags="0">
+   <Inputs uiElements_Element="MainMenu" instanceID="-1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="124" nodeOut="119" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="119" nodeOut="120" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="124" nodeOut="123" portIn="Reset" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="116" nodeOut="124" portIn="Call" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="121" nodeOut="124" portIn="Call" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="123" nodeOut="124" portIn="Call" portOut="Out3" enabled="1"/>
+  <Edge nodeIn="119" nodeOut="126" portIn="in2" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="128" nodeOut="129" portIn="EndAction" portOut="onHide" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

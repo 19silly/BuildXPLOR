@@ -24,9 +24,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="pilot_enter_pos" />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -73,7 +73,7 @@
     <Part name="ORIG_M50" class="Animated" mass="7000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
       <Animated filename="Objects/Spaceships/Ships/ORIG/M50/ORIG_M50.cga" filenameDestruction="Objects/Spaceships/Ships/ORIG/M50/ORIG_M50_Damaged.cga" id="idShipGeometry" />
       <Parts>
-        <Part name="Nose" class="AnimatedJoint" damageMax="235">
+        <Part name="Nose" class="AnimatedJoint" damageMax="235" id="idNose">
           <Effects>
             <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX1" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
             <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX2" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
@@ -147,7 +147,7 @@
             </DamageBehavior>
           </DamageBehaviors>
           <Parts>
-            <Part name="Canopy" damageMax="201" class="AnimatedJoint" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+            <Part name="Canopy" damageMax="201" class="AnimatedJoint" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" id="idCanopy">
               <Effects />
               <DamageBehaviors />
               <Parts>
@@ -159,7 +159,7 @@
                 </Part>
               </Parts>
             </Part>
-            <Part name="Body" class="AnimatedJoint" damageMax="650" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+            <Part name="Body" class="AnimatedJoint" damageMax="650" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" id="idBody">
               <Effects>
                 <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX1" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                 <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX2" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
@@ -225,7 +225,7 @@
                     </DamageBehavior>
                   </DamageBehaviors>
                   <Parts>
-                    <Part name="EngineCover" damageMax="280" class="AnimatedJoint">
+                    <Part name="EngineCover" damageMax="280" class="AnimatedJoint" id="idEngineCover">
                       <Effects>
                         <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="EngineCover_50_debris1_PFX1" partName="EngineCover_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
@@ -291,7 +291,7 @@
                     <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_100_debris1_PFX1" />
                   </Effects>
                   <Parts>
-                    <Part name="WingLeft" damageMax="235" class="AnimatedJoint">
+                    <Part name="WingLeft" damageMax="235" class="AnimatedJoint" id="idWingLeft">
                       <Effects>
                         <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingLeft_50_PFX1" partName="WingLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
@@ -325,7 +325,7 @@
                           </Effects>
                           <Parts>
                             <Part name="hardpoint_radiator_left" class="ItemPort">
-                              <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Cooler Slot">
+                              <ItemPort minsize="1" maxsize="1" flags="invisible left" display_name="Left Cooler Slot">
                                 <Types>
                                   <Type type="Cooler" subtypes="Cooler_ANVL_Hornet" />
                                 </Types>
@@ -376,7 +376,7 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="PowerplantHousingLeft" damageMax="212" class="AnimatedJoint">
+                    <Part name="PowerplantHousingLeft" damageMax="212" class="AnimatedJoint" id="idPowerplantHousingLeft">
                       <Effects>
                         <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="PowerplantHousingLeft_50_debris1_PFX1" partName="PowerplantHousingLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
@@ -414,7 +414,7 @@
                           </ItemPort>
                         </Part>
                         <Part name="hardpoint_powerplant_left" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="1" flags="main rear" display_name="Power Plant" displayPos="75,290" requiredTags="">
+                          <ItemPort minsize="1" maxsize="1" flags="invisible main rear" display_name="Power Plant" displayPos="75,290" requiredTags="">
                             <Types>
                               <Type type="PowerPlant" subtypes="" />
                             </Types>
@@ -452,7 +452,7 @@
                     <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_100_debris3_PFX3" />
                   </Effects>
                   <Parts>
-                    <Part name="WingRight" damageMax="235" class="AnimatedJoint">
+                    <Part name="WingRight" damageMax="235" class="AnimatedJoint" id="idWingRight">
                       <Effects>
                         <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingRight_50_PFX1" partName="WingRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
@@ -486,7 +486,7 @@
                           </Effects>
                           <Parts>
                             <Part name="hardpoint_radiator_right" class="ItemPort">
-                              <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot">
+                              <ItemPort minsize="1" maxsize="1" flags="invisible right" display_name="Right Cooler Slot">
                                 <Types>
                                   <Type type="Cooler" subtypes="Cooler_ANVL_Hornet" />
                                 </Types>
@@ -538,7 +538,7 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="PowerplantHousingRight" damageMax="212" class="AnimatedJoint">
+                    <Part name="PowerplantHousingRight" damageMax="212" class="AnimatedJoint" id="idPowerplantHousingRight">
                       <Effects>
                         <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="PowerplantHousingRight_50_debris1_PFX1" partName="PowerplantHousingRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
@@ -555,7 +555,7 @@
                           </ItemPort>
                         </Part>
                         <Part name="hardpoint_powerplant_Right" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="1" flags="main rear" display_name="Power Plant" displayPos="75,290" requiredTags="">
+                          <ItemPort minsize="1" maxsize="1" flags="invisible main rear" display_name="Power Plant" displayPos="75,290" requiredTags="">
                             <Types>
                               <Type type="PowerPlant" subtypes="" />
                             </Types>
@@ -595,6 +595,20 @@
                     </Types>
                   </ItemPort>
                 </Part>
+				<Part name="hardpoint_quantum_drive" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Drive" requiredTags="">
+						<Types>
+							<Type type="Avionics" subtypes="QDrive" />
+						</Types>
+					</ItemPort>
+				</Part>
+				<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Fuel Tank" requiredTags="">
+						<Types>
+							<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+						</Types>
+					</ItemPort>
+				</Part>
                 <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
                     <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris5_PFX5" partName="Body" /> -->
@@ -607,7 +621,7 @@
                     <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris2_PFX2" />
                   </Effects>
                 </Part>
-                <Part name="Tail" class="AnimatedJoint" damageMax="235">
+                <Part name="Tail" class="AnimatedJoint" damageMax="235" id="idTail">
                   <DetachParents>
                     <DetachParent partName="Body_100_debris1" seperateLink="1" />
                   </DetachParents>
@@ -804,7 +818,7 @@
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="WingFrontLeft" damageMax="201" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                <Part name="WingFrontLeft" damageMax="201" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" id="idWingFrontLeft">
                   <Effects>
                     <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingFrontLeft_50_debris1_PFX1" partName="WingFrontLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                   </Effects>
@@ -826,7 +840,7 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="WingFrontRight" damageMax="201" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 1.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                <Part name="WingFrontRight" damageMax="201" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 1.5, 0.5" detachRandomRotation="0.5,0,0.3" id="idWingFrontRight">
                   <Effects>
                     <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingFrontRight_50_debris1_PFX1" partName="WingFrontRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                   </Effects>
@@ -981,7 +995,7 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_shield_generator" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="2" flags="" display_name="Shield Slot">
+                  <ItemPort minsize="1" maxsize="2" flags="invisible" display_name="Shield Slot">
                     <Types>
                       <Type type="Shield" subtypes="" />
                     </Types>
@@ -1172,6 +1186,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="1" bbMin="-1.2,-0.5,-0.3" bbMax="0.3,0.75, 2" id="idPilotEnterPosActivation" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_sit_pos" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotZeroGEnterPosActivation" />
       </Activations>
       <Enter>
         <Seats>
@@ -1201,7 +1216,7 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- SeatDriver's seat  -->
-    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" zerogEnterHelper="pilot_enterzerog_pos" allowZeroGExit="1"  updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -1221,18 +1236,22 @@
       </Views>
  			<WaitFor>
 				<Enter>
-					<State animation="Cockpit" state="Deploy" />
+					<State animation="Cockpit" state="Deploy" excludeTags="zerog" />
+					<State animation="Canopy" state="Open" />
 				</Enter>
 				<Exit>
-					<State animation="Cockpit" state="Deploy" />
+					<State animation="Cockpit" state="Deploy" excludeTags="zerog" />
+					<State animation="Canopy" state="Open" />
 				</Exit>
 			</WaitFor>
 			<PostAction>
 				<Enter>
-					<State animation="Cockpit" state="Retract" />
+					<State animation="Cockpit" state="Retract" excludeTags="zerog" />
+					<State animation="Canopy" state="Close" />
 				</Enter>
 				<Exit>
-					<State animation="Cockpit" state="Retract" />
+					<State animation="Cockpit" state="Retract" excludeTags="zerog" />
+					<State animation="Canopy" state="Close" />
 				</Exit>
 			</PostAction> 
       <!-- Begin actions for this seat-->
@@ -1295,6 +1314,8 @@
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
                 <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1387,7 +1408,6 @@
         <FirstPerson scale="1.0" x_offset="0" y_offset="-0.46" z_offset="0.1" />
         <ThirdPerson scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.035" />
       </FixedVisorSettings>
-			<ElectronicAccessSettings scale="0.75" />
 	<HUDAccess primary="0">
 		<Tab name="Overview" />
 		<Tab name="Grouping" />
@@ -1404,12 +1424,8 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="280" maxEngineThrust="190" maxRetroThrust="60" maxDirectionalThrust="80" maxAngularVelocity="130,150,140" maxAngularAcceleration="240,180,270" maxJerk="50.0" maxAngJerk="50.0" maxTorqueAlpha="120.0,137.5,120.0" maxTorqueAngle="10,18,10">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="190" maxRetroThrust="60" maxDirectionalThrust="80" maxAngularAcceleration="240,180,270">
 	  <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
-		<EngineStartSound sound="" />
-		<EngineRunSound sound="" />
-		<EngineStopSound sound="" />
-		<AmbienceSound sound="Play_SSAM_Orig_M50_Ambient_Interior_Start_Loop" />
 		<PassByLoopSound sound="Play_SSPB_ORIG_M50_Loop" />
 		<PassBySound sound="Play_SSPB_ORIG_M50_800ms_0to100mtrs" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
 		<DuressSound sound="Play_SSDD_ORIG_M50_Cockpit_Shake" damage_floor="24.0" damage_buffer="90.0" />
@@ -1418,6 +1434,21 @@
 				<Contrail helper="wing_right_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
 				<Contrail helper="wing_left_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
 			</Contrails>-->
+
+	<IFCS>
+		<goalTimes opcomTime="3.5" ropcomTime=".7, .5, .7" cruiseTime="9"/>
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->		
+
+		<maxVelocity normal="280" />
+		<linearJerk pos="202,282,222" neg="202,82,222" />
+		<linearScale pos="1.1796, 1.0, 1" neg="1.1796, 1.0, 1.0" />
+		
+		<maxAngVelocity normal="110,130,120" boost="" />
+        <angularJerk pos="37, 80, 40" neg="37, 80, 40" />
+		<angularScale pos=".0718, .0529, .1719" neg=".0718, .0529, .1719" />
+        <maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+        <errorTorque maxAlpha="1,7,1" maxAngle="18,18,18" />
+	</IFCS>
     </Spaceship>
   </MovementParams>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1428,7 +1459,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="pilot_enter_pos" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_red" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -1500,6 +1531,11 @@
   <Attachments>
     <!--<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" filename ="Objects/Spaceships/Anvil_Hornet/pilot_umbilical.chr" scopeContext ="Umbilical"/> -->
   </Attachments>
+  
+  <Paints>
+	<Paint name="Pirate" material="Objects\Spaceships\Ships\ORIG\M50\orig_m51_prt.mtl" />
+  </Paints>
+  
     <Modifications>
 	<Modification name="PirateSwarm">
       <Elems>
@@ -1507,17 +1543,17 @@
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.46,0.28,0.36" />
         <Elem idRef="idMain_Part" name="name" value="Origin_M50" />
         <!-- Nerf the health of this ship -->
-        <Elem idRef="idNose" name="damageMax" value="45" />
-        <Elem idRef="idCanopy" name="damageMax" value="34" />
-		<Elem idRef="idBody" name="damageMax" value="150" />
-		<Elem idRef="idEngineCover" name="damageMax" value="60" />
-		<Elem idRef="idWingLeft" name="damageMax" value="45" />
-		<Elem idRef="idPowerplantHousingLeft" name="damageMax" value="37.5" />
-		<Elem idRef="idWingRight" name="damageMax" value="45" />
-		<Elem idRef="idPowerplantHousingRight" name="damageMax" value="37.5" />
-		<Elem idRef="idTail" name="damageMax" value="45" />
-		<Elem idRef="idWingFrontLeft" name="damageMax" value="45" />
-		<Elem idRef="idWingFrontRight" name="damageMax" value="45" />
+        <Elem idRef="idNose" name="damageMax" value="117.5" />
+        <Elem idRef="idCanopy" name="damageMax" value="100" />
+		<Elem idRef="idBody" name="damageMax" value="325" />
+		<Elem idRef="idEngineCover" name="damageMax" value="140" />
+		<Elem idRef="idWingLeft" name="damageMax" value="120" />
+		<Elem idRef="idPowerplantHousingLeft" name="damageMax" value="105" />
+		<Elem idRef="idWingRight" name="damageMax" value="120" />
+		<Elem idRef="idPowerplantHousingRight" name="damageMax" value="105" />
+		<Elem idRef="idTail" name="damageMax" value="115" />
+		<Elem idRef="idWingFrontLeft" name="damageMax" value="100" />
+		<Elem idRef="idWingFrontRight" name="damageMax" value="100" />
       </Elems>
     </Modification>
   </Modifications>

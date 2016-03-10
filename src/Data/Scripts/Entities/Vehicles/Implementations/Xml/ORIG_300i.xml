@@ -68,9 +68,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="ORIG_300i" />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -130,7 +130,11 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <Parts>
     <Part name="ORIG_300I" class="Animated" mass="10000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
-      <Animated filename="Objects/Spaceships/Ships/ORIG/300i/ORIG_300i.cga" filenameDestruction="Objects/Spaceships/Ships/ORIG/300i/ORIG_300i_Damaged.cga" id="idShipGeometry" />
+			<Animated filename="Objects/Spaceships/Ships/ORIG/300i/ORIG_300i.cga" filenameDestruction="Objects/Spaceships/Ships/ORIG/300i/ORIG_300i_Damaged.cga" id="idShipGeometry">
+				<PhysicsGrid enableLocalGrid="1" gravity="0,0,-9.81">
+					<PhysProxy filename="Objects\Spaceships\Ships\ORIG\300I\ORIG_300I_No_Collide.cgf" />
+				</PhysicsGrid>
+			</Animated>
       <Parts>
         <Part name="Tail" damageMax="1250" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" skipPart="0" id="id_300i_Tail">
           <AnimatedJoint filename="" id="idEngineHousing" />
@@ -527,6 +531,20 @@
                 </Types>
               </ItemPort>
             </Part>
+			<Part name="hardpoint_quantum_drive" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Drive" requiredTags="">
+					<Types>
+						<Type type="Avionics" subtypes="QDrive" />
+					</Types>
+				</ItemPort>
+			</Part>
+			<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Fuel Tank" requiredTags="">
+					<Types>
+						<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+					</Types>
+				</ItemPort>
+			</Part>
             <Part name="Body_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
                 <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_25_PFX_debris_1" partName="Body" />
@@ -929,8 +947,8 @@
             </Part>
             <Part name="hardpoint_thruster_front_left_upper" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -Z retro upper front left">
-                <Pitch min="-35" max="60" />
-                <Yaw min="-75" max="20" />
+                <Pitch min="-35" max="90" />
+                <Yaw min="-90" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="" />
                 </Types>
@@ -966,7 +984,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_shield_generator" class="ItemPort">
-              <ItemPort minsize="1" maxsize="3" flags="" display_name="Shield Slot">
+              <ItemPort minsize="1" maxsize="3" flags="invisible" display_name="Shield Slot">
                 <Types>
                   <Type type="Shield" subtypes="" />
                 </Types>
@@ -1052,11 +1070,6 @@
             <Part name="Body_Paint" class="AnimatedJoint">
               <AnimatedJoint filename="" filenameDestruction="" id="idBodyPaint" />
             </Part>
-			<Part name="interiorPhys_helper" class="Interior">
-			  <Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81">
-				<PhysProxy filename="Objects\Spaceships\Ships\ORIG\300I\ORIG_300I_No_Collide.cgf" />
-			  </Interior>
-			</Part>
             <Part name="hardpoint_armor" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Armor Slot">
                 <Types>
@@ -1337,7 +1350,7 @@
                           <AnimatedJoint filename="" filenameDestruction="" id="idLeftWingFlap" />
                         </Part>
                         <Part name="hardpoint_radiator_left" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="1" flags="" display_name="Left Cooler Slot" requiredTags="">
+                          <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Cooler Slot" requiredTags="">
                             <Types>
                               <Type type="Cooler" subtypes="" />
                             </Types>
@@ -1623,7 +1636,7 @@
                   </Parts>
                 </Part>
                 <Part name="hardpoint_radiator_right" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot" requiredTags="">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible right" display_name="Right Cooler Slot" requiredTags="">
                     <Types>
                       <Type type="Cooler" subtypes="" />
                     </Types>
@@ -1976,6 +1989,7 @@
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_left" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" />
         <Activation type="OnUsed" param1="helper" param2="pilot_exit_helper_left" distance="0" bbMin="-1,-1,-1.5" bbMax="1,0.5,1" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_zerog_enter_use_pos_left" distance="1.25" bbMin="-1.75,0,-2" bbMax="1.5,1.5,1" activateOnlyInZeroG="1" />
       </Activations>
       <Enter>
         <Doors>
@@ -1988,6 +2002,7 @@
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_right" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" />
         <Activation type="OnUsed" param1="helper" param2="pilot_exit_helper_right" distance="0" bbMin="-1,-1,-1.5" bbMax="1,0.5,1" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_zerog_enter_use_pos_right" distance="1.25" bbMin="-1.75,0,-2" bbMax="1.5,1.5,1" activateOnlyInZeroG="1" />
       </Activations>
       <Enter>
         <Doors>
@@ -2042,19 +2057,23 @@
   <Interior bbSize="4.5,8,2.5" bbCenter="0,0.5,1.1">
     <Doors>
       <Door name="DoorLeftGullWingDoor">
-        <Enter startHelper="pilot_enter_pos_left" endHelper="pilot_exit_pos_left">
+        <Enter startHelper="pilot_enter_pos_left" endHelper="pilot_exit_pos_left" zerogStartHelper="pilot_zerog_enter_pos_left">
           <State animation="Left_GullWing_Door" state="Open" />
+          <State animation="LeftLadder" state="Open" excludeTags="zerog"  />
         </Enter>
-        <Exit startHelper="pilot_exit_pos_left" endHelper="pilot_enter_pos_left">
+        <Exit startHelper="pilot_exit_pos_left" endHelper="pilot_enter_pos_left" zerogStartHelper="pilot_zerog_exit_pos_left">
           <State animation="Left_GullWing_Door" state="Open" />
+          <State animation="LeftLadder" state="Open" excludeTags="zerog"  />
         </Exit>
       </Door>
       <Door name="DoorRightGullWingDoor">
-        <Enter startHelper="pilot_enter_pos_right" endHelper="pilot_exit_pos_right">
+        <Enter startHelper="pilot_enter_pos_right" endHelper="pilot_exit_pos_right" zerogStartHelper="pilot_zerog_enter_pos_right">
           <State animation="Right_GullWing_Door" state="Open" />
+          <State animation="RightLadder" state="Open" excludeTags="zerog"  />
         </Enter>
-        <Exit startHelper="pilot_exit_pos_right" endHelper="pilot_enter_pos_right">
+        <Exit startHelper="pilot_exit_pos_right" endHelper="pilot_enter_pos_right" zerogStartHelper="pilot_zerog_exit_pos_right">
           <State animation="Right_GullWing_Door" state="Open" />
+          <State animation="RightLadder" state="Open" excludeTags="zerog"  />
         </Exit>
       </Door>
     </Doors>
@@ -2155,6 +2174,8 @@
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
                 <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -2265,7 +2286,7 @@
 	</HUDAccess>	  
       <ScreensRecord record="Screens_ORIG_300i_Pilot" />
     </Seat>
-    <Seat name="SeatBed" enterHelper="Bed_enter_pos" sitHelper="Bed_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+    <Seat name="SeatBed" enterHelper="Bed_enter_pos" sitHelper="Bed_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2286,21 +2307,34 @@
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="230" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="110,160,110" maxAngularAcceleration="950,950,50" maxJerk="100.0" maxAngJerk="50.0" id="idMovementStats">
-      <SoundParams dmgBufferDecay="0.2">
-        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <RunSound running_sound="" />
-        <AmbientSound running_sound="Play_SSAM_ORIG_300i_Interior" />
-        <PassByLoopSound sound="Play_SSPB_ORIG_300_PassBy_Loop" />
-        <PassBySound sound="Play_SSPB_ORIG_300_PassBy_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularAcceleration="950,950,50" id="idMovementStats">
+      <AudioParams dmgBufferDecay="0.2">
+        <PassByLoopSound sound="Play_SSPB_ORIG_300_PassBy_Loop" id="idPassByLoopSound" />
+        <PassBySound sound="Play_SSPB_ORIG_300_PassBy_800ms_0to100mtrs" leadinTime="0.76" triggerDistance="100" cooldownTime="2" id="idPassBySoundNear" />
+		<PassBySound sound="Play_SSPB_ORIG_300_2500ms_0to200meters" leadinTime="1.8" triggerDistance="250" cooldownTime="2" id="idPassBySoundFar" />
         <DuressSound sound="Play_SSDM_ORIG_300_Cockpit_Shake" damage_floor="30.0" damage_buffer="95.0" />
-      </SoundParams>
+      </AudioParams>
       <Animations />
       <Contrails>
         <!--<Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
         <!--<Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
       </Contrails>
+	  
+      <IFCS id="IFCSxml">
+        <goalTimes opcomTime="4.4" ropcomtime="1.0, 0.55, 1.0" cruisetime="15"/> <!-- opcomTime ropcomTime cruiseTime -->
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+
+		<maxVelocity normal="230" />		
+		<linearJerk pos="85.2515,124.9253,59.6338" neg="85.2515,36.8147,59.6338" />
+		<linearScale pos="1.0, 0.5995, 1.3202" neg="1.0, 0.8817, 1.3914" />
+        
+		<maxAngVelocity normal="68,120,68" boost="" />
+		<angularJerk pos="8.4112, 49.0689, 8.4112" neg="8.4112, 49.0689, 8.4112" />
+		<angularScale pos="0.2188, 0.1926 ,0.1434" neg="0.2188, 0.1926 ,0.1434" />
+        <maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+        <errorTorque maxAlpha="10,137,10" maxAngle="18,18,18" />
+      </IFCS>	  
+	  
     </Spaceship>
   </MovementParams>
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
@@ -2309,7 +2343,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="ORIG_300i" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_deathmask_small1" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -2466,9 +2500,16 @@
         <Elem idRef="idRearLeftTopThrusterHardpoint" name="transitionOffset" value="-1.2, -0.5, 0" />
         <Elem idRef="idRearLeftMidThrusterHardpoint" name="transitionOffset" value="-1.5, -0.45, 0.05" />
         <Elem idRef="idRearLeftBottomThrusterHardpoint" name="transitionOffset" value="-1.9, -0.35, -0.55" />
+		<!-- Audio overrrides for 315p -->
+		<Elem idRef="idPassByLoopSound" name="sound" value="Play_SSPB_ORIG_315p_Loop" /> 
+		<Elem idRef="idPassBySoundNear" name="sound" value="Play_SSPB_ORIG_315p_600ms_0to100mt" />
+		<Elem idRef="idPassBySoundNear" name="leadinTime" value="0.6" />
+		<Elem idRef="idPassBySoundFar" name="sound" value="Play_SSPB_ORIG_315p_2000ms_0to200meters" />
+		<Elem idRef="idPassBySoundFar" name="cooldownTime" value="2.5" />
+		<Elem idRef="idPassBySoundFar" name="leadinTime" value="2" />
       </Elems>
     </Modification>
-    <Modification name="325a">
+    <Modification name="325a" patchFile="Modifications/ORIG_325a">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="Origin JumpWorks 325a" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.42,0.32,0.46" />
@@ -2502,7 +2543,9 @@
         <Elem idRef="id_300i_Tail" name="damageMax" value="650" />
       </Elems>
     </Modification>
-    <Modification name="350r">
+	
+	
+    <Modification name="350r" patchFile="Modifications/ORIG_350r">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="Origin 350r" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.40,0.28,0.45" />
@@ -2542,10 +2585,8 @@
         <Elem idRef="idBaseEngine" name="skipPart" value="1" />
         <Elem idRef="idLeftEngine" name="skipPart" value="0" />
         <Elem idRef="idRightEngine" name="skipPart" value="0" />
-        <Elem idRef="idMovementStats" name="maxCruiseSpeed" value="300" />
         <Elem idRef="idMovementStats" name="maxBoostSpeed" value="500" />
         <Elem idRef="idMovementStats" name="maxRetroThrust" value="240" />
-        <Elem idRef="idMovementStats" name="maxAngularVelocity" value="125,160,125" />
         <Elem idRef="idMovementStats" name="maxDirectionalThrust" value="880" />
         <Elem idRef="idMain_Part" name="mass" value="12000" />
         <Elem idRef="id_300i_Tail" name="skipPart" value="1" />
@@ -2560,6 +2601,13 @@
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/UI/Ships/ORIG/350R/350R_UI.cga" />
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/ORIG/300_series/350r/350R.mtl" />
         <Elem idRef="idShipPhysics" name="comOffset" value="0,1.4,1" />
+		<!-- Audio overrrides for 350r -->
+		<Elem idRef="idPassByLoopSound" name="sound" value="Play_SSPB_ORIG_350r_Loop" /> 
+		<Elem idRef="idPassBySoundNear" name="sound" value="Play_SSPB_ORIG_350r_650ms_0to100mt" />
+		<Elem idRef="idPassBySoundNear" name="leadinTime" value="0.65" />
+		<Elem idRef="idPassBySoundFar" name="sound" value="Play_SSPB_ORIG_350r_2500ms_0to200meters" />
+		<Elem idRef="idPassBySoundFar" name="cooldownTime" value="3.2" />
+		<Elem idRef="idPassBySoundFar" name="leadinTime" value="2.5" />
       </Elems>
     </Modification>
 	<Modification name="PirateSalvage">
@@ -2587,15 +2635,15 @@
         <Elem idRef="idMainPart" name="name" value="ORIG_300i_Pirate" />
         <!-- Nerf the health of this ship -->
         <Elem idRef="id_300i_Tail" name="damageMax" value="160" />
-        <Elem idRef="id_300i_Body" name="damageMax" value="130" />
+        <Elem idRef="id_300i_Body" name="damageMax" value="300" />
 		<Elem idRef="id_300i_Canopy_Glass" name="damageMax" value="60" />
-		<Elem idRef="id_300i_Canopy_Back" name="damageMax" value="70" />
-		<Elem idRef="idLeftWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idLeftTopWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRightWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRightTopWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRearStabilizer_Part" name="damageMax" value="36" />
-		<Elem idRef="id_350r_Tail" name="damageMax" value="215" />
+		<Elem idRef="id_300i_Canopy_Back" name="damageMax" value="100" />
+		<Elem idRef="idLeftWing_Part" name="damageMax" value="160" />
+		<Elem idRef="idLeftTopWing_Part" name="damageMax" value="180" />
+		<Elem idRef="idRightWing_Part" name="damageMax" value="160" />
+		<Elem idRef="idRightTopWing_Part" name="damageMax" value="180" />
+		<Elem idRef="idRearStabilizer_Part" name="damageMax" value="180" />
+		<Elem idRef="id_350r_Tail" name="damageMax" value="200" />
       </Elems>
     </Modification>
 		<Modification name="PirateSwarm325a">
@@ -2604,16 +2652,16 @@
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.42,0.32,0.46" />
         <Elem idRef="idMainPart" name="name" value="ORIG_300i_Pirate" />
         <!-- Nerf the health of this ship -->
-        <Elem idRef="id_300i_Tail" name="damageMax" value="160" />
-        <Elem idRef="id_300i_Body" name="damageMax" value="130" />
-		<Elem idRef="id_300i_Canopy_Glass" name="damageMax" value="60" />
-		<Elem idRef="id_300i_Canopy_Back" name="damageMax" value="70" />
-		<Elem idRef="idLeftWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idLeftTopWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRightWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRightTopWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRearStabilizer_Part" name="damageMax" value="36" />
-		<Elem idRef="id_350r_Tail" name="damageMax" value="215" />
+        <Elem idRef="id_300i_Tail" name="damageMax" value="240" />
+        <Elem idRef="id_300i_Body" name="damageMax" value="450" />
+		<Elem idRef="id_300i_Canopy_Glass" name="damageMax" value="140" />
+		<Elem idRef="id_300i_Canopy_Back" name="damageMax" value="180" />
+		<Elem idRef="idLeftWing_Part" name="damageMax" value="260" />
+		<Elem idRef="idLeftTopWing_Part" name="damageMax" value="240" />
+		<Elem idRef="idRightWing_Part" name="damageMax" value="260" />
+		<Elem idRef="idRightTopWing_Part" name="damageMax" value="240" />
+		<Elem idRef="idRearStabilizer_Part" name="damageMax" value="260" />
+		<Elem idRef="id_350r_Tail" name="damageMax" value="300" />
 		<!--325A BODY-->
 		<Elem idRef="idVehicleClass" name="displayname" value="Origin JumpWorks 325a" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.42,0.32,0.46" />
@@ -2646,16 +2694,16 @@
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.40,0.28,0.45" />
         <Elem idRef="idMainPart" name="name" value="ORIG_350r_Pirate" />
         <!-- Nerf the health of this ship -->
-        <Elem idRef="id_300i_Tail" name="damageMax" value="160" />
-        <Elem idRef="id_300i_Body" name="damageMax" value="130" />
-		<Elem idRef="id_300i_Canopy_Glass" name="damageMax" value="60" />
-		<Elem idRef="id_300i_Canopy_Back" name="damageMax" value="70" />
-		<Elem idRef="idLeftWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idLeftTopWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRightWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRightTopWing_Part" name="damageMax" value="65" />
-		<Elem idRef="idRearStabilizer_Part" name="damageMax" value="36" />
-		<Elem idRef="id_350r_Tail" name="damageMax" value="215" />
+        <Elem idRef="id_300i_Tail" name="damageMax" value="200" />
+        <Elem idRef="id_300i_Body" name="damageMax" value="350" />
+		<Elem idRef="id_300i_Canopy_Glass" name="damageMax" value="100" />
+		<Elem idRef="id_300i_Canopy_Back" name="damageMax" value="120" />
+		<Elem idRef="idLeftWing_Part" name="damageMax" value="200" />
+		<Elem idRef="idLeftTopWing_Part" name="damageMax" value="220" />
+		<Elem idRef="idRightWing_Part" name="damageMax" value="200" />
+		<Elem idRef="idRightTopWing_Part" name="damageMax" value="220" />
+		<Elem idRef="idRearStabilizer_Part" name="damageMax" value="220" />
+		<Elem idRef="id_350r_Tail" name="damageMax" value="260" />
 		<!--350R BODY-->
 		<Elem idRef="idBody" name="filename" value="Objects\Spaceships\Ships\ORIG\300_series\350r\350R.cga" />
         <Elem idRef="idBody" name="filenameDestruction" value="Objects\Spaceships\Ships\ORIG\300_series\350r\350R_Damaged.cga" />
@@ -2713,6 +2761,7 @@
         <Elem idRef="idShipPhysics" name="comOffset" value="0,1.4,1" />
       </Elems>
     </Modification>
+
 	<Modification name="SQ42">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="ORIG 300i Pirate" />
@@ -2732,4 +2781,10 @@
       </Elems>
     </Modification>
   </Modifications>
+  
+  <Paints>
+	<Paint name="Pirate350r" material="Objects\Spaceships\Ships\ORIG\300_series\350r\350r_prt.mtl" />
+	<Paint name="Pirate325a" material="Objects\Spaceships\Ships\ORIG\300_series\325a\325a_prt.mtl" />
+  </Paints>	
+
 </Vehicle>

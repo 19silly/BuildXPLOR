@@ -137,10 +137,12 @@ function SpawnPoint:Event_Spawn()
 			vehicle:SetWorldAngles(g_Vectors.temp_v1);
 		else
 			player:SetWorldPos(self:GetWorldPos(g_Vectors.temp_v1));		
-			self:GetAngles(g_Vectors.temp_v1);
-			g_Vectors.temp_v1.x = 0;
-			g_Vectors.temp_v1.y = 0;
+			self:GetWorldAngles(g_Vectors.temp_v1);
+			-- Note that setting the view angles before the world angles is
+			-- important - PlayerSetViewAngles modifies the player's rotation
+			-- without the x & y components, SetWorldAngles sets it correctly.
 			player.actor:PlayerSetViewAngles( g_Vectors.temp_v1 );
+			player:SetWorldAngles(g_Vectors.temp_v1);
 		end
 	
 		self:ActivateOutput("Spawn", player.id);

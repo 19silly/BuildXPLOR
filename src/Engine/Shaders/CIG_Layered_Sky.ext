@@ -1,0 +1,32 @@
+////////////////////////////////////////////////////////////////////////////
+//Distance Celestial Objects Shader extension for Sandbox
+//Notes:
+//Can use Diffuse with Tiling and LDR to HDR 
+//OR
+//Can use BC6U Cube-Map combined with an Opacity Map must be enabled  manually through shader generation parameters.
+//Distance Celestial Objects CFX for effect file
+////////////////////////////////////////////////////////////////////////////
+
+Version (1.00)
+
+Property
+{
+  Name = %HDR_CUBEMAP
+  Mask = 0x1
+  Property    (Using HDR Cube-Map (requires opacity map))
+  Description (Tells the Shader you are using an BC6U HDR Cube-Map in the Environment Map slot )
+  DependencySet = $TEX_EnvCM
+  DependencyReset = $TEX_EnvCM
+}
+
+Property
+{
+  Name = %PLANETOID_IN_CUSTOM_MAP
+  Mask = 0x8
+  Property    (This Space for Rent)
+  Description (Use Diffuse Map and Alpha test)
+  DependencySet = $TEX_Custom
+  DependencyReset = $TEX_Custom
+}
+
+/////////////////////// eof ///

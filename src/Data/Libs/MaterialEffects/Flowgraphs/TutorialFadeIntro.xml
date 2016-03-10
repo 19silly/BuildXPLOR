@@ -1,0 +1,82 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="MaterialFX:HUDStartFX" pos="790,2600,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2" Class="MaterialFX:HUDEndFX" pos="1540,2690,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="78" Class="Actor:LocalPlayer" pos="1457.6475,3384.4492,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="79" Class="Actor:LocalPlayer" pos="1447.6475,3164.4492,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="80" Class="Interpol:Float" pos="1207.6475,3204.4492,0" flags="0">
+   <Inputs StartValue="0" EndValue="1" Time="2" UpdateFrequency="1"/>
+  </Node>
+  <Node Id="81" Class="Image:EffectAlienInterference" pos="1447.6475,3204.4492,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="0" AlienInterference_Amount="0" clr_AlienInterference_Color="0.65237,0.43134,0.541798"/>
+  </Node>
+  <Node Id="82" Class="Image:ColorCorrection" pos="1447.6475,2244.4492,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="1" Global_User_ColorC="0" Global_User_ColorM="0" Global_User_ColorY="0" Global_User_ColorK="0" Global_User_Brightness="1" Global_User_Contrast="1" Global_User_Saturation="1" Global_User_ColorHue="0"/>
+  </Node>
+  <Node Id="83" Class="Interpol:Float" pos="1207.6475,2504.4492,0" flags="0">
+   <Inputs StartValue="0" EndValue="1" Time="2.5" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="84" Class="Actor:LocalPlayer" pos="1447.6475,2204.4492,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="85" Class="Interpol:Float" pos="1207.6475,2374.4492,0" flags="1">
+   <Inputs StartValue="2" EndValue="1" Time="4" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="86" Class="Interpol:Float" pos="1207.6475,2244.4492,0" flags="0">
+   <Inputs StartValue="0.25" EndValue="0" Time="3" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="87" Class="Image:EffectDepthOfField" pos="1447.6475,2954.4492,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="0" Dof_User_Active="1" Dof_User_FocusDistance="1" Dof_User_FocusRange="2" Dof_User_BlurAmount="1" Dof_MaxCoC="12" Dof_CenterWeight="1"/>
+  </Node>
+  <Node Id="88" Class="Image:FilterVisualArtifacts" pos="1457.6475,3424.4492,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="0" VisualArtifacts_Vsync="0" VisualArtifacts_VsyncFreq="1" VisualArtifacts_Interlacing="0" VisualArtifacts_InterlacingTile="1" VisualArtifacts_InterlacingRot="0" VisualArtifacts_SyncWavePhase="0" VisualArtifacts_SyncWaveFreq="0" VisualArtifacts_SyncWaveAmplitude="0" FilterArtifacts_ChromaShift="0" FilterArtifacts_Grain="0" clr_VisualArtifacts_ColotTint="1,1,1" tex_VisualArtifacts_Mask=""/>
+  </Node>
+  <Node Id="89" Class="Interpol:Float" pos="1207.6475,3424.4492,0" flags="0">
+   <Inputs StartValue="0" EndValue="2" Time="2.5" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="90" Class="Interpol:Float" pos="1207.6475,3554.4492,0" flags="0">
+   <Inputs StartValue="0" EndValue="0.5" Time="2.5" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="91" Class="Image:ScreenFader" pos="1207.6475,2684.4492,0" flags="0">
+   <Inputs FadeGroup="0" UseCurColor="1" FadeInTime="2.5" FadeOutTime="3" color_FadeColor="1,1,1" tex_TextureName="" UpdateAlways="0"/>
+  </Node>
+  <Node Id="92" Class="Interpol:Float" pos="1207.6475,2954.4492,0" flags="0">
+   <Inputs StartValue="0" EndValue="2" Time="2" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="93" Class="Actor:LocalPlayer" pos="1447.6475,2914.4492,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="80" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="1" portIn="Enabled" portOut="Started" enabled="1"/>
+  <Edge nodeIn="83" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="89" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="90" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="91" nodeOut="1" portIn="FadeOut" portOut="Started" enabled="1"/>
+  <Edge nodeIn="92" nodeOut="1" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="78" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="79" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="80" portIn="AlienInterference_Amount" portOut="Value" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="83" portIn="Global_User_Saturation" portOut="Value" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="84" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="85" portIn="Trigger" portOut="Done" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="85" portIn="Global_User_Brightness" portOut="Value" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="86" portIn="Global_User_ColorC" portOut="Value" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="89" portIn="VisualArtifacts_Interlacing" portOut="Value" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="90" portIn="FilterArtifacts_ChromaShift" portOut="Value" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="92" portIn="Dof_User_BlurAmount" portOut="Value" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="93" portIn="entityId" portOut="entityId" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

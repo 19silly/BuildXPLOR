@@ -1,0 +1,160 @@
+<!--
+   WARNING This Template is used to generate Weapon XMLS
+-->
+
+<!-- Gatling Template -->
+<!-- GT-220 Mantis -->
+<item name="GATS_BallisticGatling_S3" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_GATS_BallisticGatling_S3">
+  <params>
+	<param name="adb" value="Items\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="item_NameGATS_BallisticGatling_S3" /> <!-- Replace me with Localization -->
+    <param name="itemManufactor" value="GATS" />
+    <param name="itemSize" value="3" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="itemPortTags" value="20mm S3"/>
+	<param name="requiredPortTags" value="" />
+    <param name="display_name"	value="item_NameGATS_BallisticGatling_S3" />
+	<param name="weaponRequireAmmoBox" value="1" />
+	<param name="weaponDelayChangeAmmoBox" value="0.75" />
+	<param name="hitpoints" value="200" />
+	<param name="mass" value="300" />
+	<param name="tags" value="130"/>
+	<param name="price" value="16000"/>
+	<param name="itemImage" value="UI/mobiGlas/assets/PNG/DumpersDepot_items/GATS_BallisticGatling_S3.tif"/>
+	<itemStats>
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
+	</itemStats>
+  </params>
+  
+  <firemodes>
+		<firemode name="Weapon" type="Rapid">
+			<fire>
+				<param name="rate" value="900" />
+				<param name="clip_size" value="0" />
+				<param name="max_clips" value="0" />
+				<param name="nearmiss_signal" value="OnNearMiss" />
+				<param name="helper_fp" value="muzzle_out_override" />
+				<param name="helper_tp" value="muzzle_out_override" />
+				<param name="fireLocatorType" value = "BR" />
+			</fire>
+			
+			<rapid>
+				<param name="anim_max_speed" value="1.0" />
+				<param name="min_rate" value="300" />
+				<param name="min_speed" value="0" />
+				<param name="max_speed" value="6.0" />
+				<param name="acceleration" value="2" />
+				<param name="deceleration" value="-2.5" />
+				<param name="barrel_attachment" value="barrel_rotate" />
+				<param name="start_fire_audio_trigger" value="Play_WPHA_GATS_BallisticGatling_S3_Fire_Placeholder" />
+				<param name="stop_fire_audio_trigger" value="Stop_WPHA_GATS_BallisticGatling_S3_Fire_Placeholder" />
+				<param name="audio_looped" value="1" />
+			</rapid>
+			
+			<tracer>
+				<firstperson frequency="1" helper="muzzle_out_override" /> 
+				<thirdperson frequency="1" helper="muzzle_out_override" />
+			</tracer>
+			
+			<spread>
+				<param name="min" value="0" />
+				<param name="max" value="3" />
+				<param name="attack" value="0.3" />
+				<param name="decay" value="0.45" />
+			</spread>
+
+			<pools>
+				<!-- This is Pool manipulation per shot -->
+				<pool class="Power" value="-1" />
+				<pool class="Heat" value="15" />
+			</pools>
+		</firemode>
+	</firemodes>
+
+  <Pipes>
+
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="0" rate="0" />
+      <States>
+        <State state="Default">
+          <Value value="-3" ignorepool="0"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+	
+	<!-- 
+	
+	prioType = the actual priority of the item. In the Default loadouts it usually goes like this.
+	prio# = num	= prioType
+	prio0 = 0 	= prioType= critical
+	prio1 = 10 	= prioType= aux
+	prio2 = 99 	= prioType= manageable
+	
+	-->
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="500" rate="18" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+	  <States>
+        <State state="Active">
+          <Pipe name="Power" value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+
+  </Pipes>
+
+  <heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="1" />
+		<param name="damageMax" value="3" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+  </heatOverflow>
+
+ 	<portParams>
+	<ports>
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="3" flags="right" display_name="Ammo Box #1">
+			<Types>
+				<Type type="AmmoBox" subtypes="20mm_AMMO"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="3" flags="left" display_name="Ammo Box #2">
+			<Types>
+				<Type type="AmmoBox" subtypes="20mm_AMMO"/>
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+	<mobiGlas>
+		<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+	</mobiGlas>
+	
+   <defaultLoadout>
+    <Items>
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_750rd_20mm" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_750rd_20mm" />
+    </Items>
+  </defaultLoadout>
+  
+</item>

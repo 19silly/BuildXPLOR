@@ -1,0 +1,40 @@
+<Graph isModule="1" moduleName="DebugInterface_KillShip" GOSTType="0" GOSTStateGroup="" GOSTState="" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DebugInterface_KillShip" pos="80,0,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DebugInterface_KillShip" pos="1760,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="165" Class="Actor:LocalPlayer" pos="420,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="940" Class="Mission:GameTokenSet" pos="740,0,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" gametoken_Token="DebugInterfaceDisable" Value="1"/>
+  </Node>
+  <Node Id="950" Class="Mission:GameTokenSet" pos="1380,0,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" gametoken_Token="DebugInterfaceDisable" Value="0"/>
+  </Node>
+  <Node Id="951" Class="Time:Delay" pos="1120,0,0" flags="0">
+   <Inputs delay="5" resetOnInput="0"/>
+  </Node>
+  <Node Id="952" Name="Kill_Last_Spawned_Ship" Class="_comment" pos="420,-60,0" flags="0"/>
+  <Node Id="953" Name="Disable_Debug_Interface" Class="_comment" pos="740,-60,0" flags="0"/>
+  <Node Id="954" Name="Enable_Debug_Interface" Class="_comment" pos="1380,-60,0" flags="0"/>
+  <Node Id="960" Class="Vehicle:GetLinkedVehicle" pos="420,60,0" flags="0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="961" Class="Entity:Remove" pos="420,150,0" flags="0">
+   <Inputs EntityId="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="960" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="960" nodeOut="165" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="951" nodeOut="940" portIn="in" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="950" portIn="Success" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="950" nodeOut="951" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="940" nodeOut="960" portIn="Trigger" portOut="Vehicle Id" enabled="1"/>
+  <Edge nodeIn="961" nodeOut="960" portIn="Apply" portOut="Vehicle Id" enabled="1"/>
+  <Edge nodeIn="961" nodeOut="960" portIn="EntityId" portOut="Vehicle Id" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

@@ -38,18 +38,27 @@
 			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
-				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
-				<State state="Idle"><Value value="20" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
 			</States>
 		</Pipe>
 
 		<Pipe class="Fuel" prioType="critical">
 			<States>
 				<State state="Default"><Value value="0" /></State>
-				<State state="Boost"><Value value="-20" /></State>
+				<State state="Boost"><Value value="-200" /></State>
 			</States>
 		</Pipe>
 	</Pipes>
+	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
 	
 	<gimbal type="joint" >
 		<pitch 	joint="nozzle_pitch" 	min ="-10" max ="10" speed="120" accel="2400" animation ="%pitchAnim%" />
@@ -58,7 +67,7 @@
 	</gimbal> 
 	
 	<thrusters>
-	  <thruster type="vector" flags="main rear" maxThrust="1400000" >
+	  <thruster type="vector" flags="main rear" maxThrust="2000000" boostscale="2">
 	  </thruster>
   </thrusters>
   

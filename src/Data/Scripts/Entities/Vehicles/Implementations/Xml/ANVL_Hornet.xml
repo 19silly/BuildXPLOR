@@ -65,15 +65,15 @@
           </DamagesSubGroup>
         </DamagesSubGroups>
       </DamagesGroup>
-      <DamagesGroup name="Destroy">
+      <DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
         <DamagesSubGroups>
           <!-- SubGroup to Destroy Vehicle -->
-          <DamagesSubGroup delay="0" randomness="0">
+          <DamagesSubGroup delay="0.1" randomness="0.1">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="pilot_enter_pos" />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -100,20 +100,6 @@
           </DamagesSubGroup>
         </DamagesSubGroups>
       </DamagesGroup>
-      <!--<DamagesGroup name="DestroyEngine">
-				<DamagesSubGroups>
-					<DamagesSubGroup delay="0" randomness="0">
-						<DamageBehaviors>
-							<DamageBehavior class="MovementNotification">
-								<MovementNotification isDamageAlwaysFull="0"/>
-							</DamageBehavior>
-							<DamageBehavior class="Effect">
-								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
-							</DamageBehavior>
-						</DamageBehaviors>
-					</DamagesSubGroup>
-				</DamagesSubGroups>
-			</DamagesGroup>-->
     </DamagesGroups>
   </Damages>
   <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
@@ -336,7 +322,7 @@
               </Parts>
             </Part>
             <Part name="hardpoint_shield_generator" class="ItemPort">
-              <ItemPort minsize="2" maxsize="4" flags="" display_name="Shield Slot">
+              <ItemPort minsize="2" maxsize="4" flags="invisible" display_name="Shield Slot">
                 <Types>
                   <Type type="Shield" subtypes="" />
                 </Types>
@@ -369,7 +355,7 @@
                 <Part name="cockpit_center_console" class="AnimatedJoint">
                   <AnimatedJoint />
                   <Parts>
-                    <Part name="main_cockpit_control_stick" class="AnimatedJoint" id="idMainControlStick" />
+                    <Part name="main_cockpit_control_stick" class="AnimatedJoint" />
                     <Part name="hardpoint_seat" class="ItemPort">
                       <!-- Ventral Beacon attach point  -->
                       <ItemPort minsize="1" maxsize="1" flags="" display_name="Hornet Seat">
@@ -388,7 +374,7 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="main_cockpit_throttle" class="AnimatedJoint" id="idMainThrottle" />
+                <Part name="main_cockpit_throttle" class="AnimatedJoint" />
                 <Part name="main_cockpit_rear_throttle" class="AnimatedJoint" />
                 <Part name="main_cockpit_rear_control_stick" class="AnimatedJoint" />
               </Parts>
@@ -611,6 +597,20 @@
                             </Types>
                           </ItemPort>
                         </Part>
+						<Part name="hardpoint_quantum_drive" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Drive" requiredTags="">
+								<Types>
+									<Type type="Avionics" subtypes="QDrive" />
+								</Types>
+							</ItemPort>
+						</Part>
+						<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Fuel Tank" requiredTags="">
+								<Types>
+									<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+								</Types>
+							</ItemPort>
+						</Part>
                         <Part name="EngineHousing_Right_Section" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
                             <DetachFx effect="damage\damage_generic_old.uee.static.fire_small_long" joint="EngineHousing_Right_Section_75_PFX" partName="EngineHousing" />
@@ -717,6 +717,9 @@
                         <OptimalStates>
                           <Fixup pos="-2.9, -1.5, 0.8" />
                         </OptimalStates>
+                        <Thruster>
+                          <Params forceSpin="0.0, 0.25, 0.0" />
+                        </Thruster>
                       </ItemPort>
                     </Part>
                     <Part name="IntakeLeft" class="AnimatedJoint" damageMax="325" id="idInTakeLeft_Part" detachRatio="0" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
@@ -781,7 +784,7 @@
                         <Part name="IntakeLeft_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
                             <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Panel_E_25_PFX" partName="IntakeLeft" />
-                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Panel_E_25_PFX" />
+                            <DetachFx effect="Constellation.hitfx.tiny_smoke" joint="IntakeLeft_Panel_E_25_PFX" partName="IntakeLeft" pos_offset="-2.5,-2,-1" rot_offset="-1,0,0" />
                           </Effects>
                         </Part>
                         <Part name="IntakeLeft_Front" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -971,6 +974,9 @@
                             <OptimalStates>
                               <Fixup pos="-2.9, 1.5, 0.8" />
                             </OptimalStates>
+                            <Thruster>
+                              <Params forceSpin="0.0, 0.25, 0.0" />
+                            </Thruster>
                           </ItemPort>
                         </Part>
                       </Parts>
@@ -1031,7 +1037,7 @@
                         <Part name="WingLeftRear_Wing" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Parts>
                             <Part name="hardpoint_radiator_left" class="ItemPort">
-                              <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Cooler Slot" requiredTags="">
+                              <ItemPort minsize="1" maxsize="1" flags="left invisible" display_name="Left Cooler Slot" requiredTags="">
                                 <Types>
                                   <Type type="Cooler" subtypes="" />
                                 </Types>
@@ -1101,9 +1107,12 @@
                         <OptimalStates>
                           <Fixup pos="2.9, 1.5, 0.8" />
                         </OptimalStates>
+                        <Thruster>
+                          <Params forceSpin="0.0, 0.25, 0.0" />
+                        </Thruster>
                       </ItemPort>
                     </Part>
-                    <Part name="hardpoint_class_4_center" class="ItemPort" id="idHardpoint_Class_4_Center">
+                    <Part name="hardpoint_class_4_center" class="ItemPort" id="idHardpoint_Class_4_Center" skipPart="0" >
                       <ItemPort minsize="2" maxsize="5" flags="center" display_name="Top Turret Slot" displayPos="275,260" displayTop="1" requiredTags="" portTags="">
                         <Types>
                           <Type type="Turret" subtypes="BallTurret" />
@@ -1363,7 +1372,7 @@
                           </Parts>
                         </Part>
                         <Part name="hardpoint_radiator_right" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot" requiredTags="">
+                          <ItemPort minsize="1" maxsize="1" flags="right invisible" display_name="Right Cooler Slot" requiredTags="">
                             <Types>
                               <Type type="Cooler" subtypes="" />
                             </Types>
@@ -1408,6 +1417,9 @@
                             <OptimalStates>
                               <Fixup pos="2.9, -1.5, 0.8" />
                             </OptimalStates>
+                            <Thruster>
+                              <Params forceSpin="0.0, 0.25, 0.0" />
+                            </Thruster>
                           </ItemPort>
                         </Part>
                         <Part name="Body_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -1454,7 +1466,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotEnterPosActivation" />
-        <Activation type="OnUsed" param1="helper" param2="pilot_sit_pos" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotEnterPosActivation" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_sit_pos" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotZeroGEnterPosActivation" />
       </Activations>
       <Enter>
         <Seats>
@@ -1465,6 +1477,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="copilot_sit_pos" distance="3" bbMin="-3,-0.8,-2" bbMax="0,0.8,2.5" />
+        <Activation type="OnUsed" param1="helper" param2="copilot_sit_pos" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" />
       </Activations>
       <Enter>
         <Seats>
@@ -1478,7 +1491,7 @@
   <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" zerogEnterHelper="Nose_Cockpit" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" zerogEnterHelper="pilot_enterzerog_pos" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot" passengerHasBreathing="1">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -1637,6 +1650,8 @@
                 <ItemPort part="hardpoint_fuel_tank_left" />
                 <ItemPort part="hardpoint_fuel_tank_right" />
                 <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
+				<ItemPort part="hardpoint_quantum_drive" />
                 <!-- Debug Ports -->
                 <ItemPort part="hardpoint_debug_1" />
                 <ItemPort part="hardpoint_debug_2" />
@@ -1729,18 +1744,18 @@
         <SeatAction class="AnimateControlInputs">
           <AnimateControlInputs isAvailableDocked="1">
             <Parts>
-              <ControlPart part="main_cockpit_control_stick" id="idControlPartPilotStick">
+              <ControlPart part="main_cockpit_control_stick">
                 <Rotate_X input="pitch" direction="-1" min="-30" max="30" />
                 <Rotate_Y input="yaw" direction="1" min="-30" max="30" />
-                <Rotate_Z input="roll" direction="-1" minRange="-1" maxRange="1" min="-25" max="25" />
+                <Rotate_Z input="roll" direction="1" minRange="-1" maxRange="1" min="-25" max="25" />
               </ControlPart>
-              <ControlPart part="main_cockpit_throttle" id="idControlPartPilotThrottle">
+              <ControlPart part="main_cockpit_throttle">
                 <Rotate_X input="power" direction="-1" min="-60" max="60" />
               </ControlPart>
-              <ControlPart part="right_pedal">
+              <ControlPart part="right_pedal" id="idRightLegPedal">
                 <Rotate_X input="Throttle" direction="1" minRange="0" maxRange="1" min="0" max="-18" />
               </ControlPart>
-              <ControlPart part="left_pedal">
+              <ControlPart part="left_pedal" id="idLeftLegPedal">
                 <Rotate_X input="Brake" minRange="0" maxRange="1" min="0" max="-18" />
               </ControlPart>
               <ControlPart part="right_panel_toggle_switch_1">
@@ -1769,8 +1784,8 @@
         <SeatAction class="PassengerIK">
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
-              <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="throttle_IK_attach" blendTime="0" id="idPilotTrottleIK" />
-              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="joystick_IK_attach02" blendTime="0" id="idPilotJoystickIK" />
+              <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="throttle_IK_attach" blendTime="0" />
+              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="joystick_IK_attach" blendTime="0" />
               <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_attach" blendTime="0" />
               <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_attach" blendTime="0" />
             </Limbs>
@@ -1804,7 +1819,7 @@
       <ScreensRecord record="Screens_ANVL_Hornet_Pilot" />	  
     </Seat>
     <!-- Co Pilot's / Rear seat  ("CoPilot" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="CoPilot" enterHelper="" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_turret" visorType="remoteturret" hasGForceReactions="1" id="idCoPilotSeat">
+    <Seat name="CoPilot" enterHelper="" sitHelper="copilot_sit_pos" zerogEnterHelper="copilot_enterzerog_pos" allowZeroGExit="1"  updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_turret" visorType="remoteturret" hasGForceReactions="1" id="idCoPilotSeat" passengerHasBreathing="0">
       <!-- Begin views for this seat-->
       <Views>
 	  <!-- ball turret remote camera -->
@@ -1864,7 +1879,7 @@
           <SharedWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_turret_center" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_class_4_center" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
               </Items>
             </Settings>
           </SharedWeapons>
@@ -1921,9 +1936,9 @@
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
               <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="copilot_l_yoke_ik" blendTime="0" />
-              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="copilot_r_yoke_ik" blendTime="0" />
-              <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_attach" blendTime="0" />
-              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_attach" blendTime="0" />
+              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="copilot_joystick_IK_attach" blendTime="0" />
+              <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="back_left_pedal_ik_attach" blendTime="0"/>
+              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="back_right_pedal_ik_attach" blendTime="0"/>
             </Limbs>
           </PassengerIK>
         </SeatAction>
@@ -1939,16 +1954,12 @@
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,70.0,137.5" maxTorqueAngle="18,18,18" id="idMovementStats" >
-      <SoundParams dmgBufferDecay="0.19">
-        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <RunSound running_sound="" />
-        <AmbientSound sound="Play_SSAM_ANVL_Hornet_Cockpit" />
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularAcceleration="720,720,720" id="idMovementStats" >
+      <AudioParams dmgBufferDecay="0.19">
         <PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
-        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
-        <DuressSound sound="Play_SSDM_ANVL_Hornet_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
-      </SoundParams>
+        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+        <DuressSound sound="Play_SSDM_ANVL_Hornet_Cockpit_Shake" damage_floor="0" damage_buffer="90.0" />
+      </AudioParams>
       <Animations engine="Intake_Fans" />
       <Contrails>
         <!--<Contrail helper="wing_left_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" id="idContrailWing"/>-->
@@ -1956,6 +1967,33 @@
         <!--<Contrail helper="tail_right_contrail_pos" effect="" minSpeed="35" id="idContrailTail"/>-->
         <!--<Contrail helper="tail_left_contrail_pos" effect="" minSpeed="35" id="idContrailTail"/>-->
       </Contrails>
+	
+	<IFCS id="IFCSxml">
+		<goalTimes opcomTime="4.0" ropcomTime=".8, .5, .8" cruiseTime="15"/>
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+		
+		<maxVelocity normal="200" />
+		<linearJerk pos="51.9,128.1,98" neg="51.9,128.1,98" />
+		<linearScale pos="1.0, 1.0, 0.525" neg="1.0, 0.627, 0.533" />		
+
+		<maxAngVelocity normal="72,100,72" boost="" />		
+		<angularJerk pos="15.4, 54.8, 15.4" neg="15.4, 54.8, 15.4" />
+		<angularScale pos="0.37, 0.82, 0.44" neg="0.37, 0.82, 0.44" />
+		<maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+		<errorTorque maxAlpha="1,137,1" maxAngle="18,18,18" />
+	</IFCS>
+
+
+
+
+	<!-- <IFCS>
+        <linearJerk pos="98,200,98" neg="98,200,98" />
+		<linearScale pos="1.0, 1.0, 1.0" neg="1.0, 1.0, 1.0" />
+        <angularJerk pos="8.5, 20, 8.5" neg="8.5, 20, 8.5" />
+		<angularScale pos=".1280, .2692, .159" neg=".1279, .2692, .1597" />
+        <goalTimes opcomTime="4.0" ropcomTime=".8, .5, .8" cruiseTime="15"/>
+        <errorTorque maxAlpha="1,7,1" maxAngle="18,18,18" />
+      </IFCS> -->
     </Spaceship>
   </MovementParams>
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
@@ -1964,7 +2002,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="pilot_enter_pos" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_AI_ships" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -2051,6 +2089,7 @@
 		name=is the string name used to refer to the variable by other systems (SeatActionsAnimateControlInputs etc) and the "mapped" name of the variable in the VehiclePlayerControls dynamic variable list
 		value=is the initial value of the variable. If not defined this will default to 0. All variables in this system are floats.
 	 -->
+	 
   <Variables>
     <Variable name="rightPanelToggleSwitch1" value="0" />
     <Variable name="rightPanelToggleSwitch2" value="0" />
@@ -2082,6 +2121,7 @@
       </Tags>
     </TagsList>
   </GeomTags>
+  
   <Modifications>
     <Modification name="F7A">
       <!-- Military -->
@@ -2111,7 +2151,7 @@
         <Elem idRef="idVehicleClass" name="displayname" value="Anvil Hornet F7CR Tracker" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.45,0.42,0.35" />
         <Elem idRef="idPlaceholderExtras" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_R/ANVL_Hornet_F7C_R.cga" />
-        <!-- HAX do not allow items here -->
+        <Elem idRef="idHardpoint_Class_4_Center" name="skipPart" value="1" />
         <Elem idRef="idHardpoint_Class_4_Center" name="name" value="" />
         <!-- Geom Tags for Holo Table -->
         <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" />
@@ -2125,7 +2165,7 @@
         <Elem idRef="idVehicleClass" name="displayname" value="Anvil Hornet F7CS Ghost" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.45,0.41,0.36" />
         <Elem idRef="idPlaceholderExtras" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_S/ANVL_Hornet_F7C_S.cga" />
-        <!-- HAX do not allow items here -->
+        <Elem idRef="idHardpoint_Class_4_Center" name="skipPart" value="1" />
         <Elem idRef="idHardpoint_Class_4_Center" name="name" value="" />
         <!-- Geom Tags for Holo Table -->
         <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" />
@@ -2133,7 +2173,7 @@
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" />
       </Elems>
     </Modification>
-    <Modification name="F7CM">
+    <Modification name="F7CM" patchFile="Modifications/ANVL_F7CM">
       <!-- Super Hornet -->
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="Anvil Hornet F7CM" />
@@ -2151,8 +2191,6 @@
 				<Elem idRef="idWingRightGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingRight_Damaged.cga"/>
 				<Elem idRef="idTailGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/>
 				<Elem idRef="idTailGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/> -->
-        <Elem idRef="idMainControlStick" name="name" value="main_cockpit_front_control_stick" />
-        <Elem idRef="idMainThrottle" name="name" value="main_cockpit_front_throttle" />
         <Elem idRef="idPowerPlantItemPort" name="flags" value="invisible" />
         <!-- Vehicle Actions -->
         <Elem idRef="idPilotEnterPosActivation" name="param2" value="pilot_sit_pos" />
@@ -2160,10 +2198,8 @@
         <Elem idRef="idPilotEnterPosActivation" name="bbMax" value="0,0.8,2.5" />
         <Elem idRef="idCoPilotEnterSeat" name="value" value="CoPilot" />
         <!-- Seat Actions -->
-        <Elem idRef="idControlPartPilotStick" name="part" value="main_cockpit_front_control_stick" />
-        <Elem idRef="idControlPartPilotThrottle" name="part" value="main_cockpit_front_throttle" />
-        <Elem idRef="idPilotTrottleIK" name="helper" value="pilot_l_yoke_ik" />
-        <Elem idRef="idPilotJoystickIK" name="helper" value="pilot_r_yoke_ik" />
+        <Elem idRef="idRightLegPedal" name="part" value="Back_right_pedal" />
+		<Elem idRef="idLeftLegPedal" name="part" value="Back_left_pedal" />
         <Elem idRef="idCoPilotSeat" name="enterHelper" value="pilot_enter_pos" />
         <!-- Mannequin -->
         <Elem idRef="idMannequin" name="tag" value="ANVL_Hornet_F7CM" />
@@ -2194,8 +2230,6 @@
 				<Elem idRef="idWingRightGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingRight_Damaged.cga"/>
 				<Elem idRef="idTailGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/>
 				<Elem idRef="idTailGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/> -->
-        <Elem idRef="idMainControlStick" name="name" value="main_cockpit_front_control_stick" />
-        <Elem idRef="idMainThrottle" name="name" value="main_cockpit_front_throttle" />
         <Elem idRef="idPowerPlantItemPort" name="flags" value="invisible" />
         <!-- Vehicle Actions -->
         <Elem idRef="idPilotEnterPosActivation" name="param2" value="pilot_sit_pos" />
@@ -2203,11 +2237,9 @@
         <Elem idRef="idPilotEnterPosActivation" name="bbMax" value="0,0.8,2.5" />
         <Elem idRef="idCoPilotEnterSeat" name="value" value="CoPilot" />
         <!-- Seat Actions -->
-        <Elem idRef="idControlPartPilotStick" name="part" value="main_cockpit_front_control_stick" />
-        <Elem idRef="idControlPartPilotThrottle" name="part" value="main_cockpit_front_throttle" />
-        <Elem idRef="idPilotTrottleIK" name="helper" value="pilot_l_yoke_ik" />
-        <Elem idRef="idPilotJoystickIK" name="helper" value="pilot_r_yoke_ik" />
         <Elem idRef="idCoPilotSeat" name="enterHelper" value="pilot_enter_pos" />
+		<Elem idRef="idLeftLegPedal" name="helper" value="back_left_pedal_ik_attach" />
+        <Elem idRef="idRightLegPedal" name="helper" value="back_right_pedal_ik_attach" />
         <!-- Mannequin -->
         <Elem idRef="idMannequin" name="tag" value="ANVL_Hornet_F7CM" />
         <Elem idRef="idMannequin" name="controllerDef" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_ControllerDefs.xml" />
@@ -2302,6 +2334,9 @@
         <Elem idRef="idVehicleClass" name="displayname" value="ANVL Hornet Pirate" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.44,0.37,0.31" />
         <Elem idRef="idMainPart" name="name" value="ANVL_Hornet_Pirate" />
+		<Elem idRef="idPlaceholderExtras" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_S/ANVL_Hornet_F7C_S.cga" />
+        <Elem idRef="idHardpoint_Class_4_Center" name="skipPart" value="1" />
+        <Elem idRef="idHardpoint_Class_4_Center" name="name" value="" />
         <!-- Nerf the health of this ship -->
         <Elem idRef="idNosePart" name="damageMax" value="99" />
         <Elem idRef="idBody_Part" name="damageMax" value="120" />
@@ -2369,8 +2404,6 @@
 				<Elem idRef="idWingRightGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingRight_Damaged.cga"/>
 				<Elem idRef="idTailGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/>
 				<Elem idRef="idTailGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/> -->
-        <Elem idRef="idMainControlStick" name="name" value="main_cockpit_front_control_stick" />
-        <Elem idRef="idMainThrottle" name="name" value="main_cockpit_front_throttle" />
         <Elem idRef="idPowerPlantItemPort" name="flags" value="invisible" />
         <!-- Vehicle Actions -->
         <Elem idRef="idPilotEnterPosActivation" name="param2" value="pilot_sit_pos" />
@@ -2378,10 +2411,6 @@
         <Elem idRef="idPilotEnterPosActivation" name="bbMax" value="0,0.8,2.5" />
         <Elem idRef="idCoPilotEnterSeat" name="value" value="CoPilot" />
         <!-- Seat Actions -->
-        <Elem idRef="idControlPartPilotStick" name="part" value="main_cockpit_front_control_stick" />
-        <Elem idRef="idControlPartPilotThrottle" name="part" value="main_cockpit_front_throttle" />
-        <Elem idRef="idPilotTrottleIK" name="helper" value="pilot_l_yoke_ik" />
-        <Elem idRef="idPilotJoystickIK" name="helper" value="pilot_r_yoke_ik" />
         <Elem idRef="idCoPilotSeat" name="enterHelper" value="pilot_enter_pos" />
         <!-- Mannequin -->
         <Elem idRef="idMannequin" name="tag" value="ANVL_Hornet_F7CM" />
@@ -2416,4 +2445,34 @@
     </Modification>
 	
   </Modifications>
+
+    <Paints>
+	<Paint name="Pirate" material="Objects\Spaceships\Ships\ANVL\Hornet\F7C_S\anvl_hornet_f7c_s_prt.mtl" />
+  </Paints>
+
+  <GeomVisibility>
+    <PartGeomVisibility animatedPartName="ANVL_Hornet">
+      <GeomGroups>
+        <GeomGroup name="Ladder" startsVisible="0">
+          <GeomItems>
+            <GeomItem jointName="Ladder_mount_Trackpiviot"/>
+            <GeomItem jointName="Ladder_Mount_Shockbody_L"/>
+            <GeomItem jointName="Ladder_Mount_Shockshaft_L"/>
+            <GeomItem jointName="Ladder_Top_Rung"/>
+            <GeomItem jointName="Ladder_Bottom_Rung"/>
+            <GeomItem jointName="Ladder_Bottom_Rung001"/>
+          </GeomItems>
+        </GeomGroup>
+      </GeomGroups>
+      <AnimTriggers>
+        <AnimTrigger animationName="Left_Ladder">
+          <StateTriggers>
+            <StateTrigger groupName="Ladder" stateName="Deploy" triggerOnStart="1" geomVisibility="1" />
+            <StateTrigger groupName="Ladder" stateName="Retract" triggerOnEnd="1" geomVisibility="0" />
+          </StateTriggers>
+        </AnimTrigger>
+      </AnimTriggers>
+    </PartGeomVisibility>
+  </GeomVisibility>
+	
 </Vehicle>

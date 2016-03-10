@@ -82,12 +82,9 @@
               <DamageBehavior class="MovementNotification">
                 <MovementNotification isDamageAlwaysFull="0" />
               </DamageBehavior>
-              <DamageBehavior class="Effect">
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="EngineDamaged" disableAfterExplosion="1" />
-              </DamageBehavior>
-              <DamageBehavior class="CameraShake">
-                <CameraShake />
-              </DamageBehavior>
+              </DamageBehavior>-->
             </DamageBehaviors>
           </DamagesSubGroup>
         </DamagesSubGroups>
@@ -125,6 +122,13 @@
               <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
                 <Types>
                   <Type type="Display" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="landingpad_helper" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+                <Types>
+                  <Type type="LandingSystem"/>
                 </Types>
               </ItemPort>
             </Part>
@@ -2188,13 +2192,6 @@
         </State>
       </States>
     </Action>
-    <!-- Landing Gear -->
-    <!--  <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears animation="Lower_Wings" landingDamages="500" altitudeToRetractGears="8" openState="Deploy" closeState="Retract" />
-    </Action> -->
     <!--<Action class="Switch">
 		<Activations>
 			<Activation type="OnUsed" param1="helper" param2="const_int_base_kitchen_elevator" distance="1.5" bbMin="-6,-1,0" bbMax="-4,1,2"/>
@@ -2307,6 +2304,7 @@
                 <ItemPort part="*light" />
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_pilot_chair" />
+                <ItemPort part="landingpad_helper" />
               </Items>
             </Settings>
           </SharedItems>
@@ -2418,7 +2416,7 @@
       <Sounds inout="0" mood="1" />
     </Seat>
     <!-- CoPilot Right's seat ("driver" is the standard name that CryEngine uses for the this posiiton) -->
-    <Seat name="CoPilotRight" enterHelper="copilot_right_enterCockpit_pos" sitHelper="copilot_right_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" isHUDSupported="0">
+    <Seat name="CoPilotRight" enterHelper="copilot_right_enterCockpit_pos" sitHelper="copilot_right_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" isHUDSupported="0" passengerHasBreathing="0">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -2463,7 +2461,7 @@
       <Sounds inout="0" mood="1" />
     </Seat>
     <!-- CoPilot Left's seat ("driver" is the standard name that CryEngine uses for the this posiiton) -->
-    <Seat name="CoPilotLeft" enterHelper="copilot_Left_enterCockpit_pos" sitHelper="copilot_Left_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" isHUDSupported="0">
+    <Seat name="CoPilotLeft" enterHelper="copilot_Left_enterCockpit_pos" sitHelper="copilot_Left_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" isHUDSupported="0" passengerHasBreathing="0">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -2507,7 +2505,7 @@
       <FixedVisorSettings default_fixed="1" scale="1" x_offset="0" y_offset="-0.1" z_offset="0.25" helper="CoPilot_Left_SeatHud" />
       <Sounds inout="0" mood="1" />
     </Seat>
-    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" isHUDSupported="1" visorType="turret" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_targeting" rotates="1">
+    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" isHUDSupported="1" visorType="turret" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_targeting" rotates="1" passengerHasBreathing="0">
       <Views>
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
           <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
@@ -2601,7 +2599,7 @@
         </Screen>
       </Screens>
     </Seat>
-    <Seat name="GunnerLower" enterHelper="gunner_enter_pos" sitHelper="gunner_lower_sit_pos" visorType="turret" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" actionMap="spaceship_targeting" rotates="1" visorTypes="turret">
+    <Seat name="GunnerLower" enterHelper="gunner_enter_pos" sitHelper="gunner_lower_sit_pos" visorType="turret" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" actionMap="spaceship_targeting" rotates="1" visorTypes="turret" passengerHasBreathing="0">
       <Views>
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
           <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
@@ -2695,7 +2693,7 @@
         </Screen>
       </Screens>
     </Seat>
-    <Seat name="Toilet_Sitter" enterHelper="bathroom_toilet_enter_helper" sitHelper="bathroom_toilet_sit_helper" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="Toilet_Sitter" enterHelper="bathroom_toilet_enter_helper" sitHelper="bathroom_toilet_sit_helper" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2721,7 +2719,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-    <Seat name="Kitchen_Sitter" enterHelper="pilot_enterTableLeft_pos" sitHelper="pilot_tableleft_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="Kitchen_Sitter" enterHelper="pilot_enterTableLeft_pos" sitHelper="pilot_tableleft_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2735,7 +2733,7 @@
       </WaitFor>
       <SeatActions />
     </Seat>
-    <Seat name="BunkBedLowerLeft_Sitter" enterHelper="Pilot_EnterBedBottomLeft_Pos" sitHelper="pilot_BedBottomLeft_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="BunkBedLowerLeft_Sitter" enterHelper="Pilot_EnterBedBottomLeft_Pos" sitHelper="pilot_BedBottomLeft_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2754,7 +2752,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-    <Seat name="BunkBedLowerRight_Sitter" enterHelper="Pilot_EnterBedBottomRight_Pos" sitHelper="pilot_BedBottomRight_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="BunkBedLowerRight_Sitter" enterHelper="Pilot_EnterBedBottomRight_Pos" sitHelper="pilot_BedBottomRight_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2773,7 +2771,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-    <Seat name="BunkBedUpperLeft_Sitter" enterHelper="Pilot_EnterBedTopLeft_Pos" sitHelper="pilot_BedTopLeft_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="BunkBedUpperLeft_Sitter" enterHelper="Pilot_EnterBedTopLeft_Pos" sitHelper="pilot_BedTopLeft_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2792,7 +2790,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-    <Seat name="BunkBedUpperRight_Sitter" enterHelper="Pilot_EnterBedTopRight_Pos" sitHelper="pilot_BedTopRight_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="BunkBedUpperRight_Sitter" enterHelper="Pilot_EnterBedTopRight_Pos" sitHelper="pilot_BedTopRight_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2816,10 +2814,11 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
     <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="50" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="50" maxRetroThrust="150" maxDirectionalThrust="100" maxAngularVelocity="20,20,20" maxAngularAcceleration="20,20,20">
-      <SoundParams>
-        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
-      </SoundParams>
+      <AudioParams dmgBufferDecay="0.16">
+        <PassByLoopSound sound="Play_SSPB_RSI_Aurora_Loop" />
+        <PassBySound sound="Play_SSPB_RSI_Aurora_800ms_0to100mtrs" leadinTime="0.8" triggerDistance="100" cooldownTime="2" />
+        <DuressSound sound="Play_SSDD_RSI_Aurora_Cockpit_Shake" damage_floor="19.0" damage_buffer="60.0" />
+      </AudioParams>
       <Animations engine="intake_fans" />
       <Contrails>
         <Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" minSpeed="25" />

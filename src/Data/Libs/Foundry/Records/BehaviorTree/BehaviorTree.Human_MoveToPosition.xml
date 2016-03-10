@@ -1,0 +1,181 @@
+<BehaviorTree.Human_MoveToPosition __type="BehaviorTree" __hash="dd6cf814-4714-4342-8c31-52ced6276b3f">
+    <fragments>
+        <BTElement __type="BTElement" __polymorphicType="BTMove">
+            <Destination __type="BTInput_Move_Destination" __polymorphicType="BTInput_Move_Destination_BB" bbPath="BehaviorState.AcceptedCommand.Pos"/>
+            <Speed __type="BTInput_Move_Speed" __polymorphicType="BTInput_Move_Speed_BB" bbPath="BehaviorState.AcceptedCommand.Speed"/>
+            <Stance __type="BTInput_Move_Stance" __polymorphicType="BTInput_Move_Stance_String" value="Stand"/>
+            <EndDistance __type="BTInputFloat" __polymorphicType="BTInputFloatBB" bbPath="BehaviorState.AcceptedCommand.EndDistance"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSelector">
+            <children>
+                <WeakPointer Value="fragments[2]"/>
+                <WeakPointer Value="fragments[4]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSequence">
+            <children>
+                <WeakPointer Value="fragments[20]"/>
+                <WeakPointer Value="fragments[0]"/>
+                <WeakPointer Value="fragments[3]"/>
+                <WeakPointer Value="fragments[24]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSendResponseSignal">
+            <Signal __type="BTInputBlackboard" __polymorphicType="BTInputBlackboardVar" variableName="AcceptedCommand"/>
+            <Result __type="BTInput_SendResponseSignal_Result" __polymorphicType="BTInput_SendResponseSignal_Result_String" value="Success"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSendResponseSignal">
+            <Signal __type="BTInputBlackboard" __polymorphicType="BTInputBlackboardVar" variableName="AcceptedCommand"/>
+            <Result __type="BTInput_SendResponseSignal_Result" __polymorphicType="BTInput_SendResponseSignal_Result_String" value="Failed"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSelector">
+            <children>
+                <WeakPointer Value="fragments[9]"/>
+                <WeakPointer Value="fragments[15]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSequence">
+            <children>
+                <WeakPointer Value="fragments[7]"/>
+                <WeakPointer Value="fragments[8]"/>
+                <WeakPointer Value="fragments[5]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTWaitForSignal">
+            <Name __type="BTInputString" __polymorphicType="BTInputStringValue" value="ScriptedCommand"/>
+            <FilterKey1 __type="BTInputString" __polymorphicType="BTInputStringValue"/>
+            <FilterValue1 __type="BTInputAny" __polymorphicType="BTInputAnyStringValue"/>
+            <FilterKey2 __type="BTInputString" __polymorphicType="BTInputStringValue"/>
+            <FilterValue2 __type="BTInputAny" __polymorphicType="BTInputAnyStringValue"/>
+            <Signal __type="BTOutput" __polymorphicType="BTOutput" variableName="ParallelCommand"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTGetSignalParameter">
+            <Signal __type="BTInputBlackboard" __polymorphicType="BTInputBlackboardVar" variableName="ParallelCommand"/>
+            <ParameterName __type="BTInputString" __polymorphicType="BTInputStringValue" value="Command"/>
+            <Value __type="BTOutput" __polymorphicType="BTOutput" variableName="ParallelCommandName"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTEqualsOnEnter" child="fragments[25]">
+            <Lhs __type="BTInputAny" __polymorphicType="BTInputAnyVar" variableName="ParallelCommandName"/>
+            <Rhs __type="BTInputAny" __polymorphicType="BTInputAnyStringValue" value="PlayCharacterAnimation"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSelector">
+            <children>
+                <WeakPointer Value="fragments[11]"/>
+                <WeakPointer Value="fragments[14]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSequence">
+            <children>
+                <WeakPointer Value="fragments[26]"/>
+                <WeakPointer Value="fragments[12]"/>
+                <WeakPointer Value="fragments[13]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTAnimate">
+            <FragmentID __type="BTInputString" __polymorphicType="BTInputStringBB" bbPath="BehaviorState.ParallelCommand.FragmentID"/>
+            <FragmentTag __type="BTInputString" __polymorphicType="BTInputStringBB" bbPath="BehaviorState.ParallelCommand.FragmentTag"/>
+            <SlaveId>
+                <null/>
+            </SlaveId>
+            <SlaveId2>
+                <null/>
+            </SlaveId2>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSendResponseSignal">
+            <Signal __type="BTInputBlackboard" __polymorphicType="BTInputBlackboardVar" variableName="ParallelCommand"/>
+            <Result __type="BTInput_SendResponseSignal_Result" __polymorphicType="BTInput_SendResponseSignal_Result_String" value="Success"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSendResponseSignal">
+            <Signal __type="BTInputBlackboard" __polymorphicType="BTInputBlackboardVar" variableName="ParallelCommand"/>
+            <Result __type="BTInput_SendResponseSignal_Result" __polymorphicType="BTInput_SendResponseSignal_Result_String" value="Failed"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSequence">
+            <children>
+                <WeakPointer Value="fragments[16]"/>
+                <WeakPointer Value="fragments[17]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTScreenMessage">
+            <Message __type="BTInputString" __polymorphicType="BTInputStringValue" value="I received a parallel scripted command that don&amp;apos;t know how to perform."/>
+            <TimeDurationInSeconds __type="BTInputFloat" __polymorphicType="BTInputFloatValue" value="3"/>
+            <Blocking __type="BTInputBool" __polymorphicType="BTInputBoolValue" value="1"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSendResponseSignal">
+            <Signal __type="BTInputBlackboard" __polymorphicType="BTInputBlackboardVar" variableName="ParallelCommand"/>
+            <Result __type="BTInput_SendResponseSignal_Result" __polymorphicType="BTInput_SendResponseSignal_Result_String" value="Failed"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTParallelUntilAnyComplete">
+            <children>
+                <WeakPointer Value="fragments[22]"/>
+                <WeakPointer Value="fragments[1]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTRepeatUntilFails" child="fragments[6]">
+            <Iterations __type="BTInputInt" __polymorphicType="BTInputIntValue"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSendSignal">
+            <Name __type="BTInputString" __polymorphicType="BTInputStringValue" value="OnAcceptedSignalHandled"/>
+            <Target>
+                <null/>
+            </Target>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTWaitForSignal">
+            <Name __type="BTInputString" __polymorphicType="BTInputStringValue" value="OnAcceptedSignalHandled"/>
+            <FilterKey1 __type="BTInputString" __polymorphicType="BTInputStringValue"/>
+            <FilterValue1 __type="BTInputAny" __polymorphicType="BTInputAnyStringValue"/>
+            <FilterKey2 __type="BTInputString" __polymorphicType="BTInputStringValue"/>
+            <FilterValue2 __type="BTInputAny" __polymorphicType="BTInputAnyStringValue"/>
+            <Signal __type="BTOutput" __polymorphicType="BTOutput" variableName="AcceptedSignalHandled"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSequence">
+            <children>
+                <WeakPointer Value="fragments[21]"/>
+                <WeakPointer Value="fragments[19]"/>
+            </children>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSuccess"/>
+        <BTElement __type="BTElement" __polymorphicType="BTWaitForNotHasVariable" child="fragments[23]">
+            <Name __type="BTInputString" __polymorphicType="BTInputStringValue" value="IsRunningParallelCommand"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTEraseVariableOnExit" child="fragments[10]">
+            <Name __type="BTInputString" __polymorphicType="BTInputStringValue" value="IsRunningParallelCommand"/>
+        </BTElement>
+        <BTElement __type="BTElement" __polymorphicType="BTSetVariable">
+            <Name __type="BTInputString" __polymorphicType="BTInputStringValue" value="IsRunningParallelCommand"/>
+            <Value __type="BTInputAny" __polymorphicType="BTInputAnyBoolValue" value="1"/>
+        </BTElement>
+    </fragments>
+    <signalHandlers/>
+    <timestampSignals/>
+    <signalQueues/>
+    <__userdata>
+        <userdata url="fragments[9]" data="{&quot;X&quot;:&quot;1048.66&quot;,&quot;Y&quot;:&quot;1497.00&quot;}"/>
+        <userdata url="fragments[8]" data="{&quot;X&quot;:&quot;1220.66&quot;,&quot;Y&quot;:&quot;1127.00&quot;}"/>
+        <userdata url="fragments[7]" data="{&quot;X&quot;:&quot;740.66&quot;,&quot;Y&quot;:&quot;1007.00&quot;}"/>
+        <userdata url="fragments[6]" data="{&quot;X&quot;:&quot;1240.66&quot;,&quot;Y&quot;:&quot;827.00&quot;}"/>
+        <userdata url="fragments[5]" data="{&quot;X&quot;:&quot;1700.66&quot;,&quot;Y&quot;:&quot;1207.00&quot;}"/>
+        <userdata url="fragments[4]" data="{&quot;X&quot;:&quot;4406.73&quot;,&quot;Y&quot;:&quot;738.34&quot;}"/>
+        <userdata url="fragments[3]" data="{&quot;X&quot;:&quot;3395.01&quot;,&quot;Y&quot;:&quot;983.17&quot;}"/>
+        <userdata url="fragments[2]" data="{&quot;X&quot;:&quot;3168.82&quot;,&quot;Y&quot;:&quot;738.34&quot;}"/>
+        <userdata url="fragments[26]" data="{&quot;X&quot;:&quot;-72.16&quot;,&quot;Y&quot;:&quot;2117.60&quot;}"/>
+        <userdata url="fragments[25]" data="{&quot;X&quot;:&quot;1048.66&quot;,&quot;Y&quot;:&quot;1698.30&quot;}"/>
+        <userdata url="fragments[24]" data="{&quot;X&quot;:&quot;3860.39&quot;,&quot;Y&quot;:&quot;983.17&quot;}"/>
+        <userdata url="fragments[23]" data="{&quot;X&quot;:&quot;3860.39&quot;,&quot;Y&quot;:&quot;1108.17&quot;}"/>
+        <userdata url="fragments[22]" data="{&quot;X&quot;:&quot;900.66&quot;,&quot;Y&quot;:&quot;567.00&quot;}"/>
+        <userdata url="fragments[21]" data="{&quot;X&quot;:&quot;532.66&quot;,&quot;Y&quot;:&quot;677.00&quot;}"/>
+        <userdata url="fragments[20]" data="{&quot;X&quot;:&quot;2497.01&quot;,&quot;Y&quot;:&quot;989.17&quot;}"/>
+        <userdata url="fragments[1]" data="{&quot;X&quot;:&quot;3708.01&quot;,&quot;Y&quot;:&quot;496.00&quot;}"/>
+        <userdata url="fragments[19]" data="{&quot;X&quot;:&quot;1240.66&quot;,&quot;Y&quot;:&quot;687.00&quot;}"/>
+        <userdata url="fragments[18]" data="{&quot;X&quot;:&quot;2220.00&quot;,&quot;Y&quot;:&quot;20.00&quot;}"/>
+        <userdata url="fragments[17]" data="{&quot;X&quot;:&quot;2430.00&quot;,&quot;Y&quot;:&quot;1698.30&quot;}"/>
+        <userdata url="fragments[16]" data="{&quot;X&quot;:&quot;1970.00&quot;,&quot;Y&quot;:&quot;1698.30&quot;}"/>
+        <userdata url="fragments[15]" data="{&quot;X&quot;:&quot;2190.00&quot;,&quot;Y&quot;:&quot;1498.30&quot;}"/>
+        <userdata url="fragments[14]" data="{&quot;X&quot;:&quot;1400.66&quot;,&quot;Y&quot;:&quot;1972.30&quot;}"/>
+        <userdata url="fragments[13]" data="{&quot;X&quot;:&quot;844.00&quot;,&quot;Y&quot;:&quot;2117.60&quot;}"/>
+        <userdata url="fragments[12]" data="{&quot;X&quot;:&quot;384.00&quot;,&quot;Y&quot;:&quot;2117.60&quot;}"/>
+        <userdata url="fragments[11]" data="{&quot;X&quot;:&quot;384.00&quot;,&quot;Y&quot;:&quot;1972.30&quot;}"/>
+        <userdata url="fragments[10]" data="{&quot;X&quot;:&quot;1050.66&quot;,&quot;Y&quot;:&quot;1826.30&quot;}"/>
+        <userdata url="fragments[0]" data="{&quot;X&quot;:&quot;2935.01&quot;,&quot;Y&quot;:&quot;983.17&quot;}"/>
+        <userdata url="fragments" data="[]"/>
+    </__userdata>
+</BehaviorTree.Human_MoveToPosition>

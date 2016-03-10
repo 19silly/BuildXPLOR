@@ -1,0 +1,87 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//  Crytek Engine Source File.
+//  Shader extension
+//  Copyright (C), Cloud Imperium Games, 2013.
+// -------------------------------------------------------------------------
+//  File name:   HologramCIG.ext
+//  Version:     v1.00
+//  Created:     24 Oct 2013 by Okka Kyaw
+//  Compilers:   
+//  Description: Hologram shader extension used by the editor
+//               for automatic shader generation
+// -------------------------------------------------------------------------
+//  History:
+//
+////////////////////////////////////////////////////////////////////////////
+
+
+Version (1.00)
+
+// If the DISTANCE_FADE mask is changed, CPostHologram::SetAdditionalParams will need to be updated to match
+Property
+{
+  Name = %DISTANCE_FADE
+  Mask = 0x2
+  Property    (View distance fading)
+  Description (Fade out the object as it approaches its max view distance)
+}
+
+Property
+{
+	Name = %USE_DIFFUSE_MAP
+	Mask = 0x4
+	Property (Use diffuse map)
+	Description (Modifies the output color and alpha using the diffuse map)
+}
+
+Property
+{
+	Name = %NO_HOLO_CLIP
+	Mask = 0x8
+	Property (No Holo clip)
+	Description (Renders with no clipping against other holo-objects - ZWrite disabled)
+}
+
+Property
+{
+  Name = %TRANSITION_MAP
+  Mask = 0x10
+  Property    (Transition map)
+  Description (Used for clip test during texture-based transition)
+	DependencyReset = $TEX_Custom
+  DependencySet = $TEX_Custom
+	Hidden
+}
+
+Property
+{
+	Name = %NO_DEPTH_TEST
+	Mask = 0x20
+	Property (No depth test)
+	Description (Renders the object with no depth testing)
+}
+
+Property
+{
+  Name = %VERTCOLORS
+  Mask = 0x40
+  Property    (Vertex Colors)
+  Description (Use vertex colors)
+}
+
+Property
+{
+  Name = %EQUALIZER
+  Mask = 0x80
+  Property    (Equalizer)
+  Description (Equalizer-specific shader variation)
+}
+
+Property
+{
+  Name = %SCENE_INTERSECT
+  Mask = 0x100
+  Property    (Scene Intersection)
+  Description (Draw silhouette only where the holo-object intersects with the scene)
+}

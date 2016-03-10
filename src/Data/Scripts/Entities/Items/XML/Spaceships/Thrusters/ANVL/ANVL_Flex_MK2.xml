@@ -38,8 +38,9 @@
 			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
-				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
-				<State state="Idle"><Value value="20" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
 			</States>
 		</Pipe>
 
@@ -51,6 +52,14 @@
 		</Pipe>
 	</Pipes>
 	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+	
 	<gimbal type="flex" >
 		<pitch 	joint="" 	min ="" max ="" speed="" accel="" animation ="" />
 		<yaw 	joint=""		min ="0" max ="90" speed="240" accel="2400" animation ="yaw" />
@@ -58,7 +67,7 @@
 	</gimbal> 
 	
 	<thrusters>
-	  <thruster flags="maneuver orientation retro" maxThrust="440000" maneuverScale="" rotationScale="" retroScale="0.3" boostScale="3.2" >
+	  <thruster flags="maneuver orientation retro" maxThrust="984795"  maneuverScale="" rotationScale="0.25" retroScale="" boostScale="1.5" errorScale="0.33" >
 	  </thruster>
   </thrusters>
   

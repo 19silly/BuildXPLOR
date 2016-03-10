@@ -1,0 +1,35 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ServerOnly">
+ <Nodes>
+  <Node Id="21" Class="Actor:LocalPlayer" pos="288,-736,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="271" Class="Interpol:Float" pos="40,-440,0" flags="0">
+   <Inputs StartValue="0.75" EndValue="0" Time="5" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="272" Class="Interpol:Float" pos="40,-600,0" flags="0">
+   <Inputs StartValue="-0.5" EndValue="0" Time="4" UpdateFrequency="0"/>
+  </Node>
+  <Node Id="274" Class="MaterialFX:HUDStartFX" pos="-240,-600,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="292" Class="MaterialFX:HUDEndFX" pos="650,-420,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="339" Class="Image:ColorCorrection" pos="470,-720,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="1" Global_User_ColorC="-1" Global_User_ColorM="0" Global_User_ColorY="0" Global_User_ColorK="0" Global_User_Brightness="1" Global_User_Contrast="1" Global_User_Saturation="1" Global_User_ColorHue="0"/>
+  </Node>
+  <Node Id="347" Class="Image:FilterBlur" pos="470,-500,0" flags="0">
+   <Inputs entityId="0" Enabled="1" Disabled="1" FilterBlurring_Type="0" FilterBlurring_Amount="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="339" nodeOut="21" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="347" nodeOut="21" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="292" nodeOut="271" portIn="Trigger" portOut="Done" enabled="1"/>
+  <Edge nodeIn="347" nodeOut="271" portIn="FilterBlurring_Amount" portOut="Value" enabled="1"/>
+  <Edge nodeIn="339" nodeOut="272" portIn="Global_User_ColorC" portOut="Value" enabled="1"/>
+  <Edge nodeIn="271" nodeOut="274" portIn="Start" portOut="Started" enabled="1"/>
+  <Edge nodeIn="272" nodeOut="274" portIn="Start" portOut="Started" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

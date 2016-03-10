@@ -20,33 +20,8 @@ BasicAIEvent =
 
 MakeUsable(BasicAIEvent);
 
-
 --
 --
---------------------------------------------------------------------------------------------------------
-function BasicAIEvent:Event_WakeUp( params )
-	if (not AI.IsEnabled(self.id)) then
-		return
-	end
-
-	if (self.actor:GetPhysicalizationProfile() == "sleep") then
-		self.actor:StandUp();
-	end
-end
-
---
---
---------------------------------------------------------------------------------------------------------
-function BasicAIEvent:Event_Sleep( params )
---System.Log(">>>>>>> BasicAIEvent:Event_Sleep "..self:GetName());
-	if(not self.isFallen) then
-		BroadcastEvent(self, "Sleep");
-	end	
-	self.actor:Fall(self:GetPos());
-	self.isFallen = 1;
-end
-
-
 --------------------------------------------------------------------------------------------------------
 function BasicAIEvent:Event_Enabled( params )
 	BroadcastEvent(self, "Enabled");
@@ -242,8 +217,6 @@ BasicAIEvent.FlowEvents =
 		Disable = { BasicAIEvent.Event_Disable, "bool" },
 		Enable = { BasicAIEvent.Event_Enable, "bool" },
 		Kill = { BasicAIEvent.Event_Kill, "bool" },
-		Sleep = { BasicAIEvent.Event_Sleep, "bool" },
-		WakeUp = { BasicAIEvent.Event_WakeUp, "bool" },		-- fall-and-play stand up
 		ResetHealth = { BasicAIEvent.Event_ResetHealth, "any" };
 		MakeVulnerable = { BasicAIEvent.Event_MakeVulnerable, "any" };
 		MakeInvulnerable = { BasicAIEvent.Event_MakeInvulnerable, "any" };
@@ -260,8 +233,6 @@ BasicAIEvent.FlowEvents =
 
 		Dead = "bool",
 		OnAlert = "bool",
-		Sleep = "bool",				-- fall-and-play falling
---		Awake = "bool",
 		
 		Enabled = "bool",
 		Disabled = "bool",

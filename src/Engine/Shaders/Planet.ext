@@ -1,0 +1,88 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//  Crytek Engine Source File.
+//  Shader extension
+//  Copyright (C), Crytek Studios, 2001-2004.
+// -------------------------------------------------------------------------
+//  File name:   Hair.ext
+//  Version:     v1.00
+//  Created:     01/08/2005 by Tiago Sousa
+//  Compilers:   
+//  Description: Hair shader extension used by the editor
+//               for automatic shader generation (based on "Hair" shader template)
+// -------------------------------------------------------------------------
+//  History:
+//
+////////////////////////////////////////////////////////////////////////////
+
+Version (1.00)
+
+UsesCommonGlobalFlags
+
+Property
+{
+  Name = %MANUAL_RADIUS
+  Mask = 0x100000
+  Property    (Manual radius)
+  Description (Manually specify the radius of the planet)
+}
+
+Property
+{
+  Name = %CLOUDS
+  Mask = 0x800000
+  Property    (Enable Cloud Layer)
+  Description (Use custom texture map as a cloud layer)
+  DependencyReset = $TEX_Custom
+  DependencySet = $TEX_Custom
+  Hidden
+}
+
+Property
+{
+  Name = %CITY_LIGHTS
+  Mask = 0x4000000
+  Property    (Enable City-Light Layer)
+  Description (Use custom texture map as a light layer)
+  DependencyReset = $TEX_CustomSecondary
+  DependencySet = $TEX_CustomSecondary
+  Hidden
+}
+
+Property
+{
+  Name = %OFFSET_BUMP_MAPPING
+  Mask = 0x4000000000000000
+  Property    (Offset bump mapping)
+  Description (Use offset bump mapping (requires height map (_displ)))
+  DependencyReset = $TEX_Bump
+}
+
+Property
+{
+  Name = %PARALLAX_OCCLUSION_MAPPING
+  Mask = 0x8000000000000000
+  Property    (Parallax occlusion mapping)
+  Description (Use parallax occlusion mapping (requires height map (_displ)))
+  DependencyReset = $TEX_Bump
+}
+
+Property
+{
+  Name = %MULTILAYER
+  Mask = 0x8000000
+  DependencySet = $UserEnabled
+  Hidden
+}
+
+// CIG BEGIN Jean Louchez
+Property
+{
+  Name = %ENABLE_TRANSPARENT_GLOW_PASS
+  Mask = 0x80000
+  DependencySet = $HW_TransparentGlowPass
+  DependencyReset = $HW_TransparentGlowPass
+  Property    (Enable Transparent Glow)
+  Description (Readonly - enabled when Opacity < 1 AND either of Glow Amount > 0 OR Enable Glow enabled in Advanced tab)
+}
+// CIG END

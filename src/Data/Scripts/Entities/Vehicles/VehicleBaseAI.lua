@@ -383,12 +383,13 @@ function VehicleBaseAI:ChangeFaction(driver, isEntered)
 		return
 	end
 	
-	local faction = AI.GetFactionOf(driver.id)
+	-- Fix logic so it's not dependant on CryAISystem
+--	local faction = AI.GetFactionOf(driver.id)
 
-	-- driver enters enemy vehicle -- enemies don't recognize the vehicle as hostile
-	if (self.Properties.bHidesPlayer==1 and isEntered==1 and driver.ai==nil and faction ~= self.defaultFaction) then
-		return 
-	end
+--	-- driver enters enemy vehicle -- enemies don't recognize the vehicle as hostile
+--	if (self.Properties.bHidesPlayer==1 and isEntered==1 and driver.ai==nil and faction ~= self.defaultFaction) then
+--		return 
+--	end
 	
 	-- vehicle does not hide driver OR
 	-- driver exposed himself by shooting/damaging enemy

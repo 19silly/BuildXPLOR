@@ -1,0 +1,274 @@
+<ParticleLibrary Name="APAR_mass_driver" SandboxVersion="0.0.0.22863" ParticleVersion="26">
+ <Particles Name="Impacts.default">
+  <Params Count="5" ParticleLifeTime="1" RandomOffset="x=1,y=1,z=1" OffsetRoundness="1" Facing="Free" BlendType="Additive" Alpha="0" DiffuseLighting="0" EmissiveLighting="1" Size="0.5" MoveRelEmitter="Yes"/>
+  <Childs>
+   <Particles Name="sparks">
+    <Params SpawnIndirection="ParentStart" Count="2" ParticleLifeTime="1" FocusAngle="180,Random=1" FocusAzimuth="360,Random=2" EmitAngle="180,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/particles/dot01.tif" TextureTiling="TilesX=2,TilesY=2,VariantCount=2,AnimFramesCount=2" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="10,Random=0.598" Color="(y=0.604,z=0.13),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="50" Size="0" Speed="20" ViewDistanceAdjust="2" ConfigMin="Medium"/>
+    <Childs>
+     <Particles Name="sparks_child">
+      <Params SpawnIndirection="ParentStart" Count="20,Random=0.34" ParticleLifeTime="0.5,Random=0.796" OffsetRoundness="1" OffsetInnerFraction="1" FocusAzimuth="Random=2" EmitAngle="69.4,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="10,Random=0.598" Color="(x=0.7304609,y=0.26635563,z=0.09530747),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="50" Size="0.05" Stretch="0.02,Random=0.088,ParticleAge=(flags=32;t=0.165,v=0.933;t=1,v=0.5),OffsetRatio=0.896" MinPixels="3.19" Speed="20" InheritVelocity="1" AirResistance="8.52" Turbulence3DSpeed="40,ParticleAge=(flags=32;t=1,v=1,flags=4)" ViewDistanceAdjust="2" ConfigMin="Medium"/>
+     </Particles>
+     <Particles Name="sparks_small">
+      <Params SpawnIndirection="ParentStart" Count="20,Random=1" ParticleLifeTime="0.5,Random=0.412" OffsetRoundness="1" OffsetInnerFraction="1" FocusAzimuth="Random=2" EmitAngle="24.7,Random=1" Facing="CameraX" BlendType="Additive" Texture="textures/particles/laserbolt_sparks.tif" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="10,Random=0.598" Color="(x=0.74540436,y=0.20155628,z=0.082282715),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="50" Size="0.5,ParticleAge=(v=0.43,flags=32;t=1,v=1)" Stretch="0.2,ParticleAge=(flags=32;t=0.12,v=1;t=1,v=1)" Speed="19.4,Random=0.645" InheritVelocity="0.882" AirResistance="6" Turbulence3DSpeed="10" RandomAngles="x=360,y=360,z=360" ViewDistanceAdjust="2" CameraMaxDistance="34.8" ConfigMin="Medium"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="linger">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="0.3,Random=0.444" FocusAzimuth="360,Random=2" EmitAngle="180,Random=1" BlendType="Additive" Texture="textures/particles/canon_firefx_muzzle.tif" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="2,Random=0.598" SoftParticle="true" Color="ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="0.1" Size="6,Random=0.446" MoveRelEmitter="Yes" RandomAngles="y=360" VisibleUnderwater="If_False"/>
+   </Particles>
+   <Particles Name="flash">
+    <Params Count="1" ParticleLifeTime="0.05" FocusAzimuth="360,Random=2" EmitAngle="180,Random=1" BlendType="Additive" Texture="textures/particles/neutron_firefx_ring.tif" Warp="true" WarpTexture="textures/vfx/flow maps/flowmaptest.tif" FlowMapIntensity="4.6,Random=0.598" SoftParticle="true" Color="(x=0.537,y=0.357,z=0.137),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="5" Size="3,Random=0.5,ParticleAge=(v=0.545,flags=32;t=1,v=1)" Speed="Random=1" RandomAngles="y=360" VisibleUnderwater="If_False"/>
+   </Particles>
+   <Particles Name="Light">
+    <Params Count="1" ParticleLifeTime="0.2" BlendType="Additive" Alpha="Random=0.5" Color="(x=0.9911022,y=0.12477184,z=0.007499032),ParticleAge=(t=0.04,v=(x=0.73,y=0.73,z=0.73);t=0.945)" Flare="Flares_VFX.explosions.explo_blue" FakeLight="true" LightSource="Radius=(50,Random=0.498881),LightBulbRadius=6.02592,Intensity=(10,Random=0.794183,ParticleAge=(v=1;t=1))" Size="5,ParticleAge=(;t=0.14,v=1;t=1)"/>
+    <Childs>
+     <Particles Name="real_light">
+      <Params Count="1" ParticleLifeTime="0.4" BlendType="Additive" Alpha="Random=0.5" Color="(x=0.9911022,y=0.12477184,z=0.007499032),ParticleAge=(t=0.04,v=(x=0.73,y=0.73,z=0.73);t=0.945)" LightSource="Radius=(50,Random=0.498881),LightBulbRadius=6.02592,Intensity=(30,Random=0.516779,ParticleAge=(t=0.086,v=1;t=1))" Size="5,ParticleAge=(;t=0.14,v=1;t=1)"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="linger_sparks">
+    <Params Count="38.0753,Random=0.34" ParticleLifeTime="1,Random=0.796" OffsetRoundness="1" OffsetInnerFraction="1" FocusAngle="68.159,Random=1" FocusAzimuth="77.5732,Random=1.53247" EmitAngle="17.6987,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="10,Random=0.598" Color="(x=0.7304609,y=0.26635563,z=0.09530747),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="50" Size="0.05" Stretch="0.02,Random=0.088,ParticleAge=(flags=32;t=0.165,v=0.933;t=1,v=0.5),OffsetRatio=0.896" MinPixels="3.19" Speed="22.1294,Random=0.431965" AirResistance="0.751566,Random=0.149028,RotationalDragScale=0,WindScale=0" GravityScale="0.716075" Turbulence3DSpeed="ParticleAge=(flags=32;t=1,v=1,flags=4)" ViewDistanceAdjust="2" ConfigMin="Medium"/>
+   </Particles>
+   <Particles Name="debris">
+    <Params Count="47.0711,EmitterStrength=(v=1;t=1),DistanceLOD=(v=1;t=1,v=0.48)" PulsePeriod="Random=0.5" ParticleLifeTime="9.20502,Random=0.5" FocusAngle="47.4477,Random=0.426407" FocusAzimuth="116.736,Random=0.787879" EmitAngle="25.9833,Random=1" Facing="Free" Texture="textures/vfx/explosions/const_interior_hatch/hatch_explode_shards-02.tif" TextureTiling="TilesX=4,TilesY=2,VariantCount=8" AlphaClip="SourceMin=(Min=1),SourceWidth=(Min=0,Max=0)" Color="Random=1" Size="0.150313,Random=0.710583,ParticleAge=(;t=0.016,v=1;t=1)" Aspect="0.5" MinPixels="2" Speed="12.1086,Random=0.609071" InheritVelocity="0.156576" AirResistance="ParticleAge=(v=1;t=0.5,v=1;t=1,v=0.52,flags=4),RotationalDragScale=0" GravityScale="1" RandomAngles="x=360,y=360,z=360" RotationRate="x=360,y=360,z=360" RandomRotationRate="x=360,y=360,z=360" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.263" MaxCollisionEvents="2" Elasticity="0.3"/>
+   </Particles>
+   <Particles Name="heavy_sparks">
+    <Params Count="1" ParticleLifeTime="0.4" Color="(x=0.8387991,y=0.4910209,z=0.34191445)" DiffuseLighting="0" EmissiveLighting="100" Flare="Flares_VFX.missiles.full_missile_flare" FakeLight="true" LightSource="Radius=3.29193,Intensity=(0.538302,ParticleAge=(t=0.63,v=1;t=1))" Size="ParticleAge=(v=0.18;t=0.165,v=1;t=0.592,v=0.635;t=1,v=0.39)"/>
+    <Childs>
+     <Particles Name="large_jet">
+      <Params Enabled="false" Count="100" Continuous="true" EmitterLifeTime="0.13" ParticleLifeTime="3.61446,Random=0.541494" EmitAngle="17.7108,Random=1" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" DiffuseLighting="0" EmissiveLighting="100" Size="0.02,Random=0.741201,ParticleAge=(v=1;t=1)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="7.01403,Random=0.538302,EmitterStrength=(v=1;t=1,v=0.047,flags=4)" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.624" Elasticity="0.292585" DynamicFriction="8.35671"/>
+      <Childs>
+       <Particles Name="light_spawner">
+        <Params Count="8.3682" Continuous="true" EmitterLifeTime="0.13" ParticleLifeTime="1,Random=0.481328" EmitAngle="17.7108,Random=1" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Alpha="0" Color="(x=0.8387991,y=0.2086369,z=0.04970657)" DiffuseLighting="0" EmissiveLighting="100" Flare="Flares_VFX.missiles.full_missile_flare" LightSource="Radius=(3.29193,Random=0.800895),Intensity=(2.29814,Random=0.673378,ParticleAge=(v=1;t=1))" Size="0.06,Random=0.449275,ParticleAge=(t=0.49,v=1;t=0.79)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="12.7349,Random=0.538302,EmitterStrength=(v=1;t=1,v=0.39)" AirResistance="0.12024,Random=0.397516" GravityScale="0.77453,Random=0.293996" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.292585" DynamicFriction="8.35671"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="smoke_spawner">
+      <Params Enabled="false" Count="1" ParticleLifeTime="2.40964,Random=0.541494" EmitAngle="17.7108,Random=1" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" DiffuseLighting="0" EmissiveLighting="100" Size="0.02,Random=0.741201,ParticleAge=(v=1;t=1)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="11.8998,Random=0.538302" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.292585" DynamicFriction="8.35671"/>
+      <Childs>
+       <Particles Name="smoke">
+        <Params SpawnIndirection="ParentStart" Count="10.6426" Continuous="true" EmitterLifeTime="0.6" ParticleLifeTime="3.21285,Random=0.481328" EmitAngle="11.9277,Random=1" Curvature="0.192771" Texture="textures/vfx/smoke/smoke_generic1_36frames_diff.dds" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true" Material="Materials/VFX/smoke/smoke_generic_36frames_LIGHT" Tessellation="true" SoftParticle="true" Alpha="0.849398,Random=0.103734,ParticleAge=(v=1;t=0.66,v=1;t=1)" DiffuseBacklighting="0.108216" ReceiveShadows="true" Size="0.609218,Random=0.501035,ParticleAge=(v=0.43,flags=32;t=1,v=1)" Stretch="ParticleAge=(v=1;t=1)" Speed="EmitterStrength=(v=1;t=1,v=0.39)" InheritVelocity="0.0841683" AirResistance="0.180361,Random=0.397516,RotationalDragScale=0,WindScale=0.120083" GravityScale="-0.0300601,Random=0.293996" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=20" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.292585" DynamicFriction="8.35671"/>
+       </Particles>
+       <Particles Name="impact_sparks">
+        <Params Enabled="false" SpawnIndirection="ParentCollide" Count="8.83534" Continuous="true" EmitterLifeTime="0.13" ParticleLifeTime="3.61446,Random=0.541494" EmitAngle="40.8434,Random=0.458506" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" DiffuseLighting="0" EmissiveLighting="100" Size="0.02,Random=0.741201,ParticleAge=(v=1;t=1)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="2.40481,Random=0.538302,EmitterStrength=(v=1;t=1,v=0.047,flags=4)" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.150301" DynamicFriction="9.11824"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="debris">
+      <Params Count="17.4699" ParticleLifeTime="2.40964,Random=0.541494" EmitAngle="65.0602,Random=1" Facing="Free" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Geometry="objects/vfx/debris/metal/debris_geo_metal.cgf" GeometryPieces="AllPieces" DiffuseLighting="0" EmissiveLighting="100" Size="0.112224,Random=0.21118,ParticleAge=(t=0.267,v=1;t=1)" Stretch="Random=0.610766,ParticleAge=(v=1;t=1)" Speed="6.21242,Random=0.645963" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" RandomAngles="x=180,y=180,z=180" RotationRate="x=200,y=200,z=200" RandomRotationRate="x=200,y=200,z=200" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.714" Elasticity="0.292585" DynamicFriction="8.35671"/>
+     </Particles>
+    </Childs>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Impacts.v2">
+  <Params Count="5" ParticleLifeTime="1" RandomOffset="x=1,y=1,z=1" OffsetRoundness="1" Facing="Free" BlendType="Additive" Alpha="0" DiffuseLighting="0" EmissiveLighting="1" Size="0.5" MoveRelEmitter="Yes"/>
+  <Childs>
+   <Particles Name="sparks">
+    <Params Count="1" MaxTriggerDist="500" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Alpha="0" Color="(x=0.125,y=0.31,z=0.5)" DiffuseLighting="0" EmissiveLighting="1" Size="0" MoveRelEmitter="Yes" SortOffset="-0.05"/>
+    <Childs>
+     <Particles Name="light">
+      <Params Count="1" MaxDistanceLOD="500" MaxTriggerDist="500" ParticleLifeTime="0.3" BlendType="Additive" Alpha="Random=0.5" Color="(x=0.084376216,y=0.59061897,z=0.71569365),ParticleAge=(t=0.04,v=(x=0.73,y=0.73,z=0.73);t=0.945)" LightSource="Radius=(10,Random=0.281837,DistanceLOD=(v=0.52;t=1,v=1)),LightBulbRadius=0.5,Intensity=(30,Random=0.22547,DistanceLOD=(v=0.43;t=1,v=1),ParticleAge=(v=1,flags=32;t=1))" Size="5,Random=0.75,RandomInterval=2,ParticleAge=(;t=0.14,v=1;t=1)" SortOffset="-0.05"/>
+     </Particles>
+     <Particles Name="Hero_Sparks">
+      <Params SpawnIndirection="ParentStart" Count="15,Random=0.2,DistanceLOD=(t=0.898,v=1;t=1)" MaxDistanceLOD="500" MaxTriggerDist="500" ParticleLifeTime="0.5,Random=0.4" OffsetRoundness="1" OffsetInnerFraction="1" EmitAngle="59.1,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/core_ember_01_large.tif" Alpha="DistanceLOD=(v=0.114;t=1,v=1),ParticleAge=(v=1;t=1)" Color="(x=0.72305524,y=0.3467041,z=0.1470273),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="80" Size="0.2818,Random=0.525253,DistanceLOD=(v=0.09;t=1,v=1,flags=4)" Stretch="0.02,Random=0.088,ParticleAge=(flags=32;t=0.165,v=0.933;t=1,v=0.5,flags=4),OffsetRatio=0.896" MinPixels="2" Speed="200,Random=0.717,DistanceLOD=(v=0.52;t=1,v=1,flags=4)" InheritVelocity="1" AirResistance="15" Turbulence3DSpeed="1.38,ParticleAge=(flags=32;t=1,v=1,flags=4)" SortOffset="-1" ConfigMin="Medium"/>
+     </Particles>
+     <Particles Name="dirt_jet">
+      <Params Count="5" MaxDistanceLOD="50" MaxTriggerDist="50" ParticleLifeTime="0.2,Random=0.149" EmitAngle="5.3" Texture="textures/sprites/dirt_a.tif" Alpha="ParticleAge=(;t=0.106,v=1;t=0.443,v=0.27;t=1)" DiffuseLighting="0.317" DiffuseBacklighting="0.325" Size="0.4,Random=0.426,ParticleAge=(v=0.52;t=1,v=1)" Stretch="0.1" Speed="20,Random=0.782" RandomAngles="y=359" RandomRotationRate="y=31" CameraMinDistance="1" ConfigMin="Medium"/>
+     </Particles>
+     <Particles Name="Lens_Flare">
+      <Params Count="1" MaxTriggerDist="50" ParticleLifeTime="0.5" Color="(x=0.086500466,y=0.4735315,z=0.76052463)" Flare="Damage_FX_Flares.Damage_FX_Flares_ALL.Sparks_1M_Flare" FakeLight="true" LightSource="Radius=7,Intensity=(40,ParticleAge=(;t=0.376,v=1;t=1,flags=4))" MoveRelEmitter="Yes"/>
+     </Particles>
+     <Particles Name="smoke2">
+      <Params Count="10,EmitterStrength=(v=1;t=1,v=0.52)" MaxDistanceLOD="50" MaxTriggerDist="50" ParticleLifeTime="2,Random=0.54717" PositionOffset="y=0.3" RandomOffset="x=0.2,y=0.2,z=0.2" EmitAngle="10,Random=1" Curvature="0" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true" Material="Materials/VFX/smoke/smoke_generic_36frames_LIGHT" GlowMultiplier="0" Tessellation="true" OctagonalShape="true" SoftParticle="true" Alpha="0.821569,ParticleAge=(v=0.75;t=0.07,v=1;t=0.808,v=1;t=1,v=0.66)" Color="(x=0.33716366,y=0.33716366,z=0.33716366)" DiffuseBacklighting="0.436399" ReceiveShadows="true" Size="1.5,Random=0.297,DistanceLOD=(v=0.545;t=1,v=1),ParticleAge=(v=0.25;t=1,v=1)" Speed="1.5,Random=0.634" AirResistance="0.29" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="x=21,y=21,z=21" CameraMinDistance="2"/>
+     </Particles>
+     <Particles Name="Sparks">
+      <Params Count="60,Random=1,DistanceLOD=(v=1;t=1)" MaxDistanceLOD="20" MaxTriggerDist="20" ParticleLifeTime="0.5,Random=0.412" OffsetRoundness="1" OffsetInnerFraction="1" FocusAzimuth="Random=2" EmitAngle="180,Random=1" BlendType="Additive" Texture="textures/particles/laserbolt_sparks.tif" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="10,Random=0.598" Alpha="DistanceLOD=(t=0.086;t=0.498,v=1;t=0.98)" Color="(x=0.64,y=0.36,z=0.106),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="5" Size="0.5,ParticleAge=(v=0.43,flags=32;t=1,v=1)" Stretch="0.2,ParticleAge=(flags=32;t=0.12,v=1;t=1,v=1)" Speed="19.4,Random=0.645" InheritVelocity="0.882" AirResistance="6" Turbulence3DSpeed="10" RandomAngles="x=360,y=360,z=360" ViewDistanceAdjust="2" CameraMaxDistance="34.8" ConfigMin="Medium"/>
+     </Particles>
+     <Particles Name="sparks_extra_parent">
+      <Params Count="1" MaxTriggerDist="1000" ParticleLifeTime="0.3,Random=1" EmitAngle="66.3529,Random=1" Curvature="0" BlendType="Additive" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true" Alpha="ParticleAge=(t=0.608,v=1;t=1)" Color="(x=0.116970696,y=0.32777813,z=0.701102)" DiffuseLighting="0" EmissiveLighting="2" Flare="Flares_VFX.explosions.flicker_lights_nobloom" FakeLight="true" FlareRenderDistance="10000" LightSource="Radius=0.165975,Intensity=(5.53535,Random=0.862213,ParticleAge=(v=1;t=1))" Size="0.81409,Random=0.824242,ParticleAge=(;t=0.118,v=1;t=1,v=1)" Speed="2.34834,Random=0.791919" AirResistance="WindScale=0" RandomAngles="y=180" RotationRate="y=500"/>
+      <Childs>
+       <Particles Name="sparks_sphere">
+        <Params SpawnIndirection="ParentStart" Count="100,Random=0.765182,DistanceLOD=(v=1;t=0.208,v=0.227;t=1)" MaxDistanceLOD="1000" MaxTriggerDist="1000" ParticleLifeTime="1,Random=0.694332,EmitterStrength=(t=0.318,v=1;t=1,v=0.43)" EmitAngle="60,Random=1" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/glows/core_ember_01_large.tif" Alpha="DistanceLOD=(v=0.114;t=1,v=1),ParticleAge=(v=1;t=1)" Color="(x=0.116970696,y=0.32777813,z=0.701102),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="80" Size="0.2,Random=0.525253,DistanceLOD=(v=0.09;t=1,v=1,flags=4)" Stretch="0.01,Random=0.088,ParticleAge=(flags=32;t=0.165,v=0.933;t=1,v=0.5,flags=4),OffsetRatio=0.896" MinPixels="1" Speed="20,Random=0.645161,EmitterStrength=(v=1;t=1)" InheritVelocity="3" AirResistance="3,Random=0.488889,RotationalDragScale=0,WindScale=0" Turbulence3DSpeed="ParticleAge=(v=1;t=0.816)" SortOffset="-1"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="linger">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="0.3,Random=0.444" FocusAzimuth="360,Random=2" EmitAngle="180,Random=1" BlendType="Additive" Texture="textures/particles/canon_firefx_muzzle.tif" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="2,Random=0.598" SoftParticle="true" Color="(x=0.11443538,y=0.32314324,z=0.7379105),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="0.2" Size="6,Random=0.446" MoveRelEmitter="Yes" RandomAngles="y=360" VisibleUnderwater="If_False"/>
+   </Particles>
+   <Particles Name="flash">
+    <Params Count="1" ParticleLifeTime="0.05" FocusAzimuth="360,Random=2" EmitAngle="180,Random=1" BlendType="Additive" Texture="textures/particles/neutron_firefx_ring.tif" Warp="true" WarpTexture="textures/vfx/flow maps/flowmaptest.tif" FlowMapIntensity="4.6,Random=0.598" SoftParticle="true" Color="(x=0.111932434,y=0.4793202,z=0.59061897),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="5" Size="3,Random=0.5,ParticleAge=(v=0.545,flags=32;t=1,v=1)" Speed="Random=1" RandomAngles="y=360" VisibleUnderwater="If_False"/>
+   </Particles>
+   <Particles Name="Light">
+    <Params Count="1" ParticleLifeTime="0.2" BlendType="Additive" Alpha="Random=0.5" Color="(x=0.066625945,y=0.5149177,z=0.9473067),ParticleAge=(t=0.043,v=(x=0.29,y=0.61,z=0.83);t=0.945)" Flare="Flares_VFX.explosions.explo_blue" FakeLight="true" LightSource="Radius=(50,Random=0.498881),LightBulbRadius=0.1,Intensity=(10,Random=0.794183,ParticleAge=(v=1;t=1))" Size="5,ParticleAge=(;t=0.14,v=1;t=1)"/>
+    <Childs>
+     <Particles Name="real_light">
+      <Params Count="1" ParticleLifeTime="0.4" BlendType="Additive" Alpha="Random=0.5" Color="(x=0.11443538,y=0.46207702,z=0.701102),ParticleAge=(t=0.04,v=(x=0.73,y=0.73,z=0.73);t=1)" LightSource="Radius=(50,Random=0.498881),LightBulbRadius=0.1,Intensity=(5,Random=0.516779,ParticleAge=(t=0.086,v=1;t=1))" Size="5,ParticleAge=(;t=0.14,v=1;t=1)"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="linger_sparks">
+    <Params Count="38.0753,Random=0.34,DistanceLOD=(t=0.52,v=1;t=1)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="1,Random=0.796" OffsetRoundness="1" OffsetInnerFraction="1" FocusAngle="68.159,Random=1" FocusAzimuth="77.5732,Random=1.53247" EmitAngle="17.6987,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/core_ember_01_large.tif" WarpTexture="textures/vfx/flow maps/flowswirl.tif" FlowMapIntensity="10,Random=0.598" Color="(x=0.116970696,y=0.32777813,z=0.701102),ParticleAge=(v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="50" Size="0.035" Stretch="0.02,Random=0.088,ParticleAge=(flags=32;t=0.165,v=0.933;t=1,v=0.5),OffsetRatio=0.896" MinPixels="2" Speed="22.1294,Random=0.431965" AirResistance="0.751566,Random=0.149028,RotationalDragScale=0,WindScale=0" GravityScale="0.716075" Turbulence3DSpeed="ParticleAge=(flags=32;t=1,v=1,flags=4)" ViewDistanceAdjust="2" ConfigMin="Medium"/>
+   </Particles>
+   <Particles Name="debris">
+    <Params Count="47.0711,EmitterStrength=(v=1;t=1),DistanceLOD=(v=1;t=1,v=0.48)" PulsePeriod="Random=0.5" ParticleLifeTime="9.20502,Random=0.5" FocusAngle="47.4477,Random=0.426407" FocusAzimuth="116.736,Random=0.787879" EmitAngle="25.9833,Random=1" Facing="Free" Curvature="0.2" Texture="textures/vfx/explosions/const_interior_hatch/hatch_explode_shards-02.tif" TextureTiling="TilesX=4,TilesY=2,VariantCount=8" AlphaClip="SourceMin=(Min=1),SourceWidth=(Min=0,Max=0)" Color="Random=1" Size="0.150313,Random=0.710583,ParticleAge=(;t=0.016,v=1;t=1)" Aspect="0.5" MinPixels="2" Speed="12.1086,Random=0.609071" InheritVelocity="0.156576" AirResistance="ParticleAge=(v=1;t=0.5,v=1;t=1,v=0.52,flags=4),RotationalDragScale=0" GravityScale="1" RandomAngles="x=360,y=360,z=360" RotationRate="x=360,y=360,z=360" RandomRotationRate="x=360,y=360,z=360" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.263" MaxCollisionEvents="2" Elasticity="0.3"/>
+   </Particles>
+   <Particles Name="heavy_sparks">
+    <Params Count="1" MaxDistanceLOD="500" ParticleLifeTime="0.4" Color="(x=0.116970696,y=0.32777813,z=0.701102)" DiffuseLighting="0" EmissiveLighting="100" Flare="Flares_VFX.missiles.full_missile_flare" FakeLight="true" LightSource="Radius=3.29193,Intensity=(0.538302,ParticleAge=(t=0.63,v=1;t=1))" Size="ParticleAge=(v=0.18;t=0.165,v=1;t=0.592,v=0.635;t=1,v=0.39)"/>
+    <Childs>
+     <Particles Name="large_jet">
+      <Params Enabled="false" Count="100" Continuous="true" EmitterLifeTime="0.13" ParticleLifeTime="3.61446,Random=0.541494" EmitAngle="17.7108,Random=1" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" DiffuseLighting="0" EmissiveLighting="100" Size="0.02,Random=0.741201,ParticleAge=(v=1;t=1)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="7.01403,Random=0.538302,EmitterStrength=(v=1;t=1,v=0.047,flags=4)" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.624" Elasticity="0.292585" DynamicFriction="8.35671"/>
+      <Childs>
+       <Particles Name="light_spawner">
+        <Params Count="8.3682" Continuous="true" EmitterLifeTime="0.13" ParticleLifeTime="1,Random=0.481328" EmitAngle="17.7108,Random=1" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Alpha="0" Color="(x=0.04518621,y=0.5583405,z=0.85499275)" DiffuseLighting="0" EmissiveLighting="100" Flare="Flares_VFX.missiles.full_missile_flare" LightSource="Radius=(3.29193,Random=0.800895),Intensity=(2.29814,Random=0.673378,ParticleAge=(v=1;t=1))" Size="0.06,Random=0.449275,ParticleAge=(t=0.49,v=1;t=0.79)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="12.7349,Random=0.538302,EmitterStrength=(v=1;t=1,v=0.39)" AirResistance="0.12024,Random=0.397516" GravityScale="0.77453,Random=0.293996" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.292585" DynamicFriction="8.35671"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="smoke_spawner">
+      <Params Enabled="false" Count="1" ParticleLifeTime="2.40964,Random=0.541494" EmitAngle="17.7108,Random=1" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" DiffuseLighting="0" EmissiveLighting="100" Size="0.02,Random=0.741201,ParticleAge=(v=1;t=1)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="11.8998,Random=0.538302" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.292585" DynamicFriction="8.35671"/>
+      <Childs>
+       <Particles Name="smoke">
+        <Params SpawnIndirection="ParentStart" Count="10.6426" Continuous="true" EmitterLifeTime="0.6" ParticleLifeTime="3.21285,Random=0.481328" EmitAngle="11.9277,Random=1" Curvature="0.192771" Texture="textures/vfx/smoke/smoke_generic1_36frames_diff.dds" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true" Material="Materials/VFX/smoke/smoke_generic_36frames_LIGHT" Tessellation="true" SoftParticle="true" Alpha="0.849398,Random=0.103734,ParticleAge=(v=1;t=0.66,v=1;t=1)" DiffuseBacklighting="0.108216" ReceiveShadows="true" Size="0.609218,Random=0.501035,ParticleAge=(v=0.43,flags=32;t=1,v=1)" Stretch="ParticleAge=(v=1;t=1)" Speed="EmitterStrength=(v=1;t=1,v=0.39)" InheritVelocity="0.0841683" AirResistance="0.180361,Random=0.397516,RotationalDragScale=0,WindScale=0.120083" GravityScale="-0.0300601,Random=0.293996" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=20" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.292585" DynamicFriction="8.35671"/>
+       </Particles>
+       <Particles Name="impact_sparks">
+        <Params SpawnIndirection="ParentCollide" Count="8.83534" Continuous="true" EmitterLifeTime="0.13" ParticleLifeTime="3.61446,Random=0.541494" EmitAngle="40.8434,Random=0.458506" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" DiffuseLighting="0" EmissiveLighting="100" Size="0.02,Random=0.741201,ParticleAge=(v=1;t=1)" Stretch="0.0220441,Random=0.610766,ParticleAge=(v=1;t=1)" Speed="2.40481,Random=0.538302,EmitterStrength=(v=1;t=1,v=0.047,flags=4)" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" Elasticity="0.150301" DynamicFriction="9.11824"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="debris">
+      <Params Count="17.4699" MaxDistanceLOD="30" MaxTriggerDist="300" ParticleLifeTime="2.40964,Random=0.541494" EmitAngle="65.0602,Random=1" Facing="Free" BlendType="Additive" Texture="textures/sprites/spark_stretched1_tiled2.dds" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Geometry="objects/vfx/debris/metal/debris_geo_metal.cgf" GeometryPieces="RandomPiece" DiffuseLighting="0" EmissiveLighting="100" Size="0.112224,Random=0.21118,ParticleAge=(t=0.267,v=1;t=1)" Stretch="Random=0.610766,ParticleAge=(v=1;t=1)" Speed="6.21242,Random=0.645963" AirResistance="0.12024,Random=0.397516" GravityScale="0.627254,Random=0.293996" RandomAngles="x=180,y=180,z=180" RotationRate="x=200,y=200,z=200" RandomRotationRate="x=200,y=200,z=200" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" CollideDynamicObjects="true" CollisionFraction="0.714" Elasticity="0.292585" DynamicFriction="8.35671"/>
+     </Particles>
+    </Childs>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="muzzleflash.red_version">
+  <Params ParticleLifeTime="4.01606" MoveRelEmitter="Yes"/>
+  <Childs>
+   <Particles Name="light">
+    <Params SpawnIndirection="ParentStart" Count="1" MaxDistanceLOD="500" ParticleLifeTime="0.2" Curvature="0" BlendType="Additive" FlowMapIntensity="1" OctagonalShape="true" AlphaClip="Scale=(Min=1),SourceMin=(Min=1)" Color="(x=0.41254264,y=0.17144112,z=0.1470273)" DiffuseLighting="0" Flare="SC_Flare.Bloom.DEV-Simple-Strow-Blue_Sm" LightSource="Radius=10,LightBulbRadius=3.39093,Intensity=10" Speed="8.6" MoveRelEmitter="Yes" RandomAngles="y=360" DrawNear="true"/>
+   </Particles>
+   <Particles Name="glow_bloom">
+    <Params SpawnIndirection="ParentStart" Count="10" ParticleLifeTime="0.1" EmitAngle="2" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.9822507,y=0.5028865,z=0.40724024),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="1" Size="0.156,ParticleAge=(v=1;t=0.753,v=0.66;t=1,v=0.66)" Stretch="0.089" Speed="7.8,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="glow_bloom_Gradient">
+    <Params SpawnIndirection="ParentStart" Count="10" ParticleLifeTime="0.1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.9559735,y=0.14126332,z=0.03433981),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="1" Size="0.28,Random=0.5,EmitterStrength=(v=0.294,flags=32;t=1,v=1,flags=4)" Stretch="1" Speed="15.2,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="glow_bloom_Gradient-01">
+    <Params SpawnIndirection="ParentStart" Count="5" ParticleLifeTime="0.1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.93868583,y=0.36130682,z=0.26635563),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="0.455" Size="0.249,Random=0.5" Stretch="0.214" Speed="17.5,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="glow_core">
+    <Params SpawnIndirection="ParentStart" Count="10" ParticleLifeTime="0.1" EmitAngle="1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.9911022,y=0.88792324,z=0.85499275),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="5" Size="0.434238,Random=0.5,ParticleAge=(t=0.06,v=1;t=0.67,v=0.48;t=1,v=0.48)" Stretch="1" Speed="15,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="glow_bloom_Gradient-02">
+    <Params SpawnIndirection="ParentStart" Count="5" ParticleLifeTime="0.1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.9822507,y=0.68668544,z=0.59061897),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="0.062" Size="0.311,Random=0.5" Stretch="0.521" Speed="19.8,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="flower_bloom">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="0.1" EmitAngle="73.5" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.921582,y=0.6239605,z=0.46207702),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="1" Size="0.3,ParticleAge=(v=1;t=0.667,v=0.48;t=1,v=0.52,flags=4)" Stretch="1" Speed="2.3" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="distortion">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="0.1" RandomOffset="x=0.3,z=0.3" Material="Materials/Particle/Engine_Heat" Size="0.80167" MoveRelEmitter="Yes" RandomAngles="y=180,z=360" SortOffset="1" FillRateCost="0.5"/>
+   </Particles>
+   <Particles Name="glow2">
+    <Params SpawnIndirection="ParentStart" Count="10" ParticleLifeTime="0.1" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.86315733,y=0.3915725,z=0.32314324),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="0.1" Size="0.249,Random=0.5" Stretch="1" Speed="15.2,Random=0.2" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+   <Particles Name="Ray">
+    <Params Enabled="false" SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/vfx/glows/fx_rays_02.tif" SoftParticle="true" Color="(x=0.01,y=0.45),ParticleAge=(;t=0.3,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="0.1" Size="3.32359,Random=0.1" Aspect="8" Speed="Random=0.087" MoveRelEmitter="Yes" InitAngles="y=180,z=90" CameraDistanceOffset="-0.439"/>
+   </Particles>
+   <Particles Name="Mist">
+    <Params SpawnIndirection="ParentStart" Count="15" ParticleLifeTime="0.7,Random=0.21" OffsetRoundness="1" BlendType="Additive" Texture="textures/vfx/smoke/smokecurl_loop.tif" TextureTiling="TilesX=8,TilesY=8,AnimFramesCount=64,AnimBlend=true" SoftParticle="true" Alpha="ParticleAge=(flags=32;t=0.15,v=1;t=0.392)" Color="(x=0.8069524,y=0.24228115,z=0.18782079)" DiffuseLighting="0" EmissiveLighting="5" Size="0.501044,Random=0.376" Aspect="1.8" Stretch="0.156" Speed="11.8998,Random=1" MoveRelEmitter="Yes" RandomAngles="y=360" RandomRotationRate="y=60"/>
+   </Particles>
+   <Particles Name="Lighting-">
+    <Params Enabled="false" SpawnIndirection="ParentStart" Count="2,Random=0.597" ParticleLifeTime="0.05,Random=0.227" RandomOffset="z=0.75" Facing="Free" BlendType="Additive" Texture="textures/sprites/lightning/lightning_tiled.tif" TextureTiling="TilesY=4,AnimFramesCount=4" NoOffset="true" Color="(x=0.196,y=0.314,z=0.93)" DiffuseLighting="0" EmissiveLighting="10" LightSource="Radius=1.5,Intensity=2" Size="0.05,Random=0.336" Aspect="1.276" Speed="Random=2" MoveRelEmitter="Yes" InitAngles="z=90"/>
+   </Particles>
+   <Particles Name="Energy-">
+    <Params Enabled="false" SpawnIndirection="ParentStart" Count="5,Random=0.214" ParticleLifeTime="0.1" RandomOffset="z=0.7" EmitAngle="Random=1" BlendType="Additive" Texture="textures/vfx/smoke/fx_smoke_2x2_c.tif" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Alpha="Random=0.925" AlphaClip="SourceMin=(Max=0.2)" Color="(x=0.337,y=0.408,z=0.906)" DiffuseLighting="0" EmissiveLighting="0.175" Size="0.2,Random=0.842" Stretch="0.471" Speed="0.8" MoveRelEmitter="Yes" RandomAngles="y=360" RandomRotationRate="y=300"/>
+   </Particles>
+   <Particles Name="Lighting-1">
+    <Params SpawnIndirection="ParentStart" Count="12.1,Random=0.597" ParticleLifeTime="0.05,Random=0.227" PositionOffset="y=0.5" RandomOffset="y=0.75" BlendType="Additive" Texture="textures/sprites/lightning/lightning_tiled.tif" TextureTiling="TilesY=4,AnimFramesCount=4" NoOffset="true" Color="(x=0.9559735,y=0.28314877,z=0.21952623)" DiffuseLighting="0" EmissiveLighting="10" Size="0.501044,Random=0.336" Aspect="1.276" Speed="40.7098,Random=2" MoveRelEmitter="Yes" InitAngles="z=90" RandomAngles="y=180"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="muz">
+  <Params Count="1" ParticleLifeTime="2" TextureTiling="TilesX=2,TilesY=2,FirstTile=3" Alpha="ParticleAge=(v=1;t=1,flags=4)" BlurDistance="1" BlurTime="0.2" BlurStrength="1" DiffuseLighting="0" Size="0,ParticleAge=(;t=0.114,v=0.5;t=1,v=1,flags=4)" MoveRelEmitter="Yes"/>
+  <Childs>
+   <Particles Name="plasma_blast">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="2" PositionOffset="y=0.2" TextureTiling="TilesX=2,TilesY=2,FirstTile=3" Alpha="ParticleAge=(v=1;t=1,flags=4)" DiffuseBacklighting="1" Size="0,ParticleAge=(;t=0.114,v=0.5;t=1,v=1,flags=4)" Stretch="0.5" MoveRelEmitter="Yes"/>
+    <Childs>
+     <Particles Name="plasma_residue_forwards">
+      <Params SpawnIndirection="ParentStart" Count="20,EmitterStrength=(v=0.5,flags=32;t=1,v=1,flags=4),DistanceLOD=(v=1;t=1)" MaxDistanceLOD="300" MaxTriggerDist="300" ParticleLifeTime="0.18,EmitterStrength=(v=1;t=1,v=0.5,flags=4)" PositionOffset="y=0.5" FocusAngle="Random=1" EmitAngle="5,Random=1" BlendType="Additive" Texture="textures/vfx/fire/fire_fromexplode9_b_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5" OctagonalShape="true" SoftParticle="true" Alpha="0.2,ParticleAge=(;t=0.5,v=1;t=1)" Color="(x=0.4019778,y=0.6795426),Random=0.25,ParticleAge=(v=(x=1,y=1,z=1);t=0.992,v=(x=0.035,y=0.357,z=0.816))" DiffuseLighting="0" EmissiveLighting="1" Size="0.8,Random=0.5,ParticleAge=(v=0.365,flags=32;t=1,v=1)" Aspect="Random=0.252" Stretch="0.05" Speed="30,Random=0.5" AirResistance="Random=0.402" MoveRelEmitter="Yes" SortOffset="-0.887"/>
+     </Particles>
+     <Particles Name="plasma_residue_extra">
+      <Params SpawnIndirection="ParentStart" Count="20,EmitterStrength=(v=0.5,flags=32;t=1,v=1,flags=4),DistanceLOD=(t=0.557,v=1;t=1)" MaxDistanceLOD="750" MaxTriggerDist="750" ParticleLifeTime="0.18,Random=0.426,EmitterStrength=(v=1;t=1,v=0.5,flags=4)" PositionOffset="y=0.5" FocusAngle="Random=1" EmitAngle="5,Random=1" BlendType="Additive" Texture="textures/vfx/fire/fire_fromexplode9_b_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5" OctagonalShape="true" SoftParticle="true" Alpha="0.2,ParticleAge=(;t=0.5,v=1;t=1)" Color="(x=0.4019778,y=0.6795426),Random=0.25,ParticleAge=(v=(x=1,y=1,z=1);t=0.996,v=(x=0.1,y=0.424,z=0.545))" DiffuseLighting="0" EmissiveLighting="1" Size="0.7,Random=0.5,ParticleAge=(v=0.635,flags=32;t=1,v=1)" Aspect="Random=0.459" Stretch="0.05" Speed="30,Random=0.724" AirResistance="Random=0.402" MoveRelEmitter="Yes" SortOffset="-0.887"/>
+     </Particles>
+     <Particles Name="smoke">
+      <Params SpawnIndirection="ParentStart" Count="50,EmitterStrength=(v=0.5,flags=32;t=1,v=1,flags=4),DistanceLOD=(t=0.75,v=1;t=1)" MaintainDensity="5,ReduceAlpha=0.5" MaxDistanceLOD="100" MaxTriggerDist="100" Continuous="true" EmitterLifeTime="0.4" ParticleLifeTime="2,EmitterStrength=(v=1;t=1,v=0.5,flags=4)" PositionOffset="y=-0.04" FocusAngle="Random=1" EmitAngle="10,Random=1" Curvature="0" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5" Material="Materials/VFX/smoke/smoke_generic_36frames_LIGHT" GlowMultiplier="0" Tessellation="true" OctagonalShape="true" SoftParticle="true" Alpha="0.1,EmitterStrength=(v=1;t=1),DistanceLOD=(v=1;t=1),ParticleAge=(v=0.275;t=0.086,v=1;t=0.808,v=1;t=1)" Color="(x=0.701102,y=0.701102,z=0.701102)" DiffuseLighting="0.9" DiffuseBacklighting="0.1" ReceiveShadows="true" Size="3,Random=0.4,ParticleAge=(v=0.455,flags=32;t=0.25,v=0.57;t=1,v=1)" Aspect="Random=0.252" Stretch="0.1" Speed="6,Random=0.3" InheritVelocity="1" AirResistance="4,Random=0.3" GravityScale="0.2" RandomAngles="y=180" CameraMinDistance="0.4" SortOffset="1"/>
+     </Particles>
+     <Particles Name="light">
+      <Params SpawnIndirection="ParentStart" Count="1" MaxTriggerDist="700" ParticleLifeTime="1" BlendType="Additive" Color="(x=0.09989873,y=0.43415368)" DiffuseLighting="0" LightSource="Radius=8,LightBulbRadius=0.02,Intensity=(5,ParticleAge=(;t=0.01,v=1;t=1))" MoveRelEmitter="Yes"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="flare">
+    <Params SpawnIndirection="ParentStart" Count="1" MaxTriggerDist="60" ParticleLifeTime="0.5" PositionOffset="y=0.5" BlendType="Additive" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0.02" DiffuseBacklighting="0.023" EmissiveLighting="0.02" Flare="Damage_FX_Flares.Damage_FX_Flares_ALL.Sparks_1M_Flare" FakeLight="true" LightSource="Radius=(30,ParticleAge=(v=1;t=1)),Intensity=(10,ParticleAge=(;t=0.125,v=1;t=1)),HDRDynamic=2" Size="2" MoveRelEmitter="Yes" RandomAngles="y=360" SortOffset="-1"/>
+   </Particles>
+   <Particles Name="flare2">
+    <Params SpawnIndirection="ParentStart" Count="1" MaxDistanceLOD="250" MaxTriggerDist="250" ParticleLifeTime="0.5" Curvature="0" BlendType="Additive" FlowMapIntensity="1" OctagonalShape="true" AlphaClip="Scale=(Min=1),SourceMin=(Min=1)" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0" Flare="weapon_flare.Vanduul.Neutron_Cannon1" FakeLight="true" LightSource="Radius=1,Intensity=(3,DistanceLOD=(v=1;t=0.973),ParticleAge=(;t=0.098,v=1;t=1))" Size="2" MoveRelEmitter="Yes" RandomAngles="y=360" DrawNear="true"/>
+   </Particles>
+   <Particles Name="projectile">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="2" PositionOffset="y=0.2" TextureTiling="TilesX=2,TilesY=2,FirstTile=3" Alpha="ParticleAge=(v=1;t=1,flags=4)" DiffuseBacklighting="1" Size="0,ParticleAge=(;t=0.114,v=0.5;t=1,v=1,flags=4)" Stretch="0.5" MoveRelEmitter="Yes"/>
+    <Childs>
+     <Particles Name="100_fireballadd">
+      <Params SpawnIndirection="ParentStart" Count="20,EmitterStrength=(v=0.5,flags=32;t=1,v=1,flags=4),DistanceLOD=(v=1;t=1)" MaxDistanceLOD="300" MaxTriggerDist="300" ParticleLifeTime="0.18,EmitterStrength=(v=1;t=1,v=0.5,flags=4)" PositionOffset="y=0.5" FocusAngle="Random=1" EmitAngle="Random=1" BlendType="Additive" Texture="textures/vfx/fire/fire_fromexplode9_b_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5" OctagonalShape="true" SoftParticle="true" Alpha="0.2,ParticleAge=(;t=0.5,v=1;t=1)" Color="(x=0.4019778,y=0.6795426),Random=0.25,ParticleAge=(v=(x=1,y=1,z=1);t=0.996,v=(x=0.498,y=0.255,z=0.125))" DiffuseLighting="0" EmissiveLighting="2" Size="0.8,Random=0.5,ParticleAge=(v=0.365,flags=32;t=1,v=1)" Aspect="Random=0.252" Stretch="0.05" Speed="100,Random=0.5" AirResistance="Random=0.402" MoveRelEmitter="Yes" SortOffset="-0.887"/>
+     </Particles>
+     <Particles Name="shape_jut">
+      <Params SpawnIndirection="ParentStart" Count="20,EmitterStrength=(v=0.5,flags=32;t=1,v=1,flags=4),DistanceLOD=(t=0.557,v=1;t=1)" MaxDistanceLOD="750" MaxTriggerDist="750" ParticleLifeTime="0.18,Random=0.426,EmitterStrength=(v=1;t=1,v=0.5,flags=4)" PositionOffset="y=0.5" FocusAngle="Random=1" EmitAngle="Random=1" BlendType="Additive" Texture="textures/vfx/fire/fire_fromexplode9_b_diff.tif" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true,FlipChance=0.5" OctagonalShape="true" SoftParticle="true" Alpha="0.2,ParticleAge=(;t=0.5,v=1;t=1)" Color="(x=0.4019778,y=0.6795426),Random=0.25,ParticleAge=(v=(x=1,y=1,z=1);t=0.996,v=(x=0.498,y=0.255,z=0.125))" DiffuseLighting="0" EmissiveLighting="1" Size="0.7,Random=0.5,ParticleAge=(v=0.635,flags=32;t=1,v=1)" Aspect="Random=0.459" Stretch="0.05" Speed="100,Random=0.724" AirResistance="Random=0.402" MoveRelEmitter="Yes" SortOffset="-0.887"/>
+     </Particles>
+     <Particles Name="light">
+      <Params SpawnIndirection="ParentStart" Count="1" MaxTriggerDist="700" ParticleLifeTime="0.18" PositionOffset="y=1" BlendType="Additive" Texture="textures/particles/electrical_glow.tif" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0" LightSource="Radius=8,LightBulbRadius=0.1,Intensity=(16,ParticleAge=(;t=0.098,v=1;t=1))" Speed="100" MoveRelEmitter="Yes"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="refract">
+    <Params SpawnIndirection="ParentStart" Count="2,DistanceLOD=(t=0.482,v=1;t=1)" MaxDistanceLOD="60" MaxTriggerDist="60" EmitterLifeTime="2" ParticleLifeTime="1.5" RandomOffset="x=0.3,z=0.3" Curvature="0" Material="Materials/VFX/Thrusters/Thruster_Refraction1" Alpha="0.3,EmitterStrength=(v=0.365;t=1,v=1),DistanceLOD=(t=0.506,v=1;t=1),ParticleAge=(;t=0.49,v=1;t=0.992)" Size="2" Speed="0.5,EmitterStrength=(;t=0.09,v=1)" MoveRelEmitter="Yes" RandomAngles="y=180,z=360" SortOffset="-10000" FillRateCost="0.5"/>
+   </Particles>
+   <Particles Name="muz_flash">
+    <Params SpawnIndirection="ParentStart" Count="1" ParticleLifeTime="0.1" PositionOffset="y=-0.2" MoveRelEmitter="Yes"/>
+    <Childs>
+     <Particles Name="glow">
+      <Params SpawnIndirection="ParentStart" Count="10,DistanceLOD=(t=0.506,v=1;t=1,flags=4)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="0.1" PositionOffset="y=0.2" FocusAngle="5.3" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0" EmissiveLighting="0.1" Size="0.7,Random=0.5" Stretch="1" Speed="12,Random=0.2" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+     </Particles>
+     <Particles Name="glow_core-hot">
+      <Params SpawnIndirection="ParentStart" Count="10,DistanceLOD=(t=0.663,v=1;t=1)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="0.1" PositionOffset="y=0.2" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.4019778,y=0.6795426),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="5" Size="0.3,Random=0.5,ParticleAge=(v=1;t=0.753,v=0.66;t=1,v=0.682)" Stretch="1" Speed="12,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+     </Particles>
+     <Particles Name="glow_core">
+      <Params SpawnIndirection="ParentStart" Count="10,DistanceLOD=(t=0.5,v=1;t=1,v=0.294)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="0.1" PositionOffset="y=0.2" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.4019778,y=0.6795426),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="1" Size="0.1,Random=0.5,ParticleAge=(t=0.06,v=1;t=0.67,v=0.48;t=1,v=0.48)" Stretch="1" Speed="12,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+     </Particles>
+     <Particles Name="glow_bloom_Gradient-2">
+      <Params SpawnIndirection="ParentStart" Count="5,DistanceLOD=(t=0.5,v=1;t=1,v=0.318)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="0.1" PositionOffset="y=0.2" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0" EmissiveLighting="0.019" Size="0.7,Random=0.5" Stretch="1" Speed="32,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+     </Particles>
+     <Particles Name="glow_bloom1">
+      <Params SpawnIndirection="ParentStart" Count="10,DistanceLOD=(t=0.75,v=1;t=1,v=0.545,flags=4)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="0.08" PositionOffset="y=0.2" EmitAngle="2" OrientToVelocity="true" Curvature="0" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true" Alpha="ParticleAge=(t=0.5,v=1;t=1)" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0" EmissiveLighting="5" Size="0.3,ParticleAge=(v=1;t=0.753,v=0.66;t=1,v=0.66)" Stretch="1" Speed="24,Random=0.5" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="glow_inside_barrel">
+    <Params SpawnIndirection="ParentStart" Count="70,DistanceLOD=(t=0.663,v=1;t=1)" MaxDistanceLOD="200" MaxTriggerDist="200" ParticleLifeTime="0.8" PositionOffset="y=-1.2" RandomOffset="y=1.3" OrientToVelocity="true" BlendType="Additive" Texture="textures/vfx/glows/glow01.tif" SoftParticle="true,Softness=1.5" Alpha="ParticleAge=(v=1;t=0.49,v=0.227;t=1)" Color="(x=0.4019778,y=0.6795426),ParticleAge=(t=0.008,v=(x=1,y=1,z=1);t=1)" DiffuseLighting="0" EmissiveLighting="3" Size="0.08" MoveRelEmitter="Yes" SortOffset="-0.049999997" SortQuality="2"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="trail">
+  <Params ParticleLifeTime="0.1" AttachType="Render" FocusAngle="180" BlendType="Additive" Tessellation="true" Alpha="0.35" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0.7" DiffuseBacklighting="0.5" Size="0.2,ParticleAge=(v=0.84,flags=32;t=0.05,v=1;t=0.99)" Connection="true,TextureFrequency=5,VolumetricTrail=true,VolumetricTrailFins=true" Speed="6.1" InheritVelocity="0.943" AirResistance="1.67" MoveRelEmitter="Yes" Streamable="false"/>
+  <Childs>
+   <Particles Name="Heat_Haze">
+    <Params Count="3,Random=0.25,RandomInterval=2,DistanceLOD=(v=1;t=1)" MaxDistanceLOD="100" Continuous="true" EmitterLifeTime="300" ParticleLifeTime="0.3" RandomOffset="x=0.2,y=0.5,z=0.2" OffsetRoundness="1" EmitOffsetDir="true" EmitAngle="180,Random=1" OrientToVelocity="true" Curvature="0" TextureTiling="TilesX=2,FirstTile=1,AnimCycle=Mirror,AnimBlend=true,FlipChance=0.5" Material="Materials/Particle/Engine_Heat" FlowMapIntensity="1" SoftParticle="true" Alpha="0.2,DistanceLOD=(v=1;t=1,v=0.455),ParticleAge=(flags=32;t=0.25,v=1;t=1,flags=4)" AlphaClip="Scale=(Min=2,Max=5),SourceMin=(Min=0.25),SourceWidth=(Max=0.25)" Color="(x=0.4019778,y=0.6795426),Random=1,EmitterStrength=(t=0.14,v=(x=0.745,y=0.694,z=0.514);t=0.482,v=(x=0.553,y=0.475,z=0.23),flags=4;t=0.784,v=(x=0.44,y=0.17,z=0.11)),ParticleAge=(v=(x=0.447,y=0.77,z=0.847);t=0.043,v=(x=0.8,y=0.67,z=0.486),flags=36;t=0.173,v=(x=0.667,y=0.463,z=0.22);t=0.67,v=(x=0.408,y=0.16,z=0.11),flags=4;t=0.992,v=(x=0.047,y=0.02,z=0.016))" DiffuseLighting="0" Size="3,Random=0.25,DistanceLOD=(v=0.43;t=1,v=1),ParticleAge=(v=0.66,flags=32;t=1,v=1)" Stretch="Random=0.25,ParticleAge=(v=0.52,flags=32;t=1,v=1)" Speed="-5" AirResistance="3,Random=0.5,ParticleAge=(v=1,flags=32;t=0.25;t=1,v=0.455,flags=4),RotationalDragScale=0.5" MoveRelEmitter="Yes" RandomAngles="y=360" SortOffset="-5"/>
+   </Particles>
+   <Particles Name="Smoke_Trail">
+    <Params Count="300,DistanceLOD=(v=1;t=0.84,v=1;t=1)" MaintainDensity="10,ReduceAlpha=0.1" MaxDistanceLOD="2000" Continuous="true" EmitterLifeTime="300" ParticleLifeTime="1.5" PositionOffset="y=-2" RandomOffset="y=1.5" EmitAngle="5,Random=0.5" Curvature="0" BlendType="Additive" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimBlend=true" Material="Materials/VFX/smoke/smoke_generic_36frames_LIGHT" GlowMultiplier="0" OctagonalShape="true" SoftParticle="true" Alpha="0.08,DistanceLOD=(;t=0.024,v=1;t=1),ParticleAge=(flags=32;t=0.016,v=1,flags=4;t=0.51,v=0.16;t=1)" Color="(x=0.4019778,y=0.6795426)" DiffuseLighting="0" EmissiveLighting="0.5" Size="0.8,Random=0.4" Speed="-1,Random=0.2" AirResistance="RotationalDragScale=0.5" Turbulence3DSpeed="0.75" RandomAngles="y=180" RandomRotationRate="y=20" CameraMinDistance="5" SortOffset="-100000"/>
+   </Particles>
+  </Childs>
+ </Particles>
+</ParticleLibrary>

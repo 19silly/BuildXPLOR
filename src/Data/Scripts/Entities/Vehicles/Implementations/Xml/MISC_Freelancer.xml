@@ -51,9 +51,9 @@
               <DamageBehavior class="MovementNotification">
                 <MovementNotification isDamageAlwaysFull="0" />
               </DamageBehavior>
-              <!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="EngineDamaged" disableAfterExplosion="1" />
-              </DamageBehavior>-->
+  				<DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="MISC_Freelancer"  />
+              </DamageBehavior>
             </DamageBehaviors>
           </DamagesSubGroup>
         </DamagesSubGroups>
@@ -618,6 +618,11 @@
         <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
         <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-30,0,0" motionBlur="0" />
       </Views>
+	  <PostAction>
+		<Exit>
+          <State animation="Pilot" state="Exit" />
+        </Exit>
+      </PostAction>
       <!-- Begin actions for this seat-->
       <SeatActions>
         <!-- We specifiy the Movement Seat Action as we dont want the engine to start on entry. Otehrwise the default vehicle implementation will init a teh SeatActionMovement componnet that will start the engine on entry-->
@@ -745,6 +750,11 @@
         <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
         <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-30,0,0" motionBlur="0" />
       </Views>
+	  <PostAction>
+		<Exit>
+          <State animation="Copilot" state="Exit" />
+        </Exit>
+      </PostAction>
       <SeatActions>
         <SeatAction class="Movement">
           <Movement engine="1">
@@ -784,7 +794,7 @@
       </SeatActions>
     </Seat>
     <!--           Gunner (Rear Turret)        -->
-    <Seat name="Gunner" part="" enterHelper="gunner_enter_pos" sitHelper="gunner_seat_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="3" isHUDSupported="0">
+    <Seat name="Gunner" part="" enterHelper="gunner_enter_pos" sitHelper="gunner_seat_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="3" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -793,7 +803,7 @@
       <SeatActions />
     </Seat>
     <!--           Kitchen Table Left Side         -->
-    <Seat name="kitchen_table_left_player" part="" enterHelper="kitchen_table_left_mount_pos" sitHelper="kitchen_table_left_sit_pos" canLook="1" lookMin="-10,0,-20" lookMax="10,0,20" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="4" isHUDSupported="0">
+    <Seat name="kitchen_table_left_player" part="" enterHelper="kitchen_table_left_mount_pos" sitHelper="kitchen_table_left_sit_pos" canLook="1" lookMin="-10,0,-20" lookMax="10,0,20" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="4" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-10,0,-20" rotationMax="10,0,20">
           <FirstPerson offset="0,0,0" />
@@ -807,7 +817,7 @@
       <SeatActions />
     </Seat>
     <!--           Kitchen Table Right Side         -->
-    <Seat name="kitchen_table_right_player" part="" enterHelper="kitchen_table_right_mount_pos" sitHelper="kitchen_table_right_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="5" isHUDSupported="0">
+    <Seat name="kitchen_table_right_player" part="" enterHelper="kitchen_table_right_mount_pos" sitHelper="kitchen_table_right_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="5" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -821,7 +831,7 @@
       <SeatActions />
     </Seat>
     <!--           front_seat_leftPlayer        -->
-    <Seat name="cockpit_seat_leftPlayer" part="" enterHelper="cockpit_seat_left_mount_pos" sitHelper="cockpit_seat_left_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="6" isHUDSupported="0">
+    <Seat name="cockpit_seat_leftPlayer" part="" enterHelper="cockpit_seat_left_mount_pos" sitHelper="cockpit_seat_left_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="6" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -830,7 +840,7 @@
       <SeatActions />
     </Seat>
     <!--           front_seat_rightPlayer        -->
-    <Seat name="cockpit_seat_rightPlayer" part="" enterHelper="cockpit_seat_right_mount_pos" sitHelper="cockpit_seat_right_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="7" isHUDSupported="0">
+    <Seat name="cockpit_seat_rightPlayer" part="" enterHelper="cockpit_seat_right_mount_pos" sitHelper="cockpit_seat_right_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="7" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -839,7 +849,7 @@
       <SeatActions />
     </Seat>
     <!--           Lower Left Sleeping Berth        -->
-    <Seat name="bunkbeds_lowerleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_lowerleft_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="8" isHUDSupported="0">
+    <Seat name="bunkbeds_lowerleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_lowerleft_sit_pos" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="8" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -848,7 +858,7 @@
       <SeatActions />
     </Seat>
     <!--           Lower Right Sleeping Berth        -->
-    <Seat name="bunkbeds_lowerright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_lowerright_sit_pos" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="9" isHUDSupported="0">
+    <Seat name="bunkbeds_lowerright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_lowerright_sit_pos" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="9" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -857,7 +867,7 @@
       <SeatActions />
     </Seat>
     <!--           Upper Left Sleeping Berth        -->
-    <Seat name="bunkbeds_upperleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_upperleft_sit_pos" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="10" isHUDSupported="0">
+    <Seat name="bunkbeds_upperleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_upperleft_sit_pos" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="10" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -866,7 +876,7 @@
       <SeatActions />
     </Seat>
     <!--           Upper Right Sleeping Berth        -->
-    <Seat name="bunkbeds_upperright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_upperright_sit_pos" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="11" isHUDSupported="0">
+    <Seat name="bunkbeds_upperright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_upperright_sit_pos" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="11" isHUDSupported="0" passengerHasBreathing="0">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0" />
@@ -879,11 +889,11 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
     <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
-      <SoundParams dmgBufferDecay="0.2">
-        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
-        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
+      <AudioParams dmgBufferDecay="0.2">
+		<PassByLoopSound sound="Play_SSPB_RSI_Merlin_Loop" />
+		<PassBySound sound="Play_SSPB_RSI_Merlin_800ms_0to100meters" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />	
         <DuressSound sound="Play_SSDD_MISC_Freelancer_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
-      </SoundParams>
+      </AudioParams>
       <Animations />
       <Contrails>
         <Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" minSpeed="25" />
@@ -897,7 +907,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="MISC_Freelancer" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_red" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">

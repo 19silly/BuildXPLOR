@@ -1,0 +1,126 @@
+<item name="RSI_Constellation_MissilePod_S1_x7" class="VehicleMissileRack" category="VehicleWeapon" uniqueId="2" priority="30" weaponParams="1" >
+  <params>
+    <param name="giveable" value="0" />
+    <param name="selectable" value="0" />
+    <param name="pickable" value="0" />
+    <param name="mountable" value="1" />
+    <param name="usable" value="0" />
+    <param name="arms" value="0" />
+    <param name="itemType" value="WeaponMissile" />
+    <param name="itemSubType" value="MissileRack" />
+	<param name="itemDescription" value="item_DescRSI_Constellation_MissilePod_S1_x7" />
+    <param name="itemManufactor" value="RSI" />
+    <param name="itemSize" value="1" />
+    <param name="display_name"	value="item_NameRSI_Constellation_MissilePod_S1_x7" />
+  </params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+	<States>
+      <State state="Idle,Default">
+        <Value value="-3" />
+        <!-- If not selected -->
+      </State>
+      <State state="Active">
+        <Value value="-10" />
+        <!-- If Idle it will use 10 energy points -->
+      </State>
+      <State state="Targeting">
+        <Value value="-30" />
+        <!-- if shooting it will use 30 energy points -->
+      </State>
+      <State state="Off">
+          <Value value="0" />
+      </State>
+	  </States>
+    </Pipe>
+    <Pipe class="Heat" >
+	<States>
+      <State state="Idle,Active,Targeting" transition="0.3">
+        <Value value="3"/>
+      </State>
+	  </States>
+    </Pipe>
+    <Pipe class="Avionics">
+	<States>
+      <State state="ManualControl">
+        <Value value="0"/>
+      </State>
+      <State state="AutoControl">
+        <Value value="20"/>
+      </State>
+	  </States>
+    </Pipe>
+  </Pipes>
+
+  <geometry>
+    <!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
+    <thirdperson name="Objects\Spaceships\Missile_Racks\RSI\Constellation\RSI_Constellation_MissilePod_S1_Left.cga"/>
+
+	<tags tag="left">
+		<thirdperson name="Objects\Spaceships\Missile_Racks\RSI\Constellation\RSI_Constellation_MissilePod_S1_Left.cga"/>
+	</tags>
+
+	<tags tag="right">
+		<thirdperson name="Objects\Spaceships\Missile_Racks\RSI\Constellation\RSI_Constellation_MissilePod_S1_Right.cga"/>
+	</tags>
+
+	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->
+	<tags tag="Hologram">
+		<thirdperson name="Objects\Spaceships\Missile_Racks\RSI\Constellation\RSI_Constellation_MissilePod_S1_Left.cga" material=""/>
+	</tags>
+	
+
+  </geometry>
+
+  <portParams>
+	<ports>
+		<ItemPort name="missile_attach_01" minsize="1" maxsize="1" display_name="Ordinance Slot #1">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="missile_attach_02" minsize="1" maxsize="1" display_name="Ordinance Slot #2">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="missile_attach_03" minsize="1" maxsize="1" display_name="Ordinance Slot #3">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="missile_attach_04" minsize="1" maxsize="1" display_name="Ordinance Slot #4">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="missile_attach_05" minsize="1" maxsize="1" display_name="Ordinance Slot #5">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="missile_attach_06" minsize="1" maxsize="1" display_name="Ordinance Slot #6">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="missile_attach_07" minsize="1" maxsize="1" display_name="Ordinance Slot #7">
+			<Types>
+				<Type type="Ordinance" subtypes="Missile"/>
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <missilerackparams>
+    <param name="detach_FX" value="spaceship_fx.Hornet.missile_detach" />
+    <detach_vel>
+      <param value="0,35,0" />
+    </detach_vel>
+  </missilerackparams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+</item>

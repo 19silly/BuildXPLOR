@@ -1,0 +1,43 @@
+<Graph isModule="1" moduleName="GetDistance" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="Entity_1" Type="EntityId" Input="1"/>
+  <Port Name="Entity_2" Type="EntityId" Input="1"/>
+  <Port Name="Distance" Type="Float" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_GetDistance" pos="-20,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_GetDistance" pos="1130,30,0" flags="0">
+   <Inputs Distance="0"/>
+  </Node>
+  <Node Id="4" Class="Entity:GetPos" pos="320,10,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="5" Class="Entity:GetPos" pos="320,170,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="7" Class="Vec3:Calculate" pos="710,50,0" flags="0">
+   <Inputs Op="1" A="0,0,0" B="0,0,0"/>
+  </Node>
+  <Node Id="9" Class="Logic:All" pos="560,10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="11" Class="Vec3:MagnitudeVec3" pos="900,50,0" flags="0">
+   <Inputs vector="0,0,0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="4" nodeOut="1" portIn="entityId" portOut="Entity_1" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="1" portIn="Get" portOut="Start" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="1" portIn="entityId" portOut="Entity_2" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="1" portIn="Get" portOut="Start" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="4" portIn="A" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="4" portIn="in1" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="5" portIn="B" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="5" portIn="in2" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="7" portIn="vector" portOut="out" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="9" portIn="DoCalc" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="11" portIn="Distance" portOut="length" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="11" portIn="Success" portOut="length" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

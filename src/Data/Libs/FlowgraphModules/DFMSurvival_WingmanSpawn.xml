@@ -1,0 +1,262 @@
+<Graph isModule="1" moduleName="DFMSurvival_WingmanSpawn" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="WingmanA_InitialSpawn" Type="EntityId" Input="1"/>
+  <Port Name="WingmanB_InitialSpawn" Type="EntityId" Input="1"/>
+  <Port Name="WingmanA_InitialSpline" Type="EntityId" Input="1"/>
+  <Port Name="WingmanB_InitialSpline" Type="EntityId" Input="1"/>
+  <Port Name="DefendArea" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DFMSurvival_WingmanSpawn" pos="-100,1040,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DFMSurvival_WingmanSpawn" pos="5970,1050,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1172" Class="Mission:GameTokenSet" pos="3270,1360,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA" Value="alive" Networked="0"/>
+  </Node>
+  <Node Id="1181" Class="entity:AISpawnPoint" pos="2690,1040,0" flags="0">
+   <Inputs entityId="0" Kill="0" Spawn="0" WaveID="0"/>
+  </Node>
+  <Node Id="1210" Class="Mission:GameTokenSet" pos="3270,1040,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA" Value="dead" Networked="0"/>
+  </Node>
+  <Node Id="1212" Class="Logic:Any" pos="3060,1040,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1216" Class="Mission:GameToken" pos="1430,1040,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_RespawnID" compare_Value=""/>
+  </Node>
+  <Node Id="1240" Name="Friendly_Spawn/Respawn" Class="_commentbox" pos="80,650.2403,0" flags="0">
+   <Inputs TextSize="1" Color="0.496933,0.564712,0.806952" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="5840" Height="2760"/>
+   <NodeSize Width="5840" Height="2852.4451"/>
+  </Node>
+  <Node Id="1281" Class="Mission:GameTokenSet" pos="3270,1260,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_ID" Value="alive" Networked="0"/>
+  </Node>
+  <Node Id="1283" Class="Logic:Any" pos="3060,1260,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1843" Class="Kythera:Task:Defend" pos="2390,1820,0" flags="0">
+   <Inputs entityId="0" volume="0"/>
+  </Node>
+  <Node Id="1850" Class="Kythera:Event:HostileDetected" pos="2160,1820,0" flags="0">
+   <Inputs entityId="0" enabled="1"/>
+  </Node>
+  <Node Id="1851" Class="Mission:GameToken" pos="1790,1820,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_ID" compare_Value=""/>
+  </Node>
+  <Node Id="1872" Class="Kythera:Task:Defend" pos="2390,2100,0" flags="0">
+   <Inputs entityId="0" volume="0"/>
+  </Node>
+  <Node Id="1877" Class="Kythera:Event:HostileDetected" pos="2160,2100,0" flags="0">
+   <Inputs entityId="0" enabled="1"/>
+  </Node>
+  <Node Id="1878" Class="Mission:GameToken" pos="1790,2100,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_ID" compare_Value=""/>
+  </Node>
+  <Node Id="1975" Class="Mission:GameToken" pos="450,1820,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_ID" compare_Value=""/>
+  </Node>
+  <Node Id="1976" Class="Mission:GameToken" pos="450,2100,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_ID" compare_Value=""/>
+  </Node>
+  <Node Id="1978" Class="Time:Delay" pos="990,1820,0" flags="0">
+   <Inputs delay="5" resetOnInput="0"/>
+  </Node>
+  <Node Id="1979" Class="Kythera:Scripted:Ship:FlySpline" pos="1460,1820,0" flags="0">
+   <Inputs entityId="0" spline="0" style="0" closestPoint="1" attackTargets="1"/>
+  </Node>
+  <Node Id="1980" Class="Kythera:Task:Scripted" pos="1200,1820,0" flags="0">
+   <Inputs entityId="0" combatOnAlert="1"/>
+  </Node>
+  <Node Id="1982" Class="Time:Delay" pos="1010,2100,0" flags="0">
+   <Inputs delay="5" resetOnInput="0"/>
+  </Node>
+  <Node Id="1983" Class="Kythera:Scripted:Ship:FlySpline" pos="1460,2100,0" flags="0">
+   <Inputs entityId="0" spline="0" style="0" closestPoint="1" attackTargets="1"/>
+  </Node>
+  <Node Id="1984" Class="Kythera:Task:Scripted" pos="1200,2100,0" flags="0">
+   <Inputs entityId="0" combatOnAlert="1"/>
+  </Node>
+  <Node Id="1991" Class="Logic:Once" pos="820,2100,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1992" Class="Logic:Once" pos="820,1820,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2059" Class="Entity:CheckDistance" pos="690,-190,0" flags="0">
+   <Inputs entityId="0" MinDistance="250" MaxDistance="0" Pos="0,0,0" Entity1="0" Entity2="0" Entity3="0" Entity4="0" Entity5="0" Entity6="0" Entity7="0" Entity8="0" Entity9="0" Entity10="0" Entity11="0" Entity12="0" Entity13="0" Entity14="0" Entity15="0" Entity16="0"/>
+  </Node>
+  <Node Id="2066" Class="Mission:GameTokenSet" pos="1030,-200,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_RespawnID" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2069" Class="Actor:LocalPlayer" pos="690,-230,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2071" Name="Spawn_wingmanB_close,_but_not_too_close" Class="_commentbox" pos="70,-426.7666,0" flags="0">
+   <Inputs TextSize="1" Color="0.445201,0.514918,0.783538" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1450" Height="720"/>
+   <NodeSize Width="1450" Height="812.44507"/>
+  </Node>
+  <Node Id="2072" Class="Entity:CheckDistance" pos="680,-1100,0" flags="0">
+   <Inputs entityId="0" MinDistance="250" MaxDistance="0" Pos="0,0,0" Entity1="0" Entity2="0" Entity3="0" Entity4="0" Entity5="0" Entity6="0" Entity7="0" Entity8="0" Entity9="0" Entity10="0" Entity11="0" Entity12="0" Entity13="0" Entity14="0" Entity15="0" Entity16="0"/>
+  </Node>
+  <Node Id="2079" Class="Mission:GameTokenSet" pos="1020,-1110,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_RespawnID" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2082" Class="Actor:LocalPlayer" pos="680,-1150,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2084" Name="Spawn_wingmanA_close,_but_not_too_close" Class="_commentbox" pos="60,-1336.7667,0" flags="0">
+   <Inputs TextSize="1" Color="0.445201,0.514918,0.783538" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1450" Height="720"/>
+   <NodeSize Width="1450" Height="812.44507"/>
+  </Node>
+  <Node Id="2089" Class="Time:Delay" pos="630,1040,0" flags="0">
+   <Inputs delay="2" resetOnInput="0"/>
+  </Node>
+  <Node Id="2091" Class="Mission:GameTokenSet" pos="870,1040,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_RespawnID" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2092" Name="Initial_spawn_of_the_wingmen_at_their_intital_spawn_points" Class="_comment" pos="730,1000,0" flags="0"/>
+  <Node Id="2093" Class="Mission:GameTokenSet" pos="5230,1040,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.SpawnVector" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2094" Class="Entity:GetPos" pos="4860,1040,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="2098" Class="Mission:GameToken" pos="4070,1040,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanA_ID" compare_Value="dead"/>
+  </Node>
+  <Node Id="2099" Class="Mission:GameTokenSet" pos="3280,1880,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB" Value="alive" Networked="0"/>
+  </Node>
+  <Node Id="2100" Class="entity:AISpawnPoint" pos="2700,1560,0" flags="0">
+   <Inputs entityId="0" Kill="0" Spawn="0" WaveID="0"/>
+  </Node>
+  <Node Id="2101" Class="Mission:GameTokenSet" pos="3280,1560,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB" Value="dead" Networked="0"/>
+  </Node>
+  <Node Id="2102" Class="Logic:Any" pos="3070,1560,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2103" Class="Mission:GameToken" pos="1440,1560,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_RespawnID" compare_Value=""/>
+  </Node>
+  <Node Id="2105" Class="Mission:GameTokenSet" pos="3280,1780,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_ID" Value="alive" Networked="0"/>
+  </Node>
+  <Node Id="2106" Class="Logic:Any" pos="3070,1780,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2109" Class="Time:Delay" pos="640,1560,0" flags="0">
+   <Inputs delay="2.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="2111" Class="Mission:GameTokenSet" pos="880,1560,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_RespawnID" Value="" Networked="0"/>
+  </Node>
+  <Node Id="2112" Name="Initial_spawn_of_the_wingmen_at_their_intital_spawn_points" Class="_comment" pos="740,1520,0" flags="0"/>
+  <Node Id="2113" Class="Mission:GameTokenSet" pos="5370,1560,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.SpawnVector" Value="false" Networked="0"/>
+  </Node>
+  <Node Id="2114" Class="Entity:GetPos" pos="4870,1560,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="2118" Class="Mission:GameToken" pos="4080,1560,0" flags="0">
+   <Inputs gametoken_Token="Level.Survival.WingmanB_ID" compare_Value="dead"/>
+  </Node>
+  <Node Id="2119" Class="Time:Delay" pos="5140,1560,0" flags="0">
+   <Inputs delay="0" resetOnInput="0"/>
+  </Node>
+  <Node Id="2120" Name="Bit_of_safety_as_both_wingmen_can_spawn_at_the_same_time" Class="_comment" pos="5050,1520,0" flags="0"/>
+  <Node Id="2201" Class="String:Compare" pos="1840,1560,0" flags="0">
+   <Inputs A="" B="0" IgnoreCase="1"/>
+  </Node>
+  <Node Id="2202" Class="String:Compare" pos="1830,1040,0" flags="0">
+   <Inputs A="" B="0" IgnoreCase="1"/>
+  </Node>
+  <Node Id="2205" Class="Logic:Any" pos="340,1870,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2206" Class="Logic:Any" pos="340,2150,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="2207" Class="Logic:Any" pos="2170,1890,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2209" Class="Logic:Any" pos="489.29788,1143.9249,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2089" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2091" nodeOut="1" portIn="Value" portOut="WingmanA_InitialSpawn" enabled="1"/>
+  <Edge nodeIn="2109" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2111" nodeOut="1" portIn="Value" portOut="WingmanB_InitialSpawn" enabled="1"/>
+  <Edge nodeIn="2205" nodeOut="1" portIn="in1" portOut="WingmanA_InitialSpline" enabled="1"/>
+  <Edge nodeIn="2206" nodeOut="1" portIn="in1" portOut="WingmanB_InitialSpline" enabled="1"/>
+  <Edge nodeIn="2207" nodeOut="1" portIn="in1" portOut="DefendArea" enabled="1"/>
+  <Edge nodeIn="2209" nodeOut="1" portIn="in1" portOut="Update" enabled="1"/>
+  <Edge nodeIn="1212" nodeOut="1181" portIn="in2" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="1283" nodeOut="1181" portIn="in2" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="1210" nodeOut="1212" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1181" nodeOut="1216" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2202" nodeOut="1216" portIn="A" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2202" nodeOut="1216" portIn="Compare" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1172" nodeOut="1283" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1281" nodeOut="1283" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1281" nodeOut="1283" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="1843" nodeOut="1850" portIn="sync" portOut="detected" enabled="1"/>
+  <Edge nodeIn="1843" nodeOut="1851" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1850" nodeOut="1851" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1872" nodeOut="1877" portIn="sync" portOut="detected" enabled="1"/>
+  <Edge nodeIn="1872" nodeOut="1878" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1877" nodeOut="1878" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1979" nodeOut="1975" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1980" nodeOut="1975" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1992" nodeOut="1975" portIn="Input1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1983" nodeOut="1976" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1984" nodeOut="1976" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1991" nodeOut="1976" portIn="Input1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1980" nodeOut="1978" portIn="sync" portOut="out" enabled="1"/>
+  <Edge nodeIn="1979" nodeOut="1980" portIn="sync" portOut="started" enabled="1"/>
+  <Edge nodeIn="1984" nodeOut="1982" portIn="sync" portOut="out" enabled="1"/>
+  <Edge nodeIn="1983" nodeOut="1984" portIn="sync" portOut="started" enabled="1"/>
+  <Edge nodeIn="1982" nodeOut="1991" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1978" nodeOut="1992" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2066" nodeOut="2059" portIn="Trigger" portOut="NearEntity" enabled="1"/>
+  <Edge nodeIn="2066" nodeOut="2059" portIn="Value" portOut="NearEntity" enabled="1"/>
+  <Edge nodeIn="2059" nodeOut="2069" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2079" nodeOut="2072" portIn="Trigger" portOut="NearEntity" enabled="1"/>
+  <Edge nodeIn="2079" nodeOut="2072" portIn="Value" portOut="NearEntity" enabled="1"/>
+  <Edge nodeIn="2072" nodeOut="2082" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2091" nodeOut="2089" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2093" nodeOut="2094" portIn="Trigger" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2093" nodeOut="2094" portIn="Value" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2094" nodeOut="2098" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2094" nodeOut="2098" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2102" nodeOut="2100" portIn="in2" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="2106" nodeOut="2100" portIn="in2" portOut="SpawnedEntityID" enabled="1"/>
+  <Edge nodeIn="2101" nodeOut="2102" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2100" nodeOut="2103" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2201" nodeOut="2103" portIn="A" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2201" nodeOut="2103" portIn="Compare" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2099" nodeOut="2106" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2105" nodeOut="2106" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2105" nodeOut="2106" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="2111" nodeOut="2109" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2113" nodeOut="2114" portIn="Value" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2119" nodeOut="2114" portIn="in" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2114" nodeOut="2118" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2114" nodeOut="2118" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2113" nodeOut="2119" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2100" nodeOut="2201" portIn="Spawn" portOut="False" enabled="1"/>
+  <Edge nodeIn="1181" nodeOut="2202" portIn="Spawn" portOut="False" enabled="1"/>
+  <Edge nodeIn="1979" nodeOut="2205" portIn="spline" portOut="out" enabled="1"/>
+  <Edge nodeIn="1983" nodeOut="2206" portIn="spline" portOut="out" enabled="1"/>
+  <Edge nodeIn="1843" nodeOut="2207" portIn="volume" portOut="out" enabled="1"/>
+  <Edge nodeIn="1872" nodeOut="2207" portIn="volume" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

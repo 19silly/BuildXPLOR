@@ -1,0 +1,131 @@
+<item name="XIAN_Scout_TR3_Retro" class="VehicleItemThruster" invisible="0" category="VehicleThruster" >
+	<params>
+		<param name="giveable" 			value="0" />
+		<param name="selectable" 		value="0" />
+		<param name="pickable" 			value="0" />
+		<param name="mountable" 		value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+		<!-- <param name="adb" 				value="Spaceships/Thrusters/thrusterAnims.adb" />
+		<param name="actionController" 	value="Spaceships/Thrusters/thrusterControllerDefs.xml" /> -->
+		<param name="itemType" 			value="ManneuverThruster" />
+		<param name="itemSubType" 		value="FixedThruster" />
+		<param name="itemDescription" 	value="XIAN TR3 Retro Thruster" />
+		<param name="itemManufactor" 	value="XIAN" />
+		<param name="itemSize" 			value="3" />
+		<param name="itemTags" 			value="flightReady" />
+		<param name="requiredPortTags" 	value="XIAN_Scout_Base" />
+		<param name="display_name"		value="XIAN TR3 Retro Thruster" />
+		<param name="hitpoints" 		value="300" />
+		<param name="mass" 				value="8000" />
+	</params>
+
+    <power_grouping>
+        <param name="powerGrouping" value ="thruster.auxiliary" />
+    </power_grouping>
+
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_LL.cga"/>
+
+		<tags tag="LU">
+			<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_LU.cga"/>
+		</tags>
+		
+		<tags tag="LL">
+			<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_LL.cga"/>
+		</tags>
+		
+		<tags tag="RU">
+			<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_RU.cga"/>
+		</tags>
+		
+		<tags tag="RL">
+			<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_RL.cga"/>
+		</tags>
+
+		<tags tag="Hologram">
+			<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_LL.cga" material=""/>
+		</tags>
+
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Thrusters/XIAN/XIAN_Scout_TR3_Engine_LL.cga" material=""/>
+		</tags>	
+		
+		<boneAttachments>
+				<attachment target="thirdperson" name="engine_boost" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_exhaust" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_output" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_fuel" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_heat" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_light" bone="exhaust" orientation="0,0,-90"/>
+				<attachment target="thirdperson" name="engine_boost_light" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_sound" bone="exhaust" orientation="0,0,-180"/>
+				<attachment target="thirdperson" name="engine_boost_sound" bone="exhaust" orientation="0,0,-180"/>
+		</boneAttachments>
+	</geometry>
+	
+	<Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="thruster">
+		  <Pool capacity="-100" rate="-10" />
+      <States>
+        <State state="Default">
+				  <Value value="0" />
+		    </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.3" />
+        <Fail     value = "0.1" />
+      </StateLevels>
+    </Pipe>
+
+		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
+			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<States>
+				<State state="Off"><Value value="0" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
+			</States>
+		</Pipe>
+
+		<Pipe class="Fuel" prioType="critical">
+			<States>
+				<State state="Default"><Value value="0" /></State>
+				<State state="Boost"><Value value="-20" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+
+	<gimbal type="fixed" >
+	</gimbal>
+
+	<thrusters>
+		<thruster flags="maneuver orientation retro" maxThrust="700000" retroScale="1.0">
+			<exhausts>
+				<exhaust name ="run" scale ="2" helper="nozzle_exhaust" effectStopThreshold="0.1" >
+					<effect name="thruster_fx.Origin_300i.MThrust_ORIG_FXM_ESI_S2_Q2" helper="nozzle_exhaust" enable="0" tag ="run">
+						<strength var="thrust" />
+						<size var="thrust" min="1.0" multiplier="0.5" />
+						<speed var="thrust" min="0.25" multiplier="1" />
+					</effect>
+					<sound name="Play_SSTM_ORIG_Scalpel_Precision_S2_Q2_Start_Run" enable ="0" tag = "run">
+						<param name="rpm" var="thrust" lerpTime="1" />
+						<param name="boost" var="boost" lerpTime="2" />
+						<param name="in_out" var="in_out" />
+					</sound>
+				</exhaust>
+			</exhausts>
+		</thruster>
+	</thrusters>
+	
+</item>

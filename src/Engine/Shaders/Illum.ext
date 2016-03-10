@@ -1,0 +1,225 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//  Crytek Engine Source File.
+//  Shader extension
+//  Copyright (C), Crytek Studios, 2001-2004.
+// -------------------------------------------------------------------------
+//  File name:   Illumination.ext
+//  Version:     v1.00
+//  Created:     16/2/2004 by Andrey Honich.
+//  Compilers:   
+//  Description: Illumination shader extension used by the editor
+//               for automatic shader generation (based on "Illumination" shader template)
+// -------------------------------------------------------------------------
+//  History:
+//
+////////////////////////////////////////////////////////////////////////////
+
+
+
+Version (1.00)
+
+UsesCommonGlobalFlags
+
+Property
+{
+  Name = %NORMAL_MAP
+  Mask = 0x1
+  Property    (Normal map)
+  Description (Use normal-map texture)
+  DependencySet = $TEX_Normals
+  DependencyReset = $TEX_Normals
+  Hidden
+}
+
+Property
+{
+  Name = %SPECULAR_MAP
+  Mask = 0x10
+  Property    (Specular map)
+  Description (Use specular map as separate texture)
+  DependencySet = $TEX_Specular
+  DependencyReset = $TEX_Specular
+  Hidden
+}
+
+Property
+{
+  Name = %ALPHAGLOW
+  Mask = 0x2000
+  Property    (Glow in Diffuse alpha)
+  Description (Use alpha channel of diffuse texture for glow)
+  Hidden
+}
+
+Property
+{
+  Name = %DETAIL_MAPPING
+  Mask = 0x4000
+  Property    (Detail mapping)
+  Description (Use detail mapping)
+  DependencyReset = $TEX_Detail
+}
+
+Property
+{
+  Name = %OFFSET_BUMP_MAPPING
+  Mask = 0x20000
+  Property    (Offset bump mapping)
+  Description (Use offset bump mapping (requires height map (_displ)))
+  DependencyReset = $TEX_Normals
+}
+
+Property
+{
+  Name = %VERTCOLORS
+  Mask = 0x400000
+  Property    (Vertex Colors)
+  Description (Use vertex colors)
+}
+
+Property
+{
+  Name = %DECAL
+  Mask = 0x2000000
+  Property    (Decal)
+  Description (Use as Decal)
+}
+
+Property
+{
+  Name = %PARALLAX_OCCLUSION_MAPPING
+  Mask = 0x8000000
+  Property    (Parallax occlusion mapping)
+  Description (Use parallax occlusion mapping (requires height map (_displ)))
+  DependencyReset = $TEX_Normals
+}
+
+#ifdef FEATURE_MESH_TESSELLATION
+Property
+{
+  Name = %DISPLACEMENT_MAPPING
+  Mask = 0x10000000
+  Property    (Displacement mapping)
+  Description (Use displacement mapping (requires height map (_displ)))
+  //DependencySet = $TEX_Height
+  DependencyReset = $TEX_Normals
+}
+
+Property
+{
+  Name = %PHONG_TESSELLATION
+  Mask = 0x20000000
+  Property    (Phong tessellation)
+  Description (Use rough approximation of smooth surface subdivision)
+}
+
+Property
+{
+  Name = %PN_TESSELLATION
+  Mask = 0x40000000
+  Property    (PN triangles tessellation)
+  Description (Use rough approximation of smooth surface subdivision)
+}
+#endif
+
+Property
+{
+  Name = %BLENDLAYER
+  Mask = 0x100
+  Property    (Blendlayer)
+  Description (Normal-mapped diffuse layer blended on top of base material)
+}
+
+Property
+{
+  Name = %ALPHAMASK_DETAILMAP
+  Mask = 0x800000
+  Property    (DetailMap mask in Diffuse alpha)
+  Description (Use diffuse map alpha for masking detail maps)
+}
+
+Property
+{
+  Name = %SILHOUETTE_PARALLAX_OCCLUSION_MAPPING
+  Mask = 0x10000
+  Property    (Silhouette POM)
+  Description (Parallax occlusion mapping with silhouette (requires height map (_displ)))
+  DependencyReset = $TEX_Normals
+}
+
+Property
+{
+  Name = %ALLOW_SILHOUETTE_POM
+  Mask = 0x40000
+  DependencySet = $HW_SilhouettePom
+  DependencyReset = $HW_SilhouettePom
+  Hidden
+}
+
+Property
+{
+  Name = %SUBSURFACE_SCATTERING
+  Mask = 0x80000
+  DependencySet = $UserEnabled
+  Hidden
+}
+
+// CIG BEGIN
+Property
+{
+	Name = %PAINT_MASK
+	Mask = 0x1000000000
+	Property		(Paint Mask)
+	Description	(Paint layer that is applied after the main layer and before the blend layer)
+}
+
+Property
+{
+  Name = %PROJECT_TO_FAR_PLANE
+  Property    (Project mesh to far plane)
+  Description (Project mesh to far plane)
+}
+
+Property
+{
+  Name = %ENABLE_TRANSPARENT_GLOW_PASS
+  Mask = 0x80000
+  DependencySet = $HW_TransparentGlowPass
+  DependencyReset = $HW_TransparentGlowPass
+  Property    (Enable Transparent Glow)
+  Description (Readonly - enabled when Opacity < 1 AND either of Glow Amount > 0 OR Enable Glow enabled in Advanced tab)
+}
+
+Property
+{
+  Name = %USE_DAMAGE_MAP
+  Mask = 0x100000
+  Property    (Enable damage map support)
+  Description (Enable damage map support to allow hit location specific morphing, damage normal map, burnt diffuse, and destroyed/clipped polys)
+}
+
+Property
+{
+	Name = %USE_POSITION_AS_UNIT_DIRECTION
+	Mask = 0x1000
+	Property (Use position as unit direction)
+	Description (Use position as unit direction)
+}
+
+Property
+{
+	Name = %HOLOGRAPHIC_PROJECTION
+	Mask = 0x200
+	Property (Enable Holographic Projection)
+	Description (Enables holographic projection when opacity is less than 1)
+}
+
+Property
+{
+	Name = %DECAL_OPACITY_MAP
+	Property (Decal Opacity Mask)
+	Description (Enable seperate mask for opacity on decals)
+}
+
+// CIG END

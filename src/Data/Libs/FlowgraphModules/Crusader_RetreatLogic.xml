@@ -1,0 +1,69 @@
+<Graph isModule="1" moduleName="Crusader_RetreatLogic" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ServerOnly">
+ <ModuleInputsOutputs>
+  <Port Name="RetreatingEntityID" Type="EntityId" Input="1"/>
+  <Port Name="RetreatPointID" Type="EntityId" Input="1"/>
+  <Port Name="TimeUntilJump" Type="Float" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Crusader_RetreatLogic" pos="20,680,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Crusader_RetreatLogic" pos="2780,670,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2520" Class="Entity:Remove" pos="2590,780,0" flags="0">
+   <Inputs EntityId="0"/>
+  </Node>
+  <Node Id="2756" Class="Kythera:Task:Scripted" pos="538.45996,488.41992,0" flags="0">
+   <Inputs entityId="0" combatOnAlert="0"/>
+  </Node>
+  <Node Id="2757" Class="Kythera:Scripted:Ship:Goto" pos="1078.46,488.41992,0" flags="0">
+   <Inputs entityId="0" position="0,0,0" entity="0" relativeSpeed="1" absoluteSpeed="0" stopDistance="0"/>
+  </Node>
+  <Node Id="2767" Class="Time:Delay" pos="850,490,0" flags="0">
+   <Inputs delay="10" resetOnInput="0"/>
+  </Node>
+  <Node Id="2772" Name="Tell_the_chosen_AI_to_fly_to_the_Retreat_Point_and_&quot;jump_away&quot;_after_10_seconds" Class="_comment" pos="678.45996,368.41992,0" flags="0"/>
+  <Node Id="2773" Name="Jump_away" Class="_comment" pos="1528.46,418.41992,0" flags="0"/>
+  <Node Id="2775" Class="Logic:Any" pos="2440,780,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2776" Class="Time:FrameDelay" pos="1290,710,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2859" Class="Mission:GameTokenSet" pos="1610,490,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Comms_Relay.SpawnEffectPosition" Value=""/>
+  </Node>
+  <Node Id="2860" Class="Time:FrameDelay" pos="2141.731,669.44586,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2861" Class="Time:FrameDelay" pos="2590,670,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2863" Class="Entity:GetPos" pos="1340,490,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2520" nodeOut="1" portIn="EntityId" portOut="RetreatingEntityID" enabled="1"/>
+  <Edge nodeIn="2756" nodeOut="1" portIn="entityId" portOut="RetreatingEntityID" enabled="1"/>
+  <Edge nodeIn="2756" nodeOut="1" portIn="sync" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="1" portIn="entity" portOut="RetreatPointID" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="1" portIn="entityId" portOut="RetreatingEntityID" enabled="1"/>
+  <Edge nodeIn="2767" nodeOut="1" portIn="delay" portOut="TimeUntilJump" enabled="1"/>
+  <Edge nodeIn="2775" nodeOut="1" portIn="in2" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="2776" nodeOut="1" portIn="in" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="2863" nodeOut="1" portIn="entityId" portOut="RetreatingEntityID" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="2756" portIn="sync" portOut="started" enabled="1"/>
+  <Edge nodeIn="2767" nodeOut="2756" portIn="in" portOut="started" enabled="1"/>
+  <Edge nodeIn="2863" nodeOut="2757" portIn="Get" portOut="done" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="2767" portIn="stop" portOut="out" enabled="1"/>
+  <Edge nodeIn="2520" nodeOut="2775" portIn="Apply" portOut="out" enabled="1"/>
+  <Edge nodeIn="2861" nodeOut="2775" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2776" portIn="Cancel" portOut="out" enabled="1"/>
+  <Edge nodeIn="2860" nodeOut="2859" portIn="in" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2775" nodeOut="2860" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2861" portIn="Success" portOut="out" enabled="1"/>
+  <Edge nodeIn="2859" nodeOut="2863" portIn="Trigger" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="2859" nodeOut="2863" portIn="Value" portOut="Pos" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

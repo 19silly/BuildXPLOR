@@ -1,0 +1,84 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="4" Class="UI:Display:Display" pos="-150,-200,0" flags="0">
+   <Inputs uiElements_Element="Menu_Dialogs" instanceID="22"/>
+  </Node>
+  <Node Id="5" Class="UI:Action:Start" pos="-470,-150,0" flags="0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="13" Class="UI:Functions:Menu_Dialogs:AddDialog" pos="-150,20,0" flags="0">
+   <Inputs instanceID="-1" Id="0" type="Okay" Title="Connection Error" Message="" Param1="Ok" Param2=""/>
+  </Node>
+  <Node Id="14" Class="UI:Util:FromArray" pos="-390,10,0" flags="0">
+   <Inputs Array=""/>
+  </Node>
+  <Node Id="22" Class="UI:Events:Menu_Dialogs:OnConfirm" pos="-150,240,0" flags="0">
+   <Inputs instanceID="22" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="24" Class="UI:Events:Menu_Dialogs:PlaySound" pos="230,-290,0" flags="0">
+   <Inputs instanceID="0" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="60" Class="Sound:PlaySoundUI" pos="480,-290,0" flags="0">
+   <Inputs sound_SoundEvent=""/>
+  </Node>
+  <Node Id="64" Name="Play_sound" Class="_commentbox" pos="208,-337.25793,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="588.63409" Height="102.82146"/>
+   <NodeSize Width="588.63409" Height="130.60022"/>
+  </Node>
+  <Node Id="69" Class="UI:Functions:Game:ExitGame" pos="430,260,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="70" Class="Logic:Condition" pos="190,240,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="71" Class="Actor:ActionFilter" pos="-150,-310,0" flags="0">
+   <Inputs entityId="0" Filter="only_ui"/>
+  </Node>
+  <Node Id="73" Class="Actor:LocalPlayer" pos="-300,-300,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="74" Class="UI:Action:End" pos="260,-130,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="80" Class="Logic:Any" pos="760,-70,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="82" Class="Input:Action" pos="480,60,0" flags="0">
+   <Inputs entityId="0" Action="ui_click" ActionMap="default" NonDevMode="0"/>
+  </Node>
+  <Node Id="83" Name="Additional_input_handling_for_RSI-29508_as_we_do_not_have_the_ActionScript_source" Class="_commentbox" pos="460,-191.258,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="890" Height="390"/>
+   <NodeSize Width="890" Height="417.77875"/>
+  </Node>
+  <Node Id="85" Class="Input:MouseCursor" pos="970,-130,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="71" nodeOut="4" portIn="Disable" portOut="onHide" enabled="1"/>
+  <Edge nodeIn="74" nodeOut="4" portIn="EndAction" portOut="onHide" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="4" portIn="Disable" portOut="onHide" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="4" portIn="Enable" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="4" portIn="Hide" portOut="onHide" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="4" portIn="Show" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="5" portIn="show" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="5" portIn="Call" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="5" portIn="Array" portOut="Args" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="5" portIn="Enable" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="73" nodeOut="5" portIn="update" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="14" portIn="Message" portOut="Val1" enabled="1"/>
+  <Edge nodeIn="70" nodeOut="14" portIn="Condition" portOut="Val2" enabled="1"/>
+  <Edge nodeIn="80" nodeOut="22" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="60" nodeOut="24" portIn="PlayTrigger" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="69" nodeOut="70" portIn="send" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="73" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="73" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="80" portIn="hide" portOut="out" enabled="1"/>
+  <Edge nodeIn="70" nodeOut="80" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="80" nodeOut="82" portIn="in2" portOut="Pressed" enabled="1"/>
+  <Edge nodeIn="80" nodeOut="82" portIn="in3" portOut="Released" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

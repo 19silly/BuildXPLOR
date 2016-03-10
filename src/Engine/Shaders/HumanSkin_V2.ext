@@ -1,0 +1,147 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//  Crytek Engine Source File.
+//  Shader extension
+//  Copyright (C), Crytek Studios, 2001-2004.
+// -------------------------------------------------------------------------
+//  File name:   Skin.ext
+//  Version:     v1.00
+//  Created:     19/11/2004 by Tiago Sousa
+//  Compilers:   
+//  Description: Skin shader extension used by the editor
+//               for automatic shader generation (based on "Skin" shader template)
+// -------------------------------------------------------------------------
+//  History:
+//
+////////////////////////////////////////////////////////////////////////////
+
+
+
+Version (1.00)
+
+UsesCommonGlobalFlags
+
+Property
+{
+  Name = %NORMAL_MAP
+  Mask = 0x1
+  Property    (Normal map)
+  Description (Use normal-map texture)
+  DependencySet = $TEX_Normals
+  DependencyReset = $TEX_Normals
+  Hidden
+}
+
+Property
+{
+  Name = %SPECULAR_MAP
+  Mask = 0x2
+  Property    (Specular map)
+  Description (Use specular map as separate texture)
+  DependencySet = $TEX_Specular
+  DependencyReset = $TEX_Specular
+  Hidden  
+}
+
+Property
+{
+  Name = %WRINKLE_BLENDING_1
+  Mask = 0x200
+  Property    (Single wrinkle blending)
+  Description (Use one-map, four-bone wrinkle blending)
+ // DependencyReset = $TEX_Custom
+ // DependencyReset = $TEX_CustomSecondary
+}
+
+Property
+{
+  Name = %WRINKLE_BLENDING_2
+  Mask = 0x400
+  Property    (Double wrinkle blending)
+  Description (Use two-map, eight-bone wrinkle blending)
+//  DependencyReset = $TEX_Custom
+//  DependencyReset = $TEX_CustomSecondary
+}
+
+
+Property
+{
+  Name = %WRINKLE_BLENDING_3
+  Mask = 0x800
+  Property    (Triple wrinkle blending)
+  Description (Use three-map, twelve-bone wrinkle blending)
+//  DependencyReset = $TEX_Custom
+//  DependencyReset = $TEX_CustomSecondary
+}
+
+Property
+{
+  Name = %TEMP_SKIN
+  Mask = 0x2000
+  DependencySet = $UserEnabled
+  Hidden
+}
+
+Property
+{
+  Name = %DECAL_MAP
+  Mask = 0x4000
+	Property    (Decal map)
+  Description (Use a decal map which is blended on top of the diffuse map)
+}
+
+Property
+{
+  Name = %DETAIL_MAPPING
+  Mask = 0x20000
+  Property    (Detail normal-map)
+  Description (Tiled detail normal-map for pores and tiny details (_ddn))
+}
+
+Property
+{
+  Name = %SUBSURFACE_SCATTERING_MASK
+  Mask = 0x40000
+  Property    (Subsurface Scattering Mask)
+  Description (Use diffuse map alpha as subsurface scattering amount multiplier)
+}
+
+#ifdef FEATURE_MESH_TESSELLATION
+Property
+{
+  Name = %DISPLACEMENT_MAPPING
+  Mask = 0x10000000
+  Property    (Displacement mapping)
+  Description (Use displacement mapping (requires height map (_displ)))
+  //DependencySet = $TEX_Height
+  DependencyReset = $TEX_Normals
+}
+
+Property
+{
+  Name = %PHONG_TESSELLATION
+  Mask = 0x20000000
+  Property    (Phong tessellation)
+  Description (Use rough approximation of smooth surface subdivision)
+}
+
+Property
+{
+  Name = %PN_TESSELLATION
+  Mask = 0x40000000
+  Property    (PN triangles tessellation)
+  Description (Use rough approximation of smooth surface subdivision)
+}
+#endif
+
+// CIG BEGIN Jean Louchez
+Property
+{
+  Name = %ENABLE_TRANSPARENT_GLOW_PASS
+  Mask = 0x80000
+  DependencySet = $HW_TransparentGlowPass
+  DependencyReset = $HW_TransparentGlowPass
+  Property    (Enable Transparent Glow)
+  Description (Readonly - enabled when Opacity < 1 AND either of Glow Amount > 0 OR Enable Glow enabled in Advanced tab)
+}
+// CIG END

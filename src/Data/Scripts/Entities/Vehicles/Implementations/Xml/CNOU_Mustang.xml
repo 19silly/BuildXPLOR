@@ -22,9 +22,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+  				<DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="CNOU_Mustang"  />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -80,7 +80,11 @@
 
   <Parts id="Partsxml">
 	<Part name="CNOU_Mustang" class="Animated" mass="13500" disablePhysics="0" scopeContext="Ship">
-      <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Damaged.cga" />
+		<Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Damaged.cga">
+			<PhysicsGrid enableLocalGrid="1" gravity="0,0,-9.81">
+				<PhysProxy filename="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_No_Collide.cgf" />
+			</PhysicsGrid>			
+		</Animated>
       <Parts>
         <Part name="body" class="AnimatedJoint" damageMax="600" id="idBody">
           <DamageBehaviors>
@@ -193,6 +197,20 @@
                 </Types>
               </ItemPort>
             </Part>
+			<Part name="hardpoint_quantum_drive" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Drive" requiredTags="">
+					<Types>
+						<Type type="Avionics" subtypes="QDrive" />
+					</Types>
+				</ItemPort>
+			</Part>
+			<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Quantum Fuel Tank" requiredTags="">
+					<Types>
+						<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+					</Types>
+				</ItemPort>
+			</Part>
             <Part name="body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -321,7 +339,7 @@
                               </Effects>
                               <Parts>
                                 <Part name="hardpoint_radiator_right" class="ItemPort">
-                                  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot" requiredTags="">
+                                  <ItemPort minsize="1" maxsize="1" flags="invisible right" display_name="Right Cooler Slot" requiredTags="">
                                     <Types>
                                       <Type type="Cooler" subtypes="" />
                                     </Types>
@@ -384,7 +402,7 @@
                                       <Fixup pos="2.6, -6.1, 1.0" />
                                     </OptimalStates>
                                     <Thruster>
-                                      <Params flags="allowSpin" />
+                                      <Params forceSpin="0.25, 0.0, 0.0" />
                                     </Thruster>
                                   </ItemPort>
                                 </Part>
@@ -429,7 +447,7 @@
                           </Effects>
                           <Parts>
                             <Part name="hardpoint_radiator_left" class="ItemPort">
-                              <ItemPort minsize="1" maxsize="1" flags="left" display_name="Right Cooler Slot" requiredTags="">
+                              <ItemPort minsize="1" maxsize="1" flags="invisible left" display_name="Right Cooler Slot" requiredTags="">
                                 <Types>
                                   <Type type="Cooler" subtypes="" />
                                 </Types>
@@ -492,7 +510,7 @@
                                   <Fixup pos="-2.6, -6.1, 1.0" />
                                 </OptimalStates>
                                 <Thruster>
-                                  <Params flags="allowSpin" />
+                                  <Params forceSpin="0.25, 0.0, 0.0" />
                                 </Thruster>
                               </ItemPort>
                             </Part>
@@ -754,7 +772,7 @@
               <Parts>
                 <Part name="nose_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                 <Part name="hardpoint_shield_generator" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="2" flags="" display_name="Shield Slot">
+                  <ItemPort minsize="1" maxsize="2" flags="invisible" display_name="Shield Slot">
                     <Types>
                       <Type type="Shield" subtypes="" />
                     </Types>
@@ -851,11 +869,6 @@
             </Types>
           </ItemPort>
         </Part>
-		<Part name="interiorPhys_helper" class="Interior">
-		  <Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81">
-			<PhysProxy filename="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_No_Collide.cgf" />
-		  </Interior>
-		</Part>
         <Part name="hardpoint_fuel_intake_left" class="ItemPort">
           <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Intake">
             <Types>
@@ -1164,6 +1177,7 @@
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_start" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.3,0.8,2" />
         <Activation type="OnUsed" param1="helper" param2="ladder_use_helper" distance="1" bbMin="-0.3,-0.1,-0.3" bbMax="0.3,0.1,0.3" />
+		<Activation type="OnUsed" param1="helper" param2="pilot_zerog_enter_pos" distance="1.35" bbMin="-0.75,-0.75,-1.35" bbMax="0.75,0.75,0" activateOnlyInZeroG="1" />		
       </Activations>
       <Enter>
         <Doors>
@@ -1185,7 +1199,7 @@
     <!-- Switch / avionics hatch -->
     <Action class="Switch">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="avionics_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.2" bbMax="0.2,0.1,0.2" />
+        <Activation type="OnUsed" param1="helper" param2="avionics_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.2" bbMax="0.2,0.5,0.2" />
       </Activations>
       <States>
         <State>
@@ -1203,7 +1217,7 @@
     <!-- Switch / avionics hatch -->
     <Action class="Switch">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="shield_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.1" bbMax="0.2,0.1,0.2" />
+        <Activation type="OnUsed" param1="helper" param2="shield_hatch_helper" distance="1" bbMin="-0.2,-0.1,-0.1" bbMax="0.2,0.5,0.2" />
       </Activations>
       <States>
         <State>
@@ -1306,8 +1320,8 @@
                 <ItemPort part="hardpoint_countermeasure2_left" active="0" priority="0" actorRecoil="0" />
                 <ItemPort part="hardpoint_countermeasure1_right" active="0" priority="0" actorRecoil="0" />
                 <ItemPort part="hardpoint_countermeasure2_right" active="0" priority="0" actorRecoil="0" />
-                <ItemPort part="hardpoint_class3_left" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
-                <ItemPort part="hardpoint_class3_right" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <ItemPort part="hardpoint_weapon_class3_left" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <ItemPort part="hardpoint_weapon_class3_right" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
               </Items>
             </Settings>
           </SharedWeapons>
@@ -1356,6 +1370,8 @@
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
                 <ItemPort part="landingpad_helper" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1381,8 +1397,8 @@
                 <ItemPort part="hardpoint_countermeasure2_left" priority="1" />
                 <ItemPort part="hardpoint_countermeasure1_right" priority="1" />
                 <ItemPort part="hardpoint_countermeasure2_right" priority="1" />
-                <ItemPort part="hardpoint_class3_left" priority="1" />
-                <ItemPort part="hardpoint_class3_right" priority="1" />
+                <ItemPort part="hardpoint_weapon_class3_left" priority="1" />
+                <ItemPort part="hardpoint_weapon_class3_right" priority="1" />
               </Items>
             </Settings>
           </SharedAutoWeapons>
@@ -1427,6 +1443,8 @@
             <Limbs>
               <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_left" blendTime="0" />
               <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="ik_hand_attach_right" blendTime="0" />
+              <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_foot_ik" blendTime="0" />
+              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_foot_ik" blendTime="0" />
             </Limbs>
           </PassengerIK>
         </SeatAction>
@@ -1461,14 +1479,29 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="90,110,90" maxAngularAcceleration="750,750,50" maxJerk="100.0" maxAngJerk="50.0" maxTorqueAlpha="100.5,100.5,100.5" maxTorqueAngle="18,18,18" id="idMovementStats">
-      <SoundParams dmgBufferDecay="0.1">
-        <AmbientSound sound="Play_SSAM_CNOU_Mustang_Interior_Cockpit" />
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularAcceleration="750,750,50" id="idMovementStats">
+      <AudioParams dmgBufferDecay="0.1">
         <PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
-        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
         <DuressSound sound="Play_SSDD_CNOU_Mustang_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
-      </SoundParams>
-    </Spaceship>
+      </AudioParams>
+
+      <IFCS id="IFCSxml">
+        <goalTimes opcomTime="3.9" ropcomTime=".75,.5,.75" cruisetime="15"/>       
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+
+		<maxVelocity normal="200" />		
+		<linearJerk pos="58,100,58" neg="58,100,58" />
+		<linearScale pos="1.4469, 1.0, 1.4469" neg="1.4469, 1.1310, 1.4469" />
+
+        <maxAngVelocity normal="65,95,65" boost="" />
+        <angularScale pos=".1516, .3482, .2007" neg=".1516, .3482, .2007" />
+		<angularJerk pos="8, 200, 8" neg="8, 200, 8" />
+		<maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+		<errorTorque maxAlpha="1,10,1" maxAngle="18,18,18" />
+      </IFCS>	  	  
+ 
+ </Spaceship>
   </MovementParams>
 
   
@@ -1477,7 +1510,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="CNOU_Mustang" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_AI_ships" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -1543,7 +1576,7 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   
   <Modifications>
-  
+     
     <Modification name="Beta" patchFile="Modifications/CNOU_Mustang_Beta">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Beta" />
@@ -1562,9 +1595,7 @@
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Gamma" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.51,0.28,0.44" />
-        <Elem idRef="idMovementStats" name="maxCruiseSpeed" value="270" />
         <Elem idRef="idMovementStats" name="maxRetroThrust" value="240" />
-        <Elem idRef="idMovementStats" name="maxAngularVelocity" value="125,160,125" />
         <Elem idRef="idMovementStats" name="maxDirectionalThrust" value="880" />
         <Elem idRef="idPilotEnterSeat" name="enterHelper" value="pilot_enterCockpit_pos2" />
       </Elems>
@@ -1574,10 +1605,8 @@
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Omega" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.53,0.29,0.43" />
-        <Elem idRef="idMovementStats" name="maxCruiseSpeed" value="270" />
         <Elem idRef="idMovementStats" name="maxRetroThrust" value="240" />
-        <Elem idRef="idMovementStats" name="maxAngularVelocity" value="125,160,125" />
-        <Elem idRef="idMovementStats" name="maxDirectionalThrust" value="880" />
+         <Elem idRef="idMovementStats" name="maxDirectionalThrust" value="880" />
         <Elem idRef="idPilotEnterSeat" name="enterHelper" value="pilot_enterCockpit_pos2" />
       </Elems>
     </Modification>

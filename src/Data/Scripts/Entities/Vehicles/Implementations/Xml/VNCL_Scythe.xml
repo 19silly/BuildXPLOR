@@ -25,6 +25,9 @@
 			  <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
+  				<DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="VNCL_Scythe"  />
+              </DamageBehavior>
             </DamageBehaviors>
           </DamagesSubGroup>
           <DamagesSubGroup delay="0" randomness="0">
@@ -311,6 +314,20 @@
                     </Types>
                   </ItemPort>
                 </Part>
+				<Part name="hardpoint_quantum_drive" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Drive" requiredTags="">
+						<Types>
+							<Type type="Avionics" subtypes="QDrive" />
+						</Types>
+					</ItemPort>
+				</Part>
+				<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+					<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Fuel Tank" requiredTags="">
+						<Types>
+							<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+						</Types>
+					</ItemPort>
+				</Part>
                 <Part name="hardpoint_radiator_left" class="ItemPort">
                   <ItemPort minsize="1" maxsize="1" flags="left" display_name="Cooler Left" requiredTags="">
                     <Types>
@@ -856,6 +873,8 @@
                 <ItemPort part="hardpoint_shield_generator" />
                 <ItemPort part="landingpad_helper" />
                 <ItemPort part="*light" />
+				<ItemPort part="hardpoint_quantum_drive" />
+				<ItemPort part="hardpoint_quantum_fuel_tank" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1035,15 +1054,14 @@
   <!-- VEHICLE MOVEMENT ////////////////////////////////////////////////////////////////////////////////////-->
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="240" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="120,120,120" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0">
-      <SoundParams runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.16">
-        <SoundParam engineSoundPosition="engineSoundPos" />
-        <RunSound running_sound="" />
-        <AmbientSound sound="Play_SSAM_VNCL_Scythe_Cockpit" />
-        <PassByLoopSound sound="Play_SSPB_VNCL_Scythe_Loop" />
-        <PassBySound sound="Play_SSPB_VNCL_Scythe_800ms_0to100mtrs" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
-        <DuressSound sound="Play_SSDD_VNCL_Scythe_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
-      </SoundParams>
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularAcceleration="720,720,720" >
+      <AudioParams dmgBufferDecay="0.16">
+        <PassByLoopSound sound="Play_SSPB_VNCL_Glaive_Loop" />
+        <PassBySound sound="Play_SSPB_Fast_Generic_Stationary_VeryClose" leadinTime="0.22" triggerDistance="50" cooldownTime="2" />
+		<PassBySound sound="Play_SSPB_VNCL_Glaive_800ms_0to100mtrs" leadinTime="0.7" triggerDistance="100" cooldownTime="2" />
+        <PassBySound sound="Play_SSPB_VNCL_Glaive_2500ms_0to200meters" leadinTime="1.5" triggerDistance="250" cooldownTime="2" />
+		<DuressSound sound="Play_SSDD_VNCL_Scythe_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
+      </AudioParams>
       <Animations engine="Intake_Fans" />
       <Contrails>
         <Contrail helper="contrail_wing_left" effect="spaceship_fx.Hornet.contrail" minSpeed="25" />
@@ -1051,6 +1069,21 @@
         <Contrail helper="contrail_tail_left" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
         <Contrail helper="contrail_tail_right" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
       </Contrails>
+	<!--IFCS //////////////////////////////////////////////////////////////////////////////////////////-->
+	  <IFCS>
+		<goalTimes opcomTime="3.2" ropcomtime=".75, 1.5, .55" cruisetime="10"/> <!-- opcomTime ropcomTime cruiseTime -->
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+	
+		<maxVelocity normal="240" />
+		<linearJerk pos="117.6471,260,260" neg="117.6471,260,260" />
+        <linearScale pos="3.1977, 1.0, 1.0" neg="3.1977, 1.0, 1.0" />
+		
+		<maxAngVelocity normal="100,150,100" boost="" />		
+		<angularJerk pos="27.43, 10.2878, 51.014" neg="51.014, 10.2878, 51.014" />
+		<angularScale pos=".1491, 0.0499, .8838" neg=".1967, 0.0499, .8838" />
+		<maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+        <errorTorque maxAlpha="10,10,10" maxAngle="18,18,18" />
+      </IFCS>
     </Spaceship>
     <!--    <WeaponMount /> -->
   </MovementParams>
@@ -1059,7 +1092,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="VNCL_Scythe" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_red" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">

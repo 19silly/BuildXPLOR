@@ -59,8 +59,8 @@
 	</FPSDebug>
 
 	<WeaponOffset>
-		<param name="alerted_position" value="0,0,0" />
-		<param name="alerted_rotation" value="0,0,0" />
+<!-- 		<param name="alerted_position" value="0,0.08,0.03" />
+		<param name="alerted_rotation" value="-2,-8.5,-2" /> -->
 
 		<overrides>
 			<override name="crouch">
@@ -68,8 +68,7 @@
 			</override>
 
 			<override name="prone">
-				<param name="alerted_position" value="0,0,0" />
-				<param name="alerted_rotation" value="0,0,0" />
+				<!-- put params to override here -->
 			</override>
 		</overrides>
 	</WeaponOffset>
@@ -101,7 +100,7 @@
 			<StateLevels>
 				<Warning  value = "0.5" />
 				<Critical value = "0.25" />
-				<Fail     value = "-1" /> <!-- never fail otherwise you cant shoot the pistol :( -->
+				<Fail     value = "-1" /> <!-- never fail otherwise you cant shoot :( -->
 			</StateLevels>
 		</Pipe>
 	</Pipes>
@@ -109,7 +108,7 @@
 	<firemodes>
 		<firemode type="default">
 			<pools>
-				<pool class="Decibel" value="50" checkValue="0" />
+				<!-- <pool class="Decibel" value="50" checkValue="0" /> -->
 			</pools>
 			<fire>
 				<param name="tag" value="rapid"/>
@@ -267,6 +266,7 @@
 				<param name="nshots" value="3"/>
 				<param name="rate" value="100"/>
 				<param name="useBurstSoundParam" value="1"/>
+				<param name="retriggeronhold" value="0"/>				
 			</burst>
 			<spread>
 				<param name="min" value="0.75" />
@@ -420,13 +420,13 @@
 		<param name="breathRotMax" value="1.0" />
 
 		<!-- Weapon canting. -->
-		<param name="rotLeadRollMax"       value="-10.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
+		<param name="rotLeadRollMax"       value="18.0"  /><!-- Max rotation angle in degrees while moving gun around. -->
 		<param name="rotLeadRollRateRange" value="500.0" /><!-- Delta rotation in degrees per second range that causes lead rotation to reach it's max. Tune this to adjust sensitivity. -->
 		<param name="movLeadRollMax"       value="10.0"  />
 		<param name="movLeadRollVelRange"  value="3.0"   /><!-- Sideways movement velocity range to hit max roll rotation. -->
-		<param name="leadRollSmooth"       value="0.10"  /><!-- Smoothing value for rotation leading -->
+		<param name="leadRollSmooth"       value="0.1"  /><!-- Smoothing value for rotation leading -->
 
-		<param name="movLeadPitchMax"      value="4.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
+		<param name="movLeadPitchMax"      value="1.0" /><!-- Forward/backward movement angle rotation. Screw with this if it's pitching too high or low. Hi John!. -->
 		<param name="movLeadPitchVelRange" value="7.0"  /><!-- Forward/backward movement velocity range to hit max pitch rotation. -->
 		<param name="movLeadPitchSmooth"   value="0.10" /><!-- Smoothing value for rotation leading -->
 
@@ -515,4 +515,11 @@
 		<mobiGlasARLabel arMovementType="Fixed" arZOrientationOffsetAngle="90" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 
+	<defaultLoadout>
+		<Items>
+			<Item portName="magazine_attach" itemName="behr_rifle_ballistic_01_mag" />
+			<Item portName="sight_attachment" itemName="behr_rifle_ballistic_01_iron" />
+		</Items>
+	</defaultLoadout>
+	
 </item>

@@ -1,0 +1,26 @@
+<Graph isModule="1" moduleName="DebugInterface_Disable_ReEnable" GOSTType="0" GOSTStateGroup="" GOSTState="" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DebugInterface_Disable_ReEnable" pos="80,0,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DebugInterface_Disable_ReEnable" pos="1500,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="940" Class="Mission:GameTokenSet" pos="480,0,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" gametoken_Token="DebugInterfaceDisable" Value="1"/>
+  </Node>
+  <Node Id="950" Class="Mission:GameTokenSet" pos="1120,0,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" gametoken_Token="DebugInterfaceDisable" Value="0"/>
+  </Node>
+  <Node Id="951" Class="Time:Delay" pos="860,0,0" flags="0">
+   <Inputs delay="0.2" resetOnInput="0"/>
+  </Node>
+  <Node Id="953" Name="Disable_Debug_Interface" Class="_comment" pos="480,-60,0" flags="0"/>
+  <Node Id="954" Name="Enable_Debug_Interface" Class="_comment" pos="1120,-60,0" flags="0"/>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="940" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="951" nodeOut="940" portIn="in" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="950" portIn="Success" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="950" nodeOut="951" portIn="Trigger" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

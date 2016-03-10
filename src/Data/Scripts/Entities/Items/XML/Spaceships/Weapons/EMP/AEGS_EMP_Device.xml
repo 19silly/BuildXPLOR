@@ -1,0 +1,79 @@
+<item name="AEGS_EMP_Device" class="VehicleWeaponEMP" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_AEGS_EMP_Device">
+  <params>
+	<param name="adb" value="" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="AEGS_EMP_Device" /> <!-- Replace me with Localization -->
+    <param name="itemManufactor" value="GATS" />
+    <param name="itemSize" value="4" />
+	<param name="itemTags" value="flightReady AEGS_EMP_Device" />
+	<param name="itemPortTags" value="AEGS_EMP_Device"/>
+	<param name="requiredPortTags" value="AEGS_Avenger_Base" />
+    <param name="display_name"	value="AEGS_EMP_Device" />
+	<param name="weaponRequireAmmoBox" value="1" />
+	<param name="weaponDelayChangeAmmoBox" value="0.5" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="50" />
+	<itemStats>
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
+	</itemStats>
+  </params>
+
+  <Pipes>
+	<Distortion>
+		<param name="decay" value="5"/>
+	</Distortion>
+	
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <States>
+        <State state="Default">
+			<Value value="-50" /> <!-- The device's basic power consumption -->
+        </State>
+        <State state="Charging">
+			<Value value="-50" /> <!-- The device's basic power consumption, must be fulfilled before power can be allocated to charging -->
+			<Value value="-250" critical="0" /> <!-- Maximum power the device will try to charge per second -->
+        </State>
+        <State state="Off">
+			<Value value="0" ignorepool="1" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" /> <!-- The device will lose its charge if its basic power consumption gets in the Fail state -->
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Charge" prioType="manageable" prioGroup="weapon">
+	  <Pool capacity="2500" rate="0" critical="0" /> <!-- Amount of power the device needs to charge up before firing -->
+      <States>
+        <State state="Default">
+			<Value value="-50" critical="0" /> <!-- Cancels out the device's basic power consumption so that only the charge power is added into the pool  -->
+			<Pipe name="Power" value="1" critical="0" />
+        </State>
+      </States>
+    </Pipe>	
+	
+  </Pipes>
+  
+  <empParams>
+	<param name="unleastTime" value="1.5" />		 	<!-- once in the CHARGED this will be the time in UNLEASHING before the weapon unloads the EMP -->
+	<param name="emp_startRadius" value="0" />			<!-- start radius of the EMP when life = 0 -->
+	<param name="emp_endRadius" value="300" />		 	<!-- end radius of the EMP when life = emp_lifeTime  -->
+	<param name="emp_startDistortion" value="100000" />	<!-- start distortion of the EMP when life = 0 -->
+	<param name="emp_endDistortion" value="0" />	 	<!-- end distortion of the EMP when life = emp_lifeTime  -->
+	<param name="emp_lifeTime" value="1" />				<!-- EMP lifetime -->
+	<param name="emp_pressure" value="10000" />				<!-- Pressure -->
+  </empParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+
+  
+  
+</item>

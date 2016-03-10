@@ -1,0 +1,154 @@
+<BreathingPatterns>
+	<!-- Define the breathing when a helmet is on -->
+	<Helmet>
+		<!-- Breathing with a helmet on and in a vehicle -->
+		<Vehicle>
+			<!-- name: A unique name you choice to describe the breathing pattern. SoundEvent: link to the Sound Event you want to play. -->
+			<!-- GForceMin: Minimum amount of G's. GForceMax: Max amount of G's. This is the range at which you will pull GForces. GForceHoldTime is how long you will need to hold that range for.-->
+			<!-- HealthMin: Min health amount this sound event will play. HealthMax: Max health amount this sound event will play. 0 to 100 (float values) -->
+			<!-- GLOCMin: Minimum GLOC state. GLOCMax: Maximum GLOC state. This is the GLOC state ranges the breath pattern is active. Current list is: Redout (-1), Normal (0), Greyout (1), Blackout (2), LOC (3), ..., Dead (6) -->
+			<!-- GForceVisualEffectMin: Minimum value for 0 normal. 0 to 1 Normal to Greyout / Redout, 1 to 2 Greyout / Redout to Blackout / Hemorrhagic Stroke -->
+			
+			<!-- for 'NonSkippableLayer' 1 is non-skippable 0 is skippable.-->
+			<!-- The SkipDelay timer will start as soon as this level begins playing and the sound will not be able to transition to another level until that delay timer finishes and the currently playing inhale or exhale is finished.-->
+			<!-- NonSkippableDirection is used for determining whether the sound will be played when going either both directions, up or down the levels. 0 is both 1 is up 2 is down-->
+			<!--<BreathingPattern name="LowLowGForces" HealthMin="0" HealthMax="100" GLOCMin="-1" GLOCMax="1" GForceMin="1" GForceMax="5" GForceVisualEffectMin="0" GForceVisualEffectMax="0" GForceHoldTime="2.5" EventEndDelay="5">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_EVA_Mild_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_EVA_Mild_Exhale" />
+			</BreathingPattern>-->
+			<!-- Must do Inhale tag first then Exhale tag second -->
+			
+				<!-- Normal -->
+ 			<BreathingPattern name="Normal" HealthMin="0" HealthMax="100" GLOCMin="-2" GLOCMax="1" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.0" GForceVisualEffectMax="0.01" GIStressMin="0.0" GIStress="0.02" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="0.7" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl00_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl00_Exhale" />
+			</BreathingPattern>
+			
+			
+			<!-- Lateral Gees -->
+ 			<BreathingPattern name="LVL01_Lateral" HealthMin="0" HealthMax="100" GLOCMin="-2" GLOCMax="-2" GForceMin="0" GForceMax="100" GIStressMin="0.01" GIStressMax="0.2" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl01_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl01_Exhale" />
+			</BreathingPattern>		
+			<BreathingPattern name="LVL02_Lateral" HealthMin="0" HealthMax="100" GLOCMin="-2" GLOCMax="-2" GForceMin="0" GForceMax="100" GIStressMin="0.2"  GIStressMax="0.5" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0"> 
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl02_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl02_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL03_Lateral" HealthMin="0" HealthMax="100" GLOCMin="-2" GLOCMax="-2" GForceMin="0" GForceMax="100" GIStressMin="0.5"  GIStressMax="0.8" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl03_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl03_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL04_Lateral" HealthMin="0" HealthMax="100" GLOCMin="-2" GLOCMax="-2" GForceMin="0" GForceMax="100" GIStressMin="0.8" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl04_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl04_Exhale" />
+			</BreathingPattern>
+
+			
+			<BreathingPattern name="LVL01_NearDeath" HealthMin="0" HealthMax="100" GLOCMin="-4" GLOCMax="-3" GForceMin="0" GForceMax="100" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="0.9" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBIN_Gforce_Neardeath_Lvl01_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBIN_Gforce_Neardeath_Lvl01_Exhale" />
+			</BreathingPattern>
+			
+			<BreathingTransition name="BloodSplutter" TransitionType="2" LowerLevelName="Normal,LVL01_Lateral,LVL02_Lateral,LVL03_Lateral,LVL04_Lateral" UpperLevelName="LVL01_NearDeath"> 
+				<Breath type="Inhale" SoundEvent="Play_CBIN_Gforce_Bloodsplutter_Inhale" EffectEvent="BloodSplutter" /> 
+				<Breath type="Exhale" SoundEvent="Play_CBIN_Gforce_Bloodsplutter_Exhale" EffectEvent="BloodSplutter" /> 
+			</BreathingTransition>
+			
+			
+			
+			<!-- RedOut Gees, pulling down -->
+ 			<BreathingPattern name="LVL01_RedOut" HealthMin="0" HealthMax="100" GLOCMin="-1" GLOCMax="-1" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.01" GForceVisualEffectMax = "0.12" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl01_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl01_Exhale" />
+			</BreathingPattern>		
+			<BreathingPattern name="LVL02_RedOut" HealthMin="0" HealthMax="100" GLOCMin="-1" GLOCMax="-1" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.12" GForceVisualEffectMax = "0.8" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0"> 
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl02_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl02_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL03_RedOut" HealthMin="0" HealthMax="100" GLOCMin="-1" GLOCMax="-1" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.8" GForceVisualEffectMax = "1.2" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl03_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl03_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL04_RedOut" HealthMin="0" HealthMax="100" GLOCMin="-1" GLOCMax="-1" GForceMin="0" GForceMax="100" GForceVisualEffectMin="1.20" GForceVisualEffectMax = "1.50" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl04_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl04_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL05_RedOut" HealthMin="0" HealthMax="100" GLOCMin="-1" GLOCMax="-1" GForceMin="0" GForceMax="100" GForceVisualEffectMin="1.50" GForceVisualEffectMax = "2.0" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl05_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl05_Exhale" />
+			</BreathingPattern>
+			
+			
+
+			<!-- BlackOut Gees, pulling up -->
+ 			<BreathingPattern name="LVL01_BlackOut" HealthMin="0" HealthMax="100" GLOCMin="0" GLOCMax="2" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.01" GForceVisualEffectMax = "0.12" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0"> 
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl01_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl01_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL02_BlackOut" HealthMin="0" HealthMax="100" GLOCMin="0" GLOCMax="2" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.12" GForceVisualEffectMax = "0.4" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl02_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl02_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL03_BlackOut" HealthMin="0" HealthMax="100" GLOCMin="0" GLOCMax="2" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.4" GForceVisualEffectMax = "0.8" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="1" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Lvl03_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Lvl03_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL04_BlackOut" HealthMin="0" HealthMax="100" GLOCMin="0" GLOCMax="2" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.8" GForceVisualEffectMax = "1.25" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Controlled_Lvl01_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Controlled_Lvl01_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LVL05_BlackOut" HealthMin="0" HealthMax="100" GLOCMin="0" GLOCMax="2" GForceMin="0" GForceMax="100" GForceVisualEffectMin="1.25" GForceVisualEffectMax = "2.00" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="0.0" NonSkippableDirection="0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_Gforce_Controlled_Lvl02_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_Gforce_Controlled_Lvl02_Exhale" />
+			</BreathingPattern>
+
+			<!--  Blacked out  -->
+			
+ 			<BreathingPattern name="Blackout" HealthMin="0" HealthMax="100" GLOCMin="3" GLOCMax="5" GForceMin="0" GForceMax="100" GForceVisualEffectMin="0.0" GForceVisualEffectMax = "3.0" GForceHoldTime="0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="0.7" NonSkippableDirection="1">
+				<Breath type="Inhale" SoundEvent="Play_CBPR_Gforce_Blackedout_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBPR_Gforce_Blackedout_Exhale" />
+			</BreathingPattern>
+			
+			<BreathingTransition name="BlackingOut" TransitionType="2" LowerLevelName="Normal,LVL01_BlackOut,LVL02_BlackOut,LVL03_BlackOut,LVL04_BlackOut,LVL05_BlackOut" UpperLevelName="Blackout">   
+				<Breath type="Inhale" SoundEvent="Play_CBPR_Gforce_Blackingout_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBPR_Gforce_Blackingout_Exhale" /> 
+			</BreathingTransition>
+			
+			<BreathingTransition name="WakeUp" TransitionType="1" LowerLevelName="Normal,LVL01_BlackOut,LVL02_BlackOut,LVL03_BlackOut,LVL04_BlackOut,LVL05_BlackOut" UpperLevelName="Blackout">
+				<Breath type="Inhale" SoundEvent="Play_CBPR_Gforce_Wakeup_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBPR_Gforce_Wakeup_Exhale" /> 
+			</BreathingTransition>
+		</Vehicle>
+		<!-- Breathing during EVA with a helmet on -->
+		<EVA>
+			<!--  -->
+			<BreathingPattern name="DefaultEVA" Default="1" HealthMin="60" HealthMax="100" SpeedMin="0" SpeedMax="100">
+				<!-- Must do Inhale tag first then Exhale tag second -->
+				<Breath type="Inhale" SoundEvent="Play_CBBR_EVA_Default_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_EVA_Default_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="LowHealthEVA" HealthMin="20" HealthMax="60" SpeedMin="0" SpeedMax="100.0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_EVA_LowHealth_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_EVA_LowHealth_Exhale" />
+			</BreathingPattern>
+			<BreathingPattern name="VeryLowHealthEVA" HealthMin="0" HealthMax="20" SpeedMin="0" SpeedMax="100.0">
+				<Breath type="Inhale" SoundEvent="Play_CBBR_EVA_NearDeath_Inhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_EVA_NearDeath_Exhale" />
+			</BreathingPattern>
+		</EVA>
+		<Ejecting>
+			<BreathingPattern name="DefaultEVA" EventEndDelay="2">
+				<!-- Must do Inhale tag first then Exhale tag second -->
+				<Breath type="Inhale" SoundEvent="Play_CBBR_EVA_Default_Exhale" />
+				<Breath type="Exhale" SoundEvent="Play_CBBR_EVA_Default_Inhale" />
+			</BreathingPattern>
+		</Ejecting>
+		<!-- Breathing during FPS with a helmet on -->
+		<FPS>
+		</FPS>
+		<FPSArmor>
+			<BreathingPattern name="IdleNormal" HealthMin="0" HealthMax="1000" SpeedMin="0" SpeedMax="6.0" CalmBreathingTimeMin="0.0" CalmBreathingTimeMax="10.0" EventEndDelay="0" NonSkippableLayer="0" SkipDelay="2" NonSkippableDirection="0">
+			</BreathingPattern>
+		</FPSArmor>
+	</Helmet>
+</BreathingPatterns>

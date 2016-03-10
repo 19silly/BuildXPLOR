@@ -6,6 +6,7 @@
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
+  <DamageTech resolution="256.0, 256.0" />
   <VisorElement element="Visor_HUD" />
   <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
@@ -75,9 +76,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
-                <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>-->
+					<DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="KRIG_P52_Merlin" />
+              </DamageBehavior>
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -148,15 +149,15 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
     <Part name="KRIG_P52_Merlin" class="Animated" mass="5000" disablePhysics="0" scopeContext="Ship">
-      <Animated filename="Objects\Vehicles\ships\krig\p52merlin\KRIG_P52_Merlin.cga" filenameDestruction="Objects\Vehicles\ships\krig\p52merlin\KRIG_P52_Merlin.cga" />
+      <Animated filename="Objects\Vehicles\ships\krig\p52merlin\KRIG_P52_Merlin.cga" filenameDestruction="" damageMapFlag="1" damageMapScale="1.0, 1.0" damageMapOffset="0.0, 0.0"/>
       <Parts>
         <Part name="Body" class="AnimatedJoint" damageMax="500" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
           <DamageBehaviors>
             <DamageBehavior class="DetachPart" damageRatioMin="1">
               <DetachPart>
-                <Part name="Canopy" Probability="0.8" />
-                <Part name="Wing_Left" Probability="0.8" />
-                <Part name="Wing_Right" Probability="0.8" />
+                <Part name="Canopy" Probability="0.4" />
+                <Part name="Wing_Left" Probability="0.4" />
+                <Part name="Wing_Right" Probability="0.4" />
                 <Part name="hardpoint_class_1_nose_right" />
               </DetachPart>
             </DamageBehavior>
@@ -338,8 +339,15 @@
                 </Types>
               </ItemPort>
             </Part>
+            <Part name="landingpad_helper" class="ItemPort">
+             <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+              <Types>
+                <Type type="LandingSystem"/>
+              </Types>
+             </ItemPort>
+            </Part>
             <Part name="hardpoint_radiator_main" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="" display_name="Main Cooler Slot">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Main Cooler Slot">
                 <Types>
                   <Type type="Cooler" subtypes="Cooler_ANVL_Hornet" />
                 </Types>
@@ -468,7 +476,7 @@
             <Part name="Landing_Gear_Rear_Left_panels_05" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="Landing_Gear_Rear_Right_panels_05" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="hardpoint_shield_generator" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="" display_name="Shield Slot">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Shield Slot">
                 <Types>
                   <Type type="Shield" subtypes="" />
                 </Types>
@@ -521,18 +529,13 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="enter_cockpit_pos" distance="1" bbMin="-1,-1,0" bbMax="1,1,2" />
+        <Activation type="OnUsed" param1="helper" param2="helper_seat_pilot_sit_pos" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotZeroGEnterPosActivation" />		
       </Activations>
       <Enter>
         <Seats>
           <Seat value="SeatDriver" />
         </Seats>
       </Enter>
-    </Action>
-    <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears landingDamages="500" altitudeToRetractGears="12" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
     </Action>
   </Actions>
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -546,7 +549,7 @@
   <Seats>
     <!-- Pilot's seat ("driver" is the standard name that CryEngine uses for the this posiiton) -->
     <!--SETTING isDriver to 0 for Hangar purposes -->
-    <Seat name="SeatDriver" enterHelper="enter_cockpit_pos" sitHelper="helper_seat_pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
+    <Seat name="SeatDriver" enterHelper="enter_cockpit_pos" sitHelper="helper_seat_pilot_sit_pos" zerogEnterHelper="pilot_zerogenter_pos" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -566,17 +569,21 @@
       </Views>
       <WaitFor>
         <Enter>
-          <State animation="Cockpit" state="Open" />
+          <State animation="Canopy" state="Open" />
+          <State animation="Cockpit" state="Open" excludeTags="zerog" />
         </Enter>
         <Exit>
-          <State animation="Cockpit" state="Open" />
+          <State animation="Canopy" state="Open" />
+          <State animation="Cockpit" state="Open"  excludeTags="zerog"  />
         </Exit>
       </WaitFor>
       <PostAction>
         <Enter>
+          <State animation="Canopy" state="Close" />
           <State animation="Cockpit" state="Close" />
         </Enter>
         <Exit>
+          <State animation="Canopy" state="Close" />
           <State animation="Cockpit" state="Close" />
         </Exit>
       </PostAction>
@@ -606,6 +613,7 @@
                 <!-- <ItemPort part="hardpoint_radiator_right" /> -->
                 <ItemPort part="hardpoint_shield_generator" />
                 <ItemPort part="hardpoint_lights_cockpit_int" />
+                <ItemPort part="landingpad_helper" />
               </Items>
             </Settings>
           </SharedItems>
@@ -787,13 +795,29 @@
   <!-- VEHICLE MOVEMENT ////////////////////////////////////////////////////////////////////////////////////-->
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="240" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120" maxTorqueAlpha="70.0,70.0,70.0" maxTorqueAngle="18,18,18">
-      <SoundParams>
-		<PassByLoopSound sound="Play_SSPB_RSI_Merlin_Loop" />
-		<PassBySound sound="Play_SSPB_RSI_Merlin_800ms_0to100meters" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />	  
-      </SoundParams>
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100"  maxAngularAcceleration="9,100,120" >
+      <AudioParams dmgBufferDecay="0.1">
+        <PassByLoopSound sound="Play_SSPB_KRIG_Merlin_Loop" />
+        <PassBySound sound="Play_SSPB_KRIG_Merlin_800ms_0to100meters" leadinTime="0.7" triggerDistance="100" cooldownTime="2" />
+        <PassBySound sound="Play_SSPB_KRIG_Merlin_2500ms_0to200meters" leadinTime="1.5" triggerDistance="250" cooldownTime="2" />
+		<DuressSound sound="Play_SSDD_RSI_Merlin_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
+      </AudioParams>
       <Contrails>
       </Contrails>
+  	<IFCS>
+		<goalTimes opcomTime="3.7" ropcomTime=".7, .45, .7" cruiseTime="10"/>
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+
+		<maxVelocity normal="240" />
+        <linearJerk pos="124,200,124" neg="124,200,124" />
+		<linearScale pos="1.3334, 1.0, 1.0" neg="1.3334, 1.0, 1.0" />
+
+		<maxAngVelocity normal="72,120,62" boost="" />	
+        <angularJerk pos="29, 86, 25" neg="29, 86, 25" />
+		<angularScale pos="0.0627, 0.0816, 0.0646" neg="0.0627, 0.0816, 0.0646" />
+        <maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+        <errorTorque maxAlpha="1,7,1" maxAngle="18,18,18" />
+      </IFCS> 
     </Spaceship>
   </MovementParams>
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -801,7 +825,7 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="KRIG_P52_Merlin" effect="spaceships/deathmasks/generic_deathmask.ALL.generic_small_AI_ships" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -849,7 +873,6 @@
   -->
   <Mannequin tag="KRIG_p52merlin" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/krig/p52merlin/krig_p52merlin_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/krig/p52merlin/krig_p52merlin_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/krig/p52merlin/krig_p52merlin_HumanAnims.adb" id="idMannequin" />
   <Animations>
-    <Action name="Landing_Gear" state="Retract" />
   </Animations>
   <!-- Attachments
   This is a list of any attachment objects on the vehicle. This is used primarlily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
@@ -868,11 +891,6 @@
   
     hide=     "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
   -->
-  <Attachments>
-    <Attachment name="LandingGearRight" helper="hardpoint_landinggear_rear_right" geometry="Objects/vehicles/ships/krig/p52merlin/landing_gear/krig_merlin_landinggear_rear_right.chr" scopeContext="LandingGearRight" />
-    <Attachment name="LandingGearLeft" helper="hardpoint_landinggear_rear_left" geometry="Objects/vehicles/ships/krig/p52merlin/landing_gear/krig_merlin_landinggear_rear_left.chr" scopeContext="LandingGearLeft" />
-    <Attachment name="LandingGearFront" helper="hardpoint_landinggear_front" geometry="Objects/vehicles/ships/krig/p52merlin/landing_gear/krig_merlin_landinggear_front.chr" scopeContext="LandingGearFront" />
-  </Attachments>
   <!-- Variables
   This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
   A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip

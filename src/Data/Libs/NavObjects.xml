@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NavObjectTypeLibrary version="1">
+	<!--  Syntax for this file:
+	
+		***** List of "NavObjectType" tags *****
+		Required parameters:
+			name: unique identifier for the nav object type
+		
+		***** [OPTIONAL] "Helper" sub-tag of "NavObjectType" *****
+		Parameters to help draw the helper for this Nav Object
+		Required parameters:
+			startPos: Local space position offset of the start point of the helper arrow
+			endPos: Local space direction offset of the end point of the helper arrow
+		Optional parameters:
+			arcHeight: [default=0.5] Max height of the arc above a straight line between start and end positions
+			biDirectional: [default=1] 1 if an arrow should be drawn on both ends of helper, 0 if only at the end pos
+			
+		***** "NavLinks" sub-tag of "NavObjectType" *****
+		Holds a list of one or more NavLink tags
+		
+		***** List of "NavLink" sub-tags of "NavLinks" *****
+		Required parameters:
+			name: unique identifier for the navlink within the current NavObjectType
+			action: name of the action to be performed (Kythera will translate this action into specific sub-actions to perform)
+		Optional parameters:
+			costMultiplier: [default = 1.0] Amount to multiply traversal distance by to calculate navigation cost
+			arcHeight: [default=helper arcHeight] Max height of the arc above a straight line between start and end positions
+			           If not specified, will default to the arcHeight used by the helper for this nav object
+			
+		***** "Start" sub-tag of "NavLink" *****
+		The point to path to in order to play the traversal action for this rule
+		Required parameters:
+			pos: Local space position offset of the start traversal point, relative to NavObject entity
+			dir: Local space direction offset of the start traversal point, relative to NavObject entity 
+			
+		***** "End" sub-tag of "NavLink" *****
+		The point to continue pathing from at the end of traversal
+		Required parameters:
+			pos: Local space position offset of the end traversal point, relative to NavObject entity
+			dir: Local space direction offset of the end traversal point, relative to NavObject entity 
+	-->
+	<NavObjectType name="vault">
+		<Helper startPos="0.0,-1.0,0.0" endPos="0.0,1.0,0.0" arcHeight="1.5" biDirectional="1" />
+		<NavLinks>
+			<NavLink name="standing" costMultiplier="1.0" action="vault_standing">
+				<Start pos="0.0,-1.0,0.0" dir="0.0,1.0,0.0" />
+				<End pos="0.0,1.0,0.0" dir="0.0,1.0,0.0" />
+			</NavLink>
+			<NavLink name="standing_back" costMultiplier="1.0" action="vault_standing">
+				<Start pos="0.0,1.0,0.0" dir="0.0,-1.0,0.0" />
+				<End pos="0.0,-1.0,0.0" dir="0.0,-1.0,0.0" />
+			</NavLink>
+			<!--<NavLink name="running" costMultiplier="1.0" action="vault_running">
+				<Start pos="0.0,-2.0,0.0" dir="0.0,1.0,0.0" />
+				<End pos="0.0,2.0,0.0" dir="0.0,1.0,0.0" />
+			</NavLink>
+			<NavLink name="running_back" costMultiplier="1.0" action="vault_running">
+				<Start pos="0.0,2.0,0.0" dir="0.0,-1.0,0.0" />
+				<End pos="0.0,-2.0,0.0" dir="0.0,-1.0,0.0" />
+			</NavLink>-->
+		</NavLinks>
+	</NavObjectType>
+	<NavObjectType name="jump_v100">
+		<Helper startPos="0.0,0.0,0.0" endPos="0.0,1.0,1.0" arcHeight="0.5"  biDirectional="1" />
+		<NavLinks>
+			<NavLink name="up" costMultiplier="1.0" action="jump_up_100">
+				<Start pos="0.0,0.0,0.0" dir="0.0,1.0,0.0" />
+				<End pos="0.0,1.0,1.0" dir="0.0,1.0,0.0" />
+			</NavLink>
+			<NavLink name="down" costMultiplier="1.0" action="jump_down_100">
+				<Start pos="0.0,1.0,1.0" dir="0.0,-1.0,0.0" />
+				<End pos="0.0,0.0,0.0" dir="0.0,-1.0,0.0" />
+			</NavLink>
+		</NavLinks>
+	</NavObjectType>
+	<NavObjectType name="door_auto">
+		<Helper startPos="0.0,0.0,0.0" endPos="0.0,2.0,0.0" />
+		<NavLinks>
+			<NavLink name="forward" costMultiplier="1.0" action="door_auto">
+				<Start pos="0.0,0.0,0.0" dir="0.0,1.0,0.0" />
+				<End pos="0.0,2.0,0.0" dir="0.0,1.0,0.0" />
+			</NavLink>
+			<NavLink name="backward" costMultiplier="1.0" action="door_auto">
+				<Start pos="0.0,2.0,0.0" dir="0.0,-1.0,0.0" />
+				<End pos="0.0,0.0,0.0" dir="0.0,-1.0,0.0" />
+			</NavLink>
+		</NavLinks>
+	</NavObjectType>
+	
+</NavObjectTypeLibrary>

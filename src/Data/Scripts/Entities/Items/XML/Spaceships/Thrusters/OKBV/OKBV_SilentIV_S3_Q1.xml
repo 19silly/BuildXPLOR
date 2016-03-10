@@ -35,7 +35,7 @@
 
 		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
 			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
-			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<Pool capacity="200" rate="25" critical="1" decayRate="10" />
 			<States>
 				<State state="Off"><Value value="0" /></State>
 				<State state="Boost" transition="0.25"><Value value="90" /></State>
@@ -52,6 +52,14 @@
 		</Pipe>
 	</Pipes>
 	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="0" />
+		<param name="damageMax" value="0" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+	
 	<gimbal type="joint" >
 		<pitch 	joint="PITCH_HELPER" 	min ="-180" max ="180" speed="600" accel="1000" animation ="" />
 		<yaw 	joint="YAW_HELPER"		min ="-30" max ="-30" speed="600" accel="1000" animation ="" />
@@ -59,7 +67,7 @@
 	</gimbal> 
 	
 	<thrusters>
-	  <thruster type="" flags="main rear" maxThrust="850000" boostScale="1.5" >
+	  <thruster type="" flags="main rear" maxThrust="2000000" boostScale="1.5" >
 	  </thruster>
   </thrusters>
   

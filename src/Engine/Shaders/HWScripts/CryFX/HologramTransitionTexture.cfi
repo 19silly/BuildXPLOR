@@ -1,0 +1,55 @@
+/// Shader constants //////////////////////
+float4 TextureParams;
+
+/// Texture Samplers //////////////////////
+sampler2D TransitionMapSampler = sampler_state
+{  
+  string UIName = "Transition";
+  string UIDescription = "Transition map to drive texture-based animation";
+  Texture = $CustomMap;
+};
+
+///////////////// Pixel shader //////////////////
+pixoutHolo HologramCIG_Texture_PS(vert2frag IN)
+{
+	// When TransitionAmt >= 1, nothing is clipped.
+	// When TransitionAmt < 0, everything is clipped.
+	const float transitionAmt = TextureParams.x;
+	
+	if(transitionAmt < 1.0)
+	{
+		float4 cTransition = tex2D(TransitionMapSampler, IN.baseTC.xy);
+		
+		// The darker portions of the texture transition in first, followed by the lighter portions.
+		if(cTransition.x > transitionAmt)
+		{
+			discard;
+		}
+	}
+	
+	return HologramCIG_PS(IN);
+}
+
+///////////////// Technique //////////////////
+technique TransitionTexture
+{
+	pass p0
+	{
+		VertexShader		= HologramCIG_VS() GeneralVS;
+		PixelShader			= HologramCIG_Texture_PS() GeneralPS;
+		
+#if %NO_DEPTH_TEST
+		ZEnable = false;
+#else
+		ZEnable = true;
+#endif
+#if %NO_HOLO_CLIP
+		ZWriteEnable = false;
+#else
+		ZWriteEnable = true;
+#endif
+		CullMode = Back;
+		
+    IgnoreMaterialState = true;
+	} 
+}

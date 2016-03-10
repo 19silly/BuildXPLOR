@@ -1,6 +1,6 @@
 <Mode name="DFM_SquadronBattle">
 
-	<Spawning class="DFMSpawning" teamGame="1" teamSpawnsType="Standard" usingLua="0" RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" ForceRespawnTimer="30" />
+	<Spawning class="DFMSpawning" teamGame="1" teamSpawnsType="Standard" RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" ForceRespawnTimer="30" />
 
 	<!-- Will define ship values here -->
 	<Scoring class="DFMScoring" countscoredown="1">
@@ -75,7 +75,6 @@
 	<StatsRecording class="AuthoritativeStats" />
 
 	<State class="DFMState">
-		<StartStrings startMatch="ui_msg_ia_matchstart" />
 		<Prematch requiredPlayers="2" gameStartTimer="3"/>
 	</State>
 
@@ -85,9 +84,7 @@
 
 	<PlayerSetup class="StandardSetup" />
 
-	<DamageHandling class="DFMDamageHandling">
-		<Table path="Scripts/GameRules/MPDamageTable.xml" />
-	</DamageHandling>
+	<DamageHandling class="SCDamageHandling" />
 
 	<ActorAction class="MPActorAction" />
 
@@ -96,31 +93,13 @@
 	<!-- Custom Match Settings -->
 	<OptionBindings>
 		<OptionBinding>
-			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "20000" Max = "250000" Step = "2500"	DefaultValue = "100000" />
+			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eElectronicAccessMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "20000" Max = "250000" Step = "2500"	DefaultValue = "100000" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		<OptionBinding>
-			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "20" />
+			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eElectronicAccessMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "20" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
-		<!--
-		<OptionBinding>
-			<Option		Name = "StartingTickets" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesStartingTickets" Description = "@dfm_ac_ui_RulesStartingTickets"	Min = "1"	Max = "60"	Step = "1"	DefaultValue = "20" />
-			<Strategy OptionBindingStrategy = "eLatePointer" />
-		</OptionBinding>
-		-->
-		<!--
-		<OptionBinding>
-			<Option		Name = "CockpitView" Type = "eBoolean" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesCockpitView" Description = "@dfm_ac_ui_RulesCockpitView"	DefaultValue = "true" />
-			<Strategy OptionBindingStrategy = "eLatePointer" />
-		</OptionBinding>
-		-->
-		<!--
-		<OptionBinding>
-			<Option		Name = "FriendlyFire" Type = "eBoolean" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesFriendlyFire" Description = "@dfm_ac_ui_RulesFriendlyFire"	DefaultValue = "false" />
-			<Strategy OptionBindingStrategy = "eLatePointer" />
-		</OptionBinding>
-		-->
 	</OptionBindings>
 
 	<!-- Valid Arena Commander Maps -->

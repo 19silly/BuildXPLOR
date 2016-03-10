@@ -1,0 +1,72 @@
+<Graph Description="" Group="MM_Display" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="UI:Functions:MainMenu:ShowBackground" pos="-180,460,0" flags="0">
+   <Inputs instanceID="-1" show="1"/>
+  </Node>
+  <Node Id="3" Class="UI:Functions:MainMenu:EnableParticles" pos="-180,530,0" flags="0">
+   <Inputs instanceID="-1" enabled="1"/>
+  </Node>
+  <Node Id="6" Class="UI:Action:Control" pos="-180,710,0" flags="0">
+   <Inputs uiActions_UIAction="MM_Main" Strict="0" Args=""/>
+  </Node>
+  <Node Id="25" Name="Old" Class="_commentbox" pos="-404,15.391375,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="618.94202" Height="774.9198"/>
+   <NodeSize Width="618.94202" Height="811.91937"/>
+  </Node>
+  <Node Id="75" Class="UI:MovieClip:Visible" pos="130,510,0" flags="0">
+   <Inputs uiMovieclips_MovieClips="MainMenu:Cursor" instanceID="-1" Visible="0" Alpha="0"/>
+  </Node>
+  <Node Id="76" Class="UI:Action:Start" pos="-470,-400,0" flags="0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="77" Class="UI:Action:End" pos="80,710,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="78" Class="UI:Display:Display" pos="-180,70,0" flags="0">
+   <Inputs uiElements_Element="MainMenu" instanceID="-1"/>
+  </Node>
+  <Node Id="84" Class="UI:Display:Config" pos="-180,230,0" flags="0">
+   <Inputs uiElements_Element="MainMenu" instanceID="-1" cursor="1" mouseEvents="1" keyEvents="1" consoleMouse="0" consoleCursor="0" controllerInput="1" eventsExclusive="1" fixedProjDepth="0" isHud="0" noMouseMove="0" alpha="0" layer="3"/>
+  </Node>
+  <Node Id="126" Class="UI:Action:Control" pos="-180,600,0" flags="0">
+   <Inputs uiActions_UIAction="MM_FloatingText" Strict="0" Args=""/>
+  </Node>
+  <Node Id="128" Class="UI:Functions:MenuEvents:DisplayIngameMenu" pos="-160,-400,0" flags="0">
+   <Inputs Display="1"/>
+  </Node>
+  <Node Id="136" Class="UI:Functions:MenuEvents:DisplayIngameMenu" pos="-160,-170,0" flags="0">
+   <Inputs Display="0"/>
+  </Node>
+  <Node Id="137" Class="UI:Action:End" pos="220,-170,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="140" Class="UI:Events:System:OnLoadingStart" pos="-460,-170,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="141" Class="UI:Events:MenuEvents:OnDisplayIngameMenuFailedOpen" pos="-470,-300,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="142" Class="Time:FrameDelay" pos="-60,-300,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="143" Class="UI:Functions:MenuEvents:DisplayIngameMenu" pos="110,-300,0" flags="0">
+   <Inputs Display="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3" nodeOut="2" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="3" portIn="Set" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="126" nodeOut="3" portIn="Start" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="77" nodeOut="6" portIn="EndAction" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="128" nodeOut="76" portIn="send" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="84" nodeOut="78" portIn="set" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="84" portIn="Call" portOut="OnSet" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="126" portIn="Start" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="137" nodeOut="136" portIn="EndAction" portOut="OnEvent" enabled="1"/>
+  <Edge nodeIn="136" nodeOut="140" portIn="send" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="142" nodeOut="141" portIn="in" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="143" nodeOut="142" portIn="send" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

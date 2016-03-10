@@ -1,0 +1,54 @@
+<Graph isModule="1" moduleName="DebugInterface_SpawnInShip" GOSTType="0" GOSTStateGroup="&lt;Unknown&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="SpawnShip" Type="5" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DebugInterface_SpawnInShip" pos="80,0,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DebugInterface_SpawnInShip" pos="1780,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="79" Class="Entity:GetPos" pos="680,80,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="80" Class="Actor:LocalPlayer" pos="680,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="87" Class="Entity:SpawnArchetype" pos="960,80,0" flags="0">
+   <Inputs Archetype="" Name="" Pos="0,0,0" Rot="0,0,0" Scale="1,1,1"/>
+  </Node>
+  <Node Id="164" Class="Vec3:AddVec3" pos="960,0,0" flags="0">
+   <Inputs A="0,0,0" B="0,0,-5"/>
+  </Node>
+  <Node Id="165" Class="Actor:LocalPlayer" pos="1460,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="166" Class="Time:Delay" pos="1220,0,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="932" Class="Vehicle:Passenger" pos="1460,80,0" flags="0">
+   <Inputs entityId="0" ActorId="0" vSeat_seatName="SeatDriver" Animation="0"/>
+  </Node>
+  <Node Id="934" Name="Grab_Player_Pos" Class="_comment" pos="680,-60,0" flags="0"/>
+  <Node Id="935" Name="Spawn_Ship" Class="_comment" pos="960,-60,0" flags="0"/>
+  <Node Id="936" Name="Beam_Player_Into_Driver_Seat" Class="_comment" pos="1460,-60,0" flags="0"/>
+  <Node Id="947" Class="Time:Delay" pos="440,0,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="87" nodeOut="1" portIn="Archetype" portOut="SpawnShip" enabled="1"/>
+  <Edge nodeIn="947" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="79" portIn="Rot" portOut="Rotate" enabled="1"/>
+  <Edge nodeIn="164" nodeOut="79" portIn="A" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="79" nodeOut="80" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="166" nodeOut="87" portIn="in" portOut="Done" enabled="1"/>
+  <Edge nodeIn="932" nodeOut="87" portIn="entityId" portOut="Succeeded" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="164" portIn="Pos" portOut="out" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="164" portIn="Spawn" portOut="out" enabled="1"/>
+  <Edge nodeIn="932" nodeOut="165" portIn="ActorId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="932" nodeOut="166" portIn="ActorInTrigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="932" portIn="Success" portOut="ActorIn" enabled="1"/>
+  <Edge nodeIn="79" nodeOut="947" portIn="Get" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

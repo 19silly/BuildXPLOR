@@ -1,5 +1,4 @@
 Script.ReloadScript("Scripts/Entities/Others/InteractiveEntity.lua");
-Script.ReloadScript("Scripts/Entities/PlayerInteractive/InteractiveObjectEx.lua");
 
 
 DeployableBarrier =

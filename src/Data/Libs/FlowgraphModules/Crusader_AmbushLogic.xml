@@ -1,0 +1,54 @@
+<Graph isModule="1" moduleName="Crusader_AmbushLogic" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="AmusherID" Type="EntityId" Input="1"/>
+  <Port Name="AmbushGoto" Type="EntityId" Input="1"/>
+  <Port Name="DefendArea" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Crusader_AmbushLogic" pos="-40,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Crusader_AmbushLogic" pos="1660,30,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2756" Class="Kythera:Task:Scripted" pos="610,650,0" flags="0">
+   <Inputs entityId="0" combatOnAlert="1"/>
+  </Node>
+  <Node Id="2757" Class="Kythera:Scripted:Ship:Goto" pos="900,650,0" flags="0">
+   <Inputs entityId="0" position="0,0,0" entity="0" relativeSpeed="1" absoluteSpeed="0" stopDistance="100"/>
+  </Node>
+  <Node Id="2758" Class="Time:FrameDelay" pos="440,140,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2760" Class="Kythera:Task:Defend" pos="1320,140,0" flags="0">
+   <Inputs entityId="0" volume="0"/>
+  </Node>
+  <Node Id="2762" Class="Logic:Any" pos="1170,650,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2764" Class="Logic:Any" pos="1170,930,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="2767" Class="Time:Delay" pos="900,480,0" flags="0">
+   <Inputs delay="10" resetOnInput="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Cancel" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="2756" nodeOut="1" portIn="entityId" portOut="AmusherID" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="1" portIn="entity" portOut="AmbushGoto" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="1" portIn="entityId" portOut="AmusherID" enabled="1"/>
+  <Edge nodeIn="2758" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2760" nodeOut="1" portIn="entityId" portOut="AmusherID" enabled="1"/>
+  <Edge nodeIn="2760" nodeOut="1" portIn="volume" portOut="DefendArea" enabled="1"/>
+  <Edge nodeIn="2757" nodeOut="2756" portIn="sync" portOut="started" enabled="1"/>
+  <Edge nodeIn="2762" nodeOut="2756" portIn="in1" portOut="exit" enabled="1"/>
+  <Edge nodeIn="2767" nodeOut="2756" portIn="in" portOut="started" enabled="1"/>
+  <Edge nodeIn="2762" nodeOut="2757" portIn="in2" portOut="done" enabled="1"/>
+  <Edge nodeIn="2764" nodeOut="2757" portIn="in2" portOut="fail" enabled="1"/>
+  <Edge nodeIn="2764" nodeOut="2757" portIn="in3" portOut="stopped" enabled="1"/>
+  <Edge nodeIn="2764" nodeOut="2757" portIn="in1" portOut="success" enabled="1"/>
+  <Edge nodeIn="2760" nodeOut="2758" portIn="sync" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2760" portIn="Success" portOut="started" enabled="1"/>
+  <Edge nodeIn="2762" nodeOut="2767" portIn="in3" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

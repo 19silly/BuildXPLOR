@@ -1,0 +1,58 @@
+<Graph isModule="1" moduleName="Crusader_FlySplineAndDefend" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="ShipID" Type="EntityId" Input="1"/>
+  <Port Name="SplineGroup" Type="EntityId" Input="1"/>
+  <Port Name="DefendArea" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Crusader_FlySplineAndDefend" pos="-200,-10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Crusader_FlySplineAndDefend" pos="2430,-30,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3" Class="Kythera:Task:Scripted" pos="890,-60,0" flags="0">
+   <Inputs entityId="0" combatOnAlert="1"/>
+  </Node>
+  <Node Id="7" Class="Kythera:Scripted:Ship:FlySplineEx" pos="1440,-110,0" flags="0">
+   <Inputs entityId="0" spline="0" style="0" closestPoint="1" attackTargets="1" noAvoidance="1" speedOverride="-1" useBoost="1" errorLimit="-1"/>
+  </Node>
+  <Node Id="10" Class="Time:FrameDelay" pos="1260,-60,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="16" Class="Kythera:Task:Defend" pos="1930,-60,0" flags="0">
+   <Inputs entityId="0" volume="0"/>
+  </Node>
+  <Node Id="24" Class="Entity:Group:DistanceQuery" pos="347.72726,-103.40906,0" flags="0">
+   <Inputs entityId="0" Count="1" Group="0" Remove="0" Position="0,0,0" SortOrder="1"/>
+  </Node>
+  <Node Id="30" Class="Entity:GetPos" pos="350,-250,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="31" Class="Time:FrameDelay" pos="200,-90,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="32" Class="Time:FrameDelay" pos="689.34326,-27.726286,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Cancel" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="1" portIn="entityId" portOut="ShipID" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="1" portIn="entityId" portOut="ShipID" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="1" portIn="volume" portOut="DefendArea" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="1" portIn="entityId" portOut="ShipID" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="1" portIn="entityId" portOut="SplineGroup" enabled="1"/>
+  <Edge nodeIn="30" nodeOut="1" portIn="entityId" portOut="ShipID" enabled="1"/>
+  <Edge nodeIn="30" nodeOut="1" portIn="Get" portOut="Start" enabled="1"/>
+  <Edge nodeIn="31" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="3" portIn="in" portOut="started" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="7" portIn="sync" portOut="done" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="10" portIn="sync" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="16" portIn="Success" portOut="started" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="24" portIn="spline" portOut="Entity1" enabled="1"/>
+  <Edge nodeIn="32" nodeOut="24" portIn="in" portOut="Entity1" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="30" portIn="Position" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="31" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="32" portIn="sync" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

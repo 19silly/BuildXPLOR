@@ -1,0 +1,127 @@
+<Graph isModule="1" moduleName="Debug_ObjectiveMessages" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="ObjectiveName" Type="5" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Debug_ObjectiveMessages" pos="250,270,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Debug_ObjectiveMessages" pos="1850,270,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="412" Class="Debug:DisplayMessage" pos="1600,270,0" flags="0">
+   <Inputs entityId="0" message="CURRENT OBJECTIVE" DisplayTime="3" posX="0.08" posY="0.08" fontSize="2" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="415" Class="Debug:DisplayMessage" pos="1290,810,0" flags="0">
+   <Inputs entityId="0" message="CURRENT OBJECTIVE" DisplayTime="3" posX="0.08" posY="0.11" fontSize="2.5" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="417" Class="String:SetString" pos="1110,330,0" flags="0">
+   <Inputs In="NEW OBJECTIVE"/>
+  </Node>
+  <Node Id="418" Class="String:SetString" pos="1110,270,0" flags="0">
+   <Inputs In="OBJECTIVE COMPLETE"/>
+  </Node>
+  <Node Id="419" Class="String:SetString" pos="1110,400,0" flags="0">
+   <Inputs In="CURRENT OBJECTIVE"/>
+  </Node>
+  <Node Id="421" Class="Logic:Any" pos="1400,270,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="423" Class="Logic:Sequentializer" pos="730,270,0" flags="0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="425" Class="Time:Delay" pos="890,60,0" flags="0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="426" Class="Logic:Any" pos="600,270,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="427" Class="Logic:Any" pos="730,480,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="429" Class="Math:SetColor" pos="1110,530,0" flags="0">
+   <Inputs color_In="0,0.445201,0.00856813"/>
+  </Node>
+  <Node Id="430" Class="Logic:Any" pos="1400,530,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="431" Class="Math:SetColor" pos="1110,610,0" flags="0">
+   <Inputs color_In="0.0152085,1,0.871367"/>
+  </Node>
+  <Node Id="432" Class="Math:SetColor" pos="1110,680,0" flags="0">
+   <Inputs color_In="1,1,1"/>
+  </Node>
+  <Node Id="434" Class="Logic:Any" pos="1110,60,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="436" Class="String:SetString" pos="980,810,0" flags="0">
+   <Inputs In=""/>
+  </Node>
+  <Node Id="437" Class="Math:SetColor" pos="970,990,0" flags="0">
+   <Inputs color_In="0.132868,0.132868,0.132868"/>
+  </Node>
+  <Node Id="438" Class="Logic:Any" pos="1140,990,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="439" Class="Math:SetColor" pos="970,1060,0" flags="0">
+   <Inputs color_In="0,0.603827,0.55834"/>
+  </Node>
+  <Node Id="444" Class="Debug:InputKey" pos="1290,60,0" flags="0">
+   <Inputs entityId="0" Key="tab" NonDevMode="0"/>
+  </Node>
+  <Node Id="446" Class="Logic:Gate" pos="1540,60,0" flags="0">
+   <Inputs Closed="1"/>
+  </Node>
+  <Node Id="448" Class="Logic:Any" pos="1130,810,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="449" Class="Logic:Any" pos="1400,380,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="426" nodeOut="1" portIn="in1" portOut="Start" enabled="1"/>
+  <Edge nodeIn="426" nodeOut="1" portIn="in3" portOut="Update" enabled="1"/>
+  <Edge nodeIn="436" nodeOut="1" portIn="In" portOut="ObjectiveName" enabled="1"/>
+  <Edge nodeIn="421" nodeOut="417" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="434" nodeOut="417" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="436" nodeOut="417" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="439" nodeOut="417" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="449" nodeOut="417" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="421" nodeOut="418" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="434" nodeOut="418" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="437" nodeOut="418" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="449" nodeOut="418" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="421" nodeOut="419" portIn="in3" portOut="Out" enabled="1"/>
+  <Edge nodeIn="449" nodeOut="419" portIn="in3" portOut="Out" enabled="1"/>
+  <Edge nodeIn="412" nodeOut="421" portIn="Show" portOut="out" enabled="1"/>
+  <Edge nodeIn="417" nodeOut="423" portIn="Set" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="418" nodeOut="423" portIn="Set" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="419" nodeOut="423" portIn="Set" portOut="Out3" enabled="1"/>
+  <Edge nodeIn="427" nodeOut="423" portIn="in1" portOut="Out3" enabled="1"/>
+  <Edge nodeIn="429" nodeOut="423" portIn="Set" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="431" nodeOut="423" portIn="Set" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="432" nodeOut="423" portIn="Set" portOut="Out3" enabled="1"/>
+  <Edge nodeIn="446" nodeOut="423" portIn="Close" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="446" nodeOut="423" portIn="Open" portOut="Out3" enabled="1"/>
+  <Edge nodeIn="426" nodeOut="425" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="423" nodeOut="426" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="423" nodeOut="427" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="430" nodeOut="429" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="412" nodeOut="430" portIn="clr_Color" portOut="out" enabled="1"/>
+  <Edge nodeIn="430" nodeOut="431" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="430" nodeOut="432" portIn="in3" portOut="Out" enabled="1"/>
+  <Edge nodeIn="425" nodeOut="434" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="415" nodeOut="436" portIn="message" portOut="Out" enabled="1"/>
+  <Edge nodeIn="448" nodeOut="436" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="438" nodeOut="437" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="415" nodeOut="438" portIn="clr_Color" portOut="out" enabled="1"/>
+  <Edge nodeIn="438" nodeOut="439" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="446" nodeOut="444" portIn="In" portOut="Pressed" enabled="1"/>
+  <Edge nodeIn="421" nodeOut="446" portIn="in4" portOut="Out" enabled="1"/>
+  <Edge nodeIn="448" nodeOut="446" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="415" nodeOut="448" portIn="Show" portOut="out" enabled="1"/>
+  <Edge nodeIn="412" nodeOut="449" portIn="message" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens>
+  <Token Name="MissionName" Type="5" Default="null"/>
+ </GraphTokens>
+</Graph>

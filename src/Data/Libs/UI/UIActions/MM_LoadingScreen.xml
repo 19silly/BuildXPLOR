@@ -1,0 +1,60 @@
+<Graph Description="" Group="MM_PagesLoadingscreen" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="5" Class="UI:Functions:MainMenu:SetupScreen" pos="-347,-95,0" flags="0">
+   <Inputs instanceID="-1" Caption="@ui_ConnectTitle" ShowLine="0" MaxButtons="1" ButtonXPos="-250" ButtonYPos="0" ButtonOffset="40"/>
+  </Node>
+  <Node Id="82" Class="UI:Functions:MainMenu:SetLoadingImage" pos="-347,125,0" flags="0">
+   <Inputs instanceID="-1" image=""/>
+  </Node>
+  <Node Id="83" Class="UI:Action:Start" pos="-603,-96,0" flags="1">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="84" Class="UI:Util:FromArray" pos="-540,-30,0" flags="0">
+   <Inputs Array=""/>
+  </Node>
+  <Node Id="85" Name="Setup_Loading_Screen" Class="_commentbox" pos="-615,-163.0002,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="738.03186" Height="359.01062"/>
+   <NodeSize Width="738.03186" Height="386.40125"/>
+  </Node>
+  <Node Id="90" Class="UI:Action:End" pos="0,120,0" flags="0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="107" Class="UI:Functions:MainMenu:ShowSpinner" pos="-350,50,0" flags="0">
+   <Inputs instanceID="-1" caption="@ui_loading"/>
+  </Node>
+  <Node Id="108" Class="String:Compare" pos="-350,190,0" flags="0">
+   <Inputs A="" B="" IgnoreCase="1"/>
+  </Node>
+  <Node Id="109" Class="Logic:Any" pos="-100,120,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="110" Class="UI:Functions:MainMenu:ShowBackground" pos="-83.800491,-93.047447,0" flags="0">
+   <Inputs instanceID="-1" show="1"/>
+  </Node>
+  <Node Id="117" Class="UI:Variable:Var" pos="434,-264,0" flags="0">
+   <Inputs uiVariables_Variable="MainMenu:GameTitle" instanceID="-1"/>
+  </Node>
+  <Node Id="118" Class="String:SetString" pos="-236,-164,0" flags="0">
+   <Inputs In="Squadron 42&lt;br&gt;&lt;font size=&quot;15&quot; color=&quot;#8e1717&quot;&gt;A Chris Roberts Prototype&lt;/font&gt;"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="107" nodeOut="5" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="5" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="82" portIn="in1" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="83" portIn="Call" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="84" nodeOut="83" portIn="Array" portOut="Args" enabled="1"/>
+  <Edge nodeIn="118" nodeOut="83" portIn="Set" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="84" portIn="Caption" portOut="Val1" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="84" portIn="image" portOut="Val3" enabled="1"/>
+  <Edge nodeIn="108" nodeOut="84" portIn="A" portOut="Val3" enabled="1"/>
+  <Edge nodeIn="108" nodeOut="107" portIn="Compare" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="108" portIn="Call" portOut="False" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="108" portIn="in2" portOut="True" enabled="1"/>
+  <Edge nodeIn="90" nodeOut="109" portIn="EndAction" portOut="out" enabled="1"/>
+  <Edge nodeIn="117" nodeOut="118" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="117" nodeOut="118" portIn="Value" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

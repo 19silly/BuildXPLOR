@@ -1,0 +1,52 @@
+<Graph isModule="1" moduleName="DebugInterface_SpawnOnlyShip" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="SpawnShip" Type="5" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_DebugInterface_SpawnOnlyShip" pos="80,0,0" flags="0"/>
+  <Node Id="2" Class="Module:End_DebugInterface_SpawnOnlyShip" pos="1500,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="80" Class="Actor:LocalPlayer" pos="700,0,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="87" Class="Entity:SpawnArchetype" pos="1240,0,0" flags="0">
+   <Inputs Archetype="" Name="" Pos="0,0,0" Rot="0,0,0" Scale="1,1,1"/>
+  </Node>
+  <Node Id="934" Name="Grab_Player_Pos" Class="_comment" pos="700,-60,0" flags="0"/>
+  <Node Id="935" Name="Spawn_Ship" Class="_comment" pos="1240,-60,0" flags="0"/>
+  <Node Id="947" Class="Time:Delay" pos="460,0,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="966" Class="Animations:BoneInfo" pos="700,80,0" flags="0">
+   <Inputs entityId="0" bone_BoneName="HeadCam" Enabled="1" DebugDraw="0"/>
+  </Node>
+  <Node Id="971" Class="Vec3:AddVec3" pos="1020,80,0" flags="0">
+   <Inputs A="0,0,0" B="0,0,0"/>
+  </Node>
+  <Node Id="975" Class="Vec3:MulVec3" pos="1020,240,0" flags="0">
+   <Inputs A="0,0,0" B="50,50,50"/>
+  </Node>
+  <Node Id="1004" Class="Math:AnglesToDir" pos="1020,160,0" flags="0">
+   <Inputs angles="0,0,0"/>
+  </Node>
+  <Node Id="1007" Class="Vec3:AddVec3" pos="1020,320,0" flags="0">
+   <Inputs A="0,0,0" B="0,0,180"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="87" nodeOut="1" portIn="Archetype" portOut="SpawnShip" enabled="1"/>
+  <Edge nodeIn="947" nodeOut="1" portIn="in" portOut="Start" enabled="1"/>
+  <Edge nodeIn="966" nodeOut="80" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="87" portIn="Success" portOut="Done" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="947" portIn="Spawn" portOut="out" enabled="1"/>
+  <Edge nodeIn="971" nodeOut="966" portIn="A" portOut="WorldPos" enabled="1"/>
+  <Edge nodeIn="1004" nodeOut="966" portIn="angles" portOut="WorldRot" enabled="1"/>
+  <Edge nodeIn="1007" nodeOut="966" portIn="A" portOut="WorldRot" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="971" portIn="Pos" portOut="out" enabled="1"/>
+  <Edge nodeIn="971" nodeOut="975" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="975" nodeOut="1004" portIn="A" portOut="dir" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="1007" portIn="Rot" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

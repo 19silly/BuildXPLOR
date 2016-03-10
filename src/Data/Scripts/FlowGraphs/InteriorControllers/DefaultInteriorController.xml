@@ -1,0 +1,97 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="Mission:GameToken" pos="-970,-220,0" flags="0" GraphEntity="1">
+   <Inputs entityId="0" gametoken_Token="ShipStatus.Power.PowerStatus" compare_Value=""/>
+  </Node>
+  <Node Id="8" Class="Mission:GameTokenCheck" pos="50,-110,0" flags="0" GraphEntity="1">
+   <Inputs entityId="0" gametoken_Token="ShipStatus.Power.PowerStatus" CheckValue="off"/>
+  </Node>
+  <Node Id="9" Class="Mission:GameTokenCheck" pos="550,310,0" flags="0" GraphEntity="1">
+   <Inputs entityId="0" gametoken_Token="ShipStatus.Alert.AlertStatus" CheckValue="alert_none"/>
+  </Node>
+  <Node Id="13" Class="Entity:Effects:TagState" pos="1820,-220,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Tag="844||[0][0]" Force="1"/>
+  </Node>
+  <Node Id="15" Name="Default_Lights_&amp;_VFX_&amp;_SFX" Class="_comment" pos="1840,-250,0" flags="0"/>
+  <Node Id="16" Class="Entity:Effects:TagState" pos="1870,-960,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Tag="845||[0][0]" Force="1"/>
+  </Node>
+  <Node Id="17" Name="Generic_Lights_&amp;_VFX_&amp;_SFX" Class="_comment" pos="1890,-990,0" flags="0"/>
+  <Node Id="19" Class="Entity:Effects:TagState" pos="1870,560,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Tag="843||[0][0]" Force="1"/>
+  </Node>
+  <Node Id="20" Name="Emergency_Lights_&amp;_VFX_&amp;_SFX" Class="_comment" pos="1880,530,0" flags="0"/>
+  <Node Id="21" Class="Mission:GameTokenCheck" pos="1020,590,0" flags="1" GraphEntity="1">
+   <Inputs entityId="0" gametoken_Token="ShipStatus.Alert.AlertStatus" CheckValue="alert_emergency"/>
+  </Node>
+  <Node Id="23" Class="Logic:Any" pos="-480,-60,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="26" Class="Game:Start" pos="-920,-20,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="27" Class="Mission:GameToken" pos="-980,110,0" flags="0" GraphEntity="1">
+   <Inputs entityId="0" gametoken_Token="ShipStatus.Alert.AlertStatus" compare_Value=""/>
+  </Node>
+  <Node Id="31" Class="Logic:Once" pos="990,-170,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="33" Class="Logic:Any" pos="1620,-1130,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="34" Class="Logic:Any" pos="1620,-920,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="35" Class="Logic:Any" pos="1640,-300,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="36" Class="Logic:Any" pos="1640,-90,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="37" Class="Logic:Any" pos="1640,450,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="38" Class="Logic:Any" pos="1640,660,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="62" Class="Debug:DisplayMessage" pos="-500,210,0" flags="0">
+   <Inputs entityId="0" message="Alert Status: Changed" DisplayTime="0" posX="0.1" posY="0.2" posZ="0" is3D="0" fontSize="4" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="63" Class="Debug:DisplayMessage" pos="730.3186,758.69244,0" flags="0">
+   <Inputs entityId="0" message="Alert Status: Default" DisplayTime="0" posX="0.1" posY="0.3" posZ="0" is3D="0" fontSize="4" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="64" Class="Debug:DisplayMessage" pos="1130,980,0" flags="0">
+   <Inputs entityId="0" message="Alert Status: Emergency" DisplayTime="0" posX="0.1" posY="0.3" posZ="0" is3D="0" fontSize="4" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="23" nodeOut="2" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="8" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="31" nodeOut="8" portIn="Reset" portOut="False" enabled="1"/>
+  <Edge nodeIn="31" nodeOut="8" portIn="Input1" portOut="True" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="8" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="9" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="35" nodeOut="9" portIn="in1" portOut="True" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="9" portIn="in2" portOut="True" enabled="1"/>
+  <Edge nodeIn="63" nodeOut="9" portIn="Hide" portOut="False" enabled="0"/>
+  <Edge nodeIn="63" nodeOut="9" portIn="Show" portOut="True" enabled="0"/>
+  <Edge nodeIn="64" nodeOut="9" portIn="Hide" portOut="True" enabled="0"/>
+  <Edge nodeIn="36" nodeOut="21" portIn="in2" portOut="True" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="21" portIn="in1" portOut="True" enabled="1"/>
+  <Edge nodeIn="64" nodeOut="21" portIn="Show" portOut="True" enabled="0"/>
+  <Edge nodeIn="8" nodeOut="23" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="23" nodeOut="26" portIn="in2" portOut="output" enabled="1"/>
+  <Edge nodeIn="23" nodeOut="27" portIn="in3" portOut="Out" enabled="1"/>
+  <Edge nodeIn="62" nodeOut="27" portIn="Show" portOut="Out" enabled="0"/>
+  <Edge nodeIn="34" nodeOut="31" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="31" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="31" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="33" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="34" portIn="Disable" portOut="out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="35" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="36" portIn="Disable" portOut="out" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="37" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="38" portIn="Disable" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

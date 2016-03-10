@@ -310,9 +310,8 @@ function DestroyablePiece:PlayDeathEffects(hit)
 		if (self.enable_effects) then
 			if (self.hAudioDeadTriggerID) then
 				self:PlayAudio(self.hAudioDeadTriggerID);
-			else
-				self:_StopAudioTrigger(self.hAudioAliveTriggerID, true);
 			end
+			self:_StopAudioTrigger(self.hAudioAliveTriggerID, true);
 			if(hit) then
 				if(hit.type == "collision") then
 					Particle.SpawnEffect(self.Properties.Effects.CollisionDestroyedEffect, self:GetPos(), self:GetWorldDir(), 1.0);
@@ -344,8 +343,6 @@ function DestroyablePiece:Die(hit)
 	end
 
 	if (not self.dead) then
-		self.dead = true;
-
 		self.bReloadGeoms = 1;
 		self:RemoveDecals();
 
@@ -371,6 +368,9 @@ function DestroyablePiece:Die(hit)
 		end
 
 		self:PlayDeathEffects(hit);
+
+		-- gphillipson - need to set this after PlayDeathEffects to allow the dying/death audio to play.
+		self.dead = true;
 
 		self:GotoState("Dead");
 		BroadcastEvent(self, "Dead");
@@ -611,7 +611,7 @@ function DestroyablePiece:PlayAudio(hTriggerID)
 			if (self.audioAnchorEnt ~= nil) then
 				if (hTriggerID ~= nil) then
 					self:UpdateAudioProxyOffset();
-					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID, self:GetDefaultAuxAudioProxyID());
+					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID, self.audioAnchorEnt:GetDefaultAuxAudioProxyID());
 				end
 			else
 				if (hTriggerID ~= nil) then
@@ -657,9 +657,9 @@ function DestroyablePiece:_StopAudioTrigger(hTriggerID, bHardStop)
 		self.bAliveAudioPlaying = false;
 	end
 	if (self.audioAnchorEnt) then
-		self.audioAnchorEnt:StopAudioTrigger(hTriggerID, bHardStop);
+		self.audioAnchorEnt:StopAudioTrigger(hTriggerID, bHardStop, self.audioAnchorEnt:GetDefaultAuxAudioProxyID());
 	else
-		self:StopAudioTrigger(hTriggerID, bHardStop);
+		self:StopAudioTrigger(hTriggerID, bHardStop, self:GetDefaultAuxAudioProxyID());
 	end
 end
 

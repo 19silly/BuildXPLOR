@@ -17,10 +17,12 @@ ParticleEffect = {
 		PulsePeriod=0,          -- Restart continually at this period.
 		bNetworkSync=0,          -- Do I want to be bound to the network?
 		bRegisterByBBox=0,      -- Register In VisArea by BoundingBox, not by Position
+		nClipToVisArea=2,       -- Determines which vis areas are used for clipping tests (see EParticleClip in IParticles.h) 
 
 		Audio =
 		{
 			bEnableAudio=1,             -- Toggles update of audio data. CIG mkorotyaev changed to "on" by default
+			bIsManagedAudioObject=0,		-- CIG mkorotyaev Specifies whether the AudioProxy should request a Managed Audio Object 
 			audioRTPCRtpc="particlefx", -- The default audio RTPC name used.
 		}
 	},

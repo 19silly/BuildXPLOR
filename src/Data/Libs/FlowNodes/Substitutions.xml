@@ -1,0 +1,343 @@
+<Substitutions>
+  <!-- Basically you can change and old node class to a new class
+       and also reconnect edges to new ports, by remapping old ports to new ones
+       optionally you can also remap the value of an old input port to an new one,
+       when the port name has changed
+       also, you can set the input port values of the new node to reasonable/appropriate values-->
+  <!--
+	<Node OldClass="HUD:DisplayInstructionMessage" NewClass="HUD:DisplayInfoMessage" />
+	<Node OldClass="HUD:DisplayInstructionMessage" NewClass="HUD:DisplayPDAMessage">
+		<InputPort OldName="display" NewName="display" />
+		<InputPort OldName="message" NewName="objective" RemapValue="1" />
+	</Node>
+	<Node OldClass="HUD:DisplayTimedDebugMessage" NewClass="HUD:DisplayTimedDebugMessage">
+		<Inputs DisplayTime="11.0" />
+	</Node>
+	-->
+
+  <Node OldClass="AI:AILookAtPoint" NewClass="AI:AILookAt" />
+
+  <!-- Political correctness change -> Chinese->Asian -->
+	<Node OldClass="entity:Chinese_4wd" NewClass="entity:Asian_4wd" />
+	<Node OldClass="entity:Chinese_AAA" NewClass="entity:Asian_aaa" />
+	<Node OldClass="entity:Chinese_helicopter" NewClass="entity:Asian_helicopter" />
+	<Node OldClass="entity:Chinese_patrolboat" NewClass="entity:Asian_patrolboat" />
+	<Node OldClass="entity:Chinese_tank" NewClass="entity:Asian_tank" />
+	<Node OldClass="entity:Chinese_truck" NewClass="entity:Asian_truck" />
+
+	<!-- MissionObjectives revamp -->
+	<Node OldClass="entity:MissionObjective" NewClass="entity:MissionObjective">
+		<InputPort  OldName="DisableObjective" NewName="Deactivate" />
+		<InputPort  OldName="EnableObjective"  NewName="Activate" />
+		<OutputPort OldName="DisableObjective" NewName="Deactivated" />
+		<OutputPort OldName="EnableObjective"  NewName="Activated" />
+	</Node>
+
+  <!-- Physics terminology correction -->
+  <Node OldClass="Physics:ActionImpulse" NewClass="Physics:ActionImpulse">
+    <InputPort OldName="impulseDirection" NewName="impulse" RemapValue="1"/>
+    <InputPort OldName="Momentum" NewName="angImpulse" RemapValue="1"/>
+  </Node>
+
+  <!-- Kirill dropped the Die/OnDeath ports. Dead remains -->
+	<Node OldClass="entity:Alien" NewClass="entity:Alien">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Civilian" NewClass="entity:Civilian">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Coordinator" NewClass="entity:Coordinator">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Grunt" NewClass="entity:Grunt">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Hunter" NewClass="entity:Hunter">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Observer" NewClass="entity:Observer">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Scout" NewClass="entity:Scout">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+	<Node OldClass="entity:Trooper" NewClass="entity:Trooper">
+		<OutputPort  OldName="Die" NewName="Dead" />
+		<OutputPort  OldName="OnDeath" NewName="Dead" />
+	</Node>
+
+	<!-- 13.04.2006 Asian truck specific Hide/Unhide replaced with common Enable/Disable -->
+	<Node OldClass="entity:Asian_truck" NewClass="entity:Asian_truck">
+  	<InputPort OldName="Unhide" NewName="Enable" />
+		<InputPort OldName="Hide" NewName="Disable" />
+		<OutputPort OldName="Unhide" NewName="Enable" />
+		<OutputPort OldName="Hide" NewName="Disable" />
+	</Node>
+
+	<!-- Oh man, marked WIP and already need to change -->
+	<Node OldClass="CrysisFX:ScreenFrost" NewClass="CrysisFX:PostFXScreenFrost" />
+
+	<Node OldClass="CrysisFX:ScreenFader" NewClass="CrysisFX:ScreenFader">
+		<InputPort OldName="FadeColor" NewName="color_FadeColor" />
+	</Node>
+
+ 	<Node OldClass="Mission:EndLevel" NewClass="Mission:EndLevelNew" >
+		<InputPort OldName="NextLevel" NewName="NextLevel" RemapValue="1" />
+		<InputPort OldName="t_Activate" NewName="Trigger" />
+		<OutputPort OldName="NextLevel" NewName="NextLevel" />
+	</Node>
+
+
+	<!-- AlexL 17/07/2006: Convert all Sound:PlaySoundEvent nodes with a Voice flag to Sound:Dialog
+	     and rename event->filename
+	 -->
+  <!-- Disabled and only enabled on request
+	<Node OldClass="Sound:PlaySoundEvent" NewClass="Sound:Dialog">
+		<InputValueCond Port="Voice" Value="1" />
+		<InputPort OldName="sound_SoundEvent" NewName="sound_SoundName" Transformer="local s = string.gsub(string.lower(val), 'languages:', 'Languages/dialog/', 1); s = string.gsub(s, ':', '/'); if (string.find(s, '.wav')==nil) then s = s..'.wav'; end; return s;" />
+		<InputPort OldName="Enable" NewName="__discard__" />
+	</Node>
+   -->
+	<!-- AlexL 17/07/2006: Port cleanup Sound:Dialog node: Enable, Once and MaxRadius deleted-->
+	<Node OldClass="Sound:Dialog" NewClass="Sound:Dialog">
+		<InputPort  OldName="Enable" NewName="__discard__" />
+		<InputPort  OldName="Once"   NewName="__discard__" />
+		<OutputPort OldName="MaxRadius"  NewName="__discard__" />
+	</Node>
+
+	<!-- AlexL 29/08/2006: Ammo node change ChangeAmmo->AddAmmo -->
+	<Node OldClass="Weapon:ChangeAmmo" NewClass="Inventory:AddAmmo">
+		<InputPort  OldName="Trigger"   NewName="Add" RemapValue="0" />
+		<InputPort  OldName="Weapon"    NewName="__discard__" />
+		<InputPort  OldName="AmmoType"  NewName="Ammo" />
+		<InputPort  OldName="AmmoCount" NewName="Amount" />
+		<InputPort  OldName="ClipCount" NewName="__discard__" />
+	</Node>
+
+	<!-- AlexL 09/08/2007: ExplosionInfo Weapon input and WeaponId output removed -->
+	<Node OldClass="Crysis:ExplosionInfo" NewClass="Crysis:ExplosionInfo">
+		<InputPort  OldName="Weapon"    NewName="__discard__" />
+		<OutputPort OldName="WeaponId"  NewName="__discard__" />
+	</Node>
+
+ 	<Node OldClass="HUD:DisplayInstructionMessage" NewClass="HUD:DisplayInstructionMessage" >
+		<InputPort OldName="message" NewName="text_message" RemapValue="1" />
+	</Node>
+
+	<Node OldClass="AI:AIUnload" NewClass="Vehicle:Unload" />
+	<Node OldClass="AI:AIEnterVehicle" NewClass="Vehicle:Enter" />
+
+	<!-- AlexL 25/04/2007: No spaces in port names -->
+	<Node OldClass="Logic:Once" NewClass="Logic:Once">
+  	<InputPort OldName="Input 1" NewName="Input1" />
+  	<InputPort OldName="Input 2" NewName="Input2" />
+  	<InputPort OldName="Input 3" NewName="Input3" />
+  	<InputPort OldName="Input 4" NewName="Input4" />
+  	<InputPort OldName="Input 5" NewName="Input5" />
+  	<InputPort OldName="Input 6" NewName="Input6" />
+	</Node>
+
+	<!-- JanM 22/07/2009: Preparing flowgraph for Crysis2 (removed / renamed flownodes) -->
+
+	<Node OldClass="_trackevent" NewClass="TrackEvent" />
+
+	<Node OldClass="AI:AIActiveCount" NewClass="AI:ActiveCount" />
+	<Node OldClass="AI:AIAlertMe" NewClass="AI:AlertMe" />
+	<Node OldClass="AI:AIAlertness" NewClass="AI:AlertnessState" />
+	<Node OldClass="AI:AIAnim" NewClass="AI:Anim" />
+	<Node OldClass="AI:AIAnimEx" NewClass="AI:AnimEx" />
+	<Node OldClass="AI:AIAttTarget" NewClass="AI:AttentionTarget" />
+	<Node OldClass="AI:AIDropObject" NewClass="AI:ObjectDrop" />
+	<Node OldClass="AI:AIEnableShape" NewClass="AI:ShapeState" />
+	<Node OldClass="AI:AIExecute" NewClass="AI:Execute" />
+	<Node OldClass="AI:AIFollow" NewClass="AI:FollowID" />
+	<Node OldClass="AI:AIFollowPathSpeedStance" NewClass="AI:FollowPath" />
+	<Node OldClass="AI:AIFormation" NewClass="AI:FormationSet" />
+	<Node OldClass="AI:AIFormationJoin" NewClass="AI:FormationJoin" />
+	<Node OldClass="AI:AIGotoSpeedStance" NewClass="AI:GoTo" />
+	<Node OldClass="AI:AIGrabObject" NewClass="AI:ObjectGrab" />
+	<Node OldClass="AI:AIGroupAlertness" NewClass="AI:GroupAlertness" />
+	<Node OldClass="AI:AIGroupCount" NewClass="AI:GroupCount" />
+	<Node OldClass="AI:AIGroupID" NewClass="AI:GroupIDGet" />
+	<Node OldClass="AI:AIIgnore" NewClass="AI:IgnoreState" />
+	<Node OldClass="AI:AILookAt" NewClass="AI:LookAt" />
+	<Node OldClass="AI:AIMergeGroups" NewClass="AI:GroupIDSet" />
+	<Node OldClass="AI:AISetCharacter" NewClass="AI:CharacterSet" />
+	<Node OldClass="AI:AISetNavCostFactor" NewClass="AI:NavCostFactor" />
+	<Node OldClass="AI:AISetState" NewClass="AI:SetState" />
+	<Node OldClass="AI:AIShootAt" NewClass="AI:ShootAt" />
+	<Node OldClass="AI:AISignal" NewClass="AI:Signal" />
+	<Node OldClass="AI:AIStance" NewClass="AI:Stance" />
+	<Node OldClass="AI:AIUseObject" NewClass="AI:ObjectUse" />
+	<Node OldClass="AI:AIWeaponDraw" NewClass="AI:WeaponDraw" />
+	<Node OldClass="AI:AIWeaponHolster" NewClass="AI:WeaponHolster" />
+	<Node OldClass="AI:AIWeaponSelect" NewClass="AI:WeaponSelect" />
+	<Node OldClass="AI:AutoDisable" NewClass="AI:AutoDisable" />
+	<Node OldClass="AI:EventListener" NewClass="Game:EventListener" />
+
+	<Node OldClass="Actor:Players" NewClass="Coop:Players" />
+
+	<Node OldClass="Crysis:ExplosionInfo" NewClass="Weapon:ExplosionInfo" />
+	<Node OldClass="Crysis:HitInfo" NewClass="Weapon:HitInfo" />
+	<Node OldClass="Crysis:ItemAnimation" NewClass="Animations:ItemAnimation" />
+	<Node OldClass="Crysis:OffHandAnimation" NewClass="Animations:OffHandAnimation" />
+
+	<Node OldClass="CrysisFX:ColorGradient" NewClass="Image:ColorGradient" />
+	<Node OldClass="CrysisFX:PostFXGlittering" NewClass="Image:EffectGlittering" />
+	<Node OldClass="CrysisFX:PostFXGlobal" NewClass="Image:EffectGlobal" />
+	<Node OldClass="CrysisFX:ScreenFader" NewClass="Image:ScreenFader" />
+
+	<!--begin audio nodes-->
+	<Node OldClass="Sound:MusicLogicControl" NewClass="Music:LogicControl" />
+	<Node OldClass="Sound:MusicVolume" NewClass="Music:Volume" />
+	<Node OldClass="Dialog:PlayDialog" NewClass="Sound:PlayDialog" />
+	<Node OldClass="Music:LogicTrigger" NewClass="Music:LogicTrigger" >
+		<InputPort OldName="Enable" NewName="Start" />
+		<InputPort OldName="Disable" NewName="Stop" />
+		<OutputPort OldName="Enabled" NewName="Started" />
+		<OutputPort OldName="Disabled" NewName="Stopped" />
+	</Node>
+	<!--end audio nodes-->
+
+	<Node OldClass="Engine:MaterialParam" NewClass="Environment:MaterialParam" />
+	<Node OldClass="Engine:OceanSwitch" NewClass="Environment:OceanSwitch" />
+	<Node OldClass="Engine:SkyboxSwitch" NewClass="Environment:SkyboxSwitch" />
+
+	<Node OldClass="Entity:AttachChild" NewClass="Entity:ChildAttach" />
+	<Node OldClass="Entity:DetachThis" NewClass="Entity:ChildDetach" />
+	<Node OldClass="Entity:GetProperty" NewClass="Entity:PropertyGet" />
+	<Node OldClass="Entity:SetProperty" NewClass="Entity:PropertySet" />
+
+	<Node OldClass="Game:ActionFilter" NewClass="Actor:ActionFilter" />
+	<Node OldClass="Game:ActorCheckHealth" NewClass="Actor:HealthCheck" />
+	<Node OldClass="Game:ActorGetHealth" NewClass="Actor:HealthGet" />
+	<Node OldClass="Game:ActorGrabObject" NewClass="Actor:GrabObject" />
+	<Node OldClass="Game:ActorSensor" NewClass="Actor:Sensor" />
+	<Node OldClass="Game:ActorSetHealth" NewClass="Actor:HealthSet" />
+	<Node OldClass="Game:DamageActor" NewClass="Actor:Damage" />
+	<Node OldClass="Game:DisplayTag" NewClass="Debug:DisplayTag" />
+	<Node OldClass="Game:DisplayTagAdv" NewClass="Debug:DisplayTagAdv" />
+	<Node OldClass="Game:EntityInterest" NewClass="Entity:EntityInterest" />
+	<Node OldClass="Game:GameObjectEvent" NewClass="Game:ObjectEvent" />
+	<Node OldClass="Game:LocalPlayer" NewClass="Actor:LocalPlayer" />
+	<Node OldClass="Game:PlayerLink" NewClass="Actor:PlayerLink" />
+	<Node OldClass="Game:PlayerStaging" NewClass="Actor:PlayerStaging" />
+
+	<Node OldClass="HUD:DisplayDebugMessage" NewClass="Debug:DisplayMessage" />
+
+	<Node OldClass="Image:AlienInterference" NewClass="Image:EffectAlienInterference" />
+	<Node OldClass="Image:ChromaShift" NewClass="Image:FilterChromaShift" />
+	<Node OldClass="Image:DepthOfField" NewClass="Image:EffectDepthOfField" />
+	<Node OldClass="Image:DirectionalBlur" NewClass="Image:FilterDirectionalBlur" />
+	<Node OldClass="Image:DistantRain" NewClass="Image:EffectDistantRain" />
+	<Node OldClass="Image:Glow" NewClass="Image:EffectGlow" />
+	<Node OldClass="Image:RainDrops" NewClass="Image:EffectRainDrops" />
+	<Node OldClass="Image:VolumetricScattering" NewClass="Image:EffectVolumetricScattering" />
+
+	<Node OldClass="Input:ActionFilter" NewClass="Game:ActionFilter" />
+	<Node OldClass="Input:ActionFilter" NewClass="Actor:ActionFilter" />
+	<Node OldClass="Input:Key" NewClass="Debug:InputKey" />
+	<Node OldClass="Input:XboxAnalog" NewClass="Debug:InputXboxAnalog" />
+	<Node OldClass="Input:XboxKey" NewClass="Debug:InputXboxKey" />
+
+	<Node OldClass="Inventory:AddAmmo" NewClass="Inventory:AmmoAdd" />
+	<Node OldClass="Inventory:AddEquipPack" NewClass="Inventory:EquipPackAdd" />
+	<Node OldClass="Inventory:AddItem" NewClass="Inventory:ItemAdd" />
+	<Node OldClass="Inventory:HasAmmo" NewClass="Inventory:AmmoCheck" />
+	<Node OldClass="Inventory:HasItem" NewClass="Inventory:ItemCheck" />
+	<Node OldClass="Inventory:RemoveAllAmmo" NewClass="Inventory:AmmoRemoveAll" />
+	<Node OldClass="Inventory:RemoveAllItems" NewClass="Inventory:ItemRemoveAll" />
+	<Node OldClass="Inventory:RemoveItem" NewClass="Inventory:ItemRemove" />
+	<Node OldClass="Inventory:RestorePlayerInventory" NewClass="Inventory:PlayerInventoryRestore" />
+	<Node OldClass="Inventory:SelectItem" NewClass="Inventory:ItemSelect" />
+	<Node OldClass="Inventory:SetAmmo" NewClass="Inventory:AmmoSet" />
+	<Node OldClass="Inventory:StorePlayerInventory" NewClass="Inventory:PlayerInventoryStore" />
+
+	<Node OldClass="Log" NewClass="Debug:Log" />
+	<Node OldClass="Start" NewClass="Game:Start" />
+	<Node OldClass="TestScripted" NewClass="Debug:TestScripted" />
+
+	<Node OldClass="Math:FromBoolean" NewClass="Math:BooleanFrom" />
+	<Node OldClass="Math:ToBoolean" NewClass="Math:BooleanTo" />
+
+	<Node OldClass="Mission:CheckGameToken" NewClass="Mission:GameTokenCheck" />
+	<Node OldClass="Mission:EndLevelNew" NewClass="Mission:LoadNextLevel" />
+	<Node OldClass="Mission:GetGameToken" NewClass="Mission:GameTokenGet" />
+	<Node OldClass="Mission:ModifyToken" NewClass="Mission:GameTokenModify" />
+	<Node OldClass="Mission:SetGameToken" NewClass="Mission:GameTokenSet" />
+
+	<Node OldClass="Pinger:PingHelperNode" NewClass="AI:PingHelper" />
+
+	<Node OldClass="Stats:Frame" NewClass="Debug:Frame" />
+	<Node OldClass="Stats:FrameExtended" NewClass="Debug:FrameExtended" />
+	<Node OldClass="Stats:Memory" NewClass="Debug:Memory" />
+
+	<Node OldClass="System:ConsoleVariable" NewClass="Debug:ConsoleVariable" />
+	<Node OldClass="System:ExecuteString" NewClass="Debug:ExecuteString" />
+	<Node OldClass="System:SaveGame" NewClass="Game:SaveGame" />
+
+	<Node OldClass="Vehicle:VehicleDamage" NewClass="Vehicle:Damage" />
+	<Node OldClass="Vehicle:VehicleHonk" NewClass="Vehicle:Honk" />
+	<Node OldClass="Vehicle:VehicleLights" NewClass="Vehicle:Lights" />
+	<Node OldClass="Vehicle:VehicleMoveActionMult" NewClass="Vehicle:MoveActionMult" />
+	<Node OldClass="Vehicle:VehicleMovement" NewClass="Vehicle:Movement" />
+	<Node OldClass="Vehicle:VehiclePassenger" NewClass="Vehicle:Passenger" />
+	<Node OldClass="Vehicle:VehicleSeat" NewClass="Vehicle:Seat" />
+	<Node OldClass="Vehicle:VehicleTurret" NewClass="Vehicle:Turret" />
+
+	<Node OldClass="Weapon:ChangeAmmo" NewClass="Weapon:AmmoChange" />
+	<Node OldClass="Weapon:CheckAccessory" NewClass="Weapon:AccessoryCheck" />
+	<Node OldClass="Weapon:CheckZoom" NewClass="Weapon:ZoomCheck" />
+	<Node OldClass="Weapon:WeaponListener" NewClass="Weapon:Listener" />
+	<Node OldClass="Movement:MoveEntityTo" NewClass="Movement:MoveEntityTo" >
+		<InputPort OldName="Value" NewName="Speed" />
+	</Node>
+
+	<Node OldClass="Image:ColorGradient" NewClass="Image:ColorGradient" >
+	<InputPort OldName="TexturePath" NewName="tex_TexturePath" />
+	</Node>
+
+	<Node OldClass="AI:Assignment" NewClass="AIAssignments:Assignment" />
+	<Node OldClass="AI:Assignments:Assignment" NewClass="AIAssignments:Assignment" />
+	<Node OldClass="AI:Assignments:Clear" NewClass="AIAssignments:Clear" />
+	<Node OldClass="AI:Assignments:ScanSpot" NewClass="AIAssignments:ScanSpot" />
+	
+	<Node OldClass="entity:HumanGrunt" NewClass="entity:Human" />
+
+	<Node OldClass="Kythera:GotoPos" NewClass="Kythera:ShipGotoPos">
+		<InputPort OldName="target" NewName="pos" />
+	</Node>
+	<Node OldClass="Kythera:ActorGotoPos" NewClass="Kythera:ActorGotoPos">
+		<InputPort OldName="speed" NewName="speedCat" RemapValue="Walk" />
+	</Node>
+	<Node OldClass="Kythera:ActorGotoEntity" NewClass="Kythera:ActorGotoEntity">
+		<InputPort OldName="speed" NewName="speedCat" RemapValue="Walk" />
+	</Node>
+	<Node OldClass="Kythera:ActorTrackEntity" NewClass="Kythera:ActorTrackEntity">
+		<InputPort OldName="speed" NewName="speedCat" RemapValue="Walk" />
+	</Node>
+	<Node OldClass="Kythera:SetProfile" NewClass="Kythera:SetProfile">
+		<InputPort OldName="profile" NewName="BaseProfile" />
+	</Node>
+	
+	<Node OldClass="Kythera:Scripted:Character:Stance" NewClass="Kythera:Scripted:Character:SetStance" />
+	
+	<Node OldClass="Kythera:Scripted:Character:Goto" NewClass="Kythera:Scripted:Character:Goto">
+		<InputPort OldName="destination" NewName="position" />
+	</Node>
+	
+	<Node OldClass="Kythera:ShipOverrideTargetEntity" NewClass="Kythera:Ship:OverrideTargetEntity" />
+	<Node OldClass="Kythera:ShipCancelOverrideTarget" NewClass="Kythera:Ship:CancelOverrideTarget" />
+	<Node OldClass="Kythera:ReadEntityBlackboard" NewClass="Kythera:BB:EntityGetValue" />
+	<Node OldClass="Kythera:SetEntityBlackboard" NewClass="Kythera:BB:EntitySetValue" />
+	<Node OldClass="Kythera:ReadGlobalBlackboard" NewClass="Kythera:BB:GlobalGetValue" />
+	<Node OldClass="Kythera:SetGlobalBlackboard" NewClass="Kythera:BB:GlobalSetValue" />
+	<Node OldClass="Kythera:SetProfile" NewClass="Kythera:Common:SetProfile" />
+</Substitutions>
