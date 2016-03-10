@@ -1,0 +1,543 @@
+<Graph isModule="1" moduleName="ShipAI_SpawnPatrolAndJumpOut_Dialogue" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientOnly">
+ <ModuleInputsOutputs>
+  <Port Name="SpawnInDialogue" Type="String" Input="1"/>
+  <Port Name="JumpOutDialogue" Type="String" Input="1"/>
+  <Port Name="TokenContainer" Type="EntityId" Input="1"/>
+  <Port Name="SecurityShipsGroup" Type="EntityId" Input="1"/>
+  <Port Name="PiratesGroup" Type="EntityId" Input="1"/>
+  <Port Name="PlayerAttacksDialogue" Type="String" Input="1"/>
+  <Port Name="EnemiesDetectedDialogue" Type="String" Input="1"/>
+  <Port Name="AllClearDialogue" Type="String" Input="1"/>
+  <Port Name="ShipSpawnerID" Type="EntityId" Input="1"/>
+  <Port Name="PatrolTime" Type="Float" Input="1"/>
+  <Port Name="ShipDockedToken" Type="String" Input="1"/>
+  <Port Name="IsPirate" Type="Bool" Input="1"/>
+  <Port Name="KillAllHostiles" Type="Bool" Input="1"/>
+  <Port Name="ScenarioPirateGroup" Type="EntityId" Input="1"/>
+  <Port Name="ScenarioSecurityGroup" Type="EntityId" Input="1"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_ShipAI_SpawnPatrolAndJumpOut_Dialogue" pos="-200,10,0" flags="0"/>
+  <Node Id="2" Class="Module:End_ShipAI_SpawnPatrolAndJumpOut_Dialogue" pos="5170,-10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="274" Class="Audio:Trigger" pos="3170,-1210,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="275" Class="Audio:Trigger" pos="3150,-460,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="276" Class="Time:Delay" pos="1770,-1180,0" flags="0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="278" Class="Mission:GameTokenCheck" pos="2020,-1180,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" CheckValue="false"/>
+  </Node>
+  <Node Id="280" Class="Mission:GameTokenSet" pos="2520,-1210,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="true"/>
+  </Node>
+  <Node Id="282" Class="Time:Delay" pos="2520,-1080,0" flags="0">
+   <Inputs delay="2.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="283" Class="Mission:GameTokenSet" pos="2520,-1000,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="false"/>
+  </Node>
+  <Node Id="284" Name="Play_Spawned_Dialogue" Class="_commentbox" pos="1590,-1478.6312,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1910" Height="590"/>
+   <NodeSize Width="1910" Height="617.92706"/>
+  </Node>
+  <Node Id="285" Class="Time:Delay" pos="1840,-420,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="286" Class="Mission:GameTokenCheck" pos="2090,-420,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" CheckValue="false"/>
+  </Node>
+  <Node Id="287" Class="Mission:GameTokenSet" pos="2590,-450,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="true"/>
+  </Node>
+  <Node Id="288" Class="Time:Delay" pos="2590,-320,0" flags="0">
+   <Inputs delay="2.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="289" Class="Mission:GameTokenSet" pos="2590,-240,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="false"/>
+  </Node>
+  <Node Id="291" Class="Math:Random" pos="1840,-500,0" flags="0">
+   <Inputs min="0.1" max="0.3"/>
+  </Node>
+  <Node Id="292" Name="Play_Leaving_Dialogue" Class="_commentbox" pos="1590,-738.6391,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1890" Height="590"/>
+   <NodeSize Width="1890" Height="617.92706"/>
+  </Node>
+  <Node Id="3305" Class="Weapon:HitInfo" pos="1200,3630,0" flags="0">
+   <Inputs Enable="0" ShooterId="0" TargetId="0" Weapon="" Ammo=""/>
+  </Node>
+  <Node Id="3309" Class="Mission:GameTokenSet" pos="3130,4060,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.PlayerHasParticipated" Value="true"/>
+  </Node>
+  <Node Id="3314" Class="Actor:LocalPlayer" pos="1200,3590,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3317" Class="Mission:GameToken" pos="2230,3490,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SecurityShipsGroup" compare_Value=""/>
+  </Node>
+  <Node Id="3320" Class="Iterator:GetEntitiesInGroup" pos="2230,3580,0" flags="0">
+   <Inputs entityId="0" Manually="0"/>
+  </Node>
+  <Node Id="3321" Class="Iterator:GetEntitiesInGroup" pos="2230,3910,0" flags="0">
+   <Inputs entityId="0" Manually="0"/>
+  </Node>
+  <Node Id="3326" Class="Mission:GameToken" pos="2230,3820,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.PiratesGroup" compare_Value=""/>
+  </Node>
+  <Node Id="3330" Class="Entity:CompareId" pos="2230,4050,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="3331" Class="Entity:CompareId" pos="2230,3710,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="3333" Class="Logic:Any" pos="2910,4070,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3335" Class="Mission:GameTokenSet" pos="3130,3580,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.PlayerHitSecurity" Value="true"/>
+  </Node>
+  <Node Id="3338" Class="Logic:All" pos="2910,3900,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3340" Class="Mission:GameTokenSet" pos="3290,3900,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.HitChecking" Value="false"/>
+  </Node>
+  <Node Id="3342" Class="Mission:GameTokenCheck" pos="1510,3630,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.HitChecking" CheckValue="false"/>
+  </Node>
+  <Node Id="3345" Class="Mission:GameTokenSet" pos="2230,3360,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.HitChecking" Value="true"/>
+  </Node>
+  <Node Id="3347" Class="Mission:GameToken" pos="1200,3960,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.HitChecking" compare_Value="false"/>
+  </Node>
+  <Node Id="3350" Class="Logic:Any" pos="3130,3900,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3351" Class="Logic:Any" pos="2910,3580,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3352" Name="Hit_checker" Class="_commentbox" pos="290,3126.0669,0" flags="0">
+   <Inputs TextSize="1" Color="0.0512695,0.0512695,0.0512695" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="3480" Height="1380"/>
+   <NodeSize Width="3480" Height="1407.927"/>
+  </Node>
+  <Node Id="3354" Class="Mission:GameTokenSet" pos="590,2150,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.TokenContainer" Value=""/>
+  </Node>
+  <Node Id="3361" Class="Mission:GameTokenSet" pos="590,2250,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SecurityShipsGroup" Value=""/>
+  </Node>
+  <Node Id="3362" Class="Mission:GameTokenSet" pos="590,2350,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.PiratesGroup" Value=""/>
+  </Node>
+  <Node Id="3363" Class="Audio:Trigger" pos="3500,240,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="3364" Class="Time:Delay" pos="2140,270,0" flags="0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="3365" Class="Mission:GameTokenCheck" pos="2350,270,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" CheckValue="false"/>
+  </Node>
+  <Node Id="3366" Class="Mission:GameTokenSet" pos="2850,240,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="true"/>
+  </Node>
+  <Node Id="3367" Class="Time:Delay" pos="2850,370,0" flags="0">
+   <Inputs delay="2.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="3368" Class="Mission:GameTokenSet" pos="2850,450,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="false"/>
+  </Node>
+  <Node Id="3369" Name="Player_Attacks_Dialogue" Class="_commentbox" pos="1590,-23.347164,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="2250" Height="590"/>
+   <NodeSize Width="2250" Height="617.92706"/>
+  </Node>
+  <Node Id="3373" Class="Mission:GameToken" pos="1610,270,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.PlayerHitSecurity" compare_Value="true"/>
+  </Node>
+  <Node Id="3374" Class="Audio:Trigger" pos="3160,950,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="3375" Class="Time:Delay" pos="1760,980,0" flags="0">
+   <Inputs delay="4" resetOnInput="0"/>
+  </Node>
+  <Node Id="3376" Class="Mission:GameTokenCheck" pos="2010,980,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" CheckValue="false"/>
+  </Node>
+  <Node Id="3377" Class="Mission:GameTokenSet" pos="2510,950,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="true"/>
+  </Node>
+  <Node Id="3378" Class="Time:Delay" pos="2510,1080,0" flags="0">
+   <Inputs delay="2.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="3379" Class="Mission:GameTokenSet" pos="2510,1160,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="false"/>
+  </Node>
+  <Node Id="3380" Name="Enemies_Detected_Dialogue" Class="_commentbox" pos="1590,679.909,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1910" Height="590"/>
+   <NodeSize Width="1910" Height="617.92706"/>
+  </Node>
+  <Node Id="3383" Class="Audio:Trigger" pos="3110,1650,0" flags="0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="" audioTrigger_StopTrigger="" ExternalSourceName="" ExternalSourcePath=""/>
+  </Node>
+  <Node Id="3384" Class="Time:Delay" pos="1750,1680,0" flags="0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="3385" Class="Mission:GameTokenCheck" pos="1960,1680,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" CheckValue="false"/>
+  </Node>
+  <Node Id="3386" Class="Mission:GameTokenSet" pos="2460,1650,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="true"/>
+  </Node>
+  <Node Id="3387" Class="Time:Delay" pos="2470,1780,0" flags="0">
+   <Inputs delay="2.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="3388" Class="Mission:GameTokenSet" pos="2470,1860,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="DFM_Crusader.Resupply_Station.InhibitAIChatter" Value="false"/>
+  </Node>
+  <Node Id="3389" Name="All_Clear_Dialogue" Class="_commentbox" pos="1590,1375.2728,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1880" Height="590"/>
+   <NodeSize Width="1880" Height="617.92706"/>
+  </Node>
+  <Node Id="3393" Class="Logic:Once" pos="1610,980,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3394" Class="Logic:Once" pos="1620,1680,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3395" Class="Logic:Once" pos="1680,-500,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3396" Class="Logic:Once" pos="1630,-1180,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3397" Class="Time:Delay" pos="4960,-10,0" flags="0">
+   <Inputs delay="10" resetOnInput="0"/>
+  </Node>
+  <Node Id="3399" Class="Math:BooleanTo" pos="880,3630,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3401" Class="Mission:GameTokenSet" pos="1370,2700,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SpawnedShipID" Value=""/>
+  </Node>
+  <Node Id="3402" Class="Mission:GameTokenSet" pos="1370,2800,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipAlive" Value="true"/>
+  </Node>
+  <Node Id="3403" Class="Mission:GameTokenSet" pos="1370,2900,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipKilled" Value="true"/>
+  </Node>
+  <Node Id="3404" Class="Mission:GameTokenSet" pos="1370,3000,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipLeaving" Value="true"/>
+  </Node>
+  <Node Id="3408" Class="Logic:Any" pos="360,1680,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3409" Class="Logic:Any" pos="360,970,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3410" Class="Logic:Any" pos="360,250,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3411" Class="Logic:Any" pos="360,-440,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3412" Class="Logic:Any" pos="350,-1180,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3414" Class="Mission:GameToken" pos="1160,-1180,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipAlive" compare_Value="true"/>
+  </Node>
+  <Node Id="3415" Class="Mission:GameToken" pos="960,-520,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipLeaving" compare_Value="true"/>
+  </Node>
+  <Node Id="3417" Class="Kythera:Event:HostileDetected" pos="1100,960,0" flags="0">
+   <Inputs entityId="0" enabled="1"/>
+  </Node>
+  <Node Id="3418" Class="Mission:GameToken" pos="1100,860,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SpawnedShipID" compare_Value=""/>
+  </Node>
+  <Node Id="3421" Class="entity:GroupEntity" pos="1020,1680,0" flags="0">
+   <Inputs entityId="0" AddEntity="0" AddEntities="0" RemoveEntity="0" RemoveEntities="0"/>
+  </Node>
+  <Node Id="3424" Class="Math:Compare" pos="1330,1790,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="3427" Class="Mission:GameTokenGet" pos="1020,1510,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.PiratesGroup"/>
+  </Node>
+  <Node Id="3428" Class="Mission:GameToken" pos="4440,-40,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipKilled" compare_Value="true"/>
+  </Node>
+  <Node Id="3429" Class="Mission:GameToken" pos="4440,60,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipLeaving" compare_Value="true"/>
+  </Node>
+  <Node Id="3431" Class="Logic:Any" pos="4810,-10,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3432" Name="End_the_Module_when_the_Ship_leaves" Class="_commentbox" pos="4430,-77.921478,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1110" Height="246"/>
+   <NodeSize Width="1110" Height="273.92706"/>
+  </Node>
+  <Node Id="3433" Name="Track_the_Spawned_Ship" Class="_commentbox" pos="280,2468.2737,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1430" Height="600"/>
+   <NodeSize Width="1430" Height="627.92706"/>
+  </Node>
+  <Node Id="3434" Class="Mission:GameToken" pos="390,3610,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipKilled" compare_Value="true"/>
+  </Node>
+  <Node Id="3435" Class="Mission:GameToken" pos="390,3710,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.ShipLeaving" compare_Value="true"/>
+  </Node>
+  <Node Id="3436" Class="Logic:Any" pos="760,3650,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3437" Class="Time:Delay" pos="1340,-490,0" flags="0">
+   <Inputs delay="4" resetOnInput="0"/>
+  </Node>
+  <Node Id="3442" Class="Mission:GameTokenGet" pos="1020,1590,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.SecurityShipsGroup"/>
+  </Node>
+  <Node Id="3444" Class="Logic:Any" pos="910,1680,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3448" Class="Logic:Gate" pos="870,1490,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="3449" Class="Logic:Gate" pos="870,1580,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="3452" Class="Time:Delay" pos="1020,3630,0" flags="0" InHideMask="7" OutHideMask="1">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="3453" Name="Check_If_opponent_enemy_group_is_empty" Class="_commentbox" pos="700,1442.0778,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="760" Height="490"/>
+   <NodeSize Width="760" Height="517.92706"/>
+  </Node>
+  <Node Id="3454" Name="Check_if_new_hostiles_detected" Class="_commentbox" pos="1040,770.04694,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="480" Height="320"/>
+   <NodeSize Width="480" Height="347.92706"/>
+  </Node>
+  <Node Id="3455" Class="Logic:Once" pos="1990,270,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3457" Class="Mission:GameToken" pos="2020,-1280,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.TokenContainer" compare_Value=""/>
+  </Node>
+  <Node Id="3458" Class="Mission:GameToken" pos="2090,-520,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.TokenContainer" compare_Value=""/>
+  </Node>
+  <Node Id="3459" Class="Mission:GameToken" pos="2350,170,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.TokenContainer" compare_Value=""/>
+  </Node>
+  <Node Id="3460" Class="Mission:GameToken" pos="2010,880,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.TokenContainer" compare_Value=""/>
+  </Node>
+  <Node Id="3461" Class="Mission:GameToken" pos="1960.8551,1584.5859,0" flags="0">
+   <Inputs entityId="0" gametoken_Token="Graph Tokens.TokenContainer" compare_Value=""/>
+  </Node>
+  <Node Id="3463" Class="Logic:Any" pos="360,2280,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3480" Class="entity:GroupEntity" pos="770,2660,0" flags="0">
+   <Inputs entityId="0" AddEntity="0" AddEntities="0" RemoveEntity="0" RemoveEntities="0"/>
+  </Node>
+  <Node Id="3482" Class="Logic:Any" pos="620,2660,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3484" Class="Logic:Once" pos="1150,2760,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="3486" Class="Entity:CompareId" pos="1120,2980,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="3487" Class="Entity:CompareId" pos="1120,2880,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="3489" Class="Math:BooleanFrom" pos="710,1580,0" flags="0">
+   <Inputs Value="0"/>
+  </Node>
+  <Node Id="3490" Class="Math:BooleanFrom" pos="300,2660,0" flags="0">
+   <Inputs Value="0"/>
+  </Node>
+  <Node Id="3492" Class="Logic:Gate" pos="470,2630,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="3493" Class="Time:FrameDelay" pos="300,2600,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="3496" Class="Logic:Gate" pos="470,2760,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="3497" Class="Time:FrameDelay" pos="300,2730,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3354" nodeOut="1" portIn="Value" portOut="TokenContainer" enabled="1"/>
+  <Edge nodeIn="3361" nodeOut="1" portIn="Value" portOut="SecurityShipsGroup" enabled="1"/>
+  <Edge nodeIn="3362" nodeOut="1" portIn="Value" portOut="PiratesGroup" enabled="1"/>
+  <Edge nodeIn="3399" nodeOut="1" portIn="true" portOut="Start" enabled="1"/>
+  <Edge nodeIn="3408" nodeOut="1" portIn="in1" portOut="AllClearDialogue" enabled="1"/>
+  <Edge nodeIn="3409" nodeOut="1" portIn="in1" portOut="EnemiesDetectedDialogue" enabled="1"/>
+  <Edge nodeIn="3410" nodeOut="1" portIn="in1" portOut="PlayerAttacksDialogue" enabled="1"/>
+  <Edge nodeIn="3411" nodeOut="1" portIn="in1" portOut="JumpOutDialogue" enabled="1"/>
+  <Edge nodeIn="3412" nodeOut="1" portIn="in1" portOut="SpawnInDialogue" enabled="1"/>
+  <Edge nodeIn="3463" nodeOut="1" portIn="in1" portOut="Start" enabled="1"/>
+  <Edge nodeIn="3489" nodeOut="1" portIn="Value" portOut="IsPirate" enabled="1"/>
+  <Edge nodeIn="3490" nodeOut="1" portIn="Value" portOut="IsPirate" enabled="1"/>
+  <Edge nodeIn="3493" nodeOut="1" portIn="in" portOut="ScenarioPirateGroup" enabled="1"/>
+  <Edge nodeIn="3497" nodeOut="1" portIn="in" portOut="ScenarioSecurityGroup" enabled="1"/>
+  <Edge nodeIn="278" nodeOut="276" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="280" nodeOut="278" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="282" nodeOut="278" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="274" nodeOut="282" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="283" nodeOut="282" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="286" nodeOut="285" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="287" nodeOut="286" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="288" nodeOut="286" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="275" nodeOut="288" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="289" nodeOut="288" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="285" nodeOut="291" portIn="delay" portOut="out" enabled="1"/>
+  <Edge nodeIn="285" nodeOut="291" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="3330" nodeOut="3305" portIn="B" portOut="TargetId" enabled="1"/>
+  <Edge nodeIn="3331" nodeOut="3305" portIn="B" portOut="TargetId" enabled="1"/>
+  <Edge nodeIn="3342" nodeOut="3305" portIn="Trigger" portOut="TargetId" enabled="1"/>
+  <Edge nodeIn="3305" nodeOut="3314" portIn="ShooterId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="3320" nodeOut="3317" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3331" nodeOut="3320" portIn="A" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="3331" nodeOut="3320" portIn="Compare" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="3338" nodeOut="3320" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="3330" nodeOut="3321" portIn="A" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="3330" nodeOut="3321" portIn="Compare" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="3338" nodeOut="3321" portIn="in2" portOut="Done" enabled="1"/>
+  <Edge nodeIn="3321" nodeOut="3326" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3333" nodeOut="3330" portIn="in2" portOut="True" enabled="1"/>
+  <Edge nodeIn="3351" nodeOut="3331" portIn="in1" portOut="True" enabled="1"/>
+  <Edge nodeIn="3309" nodeOut="3333" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3350" nodeOut="3333" portIn="in3" portOut="out" enabled="1"/>
+  <Edge nodeIn="3350" nodeOut="3338" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3320" nodeOut="3342" portIn="Start" portOut="True" enabled="1"/>
+  <Edge nodeIn="3321" nodeOut="3342" portIn="Start" portOut="True" enabled="1"/>
+  <Edge nodeIn="3345" nodeOut="3342" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="3320" nodeOut="3347" portIn="Stop" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3321" nodeOut="3347" portIn="Stop" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3340" nodeOut="3350" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3335" nodeOut="3351" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3350" nodeOut="3351" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="3365" nodeOut="3364" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3366" nodeOut="3365" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="3367" nodeOut="3365" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="3363" nodeOut="3367" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="3368" nodeOut="3367" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3455" nodeOut="3373" portIn="Input1" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3376" nodeOut="3375" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3377" nodeOut="3376" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="3378" nodeOut="3376" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="3448" nodeOut="3376" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="3449" nodeOut="3376" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="3374" nodeOut="3378" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="3379" nodeOut="3378" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3385" nodeOut="3384" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3386" nodeOut="3385" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="3387" nodeOut="3385" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="3383" nodeOut="3387" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="3388" nodeOut="3387" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3375" nodeOut="3393" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3384" nodeOut="3394" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="291" nodeOut="3395" portIn="generate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="276" nodeOut="3396" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="3397" portIn="Success" portOut="out" enabled="1"/>
+  <Edge nodeIn="3452" nodeOut="3399" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="3383" nodeOut="3408" portIn="audioTrigger_PlayTrigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3374" nodeOut="3409" portIn="audioTrigger_PlayTrigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3363" nodeOut="3410" portIn="audioTrigger_PlayTrigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="275" nodeOut="3411" portIn="audioTrigger_PlayTrigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="274" nodeOut="3412" portIn="audioTrigger_PlayTrigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3396" nodeOut="3414" portIn="Input1" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3437" nodeOut="3415" portIn="in" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3393" nodeOut="3417" portIn="Input1" portOut="detected" enabled="1"/>
+  <Edge nodeIn="3417" nodeOut="3418" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3424" nodeOut="3421" portIn="A" portOut="EntityCount" enabled="1"/>
+  <Edge nodeIn="3424" nodeOut="3421" portIn="A==B" portOut="EntityCount" enabled="1"/>
+  <Edge nodeIn="3394" nodeOut="3424" portIn="Input1" portOut="true" enabled="1"/>
+  <Edge nodeIn="3444" nodeOut="3427" portIn="in1" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="3431" nodeOut="3428" portIn="in1" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3431" nodeOut="3429" portIn="in2" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3397" nodeOut="3431" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="3436" nodeOut="3434" portIn="in1" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3436" nodeOut="3435" portIn="in2" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="3399" nodeOut="3436" portIn="false" portOut="out" enabled="1"/>
+  <Edge nodeIn="3395" nodeOut="3437" portIn="Input1" portOut="out" enabled="1"/>
+  <Edge nodeIn="3444" nodeOut="3442" portIn="in2" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="3421" nodeOut="3444" portIn="entityId" portOut="out" enabled="1"/>
+  <Edge nodeIn="3427" nodeOut="3448" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3442" nodeOut="3449" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3305" nodeOut="3452" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="3364" nodeOut="3455" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="278" nodeOut="3457" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="280" nodeOut="3457" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="283" nodeOut="3457" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="286" nodeOut="3458" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="287" nodeOut="3458" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="289" nodeOut="3458" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3365" nodeOut="3459" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3366" nodeOut="3459" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3368" nodeOut="3459" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3376" nodeOut="3460" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3377" nodeOut="3460" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3379" nodeOut="3460" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3385" nodeOut="3461" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3386" nodeOut="3461" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3388" nodeOut="3461" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3354" nodeOut="3463" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3361" nodeOut="3463" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3362" nodeOut="3463" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="3484" nodeOut="3480" portIn="Input1" portOut="EntityAdded" enabled="1"/>
+  <Edge nodeIn="3486" nodeOut="3480" portIn="B" portOut="EntityKilled" enabled="1"/>
+  <Edge nodeIn="3486" nodeOut="3480" portIn="A" portOut="EntityRemoved" enabled="1"/>
+  <Edge nodeIn="3486" nodeOut="3480" portIn="Compare" portOut="EntityRemoved" enabled="1"/>
+  <Edge nodeIn="3487" nodeOut="3480" portIn="A" portOut="EntityKilled" enabled="1"/>
+  <Edge nodeIn="3480" nodeOut="3482" portIn="entityId" portOut="out" enabled="1"/>
+  <Edge nodeIn="3401" nodeOut="3484" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3401" nodeOut="3484" portIn="Value" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3402" nodeOut="3484" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3487" nodeOut="3484" portIn="B" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3404" nodeOut="3486" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="3403" nodeOut="3487" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="3448" nodeOut="3489" portIn="Close" portOut="False" enabled="1"/>
+  <Edge nodeIn="3449" nodeOut="3489" portIn="Close" portOut="True" enabled="1"/>
+  <Edge nodeIn="3492" nodeOut="3490" portIn="Close" portOut="False" enabled="1"/>
+  <Edge nodeIn="3496" nodeOut="3490" portIn="Close" portOut="True" enabled="1"/>
+  <Edge nodeIn="3482" nodeOut="3492" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3492" nodeOut="3493" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="3482" nodeOut="3496" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3496" nodeOut="3497" portIn="In" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens>
+  <Token Name="HitChecking" Type="Bool" Default="false"/>
+  <Token Name="PiratesGroup" Type="EntityId" Default=""/>
+  <Token Name="PlayerHasParticipated" Type="Bool" Default="false"/>
+  <Token Name="PlayerHitSecurity" Type="Bool" Default="false"/>
+  <Token Name="SecurityShipsGroup" Type="EntityId" Default=""/>
+  <Token Name="ShipAlive" Type="Bool" Default="false"/>
+  <Token Name="ShipKilled" Type="Bool" Default="false"/>
+  <Token Name="ShipLeaving" Type="Bool" Default="false"/>
+  <Token Name="SpawnedShipID" Type="EntityId" Default=""/>
+  <Token Name="TokenContainer" Type="EntityId" Default=""/>
+ </GraphTokens>
+</Graph>

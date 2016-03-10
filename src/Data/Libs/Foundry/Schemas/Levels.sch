@@ -11,6 +11,9 @@ record Level
 	
 	// [default: "", desc: "When loading directly into the level, give the player this loadout"]
 	string			loadout;
+	
+	// [default: "0x0000000000000000", desc: "Universe unique location ID"]
+	string			locationUniqueId;
 
 	// [default: "SC_Default", desc: "Game rules to use for this level (also auto added to valid game rules)"]
 	GameMode&		defaultGameRules;

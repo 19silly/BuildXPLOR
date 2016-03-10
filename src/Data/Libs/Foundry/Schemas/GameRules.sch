@@ -79,5 +79,8 @@ record GameMode
 	LoadoutProbabilities& loadoutProbabilities;
 	
 	// [default: false, desc: "Whether the player can cycle through the random loadouts in loadoutProbabilities"]
-	bool allowLoadoutCycling;	
+	bool allowLoadoutCycling;
+	
+	// [desc: "Set the list of invalid ship archetypes for this mission type"]
+	string[] invalidShips;
 };

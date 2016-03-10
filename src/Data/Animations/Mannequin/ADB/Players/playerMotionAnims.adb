@@ -2503,7 +2503,7 @@
      <AnimLayer>
       <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
       <Animation name="nw_neutral_prone_tostand"/>
-      <Blend ExitTime="2.166667" StartTime="0" Duration="0.2" terminal="1"/>
+      <Blend ExitTime="2" StartTime="0" Duration="0.2" terminal="1"/>
      </AnimLayer>
      <ProcLayer>
       <Blend ExitTime="0" StartTime="0" Duration="0"/>
@@ -2513,7 +2513,7 @@
         <Vertical value="1"/>
        </ProceduralParams>
       </Procedural>
-      <Blend ExitTime="2.166667" StartTime="0" Duration="0.40000001" terminal="1"/>
+      <Blend ExitTime="2" StartTime="0" Duration="0.40000001" terminal="1"/>
      </ProcLayer>
      <ProcLayer>
       <Blend ExitTime="0" StartTime="0" Duration="0"/>
@@ -2522,7 +2522,7 @@
         <EventName value="LockTransition"/>
        </ProceduralParams>
       </Procedural>
-      <Blend ExitTime="2.166667" StartTime="0" Duration="0.2" terminal="1"/>
+      <Blend ExitTime="2" StartTime="0" Duration="0.2" terminal="1"/>
      </ProcLayer>
     </Fragment>
    </Variant>

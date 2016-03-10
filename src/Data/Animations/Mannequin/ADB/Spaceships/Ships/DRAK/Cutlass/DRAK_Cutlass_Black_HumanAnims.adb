@@ -1,13 +1,13 @@
 <AnimDB FragDef="Animations/Mannequin/ADB/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_Black_Fragments.xml" TagDef="Animations/Mannequin/ADB/Spaceships/spaceshipTags.xml">
  <FragmentList>
   <SeatDriver>
-   <Fragment Tags="Scope_SeatDriverLookIK" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_SeatDriverLookIK" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="cockpit_hotas_c_l_hornet_big_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="DRAK_Cutlass" FragTags="Passout">
+   <Fragment BlendOutDuration="0.2" Tags="DRAK_Cutlass" FragTags="Passout">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="3D-BSpace_Seat_Hotas_C_L_GForce_Passout"/>
@@ -16,72 +16,88 @@
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="DetachLimbIK" string="RgtArm01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="RgtArm01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="DetachLimbIK" string="LftArm01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="LftArm01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="DisableVehicleControl">
-      <Params />
+      <ProceduralParams />
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="1.4901161e-008"/>
-     <Procedural type="DetachLimbIK" string="RgtLeg01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="RgtLeg01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="DetachLimbIK" string="LftLeg01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="LftLeg01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="DRAK_Cutlass" FragTags="Wakeup">
+   <Fragment BlendOutDuration="0.2" Tags="DRAK_Cutlass" FragTags="Wakeup">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="3D-BSpace_Seat_Hotas_C_L_GForce_WakeUp"/>
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.47236991"/>
-     <Procedural type="AttachLimbIKVehicle" string="LftArm01|Pilot_Throttle_IK">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="LftArm01|Pilot_Throttle_IK"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.47220349"/>
-     <Procedural type="AttachLimbIKVehicle" string="RgtArm01|Pilot_Yoke_IK">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="RgtArm01|Pilot_Yoke_IK"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="2.73"/>
      <Procedural type="DisableVehicleControl">
-      <Params />
+      <ProceduralParams />
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.4640007"/>
-     <Procedural type="AttachLimbIKVehicle" string="RgtLeg01|Pilot_FootPaddle_Right_IK">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="RgtLeg01|Pilot_FootPaddle_Right_IK"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.4652009"/>
-     <Procedural type="AttachLimbIKVehicle" string="LftLeg01|Pilot_FootPaddle_Left_IK">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="LftLeg01|Pilot_FootPaddle_Left_IK"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="DRAK_Cutlass" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="DRAK_Cutlass" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="3D-BSpace_Seat_Hotas_C_L_GForce_Reactions" flags="Loop"/>
@@ -93,19 +109,30 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="LayerWeight" string="gforcestress">
-      <Params>
-       <Param value="1"/>
-      </Params>
+     <Procedural type="LayerWeight">
+      <ProceduralParams>
+       <LayerWeightParam value="gforcestress"/>
+       <ScopeLayer value="1"/>
+       <Invert value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_cockpit_pilot_enter"/>
@@ -113,11 +140,20 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="-1" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_cockpit_pilot_exit"/>
@@ -125,25 +161,49 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
   </SeatDriver>
   <CoPilot>
-   <Fragment Tags="DRAK_Cutlass" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_CopilotLookIK" FragTags="Idle">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Animation name="cockpit_hotas_c_l_hornet_big_lookposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="DRAK_Cutlass" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_cockpit_copilot_enter"/>
-    </AnimLayer>0
+    </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="DRAK_Cutlass" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="DRAK_Cutlass" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="-1" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_cockpit_copilot_exit"/>
@@ -151,11 +211,20 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
-   </Fragment>  
-   <Fragment Tags="DRAK_Cutlass" FragTags="Idle">
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="DRAK_Cutlass" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="3D-BSpace_Seat_Hotas_C_L_GForce_Reactions" flags="Loop"/>
@@ -167,27 +236,38 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="LayerWeight" string="gforcestress">
-      <Params>
-       <Param value="1"/>
-      </Params>
+     <Procedural type="LayerWeight">
+      <ProceduralParams>
+       <LayerWeightParam value="gforcestress"/>
+       <ScopeLayer value="1"/>
+       <Invert value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
   </CoPilot>
   <SeatBumpLeftPlayer>
-   <Fragment Tags="Scope_MiscLookIK" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_MiscLookIK" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="cockpit_hotas_c_l_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_jumpseat_enter"/>
@@ -195,17 +275,26 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_jumpseat_exit"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_jumpseat_idle" flags="Loop"/>
@@ -213,13 +302,13 @@
    </Fragment>
   </SeatBumpLeftPlayer>
   <SeatBumpRightPlayer>
-   <Fragment Tags="Scope_MiscLookIK" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_MiscLookIK" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="cockpit_hotas_c_l_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_jumpseat_enter"/>
@@ -227,17 +316,26 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_jumpseat_exit"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_jumpseat_idle" flags="Loop"/>
@@ -245,13 +343,13 @@
    </Fragment>
   </SeatBumpRightPlayer>
   <Gunner>
-   <Fragment Tags="Scope_MiscLookIK" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_MiscLookIK" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="cockpit_hotas_c_l_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_turret_enter"/>
@@ -259,17 +357,26 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="4.166667" StartTime="0" Duration="0"/>
      <Animation name="drak_cutlass_turret_exit"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.012499869"/>
      <Animation name="drak_cutlass_turret_idle" flags="Loop"/>
@@ -277,13 +384,13 @@
    </Fragment>
   </Gunner>
   <ToiletPlayer>
-   <Fragment Tags="Scope_MiscLookIK" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_MiscLookIK" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="cockpit_hotas_c_l_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="use_toilet_enter"/>
@@ -291,17 +398,26 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="use_toilet_exit"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="use_toilet_idle"/>
@@ -309,7 +425,7 @@
    </Fragment>
   </ToiletPlayer>
   <ladder_lower_player>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_ladder_climb_up"/>
@@ -317,13 +433,22 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
   </ladder_lower_player>
   <ladder_upper_player>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_ladder_climb_down"/>
@@ -331,13 +456,22 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
   </ladder_upper_player>
   <cabin_door_outer_player>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_cabin_door_climbin"/>
@@ -345,13 +479,22 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
   </cabin_door_outer_player>
   <cabin_door_inner_player>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_cabin_door_climbout"/>
@@ -359,13 +502,22 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
   </cabin_door_inner_player>
   <BedRightPlayer>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_bed_enter"/>
@@ -373,17 +525,26 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_bed_exit"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_bed_idle" flags="Loop"/>
@@ -391,7 +552,7 @@
    </Fragment>
   </BedRightPlayer>
   <BedLeftPlayer>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_bed_enter"/>
@@ -399,17 +560,26 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_bed_exit"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="drak_cutlass_bed_idle" flags="Loop"/>
