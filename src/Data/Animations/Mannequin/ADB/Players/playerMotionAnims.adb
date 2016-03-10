@@ -1633,8 +1633,8 @@
    <Fragment BlendOutDuration="0.2" Tags="stocked+sprint+alerted+scope_handsAnimOverlay"/>
    <Fragment BlendOutDuration="0.2" Tags="pistol+sprint+Scope_LookPose+alerted">
     <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.5"/>
-     <Animation name=""/>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Animation name="pistol_alerted_stand_sprint_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+sprint+alerted+scope_handsAnimOverlay"/>

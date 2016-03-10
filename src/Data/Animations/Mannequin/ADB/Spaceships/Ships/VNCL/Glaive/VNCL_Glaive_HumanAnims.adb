@@ -71,7 +71,7 @@
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="LayerWeight" string="gforcestress">
       <Params>
-       <Param value="1"/>
+       <Param value="0"/>
       </Params>
      </Procedural>
     </ProcLayer>

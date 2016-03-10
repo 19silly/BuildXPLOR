@@ -24,7 +24,7 @@
   <Attachment Type="CA_BONE" AName="magazine_attach_8" Rotation="0.99556196,-5.521517e-009,3.4408587e-010,-0.094108313" Position="0.18195608,-0.045750644,1.1080791" BoneName="Spine1" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="medpack_attach_1" Rotation="-0.66126776,-0.066753097,0.016796952,-0.74698508" Position="-0.21432315,0.073099226,0.89999998" BoneName="LeftUpLeg" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="medpack_attach_2" Rotation="0.68141496,0.066977069,-0.02032697,0.72854269" Position="-0.20995863,0.0046974178,0.88565356" BoneName="LeftUpLeg" Flags="0" VisFlags="3"/>
-  <Attachment Type="CA_BONE" AName="mobiglas_attach" Rotation="0.7067433,-0.51372999,0.03585647,-0.48508719" Position="-0.6177932,0.20045699,1.2519429" BoneName="lefthand" Flags="0" VisFlags="3"/>
+  <Attachment Type="CA_BONE" AName="mobiglas_attach" RelRotation="1,0,0,0" RelPosition="0.2703383,-0.0035943538,-0" BoneName="LeftForeArm" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="offhand_attach" RelRotation="1,0,0,0" RelPosition="0,0,0" BoneName="leftweaponbone" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="weapon_attach2" Rotation="-0.8545664,0.41940358,0.28378409,0.1152537" Position="0.66978842,0.24663332,1.1766298" BoneName="righthand" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="weapon_attach3" Rotation="0.48169467,0.38605464,-0.78329009,-0.073406793" Position="0.66379493,0.29657984,1.1652375" BoneName="righthand" Flags="0" VisFlags="3"/>
