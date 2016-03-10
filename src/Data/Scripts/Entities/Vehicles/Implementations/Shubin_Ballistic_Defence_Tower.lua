@@ -1,16 +1,10 @@
 Shubin_Ballistic_Defence_Tower =
 {
-
-	foreignCollisionDamageMult = 1.0,
-	vehicleCollisionDamageMult = 1.0,
-
 	Properties = 
 	{	
 		bDisableEngine = 0,
 		material = "",
-		bFrozen = 0,
 		Modification = "",
-		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
 		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_Shubin_Ballistic_Defence_Tower.xml",
 		
@@ -37,7 +31,6 @@ Shubin_Ballistic_Defence_Tower.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

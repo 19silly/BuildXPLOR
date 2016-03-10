@@ -34,7 +34,8 @@ DeployableBarrier =
 
 function DeployableBarrier:StopUse(user, idx)
 	InteractiveObjectEx.StopUse(self, user, idx);
-	AI.AddCoverEntity(self.id);
+	-- We need to register this cover to the Cover System in CIGAISystem and not the old CryAI
+	-- AI.AddCoverEntity(self.id);
 end;
 
 

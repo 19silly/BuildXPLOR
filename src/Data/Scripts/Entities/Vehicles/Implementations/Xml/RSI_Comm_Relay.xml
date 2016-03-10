@@ -3,7 +3,7 @@
 		<Buoyancy waterDensity="150" waterResistance="2500"/>
 		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
 	</Physics>
-	<Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+	<Damages  collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
 		<DamageMultipliers>
 			<DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
 			<DamageMultiplier damageType="melee" multiplier="0"/>
@@ -16,9 +16,9 @@
 					<DamagesSubGroup delay="0" randomness="0">
 						<DamageBehaviors>
 							<DamageBehavior class="Destroy" />
-							<DamageBehavior class="Effect" >
-								<Effect effect="VehicleDestroyed" />
-							</DamageBehavior>
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" />
+              </DamageBehavior>-->
 							<DamageBehavior class="Explosion">
 								<Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
 							</DamageBehavior>
@@ -86,13 +86,16 @@
 
 	<MovementParams>
 		<Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="100" maxBoostSpeed="125" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
-			<AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+			<SoundParams>
+				<SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+				<SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+			</SoundParams>
 			<Animations engine="Intake_Fans"/>
 			<Contrails>
-			<!--	<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="25" />
-				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="25" />
-				<Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
-				<Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+			<!--	<Contrail helper="wing_left_contrail_pos" effect="" minSpeed="25" />
+				<Contrail helper="wing_right_contrail_pos" effect="" minSpeed="25" />
+				<Contrail helper="tail_right_contrail_pos" effect="" minSpeed="35" />
+				<Contrail helper="tail_left_contrail_pos" effect="" minSpeed="35" />
 			-->
 			</Contrails>
 		</Spaceship>
@@ -100,20 +103,21 @@
 	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
 
 
-	<Particles mfxRow="vfx_Anvil_Hornet">
-		<DamageEffects>
-			<DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Hornet_Destroyed" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
-		</DamageEffects>
-		<EnvironmentLayers>
-			<EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
-				<Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
-				<Emitters />
-				<Wheels />
-			</EnvironmentLayer>
-		</EnvironmentLayers>
-	</Particles>
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
 
 	<!-- Mannequin information for vehicle -->
 	<Mannequin tag="Comm_Relay" controllerDef="Animations/Mannequin/ADB/Vehicles/Comm_Relay/Comm_Relay_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/Comm_Relay/Comm_Relay_Anims.adb" />

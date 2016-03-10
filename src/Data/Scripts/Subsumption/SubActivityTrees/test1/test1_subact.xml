@@ -1,0 +1,38 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="Chair_01" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="5" pos="-165,-300,0" class="InitNode"/>
+   <Task name="Find Object" id="6" pos="-255,-180,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject:Usables:Seat:Stool"/>
+    <Input name="Use Channel" value="sit" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="entityid" value="Chair_01"/>
+   </Task>
+   <Task name="Pathfind" id="7" pos="-195,15,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="Chair_01"/>
+    <Input name="Use Channel" value="sit" type="string"/>
+    <Input name="Speed" value="Walk" type="string"/>
+   </Task>
+   <Task name="Use" id="8" pos="-195,195,0" class="TreeNode">
+    <Input name="User" type="entityid"/>
+    <Input name="Usable" type="entityid" value="Chair_01"/>
+    <Input name="Use Channel" type="string" value="sit"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="6" nodeOut="5" portIn="in" portOut="outSuccess" enabled="1" pos0="-120,-225,0"/>
+   <Edge nodeIn="7" nodeOut="6" portIn="in" portOut="outSuccess" enabled="1" pos0="-150,-30,0"/>
+   <Edge nodeIn="8" nodeOut="7" portIn="in" portOut="outSuccess" enabled="1" pos0="-150,150,0"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

@@ -10,7 +10,8 @@ FishFlockTank =
 		"CleanerFish",
 		"JellyFish",
 		"SmallFish",
-		"AlienFish"
+		"AlienFish",
+		"StripedFish"
 	},
 
 	Properties =
@@ -246,6 +247,47 @@ FishFlockTank =
 				SpawnRadius = 1,
 			},
 		},
+		Properties_StripedFish =
+		{
+			Flocking =
+			{
+				bEnableFlocking = false,
+				FieldOfViewAngle = 180,
+				FactorAlign = 0,
+				FactorCohesion = 0,
+				FactorSeparation = 1,
+				AttractDistMin = 1,
+				AttractDistMax = 2,
+			},
+			Movement =
+			{
+				SpeedMin = 0.1,
+				SpeedMax = 0.3,
+				FactorAvgSpeed = 0.3,
+				FactorLeveling = 0.4,
+				FactorOrigin = 0.05,
+				FactorRandomForwardAcceleration = 0.05,
+				FactorRandomLateralAcceleration = 0.2,
+				FactorRandomUpDownAcceleration = 0.1,
+				HeadingAngleLimit = 60,
+				MaxAnimSpeed = 0,
+			},
+			Boid =
+			{
+				nCount = 0,
+				object_Model = "objects/animals/fish/fish_striped_prop_animal_01.chr",
+				SizeRandom = 0.15,
+				Size = 0.7,
+				EmergencyScale = 1,
+				Mass = 10,
+			},
+			Options =
+			{
+				bFollowPlayer = 0,
+				bObstacleAvoidance = 0,
+				SpawnRadius = 1,
+			},
+		},
 	},
 
 	BubblesEffect = "",	-- Underwater bubbles for fish breathing
@@ -278,15 +320,6 @@ function FishFlockTank:OnInit()
 	end
 
 	self.UpdatedTime = 0;
-
-	-- Rocks repell
-	Boids.SetAttractionPoint( self, "", {x=-1.37, y=0.4, z=-0.4}, -1, 0.13, 0 );
-	Boids.SetAttractionPoint( self, "", {x=-1.05, y=0.5, z=-0.45}, -1, 0.13, 0 );
-	Boids.SetAttractionPoint( self, "", {x=1.35, y=-0.45, z=-0.8}, -1, 0.35, 0 );
-	Boids.SetAttractionPoint( self, "", {x=0.7, y=-0.05, z=-0.6}, -1, 0.15, 0 );
-
-	-- As well as bubbles, but not as much
-	Boids.SetAttractionPoint( self, "", {x=-0.4, y=-0.25, z=-0.7}, -0.5, 0.3, 0 );
 
 	if (self.Properties.bActivate ~= 1 and self.flock ~= 0) then
 		Boids.EnableFlock( self,0 );
@@ -365,7 +398,7 @@ function FishFlockTank:OnBoidsUpdate()
 			if self.UpdatedTime > 10 then
 				self.Properties.Properties_CleanerFish.Movement.HeadingAngleLimit = 720;
 				self.Properties.Properties_CleanerFish.Movement.HeadingAngleMinimum = 60;
-				Boids.SetFlockParams( self );
+				Boids.UpdateSpeciesParams( self, self.Properties.Properties_CleanerFish, "CleanerFish" );
 				self.UpdatedTime = -1;
 			end
 			self.UpdatedTime = self.UpdatedTime + self.Properties.OnUpdatePeriod;

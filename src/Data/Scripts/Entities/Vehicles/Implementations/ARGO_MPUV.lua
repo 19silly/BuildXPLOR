@@ -1,18 +1,12 @@
-MPUV_Utility_Vehicle =
+ARGO_MPUV =
 {
-
-	foreignCollisionDamageMult = 1.0,
-	vehicleCollisionDamageMult = 1.0,
-
 	Properties = 
 	{	
 		bDisableEngine = 0,
 		material = "",
-		bFrozen = 0,
 		Modification = "",
-		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_MPUV_Utility_Vehicle.xml",
+		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_ARGO_MPUV.xml",
 		
 		Perception =
 		{
@@ -32,12 +26,11 @@ MPUV_Utility_Vehicle =
 	Server = {},
 }
 
-MPUV_Utility_Vehicle.AIProperties = 
+ARGO_MPUV.AIProperties = 
 {
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

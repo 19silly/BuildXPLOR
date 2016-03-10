@@ -136,7 +136,8 @@ function MakeAICoverEntity(entity)
 	local _onStartGame = tbl.OnStartGame
 	tbl.OnStartGame = function(self)
 		if (self.PropertiesInstance.bProvideAICover ~= 0) and (AI ~= nil) then
-			AI.AddCoverEntity(self.id)
+			-- We need to register this cover to the Cover System in CIGAISystem and not the old CryAI
+			-- AI.AddCoverEntity(self.id)
 		end
 
 		if (_onStartGame) then
@@ -465,13 +466,6 @@ function MakePickable( entity )
 	if not entity.Properties then entity.Properties = {} end;
 	entity.Properties.bPickable = 0;
 end
-
-function AddHeavyObjectProperty(entity)
-	if (not entity.Properties) then
-		entity.Properties = {};
-	end;
-	entity.Properties.bHeavyObject = 0;
-end;
 
 function MakeThrownObjectTargetable( entity )
 	-- Add property
@@ -939,30 +933,6 @@ function MakeCompareEntitiesByDistanceFromPoint( point )
 		return distance1 > distance2
 	end
 	return CompareEntitiesByDistanceFromPoint
-end
-
--------------------------------------------------------------------------------
--- Called by Pool System when an Entity is bookmarked for pool usage
---  - Gives us its EntityId and PropertiesInstance tables for logic-driven utilities
--------------------------------------------------------------------------------
-
-function OnEntityBookmarkCreated( entityId, propertiesInstance )
-
-	local waveName = nil;
-	if (propertiesInstance and propertiesInstance.AITerritoryAndWave) then
-		waveName = propertiesInstance.AITerritoryAndWave.aiwave_Wave;
-	end
-
-	if (waveName and waveName ~= "<None>") then
-
-		-- Notify territory and wave
-		AddBookmarkedToWave(entityId, waveName);
-		return false;
-
-	end
-
-	return true;
-
 end
 
 -------------------------------------------------------------------------------

@@ -21,7 +21,6 @@ BasicAITable = {
 
 	PropertiesInstance = {
 		soclasses_SmartObjectClass = "",
-		aibehavior_behaviour = "",
 		bAutoDisable = 0,
 		nVariation = 0,
 		bAlarmed = 0,
@@ -35,7 +34,8 @@ BasicAITable = {
 		bFactionHostility = 1,
 
 		esVoice = "",
-		esCommConfig = "",
+		dataCoreRecordType_CommunicationConfig = "", -- Basic communication config DataForge record name
+		esContextualDialog = "", -- Advanced (contextual) communication config
 		fFmodCharacterTypeParam = 0,
 		esBehaviorSelectionTree = "",
 		esModularBehaviorTree = "",
@@ -144,8 +144,6 @@ BasicAITable = {
 		collisionAvoidanceRadiusIncrement = 0.0,
 	},
 
-	AIFireProperties = {
-	},
 	AI = {},
 
 	-- now fast I forget the target (S-O-M speed)

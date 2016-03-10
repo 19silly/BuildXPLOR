@@ -28,7 +28,6 @@ DestroyedVehicle =
 }
 
 MakeDerivedEntity(DestroyedVehicle,RigidBody);
-AddHeavyObjectProperty(DestroyedVehicle);
 MakeAICoverEntity(DestroyedVehicle);
 SetupCollisionFiltering(DestroyedVehicle);
 

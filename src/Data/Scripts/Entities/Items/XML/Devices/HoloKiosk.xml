@@ -1,0 +1,35 @@
+<item name="HoloKiosk" class="HoloKiosk" priority="111">
+	<params>
+		<param name="mountable" 	value="0" />
+		<param name="usable"		 	value="1" />
+		<param name="itemDescription" value="This is a Holo-Kiosk" />
+		<param name="display_name"	value="Holo-Kiosk" />
+		<param name="mass" value="60000" />
+		<param name="itemType" value="Misc" />
+	</params>
+
+	<geometry>
+		<thirdperson name="Objects/brush/planet/uee/holokiosk/holokiosk_astroarmada.cga"/>
+	</geometry>
+	
+	<shoppingKioskParams>
+        <visualSettings idleModel = "Objects/brush/planet/uee/holokiosk/holokiosk_astroarmada_logo.cgf"/>
+    </shoppingKioskParams>  
+	
+	<EntityEffects>
+		<joint enable="1" helper ="logo_helper" tag ="logo" axis = "0,0,-1">
+			<axisRotation var = "rotationSpeed" default = "1" min = "0" max = "6"/>
+			<offset var = "offset" vecGoal = "0,0,0.05"/>
+		</joint>
+		<light name="ShopEntities.Kiosk.Light_HoloKiosk" archetype="1" helper="panel_helper" enable="1" tag="run" rotation = "-90,0,0" position = "0,0,0">
+			<radius var="light" min="1" multiplier="2" default = "6"/>
+			<diffuse var="light" min="1" multiplier="35" default = "3"/>
+			<specular var="light" min="1" multiplier="1" default = "3"/>
+		</light>
+		<light name="ShopEntities.Kiosk.VolumetricLight_HoloKiosk" archetype="1" helper="panel_helper" enable="1" tag="run" rotation ="0,-90,0" position = "0,0,-0.2">
+			<radius var="light" min="0.1" multiplier="0.35" default = "6"/>
+			<diffuse var="light" min="0.1" multiplier="4500" default = "3"/>
+			<specular var="light" min="1" multiplier="30" default = "3"/>
+		</light>
+	</EntityEffects>
+</item>

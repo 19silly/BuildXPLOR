@@ -32,6 +32,7 @@ AISpawnBundle = {
 			esAIProfileFlight		= "<None>",	-- (OPTIONAL) The name of the flight profile to set on spawned AI - overrides parameters in base
 			esAIProfileTargeting	= "<None>",	-- (OPTIONAL) The name of the targeting profile to set on spawned AI - overrides parameters in base
 			esAIProfileRace			= "<None>",	-- (OPTIONAL) The name of the race profile to set on spawned AI - overrides parameters in base	
+			esAIProfileMissile		= "<None>",	-- (OPTIONAL) The name of the missile profile to set on spawned AI - overrides parameters in base	
 			sArchetype				= "",		-- (OPTIONAL) The full name of the archetype for linked AISpawnPoints to spawn an AI from
 			sName					= "",		-- (OPTIONAL) The name to give to all spawned AI
 			nGroupSize				= 0,		-- The number of ships to spawn whenever the Spawn input event occurs
@@ -372,6 +373,7 @@ function AISpawnBundle:GetWaveFromTable(targetWaveID)
 						esAIProfileFlight	 = self.Properties.SpawningParameters.esAIProfileFlight,
 						esAIProfileTargeting = self.Properties.SpawningParameters.esAIProfileTargeting,
 						esAIProfileRace		 = self.Properties.SpawningParameters.esAIProfileRace,
+						esAIProfileMissile	 = self.Properties.SpawningParameters.esAIProfileMissile,
 					}
 					if (wave.Members[i].name) then
 						memberParams.sName = wave.Members[i].name
@@ -390,6 +392,9 @@ function AISpawnBundle:GetWaveFromTable(targetWaveID)
 					end
 					if (wave.Members[i].raceprofile) then
 						memberParams.esAIProfileRace		= wave.Members[i].raceprofile
+					end
+					if (wave.Members[i].missileprofile) then
+						memberParams.esAIProfileMissile		= wave.Members[i].missileprofile
 					end
 					
 					-- Insert the parameters into the list
@@ -436,6 +441,7 @@ function AISpawnBundle:SpawnFromLink(link)
 	local argFlightProfile		= self.Properties.SpawningParameters.esAIProfileFlight
 	local argTargetingProfile	= self.Properties.SpawningParameters.esAIProfileTargeting
 	local argRaceProfile		= self.Properties.SpawningParameters.esAIProfileRace
+	local argMissileProfile		= self.Properties.SpawningParameters.esAIProfileMissile
 	
 	-- If parameters were loaded from a waves XML, use the next set of parameters from the XML as arguments, instead
 	if (next(self.paramsList) ~= nil) then
@@ -446,6 +452,7 @@ function AISpawnBundle:SpawnFromLink(link)
 		argFlightProfile		= self.paramsList[self.memberIncrement].esAIProfileFlight
 		argTargetingProfile		= self.paramsList[self.memberIncrement].esAIProfileTargeting
 		argRaceProfile			= self.paramsList[self.memberIncrement].esAIProfileRace
+		argMissileProfile		= self.paramsList[self.memberIncrement].esAIProfileMissile
 	end
 	
 	-- If there is no name argument, use default based on archetype
@@ -458,7 +465,7 @@ function AISpawnBundle:SpawnFromLink(link)
 	argName = argName.."_"..self.nSpawnCounter
 	
 	-- Tell the link to spawn using the argument parameters, returning the entity ID of the spawned AI
-	return link:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile)
+	return link:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile, argMissileProfile)
 end
 
 

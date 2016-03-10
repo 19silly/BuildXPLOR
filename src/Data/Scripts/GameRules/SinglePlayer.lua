@@ -19,15 +19,9 @@ SinglePlayer = {
 
 	Client = {},
 	Server = {},
-	
-	-- this table is used to track the available entities where we can spawn the
-	-- player
-	spawns = {},
 }
 
 usableEntityList = {}
-
-if (not g_dmgMult) then g_dmgMult = 1.0; end
 
 ----------------------------------------------------------------------------------------------------
 function SinglePlayer:OnReset(toGame)  
@@ -120,7 +114,6 @@ function SinglePlayer:EndLevel( params )
 			Game.PauseGame(true);
 			Game.ShowMainMenu();
 		end
-		g_GameTokenPreviousLevel = GameToken.GetToken( "Game.Global.Previous_Level" );
 	end
 end
 
@@ -310,11 +303,6 @@ end
 
 
 ----------------------------------------------------------------------------------------------------
-function SinglePlayer.Server:OnClientEnteredGame( channelId, player, loadingSaveGame )
-end
-
-
-----------------------------------------------------------------------------------------------------
 function SinglePlayer:CanHitIgnoreInvulnerable(hit, target)
 
 	if (self:IsStealthHealthHit(hit.type)) then
@@ -339,7 +327,7 @@ function SinglePlayer:ProcessActorDamage(hit)
 	end;
 	
 	local isMultiplayer = self.game:IsMultiplayer();
-	local totalDamage = g_dmgMult * hit.damage;
+	local totalDamage = hit.damage;
 	
 	local splayer = shooter and shooter.actor and shooter.actor:IsPlayer();
 	local tplayer = target and target.actor and target.actor:IsPlayer();
@@ -349,11 +337,6 @@ function SinglePlayer:ProcessActorDamage(hit)
 		local sai=(not splayer) and shooter and shooter.actor;
 		local tai=(not tplayer) and target and target.actor;
 		
-		local dmgMult = 1.0;
-		if (tplayer) then
-			dmgMult = g_dmgMult;
-		end
-		
 		if (shooter and shooter.actor and tai) then
 			-- Make the target AI alarmed
 			AI.SetAlarmed(target.id);
@@ -362,15 +345,15 @@ function SinglePlayer:ProcessActorDamage(hit)
 		if(AI) then	
 			if (sai and not tai) then
 				-- AI vs. player
-				totalDamage = AI.ProcessBalancedDamage(shooterId, target.id, dmgMult*hit.damage, hit.type);
+				totalDamage = AI.ProcessBalancedDamage(shooterId, target.id, hit.damage, hit.type);
 			elseif (sai and tai) then
 				-- AI vs. AI
-				totalDamage = AI.ProcessBalancedDamage(shooterId, target.id, dmgMult*hit.damage, hit.type);
+				totalDamage = AI.ProcessBalancedDamage(shooterId, target.id, hit.damage, hit.type);
 			else
-				totalDamage = dmgMult*hit.damage;
+				totalDamage = hit.damage;
 			end
 		else
-			totalDamage = dmgMult*hit.damage;
+			totalDamage = hit.damage;
 		end
 	end
 
@@ -451,10 +434,6 @@ end
 ----------------------------------------------------------------------------------------------------
 function SinglePlayer.Server:OnStartLevel()
 	CryAction.SendGameplayEvent(NULL_ENTITY, eGE_GameStarted);
-	if (g_GameTokenPreviousLevel) then
-		GameToken.SetToken( "Game.Global.Previous_Level", g_GameTokenPreviousLevel );
-		g_GameTokenPreviousLevel = nil;
-	end
 end
 
 
@@ -471,10 +450,6 @@ function SinglePlayer.Client:OnHit(hit)
 	if (trg and (not hit.backface) and trg.Client and trg.Client.OnHit) then
 		trg.Client.OnHit(trg, hit);
 	end
-end
-
-----------------------------------------------------------------------------------------------------
-function SinglePlayer:PrecacheLevel()
 end
 
 ----------------------------------------------------------------------------------------------------

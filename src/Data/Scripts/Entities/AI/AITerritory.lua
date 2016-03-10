@@ -212,7 +212,8 @@ function AITerritory:Event_Kill()
 			local entity = System.GetEntity(entityID)
 			if (entity) then
 				if (self:CheckAlive(entity) and entity:IsActive()) then
-					entity:Event_Kill();
+					local hit = {};
+					entity:Kill(hit);
 				end
 			end
 		end

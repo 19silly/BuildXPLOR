@@ -61,9 +61,9 @@ function MissionObjective:Reset()
 		self.missionID = self:GetName();
 	end
 
-	if (self.Properties.bIsPathHelper ~= 0) then
-		HUD.SetObjectivePathHelperEntity(self.missionID, self.id);
-	end
+--	if (self.Properties.bIsPathHelper ~= 0) then
+--		HUD.SetObjectivePathHelperEntity(self.missionID, self.id);
+--	end
 
 	self.silent = false;
 	self.noFG = true; -- prevent output on Deactivate

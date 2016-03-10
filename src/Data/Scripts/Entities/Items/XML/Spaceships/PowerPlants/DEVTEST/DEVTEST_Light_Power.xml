@@ -1,0 +1,40 @@
+<item name="DEVTEST_Light_Power" class="VehicleItemPowerPlant" invisible="0" category="VehicleItem" interface="interface_DEVTEST_Light_Power" >
+	<params>
+		<param name="itemType" value="PowerPlant" />
+		<param name="itemSubType" value="Power" />
+		<param name="itemDescription" value="Item_DescDEVTEST_Light_Power" />
+		<param name="itemManufactor" value="DEVTEST" />
+		<param name="itemSize" value="3" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="Item_NameDEVTEST_Light_Power" />
+		
+		<param name="inefficiency" value="0.3" />
+		<param name="hitpoints" value="200" />
+		<param name="mass" value="200" />
+	</params>
+
+	<Pipes>
+		<Pipe class="Power" allowThrottle="1">
+			<Signature name="Electromagnetic" multiplier="1" />
+			<States>
+			<State state="Default">
+				<Value value="5500" />
+			</State>
+			<State state="Off">
+				<Value value="0" />
+			</State>
+      </States>
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="" rate="" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Default">
+          <Pipe name="Power" value="" />
+        </State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+</item>

@@ -1,11 +1,29 @@
-<item name="Flair_Spaceglobe_Evade" class="PrefabSpawnItem" priority="111">
+<item name="Flair_Spaceglobe_Evade" class="InstantUseItem" priority="111">
     <params>
         <param name="mountable" value="0" />
         <param name="usable" value="1" />
         <param name="mass" value="60000" />
+	<param name="flowgraph_file" value="Scripts\FlowGraphs\Flair_Spaceglobe_Evade_InstantUseItem.xml" />
     </params>
-
-    <hangarPropsParams>
-        <prefabParams file = "prefabs/bhvr_flairs.xml" name = "bhvr_flairs.space_globes.sg_evade" />
-    </hangarPropsParams>
+	
+	<geometry>
+		<thirdperson name="Objects/brush/planet/uee/flair_objects/globes/flair_sg_evade.cgf" />
+	</geometry>
+	
+	<hangarPropsParams>
+	<InstantUseParams GOSTEntityStateMachine="GOSTEntityStateMachine.Spaceglobe_Evade" GOSTEntityStateMachineName="Spaceglobe_Evade">
+		<InstantUseStateGroupBindingsParams GOSTEntityEffectsStateGroup="ToggleItemStateGroup_Pfx">
+			<InstantUseStateBindingsParams stateName="On"/>
+			<InstantUseStateBindingsParams stateName="Off"/>
+		</InstantUseStateGroupBindingsParams>
+	</InstantUseParams>
+	</hangarPropsParams>
+	
+	<EntityEffects>
+		<effect name="flair_objects.SpaceGlobes.Globe3.Globe3_GoodHealth_VFX" enable="0" tag="On">
+			<size min="1.0" multiplier="0.3" />
+			<speed min="0.25" multiplier="4.5" />
+		</effect>
+	</EntityEffects>
+	
 </item>

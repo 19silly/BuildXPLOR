@@ -85,7 +85,7 @@
 		<Pipe class="Fuel" prioType="critical">
 			<States>
 				<State state="Default"><Value value="0" /></State>
-				<State state="Boost"><Value value="-120" /></State>
+				<State state="Boost"><Value value="-20" /></State>
 			</States>
 		</Pipe>
 	</Pipes>
@@ -102,16 +102,10 @@
 					<effect name="Spaceships\Thrusters\VNCL_Trunk_TR2_Retro.Thruster_ALL.VNCL_Trunk_TR2_Retro" helper="nozzle_exhaust" enable = "0" tag ="run">
 						<strength var="thrust" />
 					</effect>
-
-					<sound name="Play_SSTM_VNCL_TR2_Fixed_Start_Run" enable ="0" tag = "run" loop ="0">
+					
+					<sound name="Play_SSTM_VNCL_TR2_Fixed_Start_Run" enable ="0" tag = "run" >
 						<param name="rpm" var="thrust" lerpTime="0.9" />
-						<!--<param name="load" var="load" min="0.2" />-->
 						<param name="in_out" var="in_out" />
-						
-					</sound>
-					<sound name="Stop_SSTM_VNCL_TR2_Fixed_Start_Run" enable ="0" tag = "stop" loop ="0" >
-					<param name="in_out" var="in_out" />
-					<param name="rpm" var="thrust" lerpTime="0.7" />
 					</sound>
 				</exhaust>
 			</exhausts>
@@ -121,19 +115,13 @@
 			<thruster flags="maneuver orientation retro" maxThrust ="500000">
 				<exhausts>
 					<exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.3">
-						<effect name="Spaceships\Thrusters\VNCL_Trunk_TR2_Retro.Thruster_ALL.VNCL_Trunk_TR2_Retro" helper="nozzle_exhaust" enable = "0" tag ="run">
+						<effect name="thruster_fx.Templates.Thrust-Maneuver-03-Fixed-Red" helper="nozzle_exhaust" enable = "0" tag ="run">
 							<strength var="thrust" />
 						</effect>
 						
-						<sound name="Play_SSTM_VNCL_TR2_Fixed_Start_Run" enable ="0" tag = "run" loop ="0">
+						<sound name="Play_SSTM_VNCL_TR2_Fixed_Start_Run" enable ="0" tag = "run" >
 							<param name="rpm" var="thrust" lerpTime="0.9" />
-							<!--<param name="load" var="load" min="0.2" />-->
 							<param name="in_out" var="in_out" />
-							
-						</sound>
-						<sound name="Stop_SSTM_VNCL_TR2_Fixed_Start_Run" enable ="0" tag = "stop" loop ="0" >
-						<param name="in_out" var="in_out" />
-						<param name="rpm" var="thrust" lerpTime="0.7" />
 						</sound>
 					</exhaust>
 				</exhausts>

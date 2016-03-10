@@ -253,7 +253,6 @@ MakeUsable(BasicEntity);
 MakePickable(BasicEntity);
 MakeTargetableByAI(BasicEntity);
 MakeKillable(BasicEntity);
-AddHeavyObjectProperty(BasicEntity);
 AddInteractLargeObjectProperty(BasicEntity);
 SetupCollisionFiltering(BasicEntity);
 

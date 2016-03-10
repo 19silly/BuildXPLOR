@@ -74,7 +74,7 @@
 		<Pipe class="Fuel" prioType="critical">
 			<States>
 				<State state="Default"><Value value="0" /></State>
-				<State state="Boost"><Value value="-120" /></State>
+				<State state="Boost"><Value value="-20" /></State>
 			</States>
 		</Pipe>
 	</Pipes>
@@ -84,24 +84,15 @@
 	
 	<thrusters>
 		<!-- default -->
-		<thruster flags="maneuver orientation retro" maxThrust ="500000" rotationScale="0.5" retroScale="1.0">
+		<thruster flags="maneuver orientation retro" maxThrust ="600000" rotationScale="0.5" retroScale="1.0">
 			<exhausts>
 				<exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.3">
-					<effect name="Thruster_FX.Scythe.VNCL_Trap_TR1_Fixed" helper="nozzle_exhaust" enable = "0" tag ="run">
+					<effect name="thruster_fx.Templates.Thrust-Maneuver-02-Fixed" helper="nozzle_exhaust" enable = "0" tag ="run">
 						<strength var="thrust" />
 					</effect>
-					<!--<effect name="Spaceships\Thrusters\VNCL_Trap_TR1_Fixed.Thruster_ALL.VNCL_Trap_TR1_Fixed" helper="nozzle_exhaust" enable = "0" tag ="run">
-					<strength var="thrust" />
-					</effect>-->
-				<sound name="Play_SSTM_VNCL_TR1_Fixed_Start_Run" enable ="0" tag = "run" loop ="0">
+					<sound name="Play_SSTM_VNCL_TR1_Fixed_Start_Run" enable ="0" tag = "run" >
 						<param name="rpm" var="thrust" lerpTime="1.1" />
-						<!--<param name="load" var="load" min="0.2" />-->
 						<param name="in_out" var="in_out" />
-						
-					</sound>
-					<sound name="Stop_SSTM_VNCL_TR1_Fixed_Start_Run" enable ="0" tag = "stop" loop ="0" >
-					<param name="in_out" var="in_out" />
-					<param name="rpm" var="thrust" lerpTime="0.9" />
 					</sound>
 				</exhaust>
 			</exhausts>
@@ -110,19 +101,17 @@
 		<tags tag="glaive">
 			<thruster flags="maneuver orientation retro" maxThrust ="600000" rotationScale="1.0" retroScale="1.0">
 				<exhausts>
-					<exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.3">
-						<effect name="Spaceships\Thrusters\VNCL_Trap_TR1_Fixed.Thruster_ALL.VNCL_Trap_TR1_Fixed" helper="nozzle_exhaust" enable = "0" tag ="run">
-							<strength var="thrust" />
-						</effect>
-					<sound name="Play_SSTM_VNCL_TR1_Fixed_Start_Run" enable ="0" tag = "run" loop ="0">
+				<exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.3">
+					<effect name="Thruster_FX.Scythe.VNCL_Trap_TR1_Fixed" helper="nozzle_exhaust" enable = "0" tag ="run">
+						<strength var="thrust" />
+					</effect>
+					<!--<effect name="Spaceships\Thrusters\VNCL_Trap_TR1_Fixed.Thruster_ALL.VNCL_Trap_TR1_Fixed" helper="nozzle_exhaust" enable = "0" tag ="run">
+					<strength var="thrust" />
+					</effect>-->
+					
+						<sound name="Play_SSTM_VNCL_TR1_Fixed_Start_Run" enable ="0" tag = "run" >
 							<param name="rpm" var="thrust" lerpTime="1.1" />
-							<!--<param name="load" var="load" min="0.2" />-->
 							<param name="in_out" var="in_out" />
-							
-						</sound>
-						<sound name="Stop_SSTM_VNCL_TR1_Fixed_Start_Run" enable ="0" tag = "stop" loop ="0" >
-						<param name="in_out" var="in_out" />
-						<param name="rpm" var="thrust" lerpTime="0.9" />
 						</sound>
 					</exhaust>
 				</exhausts>

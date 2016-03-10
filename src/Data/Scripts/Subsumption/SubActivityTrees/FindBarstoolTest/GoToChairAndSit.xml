@@ -1,0 +1,39 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="chair" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="1" pos="-75,-300,0" class="InitNode"/>
+   <Task name="Find Object" id="2" pos="-90,-165,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="Stool"/>
+    <Input name="Use Channel" value="sit" type="string"/>
+    <Input name="Range" value="500" type="float"/>
+    <Output name="Result Object" type="entityid" value="chair"/>
+   </Task>
+   <Task name="Pathfind" id="3" pos="-90,30,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="chair"/>
+    <Input name="Use Channel" value="sit" type="string"/>
+    <Input name="Speed" value="Walk" type="string"/>
+   </Task>
+   <Task name="Use" id="4" pos="-78,196,0" class="TreeNode">
+    <Input name="User" type="entityid"/>
+    <Input name="Usable" type="entityid" value="chair"/>
+    <Input name="Using Object" type="entityid"/>
+    <Input name="Use Channel" type="string" value="sit"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="2" nodeOut="1" portIn="in" portOut="outSuccess" enabled="1" pos0="-33.80584,-229.17969,0"/>
+   <Edge nodeIn="3" nodeOut="2" portIn="in" portOut="outSuccess" enabled="1" pos0="-45,-15,0"/>
+   <Edge nodeIn="4" nodeOut="3" portIn="in" portOut="outSuccess" enabled="1" pos0="-42.467709,166.84114,0"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

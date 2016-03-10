@@ -25,7 +25,6 @@ SmartMine =
 			clrDiffuse = { x=1 , y=0 , z=0 },
 			fDiffuseMultiplier = 1,
 			fSpecularMultiplier = 1,
-			fHDRDynamic = 0,
 		},
 
 		LightDisarmed = 
@@ -33,7 +32,6 @@ SmartMine =
 			clrDiffuse = { x=0 , y=1 , z=0 },
 			fDiffuseMultiplier = 1,
 			fSpecularMultiplier = 1,
-			fHDRDynamic = 0,
 		},
 
 		Audio =

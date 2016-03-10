@@ -14,10 +14,10 @@
 		<param name="itemSize" value="4" />
 		<param name="itemTags" value="flightReady" />
 		<param name="requiredPortTags" value="AEGS_Retaliator_Base" />
-		<param name="display_name"	value="AEGS Samson Thruster" />
-
-		<param name="mass" value="2500" />
-		<param name="hitpoints" value="300" />
+		<param name="itemDescription" value="item_DescAEGS_Thruster_Joint_Samson" />
+		<param name="display_name"	value="item_NameAEGS_Thruster_Joint_Samson" />
+		<param name="hitpoints" value="100" />
+		<param name="mass" value="250" />
   </params>
 
     <power_grouping>
@@ -29,12 +29,12 @@
 		<DebrisList>
 			<Debris name="base_debris1" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.debris_fire_small" helper="base_debris1_PFX1" />
+					<Effect effect="" helper="base_debris1_PFX1" />
 				</EffectsList>
 			</Debris>
 			<Debris name="base_debris2" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small" helper="base_debris2_PFX1"  />
+					<Effect effect="" helper="base_debris2_PFX1"  />
 				</EffectsList>
 			</Debris>
 		</DebrisList>
@@ -43,7 +43,7 @@
 		<DebrisList>
 			<Debris name="base_debris1" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.debris_fire_small" helper="base_debris1_PFX1" />
+					<Effect effect="" helper="base_debris1_PFX1" />
 				</EffectsList>
 			</Debris>
 		</DebrisList>
@@ -114,16 +114,11 @@
 		</Pipe>
 	</Pipes>
 	
-	<gimbal type="joint" >
-		<pitch joint="pitch_part" min ="0" max ="90" speed="70" accel="2000" >
-			<!--<sound name="Play_SSTM_ANVL_Joint_MK2_Gimbal_Azimuth" stop="Play_SSTM_ANVL_Joint_MK2_Gimbal_Azimuth_stop">
-			<param name="in_out" var="in_out" />
-			</sound>-->
-		</pitch>
-		</gimbal>
+	<gimbal type="fixed" >
+	</gimbal> 
   
   <thrusters>
-	  <thruster flags="maneuver orientation" maxThrust="800000" rotationScale="0.5">
+	  <thruster flags="maneuver orientation" maxThrust="1600000" rotationScale="0.4" boostScale="1">
 		  <exhausts>
 			  <exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.1"/>
 		  </exhausts>
@@ -131,18 +126,13 @@
   </thrusters>
 	
 	<EntityEffects>	
-		<effect name="thruster_fx.Templates.Thrust-Maneuver-01-Fixed" helper="nozzle_exhaust" enable="0" tag ="run">
+		<effect name="Spaceships\Thrusters\AEGS_Thruster_Joint_Samson.Thruster_ALL.AEGS_Thruster_Joint_Samson" helper="exhaust" enable="0" tag ="run">
 			<strength var="thrust" />
 		</effect>
-		<sound name="Play_SSTM_ANVL_Joint_MK2_Start_Run" enable ="0" tag = "run" loop="0">
+		<sound name="Play_SSTM_AEGS_Thruster_Joint_Samson_Live_Start_Run" enable ="0" tag = "run">
 			<param name="rpm" var="thrust" lerpTime="1.8" />
 			<param name="boost" var="boost" lerpTime="2" />
 			<param name="in_out" var="in_out" />
-		</sound>
-		<sound name="Stop_SSTM_ANVL_Joint_MK2_Start_Run" enable ="0" tag = "stop" loop="0">
-			<param name="in_out" var="in_out" />
-			<param name="rpm" var="thrust" lerpTime="2" />
-			<param name="boost" var="boost" lerpTime="2" />
 		</sound>
 	</EntityEffects>
 </item>

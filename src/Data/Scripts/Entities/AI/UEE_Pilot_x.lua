@@ -7,28 +7,28 @@ UEE_Pilot_x =
 	SoundDatabase = "Animations/Mannequin/ADB/playerSounds.adb",
 
 	colliderEnergyScale = 10,
-	colliderRagdollScale = 150,
   
 	Properties = 
 	{	
 		esNavigationType = "MediumSizedCharacters",
 		voiceType = "enemy",
-		fileModel = "Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf",
-		objFrozenModel = "",
+		fileModel = "Objects/Characters/Human/male_v7_cdfs/uee/light/uee_light_m_outfit_original.cdf",
 		Damage =
 		{
-		  bNoGrab = 0,
-			bNoDeath = 0,
 			FallPercentage = 20,
-			FallSleepTime = 2,
 			health = 250,
 		},
-		distanceToHideFrom = 3,
-		preferredCombatDistance = 20,		-- preferred combat distance from the target
 		esFaction = "UEE",
 
 		-- Default Loadout override for UEE_Pilots
-		fileItemLoadout = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
+		Loadouts = 
+		{
+			fileLoadout1 = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
+			fileLoadout2 = "",
+			fileLoadout3 = "",
+			fileLoadout4 = "",
+			fileLoadout5 = "",
+		},
 
 		
 		CharacterSounds =
@@ -160,10 +160,6 @@ UEE_Pilot_x =
 			},
 		},
 	},
-	
-	AI_changeCoverLastTime = 0,	
-	AI_changeCoverInterval = 7,
-	
 
 	--melee stuff
 	melee =
@@ -176,66 +172,4 @@ mergef(UEE_Pilot_x, AIBase, 1)
 
 function UEE_Pilot_x:OnResetCustom()
 	AI.ModifySmartObjectStates(self.id, "-Busy");
-	self:ReleaseTargetPOI();
 end
-
--------------------------------------------------------------------------------------------------------
---function UEE_Pilot_x:OnInit(  )
---
-----	dump(BasicAI);
---	mergef( self, BasicAI, 1 );
-----	dump(self);
---	BasicAI.Server_OnInit( self );
---	BasicAI.Client_OnInit( self );
---
---	self.cnt:CounterSetValue("Boredom", 0 );
---	
-----	self:MakeAlerted();
---	
-----	BasicPlayer.Server_OnInit( self );	
-----	BasicAI.OnInit( self );
---
---end
-
---Grunt=CreateAI(UEE_Pilot_x)
------------------------------------------------------------------------------------------------------
---function UEE_Pilot_x:Event_Talk(sender)
---	BroadcastEvent(self, "Talk");
---	AI.Signal(SIGNALFILTER_SENDER,1,"OnBored", self.id);
---	System.Log("SENDING TALK");
---end
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
-
---UEE_Pilot_x.FlowEvents =
---{
---	Inputs =
---	{
---		Alert = { UEE_Pilot_x.Event_Alert, "bool" },
---		Talk = { UEE_Pilot_x.Event_Talk, "bool" },
---	},
---	Outputs =
---	{
---		Alert = "bool",
---		Talk = "bool",
---	},
---}
-
------------------------------------------------------------------------------------------------------
--- Points of interest
------------------------------------------------------------------------------------------------------
-
-function UEE_Pilot_x:SetTargetPOI(poi)
-	self.AI.poiId = poi.id;
-	AI.SetRefPointPosition(self.id, poi:GetWorldPos());
-end
-
-
-function UEE_Pilot_x:ReleaseTargetPOI()
-	if (self.AI.poiId) then
-		AI.ModifySmartObjectStates(self.AI.poiId, "-Busy");
-		self.AI.poiId = nil;
-	end
-end
-
-

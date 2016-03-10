@@ -164,7 +164,7 @@ end
 function BasicAI:ResetAIParameters(bFromInit, bIsReload)
 	--Log("%s:ResetAIParameters(%s, %s)", self:GetName(), tostring(bFromInit), tostring(bIsReload))
 	if ((not bFromInit) or bIsReload) then
-		AI.ResetParameters(self.id, bIsReload, self.Properties, self.PropertiesInstance, self.AIMovementAbility, self.melee)
+		--AI.ResetParameters(self.id, bIsReload, self.Properties, self.PropertiesInstance, self.AIMovementAbility, self.melee)
 		self._enabled = true
 
 		if (self:IsHidden()) then
@@ -230,9 +230,7 @@ function BasicAI:OnReset(bFromInit, bIsReload)
 
 	-- now the same for special fire animations
 
-		BasicActor.Reset(self, bFromInit, bIsReload);
-
-	self:AssignPrimaryWeapon();
+	BasicActor.Reset(self, bFromInit, bIsReload);
 
 	-- Register with target tracks
 	local Perception = self.Properties.Perception;
@@ -255,9 +253,6 @@ function BasicAI:OnReset(bFromInit, bIsReload)
 	self.AI.MountingAccessory = nil;
 
 	self:CheckWeaponAttachments();
-	if AI then
-		AI.EnableWeaponAccessory(self.id, AIWEPA_LASER, true);
-	end
 
 	self:SetColliderMode(Properties.esColliderMode);
 
@@ -274,20 +269,6 @@ function BasicAI:OnReset(bFromInit, bIsReload)
 	end
 end
 
-
----------------------------------------------------------------------
-function BasicAI:OnModularBehaviorTreeInitialized()
-	-- Warning! The AIActor is still being constructed/serialized
-	-- when this function is called. Be careful with what you call.
-	-- The modular behavior tree and its variables have been setup
-	-- at this point so you can safely set/get variables.
-
-	if (self.OnResetSavedAssignment ~= nil) then
-		self:OnResetSavedAssignment()
-	end
-end
-
-
 ---------------------------------------------------------------------
 function BasicAI:OnSpawn(bIsReload)
 	-- System.Log("BasicAI.Server:OnSpawn()"..self:GetName());
@@ -301,43 +282,6 @@ end
 function BasicAI:OnBeingReused()
 	self:Event_Disabled(self);
 end
-
-
----------------------------------------------------------------------
-function BasicAI:GetReturnToPoolWeight(isUrgent)
-
-	-- Don't consider me if I'm not dead unless its urgent
-	local isDead = self:IsDead();
-	if (not isDead and not isUrgent) then
-		return 0;
-	end
-
-	local weight = 0.0;
-
-	-- Add large bonus if dead
-	if (isDead) then
-		weight = weight + 1000.0;
-	end
-
-	-- Add distance from player
-	if (g_localActor) then
-		local distance = self:GetDistance(g_localActor.id);
-		weight = weight + distance;
-	end
-
-	return weight;
-
-end
-
----------------------------------------------------------------------
-function BasicAI:OnGetPoolSignature(signature)
-
-	if (self.AIType) then
-		signature.AIType = self.AIType;
-	end
-
-end
-
 
 
 --------------------------------------------------------------------------------------------------------
@@ -393,135 +337,15 @@ function BasicAI.Client:OnShutDown()
 	BasicActor.ShutDown(self);
 end
 
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:MakeAlerted( noDrawWeapon )
-
-	if(noDrawWeapon~=nil) then return end
-
-	self:DrawWeaponNow( );
-
-end
-
 --------------------------------------------------------------------------------------------------------
 function BasicAI:MakeIdle( holsterWeapon )
 	-- Make this guy idle
 	AI.ChangeParameter(self.id,AIPARAM_SIGHTRANGE,self.Properties.Perception.sightrange);
 	AI.ChangeParameter(self.id,AIPARAM_FOVPRIMARY,self.Properties.Perception.FOVPrimary);
 
-	--self:SelectPipe(0,"stand_only");
-	--self:InsertSubpipe(0,"setup_idle");
-	--self:InsertSubpipe(0,"clear_all"); -- to allow receive again onplayerseen
-
-	self:SelectPipe(0,"do_nothing");
-
 	if (holsterWeapon) then
 		self.actor:HolsterItem(true);
 	end
-end
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:InitAIRelaxed(forceWeaponHolster)
-
-	self:MakeIdle(forceWeaponHolster);
-	AI.SetStance(self.id, STANCE_RELAXED);
-end
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:AssignPrimaryWeapon()
-	-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
-	-- TODO cbrungardt @ IllFonic - probably need to do something here.
-
-end
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:DrawWeaponNow( skipCheck )
-	if ( skipCheck~=1 and self.inventory:GetCurrentItem() ) then
-		-- there is something in his hands - don't change weapon, just make sure it's out
-		return
-	end
-
-	local weapon = self.inventory:GetCurrentItem();
-	-- make sure we select primary weapon
-	if (weapon==nil or weapon.class~=self.primaryWeapon) then
-		self.actor:SelectItemByName(self.primaryWeapon);
-	end
-
-	-- lets set burst fire mode - only Kuang has it currently
-	weapon = self.inventory:GetCurrentItem();
-	if(weapon~=nil and weapon.weapon~=nil and weapon.class==self.primaryWeapon) then
-		weapon.weapon:SetCurrentFireMode("burst");
-	end
-
---	self:UseLAM("FlashLight",true);
---	self:UseLAM("Laser",true);
-end
-
---
---------------------------------------------------------------------------------------------------------
--- check selected weapon
--- returns nil if no weapon selected, 0 if primary weapon selected, 1 if secondary
---
-function BasicAI:CheckCurWeapon( checkDistance )
-
-	if(checkDistance~=nil) then
-		local targetDist = AI.GetAttentionTargetDistance(self.id);
-		if(targetDist and targetDist>10.5) then return nil end
-	end
-
-	local currentWeapon = self.inventory:GetCurrentItem();
-	if(currentWeapon==nil) then return nil end
-	if(currentWeapon.class==self.primaryWeapon) then return 0 end
-	if(currentWeapon.class==self.secondaryWeapon) then return 1 end
-
-end
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:HasSecondaryWeapon()
-	local secondaryWeaponId=self.inventory:GetItemByClass(self.secondaryWeapon);
-	-- see if secondary weapon is awailable
-	if(secondaryWeaponId==nil) then		return nil	end
-	do return 1 end
-end
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:SelectSecondaryWeapon()
-
-	if(self:IsOnVehicle()) then
-		return nil;
-	end
-
-	local secondaryWeaponId=self.inventory:GetItemByClass(self.secondaryWeapon);
-	-- see if secondary weapon is awailable
-	if(secondaryWeaponId==nil) then		return nil	end
-	-- see if it is already selected
-	local currentWeapon = self.inventory:GetCurrentItem();
-	--AI.LogComment(entity:GetName().." ScoutIdle:Constructor weapon = "..weapon.class);
-	if(currentWeapon~=nil and currentWeapon.class==self.secondaryWeapon) then return nil end
-
-	self.actor:SelectItemByName( self.secondaryWeapon );
-
-	do return 1 end
-end
-
---------------------------------------------------------------------------------------------------------
-function BasicAI:SelectAuxiliarWeapon()
-
-	if(self:IsOnVehicle()) then
-		return nil;
-	end
-
-	local auxiliarWeaponId=self.inventory:GetItemByClass(self.auxiliarWeapon);
-	-- see if auxiliar weapon is awailable
-	if(auxiliarWeaponId==nil) then		return nil	end
-	-- see if it is already selected
-	local currentWeapon = self.inventory:GetCurrentItem();
-	--AI.LogComment(entity:GetName().." ScoutIdle:Constructor weapon = "..weapon.class);
-	if(currentWeapon~=nil and currentWeapon.class==self.auxiliarWeapon) then return 1 end
-
-	self.actor:SelectItemByName( self.auxiliarWeapon );
-
-	do return 1 end
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -804,16 +628,6 @@ function BasicAI:CheckSingleWeaponAttachment(weaponClass,attachmentClass,attach)
   				end
   			end
 		end
-end
-
-----------------------------------------------------------------------------------
-function BasicAI.Client:OnPreparedFromPool()
-	if (self.AI.Wave) then
-	  wave = GetAIWaveFromName( self.AI.Wave );
-	  if (wave) then
-	  	wave:OnEntityPreparedFromPool( self );
-	  end
-	end
 end
 
 function BasicAI:IsInvulnerable()

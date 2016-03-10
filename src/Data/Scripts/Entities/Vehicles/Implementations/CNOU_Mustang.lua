@@ -1,16 +1,10 @@
 CNOU_Mustang =
 {
-
-	foreignCollisionDamageMult = 1.0,
-	vehicleCollisionDamageMult = 1.0,
-
 	Properties = 
 	{	
 		bDisableEngine = 0,
 		material = "",
-		bFrozen = 0,
 		Modification = "",
-		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
 		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_CNOU_Mustang.xml",
 		
@@ -37,7 +31,6 @@ CNOU_Mustang.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

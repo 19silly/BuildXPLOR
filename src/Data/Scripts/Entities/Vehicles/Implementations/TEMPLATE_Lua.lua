@@ -37,7 +37,6 @@ MANUFACTURER_Shipname.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

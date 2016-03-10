@@ -446,6 +446,14 @@ function ProximityTrigger:EnteredArea(entity, areaId)
 	end;
 	-- CIG END
 
+	-- CIG BEGIN - Anthony Da Silva (BHVR)
+	-- Do not trigger another event if the trigger is not set per player
+	-- and there is already another player in the area.
+	if self.insideCount > 1 and not self.perPlayer then
+		return;
+	end;
+	-- CIG END
+
 	if (not entity.ai) then
 		if (self.Properties.bActivateWithUseButton~=0) then
 			return;
@@ -470,6 +478,14 @@ function ProximityTrigger:LeftArea(entity, areaId)
 		self.insideCount=self.insideCount-1;
 	end;
 	-- CIG END	
+
+	-- CIG BEGIN - Anthony Da Silva (BHVR)
+	-- Do not trigger another event if the trigger is not set per player
+	-- and there is already another player in the area.
+	if self.insideCount > 1 and not self.perPlayer then
+		return;
+	end;
+	-- CIG END
 
 	if(self.Properties.ExitDelay==0) then
 		self.Properties.ExitDelay=0.01;

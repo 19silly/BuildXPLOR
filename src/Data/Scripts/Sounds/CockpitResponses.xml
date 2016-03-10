@@ -8,7 +8,7 @@
 	Currently FloatArgs are based on closeness values, and are all based on the max value
 	StringArgs are direct strcmp comparisons.
 
-	Dialogue element refers to an StoryForge dialogue record that will be played.
+	Dialogue element refers to a DataForge Conversation record that will be played.
 	SFX is a standard sound effect that will be played, e.g. bleeps and bloops
 -->
 
@@ -517,6 +517,14 @@
 		<SFX name="Flight_Control_Autopilot_Disengaged"/>
 	</Response>
 
+	<Response concept="QuantumDriveEngaged">
+		<Dialogue name="quantum_drive_activated" refireDelay="2.0"/>
+	</Response>
+
+	<Response concept="QuantumDriveDisengaged">
+		<Dialogue name="quantum_drive_deactivated" refireDelay="2.0"/>
+	</Response>
+
 	<Response concept="MatchSpeedEngaged">
 		<SFX name="Flight_Control_Matchspeed_Engaged"/>
 	</Response>
@@ -594,11 +602,12 @@
 			</Response>	
 			
 			<Response concept="SystemsOnline">
-				<Dialogue name="systems_systems_online"/>
+				<Dialogue name="systems_systems_online" playWhenLanded="1"/>
 			</Response>	
 			
 			<Response concept="BootUp">
-				<Dialogue name="systems_bootup"/>
+				<Dialogue name="systems_bootup" playWhenLanded="1"/>
+				<SFX name="systems_bootup"/>
 			</Response>
 
 			<Response concept="IsDestroyed">
@@ -737,7 +746,7 @@
 	</Response>
 
 	<Response concept="LandingComplete">
-		<Dialogue name="landing_complete" refireDelay="5.0"/>
+		<Dialogue name="landing_complete" refireDelay="5.0" playWhenLanded="1"/>
 	</Response>
 
 	<Response concept="LandingTakeoff">
@@ -789,7 +798,7 @@
 	</Response>
 	
 	<Response concept="UI_ConfirmAction">
-		<SFX name="User_Confirm_ActionAction"/>
+		<SFX name="User_Confirm_Action"/>
 	</Response>
 	
 

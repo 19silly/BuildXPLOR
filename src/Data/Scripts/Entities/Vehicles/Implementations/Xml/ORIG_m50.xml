@@ -4,13 +4,13 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 -->
-<Vehicle name="ORIG_m50" category="StarFighter" displayname="Origin JumpWorks M50" classname="Class 3" id="idVehicleClass" dockingclass="2" piority="2" HudPaletteScheme="Origin" requiredItemTags="flightReady" itemPortTags="ORIG_m50_Base" crossSectionMultiplier="0.46,0.28,0.36">
+<Vehicle name="ORIG_m50" category="StarFighter" displayname="Origin JumpWorks M50" classname="Class 3" id="idVehicleClass" dockingclass="2" HudPaletteScheme="Origin" requiredItemTags="flightReady" itemPortTags="ORIG_m50_Base" crossSectionMultiplier="0.46,0.28,0.36">
   <Shield shieldMesh="Objects/Spaceships/Ships/ORIG/M50/M50_Shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
       <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
       <DamageMultiplier damageType="melee" multiplier="0" />
@@ -24,9 +24,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <DamageBehavior class="Effect">
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>
+              </DamageBehavior>-->
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -70,18 +70,18 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-    <Part name="ORIG_M50" class="Animated" mass="12000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
+    <Part name="ORIG_M50" class="Animated" mass="7000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
       <Animated filename="Objects/Spaceships/Ships/ORIG/M50/ORIG_M50.cga" filenameDestruction="Objects/Spaceships/Ships/ORIG/M50/ORIG_M50_Damaged.cga" id="idShipGeometry" />
       <Parts>
-        <Part name="Nose" class="AnimatedJoint" damageMax="135">
+        <Part name="Nose" class="AnimatedJoint" damageMax="235">
           <Effects>
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX1" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX2" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX3" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX4" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX5" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX6" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
-            <HitFx effect="damage_fx.uee.static.fire_small" joint="Nose_50_PFX7" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX1" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX2" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX3" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX4" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX5" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX6" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
+            <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Nose_50_PFX7" partName="Nose_50" minDamageRatio="0.5" maxDamageRatio="0.99" />
           </Effects>
           <DamageBehaviors>
             <DamageBehavior class="DetachPart" damageRatioMin="0.25">
@@ -147,26 +147,26 @@
             </DamageBehavior>
           </DamageBehaviors>
           <Parts>
-            <Part name="Canopy" damageMax="101" class="AnimatedJoint" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+            <Part name="Canopy" damageMax="201" class="AnimatedJoint" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
               <Effects />
               <DamageBehaviors />
               <Parts>
                 <Part name="Canopy_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.glass" joint="Canopy_100_debris1_PFX1" partName="Canopy" />
-                    <!--	<DetachFx effect="damage_fx.uee.static.glass" joint="Canopy_100_debris1_PFX1" /> -->
+                    <DetachFx effect="damage\damage_generic_old.uee.static.glass" joint="Canopy_100_debris1_PFX1" partName="Canopy" />
+                    <!--	<DetachFx effect="damage\damage_generic_old.uee.static.glass" joint="Canopy_100_debris1_PFX1" /> -->
                   </Effects>
                 </Part>
               </Parts>
             </Part>
-            <Part name="Body" class="AnimatedJoint" damageMax="450" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+            <Part name="Body" class="AnimatedJoint" damageMax="650" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
               <Effects>
-                <HitFx effect="damage_fx.uee.static.fire_small" joint="Body_50_PFX1" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
-                <HitFx effect="damage_fx.uee.static.fire_small" joint="Body_50_PFX2" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
-                <HitFx effect="damage_fx.uee.static.fire_small" joint="Body_50_PFX3" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
-                <HitFx effect="damage_fx.uee.static.fire_small" joint="Body_50_PFX4" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
-                <HitFx effect="damage_fx.uee.static.fire_small" joint="Body_50_PFX5" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_100_PFX1" />
+                <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX1" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX2" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX3" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX4" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_50_PFX5" partName="Body_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_100_PFX1" />
               </Effects>
               <DamageBehaviors>
                 <DamageBehavior class="DetachPart" damageRatioMin="0.25">
@@ -213,8 +213,8 @@
               <Parts>
                 <Part name="Body_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,0.75,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_100_debris2_PFX2" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_100_debris2_PFX2" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_100_debris2_PFX2" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_100_debris2_PFX2" />
                   </Effects>
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -225,9 +225,9 @@
                     </DamageBehavior>
                   </DamageBehaviors>
                   <Parts>
-                    <Part name="EngineCover" damageMax="180" class="AnimatedJoint">
+                    <Part name="EngineCover" damageMax="280" class="AnimatedJoint">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.static.fire_small" joint="EngineCover_50_debris1_PFX1" partName="EngineCover_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                        <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="EngineCover_50_debris1_PFX1" partName="EngineCover_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="0.5">
@@ -287,13 +287,13 @@
                 </Part>
                 <Part name="Body_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_100_debris1_PFX1" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_100_debris1_PFX1" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_100_debris1_PFX1" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_100_debris1_PFX1" />
                   </Effects>
                   <Parts>
-                    <Part name="WingLeft" damageMax="135" class="AnimatedJoint">
+                    <Part name="WingLeft" damageMax="235" class="AnimatedJoint">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.static.fire_small" joint="WingLeft_50_PFX1" partName="WingLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                        <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingLeft_50_PFX1" partName="WingLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
                       <DamageBehaviors>
                         <!-- 						<DamageBehavior class="DetachPart" damageRatioMin="0.25">
@@ -320,8 +320,8 @@
                       <Parts>
                         <Part name="WingLeft_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeft_100_debris1_PFX1" partName="WingLeft" />
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingLeft_100_debris1_PFX1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeft_100_debris1_PFX1" partName="WingLeft" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingLeft_100_debris1_PFX1" />
                           </Effects>
                           <Parts>
                             <Part name="hardpoint_radiator_left" class="ItemPort">
@@ -376,9 +376,9 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="PowerplantHousingLeft" damageMax="112" class="AnimatedJoint">
+                    <Part name="PowerplantHousingLeft" damageMax="212" class="AnimatedJoint">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.static.fire_small" joint="PowerplantHousingLeft_50_debris1_PFX1" partName="PowerplantHousingLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                        <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="PowerplantHousingLeft_50_debris1_PFX1" partName="PowerplantHousingLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="0.25">
@@ -427,8 +427,8 @@
                             <Part name="PowerplantHousingLeft_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                             <Part name="PowerplantHousingLeft_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="PowerplantHousingLeft_50_debris1_PFX1" partName="PowerplantHousingLeft" />
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="PowerplantHousingLeft_50_debris1_PFX1" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="PowerplantHousingLeft_50_debris1_PFX1" partName="PowerplantHousingLeft" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="PowerplantHousingLeft_50_debris1_PFX1" />
                               </Effects>
                               <Parts>
                                 <Part name="PowerplantHousingLeft_25_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -436,8 +436,8 @@
                             </Part>
                             <Part name="PowerplantHousingLeft_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="PowerplantHousingLeft_50_debris2_PFX2" partName="PowerplantHousingLeft" />
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="PowerplantHousingLeft_50_debris2_PFX2" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="PowerplantHousingLeft_50_debris2_PFX2" partName="PowerplantHousingLeft" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="PowerplantHousingLeft_50_debris2_PFX2" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -448,13 +448,13 @@
                 </Part>
                 <Part name="Body_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_100_debris3_PFX3" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_100_debris3_PFX3" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_100_debris3_PFX3" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_100_debris3_PFX3" />
                   </Effects>
                   <Parts>
-                    <Part name="WingRight" damageMax="135" class="AnimatedJoint">
+                    <Part name="WingRight" damageMax="235" class="AnimatedJoint">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.static.fire_small" joint="WingRight_50_PFX1" partName="WingRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                        <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingRight_50_PFX1" partName="WingRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
                       <DamageBehaviors>
                         <!-- 						<DamageBehavior class="DetachPart" damageRatioMin="0.25">
@@ -481,8 +481,8 @@
                       <Parts>
                         <Part name="WingRight_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRight_100_debris1_PFX1" partName="WingRight" />
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingRight_100_debris1_PFX1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRight_100_debris1_PFX1" partName="WingRight" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingRight_100_debris1_PFX1" />
                           </Effects>
                           <Parts>
                             <Part name="hardpoint_radiator_right" class="ItemPort">
@@ -538,9 +538,9 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="PowerplantHousingRight" damageMax="112" class="AnimatedJoint">
+                    <Part name="PowerplantHousingRight" damageMax="212" class="AnimatedJoint">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.static.fire_small" joint="PowerplantHousingRight_50_debris1_PFX1" partName="PowerplantHousingRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                        <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="PowerplantHousingRight_50_debris1_PFX1" partName="PowerplantHousingRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                       </Effects>
                       <DamageBehaviors />
                       <Parts>
@@ -563,14 +563,14 @@
                         </Part>
                         <Part name="PowerplantHousingRight_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="PowerplantHousingRight_50_debris1_PFX1" partName="PowerplantHousingRight" />
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="PowerplantHousingRight_50_debris1_PFX1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="PowerplantHousingRight_50_debris1_PFX1" partName="PowerplantHousingRight" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="PowerplantHousingRight_50_debris1_PFX1" />
                           </Effects>
                         </Part>
                         <Part name="PowerplantHousingRight_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="PowerplantHousingRight_50_debris2_PFX2" partName="PowerplantHousingRight" />
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="PowerplantHousingRight_50_debris2_PFX2" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="PowerplantHousingRight_50_debris2_PFX2" partName="PowerplantHousingRight" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="PowerplantHousingRight_50_debris2_PFX2" />
                           </Effects>
                         </Part>
                         <Part name="PowerplantHousingRight_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -597,33 +597,33 @@
                 </Part>
                 <Part name="body_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_50_debris5_PFX5" partName="Body" /> -->
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_50_debris6_PFX6" />
+                    <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris5_PFX5" partName="Body" /> -->
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris6_PFX6" />
                   </Effects>
                 </Part>
                 <Part name="Body_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_50_debris2_PFX2" partName="Body_100_debris1" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_50_debris2_PFX2" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris2_PFX2" partName="Body_100_debris1" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris2_PFX2" />
                   </Effects>
                 </Part>
-                <Part name="Tail" class="AnimatedJoint" damageMax="135">
+                <Part name="Tail" class="AnimatedJoint" damageMax="235">
                   <DetachParents>
                     <DetachParent partName="Body_100_debris1" seperateLink="1" />
                   </DetachParents>
                   <Parts>
                     <Part name="Tail_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_100_debris1_PFX1" partName="Tail" />
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_100_debris1_PFX1" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_100_debris1_PFX1" partName="Tail" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_100_debris1_PFX1" />
                       </Effects>
                       <Parts>
                         <Part name="Tail_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Parts>
                             <Part name="Tail_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_50_debris1_PFX1" partName="Tail_100_debris1" />
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_50_debris1_PFX1" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_50_debris1_PFX1" partName="Tail_100_debris1" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_50_debris1_PFX1" />
                               </Effects>
                               <Parts>
                                 <Part name="hardpoint_lights_ext_tail" class="ItemPort">
@@ -643,8 +643,8 @@
                     </Part>
                     <Part name="Tail_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_100_debris2_PFX2" partName="Tail" />
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_100_debris2_PFX2" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_100_debris2_PFX2" partName="Tail" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_100_debris2_PFX2" />
                       </Effects>
                     </Part>
                     <Part name="Tail_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -660,32 +660,32 @@
                 </Part>
                 <Part name="Body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_50_debris1_PFX1" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_50_debris1_PFX1" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris1_PFX1" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris1_PFX1" />
                   </Effects>
                 </Part>
                 <Part name="Body_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_50_debris3_PFX3" partName="Body_100_debris4" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_50_debris3_PFX3" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris3_PFX3" partName="Body_100_debris4" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris3_PFX3" />
                   </Effects>
                 </Part>
                 <Part name="Body_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_50_debris4_PFX4" partName="Body_75_debris3" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_50_debris4_PFX4" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris4_PFX4" partName="Body_75_debris3" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris4_PFX4" />
                   </Effects>
                 </Part>
                 <Part name="body_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_50_debris5_PFX5" partName="Body_100_debris2" />
-                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_50_debris5_PFX5" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_50_debris5_PFX5" partName="Body_100_debris2" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_50_debris5_PFX5" />
                   </Effects>
                 </Part>
                 <Part name="Body_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_75_debris1_PFX1" partName="Body_100_debris2" />
-													<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_75_debris1_PFX1" /> -->
+                    <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_75_debris1_PFX1" partName="Body_100_debris2" />
+													<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_75_debris1_PFX1" /> -->
                   </Effects>
                   <Parts>
                     <Part name="hardpoint_countermeasure_launcher_left" class="ItemPort">
@@ -706,8 +706,8 @@
                 </Part>
                 <Part name="Body_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_75_debris2_PFX2" partName="Body_100_debris3" />
-													<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_75_debris2_PFX2" /> -->
+                    <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_75_debris2_PFX2" partName="Body_100_debris3" />
+													<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_75_debris2_PFX2" /> -->
                   </Effects>
                   <Parts>
                     <Part name="hardpoint_thruster_rear_right_side" class="ItemPort">
@@ -738,14 +738,14 @@
                 </Part>
                 <Part name="Body_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_75_debris3_PFX3" partName="Body_100_debris2" />
-													<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_75_debris3_PFX3" /> -->
+                    <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_75_debris3_PFX3" partName="Body_100_debris2" />
+													<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_75_debris3_PFX3" /> -->
                   </Effects>
                 </Part>
                 <Part name="Body_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_75_debris4_PFX4" partName="Body_100_debris1" />
-													<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_75_debris4_PFX4" /> -->
+                    <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_75_debris4_PFX4" partName="Body_100_debris1" />
+													<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_75_debris4_PFX4" /> -->
                   </Effects>
                   <Parts>
                     <Part name="hardpoint_thruster_rear_left_bottom" class="ItemPort">
@@ -778,8 +778,8 @@
             </Part>
             <Part name="Nose_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,0.75,0" detachRandomForce="0.5, 1, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_100_debris1_PFX1" partName="Nose" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_100_debris1_PFX1" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_100_debris1_PFX1" partName="Nose" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_100_debris1_PFX1" />
               </Effects>
               <DamageBehaviors>
                 <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -804,44 +804,44 @@
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="WingFrontLeft" damageMax="101" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                <Part name="WingFrontLeft" damageMax="201" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
                   <Effects>
-                    <HitFx effect="damage_fx.uee.static.fire_small" joint="WingFrontLeft_50_debris1_PFX1" partName="WingFrontLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingFrontLeft_50_debris1_PFX1" partName="WingFrontLeft_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                   </Effects>
                   <DamageBehaviors />
                   <Parts>
                     <Part name="WingFrontLeft_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingFrontLeft_100_debris1_PFX1" partName="WingFrontLeft" />
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingFrontLeft_100_debris1_PFX1" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingFrontLeft_100_debris1_PFX1" partName="WingFrontLeft" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingFrontLeft_100_debris1_PFX1" />
                       </Effects>
                       <Parts>
                         <Part name="WingFrontLeft_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingFrontLeft_50_debris1_PFX1" partName="WingFrontLeft_100_debris1" />
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingFrontLeft_50_debris1_PFX1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingFrontLeft_50_debris1_PFX1" partName="WingFrontLeft_100_debris1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingFrontLeft_50_debris1_PFX1" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="WingFrontRight" damageMax="101" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 1.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                <Part name="WingFrontRight" damageMax="201" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="0.5, 1.5, 0.5" detachRandomRotation="0.5,0,0.3">
                   <Effects>
-                    <HitFx effect="damage_fx.uee.static.fire_small" joint="WingFrontRight_50_debris1_PFX1" partName="WingFrontRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                    <HitFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingFrontRight_50_debris1_PFX1" partName="WingFrontRight_50" minDamageRatio="0.75" maxDamageRatio="0.99" />
                   </Effects>
                   <DamageBehaviors />
                   <Parts>
                     <Part name="WingFrontRight_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 1.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingFrontRight_100_debris1_PFX1" partName="WingFrontRight" />
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingFrontRight_100_debris1_PFX1" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingFrontRight_100_debris1_PFX1" partName="WingFrontRight" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingFrontRight_100_debris1_PFX1" />
                       </Effects>
                       <Parts>
                         <Part name="WingFrontRight_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingFrontRight_50_debris1_PFX1" partName="WingFrontRight_100_debris1" />
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingFrontRight_50_debris1_PFX1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingFrontRight_50_debris1_PFX1" partName="WingFrontRight_100_debris1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingFrontRight_50_debris1_PFX1" />
                           </Effects>
                         </Part>
                       </Parts>
@@ -966,8 +966,8 @@
             </Part>
             <Part name="Nose_100_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="-0.75, 0.1, -0.25" detachRandomForce="-0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_100_debris3_PFX3" partName="Nose" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_100_debris3_PFX3" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_100_debris3_PFX3" partName="Nose" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_100_debris3_PFX3" />
               </Effects>
               <Parts>
                 <Part name="hardpoint_thruster_intake_left_retro" class="ItemPort">
@@ -987,18 +987,25 @@
                     </Types>
                   </ItemPort>
                 </Part>
+                <Part name="landingpad_helper" class="ItemPort">
+                 <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+                  <Types>
+                    <Type type="LandingSystem"/>
+                  </Types>
+                 </ItemPort>
+                </Part>
                 <Part name="Nose_25_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0, 1, 0.25" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="" partName="Nose_100_debris3" />
-											<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="" /> -->
+                    <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="" partName="Nose_100_debris3" />
+											<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="" /> -->
                   </Effects>
                 </Part>
               </Parts>
             </Part>
             <Part name="Nose_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0.85, 0.1, 0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5, 0, 0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_100_debris2_PFX2" partName="Nose" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_100_debris2_PFX2" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_100_debris2_PFX2" partName="Nose" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_100_debris2_PFX2" />
               </Effects>
               <Parts>
                 <Part name="hardpoint_thruster_intake_right_retro" class="ItemPort">
@@ -1029,38 +1036,38 @@
             </Part>
             <Part name="Nose_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris1_PFX5" partName="Nose" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris1_PFX5" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris1_PFX5" partName="Nose" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris1_PFX5" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,0.75,0" detachRandomForce="0.5, 0.85, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris2_PFX2" partName="Nose_100_debris1" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris2_PFX2" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris2_PFX2" partName="Nose_100_debris1" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris2_PFX2" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris3_PFX3" partName="Nose_100_debris3" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris3_PFX3" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris3_PFX3" partName="Nose_100_debris3" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris3_PFX3" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris5_PFX5" partName="Nose_100_debris1" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris5_PFX5" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris5_PFX5" partName="Nose_100_debris1" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris5_PFX5" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris4_PFX4" partName="Nose_100_debris2" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris4_PFX4" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris4_PFX4" partName="Nose_100_debris2" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris4_PFX4" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris6_PFX6" partName="Nose_100_debris3" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris6_PFX6" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris6_PFX6" partName="Nose_100_debris3" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris6_PFX6" />
               </Effects>
               <Parts>
                 <Part name="LadderHatch" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0, 1, 0.25" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="0" />
@@ -1070,38 +1077,38 @@
             <Part name="Nose_50_debris8" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="Nose_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
-											<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="" /> -->
+                <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
+											<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="" /> -->
               </Effects>
             </Part>
             <Part name="Nose_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_50_debris1_PFX5" partName="Nose" />
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_50_debris1_PFX5" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_50_debris1_PFX5" partName="Nose" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_50_debris1_PFX5" />
               </Effects>
             </Part>
             <Part name="Nose_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
-											<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="" /> -->
+                <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
+											<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="" /> -->
               </Effects>
             </Part>
             <Part name="Nose_75_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
-											<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="" /> -->
+                <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
+											<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="" /> -->
               </Effects>
             </Part>
             <Part name="Nose_75_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
-											<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="" /> -->
+                <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
+											<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="" /> -->
               </Effects>
             </Part>
             <Part name="Nose_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <!-- <DetachFx effect="damage_fx.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
-											<DetachFx effect="damage_fx.uee.static.electric_sparks" joint="" /> -->
+                <!-- <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="" partName="Nose_100_debris1" />
+											<DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="" /> -->
               </Effects>
             </Part>
             <Part name="hardpoint_fuel_intake_left" class="ItemPort">
@@ -1172,12 +1179,6 @@
         </Seats>
       </Enter>
     </Action>
-    <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears animation="Landing_Gear" landingDamages="500" altitudeToRetractGears="8" openState="Deploy" closeState="Retract" />
-    </Action>
   </Actions>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////-->
@@ -1200,7 +1201,7 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- SeatDriver's seat  -->
-    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1">
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -1293,6 +1294,7 @@
                 <ItemPort part="*hardpoint_fuel" />
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
+                <ItemPort part="landingpad_helper" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1385,12 +1387,14 @@
         <FirstPerson scale="1.0" x_offset="0" y_offset="-0.46" z_offset="0.1" />
         <ThirdPerson scale="0.5" x_offset="0" y_offset="-0.5" z_offset="0.035" />
       </FixedVisorSettings>
-      <ArenaCommanderSettings scale="0.75" />
-      <Screens>
-         <Screen name="Fixed UI" element="ShipInterface" screen="M50InterfaceScreen" number="1">
-		  <Container name="HUDScreen" helper="UI_Helper" container="HUDScreen" z_offset="0.065"/>
-        </Screen>
-      </Screens>
+			<ElectronicAccessSettings scale="0.75" />
+	<HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	</HUDAccess>
+			<ScreensRecord record="Screens_ORIG_m50_Pilot"/>
     </Seat>
   </Seats>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1411,29 +1415,20 @@
 		<DuressSound sound="Play_SSDD_ORIG_M50_Cockpit_Shake" damage_floor="24.0" damage_buffer="90.0" />
 	  </AudioParams>
       <!--<Contrails>
-				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
-				<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+				<Contrail helper="wing_right_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+				<Contrail helper="wing_left_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
 			</Contrails>-->
     </Spaceship>
   </MovementParams>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-  <Particles mfxRow="vfx_Anvil_Hornet">
-    <!--
-	 <Exhaust insideWater="0" outsideWater="1">
-	 <Helpers>
-		<Helper value="main_engine_exhaust"/>
-	 </Helpers>
-	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
-	</Exhaust>
-	-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
-      <!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -1450,7 +1445,6 @@
   <Animations>
     <!-- Default Animation States -->
     <!--		<Action name="Cockpit" state="Enter" />-->
-    <Action name="Landing_Gear" state="Deploy" />
   </Animations>
   <!-- Vehicle Animations (to be replaced by mannequin)
 	Format is
@@ -1505,10 +1499,28 @@
 	 -->
   <Attachments>
     <!--<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" filename ="Objects/Spaceships/Anvil_Hornet/pilot_umbilical.chr" scopeContext ="Umbilical"/> -->
-    <Attachment name="landing_gear_front" helper="hardpoint_front_landing_gear" geometry="Objects/Spaceships/Ships/ORIG/LandingGear/M50/M50_LandingGear_Front.chr" scopeContext="LandingGearFront" />
-    <Attachment name="landing_gear_rearleft" helper="hardpoint_back_landing_gear_left" geometry="Objects/Spaceships/Ships/ORIG/LandingGear/M50/M50_LandingGear_BackLeft.chr" scopeContext="LandingGearLeft" />
-    <Attachment name="landing_gear_rearright" helper="hardpoint_back_landing_gear_right" geometry="Objects/Spaceships/Ships/ORIG/LandingGear/M50/M50_LandingGear_BackRight.chr" scopeContext="LandingGearRight" />
   </Attachments>
+    <Modifications>
+	<Modification name="PirateSwarm">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="ORIG_M50_Pirate" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.46,0.28,0.36" />
+        <Elem idRef="idMain_Part" name="name" value="Origin_M50" />
+        <!-- Nerf the health of this ship -->
+        <Elem idRef="idNose" name="damageMax" value="45" />
+        <Elem idRef="idCanopy" name="damageMax" value="34" />
+		<Elem idRef="idBody" name="damageMax" value="150" />
+		<Elem idRef="idEngineCover" name="damageMax" value="60" />
+		<Elem idRef="idWingLeft" name="damageMax" value="45" />
+		<Elem idRef="idPowerplantHousingLeft" name="damageMax" value="37.5" />
+		<Elem idRef="idWingRight" name="damageMax" value="45" />
+		<Elem idRef="idPowerplantHousingRight" name="damageMax" value="37.5" />
+		<Elem idRef="idTail" name="damageMax" value="45" />
+		<Elem idRef="idWingFrontLeft" name="damageMax" value="45" />
+		<Elem idRef="idWingFrontRight" name="damageMax" value="45" />
+      </Elems>
+    </Modification>
+  </Modifications>
   <GeomTags>
     <geom name="Objects/Spaceships/Ships/ORIG/M50/ORIG_M50.cga" material="" id="idHoloGeometry_Default" />
     <TagsList>

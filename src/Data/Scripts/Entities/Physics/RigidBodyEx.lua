@@ -28,6 +28,7 @@ RigidBodyEx = {
 				max_time_step = 0.02,
 				sleep_speed = 0.04,
 				damping = 0,
+				freefall_damping = 0.1,
 				bFixedDamping = 0,
 				bUseSimpleSolver = 0,
 			},
@@ -169,6 +170,9 @@ function RigidBodyEx:SetFromProperties()
 	self.bRigidBodyActive = Properties.Physics.bRigidBodyActive;
 	if (Properties.Physics.bPhysicalize == 1) then
 		self:PhysicalizeThis();
+	else
+		local params = {};
+		self:Physicalize(0,PE_NONE,params);
 	end
 	self:GotoState("Default");
 	

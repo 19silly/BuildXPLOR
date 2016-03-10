@@ -6,7 +6,7 @@
  	<Signatures>
 		<Signature type="CrossSection" value="100" />
 	</Signatures>
- <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+ <Damages  collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
   <DamageMultipliers>
    <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
    <DamageMultiplier damageType="melee" multiplier="0"/>
@@ -47,12 +47,9 @@
        <DamageBehavior class="MovementNotification">
         <MovementNotification isDamageAlwaysFull="0"/>
        </DamageBehavior>
-       <DamageBehavior class="Effect">
+       <!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
         <Effect effect="EngineDamaged" disableAfterExplosion="1"/>
-       </DamageBehavior>
-       <DamageBehavior class="CameraShake">
-        <CameraShake />
-       </DamageBehavior>
+       </DamageBehavior>-->
       </DamageBehaviors>
      </DamagesSubGroup>
     </DamagesSubGroups>
@@ -244,33 +241,25 @@
   
 <MovementParams>
   <Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="180,160,200" maxAngularAcceleration="240,180,270">
-    <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
+    <SoundParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2"/>
   </Spaceship>
 </MovementParams>
   
- <Particles>
-  <Exhaust insideWater="0" outsideWater="1">
-   <Helpers>
-    <Helper value="Top_Engine_Thruster"/>
-    <Helper value="Bottom_Engine_Thruster"/>
-   </Helpers>
-   <EngineStart effect="vehicle_fx.vtol.exhaust"/>
-   <EngineStop effect="vehicle_fx.vtol.exhaust"/>
-   <EngineRunning effect="vehicle_fx.vtol.exhaust" boostEffect="vehicle_fx.vtol.exhaust" baseSizeScale="1" minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="70" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0" minPowerSizeScale="1" minPowerCountScale="1" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="1" maxPowerSpeedScale="1"/>
-  </Exhaust>
-  <DamageEffects>
-   <DamageEffect name="VehicleDestroyed" helper="" effect="explosions.vtol_explosion.explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-   <DamageEffect name="HullDamaged25" helper="burningPos" effect="Vehicle_fx.Damages_Sky.USvtol_hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-   <DamageEffect name="HullDamaged75" helper="burningPos" effect="Vehicle_fx.Damages_Sky.USvtol_hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-  </DamageEffects>
-  <EnvironmentLayers>
-   <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
-    <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
-    <Emitters />
-    <Wheels />
-   </EnvironmentLayer>
-  </EnvironmentLayers>
- </Particles>
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
  <Inventory>
   <AmmoTypes>
    <Ammo type="bullet" capacity="1000"/>

@@ -4,17 +4,17 @@
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
-      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
-      <DamageMultiplier damageType="melee" multiplier="0" />
-      <DamageMultiplier damageType="collision" multiplier="1" parentMultiplier="1" />
-      <DamageMultiplier damageType="explosion" multiplier="1" splash="1" />
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" id="idDamageMultiplierBullet" />
+      <DamageMultiplier damageType="melee" multiplier="0" id="idDamageMultiplierMelee" />
+      <DamageMultiplier damageType="collision" multiplier="1" parentMultiplier="1" id="idDamageMultiplierCollision" />
+      <DamageMultiplier damageType="explosion" multiplier="1" splash="1" id="idDamageMultiplierExplosion" />
     </DamageMultipliers>
     <DamagesGroups>
       <DamagesGroup name="GlobalHitReactions" global="1">
         <DamagesSubGroups>
-          <DamagesSubGroup delay="0" randomness="0">
+          <DamagesSubGroup delay="0" randomness="0"> 
             <DamageBehaviors>
               <!-- Camera Shake -->
               <DamageBehavior class="CameraShake">
@@ -29,87 +29,34 @@
               <DamageBehavior class="Effect">
                 <Effects spawnLimit="8" maxActive="16" coolDown="1" minWeight="3" maxWeight="60">
                   <!-- Left overhead-->
-                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX1" weight="0.5" lifetime="10" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX1" weight="0.5" lifetime="10" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX1" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX1" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX1" weight="0.5" lifetime="10" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX1" weight="0.5" lifetime="10" coolDown="30" />
                   <!-- Right overhead -->
-                  <Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX2" weight="0.5" lifetime="10" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX2" weight="0.5" lifetime="10" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX2" weight="1" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX2" weight="2" lifetime="4" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX2" weight="0.5" lifetime="10" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX2" weight="0.5" lifetime="10" coolDown="30" />
                   <!-- Left Canopy -->
-                  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX3" weight="2" lifetime="5" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX3" weight="2" lifetime="5" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX3" weight="2" lifetime="5" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX3" weight="3" lifetime="10" coolDown="30" />
-                  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX3" weight="3" lifetime="10" coolDown="30" />` 
-				  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX3" weight="3" lifetime="10" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX3" weight="0.5" lifetime="10" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX3" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Right console -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX4" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX4" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX4" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX4" weight="3" lifetime="10" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX4" weight="3" lifetime="10" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX4" weight="3" lifetime="10" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX4" weight="0.5" lifetime="10" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX4" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Left pipes -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX5" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX5" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX5" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX5" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX5" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX5" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX5" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX5" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Front -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX6" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX6" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX6" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX6" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX6" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX6" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX6" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX6" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Left front -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX7" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX7" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX7" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX7" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX7" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX7" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX7" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX7" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Right front -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX8" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX8" weight="2" lifetime="5" coolDown="30" />
-				  <Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX8" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX8" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX8" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX8" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX8" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX8" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Left console -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX9" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX9" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX9" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX9" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX9" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX9" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX9" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX9" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Right floor -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX10" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX10" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX10" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX10" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX10" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX10" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX10" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX10" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Right console electric crawl -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX11" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX11" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX11" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX11" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX11" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX11" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_crawl" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_crawl" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Left console electric crawl -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX12" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX12" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX12" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX12" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX12" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX12" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_crawl" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_crawl" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" />
-				  <!-- Right pipes -->
-				  <Effect effect="cockpit_fx.uee.cont.low.smoke" helper="Interior_Hit_PFX13" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.sparks" helper="Interior_Hit_PFX13" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.low.everything" helper="Interior_Hit_PFX13" weight="2" lifetime="5" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.smoke" helper="Interior_Hit_PFX13" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.sparks" helper="Interior_Hit_PFX13" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.high.everything" helper="Interior_Hit_PFX13" weight="3" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.low.smoke" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.sparks" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.everything" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.low.electricity" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.smoke" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.sparks" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.everything" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.high.electricity" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke" helper="Interior_Hit_PFX13" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="cockpit_fx.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX13" weight="0.5" lifetime="10" coolDown="30" /></Effects>
+                  <Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX3" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX3" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX3" weight="2" lifetime="5" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX3" weight="3" lifetime="10" coolDown="30" />
+                  <Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX3" weight="3" lifetime="10" coolDown="30" />` 
+									<Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX3" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX3" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX3" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX3" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX3" weight="0.5" lifetime="10" coolDown="30" /><!-- Right console --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX4" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX4" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX4" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX4" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX4" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX4" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX4" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX4" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX4" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX4" weight="0.5" lifetime="10" coolDown="30" /><!-- Left pipes --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX5" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX5" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX5" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX5" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX5" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX5" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX5" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX5" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX5" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX5" weight="0.5" lifetime="10" coolDown="30" /><!-- Front --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX6" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX6" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX6" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX6" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX6" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX6" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX6" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX6" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX6" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX6" weight="0.5" lifetime="10" coolDown="30" /><!-- Left front --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX7" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX7" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX7" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX7" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX7" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX7" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX7" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX7" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX7" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX7" weight="0.5" lifetime="10" coolDown="30" /><!-- Right front --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX8" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX8" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX8" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX8" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX8" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX8" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX8" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX8" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX8" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX8" weight="0.5" lifetime="10" coolDown="30" /><!-- Left console --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX9" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX9" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX9" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX9" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX9" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX9" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX9" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX9" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX9" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX9" weight="0.5" lifetime="10" coolDown="30" /><!-- Right floor --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX10" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX10" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX10" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX10" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX10" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX10" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX10" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX10" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX10" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX10" weight="0.5" lifetime="10" coolDown="30" /><!-- Right console electric crawl --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX11" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX11" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX11" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX11" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX11" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX11" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX11" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX11" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_crawl" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_crawl" helper="Interior_Hit_PFX11" weight="0.5" lifetime="10" coolDown="30" /><!-- Left console electric crawl --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX12" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX12" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX12" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX12" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX12" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX12" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX12" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX12" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_crawl" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_crawl" helper="Interior_Hit_PFX12" weight="0.5" lifetime="10" coolDown="30" /><!-- Right pipes --><Effect effect="damage_generic.uee.cont.low.smoke" helper="Interior_Hit_PFX13" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.sparks" helper="Interior_Hit_PFX13" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.low.everything" helper="Interior_Hit_PFX13" weight="2" lifetime="5" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.smoke" helper="Interior_Hit_PFX13" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.sparks" helper="Interior_Hit_PFX13" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.high.everything" helper="Interior_Hit_PFX13" weight="3" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.low.smoke" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.sparks" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.everything" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.low.electricity" helper="Interior_Hit_PFX13" weight="1" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.smoke" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.sparks" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.everything" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.high.electricity" helper="Interior_Hit_PFX13" weight="2" lifetime="4" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke" helper="Interior_Hit_PFX13" weight="0.5" lifetime="10" coolDown="30" /><Effect effect="damage_generic.uee.cont.electrical_smoke_fast" helper="Interior_Hit_PFX13" weight="0.5" lifetime="10" coolDown="30" /></Effects>
               </DamageBehavior>
               <DamageBehavior class="AudioFeedback" damageRatioMin="0.1" damageRatioMax="0.95">
                 <Sound sound="" cooldown="1" />
@@ -124,9 +71,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <DamageBehavior class="Effect">
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>
+              </DamageBehavior>-->
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -163,9 +110,6 @@
 							<DamageBehavior class="Effect">
 								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
 							</DamageBehavior>
-							<DamageBehavior class="CameraShake">
-								<CameraShake />
-							</DamageBehavior>
 						</DamageBehaviors>
 					</DamagesSubGroup>
 				</DamagesSubGroups>
@@ -200,8 +144,8 @@
     <Part name="ANVL_Hornet" class="Animated" mass="22000" disablePhysics="0" scopeContext="Ship" id="idShip_Base">
       <Animated filename="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" filenameDestruction="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet_Damage.cga" id="idShipGeometry" />
       <Parts>
-        <Part name="Nose" class="AnimatedJoint" damageMax="600" id="idNosePart">
-          <AnimatedJoint filename="" filenameDestruction="" id="idNoseGeometry" />
+        <Part name="Nose" class="AnimatedJoint" damageMax="1200" id="idNosePart">
+          <!--<AnimatedJoint filename="" filenameDestruction="" id="idNoseGeometry" />-->
           <DamageBehaviors>
             <DamageBehavior class="DetachPart" damageRatioMin="1">
               <DetachPart>
@@ -219,10 +163,10 @@
             </DamageBehavior>
           </DamageBehaviors>
           <Effects>
-            <HitFx effect="damage_fx.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="0.25" maxDamageRatio="0.49" />
-            <HitFx effect="damage_fx.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="0.50" maxDamageRatio="0.74" />
-            <HitFx effect="damage_fx.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="0.75" maxDamageRatio="0.95" />
-            <HitFx effect="damage_fx.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="1.00" maxDamageRatio="1.00" />
+            <HitFx effect="damage\damage_generic_old.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="0.25" maxDamageRatio="0.49" />
+            <HitFx effect="damage\damage_generic_old.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="0.50" maxDamageRatio="0.74" />
+            <HitFx effect="damage\damage_generic_old.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="0.75" maxDamageRatio="0.95" />
+            <HitFx effect="damage\damage_generic_old.uee.nose.med.dmg_75" joint="Nose_100_PFX_2" sound="" minDamageRatio="1.00" maxDamageRatio="1.00" />
           </Effects>
           <Parts>
 			<Part name="hardpoint_light_nose_dorsal" class="ItemPort">
@@ -326,7 +270,7 @@
                 </Part>
                 <Part name="Nose_Front" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <HitFx effect="damage_fx.uee.nose.med.dmg_75" joint="Nose_Front_100_PFX" />
+                    <HitFx effect="damage\damage_generic_old.uee.nose.med.dmg_75" joint="Nose_Front_100_PFX" />
                   </Effects>
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.5">
@@ -349,40 +293,40 @@
                       <Parts>
                         <Part name="Nose_Front_Chunk" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Front_Chunk_50_PFX" partName="Nose_Tip" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Front_Chunk_50_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Front_Chunk_50_PFX" partName="Nose_Tip" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Front_Chunk_50_PFX" />
                           </Effects>
                         </Part>
                         <Part name="Nose_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Panel_B_25_PFX" partName="Nose_Tip" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Panel_B_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Panel_B_25_PFX" partName="Nose_Tip" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Panel_B_25_PFX" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
                     <Part name="Nose_Left_Chunk" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Left_Chunk_50_PFX" partName="Nose_Front" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Left_Chunk_50_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Left_Chunk_50_PFX" partName="Nose_Front" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Left_Chunk_50_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Nose_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Panel_A_25_PFX" partName="Nose_Front" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Panel_A_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Panel_A_25_PFX" partName="Nose_Front" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Panel_A_25_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Nose_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Panel_C_25_PFX" partName="Nose_Front" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Panel_C_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Panel_C_25_PFX" partName="Nose_Front" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Panel_C_25_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Nose_Panel_D" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Panel_D_25_PFX" partName="Nose_Front" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Panel_D_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Panel_D_25_PFX" partName="Nose_Front" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Panel_D_25_PFX" />
                       </Effects>
                     </Part>
                   </Parts>
@@ -395,6 +339,13 @@
               <ItemPort minsize="2" maxsize="4" flags="" display_name="Shield Slot">
                 <Types>
                   <Type type="Shield" subtypes="" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="landingpad_helper" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+                <Types>
+                  <Type type="LandingSystem"/>
                 </Types>
               </ItemPort>
             </Part>
@@ -444,8 +395,8 @@
             </Part>
             <Part name="Nose_Right_Ridge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Nose_Right_Ridge_50_PFX" partName="Nose_Tip" />
-                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Nose_Right_Ridge_50_PFX" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Nose_Right_Ridge_50_PFX" partName="Nose_Tip" />
+                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Nose_Right_Ridge_50_PFX" />
               </Effects>
             </Part>
             <Part name="hardpoint_armor" class="ItemPort">
@@ -499,23 +450,23 @@
             <Part name="hardpoint_debug_10" class="ItemPort">
               <ItemPort minsize="0" maxsize="10" flags="debug invisible" display_name="Debug Port #10" />
             </Part>
-            <Part name="Body" class="AnimatedJoint" damageMax="700" detachBaseForce="0,-1,0" detachRandomForce="1, 0.2, 1" detachRandomRotation="0,0.1,2" id="idBody_Part">
+            <Part name="Body" class="AnimatedJoint" damageMax="1400" detachBaseForce="0,-1,0" detachRandomForce="1, 0.2, 1" detachRandomRotation="0,0.1,2" id="idBody_Part">
               <Effects>
-                <HitFx effect="damage_fx.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                <HitFx effect="damage_fx.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                <HitFx effect="damage_fx.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                <HitFx effect="damage_fx.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                <HitFx effect="damage\damage_generic_old.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                <HitFx effect="damage\damage_generic_old.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                <HitFx effect="damage\damage_generic_old.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                <HitFx effect="damage\damage_generic_old.uee.body.med.dmg_75" joint="Body_100_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
               </Effects>
               <Parts>
-                <Part name="BodyRear" class="AnimatedJoint" damageMax="125" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                <Part name="BodyRear" class="AnimatedJoint" damageMax="250" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" id="idBodyRear">
                   <Parts>
-                    <Part name="Tail" damageMax="275" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.35, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="0.4" id="idTailPart">
+                    <Part name="Tail" damageMax="475" class="AnimatedJoint" detachRatio="0" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.35, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="0.4" id="idTailPart">
                       <AnimatedJoint filename="" filenameDestruction="" id="idTailGeometry" />
                       <Effects>
-                        <HitFx effect="damage_fx.uee.tail.med.dmg_25" joint="TailPanel_F" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.tail.med.dmg_50" joint="TailPanel_C" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.tail.med.dmg_75" joint="Tail_100_PFX_1" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                        <HitFx effect="damage_fx.uee.tail.med.dmg_100" joint="Tail_100_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.tail.med.dmg_25" joint="TailPanel_F" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.tail.med.dmg_50" joint="TailPanel_C" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.tail.med.dmg_75" joint="Tail_100_PFX_1" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                        <HitFx effect="damage\damage_generic_old.uee.tail.med.dmg_100" joint="Tail_100_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -527,64 +478,64 @@
                       <Parts>
                         <Part name="Tail_Left_Cowling" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_Left_Cowling_50_PFX" partName="Tail" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_Left_Cowling_50_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_Left_Cowling_50_PFX" partName="Tail" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_Left_Cowling_50_PFX" />
                           </Effects>
                         </Part>
                         <Part name="Tail_Left_Bottom" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_Left_Bottom_50_PFX" partName="Tail" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_Left_Bottom_50_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_Left_Bottom_50_PFX" partName="Tail" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_Left_Bottom_50_PFX" />
                           </Effects>
                         </Part>
                         <Part name="Tail_Panel_J" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_J_25_PFX" partName="Tail" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_J_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_J_25_PFX" partName="Tail" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_J_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="TailLeftSpoiler" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="TailLeftSpoiler_100_PFX" partName="Tail" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="TailLeftSpoiler_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="TailLeftSpoiler_100_PFX" partName="Tail" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="TailLeftSpoiler_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="Tail_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_A_25_PFX" partName="TailLeftSpoiler" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_A_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_A_25_PFX" partName="TailLeftSpoiler" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_A_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="Tail_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_B_25_PFX" partName="TailLeftSpoiler" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_B_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_B_25_PFX" partName="TailLeftSpoiler" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_B_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="Tail_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_C_25_PFX" partName="TailLeftSpoiler" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_C_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_C_25_PFX" partName="TailLeftSpoiler" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_C_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="Tail_Panel_F" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_F_25_PFX" partName="TailLeftSpoiler" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_F_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_F_25_PFX" partName="TailLeftSpoiler" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_F_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="Tail_Panel_D" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_D_25_PFX" partName="TailLeftSpoiler" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_D_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_D_25_PFX" partName="TailLeftSpoiler" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_D_25_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
                         </Part>
                         <Part name="TailRightTSection" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="TailRightTSection_100_PFX" partName="Tail" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="TailRightTSection_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="TailRightTSection_100_PFX" partName="Tail" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="TailRightTSection_100_PFX" />
                           </Effects>
                           <DamageBehaviors>
                             <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -596,8 +547,8 @@
                           <Parts>
                             <Part name="Tail_Middle_Spoiler" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_Middle_Spoiler_75_PFX" partName="Tail" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_Middle_Spoiler_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_Middle_Spoiler_75_PFX" partName="Tail" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_Middle_Spoiler_75_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="Tail_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -605,41 +556,41 @@
                             </Part>
                             <Part name="TailRightTip" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="TailRightTip_50_PFX" partName="TailRightTection" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="TailRightTip_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="TailRightTip_50_PFX" partName="TailRightTection" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="TailRightTip_50_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="Tail_Panel_G" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                                   <Effects>
-                                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_G_25_PFX" partName="TailRightTip" />
-                                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_G_25_PFX" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_G_25_PFX" partName="TailRightTip" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_G_25_PFX" />
                                   </Effects>
                                 </Part>
                               </Parts>
                             </Part>
                             <Part name="Tail_Panel_H" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_H_25_PFX" partName="TailRightTection" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_H_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_H_25_PFX" partName="TailRightTection" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_H_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="Tail_Panel_I" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Tail_I_25_PFX" partName="TailRightTection" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="Tail_I_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Tail_I_25_PFX" partName="TailRightTection" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Tail_I_25_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
                         </Part>
                         <Part name="Body_Greeble_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Greeble_A_50_PFX" partName="Tail" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Greeble_A_50_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Greeble_A_50_PFX" partName="Tail" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Greeble_A_50_PFX" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="EngineHousing" class="AnimatedJoint" damageMax="175" id="idEngineHousing">
+                    <Part name="EngineHousing" class="AnimatedJoint" damageMax="325" id="idEngineHousing">
                       <Parts>
                         <Part name="hardpoint_engine_attach" class="ItemPort">
                           <ItemPort minsize="3" maxsize="4" flags="main rear" display_name="Main Thruster" requiredTags="">
@@ -662,58 +613,58 @@
                         </Part>
                         <Part name="EngineHousing_Right_Section" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_small_long" joint="EngineHousing_Right_Section_75_PFX" partName="EngineHousing" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Right_Section_75_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_small_long" joint="EngineHousing_Right_Section_75_PFX" partName="EngineHousing" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Right_Section_75_PFX" />
                           </Effects>
                         </Part>
                         <Part name="EngineHousing_Right" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Right_100_PFX" partName="EngineHousing" />
-                            <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="EngineHousing_Right_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Right_100_PFX" partName="EngineHousing" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="EngineHousing_Right_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="EngineHousing_Panel_D" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Panel_D_25_PFX" partName="EngineHousing_Right" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Panel_D_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Panel_D_25_PFX" partName="EngineHousing_Right" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Panel_D_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="EngineHousing_Panel_F" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Panel_F_25_PFX" partName="EngineHousing_Right" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Panel_F_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Panel_F_25_PFX" partName="EngineHousing_Right" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Panel_F_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="EngineHousing_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Panel_E_25_PFX" partName="EngineHousing_Right" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Panel_E_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Panel_E_25_PFX" partName="EngineHousing_Right" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Panel_E_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="EngineHousing_Chunk_Right" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Chunk_Right_50_PFX" partName="EngineHousing_Right" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Chunk_Right_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Chunk_Right_50_PFX" partName="EngineHousing_Right" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Chunk_Right_50_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
                         </Part>
                         <Part name="EngineHousing_Front_Left" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_small_long" joint="EngineHousing_Front_Left_100_PFX" partName="EngineHousing" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Front_Left_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_small_long" joint="EngineHousing_Front_Left_100_PFX" partName="EngineHousing" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Front_Left_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="EngineHousing_Tubing" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Tubing_75_PFX" partName="EngineHousing_Front_Left" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Tubing_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Tubing_75_PFX" partName="EngineHousing_Front_Left" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Tubing_75_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="EngineHousing_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                                   <Effects>
-                                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Panel_A_25_PFX" partName="EngineHousing_Tubing" />
-                                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Panel_A_25_PFX" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Panel_A_25_PFX" partName="EngineHousing_Tubing" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Panel_A_25_PFX" />
                                   </Effects>
                                 </Part>
                               </Parts>
@@ -722,42 +673,42 @@
                         </Part>
                         <Part name="EngineHousing_Left" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_small" joint="EngineHousing_Left_100_PFX" partName="EngineHousing" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Left_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="EngineHousing_Left_100_PFX" partName="EngineHousing" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Left_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="EngineHousing_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Panel_B_25_PFX" partName="EngineHousing_Left" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Panel_B_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Panel_B_25_PFX" partName="EngineHousing_Left" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Panel_B_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="EngineHousing_Chunk_Left" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Chunk_Left_50_PFX" partName="EngineHousing_Left" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Chunk_Left_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Chunk_Left_50_PFX" partName="EngineHousing_Left" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Chunk_Left_50_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
                         </Part>
                         <Part name="EngineHousing_Right_Top" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="EngineHousing_Right_Top_100_PFX" partName="EngineHousing" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="EngineHousing_Right_Top_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="EngineHousing_Right_Top_100_PFX" partName="EngineHousing" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="EngineHousing_Right_Top_100_PFX" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="BodyLeft" class="AnimatedJoint" damageMax="125" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.2,0.5,0.3" detachProbability="1">
+                <Part name="BodyLeft" class="AnimatedJoint" damageMax="250" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.2,0.5,0.3" detachProbability="1" id="idBodyLeft">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.fire_small_long" joint="BodyLeft_100_PFX" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="BodyLeft_100_PFX" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.fire_small_long" joint="BodyLeft_100_PFX" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="BodyLeft_100_PFX" />
                   </Effects>
                   <Parts>
                     <Part name="hardpoint_thruster_top_back_left" class="ItemPort">
-                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X -Z upper rear left" display_name="Upper Rear Left Thruster" requiredTags="ANVL_Hornet">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X -Z upper rear left" display_name="Upper Rear Left Thruster" requiredItemTags="ANVL_Hornet">
                         <Roll min="0" max="90" scale="-1" />
                         <Yaw min="-90" max="0" />
                         <Types>
@@ -768,12 +719,12 @@
                         </OptimalStates>
                       </ItemPort>
                     </Part>
-                    <Part name="IntakeLeft" class="AnimatedJoint" damageMax="175" id="idInTakeLeft_Part" detachRatio="0" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
+                    <Part name="IntakeLeft" class="AnimatedJoint" damageMax="325" id="idInTakeLeft_Part" detachRatio="0" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_25" joint="IntakeLeft_Front" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_50" joint="IntakeLeft_Front" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_75" joint="IntakeLeft_Front" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_100" joint="IntakeLeft_Front" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_25" joint="IntakeLeft_Front" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_50" joint="IntakeLeft_Front" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_75" joint="IntakeLeft_Front" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_100" joint="IntakeLeft_Front" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin=".25">
@@ -819,7 +770,7 @@
                           <AnimatedJoint />
                           <Parts>
                             <Part name="hardpoint_class_3_left_bay_door" class="ItemPort">
-                              <ItemPort minsize="3" maxsize="3" flags="left bottom" display_name="Left Bay Slot" displayPos="195,200" deployAnim="HardPoint_Left_Bay" deployAnimState="Deploy" retractAnimState="Retract" forceWait="1">
+                              <ItemPort minsize="1" maxsize="3" flags="left bottom" display_name="Left Bay Slot" displayPos="195,200" deployAnim="HardPoint_Left_Bay" deployAnimState="Deploy" retractAnimState="Retract" forceWait="1">
                                 <Types>
                                   <Type type="WeaponMissile" subtypes="MissileRack" />
                                 </Types>
@@ -829,44 +780,44 @@
                         </Part>
                         <Part name="IntakeLeft_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Panel_E_25_PFX" partName="IntakeLeft" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Panel_E_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Panel_E_25_PFX" partName="IntakeLeft" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Panel_E_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="IntakeLeft_Front" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_small" joint="IntakeLeft_Front_100_PFX" partName="IntakeLeft" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Front_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="IntakeLeft_Front_100_PFX" partName="IntakeLeft" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Front_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="IntakeLeft_Section_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Section_A_50_PFX" partName="IntakeLeft_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Section_A_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Section_A_50_PFX" partName="IntakeLeft_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Section_A_50_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeLeft_Section_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Section_B_50_PFX" partName="IntakeLeft_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Section_B_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Section_B_50_PFX" partName="IntakeLeft_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Section_B_50_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeLeft_Slat_B" class="AnimatedJoint" damageMax="1" detachRatio="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Slat_B_75_PFX" partName="IntakeLeft_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Slat_B_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Slat_B_75_PFX" partName="IntakeLeft_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Slat_B_75_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeLeft_Slat_A" class="AnimatedJoint" damageMax="1" detachRatio="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Slat_A_75_PFX" partName="IntakeLeft_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Slat_A_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Slat_A_75_PFX" partName="IntakeLeft_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Slat_A_75_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeLeft_Chunk" class="AnimatedJoint" damageMax="1" detachRatio="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Chunk_75_PFX" partName="IntakeLeft_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Chunk_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Chunk_75_PFX" partName="IntakeLeft_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Chunk_75_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -879,7 +830,7 @@
                           </ItemPort>
                         </Part>
                         <Part name="hardpoint_thruster_bottom_front_left" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z retro lower front left" display_name="Lower Front Left Thruster" requiredTags="ANVL_Hornet">
+                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z retro lower front left" display_name="Lower Front Left Thruster" requiredItemTags="ANVL_Hornet">
                             <Pitch min="0" max="180" />
                             <Types>
                               <Type type="ManneuverThruster" subtypes="" />
@@ -890,7 +841,7 @@
                           </ItemPort>
                         </Part>
                         <Part name="hardpoint_thruster_bottom_back_left" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z lower rear left" display_name="Lower Rear Left Thruster" requiredTags="ANVL_Hornet">
+                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z lower rear left" display_name="Lower Rear Left Thruster" requiredItemTags="ANVL_Hornet">
                             <Pitch min="0" max="180" />
                             <Types>
                               <Type type="ManneuverThruster" subtypes="" />
@@ -902,26 +853,26 @@
                         </Part>
                         <Part name="IntakeLeft_Panel_D" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_small" joint="IntakeLeft_Panel_D_25_PFX" partName="IntakeLeft" />
-                            <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="IntakeLeft_Panel_D_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="IntakeLeft_Panel_D_25_PFX" partName="IntakeLeft" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="IntakeLeft_Panel_D_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="IntakeLeft_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Panel_C_25_PFX" partName="IntakeLeft_Front" />
-                            <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="IntakeLeft_Panel_C_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Panel_C_25_PFX" partName="IntakeLeft_Front" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="IntakeLeft_Panel_C_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="IntakeLeft_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Panel_B_25_PFX" partName="IntakeLeft_Front" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Panel_B_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Panel_B_25_PFX" partName="IntakeLeft_Front" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Panel_B_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="IntakeLeft_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeLeft_Panel_A_25_PFX" partName="IntakeLeft_Front" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeLeft_Panel_A_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeLeft_Panel_A_25_PFX" partName="IntakeLeft_Front" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeLeft_Panel_A_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="hardpoint_fuel_intake_left" class="ItemPort">
@@ -933,13 +884,13 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="WingLeft" damageMax="225" class="AnimatedJoint" detachRatio="0" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
+                    <Part name="WingLeft" damageMax="425" class="AnimatedJoint" detachRatio="0" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1" id="idWingLeft">
                       <AnimatedJoint filename="" filenameDestruction="" id="idWingLeftGeometry" />
                       <Effects>
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_25" joint="WingLeftBase_100_PFX_2" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_50" joint="WingLeftBase_100_PFX_2" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_75" joint="WingLeftBase_100_PFX_2" minDamageRatio="0.75" maxDamageRatio="0.99" />
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_100" joint="WingLeftBase_100_PFX_2" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_25" joint="WingLeftBase_100_PFX_2" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_50" joint="WingLeftBase_100_PFX_2" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_75" joint="WingLeftBase_100_PFX_2" minDamageRatio="0.75" maxDamageRatio="0.99" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_100" joint="WingLeftBase_100_PFX_2" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -949,35 +900,35 @@
                         </DamageBehavior>
                       </DamageBehaviors>
                       <Parts>
-                        <Part name="WingLeftBase" class="AnimatedJoint" damageMax="125" detachRatio="1" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
+                        <Part name="WingLeftBase" class="AnimatedJoint" damageMax="250" detachRatio="1" detachBaseForce="-1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1" id="idWingLeftBase">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_sparks" joint="WingLeft_100_PFX_1" partName="WingLeftBase" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeft_100_PFX_1" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_sparks" joint="WingLeft_100_PFX_1" partName="WingLeftBase" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeft_100_PFX_1" />
                           </Effects>
                           <Parts>
                             <Part name="landing_gear_left_wing_helper" class="AnimatedJoint" />
                             <Part name="WingLeft_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingLeft_Panel_C_25_PFX" partName="WingLeftBase" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeft_Panel_C_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingLeft_Panel_C_25_PFX" partName="WingLeftBase" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeft_Panel_C_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingLeft_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingLeft_Panel_B_25_PFX" partName="WingLeftBase" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeft_Panel_B_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingLeft_Panel_B_25_PFX" partName="WingLeftBase" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeft_Panel_B_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingLeft_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingLeft_Panel_A_25_PFX" partName="WingLeftBase" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeft_Panel_A_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingLeft_Panel_A_25_PFX" partName="WingLeftBase" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeft_Panel_A_25_PFX" />
                               </Effects>
                             </Part>
-                            <Part name="WingLeftTip" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0.5,1,0.3">
+                            <Part name="WingLeftTip" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0.5,1,0.3" id="idWingLeftTip">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.fire_small" joint="WingLeftTip_75_PFX" partName="WingLeftBase" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeftTip_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingLeftTip_75_PFX" partName="WingLeftBase" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeftTip_75_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="hardpoint_class_2_left_wing" class="ItemPort">
@@ -1006,8 +957,8 @@
                     </Part>
                     <Part name="BodyLeftFrontTopThrusterHousing" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="BodyLeftFrontTopThrusterHousing_75_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="BodyLeftFrontTopThrusterHousing_75_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="BodyLeftFrontTopThrusterHousing_75_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="BodyLeftFrontTopThrusterHousing_75_PFX" />
                       </Effects>
                       <Parts>
                         <Part name="hardpoint_thruster_top_front_left" class="ItemPort">
@@ -1026,46 +977,46 @@
                     </Part>
                     <Part name="Body_Panel_D" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Panel_D_25_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_D_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Panel_D_25_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_D_25_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Body_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Panel_C_25_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_C_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Panel_C_25_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_C_25_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Body_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Panel_B_25_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_B_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Panel_B_25_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_B_25_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Body_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="Body_Panel_A_25_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="Body_Panel_A_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="Body_Panel_A_25_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="Body_Panel_A_25_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Body_Left_Flange" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.fire_small" joint="Body_Left_Flange_50_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Left_Flange_50_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="Body_Left_Flange_50_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Left_Flange_50_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Body_Left_Edge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="Body_Left_Edge_50_PFX" partName="Body" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Left_Edge_50_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="Body_Left_Edge_50_PFX" partName="Body" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Left_Edge_50_PFX" />
                       </Effects>
                     </Part>
-                    <Part name="WingLeftRear" damageMax="200" class="AnimatedJoint" id="idLeft_Wing_Rear_Part" detachRatio="0" detachBaseForce="-1,0,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                    <Part name="WingLeftRear" damageMax="400" class="AnimatedJoint" id="idLeft_Wing_Rear_Part" detachRatio="0" detachBaseForce="-1,0,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_25" joint="WingLeftRear_Section_75_PFX" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_50" joint="WingLeftRear_Section_75_PFX" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_75" joint="WingLeftRear_Section_75_PFX" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_100" joint="WingLeftRear_Section_75_PFX" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_25" joint="WingLeftRear_Section_75_PFX" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_50" joint="WingLeftRear_Section_75_PFX" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_75" joint="WingLeftRear_Section_75_PFX" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_100" joint="WingLeftRear_Section_75_PFX" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -1088,32 +1039,32 @@
                             </Part>
                             <Part name="WingLeftRear_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="WingLeftRear_Panel_C_25_PFX" partName="WingLeftRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="WingLeftRear_Panel_C_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="WingLeftRear_Panel_C_25_PFX" partName="WingLeftRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="WingLeftRear_Panel_C_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingLeftRear_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.fire_small" joint="WingLeftRear_Panel_B_25_PFX" partName="WingLeftRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeftRear_Panel_B_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingLeftRear_Panel_B_25_PFX" partName="WingLeftRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeftRear_Panel_B_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingLeftRear_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingLeftRear_Panel_A_25_PFX" partName="WingLeftRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeftRear_Panel_A_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingLeftRear_Panel_A_25_PFX" partName="WingLeftRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeftRear_Panel_A_25_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingLeftRear_Back_Edge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.fire_small" joint="WingLeftRear_Wing_100_PFX" partName="WingLeftRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeftRear_Wing_100_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingLeftRear_Wing_100_PFX" partName="WingLeftRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeftRear_Wing_100_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingLeftRear_Section" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingLeftRear_Wing_75_PFX" partName="WingLeftRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingLeftRear_Wing_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingLeftRear_Wing_75_PFX" partName="WingLeftRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingLeftRear_Wing_75_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -1122,10 +1073,10 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="BodyFront" class="AnimatedJoint" damageMax="125" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                <Part name="BodyFront" class="AnimatedJoint" damageMax="250" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" id="idBodyFront">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.fire_small_Long" joint="BodyFront_100_PFX" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="BodyFront_100_PFX" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.fire_small_Long" joint="BodyFront_100_PFX" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="BodyFront_100_PFX" />
                   </Effects>
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -1165,25 +1116,25 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="BodyRight" class="AnimatedJoint" damageMax="125" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                <Part name="BodyRight" class="AnimatedJoint" damageMax="250" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" id="idBodyRight">
                   <Effects>
-                    <DetachFx effect="damage_fx.uee.static.fire_small" joint="BodyRight_100_PFX" partName="Body" />
-                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="BodyRight_100_PFX" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="BodyRight_100_PFX" partName="Body" />
+                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="BodyRight_100_PFX" />
                   </Effects>
                   <Parts>
-                    <Part name="IntakeRight" class="AnimatedJoint" damageMax="175" id="idInTakeRight_Part" detachRatio="0" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
+                    <Part name="IntakeRight" class="AnimatedJoint" damageMax="325" id="idInTakeRight_Part" detachRatio="0" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_25" joint="IntakeRight_Front" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_50" joint="IntakeRight_Front" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_75" joint="IntakeRight_Front" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                        <HitFx effect="damage_fx.uee.intake.med.dmg_100" joint="IntakeRight_Front" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_25" joint="IntakeRight_Front" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_50" joint="IntakeRight_Front" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_75" joint="IntakeRight_Front" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                        <HitFx effect="damage\damage_generic_old.uee.intake.med.dmg_100" joint="IntakeRight_Front" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <Parts>
                         <Part name="MissileBay_Right" class="AnimatedJoint">
                           <AnimatedJoint />
                           <Parts>
                             <Part name="hardpoint_class_3_right_bay_door" class="ItemPort">
-                              <ItemPort minsize="3" maxsize="3" flags="right bottom" display_name="Right Bay Slot" displayPos="345,200" deployAnim="HardPoint_Right_Bay" deployAnimState="Deploy" retractAnimState="Retract" forceWait="1">
+                              <ItemPort minsize="1" maxsize="3" flags="right bottom" display_name="Right Bay Slot" displayPos="345,200" deployAnim="HardPoint_Right_Bay" deployAnimState="Deploy" retractAnimState="Retract" forceWait="1">
                                 <Types>
                                   <Type type="WeaponMissile" subtypes="MissileRack" />
                                 </Types>
@@ -1193,70 +1144,70 @@
                         </Part>
                         <Part name="IntakeRight_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Panel_E_25_PFX" partName="IntakeRight" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Panel_E_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Panel_E_25_PFX" partName="IntakeRight" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Panel_E_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="IntakeRight_Front" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_small" joint="IntakeRight_Front_100_PFX" partName="IntakeRight" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Front_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="IntakeRight_Front_100_PFX" partName="IntakeRight" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Front_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="IntakeRight_Section_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="IntakeRight_Section_B_50_PFX" partName="IntakeRight_Front" />
-                                <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="IntakeRight_Section_B_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="IntakeRight_Section_B_50_PFX" partName="IntakeRight_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="IntakeRight_Section_B_50_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeRight_Section_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Section_A_50_PFX" partName="IntakeRight_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Section_A_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Section_A_50_PFX" partName="IntakeRight_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Section_A_50_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeRight_Slat_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Slat_B_75_PFX" partName="IntakeRight_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Slat_B_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Slat_B_75_PFX" partName="IntakeRight_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Slat_B_75_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeRight_Slat_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Slat_A_75_PFX" partName="IntakeRight_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Slat_A_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Slat_A_75_PFX" partName="IntakeRight_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Slat_A_75_PFX" />
                               </Effects>
                             </Part>
                             <Part name="IntakeRight_Chunk" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Chunk_75_PFX" partName="IntakeRight_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Chunk_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Chunk_75_PFX" partName="IntakeRight_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Chunk_75_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="IntakeRight_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                                   <Effects>
-                                    <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="IntakeRight_Panel_C_25_PFX" partName="IntakeRight_Chunk" />
-                                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Panel_C_25_PFX" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="IntakeRight_Panel_C_25_PFX" partName="IntakeRight_Chunk" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Panel_C_25_PFX" />
                                   </Effects>
                                 </Part>
                                 <Part name="IntakeRight_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                                   <Effects>
-                                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Panel_B_25_PFX" partName="IntakeRight_Chunk" />
-                                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Panel_B_25_PFX" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Panel_B_25_PFX" partName="IntakeRight_Chunk" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Panel_B_25_PFX" />
                                   </Effects>
                                 </Part>
                                 <Part name="IntakeRight_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                                   <Effects>
-                                    <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Panel_A_25_PFX" partName="IntakeRight_Chunk" />
-                                    <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Panel_A_25_PFX" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Panel_A_25_PFX" partName="IntakeRight_Chunk" />
+                                    <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Panel_A_25_PFX" />
                                   </Effects>
                                 </Part>
                               </Parts>
                             </Part>
                             <Part name="IntakeRight_Panel_D" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,1,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="IntakeRight_Panel_D_25_PFX" partName="IntakeRight_Front" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="IntakeRight_Panel_D_25_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="IntakeRight_Panel_D_25_PFX" partName="IntakeRight_Front" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="IntakeRight_Panel_D_25_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -1269,7 +1220,7 @@
                           </ItemPort>
                         </Part>
                         <Part name="hardpoint_thruster_bottom_back_right" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z lower rear right" display_name="Lower Rear Right Thruster" requiredTags="ANVL_Hornet">
+                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z lower rear right" display_name="Lower Rear Right Thruster" requiredItemTags="ANVL_Hornet">
                             <Pitch min="0" max="180" />
                             <Types>
                               <Type type="ManneuverThruster" subtypes="" />
@@ -1280,7 +1231,7 @@
                           </ItemPort>
                         </Part>
                         <Part name="hardpoint_thruster_bottom_front_right" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z retro lower front right" display_name="Lower Front Right Thruster" requiredTags="ANVL_Hornet">
+                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +Z retro lower front right" display_name="Lower Front Right Thruster" requiredItemTags="ANVL_Hornet">
                             <Pitch min="0" max="180" />
                             <Types>
                               <Type type="ManneuverThruster" subtypes="" />
@@ -1299,13 +1250,13 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="WingRight" class="AnimatedJoint" damageMax="200" detachRatio="0" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,10,0.3" detachProbability="1">
+                    <Part name="WingRight" class="AnimatedJoint" damageMax="400" detachRatio="0" detachBaseForce="1.5,0,0" detachRandomForce="1, 0.5, 1" detachRandomRotation="0,10,0.3" detachProbability="1" id="idWingRight">
                       <AnimatedJoint filename="" filenameDestruction="" id="idWingRightGeometry" />
                       <Effects>
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_25" joint="WingRight_75_PFX_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_50" joint="WingRight_75_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_75" joint="WingRight_75_PFX_1" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                        <HitFx effect="damage_fx.uee.wing.med.dmg_100" joint="WingRight_75_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_25" joint="WingRight_75_PFX_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_50" joint="WingRight_75_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_75" joint="WingRight_75_PFX_1" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing.med.dmg_100" joint="WingRight_75_PFX_1" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -1315,27 +1266,27 @@
                         </DamageBehavior>
                       </DamageBehaviors>
                       <Parts>
-                        <Part name="WingRightBase" class="AnimatedJoint" damageMax="125" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                        <Part name="WingRightBase" class="AnimatedJoint" damageMax="250" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" id="idWingRightBase">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.fire_sparks" joint="WingRightBase_100_PFX" partName="WingRight" />
-                            <DetachFx effect="damage_fx.uee.static.fire_debris_long" joint="WingRightBase_100_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_sparks" joint="WingRightBase_100_PFX" partName="WingRight" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.fire_debris_long" joint="WingRightBase_100_PFX" />
                           </Effects>
                           <Parts>
                             <Part name="WingRight_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                             <Part name="WingRight_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                             <Part name="WingRight_Front_Edge" class="AnimatedJoint" damageMax="1" detachRatio="0.6" detachBaseForce="0,1,0" detachRandomForce="0, 0.5, 1" detachRandomRotation="1,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="WingRight_Front_Edge_50_PFX" partName="WingRightBase" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRight_Front_Edge_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="WingRight_Front_Edge_50_PFX" partName="WingRightBase" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRight_Front_Edge_50_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="WingRight_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                               </Parts>
                             </Part>
-                            <Part name="WingRightTip" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3">
+                            <Part name="WingRightTip" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" id="idWingRightTip">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingRightTip_75_PFX" partName="WingRightBase" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRightTip_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingRightTip_75_PFX" partName="WingRightBase" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRightTip_75_PFX" />
                               </Effects>
                               <Parts>
                                 <Part name="hardpoint_class_2_right_wing" class="ItemPort">
@@ -1361,12 +1312,12 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="WingRightRear" class="AnimatedJoint" damageMax="200" id="idRight_Wing_Rear_Part" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                    <Part name="WingRightRear" class="AnimatedJoint" damageMax="400" id="idRight_Wing_Rear_Part" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_25" joint="WingRightRear_Section_75_PFX" minDamageRatio="0.25" maxDamageRatio="0.49" />
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_50" joint="WingRightRear_Section_75_PFX" minDamageRatio="0.50" maxDamageRatio="0.74" />
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_75" joint="WingRightRear_Section_75_PFX" minDamageRatio="0.75" maxDamageRatio="0.95" />
-                        <HitFx effect="damage_fx.uee.wing_rear.med.dmg_100" joint="WingRightRear_Section_75_PFX" minDamageRatio="1.00" maxDamageRatio="1.00" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_25" joint="WingRightRear_Section_75_PFX" minDamageRatio="0.25" maxDamageRatio="0.49" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_50" joint="WingRightRear_Section_75_PFX" minDamageRatio="0.50" maxDamageRatio="0.74" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_75" joint="WingRightRear_Section_75_PFX" minDamageRatio="0.75" maxDamageRatio="0.95" />
+                        <HitFx effect="damage\damage_generic_old.uee.wing_rear.med.dmg_100" joint="WingRightRear_Section_75_PFX" minDamageRatio="1.00" maxDamageRatio="1.00" />
                       </Effects>
                       <DamageBehaviors>
                         <DamageBehavior class="DetachPart" damageRatioMin="1">
@@ -1381,32 +1332,32 @@
                           <Parts>
                             <Part name="WingRightRear_Panel_C" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.fire_small" joint="WingRightRear_Panel_C_50" partName="WingRightRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRightRear_Panel_C_50" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingRightRear_Panel_C_50" partName="WingRightRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRightRear_Panel_C_50" />
                               </Effects>
                             </Part>
                             <Part name="WingRightRear_Panel_B" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="WingRightRear_Panel_B_50" partName="WingRightRear_Wing" />
-                                <DetachFx effect="damage_fx.ue`e.static.electric_small" joint="WingRightRear_Panel_B_50" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="WingRightRear_Panel_B_50" partName="WingRightRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRightRear_Panel_B_50" />
                               </Effects>
                             </Part>
                             <Part name="WingRightRear_Panel_A" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.fire_small" joint="WingRightRear_Panel_A_50" partName="WingRightRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRightRear_Panel_A_50" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingRightRear_Panel_A_50" partName="WingRightRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRightRear_Panel_A_50" />
                               </Effects>
                             </Part>
                             <Part name="WingRightRear_Section" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.fire_small" joint="WingRightRear_Section_75_PFX" partName="WingRightRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRightRear_Section_75_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.fire_small" joint="WingRightRear_Section_75_PFX" partName="WingRightRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRightRear_Section_75_PFX" />
                               </Effects>
                             </Part>
                             <Part name="WingRightRear_Back_Edge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
-                                <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="WingRightRear_Back_Edge_50_PFX" partName="WingRightRear_Wing" />
-                                <DetachFx effect="damage_fx.uee.static.electric_small" joint="WingRightRear_Back_Edge_50_PFX" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="WingRightRear_Back_Edge_50_PFX" partName="WingRightRear_Wing" />
+                                <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="WingRightRear_Back_Edge_50_PFX" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -1422,33 +1373,33 @@
                     </Part>
                     <Part name="Body_Right_Edge" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_75_PFX_debris_2" partName="BodyRight" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_75_PFX_debris_2" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_75_PFX_debris_2" partName="BodyRight" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_75_PFX_debris_2" />
                       </Effects>
                       <Parts>
                         <Part name="Body_Panel_H" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Panel_H_25_PFX" partName="Body_Right_Edge" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_H_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Panel_H_25_PFX" partName="Body_Right_Edge" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_H_25_PFX" />
                           </Effects>
                         </Part>
                         <Part name="Body_Panel_G" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="Body_Panel_G_25_PFX" partName="Body_Right_Edge" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_G_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="Body_Panel_G_25_PFX" partName="Body_Right_Edge" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_G_25_PFX" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
                     <Part name="BodyRightBackTopThrusterHousing" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="BodyRightBackTopThrusterHousing_75_PFX" partName="BodyRight" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="BodyRightBackTopThrusterHousing_75_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="BodyRightBackTopThrusterHousing_75_PFX" partName="BodyRight" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="BodyRightBackTopThrusterHousing_75_PFX" />
                       </Effects>
                       <AnimatedJoint detachBaseForce="0,0,0" />
                       <Parts>
                         <Part name="hardpoint_thruster_top_back_right" class="ItemPort">
-                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X -Z upper rear right" display_name="Upper Read Right Thruster" requiredTags="ANVL_Hornet">
+                          <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X -Z upper rear right" display_name="Upper Read Right Thruster" requiredItemTags="ANVL_Hornet">
                             <Roll min="-90" max="0" />
                             <Yaw min="0" max="90" />
                             <Types>
@@ -1461,22 +1412,22 @@
                         </Part>
                         <Part name="Body_Panel_E" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                           <Effects>
-                            <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Panel_E_25_PFX" partName="BodyRightBackTopThrusterHousing" />
-                            <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_E_25_PFX" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Panel_E_25_PFX" partName="BodyRightBackTopThrusterHousing" />
+                            <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_E_25_PFX" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
                     <Part name="Body_Right_Rear_Thruster_Cowling" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_crawl" joint="Body_Right_Rear_Thruster_Cowling_50_PFX" partName="BodyRight" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Right_Rear_Thruster_Cowling_50_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_crawl" joint="Body_Right_Rear_Thruster_Cowling_50_PFX" partName="BodyRight" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Right_Rear_Thruster_Cowling_50_PFX" />
                       </Effects>
                     </Part>
                     <Part name="Body_Panel_F" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="damage_fx.uee.static.electric_sparks" joint="Body_Panel_F_25_PFX" partName="BodyRight" />
-                        <DetachFx effect="damage_fx.uee.static.electric_small" joint="Body_Panel_F_25_PFX" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_sparks" joint="Body_Panel_F_25_PFX" partName="BodyRight" />
+                        <DetachFx effect="damage\damage_generic_old.uee.static.electric_small" joint="Body_Panel_F_25_PFX" />
                       </Effects>
                     </Part>
                   </Parts>
@@ -1503,6 +1454,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotEnterPosActivation" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_sit_pos" activateOnlyInZeroG="1" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotEnterPosActivation" />
       </Activations>
       <Enter>
         <Seats>
@@ -1520,19 +1472,13 @@
         </Seats>
       </Enter>
     </Action>
-    <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears landingDamages="500" altitudeToRetractGears="12" blockPartRotation="hardpoint_class_4_nose" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
-    </Action>
   </Actions>
   <!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1">
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" zerogEnterHelper="Nose_Cockpit" allowZeroGExit="1" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -1553,21 +1499,21 @@
       <WaitFor>
         <Enter>
           <State animation="Canopy" state="Open" />
-          <State animation="Left_Ladder" state="Deploy" />
+          <State animation="Left_Ladder" state="Deploy" excludeTags="zerog" />
         </Enter>
         <Exit>
           <State animation="Canopy" state="Open" />
-          <State animation="Left_Ladder" state="Deploy" />
+          <State animation="Left_Ladder" state="Deploy" excludeTags="zerog" />
         </Exit>
       </WaitFor>
       <PostAction>
         <Enter>
           <State animation="Canopy" state="Close" />
-          <State animation="Left_Ladder" state="Retract" />
+          <State animation="Left_Ladder" state="Retract" excludeTags="zerog" />
         </Enter>
 		<Exit>
           <State animation="Canopy" state="Close" />
-          <State animation="Left_Ladder" state="Retract" />
+          <State animation="Left_Ladder" state="Retract" excludeTags="zerog" />
         </Exit>
       </PostAction>
       <!-- Begin actions for this seat-->
@@ -1690,6 +1636,7 @@
                 <ItemPort part="hardpoint_fuel_intake_right" />
                 <ItemPort part="hardpoint_fuel_tank_left" />
                 <ItemPort part="hardpoint_fuel_tank_right" />
+                <ItemPort part="landingpad_helper" />
                 <!-- Debug Ports -->
                 <ItemPort part="hardpoint_debug_1" />
                 <ItemPort part="hardpoint_debug_2" />
@@ -1823,7 +1770,7 @@
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
               <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="throttle_IK_attach" blendTime="0" id="idPilotTrottleIK" />
-              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="joystick_IK_attach" blendTime="0" id="idPilotJoystickIK" />
+              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="joystick_IK_attach02" blendTime="0" id="idPilotJoystickIK" />
               <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_attach" blendTime="0" />
               <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_attach" blendTime="0" />
             </Limbs>
@@ -1838,28 +1785,30 @@
           </Slot>
         </Slots>
       </DockingStation>
+	  <HUDAccess primary="1">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	  </HUDAccess>
       <FixedVisorSettings default_fixed="0">
         <FirstPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.1" />
         <ThirdPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.065" />
       </FixedVisorSettings>
-      <Screens>
-		<Screen name="Fixed UI" element="ShipInterface" screen="HornetInterfaceScreen" number="1">
-          <Container name="Thruster Screen" helper="cockpit_screen_03" container="ThrusterStatusScreen" y_offset="-0.005" scale="0.9" />
-          <Container name="Fuel Screen" helper="cockpit_screen_04" container="FuelStatusScreen" y_offset="-0.005" scale="0.9" />
-		  <Container name="HUDScreen" helper="UI_Helper" container="HUDScreen" z_offset="-0.06" />
-		  <Container name="MissileWarning" helper="cockpit_miniscreen_1" container="AnnunciatorMissileWarning" y_offset="-0.005" scale="0.7" />
-		  <Container name="CollisionWarning" helper="cockpit_miniscreen_2" container="AnnunciatorCollisionWarning" y_offset="-0.005" scale="0.7" />
-		  <Container name="ShieldsDownWarning" helper="cockpit_miniscreen_3" container="AnnunciatorShieldsDownWarning" y_offset="-0.005" scale="0.7" />
-		  <Container name="GForceWarning" helper="cockpit_miniscreen_4" container="AnnunciatorGForceWarning" y_offset="-0.005" scale="0.7" />
-        </Screen>
-      </Screens>
+	<HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	</HUDAccess>
+      <ScreensRecord record="Screens_ANVL_Hornet_Pilot" />	  
     </Seat>
     <!-- Co Pilot's / Rear seat  ("CoPilot" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="CoPilot" enterHelper="" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_turret" visorType="pilot" hasGForceReactions="1" id="idCoPilotSeat">
+    <Seat name="CoPilot" enterHelper="" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_turret" visorType="remoteturret" hasGForceReactions="1" id="idCoPilotSeat">
       <!-- Begin views for this seat-->
       <Views>
 	  <!-- ball turret remote camera -->
-		<View class="ItemCamera" canRotate="0" hidePlayer="0" itemPortName="hardpoint_class_4_center">
+		<View class="ItemCamera" displayName="DORSAL TURRET" canRotate="0" hidePlayer="0" itemPortName="hardpoint_class_4_center">
           <ItemCamera/> <!-- for some reason this is required to be here by the camera system -->
         </View>
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
@@ -1980,54 +1929,42 @@
         </SeatAction>
       </SeatActions>
       <Sounds inout="0" mood="1" />
-      <Screens>
-        <Screen name="Turret UI" element="ShipInterface" screen="TempTurretInterfaceScreen" number="1" is3PVisible="0" spawnOnRemote="0">
-			<Container name="LeftMFD" container="LeftMFD"  isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="-0.08" y_offset="0.12" z_offset="0.027" scale="0.20"/>
-			<Container name="HideRightMFD" container="RightMFD"  isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="0.0" y_offset="-0.1" scale="0.01"/>
-			<Container name="TargetInfo" container="TargetHoloScreen" isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="0.08" y_offset="0.12" z_offset="0.037" scale="0.15"/>
-			<Container name="Radar2D" container="Radar2DScreen" isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="0.08" y_offset="0.12" z_offset="-0.037" scale="0.15" />
-        </Screen>
-      </Screens>
+	  <HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+	  </HUDAccess>
+      <ScreensRecord record="Screens_ANVL_Hornet_Copilot" />
     </Seat>
   </Seats>
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="125,140,125" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,70.0,137.5" maxTorqueAngle="18,18,18" id="idMovementStats" >
-	  <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.19">
-		<EngineStartSound sound="" />
-		<EngineRunSound sound="" />
-		<EngineStopSound sound="" />
-		<AmbienceSound sound="Play_SSAM_ANVL_Hornet_Cockpit" />
-		<PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
-		<PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
-		<DuressSound sound="Play_SSDM_ANVL_Hornet_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
-	  </AudioParams>
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,70.0,137.5" maxTorqueAngle="18,18,18" id="idMovementStats" >
+      <SoundParams dmgBufferDecay="0.19">
+        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
+        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
+        <RunSound running_sound="" />
+        <AmbientSound sound="Play_SSAM_ANVL_Hornet_Cockpit" />
+        <PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
+        <PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <DuressSound sound="Play_SSDM_ANVL_Hornet_Cockpit_Shake" damage_floor="22.0" damage_buffer="90.0" />
+      </SoundParams>
       <Animations engine="Intake_Fans" />
       <Contrails>
-        <Contrail helper="wing_left_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" id="idContrailWing"/>
-        <Contrail helper="wing_right_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" id="idContrailWing"/>
-        <Contrail helper="tail_right_contrail_pos" effect="" minSpeed="35" id="idContrailTail"/>
-        <Contrail helper="tail_left_contrail_pos" effect="" minSpeed="35" id="idContrailTail"/>
+        <!--<Contrail helper="wing_left_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" id="idContrailWing"/>-->
+        <!--<Contrail helper="wing_right_contrail_pos" effect="" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" id="idContrailWing"/>-->
+        <!--<Contrail helper="tail_right_contrail_pos" effect="" minSpeed="35" id="idContrailTail"/>-->
+        <!--<Contrail helper="tail_left_contrail_pos" effect="" minSpeed="35" id="idContrailTail"/>-->
       </Contrails>
     </Spaceship>
   </MovementParams>
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
-  <Particles mfxRow="vfx_Anvil_Hornet">
-    <!--
-	 <Exhaust insideWater="0" outsideWater="1">
-	 <Helpers>
-		<Helper value="main_engine_exhaust"/>
-	 </Helpers>
-	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
-	</Exhaust>
-	-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
-      <!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -2080,10 +2017,6 @@
 			play=       Plays this Action on init, String is the fragment tag(s)  
 			
 	-->
-  <Animations>
-    <Action name="Landing_Gear" state="Retract" />
-    <!-- Action name="Wings" state="ROM" / -->
-  </Animations>
   <!-- Attachments
 	This is a list of any attachment objects on the vehicle. This is used primarily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
 	where you don't need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
@@ -2106,9 +2039,6 @@
 	-->
   <Attachments>
     <!--		<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" geometry="Objects/Spaceships/Ships/ANVL/Hornet/F7C/pilot_umbilical.chr" scopeContext="Umbilical"/> -->
-    <Attachment name="landing_gear_right_wing" helper="landing_gear_right_wing_helper" geometry="Objects/Spaceships/Ships/ANVL/Hornet/Landing_Gear/Anvil_Hornet_Right_Wing_LandingGear.chr" scopeContext="LandingGearRight" />
-    <Attachment name="landing_gear_left_wing" helper="landing_gear_left_wing_helper" geometry="Objects/Spaceships/Ships/ANVL/Hornet/Landing_Gear/Anvil_Hornet_Left_Wing_LandingGear.chr" scopeContext="LandingGearLeft" />
-    <Attachment name="landing_gear_front" helper="landing_gear_front_helper" geometry="Objects/Spaceships/Ships/ANVL/Hornet/Landing_Gear/Anvil_Hornet_Front_LandingGear.chr" scopeContext="LandingGearFront" />
     <!--Attachment name="headlight" helper="Headlight" archetype="!test_LightsArchetypes.groupname.light" orientation="0,0,90"/-->
     <!--Attachment name="headlightFlare" helper="Headlight" light="Headlight_Flare" orientation="0,0,90" /-->
   </Attachments>
@@ -2305,11 +2235,185 @@
         <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/Spaceships/Anvil_Hornet/Anvil_Hornet_F7C.CGA" />
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Anvil_Hornet/Anvil_Hornet_F7C.CGA" />
         <Elem idRef="idDamageMultiplierBullet" name="multiplier" value="0" />
+		<Elem idRef="idDamageMultiplierBullet" name="multiplier_energy" value="0" />
         <Elem idRef="idDamageMultiplierMelee" name="multiplier" value="0" />
         <Elem idRef="idDamageMultiplierCollision" name="multiplier" value="0" />
         <Elem idRef="idDamageMultiplierExplosion" name="multiplier" value="0" />
         <Elem idRef="idDamageMultiplierExplosion" name="splash" value="0" />
       </Elems>
     </Modification>
+	
+	<Modification name="CalMason">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="Anvil Hornet F7CM" />
+        <Elem idRef="idDamageMultiplierBullet" name="multiplier" value="0" />
+		<Elem idRef="idDamageMultiplierBullet" name="multiplier_energy" value="0" />
+        <Elem idRef="idDamageMultiplierMelee" name="multiplier" value="0" />
+        <Elem idRef="idDamageMultiplierCollision" name="multiplier" value="0" />
+        <Elem idRef="idDamageMultiplierExplosion" name="multiplier" value="0" />
+        <Elem idRef="idDamageMultiplierExplosion" name="splash" value="0" />
+
+        <!-- Parts -->
+        <Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+        <Elem idRef="idShipGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Damaged.cga" />
+
+        <!-- Mannequin -->
+        <Elem idRef="idMannequin" name="tag" value="ANVL_Hornet_F7CM" />
+        <Elem idRef="idMannequin" name="controllerDef" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_ControllerDefs.xml" />
+        <Elem idRef="idMannequin" name="vehicleADB" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_Anims.adb" />
+        <Elem idRef="idMannequin" name="passengerADB" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_HumanAnims.adb" />
+		
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+        <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+      </Elems>
+    </Modification>
+	
+	<Modification name="PirateSalvage">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="ANVL Hornet Pirate" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.44,0.37,0.31" />
+        <Elem idRef="idMainPart" name="name" value="ANVL_Hornet_Pirate" />
+        <!-- Nerf the health of this ship -->
+        <Elem idRef="idNosePart" name="damageMax" value="33" />
+        <Elem idRef="idBody_Part" name="damageMax" value="40" />
+		<Elem idRef="idBodyRear" name="damageMax" value="8" />
+		<Elem idRef="idTailPart" name="damageMax" value="13" />
+		<Elem idRef="idEngineHousing" name="damageMax" value="10" />
+		<Elem idRef="idBodyLeft" name="damageMax" value="8" />
+		<Elem idRef="idInTakeLeft_Part" name="damageMax" value="10" />
+		<Elem idRef="idWingLeft" name="damageMax" value="10" />
+		<Elem idRef="idWingLeftBase" name="damageMax" value="8" />
+		<Elem idRef="idWingLeftTip" name="damageMax" value="4" />
+		<Elem idRef="idLeft_Wing_Rear_Part" name="damageMax" value="12" />
+		<Elem idRef="idBodyFront" name="damageMax" value="8" />
+		<Elem idRef="idBodyRight" name="damageMax" value="8" />
+		<Elem idRef="idInTakeRight_Part" name="damageMax" value="10" />
+		<Elem idRef="idWingRight" name="damageMax" value="10" />
+		<Elem idRef="idWingRightBase" name="damageMax" value="8" />
+		<Elem idRef="idWingRightTip" name="damageMax" value="4" />
+		<Elem idRef="idRight_Wing_Rear_Part" name="damageMax" value="12" />
+      </Elems>
+    </Modification>
+	
+	<Modification name="PirateSwarm">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="ANVL Hornet Pirate" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.44,0.37,0.31" />
+        <Elem idRef="idMainPart" name="name" value="ANVL_Hornet_Pirate" />
+        <!-- Nerf the health of this ship -->
+        <Elem idRef="idNosePart" name="damageMax" value="99" />
+        <Elem idRef="idBody_Part" name="damageMax" value="120" />
+		<Elem idRef="idBodyRear" name="damageMax" value="24" />
+		<Elem idRef="idTailPart" name="damageMax" value="39" />
+		<Elem idRef="idEngineHousing" name="damageMax" value="30" />
+		<Elem idRef="idBodyLeft" name="damageMax" value="32" />
+		<Elem idRef="idInTakeLeft_Part" name="damageMax" value="30" />
+		<Elem idRef="idWingLeft" name="damageMax" value="30" />
+		<Elem idRef="idWingLeftBase" name="damageMax" value="24" />
+		<Elem idRef="idWingLeftTip" name="damageMax" value="12" />
+		<Elem idRef="idLeft_Wing_Rear_Part" name="damageMax" value="36" />
+		<Elem idRef="idBodyFront" name="damageMax" value="24" />
+		<Elem idRef="idBodyRight" name="damageMax" value="24" />
+		<Elem idRef="idInTakeRight_Part" name="damageMax" value="30" />
+		<Elem idRef="idWingRight" name="damageMax" value="30" />
+		<Elem idRef="idWingRightBase" name="damageMax" value="24" />
+		<Elem idRef="idWingRightTip" name="damageMax" value="12" />
+		<Elem idRef="idRight_Wing_Rear_Part" name="damageMax" value="36" />
+      </Elems>
+    </Modification>
+	
+	<Modification name="SQ42">
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="ANVL Hornet Pirate" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.44,0.37,0.31" />
+        <Elem idRef="idMainPart" name="name" value="ANVL_Hornet_Pirate" />
+        <!-- Nerf the health of this ship -->
+        <Elem idRef="idNosePart" name="damageMax" value="33" />
+        <Elem idRef="idBody_Part" name="damageMax" value="40" />
+		<Elem idRef="idBodyRear" name="damageMax" value="8" />
+		<Elem idRef="idTailPart" name="damageMax" value="13" />
+		<Elem idRef="idEngineHousing" name="damageMax" value="10" />
+		<Elem idRef="idBodyLeft" name="damageMax" value="8" />
+		<Elem idRef="idInTakeLeft_Part" name="damageMax" value="10" />
+		<Elem idRef="idWingLeft" name="damageMax" value="10" />
+		<Elem idRef="idWingLeftBase" name="damageMax" value="8" />
+		<Elem idRef="idWingLeftTip" name="damageMax" value="4" />
+		<Elem idRef="idLeft_Wing_Rear_Part" name="damageMax" value="12" />
+		<Elem idRef="idBodyFront" name="damageMax" value="8" />
+		<Elem idRef="idBodyRight" name="damageMax" value="8" />
+		<Elem idRef="idInTakeRight_Part" name="damageMax" value="10" />
+		<Elem idRef="idWingRight" name="damageMax" value="10" />
+		<Elem idRef="idWingRightBase" name="damageMax" value="8" />
+		<Elem idRef="idWingRightTip" name="damageMax" value="4" />
+		<Elem idRef="idRight_Wing_Rear_Part" name="damageMax" value="12" />
+      </Elems>
+    </Modification>
+	
+	<Modification name="F7CM_SQ42">
+      <!-- Super Hornet -->
+      <Elems>
+        <Elem idRef="idVehicleClass" name="displayname" value="Anvil Hornet F7CM" />
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.44,0.37,0.31" />
+        <!-- Parts -->
+        <Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+        <Elem idRef="idShipGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Damaged.cga" />
+        <!-- USE THIS AFTER V1 -->
+        <!-- <Elem idRef="idNosePart" name="damageMax" value="300"/>
+				<Elem idRef="idNoseGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Nose.cga"/>
+				<Elem idRef="idNoseGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Nose_Damaged.cga"/>
+				<Elem idRef="idWingLeftGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingLeft.cga"/>
+				<Elem idRef="idWingLeftGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingLeft_Damaged.cga"/>
+				<Elem idRef="idWingRightGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingRight.cga"/>
+				<Elem idRef="idWingRightGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_WingRight_Damaged.cga"/>
+				<Elem idRef="idTailGeometry" name="filename" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/>
+				<Elem idRef="idTailGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M_Tail_Damaged.cga"/> -->
+        <Elem idRef="idMainControlStick" name="name" value="main_cockpit_front_control_stick" />
+        <Elem idRef="idMainThrottle" name="name" value="main_cockpit_front_throttle" />
+        <Elem idRef="idPowerPlantItemPort" name="flags" value="invisible" />
+        <!-- Vehicle Actions -->
+        <Elem idRef="idPilotEnterPosActivation" name="param2" value="pilot_sit_pos" />
+        <Elem idRef="idPilotEnterPosActivation" name="bbMin" value="-3,-0.8,-2" />
+        <Elem idRef="idPilotEnterPosActivation" name="bbMax" value="0,0.8,2.5" />
+        <Elem idRef="idCoPilotEnterSeat" name="value" value="CoPilot" />
+        <!-- Seat Actions -->
+        <Elem idRef="idControlPartPilotStick" name="part" value="main_cockpit_front_control_stick" />
+        <Elem idRef="idControlPartPilotThrottle" name="part" value="main_cockpit_front_throttle" />
+        <Elem idRef="idPilotTrottleIK" name="helper" value="pilot_l_yoke_ik" />
+        <Elem idRef="idPilotJoystickIK" name="helper" value="pilot_r_yoke_ik" />
+        <Elem idRef="idCoPilotSeat" name="enterHelper" value="pilot_enter_pos" />
+        <!-- Mannequin -->
+        <Elem idRef="idMannequin" name="tag" value="ANVL_Hornet_F7CM" />
+        <Elem idRef="idMannequin" name="controllerDef" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_ControllerDefs.xml" />
+        <Elem idRef="idMannequin" name="vehicleADB" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_Anims.adb" />
+        <Elem idRef="idMannequin" name="passengerADB" value="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Hornet/F7CM/ANVL_Hornet_F7CM_HumanAnims.adb" />
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+        <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+        <Elem idRef="idHoloGeometry_ItemPreviewA" name="name" value="Objects/Spaceships/Ships/ANVL/Hornet/F7C_M/ANVL_Hornet_F7C_M.cga" />
+		
+		<!-- Nerf the health of this ship -->
+        <Elem idRef="idNosePart" name="damageMax" value="33" />
+        <Elem idRef="idBody_Part" name="damageMax" value="40" />
+		<Elem idRef="idBodyRear" name="damageMax" value="8" />
+		<Elem idRef="idTailPart" name="damageMax" value="13" />
+		<Elem idRef="idEngineHousing" name="damageMax" value="10" />
+		<Elem idRef="idBodyLeft" name="damageMax" value="8" />
+		<Elem idRef="idInTakeLeft_Part" name="damageMax" value="10" />
+		<Elem idRef="idWingLeft" name="damageMax" value="10" />
+		<Elem idRef="idWingLeftBase" name="damageMax" value="8" />
+		<Elem idRef="idWingLeftTip" name="damageMax" value="4" />
+		<Elem idRef="idLeft_Wing_Rear_Part" name="damageMax" value="12" />
+		<Elem idRef="idBodyFront" name="damageMax" value="8" />
+		<Elem idRef="idBodyRight" name="damageMax" value="8" />
+		<Elem idRef="idInTakeRight_Part" name="damageMax" value="10" />
+		<Elem idRef="idWingRight" name="damageMax" value="10" />
+		<Elem idRef="idWingRightBase" name="damageMax" value="8" />
+		<Elem idRef="idWingRightTip" name="damageMax" value="4" />
+		<Elem idRef="idRight_Wing_Rear_Part" name="damageMax" value="12" />
+      </Elems>
+    </Modification>
+	
   </Modifications>
 </Vehicle>

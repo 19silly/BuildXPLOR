@@ -1,16 +1,10 @@
 RSI_IR1337_Missile_Platform =
 {
-
-	foreignCollisionDamageMult = 1.0,
-	vehicleCollisionDamageMult = 1.0,
-
 	Properties = 
 	{	
 		bDisableEngine = 0,
 		material = "",
-		bFrozen = 0,
 		Modification = "",
-		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
 		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_IR1337_Missile_Platform.xml",
 		
@@ -37,7 +31,6 @@ RSI_IR1337_Missile_Platform.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

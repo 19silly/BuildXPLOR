@@ -4,12 +4,12 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 -->
-<Vehicle name="AEGS_Redeemer" category="StarFighter" displayname="Aegis Dynamics Redeemer" classname="Class 2" id="idVehicleClass" dockingclass="4" piority="2" HudPaletteScheme="Origin">
+<Vehicle name="AEGS_Redeemer" category="StarFighter" displayname="Aegis Dynamics Redeemer" classname="Class 2" id="idVehicleClass" dockingclass="4" HudPaletteScheme="Origin">
 	<Physics pushable="0" dampingFreefall="0">
 		<Buoyancy waterDensity="150" waterResistance="2500"/>
 		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
 	</Physics>
-	<Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+	<Damages  collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
 		<DamageMultipliers>
 			<DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
 			<DamageMultiplier damageType="melee" multiplier="0"/>
@@ -23,9 +23,9 @@
 					<DamagesSubGroup delay="0" randomness="0">
 						<DamageBehaviors>							
 							<DamageBehavior class="Destroy" />
-							<DamageBehavior class="Effect" >
-								<Effect effect="VehicleDestroyed" />
-							</DamageBehavior>
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" />
+              </DamageBehavior>-->
 							<DamageBehavior class="Explosion">
 								<Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
 							</DamageBehavior>
@@ -60,7 +60,7 @@
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 	
 	<Parts>
-		<Part name="Nose" class="Animated" damageMax="275" mass="0" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
+		<Part name="Nose" class="Animated" damageMax="275" mass="30000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
 			<Animated filename="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" filenameDestruction="Objects/Spaceships/Ships/AEGS/Redeemer/AEGS_Redeemer.cga" id="idShipGeometry"/>			
 		</Part>
 		<Part name="Joystick" class="AnimatedJoint" id="idMainControlStick" />
@@ -340,13 +340,7 @@
 			</Seats>
 		  </Enter>
 		</Action>			
-		
-<!-- 	<Action class="LandingGears">
-		<Activations>
-			<Activation type="OnGroundCollision"/>
-		</Activations>
-		<LandingGears animation ="Landing_Gear" landingDamages="500" altitudeToRetractGears="8" openState="Deploy" closeState="Retract"/>
-	</Action>	 -->		
+
 	</Actions>	
 	
 
@@ -460,6 +454,7 @@
 								<ItemPort part="*light"/>
 								<ItemPort part="*hardpoint_fuel" />
 								<ItemPort part="hardpoint_cockpit_audio" />
+								<ItemPort part="landingpad_helper" />
 							</Items>
 						</Settings>
 					</SharedItems>
@@ -594,10 +589,8 @@
 		<SeatAction class ="PassengerIK">
 			<PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
 				<Limbs>
-						<Limb tag ="LeftArmThrottle" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_left" blendTime="0"/>
-						<Limb tag ="RightArmJoystick" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_right" blendTime="0"/>
-						<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_attach" blendTime="0" />
-						<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_attach" blendTime="0" />
+					<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_left" blendTime="0"/>
+					<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="turret_player_ik_right" blendTime="0"/>
 				</Limbs>
 			</PassengerIK>
 		</SeatAction>
@@ -710,18 +703,15 @@
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 	<MovementParams>
 		<Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="280" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="120,140,120" maxAngularAcceleration="240,180,270" maxJerk="100.0" maxAngJerk="60.0">
-		  <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
-			<EngineStartSound sound="" />
-			<EngineRunSound sound="" />
-			<EngineStopSound sound="" />
-			<AmbienceSound sound="Play_SSAM_CNOU_Mustang_Interior_Cockpit" />
-			<PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
-			<PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
-			<DuressSound sound="Play_SSDM_CNOU_Mustang_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
-		  </AudioParams>
+			<SoundParams>
+				<AmbientSound sound="Play_SSAM_CNOU_Mustang_Interior_Cockpit"/>
+				<PassByLoopSound sound="Play_SSPB_ANVL_Hornet_Lp" />
+				<PassBySound sound="Play_SSPB_ANVL_Hornet" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+				<DuressSound sound="Play_SSDM_CNOU_Mustang_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0"/>
+			</SoundParams>
 			<!--<Contrails>
-				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
-				<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+				<Contrail helper="wing_right_contrail_pos" effect="" ctceffect="" minSpeed ="25" />
+				<Contrail helper="wing_left_contrail_pos" effect="" ctceffect="" minSpeed ="25" />
 			</Contrails>-->
 		</Spaceship>
 	</MovementParams>
@@ -730,30 +720,21 @@
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-	<Particles mfxRow="vfx_Anvil_Hornet">
-		<!--
-	 <Exhaust insideWater="0" outsideWater="1">
-	 <Helpers>
-		<Helper value="main_engine_exhaust"/>
-	 </Helpers>
-	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
-	</Exhaust>
-	-->
-		<DamageEffects>
-			<DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
-		</DamageEffects>
-		<EnvironmentLayers>
-			<EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
-				<Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
-				<Emitters />
-				<Wheels />
-			</EnvironmentLayer>
-		</EnvironmentLayers>
-	</Particles>
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
 	
 	
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->

@@ -611,12 +611,12 @@ function DestroyablePiece:PlayAudio(hTriggerID)
 			if (self.audioAnchorEnt ~= nil) then
 				if (hTriggerID ~= nil) then
 					self:UpdateAudioProxyOffset();
-					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID);
+					self.audioAnchorEnt:ExecuteAudioTrigger(hTriggerID, self:GetDefaultAuxAudioProxyID());
 				end
 			else
 				if (hTriggerID ~= nil) then
 					self:UpdateAudioProxyOffset();
-					self:ExecuteAudioTrigger(hTriggerID);
+					self:ExecuteAudioTrigger(hTriggerID, self:GetDefaultAuxAudioProxyID());
 				end
 			end
 			if (hTriggerID == self.hAudioAliveTriggerID) then
@@ -631,7 +631,7 @@ function DestroyablePiece:UpdateAudioProxyOffset()
 	if (self.audioAnchorEnt ~= nil) then
 		self.audioAnchorEnt:SetCurrentAudioEnvironments();
 	else
-		self:SetAudioProxyOffset(g_Vectors.v000);
+		self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
 		self:SetCurrentAudioEnvironments();
 	end
 end

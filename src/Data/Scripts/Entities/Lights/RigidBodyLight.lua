@@ -220,10 +220,10 @@ end
 -------------------------------------------------------
 function RigidBodyLight:CacheResources(requesterName)
 	local textureFlags = 0;
-	Game.CacheResource(requesterName, self.PropertiesInstance.LightProperties_Base.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
+	self:CacheResource(requesterName, self.PropertiesInstance.LightProperties_Base.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
 
 	textureFlags = 0;
-	Game.CacheResource(requesterName, self.PropertiesInstance.LightProperties_Destroyed.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
+	self:CacheResource(requesterName, self.PropertiesInstance.LightProperties_Destroyed.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
 end
 
 ------------------------------------------------------------------------------------------------------
@@ -288,6 +288,7 @@ function RigidBodyLight:OnPropertyChange()
 	self:SetFromProperties();
 	if (self.PropertiesInstance.LightProperties_Base.Options.bDeferredClipBounds) then
 		self:UpdateLightClipBounds(self.lightSlot);
+		self:UpdateLightClipVolumes(self.lightSlot);
 	end
 	-- to avoid loop sounds playing while in editor mode
 	self:StopIdleSound();
@@ -297,6 +298,7 @@ end
 function RigidBodyLight.Client:OnLevelLoaded()
 	if (self.PropertiesInstance.LightProperties_Base.Options.bDeferredClipBounds) then
 		self:UpdateLightClipBounds(self.lightSlot);
+		self:UpdateLightClipVolumes(self.lightSlot);
 	end
 end
 

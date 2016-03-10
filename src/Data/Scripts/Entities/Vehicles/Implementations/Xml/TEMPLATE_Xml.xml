@@ -2,12 +2,12 @@
 <!-- / REPLACE_ME                                                                                         / -->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-<Vehicle name="REPLACE_ME" category="StarFighter" displayname="REPLACE_ME" classname="Class 3" dockingclass="4" priority="10" requiredTags="" itemPortTags="REPLACE_ME">
+<Vehicle name="REPLACE_ME" category="StarFighter" displayname="REPLACE_ME" classname="Class 3" dockingclass="4" requiredTags="" itemPortTags="REPLACE_ME">
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
       <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
       <DamageMultiplier damageType="melee" multiplier="0" />
@@ -48,12 +48,9 @@
               <DamageBehavior class="MovementNotification">
                 <MovementNotification isDamageAlwaysFull="0" />
               </DamageBehavior>
-              <DamageBehavior class="Effect">
+              <!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="EngineDamaged" disableAfterExplosion="1" />
-              </DamageBehavior>
-              <DamageBehavior class="CameraShake">
-                <CameraShake />
-              </DamageBehavior>
+              </DamageBehavior>-->
             </DamageBehaviors>
           </DamagesSubGroup>
         </DamagesSubGroups>
@@ -172,6 +169,7 @@
                 <ItemPort part="hardpoint_radiator_right" />
                 <ItemPort part="hardpoint_shield_generator" />
                 <ItemPort part="*light" />
+                <ItemPort part="landingpad_helper" />
 			  </Items>
             </Settings>
           </SharedItems>
@@ -282,6 +280,12 @@
         </Slots>
       </DockingStation>
       <FixedVisorSettings default_fixed="1" scale="1" x_offset="0" y_offset="-0.3" z_offset="0" />
+	<HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	</HUDAccess>	  
       <Screens>
         <Screen name="Fixed UI" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
           <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" scale="5" />
@@ -303,8 +307,8 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
     <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="REPLACE_ME" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,80" maxAngularAcceleration="120,100,120">
-      <AudioParams>
-      </AudioParams>
+      <SoundParams>
+      </SoundParams>
       <Contrails>
       </Contrails>
     </Spaceship>

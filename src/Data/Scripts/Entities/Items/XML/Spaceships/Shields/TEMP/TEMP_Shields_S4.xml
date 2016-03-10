@@ -1,0 +1,252 @@
+<item name="TEMP_Shields_S4" class="VehicleItemShield" invisible="0" category="VehicleItem" >
+	<params>
+		<param name="itemType" value="Shield" />
+		<param name="itemSize" value="4" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="" />
+		<param name="itemManufactor" value="TEMP" />
+		<param name="itemDescription" value="" />
+		<param name="display_name"	value="" />
+		<param name="hitpoints" value="800" />
+		<param name="mass" value="800" />
+	</params>
+ 
+ <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="shield">
+			<Signature name="Electromagnetic" multiplier="0.25" />
+			<Pool capacity="-800" rate="-120" critical="1"/>
+      <StateLevels>
+        <Warning  value = "0.50" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+
+      <States>
+        <State state="Default">
+          <Value value="-75"	/><!-- Base consumption -->
+          <!-- <Variable name="allocated_hitpoints" value="-1" critical="0"/> --><!-- 1 unit of shield hitpoints allocated = 1 units of power -->
+          <Variable name="total_regen" value="-15" critical="0"/><!-- 1 unit of shield regen allocated = 0.1 units of power -->
+        </State>
+          <State state="Off">
+              <Value value="0" />
+          </State>
+      </States>
+    </Pipe>
+      <Pipe class="Heat" prioType="manageable" prioGroup="shield">
+      <Signature name="Infrared" poolMultiplier="0.1" />
+      <Pool capacity="100" rate="5.5" critical="1"/>
+      <States>
+        <State state="Active"><Value value="5.5" /></State>
+      </States>
+    </Pipe>
+</Pipes>
+ 
+<shield>
+	<data>
+    <param name="shieldFaceType" value="Quadrant" />
+    <param name="shieldMaxHitpoints" value="200" />
+    <param name="shieldMaxRegenRate" value="10" />
+    <param name="shieldRegenDelay" value="10" />
+    <param name="shieldMaxHPShift" value="0.4" />
+    <param name="shieldMaxRegenShift" value="0.4" />
+    <param name="shieldHpAllocRate" value="15" />
+	
+	<param name="shieldDamageAbsorbFactor" value="0.5"/> <!-- Shield will take this much PHYSICAL Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbFactor_Energy" value="1" /> <!-- Shield will take this much ENERGY Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbFactor_Distortion" value="1" /> <!-- Shield will take this much DISTORTION Damage and then pass the rest -->
+	
+	<param name="shieldDamageAbsorbSplashFactor" value="1"/> <!-- Shield will take this much PHYSICAL SPLASH Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbSplashFactor_Energy" value="1" /> <!-- Shield will take this much ENERGY SPLASH Damage and then pass the rest -->
+	<param name="shieldDamageAbsorbSplashFactor_Distortion" value="1" /> <!-- Shield will take this much DISTORTION SPLASH Damage and then pass the rest -->
+
+    <param name="materialPath" value="Materials/Shield/shield_GODI_Q2" />
+    <param name="meshPath" value="Objects/Spaceships/Ships/ANVL/Gladiator/anvl_gladiator_shield.obj" />
+    <param name="maxLevelModifier" value="0.2" />
+  </data>
+</shield>
+
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+
+
+		<damagelevels>
+
+	<level damageRatio="0.50">
+		<DebrisList>
+			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_50_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_50_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_50_debris2_PFX1" />
+				</EffectsList>
+			</Debris>			
+			<Debris name="base_50_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_50_debris3_PFX1" />
+				</EffectsList>
+			</Debris>			
+		</DebrisList> 
+	</level>
+
+
+		
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_100_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_100_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_100_debris3_PFX1" />
+				</EffectsList>
+			</Debris>
+			</DebrisList>
+	</level>
+  </damagelevels>
+  
+	<geometry>
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Components\Shield_Generators_Capital.cgf" />
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Components\Shield_Generators_Capital.cgf" material=""/>
+		</tags>
+	</geometry>
+	
+	<shield>
+	  <shader>
+			<PerShield 
+					shieldColor = "0.07, 0.47, 1.0"
+					velocity1="2.0" 
+					velocity2="2.0" 
+					waveDecay="0.2" 
+					animFramerate="30" 
+					refractionFadePower="4.0" 
+					refractionScale="0.5" 
+					rimBias="0.15" 
+					rimPower="8.0" 
+					tessellationAmount="8.0" 
+					tileU="4" 
+					tileV="4" />
+			<EffectParams>
+				<ImpactType name="laserbolt" >
+					<Default 
+						ShieldHealth="1.0"
+						HotspotSize="0.5"
+						HotspotAlphaFalloff="0.5"
+						HotspotLifetime="0.5"
+						HotspotIntensity="0.5"
+						LightningFrequency="0.5"
+						LightningIntensity="0.5"
+						LightningLifetime="0.5"
+						MaxRefractionFrequency="0.5"
+						NoiseAlpha=".5"
+						NoiseContrastThreshold="0.5"
+						NoiseFrequency=".5"
+						NoiseIntesity="0.5"
+						NoiseLifetime="0.5"
+						PerlinFrequency="0.5"
+						PerlinIntensity="0.5"
+						PerlinLifetime="0.5"
+						RefractionMagnitude="0.5"
+						WaveRefractionFrequency="0.5"
+						WaveRefractionMagnitude="0.5"
+						GlowIntensity="0.5"
+					/>
+					<Keyframe ShieldHealth="0.5"
+						GlowIntensity="0.5"
+					/>
+					<Keyframe ShieldHealth="0.0"
+						GlowIntensity="0.4"
+					/>
+				</ImpactType>
+				<ImpactType name="explosion">
+					<Default 
+						ShieldHealth="1.0"
+						HotspotSize="0.5"
+						HotspotAlphaFalloff="0.5"
+						HotspotLifetime="0.5"
+						HotspotIntensity="0.5"
+						LightningFrequency="0.5"
+						LightningIntensity="0.5"
+						LightningLifetime="0.5"
+						MaxRefractionFrequency="0.5"
+						NoiseAlpha="0.5"
+						NoiseContrastThreshold="0.5"
+						NoiseFrequency="0.5"
+						NoiseIntesity="0.5"
+						NoiseLifetime="0.5"
+						PerlinFrequency="0.5"
+						PerlinIntensity="0.5"
+						PerlinLifetime="0.5"
+						RefractionMagnitude="0.5"
+						WaveRefractionFrequency="0.5"
+						WaveRefractionMagnitude="0.5"
+						GlowIntensity="0.5"
+					/>
+					<Keyframe ShieldHealth="0.5"
+						GlowIntensity="1.0"
+					/>
+				</ImpactType>
+			</EffectParams>
+			<PerHit>
+				<Projectile maxRadius="1.0" minRadius="0.5" radiusDamageGradient="0.1" maxDuration="0.55" minDuration="0.25" durationDamageGradient="1"/>
+				<Explosion maxRadius="1.0" minRadius="0.5" radiusDamageGradient="0.001" maxDuration="3.0" minDuration="0.8" durationDamageGradient="0.07"/>
+				<Collision maxRadius="1.0" minRadius="0.5" radiusDamageGradient="0.001" maxDuration="3.0" minDuration="0.8" durationDamageGradient="0.07"/>
+			</PerHit>
+			<mtlparams lerp="10">
+			<!--
+				<mtlparam name="HotspotAlphaFalloff" 	        min="0"   max="0. 7" mode="fade"/>			
+				<mtlparam name="HotspotIntensityModifier" 	        min="0"   max="0. 7"   mode="fade"/>
+				<mtlparam name="HotspotLifetime" 	        min="0"   max="1"   mode="fade"/>
+				<mtlparam name="HotspotScale" 	        min="1"   max="1"   mode="fade"/>		
+				<mtlparam name="WaveRefractionFrequency" 	        min="0"   max="1"   mode="fade"/>		
+				<mtlparam name="WaveRefractionMagnitude" 	        min="0"   max="1"   mode="fade"/>	
+				<mtlparam name="PerlinFrequency" 	        min="0"   max="1"   mode="fade"/>	
+				<mtlparam name="PerlinIntensity" 	        min="0"   max="1"   mode="fade"/>				
+				<mtlparam name="PerlinLifetime" 	        min="0"   max="1"   mode="fade"/>
+				<mtlparam name="LightningFrequency" 	        min="0"   max="1"   mode="fade"/>
+				<mtlparam name="LightningIntensityMult" 	        min="0"   max="1"   mode="fade"/>				
+				<mtlparam name="LightningLifetime" 	        min="0"   max="1"   mode="fade"/>				
+				<mtlparam name="NoiseAlpha" 			min="0"   max="1"   mode="fade"/>
+				<mtlparam name="NoiseContrastThreshold" 			min="0"   max="1"   mode="fade"/>				
+				<mtlparam name="NoiseIntensity" 			min="0"   max="1"   mode="fade"/>
+				<mtlparam name="NoiseTimeMultiplier" 	min="0"   max="1"   mode="fade"/>
+				<mtlparam name="MaxRefractionFrequency" 	min="0"   max="1"   mode="fade"/>
+				<mtlparam name="RefractionMagnitude" 	min="0"   max="1"   mode="fade"/>
+				<mtlparam name="MaxRefractionFrequency" 	min="0"   max="1"   mode="fade"/>
+				<mtlparam name="RefractionMagnitude" 	min="0"   max="1"   mode="fade"/>				
+				<mtlparam name="PerlinIntensity" 	        min="0.9"   max="1"   mode="fade"/>				
+				<mtlparam name="PerlinLifetime" 	        min="1"   max="0"   mode="fade"/>
+								-->					
+				<mtlparam name="IntensityMult" 	min="1"   max="0.5"  mode="fade"/>				
+				
+	
+			</mtlparams>
+		</shader>
+	</shield>
+
+	<EntityEffects>
+		<sound name="Play_SSSG_Shared_Human_Regen" enable="0" tag="shield_up_front" loop="0" helper="autogen_shield_front_helper" />
+		<sound name="Play_SSSG_Shared_Human_Regen" enable="0" tag="shield_up_back" loop="0" helper="autogen_shield_back_helper" />		
+		<sound name="Play_SSSG_Shared_Human_Regen" enable="0" tag="shield_up_left" loop="0" helper="autogen_shield_left_helper" />
+		<sound name="Play_SSSG_Shared_Human_Regen" enable="0" tag="shield_up_right" loop="0" helper="autogen_shield_right_helper" />	
+	</EntityEffects>
+
+</item>

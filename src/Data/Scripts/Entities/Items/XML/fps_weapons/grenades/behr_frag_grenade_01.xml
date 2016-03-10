@@ -43,8 +43,30 @@
 	<ammos>
 		<ammo name="behr_frag_grenade_01_ammo" extra="0" amount="1" minAmmo="0" capacity="1" />
 	</ammos>
+	<decibel>
+		<param name="selectDB" value="5" />
+		<param name="deselectDB" value="5" />
+		<param name="pullPinDB" value="15" />
+	</decibel>
+	<Pipes>
+		<Pipe class="Decibel">
+			<Pool capacity="100" decayRate="-100" critical="1"/> 
+			<Signature name="Decibel" poolMultiplier="1" />
+			<States>
+				<State state="Default"><Value value="0" /></State>
+			</States>
+			<StateLevels>
+				<Warning  value = "0.5" />
+				<Critical value = "0.25" />
+				<Fail     value = "-1" /> <!-- never fail otherwise you cant shoot the pistol :( -->
+			</StateLevels>
+		</Pipe>
+	</Pipes>
 	<firemodes>
 		<firemode type="Throw" name="Grenade_Explosive">
+			<pools>
+				<pool class="Decibel" value="5" checkValue="0" />
+			</pools>
 			<fire>
 				<param name="hit_type" value="FragGrenade" />
 				<param name="ammo_type" value="behr_frag_grenade_01_ammo" />

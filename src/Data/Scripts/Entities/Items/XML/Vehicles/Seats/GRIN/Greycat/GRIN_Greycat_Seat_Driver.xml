@@ -1,0 +1,129 @@
+﻿<item name="GRIN_Greycat_Seat_Driver" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <param name="scopeContext"		value="Seat" />
+    <param name="adb" value="Items/Seats/GRIN/Greycat/GRIN_Greycat_Seat_Driver_Anims.adb" />
+	<param name="actionController" value="Items/Seats/GRIN/Greycat/GRIN_Greycat_Seat_Driver_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/GRIN/Greycat/GRIN_Greycat_Seat_Driver_HumanAnims.adb" />
+    <param name="itemType" value="Seat" />
+    <param name="itemSubType" value="Pilot" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="GRIN" />
+    <param name="itemSize" value="1" />
+	<param name="itemTags" value="flightReady" />
+	<param name="requiredPortTags" value="GRIN_PTV_Base" />
+	<param name="itemClass" value="1" />
+    <param name="display_name" value="Greycat Pilot Seat" />
+  	<vehicleItemStats>
+	</vehicleItemStats>  
+  </params>
+
+	<geometry>
+		<thirdperson name="Objects\Vehicles\seats\GRIN\Greycat\GRIN_Greycat_Seat_Driver.cga"/>
+	</geometry>
+
+  <GForceReactions simScale="0.25">
+    <Forward scale="-1.57079" blendTime="0.5" />
+    <Right scale="-1.57079" blendTime="0.5" />    
+  </GForceReactions>
+  
+    <Seat name="SeatDriver" part="body" enterHelper="pilot_enter_pos_left" sitHelper="pilot_sit_pos" exitHelper="pilot_sit_pos" isPassengerHidden="0" isDriver="1" AimPart="" seatGroupIndex="1" actionMap="vehicle_driver" remotelyUseActionsFromSeat="" isHUDSupported="0" id="idSeat1">
+      <Views>
+        <View class="Cockpit" canRotate="1" hidePlayer="0" rotationMin="-40,0,-60" rotationMax="40,0,60" stickSensitivity="2,0,2" stickSensitivity2="1,0,2" relaxTimeMax="0.5" relaxEnabled="1" rotationVelMax="30.0" rotationVelMin="30.0">
+          <Cockpit helper="driver_eye_pos" offset="0,0,0" relativeToHorizon="0.8" followSpeed="30" fov="55" nearPlane=".05" />
+        </View>
+        <View class="SteerThirdPerson">
+          <SteerThirdPerson>
+            <Pos aim="0,0,2.5" offset="0,-4,0,0" pivotOffset="-1.5" />
+            <Rotation rotationMax="10,0,90" rotationMax2="10,0,30" stickSensitivity="2,0,2" stickSensitivity2="1,0,2" inheritedElev="0.8" />
+            <Motion returnSpeed="1.0" returnSpeed2="1.0" angFollow="0.0" />
+            <Radius min="0.9" max="1.3" relaxRate="5" />
+          </SteerThirdPerson>
+        </View>
+        <!-- CIG dtracy: Disabling Debug Views for Demo -->
+        <!--<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
+        <FirstPerson helper="debugview1" offset="0,0,0" />
+      </View>
+	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
+        <FirstPerson helper="debugview2" offset="0,0,0"/>
+      </View>
+	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
+        <FirstPerson helper="debugview3" offset="0,0,0" />
+      </View>-->
+      </Views>
+      <SeatActions>
+        <SeatAction class="Sound">
+          <Audio isAvailableDocked="1" startTrigger="Play_VHLW_GRIN_PTV_Horn" stopTrigger="Stop_VHLW_GRIN_PTV_Horn" helper="engineSmokeOut" id="seatActionSound1" />
+        </SeatAction>
+        <!--<SeatAction class="ShakeParts">
+      <Parts>
+       <Part name="monitor" amp="0.003" ampRot="0.8" freq="18" suspensionAmp="0.016" suspensionResponse="1.8" suspensionSharpness="20"/>
+      </Parts>
+     </SeatAction>-->
+        <SeatAction class="Movement">
+          <Movement/>
+        </SeatAction>
+		<SeatAction class="SteeringWheel">
+          <SteeringWheel isAvailableDocked="1" fragmentID="Steering_Wheel">
+            <Car jitterAmpLow="0.02" jitterAmpHi="0.08" jitterFreqLow="9" jitterFreqHi="25" jitterSuspAmp="0.1" jitterSuspResponse="10" />
+          </SteeringWheel>
+        </SeatAction>
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="accelerator" id="idControlPartPilotThrottle">
+                <Rotate_X input="power" direction="-1" min="-60" max="60" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK isAvailableDocked="1" waitShortlyBeforeStarting="1">
+            <Limbs>
+              <Limb tag="LeftArmYoke" on="1" limb="LftArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="driver_IK_attach_left" blendTime="0" />
+              <Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" slot="1" IKTargetSystemType ="seatBone" spine ="Spine_SpineToNeck" helper ="driver_IK_attach_right" blendTime="0"/>
+			  <!-- <Limb tag ="LeftLegPedal" on="1" limb ="LftLeg01" slot="1" IKTargetSystemType ="seatBone" helper ="left_pedal_IK_attach" blendTime="0" /> -->
+              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" slot="1" IKTargetSystemType="seatBone" helper="driver_IK_attach_foot_right" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+        <SeatAction class="Lights">
+          <Lights activation="toggle" isAvailableDocked="1">
+            <LightParts>
+              <LightPart value="headLightLeft" />
+              <LightPart value="headLightLeftFlare" />
+              <LightPart value="headLightRight" />
+              <LightPart value="headLightRightFlare" />
+            </LightParts>
+          </Lights>
+        </SeatAction>
+        <SeatAction class="Lights">
+          <Lights activation="brake" isAvailableDocked="1">
+            <LightParts>
+              <LightPart value="brakeLightLeft" />
+              <!--<LightPart value="brakeLightLeftFlare"/>-->
+              <LightPart value="brakeLightRight" />
+              <!--<LightPart value="tail_light"/>-->
+              <!--<LightPart value="brakeLightRightFlare"/>-->
+            </LightParts>
+          </Lights>
+        </SeatAction>
+        <SeatAction class="Lights">
+          <Lights activation="reverse" isAvailableDocked="1">
+            <LightParts>
+              <LightPart value="reverseLightLeft" />
+              <LightPart value="reverseLightRight" />
+            </LightParts>
+          </Lights>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="0.6" id="idSeatSoundsLF" />
+    </Seat>
+	
+</item>

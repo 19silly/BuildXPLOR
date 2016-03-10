@@ -1,0 +1,107 @@
+﻿<item name="AEGS_Retaliator_Engineer_Console" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <param name="scopeContext"		value="Seat" />
+    <param name="adb" value="Items/Stations/Engineer/AEGS/AEGS_Retaliator_Engineer_Console_Anims.xml" />
+	<param name="actionController" value="Items/Stations/Engineer/AEGS/AEGS_Retaliator_Engineer_Console_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Stations/Engineer/AEGS/AEGS_Retaliator_Engineer_Console_HumanAnims.adb" />
+    <param name="itemType" value="Seat" />
+    <param name="itemSubType" value="Pilot" />
+		<param name="itemDescription" value="item_DescAEGS_Retaliator_Engineer_Console" />
+    <param name="itemManufactor" value="AEGS" />
+    <param name="itemSize" value="1" />
+		<param name="itemTags" value="flightReady" />
+		<param name="itemClass" value="1" />
+    <param name="display_name" value="item_NameAEGS_Retaliator_Engineer_Console" />
+  	<vehicleItemStats>
+	</vehicleItemStats>  
+  </params>
+
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Stations/Engineering/AEGS/aegs_ret_engineer_console.cga"/>
+	</geometry>
+   <Seat name="SeatDriver" enterHelper="pilot_mount_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-45" maxPitch="45" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
+      </Views>
+      <Enter>
+        <State animation="SeatDriver" state="Enter" />
+      </Enter>
+      <Exit>
+        <State animation="SeatDriver" state="Exit" />
+      </Exit>
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <SeatAction class="AnimatedAction"/>
+        <!-- Weapons used / controlled by pilot of Cutlass -->
+		<SeatAction class="SharedWeapons" />
+        <!-- missiles used / controlled by pilot of Cutlass -->
+        <SeatAction class="SharedMissiles"/>
+        <!-- counter messures used / controlled by pilot of Gladius -->
+        <SeatAction class="SharedDefensive"/>
+        <!-- Seat actions for items, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems"/>
+        <SeatAction class="SharedThruster"/>
+        <SeatAction class="SharedAutoWeapons"/>
+        <!-- SeatActionAnimateControlInputs
+				 This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+				 Format is
+					Parts               List of parts to animate
+						ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+							RotateX         Rotation around the X axis (pitch)
+							RotateY         Roll
+							RotateZ         Yaw
+								input=        input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+															registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its working set of action variables )
+															or in the Variables section of the vehicle xml
+								actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+								direction=    forwards or backwards
+								min=          minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+								max=
+								sound=        The sound to play when animating the part
+								stopSound=    The sound to play when stopping
+							Animation
+								manual=       is the animation manual (i.e. its position is set by the use defined variable or user input (depending on what kind of input was specified). If this is not set the animation will
+															play normally according to it's state parameters in the vehicle animation system.
+				 -->
+        <SeatAction class="AnimateControlInputs"/>
+        <SeatAction class="PassengerIK"/>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <!-- FIX ME!! -->
+      <DockingStation>
+        <Slots>
+          <!-- <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" scale="0.2" />
+          </Slot> -->
+        </Slots>
+      </DockingStation>
+      <FixedVisorSettings default_fixed="0">
+        <FirstPerson scale="1" x_offset="0" y_offset="0.05" z_offset="0.03" />
+        <ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
+      </FixedVisorSettings>
+	  <HUDAccess primary="0">
+		<Tab name="EngineeringPower" />
+	  </HUDAccess>
+      <ScreensRecord record="Screens_AEGS_Retaliator_Engineer" />
+	</Seat>
+</item>

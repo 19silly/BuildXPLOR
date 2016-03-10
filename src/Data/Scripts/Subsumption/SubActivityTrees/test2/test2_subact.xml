@@ -1,0 +1,39 @@
+<SubActivityData>
+ <SubactivityVariables>
+  <Variable name="Crate_01" type="entityid" Value=""/>
+ </SubactivityVariables>
+ <EvaluationParameters>
+  <EvaluationParameter name="Priority" value="1" type="int"/>
+  <EvaluationParameter name="Probability" value="1" type="int"/>
+  <EvaluationParameter name="Requirements" value="none" type="string"/>
+ </EvaluationParameters>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Initialize" id="39" pos="28,-253,0" class="InitNode"/>
+   <Task name="Find Object" id="40" pos="-74.180199,-129.81535,0" class="TreeNode">
+    <Input name="Tag Set" type="bbarray" value="AI:SmartObject:Usables:Crate:Small"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Range" value="0" type="float"/>
+    <Output name="Result Object" type="entityid" value="Crate_01"/>
+   </Task>
+   <Task name="Pathfind" id="41" pos="-19.88603,79.544121,0" class="TreeNode">
+    <Input name="Pathfinder" type="entityid"/>
+    <Input name="Destination" type="entityid" value="Crate_01"/>
+    <Input name="Use Channel" value="None" type="string"/>
+    <Input name="Speed" value="Walk" type="string"/>
+   </Task>
+   <Task name="Use" id="42" pos="0,258.5184,0" class="TreeNode">
+    <Input name="User" type="entityid"/>
+    <Input name="Usable" type="entityid" value="Crate_01"/>
+    <Input name="Using Object" type="entityid"/>
+    <Input name="Use Channel" type="string"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="40" nodeOut="39" portIn="in" portOut="outSuccess" enabled="1" pos0="70.194168,-174.03569,0"/>
+   <Edge nodeIn="41" nodeOut="40" portIn="in" portOut="outSuccess" enabled="1" pos0="39.77206,19.88603,0"/>
+   <Edge nodeIn="42" nodeOut="41" portIn="in" portOut="outSuccess" enabled="1" pos0="39.77206,218.74634,0"/>
+  </Edges>
+ </SubActivityGraph>
+</SubActivityData>

@@ -28,7 +28,6 @@ SpawnGrunt =
 	},
 	PropertiesInstance =
 	{
-		aibehavior_behaviour = "Job_StandIdle",
 		soclasses_SmartObjectClass = "",
 		groupid = 173,
 	},

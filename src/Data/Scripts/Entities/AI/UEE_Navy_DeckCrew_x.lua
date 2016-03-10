@@ -8,24 +8,17 @@ UEE_Navy_DeckCrew_x =
 	UpperBodyGraph = "PilotUpperBody.xml",	
 
 	colliderEnergyScale = 10,
-	colliderRagdollScale = 150,
   
 	Properties = 
 	{	
 		esNavigationType = "MediumSizedCharacters",
 		voiceType = "enemy",
-		fileModel = "Objects/Characters/Human/UEE_Deck_Crew/deck_crew.cdf",
-		objFrozenModel = "",
+		fileModel = "Objects/Characters/Human/male_v7_cdfs/uee/navy_bdu/uee_m_navy_bdu1.cdf",
 		Damage =
 		{
-		  bNoGrab = 0,
-			bNoDeath = 0,
 			FallPercentage = 20,
-			FallSleepTime = 2,
 			health = 250,
 		},
-		distanceToHideFrom = 3,
-		preferredCombatDistance = 20,		-- preferred combat distance from the target
 		esFaction = "UEE",
 		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
 		
@@ -134,10 +127,6 @@ UEE_Navy_DeckCrew_x =
 			},
 		},
 	},
-	
-	AI_changeCoverLastTime = 0,	
-	AI_changeCoverInterval = 7,
-	
 
 	--melee stuff
 	melee =
@@ -149,67 +138,4 @@ UEE_Navy_DeckCrew_x =
 
 function UEE_Navy_DeckCrew_x:OnResetCustom()
 	AI.ModifySmartObjectStates(self.id, "-Busy");
-	self:ReleaseTargetPOI();
 end
-
-
--------------------------------------------------------------------------------------------------------
---function UEE_Navy_DeckCrew_x:OnInit(  )
---
-----	dump(BasicAI);
---	mergef( self, BasicAI, 1 );
-----	dump(self);
---	BasicAI.Server_OnInit( self );
---	BasicAI.Client_OnInit( self );
---
---	self.cnt:CounterSetValue("Boredom", 0 );
---	
-----	self:MakeAlerted();
---	
-----	BasicPlayer.Server_OnInit( self );	
-----	BasicAI.OnInit( self );
---
---end
-
---Grunt=CreateAI(UEE_Navy_DeckCrew_x)
------------------------------------------------------------------------------------------------------
---function UEE_Navy_DeckCrew_x:Event_Talk(sender)
---	BroadcastEvent(self, "Talk");
---	AI.Signal(SIGNALFILTER_SENDER,1,"OnBored", self.id);
---	System.Log("SENDING TALK");
---end
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
-
---UEE_Navy_DeckCrew_x.FlowEvents =
---{
---	Inputs =
---	{
---		Alert = { UEE_Navy_DeckCrew_x.Event_Alert, "bool" },
---		Talk = { UEE_Navy_DeckCrew_x.Event_Talk, "bool" },
---	},
---	Outputs =
---	{
---		Alert = "bool",
---		Talk = "bool",
---	},
---}
-
------------------------------------------------------------------------------------------------------
--- Points of interest
------------------------------------------------------------------------------------------------------
-
-function UEE_Navy_DeckCrew_x:SetTargetPOI(poi)
-	self.AI.poiId = poi.id;
-	AI.SetRefPointPosition(self.id, poi:GetWorldPos());
-end
-
-
-function UEE_Navy_DeckCrew_x:ReleaseTargetPOI()
-	if (self.AI.poiId) then
-		AI.ModifySmartObjectStates(self.AI.poiId, "-Busy");
-		self.AI.poiId = nil;
-	end
-end
-
-

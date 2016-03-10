@@ -6,17 +6,18 @@
     <param name="mountable" 	value="1" />
     <param name="usable"		 	value="0" />
     <param name="arms"			 	value="0" />
-    <param name="adb" value="hornetLaserCannonballTurretAnims.adb" />
-    <param name="actionController" value="itemControllerDef.xml" />
+    <param name="adb" value="Items/Seats/DRAK/DRAK_Cutlass_AC_Turret_Anims.adb" />
+	<param name="actionController" value="Items/Seats/DRAK/DRAK_Cutlass_AC_Turret_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/DRAK/DRAK_Cutlass_AC_Turret_HumanAnims.adb" />
     
     <param name="itemType" value="Turret" />
     <param name="itemSubType" value="BallTurret" />
-  	<param name="itemDescription" value="DESCRIBE ME!" />
+  	<param name="itemDescription" value="item_Descdrak_cutlass_s1_q2" />
     <param name="itemManufactor" value="DRAK" />
     <param name="itemSize" value="6" />
 	<param name="itemTags" value="flightReady" />
 	<param name="requiredPortTags" value="DRAK_Cutlass_Base" />
-    <param name="display_name"	value="DRAK Cutlass Turret" />
+    <param name="display_name"	value="item_Namedrak_cutlass_s1_q2" />
 	
 	<param name="inefficiency" value="0.3" />
 	<param name="hitpoints" value="100" />
@@ -49,7 +50,7 @@
 
 
   <geometry>
-    <thirdperson name=""/> <!-- need this here and to be an empty string to signify null geo in the code! -->
+    <thirdperson name="Objects/Spaceships/seats/drak/cutlass/drak_cutlass_ac_turret.cga"/>
     <!-- Such terrible hax to get the Hologram geometry to come back and have the hardpoints come back -->
 	<!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
     <!-- <thirdperson name="Objects/Spaceships/Turrets/DRAK/DRAK_Cutlass_Turret.cga"/> -->
@@ -86,16 +87,11 @@
 		<sound name="" 
 		stop="" loop="0">
 		</sound>
-		<joint value="turret" />
+		<joint value="turret_body" />
 	</yaw>
-	<pitch limits="-10, 90" speed="35" >
-	<!--<sound name="" 
-		stop="" loop="0">
-		</sound>-->
-		<sound name="" 
-		stop="" loop="0">
-		</sound>
-		<joint value="turret_pitch" />
+	<pitch limits="-10, 85" speed="200" accel="300" >
+		<joint value="hardpoint_class_1_left" />	
+		<joint value="hardpoint_class_1_right" />
 	</pitch>
 	<roll />
   </turretParams>  
@@ -176,5 +172,116 @@
   <mobiGlas>
 	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
   </mobiGlas>
-
+<!-- Gunner -->
+    <Seat name="Gunner" enterHelper="turret_player_mount_pos" sitHelper="turret_sit_helper" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" visorType="turret" actionMap="spaceship">
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
+        </View>
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0" />
+      </Views>
+      <PostAction>
+        <Enter>
+          <State animation="GunnerSeat" state="Retract" />
+        </Enter>
+      </PostAction>
+      <WaitFor>
+        <Exit>
+          <State animation="GunnerSeat" state="Deploy" />
+        </Exit>
+      </WaitFor>
+      <SeatActions>
+        <SeatAction class="SharedWeapons">
+          <SharedWeapons isAvailableDocked="1">
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_5" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <SeatAction class="SharedMannedTurret">
+          <SharedWeapons isAvailableDocked="1">
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_5" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_powerplant" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_gunner_avionics" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+				<ItemPort part="hardpoint_CoPilotSeat" />
+              </Items>
+            </Settings>
+          </SharedItems>
+        </SeatAction>
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="turret_chair_joystick_left">
+                <Rotate_Z input="roll" direction="-1" min="-5" max="5" />
+              </ControlPart>
+              <ControlPart part="turret_chair_joystick_left">
+                <Rotate_Z input="roll" direction="1" min="-5" max="5" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+              <Limb tag="LeftArmYoke" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="turret_player_ik_left" blendTime="0" />
+              <Limb tag="RightArmYoke" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="turret_player_ik_right" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+    </Seat>
+	<Mannequin tag="DRAK_Cutlass_AC_Turret" controllerDef="Animations\Mannequin\ADB\Items\Seats\DRAK\DRAK_Cutlass_AC_Turret_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_HumanAnims.adb" id="idMannequin" />
+	<Animations>
+		<!-- Default Animation States -->
+		<Action name="GunnerSeat" state="Retract" />
+	</Animations>
+	<Actions>
+		<!-- Seat / Gunner -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="turret_enter_helper" distance="0.75" bbMin="-0.5,-0.5,-0.5" bbMax="0.5,0.5,0.5" />
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="Gunner" />
+				</Seats>
+			</Enter>
+		</Action>
+		<!-- Switch / TurretChair -->
+		<Action class="Switch">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="TouchPanel_TurretChair_Helper" distance="1.0" bbMin="-0.08,-0.08,-0.08" bbMax="0.08,0.08,0.08" />
+		  </Activations>
+		  <States>
+			<State>
+			  <AnimationStates>
+				<State animation="GunnerSeat" state="Deploy" />
+			  </AnimationStates>
+			  <uiAction name="Interaction_Button" />
+			</State>
+			<State>
+			  <AnimationStates>
+				<State animation="GunnerSeat" state="Retract" />
+			  </AnimationStates>
+			  <uiAction name="Interaction_Button" />
+			</State>
+		  </States>
+		</Action>
+	</Actions>
 </item>

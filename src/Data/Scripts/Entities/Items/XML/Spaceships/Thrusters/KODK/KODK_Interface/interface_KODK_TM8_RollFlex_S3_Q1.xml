@@ -21,12 +21,12 @@
 		<DebrisList>
 			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.fire_small" helper="base_50_debris1_PFX" />
+					<Effect effect="" helper="base_50_debris1_PFX" />
 				</EffectsList>
 			</Debris>
 			<Debris name="base_50_debris2" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.fire_small" helper="base_50_debris2_PFX" />
+					<Effect effect="" helper="base_50_debris2_PFX" />
 				</EffectsList>
 			</Debris>
 		</DebrisList>
@@ -35,12 +35,12 @@
 		<DebrisList>
 			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.fire_small" helper="base_100_debris1_PFX" />
+					<Effect effect="" helper="base_100_debris1_PFX" />
 				</EffectsList>
 			</Debris>
 			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
 				<EffectsList>
-					<Effect effect="damage_fx.uee.static.fire_small" helper="base_100_debris2_PFX" />
+					<Effect effect="" helper="base_100_debris2_PFX" />
 				</EffectsList>
 			</Debris>
 		</DebrisList>
@@ -51,26 +51,22 @@
   <geometry>
 		<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga"/>	
 
-		<!-- FIX ME!! -->
-		<!-- <tags tag="damage_50">
-			<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM4_Slider_50.cga"/>
+		<tags tag="angled">
+			<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex_angled.cga" material=""/>
 		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM4_Slider_100.cga"/>
-		</tags> -->
+
 		
-		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
 		<tags tag="Hologram">
 			<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material=""/>
 		</tags>
 	
 		<tags tag="HUD">
-			<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material=""/>
 			<tags tag="damage_50">
-				<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+				<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material=""/>
 			</tags>
 			<tags tag="damage_100">
-				<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+				<thirdperson name="Objects/Spaceships/Thrusters/KODK/KODK_TM8_RollFlex.cga" material=""/>
 			</tags>	
 		</tags>	
 		
@@ -83,23 +79,22 @@
   <thrusters>
 	<thruster>
 			<exhausts>
-				<exhaust name ="run" scale ="1.5" helper="nozzle_exhaust" effectStopThreshold="0.1">
-					<effect name="thruster_fx.Aurora.MThrust_KODK_TM4" helper="exhaust" enable="0" tag ="run">
-						<strength var="thrust" />
-						<scale var="thrust" min="1.0" multiplier="0.5" />
-						<speed var="thrust" min="0.25" multiplier="3" />
-					</effect>
-					<!--<sound name="Stop_SSTM_KODK_TM4_Roller_Start_Run" enable ="0" tag = "run" loop="0">
-						<param name="rpm" var="thrust" lerpTime="0.9" />-->
-						<!--<param name="load" var="load" min="0.2" lerpTime="0.6" />-->
-						<!--<param name="in_out" var="in_out" />
-						<param name="state" var="transition" />
-					</sound>-->
-					<!--<sound name="Play_SSTM_KODK_TM4_Slider_S1_Q1_Stop" enable ="0" tag = "stop" loop="0">
-						<param name="in_out" var="in_out" />
-						<param name="rpm" var="thrust" lerpTime="0.9" />
-					</sound>-->
-				</exhaust>
+			  <exhaust name ="run" scale ="0.8" helper="nozzle_exhaust" effectStopThreshold="0.1">
+				 <!-- <effect name="Thruster_FX.Constellation.KODK_TM8_RollFlex_S3_Q1" helper="nozzle_exhaust" enable = "0" tag ="run">-->
+				  <effect name="Spaceships\Thrusters\KODK_TM8_RollFlex_S3_Q1.Thruster_ALL.KODK_TM8_RollFlex_S3_Q1" helper="nozzle_exhaust" enable = "0" tag ="run">
+					  <strength var="thrust" />
+					  <size var="thrust" min="1.0" multiplier="0.5" />
+					  <speed var="thrust" min="0.25" multiplier="1" />
+				  </effect>
+			<material enable ="0" slot="1" matId= "5" tag = "run">
+					<param name="glow" var="thrust" min = "0.1" multiplier="100" />
+					</material>
+				  <sound name="Play_SSTM_KODK_TM8_RollFlex_S3_Q1_Start_Run" enable ="0" tag = "run">
+					  <param name="rpm" var="thrust" lerpTime="2.8" />
+					  <param name="boost" var="boost" lerpTime="2" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+			  </exhaust>
 			</exhausts>
 	  </thruster>
   </thrusters>

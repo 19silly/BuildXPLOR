@@ -1,0 +1,54 @@
+<item name="DRAK_Cutlass_Blue_Transport_Passenger_Seat" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+	<param name="scopeContext"		value="Seat" />
+	<param name="adb" value="Items/Seats/DRAK/DRAK_Cutlass_Blue_Transport_Passenger_Seat_Anims.adb" />
+	<param name="actionController" value="Items/Seats/DRAK/DRAK_Cutlass_Blue_Transport_Passenger_Seat_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/DRAK/DRAK_Cutlass_Blue_Transport_Passenger_Seat_HumanAnims.adb" />
+    <param name="itemType" value="Seat" />
+    <param name="itemSubType" value="Pilot" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="DRAK" />
+    <param name="itemSize" value="1" />
+	<param name="itemTags" value="flightReady" />
+	<param name="itemClass" value="1" />
+    <param name="display_name"	value="DRAK Cutlass Blue Transport Passenger Seat" />
+	<vehicleItemStats>
+	</vehicleItemStats>
+  </params>
+  
+  <geometry>
+    <thirdperson name="Objects\Spaceships\Seats\DRAK\Cutlass\DRAK_Cutlass_Blue_Transport_Passenger_Seat.cga"/>
+  </geometry>
+  
+   <Seat name="DRAK_Passenger_Seat" enterHelper="passenger_mount_pos" sitHelper="passenger_sit_pos" exitHelper="passenger_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" isHudSupported="0" id="idCoPilotSeat" skipSeat="0" >
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-45" maxPitch="70" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,150" rotationMax="30,0,210" rotationInit="0,0,180" motionBlur="0" />
+      </Views>
+	  <Enter>
+        <State animation="SeatDriver" state="Enter" />
+      </Enter>
+      <Exit>
+        <State animation="SeatDriver" state="Exit" />
+      </Exit>
+    </Seat>
+ </item>

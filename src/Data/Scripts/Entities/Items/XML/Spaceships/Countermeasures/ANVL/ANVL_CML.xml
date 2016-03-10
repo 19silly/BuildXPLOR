@@ -11,12 +11,11 @@
     <param name="itemDescription" value="MISSING! REPLACE ME! MISSING!" />
     <param name="itemManufactor" value="Anvil_Aerospace" />
     <param name="itemSize" value="2" />
+	<param name="itemClass" value="2" />
 	<param name="itemTags" value="flightReady" />
 	<param name="requiredPortTags" value="" />
-    <param name="itemClass" value="2" />
     <param name="weaponRequireAmmoBox" value="1" />
     <param name="display_name"	value="Countermeasure Launcher" />
-
     <param name="inefficiency" value="0.3" />
     <param name="hitpoints" value="150" />
     <param name="mass" value="150" />
@@ -25,6 +24,7 @@
   <power_grouping>
     <param name="powerGrouping" value ="countermeasure" />
   </power_grouping>
+  
   <Pipes>
     <Pipe class="Power" prioType="manageable" prioGroup="shield">
       <StateLevels>
@@ -44,16 +44,15 @@
   </Pipes>
   <geometry>
     <!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
-    <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/Anvil/Anvil_Default_Countermeasure_Launcher.cgf"/>
-
+    <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/Anvil/Anvil_Default_Countermeasure_Launcher.cga"/>
 
     <tags tag="HUD">
-      <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/Anvil/Anvil_Default_Countermeasure_Launcher.cgf" material="materials/item_selection/material_hologram_default.mtl"/>
+      <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/Anvil/Anvil_Default_Countermeasure_Launcher.cga" material="materials/item_selection/material_hologram_default.mtl"/>
     </tags>
 
 	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->
     <tags tag="Hologram">
-      <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/Anvil/Anvil_Default_Countermeasure_Launcher.cgf" material=""/>
+      <thirdperson name="Objects/Spaceships/Weapons/Countermeasure_Launcher/Anvil/Anvil_Default_Countermeasure_Launcher.cga" material=""/>
     </tags>
 	
 	<tags tag="HUD">
@@ -65,6 +64,10 @@
 			<thirdperson name="Objects\UI\Weapons\CounterMeasure\Anvil\Anvil_Countermeasure_UI.cgf" material="Materials\item_selection\material_hologram_damaged.mtl"/>
 		</tags>	
 	</tags>	
+	
+	<boneAttachments>
+		<attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
+    </boneAttachments>
   </geometry>
 
   <actions>
@@ -82,12 +85,14 @@
         <param name="rate" value="240" />
         <param name="clip_size" value="0" /> <!-- Clip size needs to be 0 for CounterMeasures to work -->
         <param name="muzzleFromFiringLocator" value="1" /> <!-- turning off muzzle flashes form following the barrels -->.
+		<param name="helper_fp" value="muzzle_out" />
+        <param name="helper_tp" value="muzzle_out" />
         <param name="fireLocatorType" value = "default" />
       </fire>
 	  
 	  <burst>
 		<param name="rate" value="40" />
-		<param name="nshots" value="1" />
+		<param name="nshots" value="4" />
 		<param name="noSound" value="0" />
 		<param name="retriggeronhold" value="0" />
 		<param name="spreadAngle" value="120" />
@@ -95,8 +100,8 @@
 
       <muzzleflash>
         <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
-        <!--         <firstperson effect="Counter_Measures_All.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/>
-        <thirdperson effect="Counter_Measures_All.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/> -->
+        <!--         <firstperson effect="spaceships\counter_measures\counter_measures_generic.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/>
+        <thirdperson effect="spaceships\counter_measures\counter_measures_generic.Chaff_A_Launch_ALL.Chaff_A_Launch_01"/> -->
       </muzzleflash>
     </firemode>
   </firemodes>

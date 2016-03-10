@@ -59,8 +59,8 @@
 	</FPSDebug>
 
 	<WeaponOffset>
-		<param name="alerted_position" value="0,0.05,0" />
-		<param name="alerted_rotation" value="8,0,-1.1" />
+		<param name="alerted_position" value="0,0,0" />
+		<param name="alerted_rotation" value="0,0,0" />
 
 		<overrides>
 			<override name="crouch">
@@ -68,8 +68,8 @@
 			</override>
 
 			<override name="prone">
-				<param name="alerted_position" value="0,0.07,0.03" />
-				<param name="alerted_rotation" value="2,0,-2" />
+				<param name="alerted_position" value="0,0,0" />
+				<param name="alerted_rotation" value="0,0,0" />
 			</override>
 		</overrides>
 	</WeaponOffset>
@@ -81,12 +81,36 @@
 	<ai_descriptor handler="instant" draw_time="2" burstBulletCountMin="5" burstBulletCountMax="9" burstPauseTimeMin="0.4" burstPauseTimeMax="0.9" singleFireTriggerTime="-1" pressureMultiplier="1" coverFireTime="3.0" />
 
 	<geometry>
-		<firstperson name="Objects/fps_weapons/weapons/behr/machineguns/behr_p4sc.cdf"/>
-		<thirdperson name="Objects/fps_weapons/weapons/behr/machineguns/behr_p4sc.cdf"/>
+		<firstperson name="Objects/fps_weapons/weapons_v7/behr/machineguns/behr_p4sc.cdf"/>
+		<thirdperson name="Objects/fps_weapons/weapons_v7/behr/machineguns/behr_p4sc.cdf"/>
 	</geometry>
+	
+	<decibel>
+		<param name="selectDB" value="5" />
+		<param name="deselectDB" value="5" />
+		<param name="reloadDB" value="15" />
+	</decibel>
+	
+	<Pipes>
+		<Pipe class="Decibel">
+			<Pool capacity="100" decayRate="-100" critical="1"/> 
+			<Signature name="Decibel" poolMultiplier="1" />
+			<States>
+				<State state="Default"><Value value="0" /></State>
+			</States>
+			<StateLevels>
+				<Warning  value = "0.5" />
+				<Critical value = "0.25" />
+				<Fail     value = "-1" /> <!-- never fail otherwise you cant shoot the pistol :( -->
+			</StateLevels>
+		</Pipe>
+	</Pipes>
 
 	<firemodes>
 		<firemode type="default">
+			<pools>
+				<pool class="Decibel" value="50" checkValue="0" />
+			</pools>
 			<fire>
 				<param name="tag" value="rapid"/>
 				<param name="reticle" value="SMG" />
@@ -206,8 +230,8 @@
 				<param name="acceleration" value="2.35" />
 				<param name="deceleration" value="-3.0" />
 				<param name="min_firingTimeToStop" value="0" />
-				<param name="start_fire_audio_trigger" value="Play_WPFA_BEHR_BSMG_P4SC" />
-				<param name="stop_fire_audio_trigger" value="Stop_WPFA_BEHR_BSMG_P4SC" />
+				<param name="start_fire_audio_trigger" value="Play_WPFA_BEHR_BSMG_P4SC_Fire_Rapid" />
+				<param name="stop_fire_audio_trigger" value="Stop_WPFA_BEHR_BSMG_P4SC_Fire_Rapid" />
 				<param name="start_muzzle_fire_audio_trigger" value="" />
 				<param name="stop_muzzle_fire_audio_trigger" value="" />
 			</rapid>
@@ -228,8 +252,8 @@
 				<param name="reticleFadeSpeed" value="1" />
 				<param name="rate" value="600"/>
 				<param name="auto_fire" value="1" />
-				<param name="start_fire_audio_trigger" value="Play_WPFA_GMNI_BP_LH_86_Fire" /> <!-- PLACEHOLDER -->
-				<param name="stop_fire_audio_trigger" value="" />
+				<param name="start_fire_audio_trigger" value="Play_WPFA_BEHR_BSMG_P4SC_Fire_Burst" /> 
+				<param name="stop_fire_audio_trigger" value="Stop_WPFA_BEHR_BSMG_P4SC_Fire_Burst" />
 				<param name="start_muzzle_fire_audio_trigger" value="" />
 				<param name="stop_muzzle_fire_audio_trigger" value="" />	
 			</fire>			
@@ -268,8 +292,8 @@
 				<param name="reticleFadeSpeed" value="1" />
 				<param name="rate" value="400"/>
 				<param name="auto_fire" value="0" />
-				<param name="start_fire_audio_trigger" value="Play_WPFA_GMNI_BP_LH_86_Fire" /> <!-- PLACEHOLDER -->
-				<param name="stop_fire_audio_trigger" value="" />
+				<param name="start_fire_audio_trigger" value="Play_WPFA_BEHR_BSMG_P4SC_Fire_Single" /> <!-- PLACEHOLDER -->
+				<param name="stop_fire_audio_trigger" value="Stop_WPFA_BEHR_BSMG_P4SC_Fire_Single" />
 				<param name="start_muzzle_fire_audio_trigger" value="" />
 				<param name="stop_muzzle_fire_audio_trigger" value="" />	
 			</fire>		
@@ -292,6 +316,9 @@
 		</firemode>
 
 		<firemode name="melee" type="Melee">
+			<pools>
+				<pool class="Decibel" value="5" checkValue="0" />
+			</pools>
 			<melee>
 				<param name="helper" value="collision" />
 				<param name="offset" value="0.35" />
@@ -484,7 +511,7 @@
 	</portParams>
 
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.1, 0, 0" arLongRange="8" arShortRange="5.5" arMinRange="1"/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.1, 0, 0" arLongRange="8" arShortRange="4.5" arMinRange="1"/>
 		<mobiGlasARLabel arMovementType="Fixed" arZOrientationOffsetAngle="90" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 

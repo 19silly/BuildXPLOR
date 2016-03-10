@@ -21,7 +21,7 @@ AIWave = {
 	bEnableOnAdd = false,
 	bIsEnabling = false,
 	bIsPreparingBookmarks = false,
-	bBookmarsHaveBeenPrepared = false,  -- the first time, we need to prepare all bookmarks, not just the ones in the live list
+	bBookmarksHaveBeenPrepared = false,  -- the first time, we need to prepare all bookmarks, not just the ones in the live list
 	bDisabledAndCleared = false, -- When true: the wave has been DisabledAndCleared and non pool entities have been permanently destroyed, and pool entities reseted, making the wave no longer usable
 }
 
@@ -72,37 +72,12 @@ end
 ------------------------------------------------------------------------------
 -- restores into the active pool all bookmarked alive AIs  (or all of them if it is the first time)
 function AIWave:PrepareBookmarkedAI()
-	self.bIsPreparingBookmarks = true;
-
-	local isFirstTime = not self.bBookmarsHaveBeenPrepared;
-
-	if (self:GetPoolQueueCount() <= 0) then
-		for entityId,v in pairs(self.bookmarkAIs) do
-			local entity = System.GetEntity(entityId);
-			local isInLiveList = Set.Get( self.liveAIs, entityId );
-			if (not entity and (isInLiveList or isFirstTime) ) then
-				if (System.PrepareEntityFromPool(entityId)) then -- If prepared immediatly, will call Add() during this call which will decrement pool queue count by 1
-					self.nPoolQueueCount = self.nPoolQueueCount + 1;
-				else
-					local name = self:GetName();
-					System.Warning("Input Enable of AI Wave " .. name .. " failed to prepare pooled entity");
-				end
-			end
-		end
-	end
-
-	self.bBookmarsHaveBeenPrepared = true;
-	self.bIsPreparingBookmarks = false;
+	self.bBookmarksHaveBeenPrepared = true;
 end
 
 
 --------------------------------------------------------------------------------
 function AIWave:ResetBookmarkedAI()
-	if (System.GetCVar("es_ClearPoolBookmarksOnLayerUnload") > 0) then
-		for entityId,v in pairs(self.bookmarkAIs) do
-			System.ResetPoolEntity(entityId);
-		end
-	end
 end
 
 
@@ -152,9 +127,6 @@ end
 
 -- re-bookmark the bookmarked entities
 function AIWave:ReturnBookmarkedAI()
-	for entityId,v in pairs(self.bookmarkAIs) do
-		System.ReturnEntityToPool(entityId);
-	end
 end
 
 
@@ -249,26 +221,6 @@ function AIWave:Event_Spawn()
 
 	end
 
-
-	-- restore the bookmarked ones from the deadlist. we need to do this because we cant spawn a new AI when the initial static AI is bookmarked
-	self.bIsPreparingBookmarks = true;
-	for entityId,staticId in pairs(self.deadAIs) do
-		local entity = System.GetEntity(staticId);
-		if (not entity) then
-		  Set.Set( self.toSpawnFromDeadBookmarks, staticId, entityId );  -- to know which AI is the one that was actually dead, corresponding to the staticAI. we will need that info when going to spawn the new AI when Add() is called
-			if ( not System.PrepareEntityFromPool(staticId)) then
-				local name = self:GetName();
-				System.Warning("AIWave " .. name .. " failed to prepare pooled entity: %s", tostring(staticId));
-			end
-			if ( not Set.Get(self.toSpawnFromDeadBookmarks, staticId)) then  -- if is already not in the list, is because System.PrepareEntityFromPool recovered the entity instantly, and a new entity has been already spawned
-				spawned = true;
-			end
-
-		end
-	end
-	self.bIsPreparingBookmarks = false;
-
-
   -- normal respawn from dead entities
 	for entityId,staticId in pairs(self.deadAIs) do
 		local entity = System.GetEntity(entityId);
@@ -345,7 +297,8 @@ function AIWave:Event_Kill()
 					local territory = entity.AI.TerritoryShape;
 					if ((not territory) or ActiveTerritories[entity.AI.TerritoryShape]) then
 						if (entity:IsActive()) then
-							entity:Event_Kill();
+							local hit = {};
+							entity:Kill(hit);
 						end
 					end
 				end
@@ -431,7 +384,7 @@ function AIWave:OnLoad(tbl)
 	self.bEnableOnAdd = tbl.bEnableOnAdd;
 	self.bIsEnabling = tbl.bIsEnabling;
 	self.bIsPreparingBookmarks = tbl.bIsPreparingBookmarks;
-	self.bBookmarsHaveBeenPrepared = tbl.bBookmarsHaveBeenPrepared;
+	self.bBookmarksHaveBeenPrepared = tbl.bBookmarksHaveBeenPrepared;
 	self.bDisabledAndCleared = tbl.bDisabledAndCleared;
 
 	self.currentAssignment = tbl.currentAssignment
@@ -494,7 +447,7 @@ function AIWave:Reset()
 	self.bEnableOnAdd = false;
 	self.bIsEnabling = false;
 	self.bIsPreparingBookmarks = false;
-	self.bBookmarsHaveBeenPrepared = false;
+	self.bBookmarksHaveBeenPrepared = false;
 
 	self.currentAssignment = nil
 	self.bDisabledAndCleared = false;
@@ -521,7 +474,7 @@ function AIWave:OnSave(tbl)
 	tbl.bEnableOnAdd = self.bEnableOnAdd;
 	tbl.bIsEnabling = self.bIsEnabling;
 	tbl.bIsPreparingBookmarks = self.bIsPreparingBookmarks;
-	tbl.bBookmarsHaveBeenPrepared = self.bBookmarsHaveBeenPrepared;
+	tbl.bBookmarksHaveBeenPrepared = self.bBookmarksHaveBeenPrepared;
 	tbl.bDisabledAndCleared = self.bDisabledAndCleared;
 
 	tbl.currentAssignment = self.currentAssignment

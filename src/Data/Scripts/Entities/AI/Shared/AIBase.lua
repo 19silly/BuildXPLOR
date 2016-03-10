@@ -16,7 +16,10 @@ AIBase =
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+		esAIProfileMissile		= "<None>",
 		esAIProfileActivity		= "<None>",
+
+		aibehavior_AIBehavior = "", -- Used to set DataForge authored Kythera behavior
 
 	 	AITerritoryAndWave =
 	 	{
@@ -53,9 +56,12 @@ AIBase =
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+		esAIProfileMissile		= "<None>",
 
-		aibehavior_behaviour = "",
+		aibehavior_AIBehavior = "", -- Used to set DataForge authored Kythera behavior
+
 		aicharacter_character = "",
+
 		esFaction = "Civilians",		
 		esCharacterType			= "Human",
 
@@ -66,11 +72,6 @@ AIBase =
 			cloakMaxDistMoving = 4.0,
 			cloakMaxDistStill = 4.0,
 		},
-	},
-
-	BehaviorProperties =
-	{
-		ReactToSoundFromPotentialTargetTimeOut = 2.0,
 	},
 
 	melee =
@@ -148,14 +149,6 @@ AIBase =
 -- Utils
 --------------------------------------------------
 
-function AIBase:StartOrRestartPipe(goalPipeName)
-	self:SelectPipe(0, goalPipeName, 0, 0, 1)
-end
-
-function AIBase:IsUsingSecondaryWeapon()
-	return (self:CheckCurWeapon() == 1) ;
-end
-
 function AIBase:GetTargetType(targetType, threat)
 
 	local resultType = TargetTypeNone;
@@ -173,44 +166,6 @@ function AIBase:GetTargetType(targetType, threat)
 	end
 
 	return resultType;
-
-end
-
-
-function AIBase:GetDistanceToSearchTarget()
-
-	-- This function is not used yet, but should be used in search behaviors to simplify code.
-
-	local targetType = AI.GetTargetType(self.id);
-	local dist;
-	if (targetType == TARGET_NONE) then
-		-- Beacon
-		local beaconPosition = g_Vectors.temp_v1;
-		AI.GetBeaconPosition(self.id, beaconPosition);
-		dist = DistanceVectors(self:GetPos(), beaconPosition);
-	else
-		-- Attention target
-		dist = AI.GetAttentionTargetDistance(self.id);
-	end
-
-	if (dist == nil) then
-		Log("dist is nil");
-	end
-
-	return dist;
-
-end
-
-
-function AIBase:IsTargetCloaked()
-
-	local target = AI.GetAttentionTargetEntity(self.id)
-	local targetCloaked = nil;
-	if (target) then
-		targetCloaked = AI.GetParameter(target.id, AIPARAM_CLOAKED);
-	end
-
-	return targetCloaked;
 
 end
 
@@ -240,35 +195,13 @@ function AIBase:LogAlways(message, ...)
 end
 
 function AIBase:OnError(errorMessage, ...)
-
-	local ai_DebugVisualScriptErrors = System.GetCVar("ai_DebugVisualScriptErrors")
-	if (ai_DebugVisualScriptErrors == 1) then
-		self:DrawSlot(0, 0);
-		self:LoadObject(1, "objects/characters/animals/dog/dog_02.cgf")
-		self:DrawSlot(1, 1)
-		self:SetSlotScale(1, 4)
-		if (self.dogTimer) then
-			Script.KillTimer(self.dogTimer);
-		end
-		self.dogTimer = Script.SetTimerForFunction(6000, "AIBase.OnDogTimer", self);
-	end
-
 	if (errorMessage) then
 		Log("%s: %s", EntityName(self), string.format(errorMessage, ...));
 	end
-
 end
 
 -- Error is just an alias for OnError
 AIBase.Error = AIBase.OnError
-
-function AIBase:OnDogTimer()
-
-	self:DrawSlot(1, 0);
-	self:FreeSlot(1);
-	self:DrawSlot(0, 1);
-
-end
 
 --------------------------------------------------
 -- Perception
@@ -287,57 +220,6 @@ end
 
 function AIBase:TargetNotVisible()
 	AI.Signal(SIGNALFILTER_SENDER, 1, "OnTargetNotVisible", self.id);
-end
-
-function AIBase:GetTimeSinceTargetLastSeen(targetEntity)
-
-	local targetType = self:GetTargetTypeForComm(targetEntity)
-
-	local lastSeenTime = self.AI.lastTimeTargetWasSeen;
-
-	if( targetType ~= nil ) then
-		local blackboard = self:GetGroupBlackboard();
-		local lastReported = targetType .. "LastSeen"
-		lastSeenTime = blackboard[lastReported];
-	end
-
-	--If we haven't seen this type before, then return a negative value
-	if(lastSeenTime == nil) then
-		return -1
-	--If it is still in sight return 0
-	elseif (lastSeenTime == -1) then
-		return 0
-	--Otherwise report how long its been since last sighting of this targetType
-	else
-		return _time - lastSeenTime;
-	end
-end
-
-function AIBase:AcknowledgeEnemy(targetEntity)
-	local blackboard = self:GetGroupBlackboard();
-
-	local targetType = self:GetTargetTypeForComm(targetEntity)
-	if( targetType ~= nil ) then
-		local entryName = targetType .. "Acknowledged"
-		blackboard[entryName] = true;
-	end
-end
-
-function AIBase:IsEnemyAcknowledged(targetEntity)
-	local blackboard = self:GetGroupBlackboard();
-
-	local targetType = self:GetTargetTypeForComm(targetEntity)
-	if( targetType ~= nil ) then
-		local entryName = targetType .. "Acknowledged"
-		local isAcknowledged = blackboard[entryName];
-		if(not isAcknowledged) then
-			return false
-		else
-			return true
-		end
-	end
-
-	return true
 end
 
 function AIBase:OnEnemySeen()
@@ -402,23 +284,10 @@ function AIBase:OnLostSightOfTarget()
 	end
 	self:SafeKillTimer(self.targetLostTimer);
 	
-	if (self.BehaviorProperties and self.BehaviorProperties.fTimeUntilSearchInCombat) then
-		self.targetLostTimer = Script.SetTimer(self.BehaviorProperties.fTimeUntilSearchInCombat * 1000, function() self:TargetLost() end)
-	end
-
 	self:SafeKillTimer(self.targetNotVisibleTimer);
 	self.targetNotVisibleTimer = Script.SetTimer(2000, function() self:TargetNotVisible() end);
 
 end
-
-
-function AIBase:OnGroupEnemySeen()
-end
-
-
-function AIBase:OnGroupUnderAttack()
-end
-
 
 function AIBase:ResetTargetLostTimer()
 
@@ -431,58 +300,12 @@ function AIBase:OnNewAttentionTarget(sender, data)
 
 end
 
-
-function AIBase:OnAttentionTargetThreatChanged(sender, data)
-
-end
-
 --------------------------------------------------
 -- Misc
 --------------------------------------------------
 
-function AIBase:SetGoToData(data)
-	--self:Log("GoTo data set")
-	self.AI.NextGoToData = data
-end
-
-function AIBase:SetGoToPosition(data)
-	--self:Log("GoTo data set")
-	if(self.AI.GoToData) then
-		self.AI.GoToData.Position = data.Position
-	else
-		entity:LogAlways("Trying to set go data position with no current go to data")
-	end
-end
-
-function AIBase:ShouldReactToSoundFromPotentialTarget(point)
-
-	-- Too soon after the last sound reaction?
-	if (self.lastReactionToSoundFromPotentialTargetTime and self.lastReactionToSoundFromPotentialTargetTime + self.BehaviorProperties.ReactToSoundFromPotentialTargetTimeOut > _time) then
-		return false;
-	end
-
-	-- Sound point already approximatively visible in agent's view cone?
-	if (point) then
-		local agentToPointDir = g_Vectors.temp_v1;
-		SubVectors(agentToPointDir, point, self:GetWorldPos());
-		local dotProduct = dotproduct3d(agentToPointDir, self:GetDirectionVector());
-		local soundIsInFront = dotProduct > 0.0;
-		if (soundIsInFront) then
-			return false;
-		end
-	end
-
-	-- React to sound!
-	self.lastReactionToSoundFromPotentialTargetTime = _time;
-	return true;
-
-end
-
-
 function AIBase:LeaveCover()
-
 	AI.SetInCover(self.id, false);
-
 end
 
 
@@ -502,31 +325,11 @@ function AIBase:SetupTerritoryAndWave(territory, wave)
 end
 
 
-function AIBase:DropBeacon()
-
-	self:TriggerEvent(AIEVENT_DROPBEACON);
-
-end
-
-
 function AIBase:SendGroupSignal(notification, sender, data)
 
 	AI.Signal(SIGNALFILTER_GROUPONLY_EXCEPT, 1, notification, self.id, data);
 
 end
-
-
-function AIBase:AssaultTarget(target)
-
-	if (target) then
-		if (not self.assaultTarget) then
-			self.assaultTarget = {x=0, y=0, z=0};
-		end
-		CopyVector(self.assaultTarget, target);
-	end
-
-end
-
 
 function AIBase:SafeKillTimer(timer)
 
@@ -536,87 +339,12 @@ function AIBase:SafeKillTimer(timer)
 
 end
 
-
-function AIBase:SetDefendPosition(target, radius)
-	if (target) then
-		CopyVector(self.DefendPosition.pos, target)
-		if(radius > 1) then
-			self.DefendPosition.radius = radius
-		else
-			self.DefendPosition.radius = 15 -- default
-		end
-		AI.SetBehaviorVariable(self.id, "DefendPosition", true)
-	else
-		Log("SetDefendTarget failed.")
-	end
-end
-
-function AIBase:CancelDefendPosition()
-	AI.SetBehaviorVariable(self.id, "DefendPosition", false)
-end
-
-function AIBase:SetHoldGround(position, direction, skipCover, stance)
-	if (self.AI.HoldGround == nil) then
-		self.AI.HoldGround = {
-			pos = {x=0, y=0, z=0},
-			dir = {x=0, y=0, z=0},
-			radius = 5,
-			skipCover = false
-		}
-	end
-
-	if (IsNotNullVector(position)) then
-		CopyVector(self.AI.HoldGround.pos, position)
-	else
-		Log("SetHoldGround failed.")
-		return
-	end
-
-	if(IsNotNullVector(direction)) then
-		CopyVector(self.AI.HoldGround.dir, direction)
-	end
-
-	self.AI.HoldGround.skipCover = (skipCover > 0)
-	self.AI.HoldGround.stance = stance
-
-	self:LeaveCover()
-	AI.SetBehaviorVariable(self.id, "AtHoldGroundPos", false)
-	AI.SetBehaviorVariable(self.id, "HoldGround", true)
-end
-
-function AIBase:CancelHoldGround()
-	AI.SetBehaviorVariable(self.id, "HoldGround", false)
-end
-
-function AIBase:OnGroupMemberDiedWithinCommRange(sender, data)
-
-	local killedEntity = System.GetEntity(data.id);
-
-end
-
-
-function AIBase:PerformBulletReaction()
-
-	if (not AI.IsTakingCover(self.id, 7.5)) then
-		if (not self:IsUsingPipe("BulletReaction")) then -- avoid performing it twice
-			self:InsertSubpipe(0, "BulletReaction");
-		end
-	end
-
-end
-
-
 function AIBase:GetGroupBlackboard()
 
 	local groupID = AI.GetGroupOf(self.id);
 	AI_Utils:VerifyGroupBlackBoard(groupID);
 	return AIBlackBoard[groupID];
 
-end
-
-
-function AIBase:ShouldGoBackToStartOnIdle()
-	return self.AI.bGoBackToStartOnIdle and self.lastIdlePosition;
 end
 
 function AIBase:EnteredCover()
@@ -627,28 +355,6 @@ end
 function AIBase:LeftCover()
 	self.AI.inCoverStartTime = nil
 	self.AI.outOfCoverStartTime = _time
-end
-
-function AIBase:GetTimeInCover()
-	if (self.AI.inCoverStartTime == nil) then
-		return 0
-	end
-
-	return _time - self.AI.inCoverStartTime
-end
-
-function AIBase:GetTimeOutOfCover()
-	if (self.AI.outOfCoverStartTime == nil) then
-		return 0
-	end
-
-	return _time - self.AI.outOfCoverStartTime
-end
-
-function AIBase:IsTargetVisual()
-	local targetType = AI.GetTargetType(self.id);
-
-	return targetType == AITARGET_VISUAL or targetType == AITARGET_ENEMY
 end
 
 function AIBase:ValidateAttentionTarget(data)

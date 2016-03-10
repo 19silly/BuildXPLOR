@@ -1,0 +1,41 @@
+<item name="DEVTEST_QDrive" class="VehicleItemQDrive" invisible="0" category="VehicleItem" >
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+		<param name="itemType" value="Avionics" />
+		<param name="itemSubType" value="QDrive" />
+		<param name="itemManufactor" value="DEVTEST" />
+		<param name="itemSize" value="1" />
+		<param name="itemTags" value="flightReady" />
+		<param name="display_name"	value="DEVTEST 212 QDrive" />
+	</params>
+
+	<QDrive>
+		<param name="driveSpeed" value="59958491" />
+		<param name="spoolUpTime" value="5" />
+		<param name="rampUpTime" value="5" />
+		<param name="rampDownTime" value="5" />
+		
+		<vfx_rendernode blurScale="0.1" bboxRadius="100.0" sortDistance="50.0" fadeOutBlurScale="0.09" />
+		
+		<vfxs>
+			<vfx name="spaceships/quantum_drive/Quantum_Drive_Generic.qdrive_flash_start" state="Engage" timescale="1.0" prime="0"/>
+			<vfx name="spaceships/quantum_drive/Quantum_Drive_Generic.First_Person" startState="Engage" endState="RampDown" timescale="1.0" prime="0"/>
+			<vfx name="spaceships/quantum_drive/Quantum_Drive_Generic.qdrive_flash_end" state="Complete" timescale="1.0" prime="0"/>
+			<vfx name="spaceships/quantum_drive/Quantum_Drive_Generic.qdrive_flash_start" view="4P" state="Engage" timescale="1.0" prime="0"/>
+		</vfxs>
+
+		<sfxs>
+			<sfx trigger="Play_QDrive_Phase_Active" state="Active" event="start"/>
+   			<sfx trigger="Play_QDrive_Phase_Spool_Up" state="Spooling" event="start"/>
+   			<sfx trigger="Play_QDrive_Phase_Engaged" state="Engage" event="start"/>
+   			<sfx trigger="Stop_QDrive_Phase_Engaged" state="RampDown" event="start"/>
+  			<sfx trigger="Play_QDrive_Phase_Align" state="Align" event="start"/>
+  			<sfx trigger="Play_QDrive_User_Cancel" state="AbortSpooling" event="start"/>
+		</sfxs>
+  </QDrive>
+</item>

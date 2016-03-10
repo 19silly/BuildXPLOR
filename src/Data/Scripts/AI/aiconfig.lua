@@ -9,8 +9,6 @@ Script.ReloadScript("Scripts/AI/Group.lua");
 
 Script.ReloadScript("Scripts/AI/pathfindProperties.lua");
 Script.ReloadScript("Scripts/AI/Characters/AICharacter.lua");
-Script.ReloadScript("Scripts/AI/GoalPipes/PipeManager.lua");
-Script.ReloadScript("Scripts/AI/AIBehavior.lua");
 Script.ReloadScript("Scripts/AI/AIGroupBehavior.lua");
 
 Script.ReloadScript("Scripts/AI/Formations/FormationManager.lua");
@@ -18,22 +16,7 @@ Script.ReloadScript("Scripts/AI/Formations/FormationManager.lua");
 Script.ReloadScript("Scripts/AI/Logic/AI_Utils.lua");
 Script.ReloadScript("SCRIPTS/AI/Logic/BlackBoard.lua");
 
-function ReloadTPS()
-	AI.DestroyAllTPSQueries();
-	Script.ReloadScript("Scripts/AI/TacticalPositionManager.lua");
-	AI.TacticalPositionManager:OnInit();
-end
-
-function ReloadTPSExtensions()
-	ReloadTPS();
-	
-	if (PipeManager) then
-		PipeManager:OnInit();
-	end
-end
-
 function AIReload()
-	ReloadTPSExtensions();
 	assignmentsHaveBeenCreated = nil
 end
 
@@ -112,13 +95,6 @@ end
 function AI:OnLoad(saved)
 	AIBlackBoard_Reset();
 	merge(AIBlackBoard,saved.AIBlackBoard);
-end
-
-function AI:OnEditorMoveSimulation(entity, goalId, pos)
-
-	AI.SetRefPointPosition(entity.id, pos)
-	entity:InsertSubpipe(AIGOALPIPE_SAMEPRIORITY, "MoveToMiddleClickPositionInEditor", nil, goalId)
-
 end
 
 AI.LogEvent("[AISSYSTEM] CONFIG SCRIPT FILE LOADED. --------------------------")

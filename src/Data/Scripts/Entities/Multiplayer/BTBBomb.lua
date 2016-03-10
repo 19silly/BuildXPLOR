@@ -66,7 +66,7 @@ function BTBBomb.Client:OnInit()
 end;
 
 function BTBBomb:CacheResources()
-	self:PreLoadParticleEffect( "smoke_and_fire.Jeep.hull_smoke" );
+	self:PreLoadParticleEffect( "" );
 end
 
 function BTBBomb:OnReset()
@@ -163,7 +163,7 @@ function BTBBomb:OnHit(hit, server)
 	self.health=self.health-damage;
 	if (self.health < (self.Properties.Health*0.25)) then
 		if (self.SmokeSlot == -1) then
-	    		self.SmokeSlot = self:LoadParticleEffect(-1, "smoke_and_fire.Jeep.hull_smoke", {});
+	    		self.SmokeSlot = self:LoadParticleEffect(-1, "", {});
 		end
 	end
 	if(self.health<=0 and server==true)then
@@ -298,7 +298,7 @@ BTBBomb.Server.Active=
 		self:EnablePhysics(true);
 		if (self.health<100) then
 			if (self.SmokeSlot == -1) then
-			    self.SmokeSlot = self:LoadParticleEffect(-1, "smoke_and_fire.Jeep.hull_smoke", {});
+			    self.SmokeSlot = self:LoadParticleEffect(-1, "", {});
 			end
 		end
 	end,
@@ -322,7 +322,7 @@ BTBBomb.Client.Active=
 		self:EnablePhysics(true);
 		if (self.health<100) then
 			if (self.SmokeSlot == -1) then
-			    self.SmokeSlot = self:LoadParticleEffect(-1, "smoke_and_fire.Jeep.hull_smoke", {}); -- TODO: use an appropriate effect
+			    self.SmokeSlot = self:LoadParticleEffect(-1, "", {}); -- TODO: use an appropriate effect
 			end
 		end
 	end,

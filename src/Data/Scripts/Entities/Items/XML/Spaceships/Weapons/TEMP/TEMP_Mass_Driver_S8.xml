@@ -1,0 +1,195 @@
+<item name="TEMP_Mass_Driver_S8" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+	<!-- <param name="adb" value="Items\Weapons\KLWE\KLWE_MDC_S1_Q2.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" /> -->
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="TEMP" />
+    <param name="itemSize" value="8" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="itemPortTags" value="60mm Rail S8"/>
+	<param name="requiredPortTags" value="" />
+    <param name="display_name"	value="" />
+	<param name="weaponRequireAmmoBox" value="1" />
+	<param name="weaponDelayChangeAmmoBox" value="0.25" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
+	</itemStats>
+  </params>
+  
+  <firemodes>
+    <firemode name="Auto" type="Automatic">
+      <fire>
+        <param name="rate" value="125" />
+		<param name="clip_size" value="0" />
+		<param name="max_clips" value="0" />
+		<param name="nearmiss_signal" value="OnNearMiss" />
+        <param name="helper_fp" value="muzzle_out" />
+        <param name="helper_tp" value="muzzle_out" />
+		<param name="fireLocatorType" value = "BC" />
+		<param name="start_fire_audio_trigger" value="Play_WPHA_KLWE_MassDriverCannon_S1_Fire" />
+		<param name="stop_fire_audio_trigger" value="" />
+		<param name="audio_looped" value="0" />
+      </fire>
+	  
+		<spread>
+			<param name="min" value="0" />
+			<param name="max" value="2" />
+			<param name="attack" value="1" />
+			<param name="decay" value="0.75" />
+		</spread>
+		
+		<pools>
+			<!-- This is Pool manipulation per shot -->
+			<pool class="Power" value="-20" />
+			<pool class="Heat" value="1" />
+		</pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="-500" rate="-30" />
+      <States>
+        <State state="Default">
+          <Value value="-1" ignorepool="0"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="500" rate="35" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Pipe name="Power" value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+
+  </Pipes>
+  
+  <portParams>
+	<ports>
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="right" display_name="Ammo Box #1">
+			<Types>
+				<Type type="AmmoBox" subtypes="60mm_Rail_AMMO"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="1" flags="left" display_name="Ammo Box #2">
+			<Types>
+				<Type type="AmmoBox" subtypes="60mm_Rail_AMMO"/>
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+  
+  <defaultLoadout>
+    <Items>
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_60rd_60mm_Rail" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_60rd_60mm_Rail" />
+    </Items>
+  </defaultLoadout>
+
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+	
+<firemodes>
+	<firemode>
+      <muzzleflash>
+	    <firstperson effect="weapon_fx.ballistic_rail.firefx" helper="muzzle_out" />
+        <thirdperson effect="weapon_fx.ballistic_rail.firefx" helper="muzzle_out" />
+      </muzzleflash>
+	  
+		<reject>
+			<firstperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
+			<thirdperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
+		</reject>	
+	</firemode>
+</firemodes>
+
+  <portParams>
+	<ports>
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="right" display_name="Ammo Box #1">
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="1" flags="left" display_name="Ammo Box #2">
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+  
+  <geometry>
+    <boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
+    </boneAttachments>
+  
+    <thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Mass_Driver_Size_8.cgf"/>
+
+	<tags tag="Hologram">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Mass_Driver_Size_8.cgf" material=""/>
+	</tags>
+	
+	<tags tag="HUD">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Mass_Driver_Size_8.cgf" material=""/>
+	</tags>	
+  
+  </geometry>
+
+</item>

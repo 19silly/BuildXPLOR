@@ -16,8 +16,6 @@ for i,vehicle in pairs(VehicleSystem.VehicleImpls) do
 		{
 			bDisableEngine = 0,
 			Paint = "",
-			bFrozen = 0,
-			FrozenModel = "",
 			Modification = "",
 			soclasses_SmartObjectClass = "",
 			bAutoGenAIHidePts = 0,
@@ -46,7 +44,6 @@ for i,vehicle in pairs(VehicleSystem.VehicleImpls) do
 		},
 	};
 
-	AddHeavyObjectProperty(gVehicle);
 	MakeAICoverEntity(gVehicle);
 	SetupCollisionFiltering(gVehicle);
 ------------------------------------------------------------------------
@@ -97,17 +94,6 @@ for i,vehicle in pairs(VehicleSystem.VehicleImpls) do
 		if self.whoSpawnedMe then
 			System.RemoveEntity( self.id );
 			return
-		end
-	end;
-
-	gVehicle.OnFrost = function(self, shooterId, weaponId, frost)
-		local f=self.vehicle:GetFrozenAmount() + frost;
-		self.vehicle:SetFrozenAmount(f);
-	end;
-
-	gVehicle.OnUnlocked = function(self, playerId)
-		if (g_gameRules and g_gameRules.OnVehicleUnlocked) then
-			g_gameRules.OnVehicleUnlocked(g_gameRules, self.id, playerId);
 		end
 	end;
 

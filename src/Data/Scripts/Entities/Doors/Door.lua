@@ -175,7 +175,7 @@ function Door:_SetObstruction()
 	local nStateIdx = self.Properties.Audio.eiSoundObstructionType + 1;
 	
 	if ((self.tObstructionType.hSwitchID ~= nil) and (self.tObstructionType.tStateIDs[nStateIdx] ~= nil)) then
-		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx]);
+		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx], self:GetDefaultAuxAudioProxyID());
 	end
 end
 
@@ -524,11 +524,11 @@ function Door:Update(frameTime)
 	if (stopped) then
 		if (self.action == DOOR_CLOSE) then
 			if (self.hOnClosedTriggerID ~= nil) then
-				self:ExecuteAudioTrigger(self.hOnClosedTriggerID);
+				self:ExecuteAudioTrigger(self.hOnClosedTriggerID, self:GetDefaultAuxAudioProxyID());
 			end
 		else
 			if (self.hOnStopTriggerID ~= nil) then
-				self:ExecuteAudioTrigger(self.hOnStopTriggerID);
+				self:ExecuteAudioTrigger(self.hOnStopTriggerID, self:GetDefaultAuxAudioProxyID());
 			end
 		end
 	end
@@ -658,11 +658,11 @@ end
 function Door:Sound(open)
 	if (open) then
 		if (self.hOnMoveOpenTriggerID ~= nil) then
-			self:ExecuteAudioTrigger(self.hOnMoveOpenTriggerID);
+			self:ExecuteAudioTrigger(self.hOnMoveOpenTriggerID, self:GetDefaultAuxAudioProxyID());
 		end
 	else
 		if (self.hOnMoveCloseTriggerID ~= nil) then
-			self:ExecuteAudioTrigger(self.hOnMoveCloseTriggerID);
+			self:ExecuteAudioTrigger(self.hOnMoveCloseTriggerID, self:GetDefaultAuxAudioProxyID());
 		end
 	end
 end

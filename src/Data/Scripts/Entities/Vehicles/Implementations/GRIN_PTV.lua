@@ -17,11 +17,9 @@ GRIN_PTV =
 	{	
 		bDisableEngine = 0,
 		material = "",
-		bFrozen = 0,
 		Modification = "",
-		FrozenModel = "",
 		soclasses_SmartObjectClass = "",		
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_GRIN_PTV.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_GRIN_PTV.xml",
 	},
 	
 	Client = {},
@@ -39,7 +37,6 @@ GRIN_PTV.AIProperties =
   AIType = AIOBJECT_CAR,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "CarIdle",
   },
   Properties = 
   {

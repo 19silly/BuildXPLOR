@@ -134,7 +134,7 @@ function AnimObject:SetupModel()
 	if (self:LoadModelOnDemand()==0 or System.IsEditor()) then
 		self:LoadAndPhysicalizeModel();
 	else
-		Game.CacheResource("AnimObject.lua", self.Properties.object_Model, eGameCacheResourceType_StaticObject, 0);
+		self:CacheResource("AnimObject.lua", self.Properties.object_Model, eGameCacheResourceType_StaticObject, 0);
 	end
 end
 

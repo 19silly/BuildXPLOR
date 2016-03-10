@@ -1,0 +1,118 @@
+<item name="RSI_Constellation_Turret_Base_Lower" class="TurretBase" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="1" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="0" />
+    <param name="usable"		 	value="1" />
+    <param name="arms"			 	value="0" />
+    <param name="adb" value="hornetLaserCannonballTurretAnims.adb" />
+    <param name="actionController" value="itemControllerDef.xml" />
+    
+    <param name="itemType" value="TurretBase" />
+    <param name="itemSubType" value="MannedTurret" />
+  	<param name="itemDescription" value="item_DescRSI_Constellation_Turret_Base" />
+    <param name="itemManufactor" value="RSI" />
+    <param name="itemSize" value="3" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="" />
+    <param name="display_name"	value="item_NameRSI_Constellation_Turret_Base" />
+	
+		<param name="inefficiency" value="0.3" />
+		<param name="hitpoints" value="100" />
+		<param name="mass" value="3000" />
+  </params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <States>
+        <State state="Active,Default"><Value value="-5" /></State>
+        <State state="Moving"><Value value="-10" /></State>
+        <State state="Off"><Value value="0" /></State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.75" />
+        <Critical value = "0.5" />
+        <Fail     value = "0.3" />
+      </StateLevels>
+    </Pipe>
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="200" rate="15" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active"><Value value="1" /></State>
+        <State state="Moving"><Value value="5" /></State>
+      </States>
+    </Pipe>
+  </Pipes>
+ 
+  <geometry>
+		<thirdperson name="Objects\Spaceships\Seats\RSI\Constellation\RSI_Constellation_Turret_Base_Lower.cga"/>
+  </geometry>
+		
+  <portParams>
+	<ports>
+		<ItemPort name="turret_seat" minsize="1" maxsize="1" flags="seat" display_name="seathelper">
+			<Types>
+				<Type type="Seat"/>
+			</Types>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+		 </Pipes>
+		</ItemPort>
+		
+		<ItemPort name="turret_body" minsize="3" maxsize="3" flags="turret" display_name="turrethelper">
+			<Types>
+				<Type type="Turret" subTypes="MannedTurret"/>
+			</Types>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+		 </Pipes>
+			<Controllers>
+				<Controller port="turret_seat" active="1" defaultGroup="0"/>
+			</Controllers>
+			<Yaw min="-180" max="180"/>
+			<Pitch min="-25" max="15"/>
+		</ItemPort>
+
+		<ItemPort name="handle_left" minsize="0" maxsize="3" flags="invisible" display_name="Avionics Motherboard" requiredTags="">
+			<Types>
+				<Type type="Avionics" subtypes="Motherboard" />
+			</Types>
+			<Controllers>
+				<Controller port="turret_seat" active="1" defaultGroup="1"/>
+			</Controllers>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+		 </Pipes>
+		</ItemPort>
+		
+	</ports>
+  </portParams>
+	  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+
+	<defaultLoadout>
+		<Items>
+			<Item portName="turret_body" itemName="RSI_Constellation_Turret"/>
+			<Item portName="turret_seat" itemName="RSI_Constellation_Seat_Turret" />
+			<Item portName="handle_left" itemName="ANVL_Test_Motherboard">
+				<Items>
+					<Item portName="hardpoint_cpu_slot"           itemName="ANVL_Test_CPU" />
+					<Item portName="hardpoint_targeting_computer" itemName="ANVL_Test_TC" />
+					<Item portName="hardpoint_ads_computer"       itemName="ANVL_Test_ADS" />
+					<Item portName="hardpoint_weapon_control"     itemName="ANVL_Test_WC" />
+				</Items>
+			</Item>
+		</Items>
+	</defaultLoadout>
+
+</item>

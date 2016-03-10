@@ -154,7 +154,6 @@ function AISpawner:SpawnUnit(id)
 			newEntity.AI.reinfPoint = g_SignalData.ObjectName;
 			newEntity:SetName(newEntity:GetName().."_spawned");
 			AI.Signal(SIGNALFILTER_SENDER,0,"NEW_SPAWN",newEntity.id,g_SignalData);
-	--			newEntity:SelectPipe(0,"goto_point","REINF");
 			self.spawnedIds[self.spawnedIdsSize] = newEntity.id;
 			self.spawnedIdsSize = self.spawnedIdsSize+1;
 		end

@@ -694,7 +694,7 @@ function InteractiveEntity:CacheResources()
 
 	local mat=self.Properties.ChangeMaterial.fileMaterial;
 	if(not EmptyString(mat))then
-		Game.CacheResource("InteractiveEntity.lua", mat, eGameCacheResourceType_Material, 0);
+		self:CacheResource("InteractiveEntity.lua", mat, eGameCacheResourceType_Material, 0);
 	end
 end
 

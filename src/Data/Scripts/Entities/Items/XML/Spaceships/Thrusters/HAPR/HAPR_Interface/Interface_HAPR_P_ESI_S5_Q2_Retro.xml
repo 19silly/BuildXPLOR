@@ -1,0 +1,93 @@
+<interface name="interface_HAPR_P_ESI_S5_Q2_Retro">
+	<!-- 
+	This is the model and vfx template for Thrusters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" /><!-- ONLY use if Thruster has special one-off params. All other params should remain in item.xml. -->
+	</params>
+
+	<geometry>
+		<!-- Default -->
+		<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Top_Left.cga"/>
+		
+		  <tags tag="topleft">
+			<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Top_Left.cga"/>
+		  </tags>
+		  
+		  <tags tag="topright">
+			<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Top_Right.cga"/>
+		  </tags>
+
+		  <tags tag="bottomleft">
+			<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Bottom_Left.cga"/>
+		  </tags>
+
+		  <tags tag="bottomright">
+			<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Bottom_Right.cga"/>
+		  </tags>
+
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+		<tags tag="Hologram">
+			<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Top_Left.cga" material=""/>
+		</tags>
+
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Thrusters/hapr/HE_5_5/HAPR_P_ESI_S5_Q2_Retro_Top_Left.cga" material=""/>
+
+		</tags>	
+		
+		<boneAttachments>
+				<attachment target="thirdperson" name="engine_boost" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_exhaust" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_output" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_fuel" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_heat" bone="exhaust" />
+				<attachment target="thirdperson" name="engine_light" bone="exhaust" orientation="0,0,-90"/>
+				<attachment target="thirdperson" name="engine_boost_light" bone="exhaust" />
+				
+				<!-- <attachment target="thirdperson" name="engine_boost_secondary" bone="exhaust_secondary" />
+				<attachment target="thirdperson" name="engine_exhaust_secondary" bone="exhaust_secondary" />
+				<attachment target="thirdperson" name="engine_output_secondary" bone="exhaust_secondary" />
+				<attachment target="thirdperson" name="engine_fuel_secondary" bone="exhaust_secondary" />
+				<attachment target="thirdperson" name="engine_heat_secondary" bone="exhaust_secondary" />
+				<attachment target="thirdperson" name="engine_light_secondary" bone="exhaust_secondary" orientation="0,0,-90"/>
+				<attachment target="thirdperson" name="engine_boost_light_secondary" bone="exhaust_secondary" /> -->
+				
+				<attachment target="thirdperson" name="engine_sound" bone="exhaust" orientation="0,0,-180"/>
+				<attachment target="thirdperson" name="engine_boost_sound" bone="exhaust" orientation="0,0,-180"/>
+		</boneAttachments>
+	</geometry>
+  
+  <thrusters>
+	<thruster>
+			<exhausts>
+				<exhaust scale="1.0" animation="nozzle" helper="exhaust" effectStopThreshold="0.1">
+					<effect name="thruster_fx.Constellation.HAPR_P_ESI_S5_Q2_retro" helper="exhaust" enable ="0" tag = "run">
+						<strength var="thrust" min="0.1"/>
+					</effect>
+				<material enable ="0" slot="1" matId= "5" tag = "run">
+						<param name="glow" var="thrust" min = "0.1" multiplier="100" />
+					</material>
+	<!-- 				<light name="!test_LightsArchetypes.groupname.light" archetype= "1" helper="engine_boost_light" enable ="0" tag="boost">
+						<radius var="thrust" min="6" multiplier="8" />
+						<diffuse var="thrust" min="0.5" multiplier="0.5" />
+						<specular var="boost" min="0.5" multiplier="0.5" />
+						<HDRDynamic var="thrust" min="0.5" multiplier="2" />
+					</light> -->
+					<sound name="Play_SSTP_HAPR_HE55_S5_Q2_Start_Run" enable ="0" tag = "run" helper="engine_sound">
+						<param name="rpm" var="thrust" lerpTime="0.2" />
+						<param name="in_out" var="in_out" />
+					</sound>
+				</exhaust>
+			</exhausts>
+	  </thruster>
+  </thrusters>
+
+</interface>

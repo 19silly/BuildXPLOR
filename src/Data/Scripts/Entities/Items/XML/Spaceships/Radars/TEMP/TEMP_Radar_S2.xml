@@ -1,0 +1,68 @@
+<item name="TEMP_Radar_S2" class="VehicleItemRadar" invisible="0" category="VehicleItem" >
+	<params>
+		<param name="itemType" value="Radar" />
+		<param name="itemSubType" value="ShortRangeRadar" />
+		<param name="itemManufactor" value="TEMP" />
+		<param name="itemDescription" value="" />
+		<param name="itemSize" value="2" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="" />
+		<param name="hitpoints" value="150" />
+		<param name="mass" value="200" />
+	</params>
+	
+	<Pipes>
+		<Pipe class="Power">
+			<StateLevels>
+				<Warning  value = "0.50" />
+				<Critical value = "0.25" />
+				<Fail     value = "0.01" />
+			</StateLevels>
+			<States>
+				<State state="Active,Default"><Value value="-50" /></State>
+				<State state="Off"><Value value="0" /></State>
+			</States>
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="200" rate="15" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Active"><Value value="15" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<radar>
+		<param name="searchRadius" value="20000" />
+		<param name="types" value="all_vehicle" />
+		<param name="occlusion" value="1" />
+		<param name="signalMin" value="1" />
+		<param name="signalBoost" value="100" />
+	</radar>
+
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+	<damagelevels>
+	</damagelevels>
+  
+	<geometry>
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Components\Radars_Medium.cgf"/>
+		
+		<tags tag="Hologram">
+			<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Components\Radars_Medium.cgf" material=""/>	
+		</tags>
+			
+		<tags tag="HUD">
+			<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Components\Radars_Medium.cgf" material=""/>
+		</tags>
+	</geometry>
+  
+</item>

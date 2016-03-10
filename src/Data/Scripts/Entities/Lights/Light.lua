@@ -15,12 +15,12 @@ Light =
 			nLightStyle = 0, --[0,88,1,"Specifies a preset animation for the light to play."] --CIG_BEGIN increased allowed number of styles to match Engine/Shaders/HWScripts/CryFX/Light.cfx
 			fAnimationSpeed = 1, --[0,100,0.1,"Specifies the speed at which the light animation should play."]
 			nAnimationPhase = 0, --[0,100,1,"This will start the light style at a different point along the sequence."]
+			bRandomAnimationPhase = 0, --[0,1,1, "This will cause nAnimationPhase to be randomized on light entity spawn. nAnimationPhase will be ignored. Lights with the same direct parent Entity will share the same randome phase"]--
 			bAttachToSun = 0, --[0,1,1,"When enabled, sets the Sun to use the Flare properties for this light."]
 			lightanimation_LightAnimation = "",
 			bTimeScrubbingInTrackView = 0,
 			_fTimeScrubbed = 0,
 			-- CIG_BEGIN
-			bEnableLuminanceOutput = 0;
 			fLuminance = 0;
 			-- CIG_BEGIN
 		},
@@ -104,7 +104,7 @@ end
 
 function Light:CacheResources(requesterName)
 	local textureFlags = 0;
-	Game.CacheResource(requesterName, self.Properties.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
+	self:CacheResource(requesterName, self.Properties.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
 end
 
 function Light:OnShutDown()
@@ -125,6 +125,7 @@ function Light:OnPropertyChange()
 	self:ActivateLight( self.bActive );
 	if (self.Properties.Options.bDeferredClipBounds) then
 		self:UpdateLightClipBounds(LightSlot);
+		self:UpdateLightClipVolumes(LightSlot);
 	end
 end
 
@@ -151,6 +152,7 @@ end
 function Light:OnLevelLoaded()
 	if (self.Properties.Options.bDeferredClipBounds) then
 		self:UpdateLightClipBounds(LightSlot);
+		self:UpdateLightClipVolumes(LightSlot);
 	end
 end
 
@@ -188,7 +190,7 @@ function Light:PlaySound()
 		end
 		do return end;
 	end
-	self.iSoundId = self:PlaySoundEvent(self.Properties.LightSound.soundSoundName, g_Vectors.v001, g_Vectors.v010, SOUND_STEREO, 0, SOUND_SEMANTIC_SOUNDSPOT);
+	self.iSoundId = nil; -- self:PlaySoundEvent(self.Properties.LightSound.soundSoundName, g_Vectors.v001, g_Vectors.v010, SOUND_STEREO, 0, SOUND_SEMANTIC_SOUNDSPOT);
 	if (iSoundId ~= nil) then
 		local bIsEvent = (Sound.IsEvent(iSoundId));
 				
@@ -216,9 +218,7 @@ function Light:LoadLightToSlot( nSlot )
 	local specular_mul = Color.fSpecularMultiplier;
 	
 	local lt = self._LightTable;
-	-- CIG_BEGIN
-	lt.enable_luminance_output = Style.bEnableLuminanceOutput;
-	-- CIG_END
+
 	lt.cheapLight = props._bCheapLight;
 	lt.radius = props.Radius;
 	lt.attenuation_bulbsize = props.Options.fAttenuationBulbSize;
@@ -261,6 +261,7 @@ function Light:LoadLightToSlot( nSlot )
 	lt.attach_to_sun = Style.bAttachToSun;
 	lt.anim_speed = Style.fAnimationSpeed;
 	lt.anim_phase = Style.nAnimationPhase;
+	lt.random_anim_phase = Style.bRandomAnimationPhase;
 	lt.light_animation = Style.lightanimation_LightAnimation;
 	lt.time_scrubbing_in_trackview = Style.bTimeScrubbingInTrackView;
 	lt.time_scrubbed = Style._fTimeScrubbed;

@@ -67,7 +67,7 @@ function EnvironmentLight:CacheResources(requesterName)
 	if ( self.Properties.OptionsAdvanced.texture_deferred_cubemap == "" ) then
 		self.Properties.OptionsAdvanced.texture_deferred_cubemap = self.Properties.Options._texture_deferred_cubemap;
 	end
-	Game.CacheResource(requesterName, self.Properties.OptionsAdvanced.texture_deferred_cubemap, eGameCacheResourceType_TextureDeferredCubemap, 0);
+	self:CacheResource(requesterName, self.Properties.OptionsAdvanced.texture_deferred_cubemap, eGameCacheResourceType_TextureDeferredCubemap, 0);
 end
 
 function EnvironmentLight:OnShutDown()
@@ -88,6 +88,7 @@ function EnvironmentLight:OnPropertyChange()
 	self:ActivateLight( self.bActive );
 	if (self.Properties.Projection.bUseLightBox) then
 		self:UpdateLightClipBounds(LightSlot);
+		self:UpdateLightClipVolumes(LightSlot);
 	end
 end
 
@@ -110,6 +111,7 @@ end
 function EnvironmentLight:OnUpdate(dt)
 	if (self.bActive and self.Properties.Options.bUseLightBox) then
 		self:UpdateLightClipBounds(LightSlot);
+		self:UpdateLightClipVolumes(LightSlot);
 	end
 
 	if (not System.IsEditor()) then

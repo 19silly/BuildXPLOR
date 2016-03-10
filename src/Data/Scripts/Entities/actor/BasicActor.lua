@@ -41,18 +41,23 @@ BasicActor =
 			bWrinkleMap = 0,
 		},
 
-		-- CIG BEGIN shall
-
 		Audio =
 		{
 			audioPreloadRequestBankName = "",
 		},
-		-- CIG END
+		
 		-- Item ports descriptor
 		fileItemPortsDefinition = "Scripts/Entities/Items/XML/Player/PlayerItemPorts.xml",
 
-		-- Loadout descriptor
-		fileItemLoadout = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
+		-- Loadouts descriptor
+		Loadouts = 
+		{
+			fileLoadout1 = "",
+			fileLoadout2 = "",
+			fileLoadout3 = "",
+			fileLoadout4 = "",
+			fileLoadout5 = "",
+		},
 	},
 
 	tempSetStats =
@@ -282,12 +287,12 @@ function BasicActor:CacheResources()
 	-- Blood splats materials
 	local bloodSplatWallCount = table.getn(self.bloodSplatWall)
 	for i = 1, bloodSplatWallCount do
-		Game.CacheResource("BasicActor.lua", self.bloodSplatWall[i], eGameCacheResourceType_Material, 0);
+		self:CacheResource("BasicActor.lua", self.bloodSplatWall[i], eGameCacheResourceType_Material, 0);
 	end
 
 	local bloodSplatGroundCount = table.getn(self.bloodSplatGround)
 	for i = 1, bloodSplatGroundCount do
-		Game.CacheResource("BasicActor.lua", self.bloodSplatGround[i][1], eGameCacheResourceType_Material, 0);
+		self:CacheResource("BasicActor.lua", self.bloodSplatGround[i][1], eGameCacheResourceType_Material, 0);
 	end
 end
 
@@ -313,7 +318,6 @@ function BasicActor:ResetCommon(bFromInit, bIsReload)
 	self:DropObject();
 
 	self:RemoveDecals();
-	self:EnableDecals(0, true);
 
 	self.lastDeathImpulse = 0;
 
@@ -325,6 +329,8 @@ function BasicActor:ResetCommon(bFromInit, bIsReload)
 		self.lastSpawnPoint = 0;
 	end
 	self.AI = {};
+
+
 end
 
 --------------------------------------------------------------------------
@@ -343,14 +349,17 @@ function BasicActor:Reset(bFromInit, bIsReload)
 
 	if (CryAction.IsServer()) then
 		if (bFromInit or System.IsEditor()) then
-			if (self.Properties.fileItemLoadout) then
-				self.actor:LoadXmlLoadout(self.Properties.fileItemLoadout);
+			if (self.Properties.Loadouts) then
+				self.actor:LoadXmlLoadouts(self.Properties.Loadouts);
 				if (not self.actor:IsPlayer()) then
 					self.actor:AISelectDefaultWeapon();
 				end
 			end
 		end
 	end
+
+	self:ResetAttachment(0, "weapon_attach_hand_right");
+	self:ResetAttachment(0, "weapon_attach2");
 
 end
 
@@ -366,7 +375,8 @@ function BasicActor:InitIKLimbs()
 end
 
 function BasicActor:ShutDown()
-	self:ResetAttachment(0, "weapon");
+	self:ResetAttachment(0, "weapon_attach_hand_right");
+	self:ResetAttachment(0, "weapon_attach2");
 	self:ResetAttachment(0, "right_item_attachment");
 	self:ResetAttachment(0, "left_item_attachment");
 	self:ResetAttachment(0, "laser_attachment");
@@ -577,10 +587,6 @@ function BasicActor.Server:OnHit(hit)
 	end
 
 	local isPlayer = self.actor:IsPlayer();
-
-	--if (isPlayer and g_gameRules and ((not (hit.shooterId == nil) and hit.damage>=1) or (hit.damage > 3.0) or (isMultiplayer and (hit.shooterId ~= nil)))) then
-	--	g_gameRules.game:SendDamageIndicator(hit.targetId, hit.shooterId or NULL_ENTITY, hit.weaponId or NULL_ENTITY, hit.dir, hit.damage, hit.projectileClassId or -1, hit.typeId);
-	--end
 
 	-- Log("BasicActor.Server:OnHit (%s)", self:GetName());
 	-- Store some information for musiclogic
@@ -978,7 +984,7 @@ function BasicActor:SetActorModel(isClient)
 		self:ForceCharacterUpdate(0, false);
 		self:CreateBoneAttachment(0, "weapon_bone", "right_item_attachment");
 		self:CreateBoneAttachment(0, "Bip01 Pelvis", "weapon");
-		self:CreateBoneAttachment(0, "WeaponAttachRight", "weapon_attach");
+		self:CreateBoneAttachment(0, "RightWeaponBone", "weapon_attach_hand_right");
 		self:CreateBoneAttachment(0, "alt_weapon_bone01", "left_item_attachment");
 		self:CreateBoneAttachment(0, "weapon_bone", "laser_attachment"); -- Laser bone (need it for updating character correctly when out of camera view)
 
@@ -1118,10 +1124,6 @@ end
 function BasicActor:OnPostLoad()
 	self.lastHealth = self.actor:GetHealth();
 	self.lastDeathImpulse = 0;
-
-	if self.AssignPrimaryWeapon then
-		self:AssignPrimaryWeapon();
-	end
 end
 
 function BasicActor:OnResetLoad()

@@ -33,7 +33,6 @@ SpawnCoordinator =
 	},
 	PropertiesInstance =
 	{
-		aibehavior_behaviour = "CoordinatorIdle",
 		soclasses_SmartObjectClass = "",
 		groupid = 173,
 	},

@@ -6,9 +6,6 @@ Player = {
 	UpperBodyGraph = "",
 
 	type = "Player",
-
-	foreignCollisionDamageMult = 0.1,	
-	vehicleCollisionDamageMult = 7.5,
 	
 	Properties = 
 	{	
@@ -50,7 +47,6 @@ Player = {
 	},
 
 	PropertiesInstance = {
-		aibehavior_behaviour = "PlayerIdle",
 	},
 	
 	gameParams =
@@ -328,7 +324,7 @@ end
 
 
 function Player.Client:AlignTo(ang)
-	self.actor:SetAngles(ang);
+	self.entity:SetAngles(ang);
 end
 
 function Player.Client:ClearInventory()
@@ -396,11 +392,6 @@ end
 
 
 function Player:OnInit()
-
---	AI.RegisterWithAI(self.id, AIOBJECT_PLAYER, self.Properties);
-	self:SetAIName(self:GetName());
-	----------------------------------------
-
 --	self:InitSounds();
 	
 	self:OnReset(true);
@@ -438,8 +429,8 @@ function Player:OnReset()
 
 	self.Properties.species = 0;
 	-- Reset all properties to editor set values.
-	if AI then 
-		AI.ResetParameters(self.id, false, self.Properties, self.PropertiesInstance) end;
+--	if AI then 
+--		AI.ResetParameters(self.id, false, self.Properties, self.PropertiesInstance) end;
 
 	self.lastOverloadTime = nil;
 	

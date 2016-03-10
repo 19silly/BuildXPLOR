@@ -1,0 +1,75 @@
+<ammo name="VNCL_Blade_PC_Bolt" class="LaserBolt">
+	<flags>
+		<param name="clientonly" value="1" />
+		<param name="reusable" value="1" />
+	</flags>
+	
+	<params>
+		<param name="lifetime" value="2" />
+		<param name="showtime" value="0" />
+		<param name="category" value="laserbolt" />
+		<param name="UIIcon" value="laser" />
+	</params>
+	
+	<geometry>
+		<firstperson name="Objects/Effects/projectiles/laser_projectile.cgf" material ="Materials/Effects/Projectiles/scythe_neutron_1.mtl" />
+	</geometry>
+  
+	<AudioPreloads>
+		<Preload name = "SC_WPWB_WPHA_VNCL"/>
+	</AudioPreloads>
+
+	<whiz>
+		<param name="play_trigger" value="Play_WPWB_WPHA_VNCL_LC_WEAK_S1_Q1" />
+		<param name="distance" value="100" />
+	</whiz>
+   
+	<physics type="particle">
+		<param name="mass" value="0.05" />
+		<param name="speed" value="1200" />
+		<param name="radius" value="0.1" />
+		<param name="air_resistance" value="0" />
+		<param name="water_resistance" value="0" />
+		<param name="gravity" value="0, 0, 0" />
+		<param name="water_gravity" value="0, 0, 0" />
+		<param name="material" value="metal_dense" />
+		<param name="pierceability" value="14" />
+		<param name="no_spin" value ="1"/>
+		<param name="single_contact" value="1" />
+		<param name="no_path_alignment" value ="1"/>
+		<param name="constant_orientation" value ="1"/>
+		<param name="no_self_collisions" value ="1"/> 
+	</physics>
+
+	<LaserBoldParams>
+		<!--visual parameters for "stretching" the laser bolt mesh for a cool Star Wars feel-->
+		<param name="gapSize" value="0.2" />
+		<param name="maxLength" value="30" />
+		<param name="radius" value="0.5" />
+		<param name="effect" value="weapon_fx.lasercanon.scythe_hit_failed" />
+		<param name="failed_effect" value="weapon_fx.lasercanon.scythe_hit_failed" />
+	</LaserBoldParams>
+	
+	<light>
+		<param name="diffuse_srgb" value="213,45,43"/>
+		<param name="diffuseMult" value="8" />
+		<param name="attenuation_bulbsize" value="0.1"/>
+		<param name="radius" value="5" />
+		<param name="flare_Scale" value="0"/>
+		<param name="flare_Name" value=""/>
+	</light>
+	
+	<trail>
+		<param name="helper" value="laser_bolt01" />
+		<param name="effect" value="weapon_fx.neutron.trail" />
+		<param name="scale" value="0.1" />
+	</trail>
+	
+	<VehicleDamageParams>
+		<param name="damage" value="0" /> 		<!-- This is PHYSICAL damage -->
+		<param name="damage_energy" value="200" /> <!-- This is ENERGY damage -->
+		<param name="damage_distortion" value="0" /> <!-- This is DISTORTION damage -->
+		<param name="radius" value="0" /> <!-- This is the damage radius of the projectile. 0 is point impact -->
+	</VehicleDamageParams>
+
+</ammo>

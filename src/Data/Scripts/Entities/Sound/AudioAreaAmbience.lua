@@ -13,9 +13,15 @@ AudioAreaAmbience = {
 		bEnabled = true,
 		audioTriggerPlayTrigger = "",
 		audioTriggerStopTrigger = "",
-		audioRTPCRtpc = "",
+		audioRTPCRtpc = "area_fade_distance", -- CIG mkorotyaev default value used most of the time at CIG
 		audioEnvironmentEnvironment = "",
-		eiSoundObstructionType = 1, -- Anything greater than 1 will be reset to 2.
+		-- CIG BEGIN mkorotyaev added ability to set a global switch to a particular state when the player goes inside/outside of the area
+		audioSwitchSwitch = "",
+		audioStateSwitchStateInside = "",
+		audioStateSwitchStateNear = "",
+		audioStateSwitchStateFar = "",
+		-- CIG END
+		eiSoundObstructionType = 1, -- Anything greater than 2 will be reset to 2.
 		fRtpcDistance = 5.0,
 		fEnvironmentDistance = 5.0,
 		fAudioSignature = 0, -- CIG mkorotyaev to be used by the radar screen
@@ -28,12 +34,20 @@ AudioAreaAmbience = {
 	hOffTriggerID = nil,
 	hRtpcID = nil,
 	hEnvironmentID = nil,
+	-- CIG BEGIN mkorotyaev added ability to set a global switch to a particular state when the player goes inside/outside of the area
+	hSwitchID = nil,
+	hSwitchStateInsideID = nil,
+	hSwitchStateNearID = nil,
+	hSwitchStateFarID = nil,
+	-- CIG END
 	tObstructionType = {},
 	bIsPlaying = false,
 
 	-- CIG BEGIN shall
 	bCached = false,
 	-- CIG END
+	
+	bIsHidden = false; -- CIG mkorotyaev 
 }
 
 ----------------------------------------------------------------------------------------
@@ -42,6 +56,16 @@ function AudioAreaAmbience:_LookupControlIDs()
 	self.hOffTriggerID = AudioUtils.LookupTriggerID(self.Properties.audioTriggerStopTrigger);
 	self.hRtpcID = AudioUtils.LookupRtpcID(self.Properties.audioRTPCRtpc);
 	self.hEnvironmentID = AudioUtils.LookupAudioEnvironmentID(self.Properties.audioEnvironmentEnvironment);
+	-- CIG BEGIN mkorotyaev added ability to set a global switch to a particular state when the player goes inside/outside of the area
+	self.hSwitchID = AudioUtils.LookupSwitchID(self.Properties.audioSwitchSwitch);
+	local switchStateHandles = AudioUtils.LookupSwitchStateIDs(self.hSwitchID,
+		{self.Properties.audioStateSwitchStateInside,
+		 self.Properties.audioStateSwitchStateNear,
+		 self.Properties.audioStateSwitchStateFar})
+	self.hSwitchStateInsideID = switchStateHandles[1]
+	self.hSwitchStateNearID = switchStateHandles[2]
+	self.hSwitchStateFarID = switchStateHandles[3]
+	-- CIG END
 end
 
 ----------------------------------------------------------------------------------------
@@ -55,24 +79,35 @@ function AudioAreaAmbience:_SetObstruction()
 	local nStateIdx = self.Properties.eiSoundObstructionType + 1;
 	
 	if ((self.tObstructionType.hSwitchID ~= nil) and (self.tObstructionType.tStateIDs[nStateIdx] ~= nil)) then
-		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx]);
+		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx], self:GetDefaultAuxAudioProxyID());
 	end
 end
 
 ----------------------------------------------------------------------------------------
-function AudioAreaAmbience:_PlayFirstTime()	
-	self:_SetObstruction();
-	self:SetCurrentAudioEnvironments();
+function AudioAreaAmbience:_DisableObstruction()
+	-- Ignore is at index 1
+	local nStateIdx = 1;
 	
+	if ((self.tObstructionType.hSwitchID ~= nil) and (self.tObstructionType.tStateIDs[nStateIdx] ~= nil)) then
+		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx], self:GetDefaultAuxAudioProxyID());
+	end
+end
+
+----------------------------------------------------------------------------------------
+function AudioAreaAmbience:_PlayFirstTime()
 	if (self.Properties.bEnabled) then
 		self:Play();
-	end	 
+	end
 end
 
 ----------------------------------------------------------------------------------------
 function AudioAreaAmbience:_UpdateParameters()
-	if (self.hEnvironmentID ~= nil) then
+	-- CIG BEGIN fixed the environment not getting properly unset after removing the EnvironmentName from the Parameters
+	if ((self.Properties.bEnabled) and (self.hEnvironmentID ~= nil)) then
 		self:SetAudioEnvironmentID(self.hEnvironmentID);
+	-- CIG END
+	else
+		self:SetAudioEnvironmentID(INVALID_AUDIO_ENVIRONMENT_ID);
 	end
 	
 	self:SetFadeDistance(self.Properties.fRtpcDistance);
@@ -82,7 +117,7 @@ end
 ----------------------------------------------------------------------------------------
 function AudioAreaAmbience:_UpdateRtpc()
 	if (self.hRtpcID ~= nil) then
-		self:SetAudioRtpcValue(self.hRtpcID, self.fFadeValue);
+		self:SetAudioRtpcValue(self.hRtpcID, self.fFadeValue, self:GetDefaultAuxAudioProxyID());
 	end
 end
 
@@ -128,7 +163,6 @@ function AudioAreaAmbience:OnLoad(load)
 	-- CIG END
 	
 	self:_SetObstruction();
-	self:SetCurrentAudioEnvironments();
 end
 
 ----------------------------------------------------------------------------------------
@@ -137,6 +171,7 @@ function AudioAreaAmbience:OnSave(save)
 	save.fFadeValue = self.fFadeValue;
 	save.nState = self.nState;
 	save.fFadeOnUnregister = self.fFadeOnUnregister;
+	save.bIsHidden = self.bIsHidden; -- CIG mkorotyaev introduced bIsHidden
 end
 
 ----------------------------------------------------------------------------------------
@@ -151,12 +186,24 @@ function AudioAreaAmbience:OnPropertyChange()
 	
 	if (self.Properties.eiSoundObstructionType < 0) then
 		self.Properties.eiSoundObstructionType = 0;
-	elseif (self.Properties.eiSoundObstructionType > 1) then
+	elseif (self.Properties.eiSoundObstructionType > 2) then
 		self.Properties.eiSoundObstructionType = 2;
 	end
 	
-	self:SetAudioProxyOffset(g_Vectors.v000);
-	self:_PlayFirstTime();
+	self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
+  
+  if (self.nState == 1) then
+		self:_SetObstruction();
+		self:_PlayFirstTime();
+	elseif (self.nState == 2) then
+		self:_DisableObstruction();
+		self:_PlayFirstTime();
+  end
+end
+
+----------------------------------------------------------------------------------------
+function AudioAreaAmbience:OnReset()
+	self:_UpdateParameters();
 end
 
 ----------------------------------------------------------------------------------------
@@ -170,10 +217,10 @@ function AudioAreaAmbience:Play()
 	end
 	-- CIG END
 	
-	if ((self.hOnTriggerID ~= nil) and self.Properties.bEnabled) then
+	if (self.Properties.bEnabled and (self.hOnTriggerID ~= nil) and (not self.bIsHidden)) then -- CIG mkorotyaev added bIsHidden
 		self:Stop(true); -- CIG - mkorotyaev
 		self:SetCurrentAudioEnvironments();
-		self:ExecuteAudioTrigger(self.hOnTriggerID);
+		self:ExecuteAudioTrigger(self.hOnTriggerID, self:GetDefaultAuxAudioProxyID());
 		self.bIsPlaying = true;
 	end
 end
@@ -182,9 +229,9 @@ end
 function AudioAreaAmbience:Stop(bHardStop) -- CIG - mkorotyaev Added bHardStop parameter
 	if (self.bIsPlaying) then
 		if (self.hOffTriggerID ~= nil) then
-			self:ExecuteAudioTrigger(self.hOffTriggerID);
+			self:ExecuteAudioTrigger(self.hOffTriggerID, self:GetDefaultAuxAudioProxyID());
 		else
-			self:StopAudioTrigger(self.hOnTriggerID, bHardStop); -- CIG - mkorotyaev
+			self:StopAudioTrigger(self.hOnTriggerID, bHardStop, self:GetDefaultAuxAudioProxyID()); -- CIG - mkorotyaev added bHardStop
 		end
 		
 		self.bIsPlaying = false;
@@ -224,6 +271,13 @@ function AudioAreaAmbience:UpdateFadeValue(player, fFade, fDistSq)
   end
 end
 
+-- CIG BEGIN mkorotyaev  added ability to set a global switch to a particular state when the player goes inside/outside of the area
+----------------------------------------------------------------------------------------
+function AudioAreaAmbience:IsActive()
+	return self.Properties.bEnabled and (not self.bIsHidden);
+end
+-- CIG END
+
 ----------------------------------------------------------------------------------------
 AudioAreaAmbience.Server={
 	OnInit = function(self)
@@ -249,13 +303,19 @@ AudioAreaAmbience.Client={
 		self:Stop(true); -- CIG - mkorotyaev
 	end,
 	
-	OnAudioListenerEnterNearArea = function(self, player, nAreaID, fFade)
+	OnAudioListenerEnterNearArea = function(self, player, nAreaID, fFade)		
 		if (self.nState == 0) then
 			self:_PlayFirstTime();		
 			self.nState = 1;
 			self.fFadeValue = 0.0;
 			self:_UpdateRtpc();
 		end
+		
+		-- CIG BEGIN mkorotyaev  added ability to set a global switch to a particular state when the player goes inside/outside of the area
+		if (self:IsActive()) then
+			AudioUtils.SetGlobalSwitchState(self.hSwitchID, self.hSwitchStateNearID)
+		end
+		-- CIG END
 	end,
 	
 	OnAudioListenerMoveNearArea = function(self, player, areaId, fFade, fDistsq)
@@ -265,14 +325,21 @@ AudioAreaAmbience.Client={
 	
 	OnAudioListenerEnterArea = function(self, player, areaId, fFade)
     if (self.nState == 0) then
-			-- possible if the player is teleported or gets spawned inside the area
-			-- technically, the Player enters the Near Area and the Inside Area at the same time
+			-- possible if the listener is teleported or gets spawned inside the area
+			-- technically, the listener enters the Near Area and the Inside Area at the same time
 			self:_PlayFirstTime();
 		end
 		
 		self.nState = 2;
 	  self.fFadeValue = 1.0;
 		self:_UpdateRtpc();
+		self:_DisableObstruction();
+		
+		-- CIG BEGIN mkorotyaev  added ability to set a global switch to a particular state when the player goes inside/outside of the area
+		if (self:IsActive()) then
+			AudioUtils.SetGlobalSwitchState(self.hSwitchID, self.hSwitchStateInsideID)
+		end
+		-- CIG END
 	end,	
 	
 	OnAudioListenerProceedFadeArea = function(self, player, areaId, fExternalFade)
@@ -288,6 +355,12 @@ AudioAreaAmbience.Client={
 	
 	OnAudioListenerLeaveArea = function(self, player, nAreaID, fFade)
 		self.nState = 1;
+		self:_SetObstruction();
+		-- CIG BEGIN mkorotyaev  added ability to set a global switch to a particular state when the player goes inside/outside of the area
+		if (self:IsActive()) then
+			AudioUtils.SetGlobalSwitchState(self.hSwitchID, self.hSwitchStateNearID)
+		end
+		-- CIG END
 	end,	
 	
 	OnAudioListenerLeaveNearArea = function(self, player, nAreaID, fFade)
@@ -295,6 +368,11 @@ AudioAreaAmbience.Client={
 		self.nState = 0;
 		self.fFadeValue = 0.0;
 		self:_UpdateRtpc();
+		-- CIG BEGIN mkorotyaev  added ability to set a global switch to a particular state when the player goes inside/outside of the area
+		if (self:IsActive()) then
+			AudioUtils.SetGlobalSwitchState(self.hSwitchID, self.hSwitchStateFarID)
+		end
+		-- CIG END
 	end,
 	
 	OnUnBindThis = function(self)
@@ -306,6 +384,18 @@ AudioAreaAmbience.Client={
 			self:ActivateOutput( "Done",true );
 		end
 	end,
+	
+	-- CIG BEGIN mkorotyaev added hide/unhide handling
+	OnHidden = function(self)
+		self:Stop(true);
+		self.bIsHidden = true;
+	end,
+		
+	OnUnHidden = function(self)
+		self.bIsHidden = false;
+		self:OnPropertyChange();
+	end,
+	-- CIG END
 }
 
 ----------------------------------------------------------------------------------------

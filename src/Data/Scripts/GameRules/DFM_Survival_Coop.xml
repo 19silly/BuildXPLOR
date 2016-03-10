@@ -9,18 +9,45 @@
 			<Event type='DamageShip'        points='1'	 />
 			<Event type='DestroyedShip'     points='1'	 />
 		</Player>
+		
+	<!-- Will relate to the players overall score -->
+		<Player>
+			<Event type="DamageShip" points="1" />
+			<Event type="DestroyedShip" points="1" />
+			<Event type="DestroyedShipEjected" points="1" />
+			<Event type="PlayerKillEjected" points="1" />
+
+			<!-- Awards -->
+			<!-- <Event type="Award_UnaidedKill" points="100" /> -->
+			<Event type="Award_Untouchable" points="100" />
+			<Event type="Award_RedemptionKill" points="300" />
+			<Event type="Award_ResurgentKill" points="300" />
+			<Event type="Award_RevengeKill" points="250" />
+			<Event type="Award_CrashRoberts" points="0" />
+			<Event type="Award_ForcedError" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			
+
+			<!-- TeamPlayer Awards -->
+			<Event type="Award_KillAssist" points="200" />
+			<Event type="Award_Wingman" points="200" />
+			<Event type="Award_SquadronRevengeKill" points="200" />
+
+		</Player>
+		
 	</Scoring>
+	
+	<AssistScoring class="DFMAssistScoring" maxTimeBetweenAttackAndKillForAssist='15000' />
 
 	<PlayerStats class='DFMPlayerStats' />
 	<StatsRecording class="AuthoritativeStats" />
 
 	<State class='DFMState'>
 		<StartStrings startMatch='ui_msg_ia_matchstart' />
-		<Prematch requiredPlayers="2" gameStartTimer="5" readySystem="1" readyForceTime="15"/> 
+		<Prematch requiredPlayers="2" gameStartTimer="3" readySystem="1" readyForceTime="15"/> 
 	</State>
 
 	<VictoryConditions class='DFMVictoryConditionsLives' OpponentsDisconnectCheck="0"/>
-	<RECAllocation class="DFMRECAllocationSurvival" scoreForFullRECPool="10000" wavesForNormalREC="15" recPoolSizePerPlayer="1750" shipMultiplierRecord="ShipRECMultipliersStandard.xml" />
+	<RECAllocation class="DFMRECAllocationSurvival" scoreForFullRECPool="10000" wavesForNormalREC="15" recPoolSizePerPlayer="1350" shipMultiplierRecord="ShipRECMultipliersStandard.xml" />
 
 	<PlayerSetup class='StandardSetup' />
 
@@ -38,7 +65,7 @@
 	<OptionBindings>
 		<!--
 		<OptionBinding>
-			<Option		Name = "MaxPlayers" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesMaxPlayers" Description = "@dfm_ac_ui_RulesMaxPlayers"	Min = "4"	Max = "12"	Step = "1"	DefaultValue = "8" />
+			<Option		Name = "MaxPlayers" Type = "eRangeRestrictedNumber" Category = "eElectronicAccessMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesMaxPlayers" Description = "@dfm_ac_ui_RulesMaxPlayers"	Min = "4"	Max = "12"	Step = "1"	DefaultValue = "8" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		-->

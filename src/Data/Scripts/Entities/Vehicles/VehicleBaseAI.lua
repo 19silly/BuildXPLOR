@@ -24,17 +24,19 @@ VehicleBaseAI =
 	PropertiesInstance = 
 	{
 		groupid = 173,
-		aibehavior_behaviour = "TankIdle",
 		bCircularPath = 0,
 		PathName = "",
 		FormationType = "",
 		bAutoDisable = 1,
 
+		aibehavior_AIBehavior = "",  -- Used to set DataForge authored Kythera behavior
+		
 		esAIProfileBase			= "<None>",
 		esAIProfileCombat		= "<None>",
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+		esAIProfileMissile		= "<None>",
 
 		AIPilotName			= "",
 		
@@ -53,14 +55,16 @@ VehicleBaseAI =
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+		esAIProfileMissile		= "<None>",
 
+		aibehavior_AIBehavior = "",  -- Used to set DataForge authored Kythera behavior
+		
 		soclasses_SmartObjectClass = "",
 		bAutoGenAIHidePts = 0,
 
 		esAIPilotEntity = "",
 		esFaction = "",
 		bFactionHostility = 1,
-		esContextualDialog = "",
 
 		aicharacter_character = "Tank",
 		leaderName = "",
@@ -125,9 +129,6 @@ VehicleBaseAI =
 		velDecay	= 30,			-- how fast velocity decays with cos(fwdDir^pathDir) 
 	},
 	
-	-- information about fire type that are used by AI
-	AIFireProperties = {
-	},
 	AISoundRadius = 120,
 	hidesUser=1,	
 
@@ -152,7 +153,6 @@ function VehicleBaseAI:AIDriver( enable )
 		self:ChangeFaction();
 		self:TriggerEvent(AIEVENT_DRIVER_OUT);
 		self.State.aiDriver = nil;
-		self:EnableMountedWeapons(true);
 	else
 		-- no triggering on if dead
 		if (self.health and self.health <= 0) then
@@ -163,7 +163,6 @@ function VehicleBaseAI:AIDriver( enable )
 		if(self.Behavior and self.Behavior.Constructor) then 
 			self.Behavior:Constructor(self);
 		end
-		self:EnableMountedWeapons(false);
 		
 		return 1
 	end
@@ -212,7 +211,7 @@ function VehicleBaseAI:ResetAI()
 	}
 	self:AIDriver( 0 );
 
-	AI.ResetParameters(self.id, false, self.Properties, self.PropertiesInstance, nil);
+	--AI.ResetParameters(self.id, false, self.Properties, self.PropertiesInstance, nil);
 	if(self.AICombatClass) then
 		AI.ChangeParameter(self.id,AIPARAM_COMBATCLASS,self.AICombatClass);
 	end
@@ -304,8 +303,6 @@ function VehicleBaseAI:UserEntered(user)
 	if(self:IsDriver(user.id)) then
 		self:ChangeFaction(user, 1);
 	end
-	
-	self:PrepareSeatMountedWeapon(user);
 
 end
 
@@ -529,7 +526,6 @@ end
 --------------------------------------------------------------------------
 function VehicleBaseAI:OnPropertyChangeExtra()
 	self.vehicle:SetAIPilotClassName(self.Properties.esAIPilotEntity);
-	self.vehicle:SetAIContextualResponseFile(self.Properties.esContextualDialog);
 	if (self.Properties.fileItemLoadout) then
 		self.vehicle:LoadXmlLoadout(self.Properties.fileItemLoadout);
 	end

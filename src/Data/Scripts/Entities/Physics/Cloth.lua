@@ -61,10 +61,16 @@ function Cloth:OnReset()
 	PhysParams.mass = self.Properties.mass;
 	PhysParams.bRigidCore = self.Properties.bRigidCore;
 
-
-	local attachmentInfo = self:LookForEntityToAttachTo();
-	PhysParams.AttachmentId = attachmentInfo.entityId;
-	PhysParams.AttachmentPartId = attachmentInfo.partId;
+	local i = 0;
+	local link = self:GetLinkTarget("AttachedTo",i);
+	if (link) then
+		PhysParams.AttachmentIdEnt = link.id;
+		PhysParams.AttachmentPartId = -1;
+	else
+		local attachmentInfo = self:LookForEntityToAttachTo();
+		PhysParams.AttachmentId = attachmentInfo.entityId;
+		PhysParams.AttachmentPartId = attachmentInfo.partId;
+	end
 
 	self:Physicalize(0, PE_SOFT, PhysParams);
 	self:SetPhysicParams(PHYSICPARAM_SIMULATION, self.Properties );

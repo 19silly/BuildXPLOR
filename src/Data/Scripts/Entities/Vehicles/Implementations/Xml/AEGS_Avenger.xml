@@ -3,13 +3,13 @@
 ///              Aegis Dynamics Avenger
 //////////////////////////////////////////////////////////////////////////
 -->
-<Vehicle name="AEGS_Avenger" category="StarFighter" displayname="Aegis Dynamics Avenger" classname="Class 2" id="idVehicleClass" dockingclass="2" priority="2" HudPaletteScheme="AEGS" requiredItemTags="" itemPortTags="AEGS_Avenger_Base" crossSectionMultiplier="0.52,0.37,0.51">
+<Vehicle name="AEGS_Avenger" category="StarFighter" displayname="Aegis Dynamics Avenger" classname="Class 2" id="idVehicleClass" dockingclass="2" HudPaletteScheme="AEGS" requiredItemTags="" itemPortTags="AEGS_Avenger_Base" crossSectionMultiplier="0.52,0.37,0.51">
 <Shield shieldMesh="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/avenger_shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
       <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
       <DamageMultiplier damageType="melee" multiplier="0" />
@@ -42,9 +42,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <DamageBehavior class="Effect">
+              <!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>
+              </DamageBehavior>-->
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -81,9 +81,6 @@
 							<DamageBehavior class="Effect">
 								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
 							</DamageBehavior>
-							<DamageBehavior class="CameraShake">
-								<CameraShake />
-							</DamageBehavior>
 						</DamageBehaviors>
 					</DamagesSubGroup>
 				</DamagesSubGroups>
@@ -109,7 +106,7 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-    <Part name="AEGS_Avenger" class="Animated" mass="18000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
+    <Part name="AEGS_Avenger" class="Animated" mass="9000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
       <Animated filename="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" filenameDestruction="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger_damaged.cga" id="idShipGeometry" />
       <DamageBehaviors>
         <DamageBehavior class="Group" damageRatioMin="1">
@@ -117,7 +114,7 @@
         </DamageBehavior>
       </DamageBehaviors>
       <Parts>
-        <Part name="Nose" class="AnimatedJoint" damageMax="600">
+        <Part name="Nose" class="AnimatedJoint" damageMax="900" mass="9000">
           <DamageBehaviors>
             <DamageBehavior class="DetachPart" damageRatioMin="0.25">
               <DetachPart part="Nose" recurseChildren="1" skipParent="1" Probability="1" />
@@ -220,82 +217,82 @@
 
               </Parts>
             </Part>
-            <Part name="Canopy" class="AnimatedJoint" damageMax="300">
+            <Part name="Canopy" class="AnimatedJoint" damageMax="450">
               <Parts>
 
               </Parts>
             </Part>
             <Part name="Nose_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris4_PFX_DetachFX_explode_1m_once_fixed024" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris4_PFX_DetachFX_sparks_2m_once_fixed022" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris4_PFX_DetachFX_explode_1m_once_fixed024" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris4_PFX_DetachFX_sparks_2m_once_fixed022" partName="Nose" />
                 <DetachFx effect="bullet.smoke" joint="Nose_50_debris4_PFX_DetachFX_smoke_2m_once_trail016" partName="Nose" />
-                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris4_PFX_DebrisFX_metal_4m_once_trail019" />
+                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris4_PFX_DebrisFX_metal_4m_once_trail019" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris3_PFX_DetachFX_explode_1m_once_fixed023" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris3_PFX_DetachFX_sparks_2m_once_fixed021" partName="Nose" />
-                <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_50_debris3_PFX_DetachFX_fire_1m_loop_fixed020" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris3_PFX_DetachFX_explode_1m_once_fixed023" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris3_PFX_DetachFX_sparks_2m_once_fixed021" partName="Nose" />
+                <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_50_debris3_PFX_DetachFX_fire_1m_loop_fixed020" partName="Nose" />
                 <DetachFx effect="bullet.smoke" joint="Nose_50_debris3_PFX_DetachFX_smoke_2m_once_trail015" partName="Nose" />
-                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris3_PFX_DebrisFX_metal_4m_once_trail018" />
+                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris3_PFX_DebrisFX_metal_4m_once_trail018" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris2_PFX_DetachFX_explode_1m_once_fixed025" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris2_PFX_DetachFX_sparks_2m_once_fixed023" partName="Nose" />
-                <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_50_debris2_PFX_DetachFX_fire_1m_loop_fixed021" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris2_PFX_DetachFX_explode_1m_once_fixed025" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris2_PFX_DetachFX_sparks_2m_once_fixed023" partName="Nose" />
+                <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_50_debris2_PFX_DetachFX_fire_1m_loop_fixed021" partName="Nose" />
                 <DetachFx effect="bullet.smoke" joint="Nose_50_debris2_PFX_DetachFX_smoke_2m_once_trail017" partName="Nose" />
-                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris2_PFX_DebrisFX_metal_4m_once_trail020" />
+                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris2_PFX_DebrisFX_metal_4m_once_trail020" />
               </Effects>
             </Part>
             <Part name="Nose_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris1_PFX_DetachFX_explode_1m_once_fixed026" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris1_PFX_DetachFX_sparks_2m_once_fixed024" partName="Nose" />
-                <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_50_debris1_PFX_DetachFX_fire_1m_loop_fixed022" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_50_debris1_PFX_DetachFX_explode_1m_once_fixed026" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_50_debris1_PFX_DetachFX_sparks_2m_once_fixed024" partName="Nose" />
+                <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_50_debris1_PFX_DetachFX_fire_1m_loop_fixed022" partName="Nose" />
                 <DetachFx effect="bullet.smoke" joint="Nose_50_debris1_PFX_DetachFX_smoke_2m_once_trail018" partName="Nose" />
-                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris1_PFX_DebrisFX_metal_4m_once_trail021" />
+                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_50_debris1_PFX_DebrisFX_metal_4m_once_trail021" />
               </Effects>
             </Part>
             <Part name="Nose_75_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_75_debris6_PFX_DetachFX_fire_1m_loop_fixed023" partName="Nose" />
+                <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_1m_loop_fixed" joint="Nose_75_debris6_PFX_DetachFX_fire_1m_loop_fixed023" partName="Nose" />
                 <DetachFx effect="bullet.smoke" joint="Nose_75_debris6_PFX_DetachFX_smoke_2m_once_trail019" partName="Nose" />
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_75_debris6_PFX_DetachFX_explode_1m_once_fixed027" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_75_debris6_PFX_DetachFX_sparks_2m_once_fixed025" partName="Nose" />
-                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_75_debris6_PFX_DebrisFX_metal_4m_once_trail022" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_75_debris6_PFX_DetachFX_explode_1m_once_fixed027" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_75_debris6_PFX_DetachFX_sparks_2m_once_fixed025" partName="Nose" />
+                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_75_debris6_PFX_DebrisFX_metal_4m_once_trail022" />
               </Effects>
             </Part>
             <Part name="Nose_75_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_75_debris5_PFX_DetachFX_explode_1m_once_fixed028" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_75_debris5_PFX_DetachFX_sparks_2m_once_fixed026" partName="Nose" />
-                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_75_debris5_PFX_DebrisFX_metal_4m_once_trail023" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_75_debris5_PFX_DetachFX_explode_1m_once_fixed028" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Nose_75_debris5_PFX_DetachFX_sparks_2m_once_fixed026" partName="Nose" />
+                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Nose_75_debris5_PFX_DebrisFX_metal_4m_once_trail023" />
               </Effects>
             </Part>
             <Part name="Nose_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Nose_75_debris4_PFX_DetachFX_explode_2m_once_fixed029" partName="Nose" />
-                <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Nose_75_debris4_PFX_DetachFX_fire_2m_loop_fixed024" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Nose_75_debris4_PFX_DetachFX_explode_2m_once_fixed029" partName="Nose" />
+                <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Nose_75_debris4_PFX_DetachFX_fire_2m_loop_fixed024" partName="Nose" />
                 <DetachFx effect="bullet.smoke" joint="Nose_75_debris4_PFX_DetachFX_smoke_2m_once_trail020" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="Nose_75_debris4_PFX_DetachFX_sparks_2m_loop_fixed027" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="Nose_75_debris4_PFX_DetachFX_sparks_2m_loop_fixed027" partName="Nose" />
               </Effects>
             </Part>
             <Part name="Nose_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Nose_75_debris3_PFX_DetachFX_explode_2m_once_fixed030" partName="Nose" />
-                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="Nose_75_debris3_PFX_DetachFX_sparks_2m_loop_fixed028" partName="Nose" />
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_75_debris3_PFX_DetachFX_explode_1m_once_fixed031" partName="Nose" />
-                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Nose_75_debris3_PFX_DetachFX_explode_2m_once_fixed032" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Nose_75_debris3_PFX_DetachFX_explode_2m_once_fixed030" partName="Nose" />
+                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_loop_fixed" joint="Nose_75_debris3_PFX_DetachFX_sparks_2m_loop_fixed028" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Nose_75_debris3_PFX_DetachFX_explode_1m_once_fixed031" partName="Nose" />
+                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Nose_75_debris3_PFX_DetachFX_explode_2m_once_fixed032" partName="Nose" />
               </Effects>
             </Part>
             <Part name="Nose_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="Nose_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
 
-            <Part name="Body" class="AnimatedJoint" damageMax="850">
+            <Part name="Body" class="AnimatedJoint" damageMax="1200">
               <DetachParents>
                 <DetachParent partName="Nose" seperateLink="0" />
               </DetachParents>
@@ -317,6 +314,18 @@
                       <Type type="PowerPlant" subtypes="" />
                     </Types>
                   </ItemPort>
+                </Part>
+                <Part name="landingpad_helper" class="ItemPort">
+                 <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+                  <Types>
+                    <Type type="LandingSystem"/>
+                  </Types>
+                 </ItemPort>
+                </Part>
+                <Part name="interiorPhys_helper" class="Interior">
+				  <Interior filename="" enableLocalGrid="0" gravity="0,0,-9.81">
+					<PhysProxy filename="Objects\Spaceships\Ships\AEGS\Avenger_PrisonerTransport\AEGS_Avenger_No_Collide.cgf" />
+				  </Interior>
                 </Part>
                 <Part name="hardpoint_shield_generator" class="ItemPort">
                   <ItemPort minsize="1" maxsize="3" flags="" display_name="Shield Slot">
@@ -413,30 +422,30 @@
                 </Part>
                 <Part name="Body_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Body_50_debris1_PFX_DebrisFX_metal_4m_once_trail015" />
+                    <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Body_50_debris1_PFX_DebrisFX_metal_4m_once_trail015" />
                     <DetachFx effect="bullet.smoke" joint="Body_50_debris1_PFX_DetachFX_smoke_2m_once_trail014" partName="Body" />
-                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Body_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed017" partName="Body" />
-                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Body_50_debris1_PFX_DetachFX_sparks_2m_once_fixed018" partName="Body" />
-                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_50_debris1_PFX_DetachFX_explode_1m_once_fixed020" partName="Body" />
+                    <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Body_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed017" partName="Body" />
+                    <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Body_50_debris1_PFX_DetachFX_sparks_2m_once_fixed018" partName="Body" />
+                    <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_50_debris1_PFX_DetachFX_explode_1m_once_fixed020" partName="Body" />
                   </Effects>
                 </Part>
                 <Part name="Body_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Body_75_debris1_PFX_DebrisFX_metal_4m_once_trail016" />
-                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Body_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed018" partName="Body" />
-                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Body_75_debris1_PFX_DetachFX_sparks_2m_once_fixed019" partName="Body" />
-                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_75_debris1_PFX_DetachFX_explode_1m_once_fixed021" partName="Body" />
+                    <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Body_75_debris1_PFX_DebrisFX_metal_4m_once_trail016" />
+                    <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Body_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed018" partName="Body" />
+                    <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Body_75_debris1_PFX_DetachFX_sparks_2m_once_fixed019" partName="Body" />
+                    <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_75_debris1_PFX_DetachFX_explode_1m_once_fixed021" partName="Body" />
                   </Effects>
                 </Part>
                 <Part name="Body_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                   <Effects>
-                    <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Body_75_debris2_PFX_DebrisFX_metal_4m_once_trail017" />
-                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Body_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed019" partName="Body" />
-                    <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Body_75_debris2_PFX_DetachFX_sparks_2m_once_fixed020" partName="Body" />
-                    <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_75_debris2_PFX_DetachFX_explode_1m_once_fixed022" partName="Body" />
+                    <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Body_75_debris2_PFX_DebrisFX_metal_4m_once_trail017" />
+                    <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Body_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed019" partName="Body" />
+                    <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Body_75_debris2_PFX_DetachFX_sparks_2m_once_fixed020" partName="Body" />
+                    <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_75_debris2_PFX_DetachFX_explode_1m_once_fixed022" partName="Body" />
                   </Effects>
                 </Part>
-                <Part name="Wing_Right" damageMax="325" class="AnimatedJoint">
+                <Part name="Wing_Right" damageMax="425" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="" damageRatioMin="0.25">
                       <Part name="Wing_Right" recurseChildren="1" skipParent="1" Probability="0.5" />
@@ -446,12 +455,12 @@
                     <Part name="right_air_brake" class="AnimatedJoint" />
                     <Part name="Wing_Right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Right_75_debris1_PFX_DebrisFX_metal_4m_once_trail005" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Right_75_debris1_PFX_DebrisFX_metal_4m_once_trail005" />
                         <DetachFx effect="bullet.smoke" joint="Wing_Right_75_debris1_PFX_DetachFX_smoke_2m_once_trail005" partName="Wing_Right" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_explode_1m_once_fixed006" partName="Wing_Right" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_explode_1m_once_fixed007" partName="Wing_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_sparks_2m_once_fixed005" partName="Wing_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed005" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_explode_1m_once_fixed006" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_explode_1m_once_fixed007" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_sparks_2m_once_fixed005" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Right_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed005" partName="Wing_Right" />
                       </Effects>
                       <Parts>
                         <Part name="hardpoint_weapon_gun_class1_left_wing" class="ItemPort" detachRatio="0">
@@ -469,10 +478,10 @@
                     <Part name="Wing_Right_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Wing_Right_75_debris2_PFX_DetachFX_smoke_2m_once_trail006" partName="Wing_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Right_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed006" partName="Wing_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Right_75_debris2_PFX_DetachFX_sparks_2m_once_fixed006" partName="Wing_Right" />
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Right_75_debris2_PFX_DebrisFX_metal_4m_once_trail006" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Right_75_debris2_PFX_DetachFX_explode_1m_once_fixed008" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Right_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed006" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Right_75_debris2_PFX_DetachFX_sparks_2m_once_fixed006" partName="Wing_Right" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Right_75_debris2_PFX_DebrisFX_metal_4m_once_trail006" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Right_75_debris2_PFX_DetachFX_explode_1m_once_fixed008" partName="Wing_Right" />
                       </Effects>
                       <Parts>
                         <Part name="Wing_Flap_Right" class="AnimatedJoint">
@@ -485,10 +494,10 @@
                             <Part name="Wing_Flap_Right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
                                 <DetachFx effect="bullet.smoke" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_smoke_1m_once_trail002" partName="Wing_Flap_Right" />
-                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed002" partName="Wing_Flap_Right" />
-                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_sparks_2m_once_fixed002" partName="Wing_Flap_Right" />
-                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Flap_Right_50_debris1_PFX_DebrisFX_metal_4m_once_trail002" />
-                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_explode_1m_once_fixed002" partName="Wing_Flap_Right" />
+                                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed002" partName="Wing_Flap_Right" />
+                                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_sparks_2m_once_fixed002" partName="Wing_Flap_Right" />
+                                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Flap_Right_50_debris1_PFX_DebrisFX_metal_4m_once_trail002" />
+                                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Flap_Right_50_debris1_PFX_DetachFX_explode_1m_once_fixed002" partName="Wing_Flap_Right" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -498,7 +507,7 @@
  
                   </Parts>
                 </Part>
-                <Part name="Wing_Left" damageMax="325" class="AnimatedJoint">
+                <Part name="Wing_Left" damageMax="425" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Wing_Left" recurseChildren="1" skipParent="1" Probability="1" />
@@ -508,12 +517,12 @@
                     <Part name="left_air_brake" class="AnimatedJoint" />
                     <Part name="Wing_Left_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Left_75_debris1_PFX_DebrisFX_metal_4m_once_trail004" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Left_75_debris1_PFX_DebrisFX_metal_4m_once_trail004" />
                         <DetachFx effect="bullet.smoke" joint="Wing_Left_75_debris1_PFX_DetachFX_smoke_2m_once_trail004" partName="Wing_Left" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_explode_1m_once_fixed005" partName="Wing_Left" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_explode_1m_once_fixed004" partName="Wing_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_sparks_2m_once_fixed004" partName="Wing_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed004" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_explode_1m_once_fixed005" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_explode_1m_once_fixed004" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_sparks_2m_once_fixed004" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Left_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed004" partName="Wing_Left" />
                       </Effects>
                       <Parts>
                         <Part name="hardpoint_weapon_gun_class1_right_wing" class="ItemPort" detachRatio="0">
@@ -531,26 +540,26 @@
                     <Part name="Wing_Left_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Wing_Left_75_debris2_PFX_DetachFX_smoke_2m_once_trail003" partName="Wing_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Left_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed003" partName="Wing_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Left_75_debris2_PFX_DetachFX_sparks_2m_once_fixed003" partName="Wing_Left" />
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Left_75_debris2_PFX_DebrisFX_metal_4m_once_trail003" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Left_75_debris2_PFX_DetachFX_explode_1m_once_fixed003" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Left_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed003" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Left_75_debris2_PFX_DetachFX_sparks_2m_once_fixed003" partName="Wing_Left" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Left_75_debris2_PFX_DebrisFX_metal_4m_once_trail003" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Left_75_debris2_PFX_DetachFX_explode_1m_once_fixed003" partName="Wing_Left" />
                       </Effects>
                       <Parts>
                         <Part name="Wing_Flap_Left" class="AnimatedJoint">
                           <DamageBehaviors>
                             <DamageBehavior class="DetachPart" damageRatioMin="0.25">
-                              <Part name="Wing_Flap_Left" recurseChildren="1" skipParent="1" Probability="1" />
+                              <DetachPart name="Wing_Flap_Left" recurseChildren="1" skipParent="1" Probability="1" />
                             </DamageBehavior>
                           </DamageBehaviors>
                           <Parts>
                             <Part name="Wing_Flap_Left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
                                 <DetachFx effect="bullet.smoke" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_smoke_1m_once_trail001" partName="Wing_Flap_Left" />
-                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed001" partName="Wing_Flap_Left" />
-                                <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_sparks_2m_once_fixed001" partName="Wing_Flap_Left" />
-                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Flap_Left_50_debris1_PFX_DebrisFX_metal_4m_once_trail001" />
-                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_explode_1m_once_fixed001" partName="Wing_Flap_Left" />
+                                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed001" partName="Wing_Flap_Left" />
+                                <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_sparks_2m_once_fixed001" partName="Wing_Flap_Left" />
+                                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Wing_Flap_Left_50_debris1_PFX_DebrisFX_metal_4m_once_trail001" />
+                                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Wing_Flap_Left_50_debris1_PFX_DetachFX_explode_1m_once_fixed001" partName="Wing_Flap_Left" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -560,7 +569,7 @@
 
                   </Parts>
                 </Part>
-                <Part name="Intake_Right" damageMax="275" class="AnimatedJoint">
+                <Part name="Intake_Right" damageMax="375" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Intake_Right" recurseChildren="1" skipParent="1" Probability="1" />
@@ -576,26 +585,26 @@
                     </Part>
                     <Part name="Intake_Right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Right_50_debris1_PFX_DebrisFX_metal_4m_once_trail009" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Right_50_debris1_PFX_DebrisFX_metal_4m_once_trail009" />
                         <DetachFx effect="bullet.smoke" joint="Intake_Right_50_debris1_PFX_DetachFX_smoke_2m_once_trail009" partName="Intake_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Right_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed009" partName="Intake_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Intake_Right_50_debris1_PFX_DetachFX_sparks_2m_once_fixed008" partName="Intake_Right" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Intake_Right_50_debris1_PFX_DetachFX_explode_1m_once_fixed010" partName="Intake_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Right_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed009" partName="Intake_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Intake_Right_50_debris1_PFX_DetachFX_sparks_2m_once_fixed008" partName="Intake_Right" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Intake_Right_50_debris1_PFX_DetachFX_explode_1m_once_fixed010" partName="Intake_Right" />
                       </Effects>
                     </Part>
                     <Part name="Intake_Right_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Right_75_debris1_PFX_DebrisFX_metal_4m_once_trail010" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Right_75_debris1_PFX_DebrisFX_metal_4m_once_trail010" />
                         <DetachFx effect="bullet.smoke" joint="Intake_Right_75_debris1_PFX_DetachFX_smoke_2m_once_trail010" partName="Intake_Right" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed010" partName="Intake_Right" />
-                        <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_fire_2m_loop_fixed009" partName="Intake_Right" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_explode_4m_once_fixed011" partName="Intake_Right" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed010" partName="Intake_Right" />
+                        <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_fire_2m_loop_fixed009" partName="Intake_Right" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_explode_4m_once_fixed011" partName="Intake_Right" />
                       </Effects>
                     </Part>
 
                   </Parts>
                 </Part>
-                <Part name="Intake_Left" damageMax="275" class="AnimatedJoint">
+                <Part name="Intake_Left" damageMax="375" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Intake_Left" recurseChildren="1" skipParent="1" Probability="1" />
@@ -611,26 +620,26 @@
                     </Part>
                     <Part name="Intake_Left_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Left_50_debris1_PFX_DebrisFX_metal_4m_once_trail007" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Left_50_debris1_PFX_DebrisFX_metal_4m_once_trail007" />
                         <DetachFx effect="bullet.smoke" joint="Intake_Left_50_debris1_PFX_DetachFX_smoke_2m_once_trail007" partName="Intake_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Left_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed007" partName="Intake_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Intake_Left_50_debris1_PFX_DetachFX_sparks_2m_once_fixed007" partName="Intake_Left" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Intake_Left_50_debris1_PFX_DetachFX_explode_1m_once_fixed009" partName="Intake_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Left_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed007" partName="Intake_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Intake_Left_50_debris1_PFX_DetachFX_sparks_2m_once_fixed007" partName="Intake_Left" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Intake_Left_50_debris1_PFX_DetachFX_explode_1m_once_fixed009" partName="Intake_Left" />
                       </Effects>
                     </Part>
                     <Part name="Intake_Left_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Left_75_debris1_PFX_DebrisFX_metal_4m_once_trail008" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Intake_Left_75_debris1_PFX_DebrisFX_metal_4m_once_trail008" />
                         <DetachFx effect="bullet.smoke" joint="Intake_Left_75_debris1_PFX_DetachFX_smoke_2m_once_trail008" partName="Intake_Left" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed008" partName="Intake_Left" />
-                        <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_fire_2m_loop_fixed008" partName="Intake_Left" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_explode_4m_once_fixed010" partName="Intake_Left" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed008" partName="Intake_Left" />
+                        <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_fire_2m_loop_fixed008" partName="Intake_Left" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_explode_4m_once_fixed010" partName="Intake_Left" />
                       </Effects>
                     </Part>
 
                   </Parts>
                 </Part>
-                <Part name="Tail" damageMax="450" class="AnimatedJoint">
+                <Part name="Tail" damageMax="650" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Tail" recurseChildren="1" skipParent="1" Probability="1" />
@@ -698,39 +707,39 @@
                     <Part name="Tail_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Tail_50_debris1_PFX_DetachFX_smoke_2m_once_trail011" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed011" partName="Tail" />
-                        <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Tail_50_debris1_PFX_DetachFX_fire_2m_loop_fixed010" partName="Tail" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris1_PFX_DetachFX_explode_1m_once_fixed012" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_50_debris1_PFX_DetachFX_sparks_1m_loop_fixed011" partName="Tail" />
+                        <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Tail_50_debris1_PFX_DetachFX_fire_2m_loop_fixed010" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris1_PFX_DetachFX_explode_1m_once_fixed012" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_50_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                     <Part name="Tail_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Tail_50_debris3_PFX_DetachFX_smoke_2m_once_trail013" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_50_debris3_PFX_DetachFX_sparks_1m_loop_fixed012" partName="Tail" />
-                        <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_4m_loop_fixed" joint="Tail_50_debris3_PFX_DetachFX_fire_4m_loop_fixed012" partName="Tail" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris3_PFX_DetachFX_explode_1m_once_fixed014" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_50_debris3_PFX_DetachFX_sparks_1m_loop_fixed012" partName="Tail" />
+                        <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_4m_loop_fixed" joint="Tail_50_debris3_PFX_DetachFX_fire_4m_loop_fixed012" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris3_PFX_DetachFX_explode_1m_once_fixed014" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                     <Part name="Tail_50_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Tail_50_debris5_PFX_DetachFX_smoke_2m_once_trail012" partName="Tail" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris5_PFX_DetachFX_explode_1m_once_fixed013" partName="Tail" />
-                        <DetachFx effect="SC_Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Tail_50_debris5_PFX_DetachFX_fire_2m_loop_fixed011" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris5_PFX_DetachFX_explode_1m_once_fixed013" partName="Tail" />
+                        <DetachFx effect="Damage/Fire_FX.Fire_ALL.fire_2m_loop_fixed" joint="Tail_50_debris5_PFX_DetachFX_fire_2m_loop_fixed011" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Tail_50_debris6_PFX_DetachFX_smoke_1m_once_trail014" partName="Tail" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris6_PFX_DetachFX_explode_1m_once_fixed015" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_50_debris6_PFX_DetachFX_explode_1m_once_fixed015" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Tail_75_debris1_PFX_DetachFX_explode_2m_once_fixed016" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed013" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris1_PFX_DetachFX_sparks_2m_once_fixed014" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Tail_75_debris1_PFX_DetachFX_explode_2m_once_fixed016" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris1_PFX_DetachFX_sparks_1m_loop_fixed013" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris1_PFX_DetachFX_sparks_2m_once_fixed014" partName="Tail" />
                       </Effects>
                       <Parts>
                         <Part name="tail_flap_right" class="AnimatedJoint">
@@ -743,8 +752,8 @@
                             <Part name="tail_flap_right_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
                                 <DetachFx effect="bullet.smoke" joint="tail_flap_right_50_debris1_PFX_DetachFX_smoke_1m_once_trail004" partName="tail_flap_right" />
-                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="tail_flap_right_50_debris1_PFX_DebrisFX_metal_4m_once_trail012" />
-                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="tail_flap_right_50_debris1_PFX_DetachFX_explode_1m_once_fixed012" partName="tail_flap_right" />
+                                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="tail_flap_right_50_debris1_PFX_DebrisFX_metal_4m_once_trail012" />
+                                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="tail_flap_right_50_debris1_PFX_DetachFX_explode_1m_once_fixed012" partName="tail_flap_right" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -753,9 +762,9 @@
                     </Part>
                     <Part name="Tail_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Tail_75_debris2_PFX_DetachFX_explode_2m_once_fixed017" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed014" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris2_PFX_DetachFX_sparks_2m_once_fixed015" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" joint="Tail_75_debris2_PFX_DetachFX_explode_2m_once_fixed017" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris2_PFX_DetachFX_sparks_1m_loop_fixed014" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris2_PFX_DetachFX_sparks_2m_once_fixed015" partName="Tail" />
                       </Effects>
                       <Parts>
                         <Part name="tail_flap_left" class="AnimatedJoint">
@@ -768,8 +777,8 @@
                             <Part name="left_tail_flap_50_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                               <Effects>
                                 <DetachFx effect="bullet.smoke" joint="left_tail_flap_50_debris1_PFX_DetachFX_smoke_1m_once_trail003" partName="tail_flap_left" />
-                                <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="left_tail_flap_50_debris1_PFX_DebrisFX_metal_4m_once_trail011" />
-                                <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="left_tail_flap_50_debris1_PFX_DetachFX_explode_1m_once_fixed011" partName="tail_flap_left" />
+                                <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="left_tail_flap_50_debris1_PFX_DebrisFX_metal_4m_once_trail011" />
+                                <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="left_tail_flap_50_debris1_PFX_DetachFX_explode_1m_once_fixed011" partName="tail_flap_left" />
                               </Effects>
                             </Part>
                           </Parts>
@@ -779,29 +788,29 @@
                     <Part name="Tail_75_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Tail_75_debris3_PFX_DetachFX_smoke_1m_once_trail015" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris3_PFX_DetachFX_sparks_1m_loop_fixed015" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris3_PFX_DetachFX_sparks_2m_once_fixed016" partName="Tail" />
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Tail_75_debris3_PFX_DebrisFX_metal_4m_once_trail013" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris3_PFX_DetachFX_explode_1m_once_fixed016" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris3_PFX_DetachFX_sparks_1m_loop_fixed015" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris3_PFX_DetachFX_sparks_2m_once_fixed016" partName="Tail" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Tail_75_debris3_PFX_DebrisFX_metal_4m_once_trail013" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris3_PFX_DetachFX_explode_1m_once_fixed016" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_75_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="bullet.smoke" joint="Tail_75_debris4_PFX_DetachFX_smoke_1m_once_trail016" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris4_PFX_DetachFX_sparks_1m_loop_fixed016" partName="Tail" />
-                        <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris4_PFX_DetachFX_sparks_2m_once_fixed017" partName="Tail" />
-                        <DetachFx effect="SC_Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Tail_75_debris4_PFX_DebrisFX_metal_4m_once_trail014" />
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris4_PFX_DetachFX_explode_1m_once_fixed018" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Tail_75_debris4_PFX_DetachFX_sparks_1m_loop_fixed016" partName="Tail" />
+                        <DetachFx effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" joint="Tail_75_debris4_PFX_DetachFX_sparks_2m_once_fixed017" partName="Tail" />
+                        <DetachFx effect="Damage/Metal_FX.Metal_ALL.metal_4m_once_trail" joint="Tail_75_debris4_PFX_DebrisFX_metal_4m_once_trail014" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris4_PFX_DetachFX_explode_1m_once_fixed018" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_75_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris5_PFX_DetachFX_explode_1m_once_fixed019" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris5_PFX_DetachFX_explode_1m_once_fixed019" partName="Tail" />
                       </Effects>
                     </Part>
                     <Part name="Tail_75_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
-                        <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris6_PFX_DetachFX_explode_1m_once_fixed017" partName="Tail" />
+                        <DetachFx effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris6_PFX_DetachFX_explode_1m_once_fixed017" partName="Tail" />
                       </Effects>
                     </Part>
 
@@ -1079,12 +1088,6 @@
         </State>
       </States>
     </Action>
-    <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears landingDamages="500" altitudeToRetractGears="8" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
-    </Action>
     <!-- Switch / HoldingCell Door1 -->
     <Action class="Switch">
       <Activations>
@@ -1236,7 +1239,7 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- Pilot's seat  -->
-    <Seat name="SeatDriver" enterHelper="Pilot_CockpitMount_Inside_Pos" sitHelper="Pilot_Sit_Pos" interiorAccess="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" id="idPilotSeat" hasGForceReactions="1">
+    <Seat name="SeatDriver" enterHelper="Pilot_CockpitMount_Inside_Pos" sitHelper="Pilot_Sit_Pos" interiorAccess="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" canExitWhileMoving="1" visorType="pilot" id="idPilotSeat" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -1337,6 +1340,7 @@
                 <ItemPort part="*hardpoint_fuel" />
                 <ItemPort part="hardpoint_cockpit_audio" />
                 <ItemPort part="hardpoint_selfdestruct" />
+                <ItemPort part="landingpad_helper" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1426,14 +1430,16 @@
         <FirstPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
         <ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
       </FixedVisorSettings>
-      <Screens>
-		<Screen name="Fixed UI" element="ShipInterface" screen="AvengerInterfaceScreen" number="1">
-          <Container name="HUDScreen" helper="UI_Helper" container="HUDScreen" scale="0.45" y_offset="0" />
-        </Screen>
-      </Screens>
+	<HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	</HUDAccess>
+      <ScreensRecord record="Screens_AEGS_Avenger_Pilot" />
     </Seat>
     <!-- seat sleep_bed -->
-    <Seat name="Sleep_Door_Player" enterHelper="Pilot_BedEnter_Pos" sitHelper="Pilot_Bed_Pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship">
+    <Seat name="Sleep_Door_Player" enterHelper="Pilot_BedEnter_Pos" sitHelper="Pilot_Bed_Pos" interiorAccess="0" canExitWhileMoving="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1478,11 +1484,26 @@
       </AudioParams>
       <Animations />
       <Contrails>
-        <Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
-        <Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
+        <!--<Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
+        <!--<Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
       </Contrails>
     </Spaceship>
   </MovementParams>
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1495,7 +1516,6 @@
     <!--<Action name="Cockpit" state="Enter" />-->
     <Action name="Hatch_Front" state="Enter" />
     <Action name="Hatch_Front" state="Exit" />
-    <Action name="Landing_Gear" state="Deploy" />
   </Animations>
   <!-- Vehicle Animations (to be replaced by mannequin)
 	Format is
@@ -1549,9 +1569,6 @@
 		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
 	 -->
   <Attachments>
-    <Attachment name="landing_gear_front" helper="hardpoint_front_landing_gear_front" geometry="Objects\Spaceships\Ships\AEGS\LandingGear\Avenger\aegs_avenger_lg_front.chr" scopeContext="LandingGearFront" />
-    <Attachment name="landing_gear_left_wing" helper="hardpoint_back_landing_gear_left" geometry="Objects\Spaceships\Ships\AEGS\LandingGear\Avenger\aegs_avenger_lg_rear_l.chr" scopeContext="LandingGearLeft" />
-    <Attachment name="landing_gear_right_wing" helper="hardpoint_back_landing_gear_right" geometry="Objects\Spaceships\Ships\AEGS\LandingGear\Avenger\aegs_avenger_lg_rear_r.chr" scopeContext="LandingGearRight" />
   </Attachments>
   <GeomTags>
     <geom name="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" material="" id="idHoloGeometry_Default" />

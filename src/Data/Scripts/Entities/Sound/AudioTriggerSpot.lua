@@ -53,7 +53,7 @@ function AudioTriggerSpot:_SetObstruction()
 	local nStateIdx = self.Properties.eiSoundObstructionType + 1;
 	
 	if ((self.tObstructionType.hSwitchID ~= nil) and (self.tObstructionType.tStateIDs[nStateIdx] ~= nil)) then
-		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx]);
+		self:SetAudioSwitchState(self.tObstructionType.hSwitchID, self.tObstructionType.tStateIDs[nStateIdx], self:GetDefaultAuxAudioProxyID());
 	end
 end
 
@@ -166,7 +166,7 @@ end
 ----------------------------------------------------------------------------------------
 function AudioTriggerSpot:_Init()	
 	self.bIsPlaying = false;
-	self:SetAudioProxyOffset(g_Vectors.v000);
+	self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
 	self:NetPresent(0);
 end
 
@@ -185,7 +185,7 @@ function AudioTriggerSpot:OnPropertyChange()
 		self.Properties.eiSoundObstructionType = 2;
 	end
 
-	self:SetAudioProxyOffset(g_Vectors.v000);
+	self:SetAudioProxyOffset(g_Vectors.v000, self:GetDefaultAuxAudioProxyID());
 	self:_PlayFirstTime();
 end
 
@@ -262,11 +262,11 @@ function AudioTriggerSpot:Play()
 		
 		local offset = self:_GenerateOffset();
 		if (LengthSqVector(offset) > 0.00001) then-- offset is longer than 1cm
-			self:SetAudioProxyOffset(offset);
+			self:SetAudioProxyOffset(offset, self:GetDefaultAuxAudioProxyID());
 			self:SetCurrentAudioEnvironments();
 		end
 		
-		self:ExecuteAudioTrigger(self.hOnTriggerID);
+		self:ExecuteAudioTrigger(self.hOnTriggerID, self:GetDefaultAuxAudioProxyID());
 		self.bIsPlaying = true;
 		
 		if (self.Properties.bPlayRandom) then
@@ -279,9 +279,9 @@ end
 function AudioTriggerSpot:Stop(bHardStop) -- CIG - mkorotyaev Added bHardStop parameter
 	if (self.bIsPlaying) then
 		if (self.hOffTriggerID ~= nil) then
-			self:ExecuteAudioTrigger(self.hOffTriggerID);
+			self:ExecuteAudioTrigger(self.hOffTriggerID, self:GetDefaultAuxAudioProxyID());
 		else
-			self:StopAudioTrigger(self.hOnTriggerID, bHardStop); -- CIG - mkorotyaev
+			self:StopAudioTrigger(self.hOnTriggerID, bHardStop, self:GetDefaultAuxAudioProxyID()); -- CIG - mkorotyaev added bHardStop
 		end
 		
 		self.bIsPlaying = false;

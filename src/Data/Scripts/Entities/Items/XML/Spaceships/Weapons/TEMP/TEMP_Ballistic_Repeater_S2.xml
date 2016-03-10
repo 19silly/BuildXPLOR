@@ -1,0 +1,202 @@
+<item name="TEMP_Ballistic_Repeater_S2" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+	<!-- <param name="adb" value="Items\Weapons\BEHR\BEHR_BallisticRepeater_S2.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" /> -->
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="TEMP" />
+    <param name="itemSize" value="2" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="itemPortTags" value=""/>
+	<param name="requiredPortTags" value="" />
+    <param name="display_name"	value="" />
+	<param name="weaponRequireAmmoBox" value="1" />
+	<param name="weaponDelayChangeAmmoBox" value="0.25" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="0" />
+		<RoF 		value="0" />
+		<Range 		value="0" />
+		<Power 		value="0" />
+	</itemStats>
+    </params>
+  
+  <firemodes>
+    <firemode name="Weapon" type="Burst">
+      <fire>
+        <param name="rate" value="200" />
+        <param name="clip_size" value="0" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+		<param name="muzzleFromFiringLocator" value="1" />
+		<param name="fireLocatorType" value = "LR" />
+		<param name="start_fire_audio_trigger" value="Play_WPHA_AEGS_BR_Flak_Fire_Burst" />
+		<param name="stop_fire_audio_trigger" value="" />
+		<param name="start_muzzle_fire_audio_trigger" value="" />
+		<param name="stop_muzzle_fire_audio_trigger" value="" />
+      </fire>
+	  
+	  <barrels>
+		<barrel helper_muzzle_override="muzzle_out_01" fragmentId="recoil_01" />
+		<barrel helper_muzzle_override="muzzle_out_02" fragmentId="recoil_02" />
+	  </barrels>
+	  
+	  <burst>
+		<param name="rate" value="60" />
+		<param name="nshots" value="2" />
+		<param name="noSound" value="0" />
+		<param name="start_fire_audio_trigger" value="Play_WPHA_GATS_BG_Mantis_GT220_S2_Q3_Rapid_Fire" />
+		<param name="stop_fire_audio_trigger" value="Stop_WPHA_GATS_BG_Mantis_GT220_S2_Q3_Rapid_Fire" />
+		<param name="start_muzzle_fire_audio_trigger" value="" />
+		<param name="stop_muzzle_fire_audio_trigger" value="" />
+	  </burst>
+	  
+	  <spread>
+        <param name="min" value="5" />
+        <param name="max" value="5" />
+        <param name="attack" value="1.5" />
+        <param name="decay" value="1.75" />
+      </spread>
+	  
+      <pools>
+        <!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-1" />
+        <pool class="Heat" value="13" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+    
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="0" rate="0" />
+      <States>
+        <State state="Default">
+          <Value value="-3" ignorepool="0"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="600" rate="35" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+    
+  </Pipes>
+  
+  <heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="1" />
+		<param name="damageMax" value="3" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+  </heatOverflow>
+  
+  <portParams>
+	<ports>
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="2" flags="right" display_name="Ammo Box #1">
+			<Types>
+				<Type type="AmmoBox" subtypes="40mm_AMMO"/>
+			</Types>
+		</ItemPort>
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="2" flags="left" display_name="Ammo Box #2">
+			<Types>
+				<Type type="AmmoBox" subtypes="40mm_AMMO"/>
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+  
+  <defaultLoadout>
+    <Items>
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_500rd_40mm_exp" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_500rd_40mm_exp" />
+    </Items>
+  </defaultLoadout>
+
+  <params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+	
+<firemodes>
+	<firemode>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="Spaceships\Weapons\AEGS_BallisticRepeater_S5.ALL.muzzle" helper="muzzle_out_01" scale="1" />
+		<thirdperson effect="Spaceships\Weapons\AEGS_BallisticRepeater_S5.ALL.muzzle" helper="muzzle_out_01" scale="1" /> 
+      </muzzleflash>
+	  
+	  <reject>
+		<firstperson effect="weapon_fx.flak_cannon.shell_eject" helper="shell_ejector" scale="1" />
+		<thirdperson effect="weapon_fx.flak_cannon.shell_eject" helper="shell_ejector" scale="1" />
+	  </reject>
+	</firemode>
+</firemodes>
+
+  <geometry>
+  
+    <boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out_01" bone="muzzle_out_01" />
+      <attachment target="thirdperson" name="muzzle_out_02" bone="muzzle_out_02" />
+    </boneAttachments>
+	
+    <thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Ballistic_Repeater_Size_2.cgf"/>
+
+	<tags tag="HUD">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Ballistic_Repeater_Size_2.cgf" material=""/>
+	</tags>
+
+	<tags tag="Hologram">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Ballistic_Repeater_Size_2.cgf" material=""/>
+	</tags>
+
+  </geometry>
+  
+  <portParams>  <!-- Fill me with accurate GeomTag Data -->
+	<ports>
+		<ItemPort name="ammo_box_01">
+			<GeomTags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="ammo_box_02">
+			<GeomTags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+  
+</item>

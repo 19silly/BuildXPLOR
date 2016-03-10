@@ -1,0 +1,140 @@
+<item name="TEMP_Laser_Repeater_S8" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+	<!-- <param name="adb" value="Items\Weapons\KLWE\KLWE_LR_S1_Q2.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" /> -->
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="TEMP" />
+    <param name="itemSize" value="8" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="itemPortTags" value=""/>
+    <param name="display_name"	value="" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
+	</itemStats>
+    </params>
+	
+  <ammos>
+    <ammo name="KLWE_LaserRepeater_S1_AMMO" extra="0" amount="0" />
+  </ammos>
+  
+  <firemodes>
+    <firemode name="Weapon" type="Automatic">
+      <fire>
+        <param name="ammo_type" value="KLWE_LaserRepeater_S1_AMMO" />
+        <param name="rate" value="550" />
+        <param name="clip_size" value="-1" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+		<param name="muzzleFromFiringLocator" value="1" />
+		<param name="fireLocatorType" value = "LR" />
+		<param name="start_fire_audio_trigger" value="Play_WPHA_KLWE_LaserRepeater_S1_Fire_Placeholder" />
+		<param name="stop_fire_audio_trigger" value="Stop_WPHA_KLWE_LaserRepeater_S1_Fire_Placeholder" />
+		<param name="audio_looped" value="1" />
+      </fire>
+	  <barrels>
+		<barrel helper_muzzle_override="muzzle_out_01" fragmentId="recoil_01" />
+		<barrel helper_muzzle_override="muzzle_out_02" fragmentId="recoil_02" />
+		<barrel helper_muzzle_override="muzzle_out_03" fragmentId="recoil_03" />
+	  </barrels>
+	  <spread>
+        <param name="min" value="0" />
+        <param name="max" value="0" />
+        <param name="attack" value="0" />
+        <param name="decay" value="0" />
+      </spread>
+
+      <pools>
+        <!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-15" />
+        <pool class="Heat" value="5" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+    
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="-500" rate="-90" />
+      <States>
+        <State state="Default">
+          <Value value="-3" ignorepool="1"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="700" rate="15" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+    
+  </Pipes>
+
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+	
+<firemodes>
+	<firemode>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.laser_repeater.firefx" helper="muzzle_out_01" />
+		<thirdperson effect="weapon_fx.laser_repeater.firefx" helper="muzzle_out_01" /> 
+      </muzzleflash>
+	</firemode>
+</firemodes>
+
+  <geometry>
+  
+    <boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out_01" bone="muzzle_out_01" />
+      <attachment target="thirdperson" name="muzzle_out_02" bone="muzzle_out_02" />
+      <attachment target="thirdperson" name="muzzle_out_03" bone="muzzle_out_03" />
+    </boneAttachments>
+	
+    <thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Laser_Repeater_Size_8.cgf"/>
+
+	<tags tag="HUD">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Laser_Repeater_Size_8.cgf" material=""/>
+	</tags>
+
+	<tags tag="Hologram">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Laser_Repeater_Size_8.cgf" material=""/>
+	</tags>
+
+  </geometry>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+
+</item>

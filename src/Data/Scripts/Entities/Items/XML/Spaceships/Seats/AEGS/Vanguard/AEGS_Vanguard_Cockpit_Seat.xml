@@ -1,0 +1,59 @@
+<item name="AEGS_Vanguard_Cockpit_Seat" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <!-- FIX ME!!! --><param name="adb" value="hornetLaserGatlingAnims.adb" />
+	<!-- FIX ME!!! --><param name="actionController" value="itemControllerDef.xml" />
+    <param name="itemType" value="Seat" />
+    <param name="itemSubType" value="Pilot" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="AEGS" />
+    <param name="itemSize" value="1" />
+	<param name="itemTags" value="flightReady" />
+	<param name="requiredPortTags" value="AEGS_Vanguard_Base" />
+	<param name="itemClass" value="1" />
+    <param name="display_name"	value="AEGS Vanguard Ejection Seat" />
+  	<vehicleItemStats>
+	</vehicleItemStats>
+  
+  </params>
+  
+	<!-- cbrungardt @ IllFonic below is how you would setup a seat to be ejectable -->
+	<Eject>
+		<Anim name="Canopy" state="Eject"/>
+		<DetachParts>
+			<DetachPart name="Canopy" delayTime="1.3"/>
+		</DetachParts>
+		<!-- TODO cbrungardt @ IllFonic right now we only handle one seat thruster -->
+		<thruster effect="spaceships\seats\generic_seats.Seat_Effects.Seat_Thrusters" portName="thruster" />
+		<param name="EjectionSpeed" value="1000"/>
+		<param name="SafeDistance" value="250"/>
+	</Eject>
+	
+	<!-- stracy @ CIG ATX below are the paramaters used to tweak the GForce Reaction animations -->
+	<GForceReactions >
+		<Forward scale="-1.57079" blendTime="2.0" />
+		<Right scale="-1.57079" blendTime="2.0" />
+	</GForceReactions>
+
+  <geometry>
+    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
+    <!-- default fallback -->
+    <thirdperson name="Objects\Spaceships\Seats\AEGS\Gladius\AEGS_Gladius_Ejection_Seat.cga"/>
+	
+	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+	<tags tag="Hologram">
+		<thirdperson name="Objects\Spaceships\Seats\AEGS\Gladius\AEGS_Gladius_Ejection_Seat.cga" material=""/>	
+	</tags>
+	
+
+ 
+    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
+    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+
+  </geometry>
+ </item>

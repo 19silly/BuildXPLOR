@@ -1,0 +1,97 @@
+<!--
+   WARNING This Template is used to generate Weapon XMLS
+-->
+
+<!-- Laser Cannon Template -->
+<item name="MXOX_LaserGatling_S5" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_MXOX_LaserGatling_S5">
+  <params>
+	<param name="adb" value="Items\Weapons\A_and_R\AMRS_LC_S3_Q3.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="item_NameMXOX_LaserGatling_S5" /> <!-- Replace me with Localization -->
+    <param name="itemManufactor" value="AMRS" />
+    <param name="itemSize" value="3" />
+	<param name="itemTags" value="beta" />
+	<param name="itemPortTags" value=""/>
+	<param name="requiredPortTags" value="" />
+    <param name="display_name"	value="item_NameMXOX_LaserGatling_S5" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
+	</itemStats>
+    </params>
+	
+  <ammos>
+    <ammo name="MXOX_LaserGatling_S5_AMMO" extra="0" amount="0" />
+  </ammos>
+  
+  <firemodes>
+    <firemode name="Auto" type="Automatic">
+      <fire>
+        <param name="ammo_type" value="MXOX_LaserGatling_S5_AMMO" />
+        <param name="rate" value="300" />
+        <param name="clip_size" value="-1" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+        <param name="helper_fp" value="gatling_out" />
+        <param name="helper_tp" value="gatling_out" />
+		<param name="fireLocatorType" value = "circle" />
+      </fire>
+      <spread>
+        <param name="min" value="0" />
+        <param name="max" value="0" />
+        <param name="attack" value="0" />
+        <param name="decay" value="0" />
+      </spread>
+
+      <pools>
+		<!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-90" />
+        <pool class="Heat" value="35" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="-700" rate="-120" />
+      <States>
+        <State state="Default">
+          <Value value="-15" ignorepool="1"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="900" rate="25" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+
+  </Pipes>
+
+
+</item>

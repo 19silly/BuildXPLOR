@@ -1,522 +1,369 @@
-<Vehicle name="GRIN_PTV" actionMap=""  category="GroundVehicle" requiredItemTags="flightReady" itemPortTags="GRIN_PTV_Base" dockingclass="1">
- <Physics pushable="0">
-  <Buoyancy waterDensity="30" waterResistance="50" waterDamping="0"/>
-  <Simulation maxTimeStep="0.050000001" minEnergy="0.0020000001" maxLoggedCollisions="2"/>
- </Physics>
-  <SoundParams engineProjectName="vehicles:greycat_ptv_engine" functionalityProjectName="vehicles:greycat_ptv_functionality" id="idSound"/>
- <Damages submergedRatioMax="0.999998" submergedDamageMult="1" collDamageThreshold="10" groundCollisionMinMult="1.3" groundCollisionMaxMult="1.4" groundCollisionMinSpeed="8" groundCollisionMaxSpeed="22" vehicleCollisionDestructionSpeed="18" aiKillPlayerSpeed="7" playerKillAISpeed="7" aiKillAISpeed="7">
-  <DamageMultipliers>
-   <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/> 
-  </DamageMultipliers>
-  <DamagesGroups>
-   <DamagesGroup name="Destroy" useTemplate="CarDestroy">
-    <DamagesSubGroups>
-     <DamagesSubGroup delay="0.30000001" randomness="0.5">
-      <DamageBehaviors>
-       <DamageBehavior class="Impulse" damageRatioMin="1" ignoreVehicleDestruction="1">
-        <Impulse forceMin="3.7" forceMax="4" direction="0.050000001,0.1,1" momentum="0.2,0,0" worldSpace="1"/>
-       </DamageBehavior>
-       <DamageBehavior class="Burn">
-        <Burn helper="vehicleBurnPos" damage="15" selfDamage="15" radius="1.55" interval="0.5"/>
-       </DamageBehavior>
-      </DamageBehaviors>
-     </DamagesSubGroup>
-    </DamagesSubGroups>
-   </DamagesGroup>
-  </DamagesGroups>
- </Damages>
- <Components>
-  <!--<Component name="Hull" damageMax="6000" major="1" position="0,0.25,1.1" size="3,5,1.7" useBoundsFromParts="1" useDamageLevels="1" id="idHull">
-   <DamageMultipliers>
-    <DamageMultiplier damageType="fire" multiplier="1.0"/>
-   </DamageMultipliers>
-   <DamageBehaviors>
-    <DamageBehavior class="Group" damageRatioMin="1">
-     <Group name="Destroy"/>
-    </DamageBehavior>
-    <DamageBehavior class="Effect" damageRatioMin="0.25" damageRatioMax="1">
-     <Effect effect="HullDamaged25" disableAfterExplosion="1"/>
-    </DamageBehavior>
-    <DamageBehavior class="Effect" damageRatioMin="0.75" damageRatioMax="1">
-     <Effect effect="HullDamaged75" disableAfterExplosion="1"/>
-    </DamageBehavior>
-   </DamageBehaviors>
-  </Component>
-  <Component name="wheel1" damageMax="1000" major="1" position="0,0,0" size="0,0,0" useBoundsFromParts="1" hullAffection="0">
-   <DamageMultipliers>
-    <DamageMultiplier damageType="bullet" multiplier="1"/>
-   </DamageMultipliers>
-   <DamageBehaviors>
-    <DamageBehavior class="BlowTire" damageRatioMin="1">
-     <BlowTire />
-    </DamageBehavior>
-    <DamageBehavior class="Effect">
-     <Effect effect="TireShot"/>
-    </DamageBehavior>
-   </DamageBehaviors>
-  </Component>
-  <Component name="wheel2" damageMax="1000" major="1" position="0,0,0" size="0,0,0" useBoundsFromParts="1" hullAffection="0">
-   <DamageMultipliers>
-    <DamageMultiplier damageType="bullet" multiplier="1"/>
-   </DamageMultipliers>
-   <DamageBehaviors>
-    <DamageBehavior class="BlowTire" damageRatioMin="1">
-     <BlowTire />
-    </DamageBehavior>
-    <DamageBehavior class="Effect">
-     <Effect effect="TireShot"/>
-    </DamageBehavior>
-   </DamageBehaviors>
-  </Component>
-  <Component name="wheel3" damageMax="1000" major="1" position="0,0,0" size="0,0,0" useBoundsFromParts="1" hullAffection="0">
-   <DamageMultipliers>
-    <DamageMultiplier damageType="bullet" multiplier="1"/>
-   </DamageMultipliers>
-   <DamageBehaviors>
-    <DamageBehavior class="BlowTire" damageRatioMin="1">
-     <BlowTire />
-    </DamageBehavior>
-    <DamageBehavior class="Effect">
-     <Effect effect="TireShot"/>
-    </DamageBehavior>
-   </DamageBehaviors>
-  </Component>
-  <Component name="wheel4" damageMax="1000" major="1" position="0,0,0" size="0,0,0" useBoundsFromParts="1" hullAffection="0">
-   <DamageMultipliers>
-    <DamageMultiplier damageType="bullet" multiplier="1"/>
-   </DamageMultipliers>
-   <DamageBehaviors>
-    <DamageBehavior class="BlowTire" damageRatioMin="1">
-     <BlowTire />
-    </DamageBehavior>
-    <DamageBehavior class="Effect">
-     <Effect effect="TireShot"/>
-    </DamageBehavior>
-   </DamageBehaviors>
-  </Component>-->
-  <Component name="EnterMain" damageMax="0" major="0" position="0,1,1.1" size="3,4,1.7" useBoundsFromParts="0">
-   <DamageBehaviors />
-  </Component>
-  <Component name="EnterTop" damageMax="0" major="0" position="0,-1.5,1.5" size="1.9,3,2" useBoundsFromParts="0">
-   <DamageBehaviors />
-  </Component>
-  <Component name="FlipAction" damageMax="0" major="0" position="0,-0.25,1" size="2.7,6.5,3" useBoundsFromParts="0">
-   <DamageBehaviors />
-  </Component>
-  <Component name="FlippedOver" damageMax="1" major="0" position="0,0,0" size="0,0,0" useBoundsFromParts="1">
-   <!--<DamageBehaviors>
-    <DamageBehavior class="Effect" damageRatioMin="0">
-     <Effect effect="VehicleFlipped" disableAfterExplosion="1"/>
-    </DamageBehavior>
-    <DamageBehavior class="Burn">
-     <Burn helper="" damage="0" selfDamage="15" radius="5" interval="1"/>
-    </DamageBehavior>
-   </DamageBehaviors>-->
-  </Component>
- </Components>
- <Parts>
-  <Part name="body" class="Animated" component="Hull" mass="0" disablePhysics="0" isHidden="0" scopeContext="Vehicle">
-   <Parts>	   
-      <Part name="dials_speedometer" class="AnimatedJoint" component="Hull" mass="0">
-       <AnimatedJoint>
-        <Dials rotationMax="105" ofs="-24"/>
-       </AnimatedJoint>
-      </Part>
-      <Part name="dials_revometer" class="AnimatedJoint" component="Hull" mass="0">
-       <AnimatedJoint>
-        <Dials rotationMax="220"/>
-       </AnimatedJoint>
-      </Part>
-	<Part name="monitor" class="AnimatedJoint" mass="0" isHidden="1" />	
-   <!--<Part name="body_attachement" class="AnimatedJoint" mass="0">
-	 <AnimatedJoint filename="objects/vehicles/assault_buggy/body_attachement.cgf" />
-   </Part>-->
-   <Part name="hardpoint_paint" class="ItemPort">
-		<ItemPort minsize="1" maxsize="1" flags="" display_name="Paint">
-			<Types>
-				<Type type="Paints" />
-			</Types>
-		</ItemPort>
-	</Part>
-    <Part name="wheel1" class="SubPartWheel" component="wheel1" mass="80">
-     <SubPartWheel axle="0" density="100" damping="-0.30000001" driving="1" lenMax="0.6" maxFriction="1" minFriction="1" slipFrictionMod="0.30000001" stiffness="0" suspLength="0.35" rimRadius="0.31999999" torqueScale="1.1"/>
-	 <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="wheel"/>
-    </Part>
-    <Part name="wheel2" class="SubPartWheel" component="wheel2" mass="80">
-     <SubPartWheel axle="0" density="100" damping="-0.30000001" driving="1" lenMax="0.6" maxFriction="1" minFriction="1" slipFrictionMod="0.30000001" stiffness="0" suspLength="0.35" rimRadius="0.31999999" torqueScale="1.1"/>
-	 <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="wheel"/>
-    </Part>
-    <Part name="wheel3" class="SubPartWheel" component="wheel3" mass="80">
-     <SubPartWheel axle="1" density="100" damping="-0.45000001" driving="1" lenMax="0.5" maxFriction="2" minFriction="1.5" slipFrictionMod="0.34999999" stiffness="0" suspLength="0.33" rimRadius="0.31999999" torqueScale="0.89999998"/>
-	 <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="wheel"/>
-    </Part>
-    <Part name="wheel4" class="SubPartWheel" component="wheel4" mass="80">
-     <SubPartWheel axle="1" density="100" damping="-0.45000001" driving="1" lenMax="0.5" maxFriction="2" minFriction="1.5" slipFrictionMod="0.34999999" stiffness="0" suspLength="0.33" rimRadius="0.31999999" torqueScale="0.89999998"/>
-	 <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="wheel"/>
-    </Part>
-	
-<!--Front Right Suspension Parts-->
-	<Part name="wheel1_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="bottom_a_arm"/>
-		  <IK target="wheel1" offset="0,0,0" targetHelper="wheel1_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel1_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="top_a_arm"/>
-		  <IK target="wheel1" offset="0,0,0" targetHelper="wheel1_top_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel1_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0"  isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="damper"/>
-		  <IK target="wheel1_bottom_wishbone" offset="0,0,0" targetHelper="wheel1_damper_term" mode="stretch" ignoreTargetRotation="0"/>
-    </Part>
-<!--Front Left Suspension Parts-->
-    <Part name="wheel2_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="bottom_a_arm"/>
-		  <IK target="wheel2" offset="0,0,0" targetHelper="wheel2_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel2_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="top_a_arm"/>
-		  <IK target="wheel2" offset="0,0,0" targetHelper="wheel2_top_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel2_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0"  isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="damper"/>
-		  <IK target="wheel2_bottom_wishbone" offset="0,0,0" targetHelper="wheel2_damper_term" mode="stretch" ignoreTargetRotation="0"/>
-    </Part>
-<!--Rear Right Suspension Parts-->
-    <Part name="wheel3_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="bottom_a_arm"/>
-		  <IK target="wheel3" offset="0,0,0" targetHelper="wheel3_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel3_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="top_a_arm"/>
-		  <IK target="wheel3" offset="0,0,0" targetHelper="wheel3_top_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel3_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0"  isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="damper"/>
-		  <IK target="wheel3_bottom_wishbone" offset="0,0,0" targetHelper="wheel3_damper_term" mode="stretch" ignoreTargetRotation="0"/>
-    </Part>
-<!--Rear Left Suspension Parts-->
-    <Part name="wheel4_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="bottom_a_arm"/>
-		  <IK target="wheel4" offset="0,0,0" targetHelper="wheel4_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel4_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="top_a_arm"/>
-		  <IK target="wheel4" offset="0,0,0" targetHelper="wheel4_top_ik" mode="rotate" ignoreTargetRotation="1" />
-    </Part>
-    <Part name="wheel4_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0"  isHidden="0">
-		  <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="damper"/>
-		  <IK target="wheel4_bottom_wishbone" offset="0,0,0" targetHelper="wheel4_damper_term" mode="stretch" ignoreTargetRotation="0"/>
-    </Part>
-		<!-- head light right -->
-	   <Part name="headLightRight" class="Light" component="" helper="headLightRight">
-			<Light type="Headlight_Origin_PTV"/>
-	   </Part>
-	   <Part name="headLightRightFlare" class="Light" component="" helper="headLightRight">
-			<Light type="Headlight_Projection_PTV"/>
-	   </Part>
-	   <!-- head light left -->
-	   <Part name="headLightLeft" class="Light" component="" helper="headLightLeft">
-			<Light type="Headlight_Origin_PTV"/>
-	   </Part>
-	   <Part name="headLightLeftFlare" class="Light" component="" helper="headLightLeft">
-			<Light type="Headlight_Projection_PTV"/>
-	   </Part>
-	   <!-- brake light right -->
-	   <Part name="brakeLightRight" class="Light" component="" helper="brakeLightRight">
-			<Light type="Brake"/>
-	   </Part>
-	   <Part name="brakeLightRightFlare" class="Light" component="" helper="brakeLightRight">
-			<Light type="HeadlightGlow"/>
-	   </Part>
-	   <!-- brake light left -->
-	   <Part name="brakeLightLeft" class="Light" component="" helper="brakeLightLeft">
-			<Light type="Brake"/>
-	   </Part>
-	   <Part name="brakeLightLeftFlare" class="Light" component="" helper="brakeLightLeft">
-			<Light type="HeadlightGlow"/>
-	   </Part>
-	   <!-- brake light right -->
-	   <Part name="reverseLightRight" class="Light" component="" helper="reverseLightRight">
-			<Light type="Rear"/>
-	   </Part>
-	   <!-- brake light right -->
-	   <Part name="reverseLightLeft" class="Light" component="" helper="reverseLightLeft">
-			<Light type="Rear"/>
-	   </Part>
-	   <!--<Part name="tail_light" class="Light" component="" helper="">
-			<Light type="Brake_test"/>
-	   </Part>-->
-   </Parts>
-   <Animated filename="objects/vehicles/Greycat/PTV/PTV.cga" filenameDestroyed="objects/vehicles/assault_buggy/assault_buggy_damaged.cga" id="idAnimatedPart"/>
-  </Part>
-  <!-- FIX ME!! -->
-  <Part name="massBox" class="MassBox" mass="2000" position="0,-0.3,1.1" disablePhysics="0" disableCollision="0" isHidden="0">
-   <MassBox size="1.6,2.0,1.1" drivingOffset="0"/>
-  </Part>
-  <!-- FIX ME!! -->
- </Parts>
- <Helpers>
-<!--Front Right Suspension Helpers-->
-  <Helper name="wheel1_top_ik" position="0,0,0" direction="0,1,0" part="wheel1"/>
-  <Helper name="wheel1_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel1"/>
-  <Helper name="wheel1_damper_term" position="0,0,0" direction="0,1,0" part="wheel1_bottom_wishbone"/>  
-<!--Front Left Suspension Helpers-->
-  <Helper name="wheel2_top_ik" position="0,0,0" direction="0,1,0" part="wheel2"/>
-  <Helper name="wheel2_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel2"/>
-  <Helper name="wheel2_damper_term" position="0,0,0" direction="0,1,0" part="wheel2_bottom_wishbone"/>  
-<!--Rear Right Suspension Helpers-->
-  <Helper name="wheel3_top_ik" position="0,0,0" direction="0,1,0" part="wheel3"/>
-  <Helper name="wheel3_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel3"/>
-  <Helper name="wheel3_damper_term" position="0,0,0" direction="0,1,0" part="wheel3_bottom_wishbone"/>  
-<!--Rear Left Suspension Helpers-->
-  <Helper name="wheel4_top_ik" position="0,0,0" direction="0,1,0" part="wheel4"/>
-  <Helper name="wheel4_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel4"/>
-  <Helper name="wheel4_damper_term" position="0,0,0" direction="0,1,0" part="wheel4_bottom_wishbone"/>  
-  <Helper name="engineSmokeOut" position="0.4,1.01,0.9001" direction="0,1,0" part="body"/>
-  <Helper name="exhaust_pos_left" position="-0.05,-1.9,1.5" direction="0,-1,0" part="body"/>
-  <Helper name="exhaust_pos_right" position="0.05,-1.9,1.5" direction="0,-1,0" part="body"/>
-  <Helper name="explosion" position="-0.28780001,-0.49020001,1.3601" direction="0,0,1" part="body"/>
-  <!--<Helper name="gunner_eye_pos" position="0,-0.2,2.4849999" direction="0,1,0" part="mounted_gun_pivot" id="gunner_eye"/>
-  <Helper name="gunner_sit_pos" position="-0.25,-0.30000001,0.82499999" direction="0,1,0" part="mounted_turret" id="gunner_sit"/>-->
-  <!--<Helper name="pilot_enter_pos_left" position="-1.323,0.237,0.0" direction="1,0,0" part="body" />-->
-  <Helper name="pilot_sit_pos" position="-0.335,-0.11,0" direction="0,1,0" part="body"/>
-  <Helper name="vehicleBurnPos" position="0,-1.2501,2" direction="0,0,1" part="body"/>
-<!-- Light Helpers -->
-  <Helper name="headLightRight" position="0.606,1.176,1.06" direction="0,1,0" part="body"/>
-  <Helper name="headLightLeft" position="-0.606,1.176,1.06" direction="0,1,0" part="body"/>
-  <Helper name="brakeLightRight" position="0.6,-1.16,1.01" direction="0,-1,0" part="body"/>
-  <Helper name="brakeLightLeft" position="-0.6,-1.16,1.01" direction="0,-1,0" part="body"/>
-  <Helper name="reverseLightRight" position="0.125,-1.165,0.885" direction="0,-1,0" part="body"/>
-  <Helper name="reverseLightLeft" position="-0.125,-1.165,0.885" direction="0,-1,0" part="body"/>
-<!-- Debug Views -->
-  <Helper direction="0,1,0" name="debugview1" position="0,-3.5,1" part="body"/> 
-  <Helper direction="0,-1,0" name="debugview2" position="0,3.5,1" part="body"/> 
-  <Helper direction="-1,0,0" name="debugview3" position="3.5,0,1" part="body"/>
- </Helpers>
- 
- <!-- ///////////////////////////////////////////////////////////// -->
- <Actions>
-  <Action class="Enter">
-   <Activations>
-    <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos_left" distance="1" bbMin="-0.5,-0.85,0" bbMax="0.5,0.5,2"/>
-   </Activations>
-   <Enter>
-    <Seats>
-     <Seat value="SeatDriver"/>
-    </Seats>
-   </Enter>
-  </Action>
-  <!-- SeatPassenger -->
-  <Action class="Enter">
-   <Activations>
-	 <Activation type="OnUsed" param1="helper" param2="gunner_enter_pos" distance="1" bbMin="-0.5,-0.85,0" bbMax="0.5,0.5,2"/>
-   </Activations>
-   <Enter>
-	<Seats>
-	  <Seat value="SeatPassenger"/>
-	</Seats>
-   </Enter>
-  </Action>
-  <!--<Action class="Enter">
-   <Activations>
-    <Activation type="OnUsed" param1="component" param2="EnterTop"/>
-   </Activations>
-   <Enter>
-    <Seats>
-     <Seat value="SeatDriver"/>
-    </Seats>
-   </Enter>
-  </Action>-->
-  <Action class="Flip">
-   <Activations>
-    <Activation type="OnUsed" param1="component" param2="FlipAction"/>
-   </Activations>
-  </Action>
- </Actions>
- 
- 
- <!-- ///////////////////////////////////////////////////// -->
- 
- 
- <Seats>
-  <Seat name="SeatDriver" part="body" enterHelper="pilot_enter_pos_left" isPassengerHidden="0" sitHelper="pilot_sit_pos" isDriver="1" AimPart="" seatGroupIndex="1" actionMap="vehicle_driver" remotelyUseActionsFromSeat="" isHUDSupported="0" id="idSeat1">
-    <Views>
-      <View class="Cockpit" canRotate="1" hidePlayer="0" rotationMin="-40,0,-60" rotationMax="40,0,60" stickSensitivity="2,0,2" stickSensitivity2="1,0,2" relaxTimeMax="0.5" relaxEnabled="1"  rotationVelMax="30.0" rotationVelMin="30.0">
-        <Cockpit helper="driver_eye_pos" offset="0,0,0" relativeToHorizon="0.8" followSpeed="30" fov="55" nearPlane=".05"/>
-      </View>
-	  <View class="SteerThirdPerson">
-        <SteerThirdPerson>
-          <Pos aim="0,0,2.5" offset="0,-4,0,0" pivotOffset="-1.5"/>
-          <Rotation rotationMax="10,0,90" rotationMax2="10,0,30" stickSensitivity="2,0,2" stickSensitivity2="1,0,2" inheritedElev="0.8"/>
-          <Motion returnSpeed="1.0" returnSpeed2="1.0" angFollow="0.0"/>
-          <Radius min="0.9" max="1.3" relaxRate="5"/>
-        </SteerThirdPerson>
-      </View>
-	  <!-- CIG dtracy: Disabling Debug Views for Demo -->
-	  <!--<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
-	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
-        <FirstPerson helper="debugview1" offset="0,0,0" />
-      </View>
-	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
-        <FirstPerson helper="debugview2" offset="0,0,0"/>
-      </View>
-	  <View class="FirstPerson" canRotate="0" hidePlayer="0">
-        <FirstPerson helper="debugview3" offset="0,0,0" />
-      </View>-->
-    </Views>
-    <SeatActions>
-     <SeatAction class="Sound">
-	  <Audio isAvailableDocked="1" startTrigger="Play_VHLW_GRIN_PTV_Horn" stopTrigger="Stop_VHLW_GRIN_PTV_Horn" helper="engineSmokeOut" id="seatActionSound1"/>
-     </SeatAction>
-     <!--<SeatAction class="ShakeParts">
+<Vehicle name="GRIN_PTV" actionMap="" category="GroundVehicle" requiredItemTags="flightReady" itemPortTags="GRIN_PTV_Base" dockingclass="1">
+  <Physics pushable="0">
+    <Buoyancy waterDensity="30" waterResistance="50" waterDamping="0" />
+    <Simulation maxTimeStep="0.05" minEnergy="0.002" maxLoggedCollisions="2" />
+  </Physics>
+  <SoundParams engineProjectName="vehicles:greycat_ptv_engine" functionalityProjectName="vehicles:greycat_ptv_functionality" id="idSound" />
+  <Damages collDamageThreshold="1" groundCollisionMinMult="1.3" groundCollisionMaxMult="1.4" groundCollisionMinSpeed="100" groundCollisionMaxSpeed="100" vehicleCollisionDestructionSpeed="1">
+    <DamageMultipliers>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
+      <DamageMultiplier damageType="collision" multiplier="0.5" />
+    </DamageMultipliers>
+    <DamagesGroups>
+      <DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
+        <DamagesSubGroups>
+          <DamagesSubGroup delay="0.3" randomness="0.5">
+            <DamageBehaviors>
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="body" />
+              </DamageBehavior>
+              <DamageBehavior class="Explosion">
+                <Explosion helper="impulsePos" damage="0" radius="3" minRadius="1" minPhysRadius="2.2" physRadius="3" pressure="50" />
+              </DamageBehavior>
+              <DamageBehavior class="Destroy" />
+			</DamageBehaviors>
+           </DamagesSubGroup>
+		   <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="HitPassenger">
+                <HitPassenger damage="100" isDamagePercent="1" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+    </DamagesGroups>
+  </Damages>
+  <Parts>
+    <Part name="GRIN_PTV" class="Animated" component="Hull" mass="0" damagemax="500" disablePhysics="0" isHidden="0" scopeContext="Vehicle">
+      <Animated filename="objects/vehicles/Greycat/PTV/GRIN_PTV.cga" filenameDestroyed="objects/vehicles/Greycat/PTV/GRIN_PTV_Damaged.cga" id="idAnimatedPart" />
       <Parts>
-       <Part name="monitor" amp="0.003" ampRot="0.8" freq="18" suspensionAmp="0.016" suspensionResponse="1.8" suspensionSharpness="20"/>
+        <Part name="massBox" class="MassBox" mass="2000" position="0,-0.3,1.1" disablePhysics="0" disableCollision="0" isHidden="0">
+          <MassBox size="1.6,2.0,1.1" drivingOffset="0" />
+        </Part>
+        <Part name="body" class="AnimatedJoint" damageMax="200">
+		  <DamageBehaviors>
+		    <DamageBehavior class="DetachPart" damageRatioMin="1">
+			  <DetachPart>
+				<Part name="body" recurseChildren="1" Probability="1" />
+			  </DetachPart>
+			</DamageBehavior>
+            <DamageBehavior class="DamagePart" damageRatioMin="1">
+              <DamageParts>
+                <DamagePart name="wheel1" />
+                <DamagePart name="wheel2" />
+                <DamagePart name="wheel3" />
+                <DamagePart name="wheel4" />
+              </DamageParts>
+            </DamageBehavior>
+            <DamageBehavior class="Group" damageRatioMin="1">
+              <Group name="Destroy" />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Effects>
+            <HitFx joint="body" minDamageRatio="0.15" maxDamageRatio="0.9" effect="Gadgets/Grin_PTV.damage.hull_sparking" pos_offset="0,0.8,1.22" rot_offset="-0.4,0.5,1.0" helperID="body_PFX_HitFX_26to50_smoke_4m_loop_trail" />
+            <HitFx joint="body" minDamageRatio="0.25" maxDamageRatio="0.9" effect="Gadgets/Grin_PTV.damage.hull_sparking" pos_offset="-0.3,0.7,1.15" rot_offset="0.4,-0.5,1.0" helperID="body_PFX_HitFX_26to50_smoke_4m_loop_trail" />
+            <HitFx joint="body" minDamageRatio="0.7" maxDamageRatio="1" effect="Gadgets/Grin_PTV.damage.hull_damage75" pos_offset="0,-1,0.7" rot_offset="0.0,-1.0,0" helperID="body_PFX_HitFX_51to75_fire_4m_loop_fixed" />
+            <HitFx joint="body" minDamageRatio="0.5" maxDamageRatio="1" effect="Gadgets/Grin_PTV.damage.small_fire" pos_offset="0.65,0.68,1.0" rot_offset="0.0,1.0,1" helperID="body_PFX_HitFX_51to75_fire_4m_loop_fixed" />
+            <HitFx joint="body" minDamageRatio="0.25" maxDamageRatio="0.60" effect="Gadgets/Grin_PTV.damage.hull_damage25" pos_offset="0,-1,1" rot_offset="0.0,0.0,0.0" helperID="body_PFX_HitFX_0to25_electric_4m_loop_fixed" />
+            <HitFx joint="body" minDamageRatio="0.9" maxDamageRatio="1" effect="Gadgets/Grin_PTV.damage.hull_damage75" pos_offset="0,1.2,0.4" rot_offset="0.0,1.0,0" helperID="body_PFX_HitFX_51to75_fire_4m_loop_fixed" />
+          </Effects>
+          <Parts>
+            <Part name="hardpoint_seat_driver" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="" display_name="Driver Seat">
+                <Types>
+                  <Type type="Seat" subtypes="" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_seat_passenger" class="ItemPort">
+              <ItemPort minSize="1" maxsize="1" flags="" display_name="Passenger Seat">
+                <Types>
+                  <Type type="Seat" subtypes="" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="body_100_debris_wheel3" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris1" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris_wheel4" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris_wheel1" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris2" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris_wheel2" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris3" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="body_100_debris_steering" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+            <Part name="glass" class="AnimatedJoint" damageMax="1000" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+              <Parts>
+                <Part name="glass_100_debris2" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+                <Part name="glass_100_debris1" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+              </Parts>
+            </Part>
+          </Parts>
+        </Part>
+        <Part name="wheel1" class="SubPartWheel" component="wheel1" mass="80" damagemax="10">
+          <DamageBehaviors>
+            <DamageBehavior class="BlowTire" damageRatioMin="1">
+              <BlowTire />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <SubPartWheel axle="0" density="100" damping="-0.30000001" driving="1" lenMax="0.6" maxFriction="1" minFriction="1" slipFrictionMod="0.30000001" stiffness="0" suspLength="0.35" rimRadius="0.31999999" torqueScale="1.1" />
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="wheel" />
+        </Part>
+        <Part name="wheel2" class="SubPartWheel" component="wheel2" mass="80" damagemax="10">
+          <DamageBehaviors>
+            <DamageBehavior class="BlowTire" damageRatioMin="1">
+              <BlowTire />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <SubPartWheel axle="0" density="100" damping="-0.30000001" driving="1" lenMax="0.6" maxFriction="1" minFriction="1" slipFrictionMod="0.30000001" stiffness="0" suspLength="0.35" rimRadius="0.31999999" torqueScale="1.1" />
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="wheel" />
+        </Part>
+        <Part name="wheel3" class="SubPartWheel" component="wheel3" mass="80" damagemax="10">
+          <DamageBehaviors>
+            <DamageBehavior class="BlowTire" damageRatioMin="1">
+              <BlowTire />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <SubPartWheel axle="1" density="100" damping="-0.45000001" driving="1" lenMax="0.5" maxFriction="2" minFriction="1.5" slipFrictionMod="0.34999999" stiffness="0" suspLength="0.33" rimRadius="0.31999999" torqueScale="0.89999998" />
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="wheel" />
+        </Part>
+        <Part name="wheel4" class="SubPartWheel" component="wheel4" mass="80" damagemax="10">
+          <DamageBehaviors>
+            <DamageBehavior class="BlowTire" damageRatioMin="1">
+              <BlowTire />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <SubPartWheel axle="1" density="100" damping="-0.45000001" driving="1" lenMax="0.5" maxFriction="2" minFriction="1.5" slipFrictionMod="0.34999999" stiffness="0" suspLength="0.33" rimRadius="0.31999999" torqueScale="0.89999998" />
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="wheel" />
+        </Part>
+        <!--Front Right Suspension Parts-->
+        <Part name="wheel1_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="bottom_a_arm" />
+          <IK target="wheel1" offset="0,0,0" targetHelper="wheel1_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel1_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="top_a_arm" />
+          <IK target="wheel1" offset="0,0,0" targetHelper="wheel1_top_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel1_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="damper" />
+          <IK target="wheel1_bottom_wishbone" offset="0,0,0" targetHelper="wheel1_damper_term" mode="stretch" ignoreTargetRotation="0" />
+        </Part>
+        <!--Front Left Suspension Parts-->
+        <Part name="wheel2_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="bottom_a_arm" />
+          <IK target="wheel2" offset="0,0,0" targetHelper="wheel2_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel2_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="top_a_arm" />
+          <IK target="wheel2" offset="0,0,0" targetHelper="wheel2_top_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel2_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="damper" />
+          <IK target="wheel2_bottom_wishbone" offset="0,0,0" targetHelper="wheel2_damper_term" mode="stretch" ignoreTargetRotation="0" />
+        </Part>
+        <!--Rear Right Suspension Parts-->
+        <Part name="wheel3_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="bottom_a_arm" />
+          <IK target="wheel3" offset="0,0,0" targetHelper="wheel3_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel3_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="top_a_arm" />
+          <IK target="wheel3" offset="0,0,0" targetHelper="wheel3_top_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel3_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_b.cga" geometryname="damper" />
+          <IK target="wheel3_bottom_wishbone" offset="0,0,0" targetHelper="wheel3_damper_term" mode="stretch" ignoreTargetRotation="0" />
+        </Part>
+        <!--Rear Left Suspension Parts-->
+        <Part name="wheel4_bottom_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="bottom_a_arm" />
+          <IK target="wheel4" offset="0,0,0" targetHelper="wheel4_bottom_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel4_top_wishbone" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="top_a_arm" />
+          <IK target="wheel4" offset="0,0,0" targetHelper="wheel4_top_ik" mode="rotate" ignoreTargetRotation="1" />
+        </Part>
+        <Part name="wheel4_damper" class="SuspensionPart" component="" mass="10" disablePhysics="0" disableCollision="0" isHidden="0">
+          <SubPart filename="objects/vehicles/Greycat/PTV/PTV_wheel_a.cga" geometryname="damper" />
+          <IK target="wheel4_bottom_wishbone" offset="0,0,0" targetHelper="wheel4_damper_term" mode="stretch" ignoreTargetRotation="0" />
+        </Part>
+		
+        <!-- head light right -->
+        <!--<Part name="headLightRight" class="Light" component="" helper="headLightRight">
+          <Light type="Headlight_Origin_PTV" />
+        </Part>
+        <Part name="headLightRightFlare" class="Light" component="" helper="headLightRight">
+          <Light type="Headlight_Projection_PTV" />
+        </Part>-->
+        <!-- head light left -->
+        <!-- <Part name="headLightLeft" class="Light" component="" helper="headLightLeft">
+          <Light type="Headlight_Origin_PTV" />
+        </Part>
+        <Part name="headLightLeftFlare" class="Light" component="" helper="headLightLeft">
+          <Light type="Headlight_Projection_PTV" />
+        </Part> -->
+        <!-- brake light right -->
+        <!-- <Part name="brakeLightRight" class="Light" component="" helper="brakeLightRight">
+          <Light type="Brake" />
+        </Part>
+        <Part name="brakeLightRightFlare" class="Light" component="" helper="brakeLightRight">
+          <Light type="HeadlightGlow" />
+        </Part> -->
+        <!-- brake light left -->
+        <!-- <Part name="brakeLightLeft" class="Light" component="" helper="brakeLightLeft">
+          <Light type="Brake" />
+        </Part>
+        <Part name="brakeLightLeftFlare" class="Light" component="" helper="brakeLightLeft">
+          <Light type="HeadlightGlow" />
+        </Part> -->
+        <!-- brake light right -->
+        <!-- <Part name="reverseLightRight" class="Light" component="" helper="reverseLightRight">
+          <Light type="Rear" />
+        </Part> -->
+        <!-- brake light right -->
+        <!-- <Part name="reverseLightLeft" class="Light" component="" helper="reverseLightLeft">
+          <Light type="Rear" />
+        </Part> -->
+        <Part name="hardpoint_paint" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="" display_name="Paint">
+            <Types>
+              <Type type="Paints" />
+            </Types>
+          </ItemPort>
+        </Part>
       </Parts>
-     </SeatAction>-->
-	<SeatAction class="SteeringWheel">
-       <SteeringWheel isAvailableDocked="1" fragmentID="Steering_Wheel" >
-         <Car jitterAmpLow="0.02" jitterAmpHi="0.08" jitterFreqLow="9" jitterFreqHi="25" jitterSuspAmp="0.1" jitterSuspResponse="10" />
-       </SteeringWheel>
-   </SeatAction>
-   <SeatAction class ="PassengerIK">
-					<PassengerIK isAvailableDocked="1" waitShortlyBeforeStarting="1">
-						<Limbs>
-							<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="driver_IK_attach_left" blendTime="0"/>
-							<!--<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="yoke_IK_attach_right" blendTime="0"/>
-							<Limb tag ="LeftLegPedal" on="1" limb ="LftLeg01" IKTargetSystemType ="vehicleHelper" helper ="left_pedal_IK_attach" blendTime="0" />
-							<Limb tag ="RightLegPedal" on="1" limb ="RgtLeg01" IKTargetSystemType ="vehicleHelper" helper ="right_pedal_IK_attach" blendTime="0" />-->
-						</Limbs>
-					</PassengerIK>
-				</SeatAction>
-   <SeatAction class="Lights">
-	<Lights activation="toggle" isAvailableDocked="1">
-	 <LightParts>
-	  <LightPart value="headLightLeft"/>
-	  <LightPart value="headLightLeftFlare"/>
-	  <LightPart value="headLightRight"/>
-	  <LightPart value="headLightRightFlare"/>
-	 </LightParts>
-	</Lights>
-   </SeatAction>
-   <SeatAction class="Lights">
-	<Lights activation="brake" isAvailableDocked="1">
-	 <LightParts>
-	  <LightPart value="brakeLightLeft"/>
-	  <!--<LightPart value="brakeLightLeftFlare"/>-->
-	  <LightPart value="brakeLightRight"/>
-	  <!--<LightPart value="tail_light"/>-->
-	  <!--<LightPart value="brakeLightRightFlare"/>-->
-	 </LightParts>
-	</Lights>
-   </SeatAction>
-   <SeatAction class="Lights">
-	<Lights activation="reverse" isAvailableDocked="1">
-	 <LightParts>
-	  <LightPart value="reverseLightLeft"/>
-	  <LightPart value="reverseLightRight"/>
-	 </LightParts>
-	</Lights>
-	</SeatAction>
-   </SeatActions>
-   <Sounds inout="0" mood="0.60000002" id="idSeatSoundsLF"/>
-  </Seat>
-  <Seat name="SeatPassenger" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-70" lookMax ="60,0,70" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="" isHUDSupported="0">
-	<!-- Begin views for this seat-->
-	<Views>
-		<View class="Cockpit" canRotate="1" hidePlayer="0" rotationMin="-40,0,-60" rotationMax="40,0,60" stickSensitivity="2,0,2" stickSensitivity2="1,0,2" relaxTimeMax="0.5" relaxEnabled="1"  rotationVelMax="30.0" rotationVelMin="30.0">
-			<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
-		</View>
-	    <View class="SteerThirdPerson">
-			<SteerThirdPerson>
-			  <Pos aim="0,0,2.5" offset="0,-4,0,0" pivotOffset="-1.5"/>
-			  <Rotation rotationMax="10,0,90" rotationMax2="10,0,30" stickSensitivity="2,0,2" stickSensitivity2="1,0,2" inheritedElev="0.8"/>
-			  <Motion returnSpeed="1.0" returnSpeed2="1.0" angFollow="0.0"/>
-			  <Radius min="0.9" max="1.3" relaxRate="5"/>
-			</SteerThirdPerson>
-      </View>
-	</Views>
-  </Seat>
- </Seats>
- <MovementParams>
-  <ArcadeWheeled gravity="9.81" steerSpeed="20" steerSpeedMin="20" kvSteerMax="25" v0SteerMax="45" steerRelaxation="90" vMaxSteerMax="22" pedalLimitMax="0" rpmGearShiftSpeed="2" engineIgnitionTime="0.7" surfaceFXInFpView="1" isBreakingOnIdle="0">
-   <Handling>
-    <Power acceleration="10" decceleration="5" topSpeed="22" reverseSpeed="10" id="movementParams"/>
-    <WheelSpin grip1="0.68" grip2="1" gripRecoverSpeed="4" accelMultiplier1="1.3" accelMultiplier2="0.5"/>
-    <HandBrake decceleration="19" deccelerationPowerLock="1" lockBack="1" lockFront="0" frontFrictionScale="1.2" backFrictionScale="0.8" angCorrectionScale="5.7" lateralSpringScale="0"/>
-    <SpeedReduction reductionAmount="0.2" reductionRate="0.5"/>
-    <Friction back="2.3" front="3.0" offset="-1.0"/>
-    <Correction lateralSpring="0" angSpring="4"/>
-    <Compression frictionBoost="0.5" frictionBoostHandBrake="3.5"/>
-	<Inertia radius="2.3"/>
-	<PowerSlide lateralSpeedFraction="0.05" lateralSpeedFractionHB="0.1" spring="8" />
-	<Stabilisation upDamping="2.5" angDamping="6.0" rollDamping="30" rollfixAir="5" maxTiltAngleAir="25"/>
-   </Handling>
-   <FakeGears minChangeDownTime="0.7" rpmRelaxSpeed="1" rpmInterpSpeed="1"
-	   rpmLoadChangeSpeedUp="1.8"
-	   rpmLoadChangeSpeedDown="0.8"
-	   rpmLoadFactor="0.35"
-	   rpmLoadDefaultValue="0.2"
-	   rpmLoadFromBraking="0.3"
-	   rpmLoadFromThrottle="0.3"
-	   gearChangeSpeed="3"
-	   gearChangeSpeed2="1.6"
-	   gearOscillationFrequency="3.8"
-	   gearOscillationAmp="0.15"
-	   gearOscillationAmp2="0.5"
-	   >
-    <Ratios>
-     <Ratio value="0.5" minChangeUpTime="1" />
-     <Ratio value="0.650000001" minChangeUpTime="1.2" />
-     <Ratio value="0.650999999" minChangeUpTime="1.1" />
-     <Ratio value="0.70" minChangeUpTime="1.3" />
-     <Ratio value="0.84999999" minChangeUpTime="1.7" />
-    </Ratios>
-   </FakeGears>
-   <ViewAdjustment lateral="0.05" lateralCent="0.05" rotate="3" rotateCent="1.9" maxRotate="22" maxLateralDisp="0.10" rotateSpeed="2.0" dispSpeed="4.2" maxForwardDisp="0.06" forwardResponse="0.20"
-                   vibrationAmpSpeed="0.004" vibrationSpeedResponse="0.3" vibrationAmpAccel="0.05" vibrationAccelResponse="1.0" vibrationFrequency="8"
-                   suspensionAmp="0.05" suspensionResponse="0.8" suspensionSharpness="8"
-	   />
-   <ViewAdjustmentPowerLock lateral="0.2" lateralCent="8" rotate="15" rotateCent="7" maxRotate="35" maxLateralDisp="0.17" rotateSpeed="2.9" dispSpeed="5.7" maxForwardDisp="0.05" forwardResponse="0.08"/>
-   <WheeledLegacy damping="0.11" engineIdleRPM="1000" engineMaxRPM="5000" engineMinRPM="1000" stabilizer="0.49999999" maxTimeStep="0.050000001" minEnergy="66" suspDampingMin="0" suspDampingMax="0" suspDampingMaxSpeed="3" damagedWheelSpeedInfluenceFactor="0.2" />
-   <AudioParams engineSoundPosition="engineSmokeOut" runSoundDelay="0.0" roadBumpMinSusp="10" roadBumpMinSpeed="6" roadBumpIntensity="0.30000001" maxSlipSpeed="11">
-	   <Skidding
-			skidLerpSpeed="10.0"
-			skidCentrifugalFactor="0.3"
-			skidBrakeFactor="0.5"
-			skidPowerLockFactor="0.8"
-			skidLateralfactor="1.0"
-			skidForwardFactor="0.8"
-		   />
-		 <EngineStartSound sound="Play_VHLW_GRIN_PTV_Engine_Start_Run" />
-		 <EngineRunSound sound="" />
-		 <EngineStopSound sound="Stop_VHLW_GRIN_PTV_Engine_Start_Run" />
-		 <TyreSquealSound sound="Play_VHLW_GRIN_PTV_Tire_Squeals" />
-		 <AmbienceSound sound="" />
-   </AudioParams>
-  </ArcadeWheeled>
- </MovementParams>
- <!-- FIX ME!!
-  <Particles mfxRow="vfx_HMMWV">
+    </Part>
+  </Parts>
+  <Helpers>
+    <!--Front Right Suspension Helpers-->
+    <Helper name="wheel1_top_ik" position="0,0,0" direction="0,1,0" part="wheel1" />
+    <Helper name="wheel1_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel1" />
+    <Helper name="wheel1_damper_term" position="0,0,0" direction="0,1,0" part="wheel1_bottom_wishbone" />
+    <!--Front Left Suspension Helpers-->
+    <Helper name="wheel2_top_ik" position="0,0,0" direction="0,1,0" part="wheel2" />
+    <Helper name="wheel2_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel2" />
+    <Helper name="wheel2_damper_term" position="0,0,0" direction="0,1,0" part="wheel2_bottom_wishbone" />
+    <!--Rear Right Suspension Helpers-->
+    <Helper name="wheel3_top_ik" position="0,0,0" direction="0,1,0" part="wheel3" />
+    <Helper name="wheel3_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel3" />
+    <Helper name="wheel3_damper_term" position="0,0,0" direction="0,1,0" part="wheel3_bottom_wishbone" />
+    <!--Rear Left Suspension Helpers-->
+    <Helper name="wheel4_top_ik" position="0,0,0" direction="0,1,0" part="wheel4" />
+    <Helper name="wheel4_bottom_ik" position="0,0,0" direction="0,1,0" part="wheel4" />
+    <Helper name="wheel4_damper_term" position="0,0,0" direction="0,1,0" part="wheel4_bottom_wishbone" />
+    <Helper name="engineSmokeOut" position="0.4,1.01,0.9001" direction="0,1,0" part="body" />
+    <Helper name="exhaust_pos_left" position="-0.25,-1.1,0.5" direction="0,-1,0" part="body" />
+    <Helper name="exhaust_pos_right" position="0.25,-1.1,0.5" direction="0,-1,0" part="body" />
+    <Helper name="explosion" position="-0.28780001,-0.49020001,1.3601" direction="0,0,1" part="body" />
+    <!--<Helper name="gunner_eye_pos" position="0,-0.2,2.4849999" direction="0,1,0" part="mounted_gun_pivot" id="gunner_eye"/>
+  <Helper name="gunner_sit_pos" position="-0.25,-0.30000001,0.82499999" direction="0,1,0" part="mounted_turret" id="gunner_sit"/>-->
+    <!--<Helper name="pilot_enter_pos_left" position="-1.323,0.237,0.0" direction="1,0,0" part="body" />-->
+    <!--<Helper name="pilot_sit_pos" position="-0.335,-0.11,0" direction="0,1,0" part="body"/>-->
+    <Helper name="vehicleBurnPos" position="0,-1.2501,2" direction="0,0,1" part="body" />
+    <!-- Light Helpers -->
+    <Helper name="headLightRight" position="0.606,1.176,1.06" direction="0,1,0" part="body" />
+    <Helper name="headLightLeft" position="-0.606,1.176,1.06" direction="0,1,0" part="body" />
+    <Helper name="brakeLightRight" position="0.6,-1.16,1.01" direction="0,-1,0" part="body" />
+    <Helper name="brakeLightLeft" position="-0.6,-1.16,1.01" direction="0,-1,0" part="body" />
+    <Helper name="reverseLightRight" position="0.125,-1.165,0.885" direction="0,-1,0" part="body" />
+    <Helper name="reverseLightLeft" position="-0.125,-1.165,0.885" direction="0,-1,0" part="body" />
+    <!-- Debug Views -->
+    <Helper direction="0,1,0" name="debugview1" position="0,-3.5,1" part="body" />
+    <Helper direction="0,-1,0" name="debugview2" position="0,3.5,1" part="body" />
+    <Helper direction="-1,0,0" name="debugview3" position="3.5,0,1" part="body" />
+  </Helpers>
+  <!-- ///////////////////////////////////////////////////////////// -->
+  <Actions>
+    <Action class="Flip">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="GRIN_PTV" distance="1" bbMin="-4,-4,-4" bbMax="4,4,4" />
+      </Activations>
+    </Action>
+	<!-- SeatDriver -->
+    <Action class="ItemPort">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="hardpoint_seat_driver" distance="1" bbMin="-1.5,-0.85,0" bbMax="-0.5,0.5,2" />
+      </Activations>
+      <ItemPort>
+        <Ports>
+          <Port value="hardpoint_seat_driver" />
+        </Ports>
+      </ItemPort>
+    </Action>
+    <!-- SeatPassenger -->
+    <Action class="ItemPort">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="hardpoint_seat_passenger" distance="1" bbMin="0.5,-0.85,0" bbMax="1.5,0.5,2" />
+      </Activations>
+      <ItemPort>
+        <Ports>
+          <Port value="hardpoint_seat_passenger" />
+        </Ports>
+      </ItemPort>
+    </Action>
+  </Actions>
+  <!-- ///////////////////////////////////////////////////// -->
+
+  <MovementParams>
+    <ArcadeWheeled gravity="9.81" steerSpeed="20" steerSpeedMin="20" kvSteerMax="25" v0SteerMax="45" steerRelaxation="90" vMaxSteerMax="22" pedalLimitMax="0" rpmGearShiftSpeed="2" engineIgnitionTime="0.7" surfaceFXInFpView="1" isBreakingOnIdle="0">
+      <Handling>
+        <Power acceleration="15" decceleration="5" topSpeed="22" reverseSpeed="10" id="movementParams" />
+        <WheelSpin grip1="1" grip2="1" gripRecoverSpeed="4" accelMultiplier1="1.3" accelMultiplier2="0.5" />
+        <HandBrake decceleration="19" deccelerationPowerLock="1" lockBack="1" lockFront="0" frontFrictionScale="1.2" backFrictionScale="0.8" angCorrectionScale="5.7" lateralSpringScale="0" />
+        <SpeedReduction reductionAmount="0.2" reductionRate="0.5" />
+        <Friction back="2.3" front="3.0" offset="-1.0" />
+        <Correction lateralSpring="0" angSpring="4" />
+        <Compression frictionBoost="0.5" frictionBoostHandBrake="3.5" />
+        <Inertia radius="2.3" />
+        <PowerSlide lateralSpeedFraction="0.05" lateralSpeedFractionHB="0.1" spring="8" />
+        <Stabilisation upDamping="2.5" angDamping="6.0" rollDamping="30" rollfixAir="5" maxTiltAngleAir="25" />
+      </Handling>
+      <FakeGears minChangeDownTime="0.7" rpmRelaxSpeed="1" rpmInterpSpeed="1" rpmLoadChangeSpeedUp="1.8" rpmLoadChangeSpeedDown="0.8" rpmLoadFactor="0.35" rpmLoadDefaultValue="0.2" rpmLoadFromBraking="0.3" rpmLoadFromThrottle="0.3" gearChangeSpeed="3" gearChangeSpeed2="1.6" gearOscillationFrequency="3.8" gearOscillationAmp="0.15" gearOscillationAmp2="0.5">
+        <Ratios>
+          <Ratio value="0.5" minChangeUpTime="1" />
+          <Ratio value="0.65" minChangeUpTime="1.2" />
+          <Ratio value="0.65" minChangeUpTime="1.1" />
+          <Ratio value="0.70" minChangeUpTime="1.3" />
+          <Ratio value="0.84" minChangeUpTime="1.7" />
+        </Ratios>
+      </FakeGears>
+      <ViewAdjustment lateral="0.05" lateralCent="0.05" rotate="3" rotateCent="1.9" maxRotate="22" maxLateralDisp="0.10" rotateSpeed="2.0" dispSpeed="4.2" maxForwardDisp="0.06" forwardResponse="0.20" vibrationAmpSpeed="0.004" vibrationSpeedResponse="0.3" vibrationAmpAccel="0.05" vibrationAccelResponse="1.0" vibrationFrequency="8" suspensionAmp="0.05" suspensionResponse="0.8" suspensionSharpness="8" />
+      <ViewAdjustmentPowerLock lateral="0.2" lateralCent="8" rotate="15" rotateCent="7" maxRotate="35" maxLateralDisp="0.17" rotateSpeed="2.9" dispSpeed="5.7" maxForwardDisp="0.05" forwardResponse="0.08" />
+      <WheeledLegacy damping="0.11" engineIdleRPM="1000" engineMaxRPM="5000" engineMinRPM="1000" stabilizer="0.49999999" maxTimeStep="0.050000001" minEnergy="66" suspDampingMin="0" suspDampingMax="0" suspDampingMaxSpeed="3" damagedWheelSpeedInfluenceFactor="0.2" />
+      <AudioParams engineSoundPosition="engineSmokeOut" runSoundDelay="0.0" roadBumpMinSusp="10" roadBumpMinSpeed="6" roadBumpIntensity="0.30000001" maxSlipSpeed="11">
+        <Skidding skidLerpSpeed="10.0" skidCentrifugalFactor="0.3" skidBrakeFactor="0.5" skidPowerLockFactor="0.8" skidLateralfactor="1.0" skidForwardFactor="0.8" />
+        <EngineStartSound sound="Play_VHLW_GRIN_PTV_Engine_Start_Run" />
+        <EngineRunSound sound="" />
+        <EngineStopSound sound="Stop_VHLW_GRIN_PTV_Engine_Start_Run" />
+        <TyreSquealSound sound="Play_VHLW_GRIN_PTV_Tire_Squeals" />
+        <AmbienceSound sound="" />
+      </AudioParams>
+    </ArcadeWheeled>
+  </MovementParams>
+<!--  <Particles>
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="body" effect="spaceships/deathmasks/rsi_constellation_deathmask.ALL.subexplosion1" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+    </DamageEffects>
+  </Particles>-->
+  
+  <Particles mfxRow="vfx_PTV">
   <Exhaust insideWater="0" outsideWater="0">
    <Helpers>
     <Helper value="exhaust_pos_left"/>
     <Helper value="exhaust_pos_right"/>
    </Helpers>
-   <EngineStart effect="crysis2_veh_ltv.damage.exhaust"/>
-   <EngineStop effect="crysis2_veh_ltv.damage.exhaust"/>
-   <EngineRunning effect="crysis2_veh_ltv.damage.exhaust" boostEffect="" baseSizeScale="1" minSpeed="0" minSpeedSizeScale="0.5" minSpeedCountScale="1" minSpeedSpeedScale="0.3" maxSpeed="15" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1.2" minPower="0" minPowerSizeScale="1" minPowerCountScale="1" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="1" maxPowerSpeedScale="1"/>
+   <EngineStart effect="gadgets/Grin_PTV.exhaust.start"/>
+   <EngineStop effect="gadgets/Grin_PTV.exhaust.start"/>
+   <EngineRunning effect="gadgets/Grin_PTV.exhaust.running" boostEffect="" baseSizeScale="1" minSpeed="0" minSpeedSizeScale="0.5" minSpeedCountScale="1" minSpeedSpeedScale="0.3" maxSpeed="15" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1.2" minPower="0" minPowerSizeScale="1" minPowerCountScale="1" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="1" maxPowerSpeedScale="1"/>
   </Exhaust>
   <DamageEffects>
-   <DamageEffect name="jerrican_right_50" helper="jerrican_right" effect="crysis3_veh_assault_buggy.damage.damage_75"/>
-   <DamageEffect name="jerrican_left_50" helper="jerrican_left" effect="crysis3_veh_assault_buggy.damage.damage_75"/>
-   <DamageEffect name="EngineDamaged25" helper="jerrican_right" effect="crysis3_veh_assault_buggy.damage.damage_25"/>
-   <DamageEffect name="EngineDamaged75" helper="jerrican_right" effect="Crysis3_veh_assault_buggy.damage.damage_75"/>
-   <DamageEffect name="VehicleDestroyed" helper="explosion" effect="crysis3_veh_assault_buggy.damage.explosion" scaleMax="1" gravityDirection="0,0,1"/>
-   <DamageEffect name="VehicleFlipped" helper="centerPos" effect="crysis2_veh_ltv.damage.damaged_75"/>
-   <DamageEffect name="TireShot" helper="" effect="crysis2_veh_ltv.damage.tireDeflate" gravityDirection="0,0,1"/>
-   <DamageEffect name="HullDamaged25" helper="engineSmokeOut" effect="crysis2_veh_ltv.damage.damaged_25" scaleMax="0.60000002" gravityDirection="0,0,1" pulsePeriod="0"/>
-   <DamageEffect name="HullDamaged75" helper="engineSmokeOut" effect="crysis2_veh_ltv.damage.damaged_75" scaleMax="0.5" gravityDirection="0,0,1" pulsePeriod="0"/>
+   <DamageEffect name="VehicleDestroyed" helper="explosion" effect="Gadgets/Grin_PTV.explosion.default" scaleMax="1" gravityDirection="0,0,1"/>
+   <DamageEffect name="VehicleFlipped" helper="body" effect=""/>
+   <DamageEffect name="TireShot" helper="body" effect="Gadgets/Grin_PTV.damage.tire_burst" gravityDirection="0,0,1"/>
+   <DamageEffect name="HullDamaged25" helper="body" effect="" scaleMax="0.60000002" gravityDirection="0,0,1" pulsePeriod="0"/>
+   <DamageEffect name="HullDamaged75" helper="body" effect="" scaleMax="0.5" gravityDirection="0,0,1" pulsePeriod="0"/>
   </DamageEffects>
+
   <EnvironmentLayers>
    <EnvironmentLayer minSpeed="0.30000001" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="0.2" maxSpeed="35" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1">
     <Alignment alignGroundHeight="0" maxHeightSizeScale="1" maxHeightCountScale="1" alignToWater="1"/>
@@ -553,41 +400,36 @@
    </EnvironmentLayer>
   </EnvironmentLayers>
  </Particles>
-   /FIX ME!!-->
- <Animations />
- <Mannequin tag="Greycat_PTV" controllerDef="Animations/Mannequin/ADB/Vehicles/Greycat_PTV/Greycat_PTV_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/Greycat_PTV/Greycat_PTV_Anims.adb" passengerADB="Animations/Mannequin/ADB/Vehicles/Greycat_PTV/Greycat_PTV_HumanAnims.adb"/>
- <Paints>
- 		<Paint name="ptv_paint_camo" material="Objects/Vehicles/Greycat/PTV/ptv_paint_camo.mtl"/>
-		<Paint name="ptv_paint_cherry" material="Objects/Vehicles/Greycat/PTV/ptv_paint_cherry.mtl"/>
-		<Paint name="ptv_paint_double" material="Objects/Vehicles/Greycat/PTV/ptv_paint_double.mtl"/>
-		<Paint name="ptv_paint_metal" material="Objects/Vehicles/Greycat/PTV/ptv_paint_metal.mtl"/>
-		<Paint name="ptv_paint_stealth" material="Objects/Vehicles/Greycat/PTV/ptv_paint_stealth.mtl"/>
-		<Paint name="ptv_paint_willys" material="Objects/Vehicles/Greycat/PTV/ptv_paint_willys.mtl"/>
- </Paints>
 
- 	<!-- FIX ME!!! Need to export a full F7A model again -->
-   <GeomTags>
-		<geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
-		<TagsList>
-			<Tags tag="HUD">
-				<geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material=""/>
-				<Tags tag="hostile">
-					<geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material=""/>
-				</Tags>
-				<Tags tag="neutral">
-					<geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material=""/>
-				</Tags>
-			</Tags>
-			<Tags tag="over dragging">
-			  <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
-			</Tags>
-			<Tags tag="ItemPreviewA">
-			  <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material=""/>
-			</Tags>
-		</TagsList>
+  <Animations />
+  <Mannequin tag="Greycat_PTV" controllerDef="Animations/Mannequin/ADB/Vehicles/Greycat_PTV/Greycat_PTV_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/Greycat_PTV/Greycat_PTV_Anims.adb" passengerADB="Animations/Mannequin/ADB/Vehicles/Greycat_PTV/Greycat_PTV_HumanAnims.adb" />
+  <Paints>
+    <Paint name="ptv_paint_camo" material="Objects/Vehicles/Greycat/PTV/ptv_paint_camo.mtl" />
+    <Paint name="ptv_paint_cherry" material="Objects/Vehicles/Greycat/PTV/ptv_paint_cherry.mtl" />
+    <Paint name="ptv_paint_double" material="Objects/Vehicles/Greycat/PTV/ptv_paint_double.mtl" />
+    <Paint name="ptv_paint_metal" material="Objects/Vehicles/Greycat/PTV/ptv_paint_metal.mtl" />
+    <Paint name="ptv_paint_stealth" material="Objects/Vehicles/Greycat/PTV/ptv_paint_stealth.mtl" />
+    <Paint name="ptv_paint_willys" material="Objects/Vehicles/Greycat/PTV/ptv_paint_willys.mtl" />
+  </Paints>
+  <GeomTags>
+    <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
+    <TagsList>
+      <Tags tag="HUD">
+        <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
+        <Tags tag="hostile">
+          <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
+        </Tags>
+        <Tags tag="neutral">
+          <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
+        </Tags>
+      </Tags>
+      <Tags tag="over dragging">
+        <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
+      </Tags>
+      <Tags tag="ItemPreviewA">
+        <geom name="Objects/UI/Vehicles/Greycat/PTV/PTV_UI.cga" material="" />
+      </Tags>
+    </TagsList>
   </GeomTags>
-  
-<!-- For Future Variants -->
-  <Modifications/>
-  
+  <Modifications />
 </Vehicle>

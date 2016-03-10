@@ -28,7 +28,6 @@ Player =
 			health = 100, -- See  Player:SetIsMultiplayer()  for MP value
 			--playerMult = 1.0,
 			--AIMult = 1.0,
-			FallSleepTime = 6.0,
 		},
 
 		Perception =
@@ -37,24 +36,30 @@ Player =
 			sightrange = 50,
 		},
 
-		fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
-		shadowFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
-		clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
+		fileModel = "Objects/Characters/Human/male_v7_cdfs/basemale/light/base_human_male.cdf",
+		shadowFileModel = "Objects/Characters/Human/male_v7_cdfs/basemale/light/base_human_male.cdf",
+		clientFileModel = "Objects/Characters/Human/male_v7_cdfs/basemale/light/base_human_male.cdf",
 
 		-- Loadout descriptor
-		fileItemLoadout = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
+		Loadouts = 
+		{
+			fileLoadout1 = "",
+			fileLoadout2 = "",
+			fileLoadout3 = "",
+			fileLoadout4 = "",
+			fileLoadout5 = "",
+		},
 	},
 
 	PropertiesInstance = 
 	{
-		aibehavior_behaviour = "PlayerIdle",
-
 		esAIProfileCharacter	= "Player",
 		esAIProfileBase			= "Player",
 		esAIProfileCombat		= "<None>",
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+		esAIProfileMissile		= "<None>",
 	},
 
 	physicsParams =
@@ -131,7 +136,7 @@ Player =
 				heightCollider = 1.0,
 				pivot = {x=0.0,y=0.0,z=0.0},
 				size = {x=0.2,y=0.2,z=0.15},
-				viewOffset = {x=0,y=0.15,z=1.30},
+				viewOffset = {x=0,y=0.15,z=1.69},
 				weaponOffset = {x=0.2,y=0.0,z=1.10},
 				viewDownYMod = 0.05,
 				modelOffset = {x=0,y=0,z=0.0},
@@ -328,9 +333,9 @@ function Player:SetIsMultiplayer()
 
 	self.Properties.Damage.health = 100;
 	-- Moon Collider BEGIN arutkowski - Handle setting of new rig (using and/or idiom to approximate ternary operator in Lua)
-	self.Properties.fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
-	self.Properties.shadowFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
-	self.Properties.clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
+	self.Properties.fileModel = "Objects/Characters/Human/male_v7_cdfs/basemale/light/base_human_male.cdf";
+	self.Properties.shadowFileModel = "Objects/Characters/Human/male_v7_cdfs/basemale/light/base_human_male.cdf";
+	self.Properties.clientFileModel = "Objects/Characters/Human/male_v7_cdfs/basemale/light/base_human_male.cdf";
 	-- Moon Collider END
 
 	self.Properties.Damage.fileBodyDamage = "Libs/BodyDamage/BodyDamage_MP.xml";
@@ -418,7 +423,7 @@ end
 
 
 function Player.Client:AlignTo(ang)
-	self.actor:SetAngles(ang);
+	self.entity:SetAngles(ang);
 end
 
 function Player.Client:ClearInventory()
@@ -435,11 +440,6 @@ function Player.Client:OnInit(bIsReload)
 end
 
 function Player:OnInit(bIsReload)
-
---	AI.RegisterWithAI(self.id, AIOBJECT_PLAYER, self.Properties);
-	self:SetAIName(self:GetName());
-	----------------------------------------
-
 --	self:InitSounds();
 
 	self:OnReset(true, bIsReload);
@@ -468,7 +468,7 @@ function Player:OnReset(bFromInit, bIsReload)
 
 	self.Properties.esFaction = "UEE";
 	-- Reset all properties to editor set values.
-	if AI then AI.ResetParameters(self.id, bIsReload, self.Properties, self.PropertiesInstance, nil,self.melee) end;
+--	if AI then AI.ResetParameters(self.id, bIsReload, self.Properties, self.PropertiesInstance, nil,self.melee) end;
 --	AI.ChangeParameter(self.id, AIPARAM_SPECIES, 0);
 
 	--g_SignalData.fValue = 20;

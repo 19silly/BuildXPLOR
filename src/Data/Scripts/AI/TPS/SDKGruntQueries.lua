@@ -52,8 +52,9 @@ function AI.TacticalPositionManager.SDKGrunt:OnInit()
 				max_distance_to_attentionTarget = 15,
 				isInNavigationMesh = true,
 			},
-			Weights =	-- must be present, even if empty
+			Weights =
 			{
+				random = 1.0
 			}
 		}
 	});
@@ -76,8 +77,9 @@ function AI.TacticalPositionManager.SDKGrunt:OnInit()
 				max_distance_to_puppet = 10,
 				isInNavigationMesh = true,
 			},
-			Weights =	-- must be present, even if empty
+			Weights =
 			{
+				random = 1.0
 			}
 		},
 		{
@@ -131,8 +133,9 @@ function AI.TacticalPositionManager.SDKGrunt:OnInit()
 				hasShootingPosture_to_attentionTarget = true,
 				min_distance_to_attentionTarget = 5,
 			},
-			Weights =	-- must be present, even if empty
+			Weights =
 			{
+				distance_to_puppet = -1.0
 			},
 		}
 	});
@@ -150,8 +153,9 @@ function AI.TacticalPositionManager.SDKGrunt:OnInit()
 				min_distance_to_attentionTarget = 5,
 				max_distance_to_puppet = 10,
 			},
-			Weights =	-- must be present, even if empty
+			Weights =
 			{
+				distance_to_puppet = -1.0
 			},
 		}
 	});
@@ -262,6 +266,24 @@ function AI.TacticalPositionManager.SDKGrunt:OnInit()
 			Weights =
 			{
 				distance_to_puppet = -1.0,
+			},
+		},
+	});
+
+	AI.RegisterTacticalPointQuery({
+		Name = "SDK_Grunt_DefendArea_RandomPointAroundRefPoint",
+		{
+			Generation =
+			{
+				grid_around_referencePoint = 10.0
+			},
+			Conditions =
+			{
+				isInNavigationMesh = true
+			},
+			Weights =
+			{
+				random = 1.0
 			},
 		},
 	});

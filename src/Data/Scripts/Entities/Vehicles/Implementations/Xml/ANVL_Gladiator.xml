@@ -1,10 +1,11 @@
 <Vehicle name="ANVL_Gladiator" category="StarFighter" displayname="Anvil Gladiator" classname="Class 2" id="idVehicleClass" HudPaletteScheme="ANVL" requiredItemTags="flightReady" itemPortTags="ANVL_Gladiator">
+  <DamageTech resolution="256.0, 256.0" />
   <Shield shieldMesh="Objects/Spaceships/Ships/ANVL/Gladiator/anvl_gladiator_shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
       <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
       <DamageMultiplier damageType="melee" multiplier="0" />
@@ -19,9 +20,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <DamageBehavior class="Effect">
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>
+              </DamageBehavior>-->
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -47,28 +48,14 @@
       </DamagesGroup>
     </DamagesGroups>
   </Damages>
-	
-	<!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
-	<!-- Modes:     gun, missile, pilot, eject, death     -->
-	<Cameras>
-		<Camera type="missile" attachPoint="" cameraOffset="0,17.5,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
-		<Camera type="eject" attachPoint="" cameraOffset="0,5,2" filename="Cameras/eject.xml" />
-		<Camera type="death" attachPoint="" cameraOffset="0,0,0" filename="Cameras/death.xml" />
-		<Camera type="gun" attachPoint="hardpoint_class_2_right_wing" cameraOffset="2,0.5,-0.1" filename="Cameras/gun.xml" />
-		<Camera type="gun" attachPoint="hardpoint_class_2_left_wing" cameraOffset="-2,0.5,-0.1" filename="Cameras/gun.xml" />
-		<Camera type="gun" attachPoint="hardpoint_turret_center" cameraOffset="0,0,0.1" cameraRotationOffset="0,-90,0" filename="Cameras/gun.xml" />
-		<Camera type="pilot" attachPoint="" cameraOffset="-0.01,6,1.2" cameraRotationOffset="0,30,180" filename="Cameras/pilot.xml" />
-		<!-- Rear Facing Pilot Cam -->
-	</Cameras>
-	
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
     <Part name="ANVL_Gladiator" class="Animated" mass="26000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
-      <Animated filename="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" filenameDestroyed="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" id="idShipGeometry" />
+      <Animated filename="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" filenameDestroyed="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" id="idShipGeometry" damageMapFlag="1" damageMapScale="1.0, 1.0" damageMapOffset="0.0,0.0"/>
       <Parts>
-        <Part name="nose" class="AnimatedJoint" damageMax="900">
+        <Part name="nose" class="AnimatedJoint" damageMax="1450">
           <DamageBehaviors>
             <DamageBehavior class="DetachPart" damageRatioMin="1">
               <DetachPart>
@@ -80,7 +67,7 @@
             </DamageBehavior>
           </DamageBehaviors>
           <Parts>
-            <Part name="shield_generator_cover" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
+            <Part name="shield_generator_cover" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
               <Effects>
                 <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.142673,-0.0489336,-0.0228415" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m057" />
                 <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.212094,0.96938,0.0800104" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m058" />
@@ -89,9 +76,9 @@
                 <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.949788,0.503371,0.0064386" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m061" />
               </Effects>
             </Part>
-            <Part name="cockpitbay_outerdoor_left" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="-1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-            <Part name="cockpitbay_outerdoor_right" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-            <Part name="body" class="AnimatedJoint" damageMax="1000">
+            <Part name="cockpitbay_outerdoor_left" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="-1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+            <Part name="cockpitbay_outerdoor_right" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+            <Part name="body" class="AnimatedJoint" damageMax="1550">
               <Effects>
                 <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-6.21068,-3.52242,-0.872327" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m010" />
                 <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-6.20545,-2.83956,-0.69794" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m011" />
@@ -142,76 +129,76 @@
                 <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.381147,2.68308,-2.48131" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m056" />
               </Effects>
               <Parts>
-                <Part name="amunition_hatch_right" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-                <Part name="amunition_hatch_left" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="-1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-                <Part name="engine_cover_left" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
+                <Part name="amunition_hatch_right" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="amunition_hatch_left" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="-1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="engine_cover_left" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
                   <Effects>
                     <DetachFx joint="engine_cover_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.391468,2.36835,-0.0962338" rot_offset="0.0,1.0,0.0" helperID="engine_cover_left_SQUIB_.3m064" />
                     <DetachFx joint="engine_cover_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.350992,1.47708,0.00607147" rot_offset="0.0,1.0,0.0" helperID="engine_cover_left_SQUIB_.3m066" />
                     <DetachFx joint="engine_cover_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.557286,1.74229,-0.187163" rot_offset="0.0,1.0,0.0" helperID="engine_cover_left_SQUIB_.3m067" />
-                    <DetachFx joint="engine_cover_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0317358,-0.531611,0.186895" rot_offset="0.117122,0.0343931,0.992522" helperID="engine_cover_left_PFX_DetachFX_explode_8m_Flash" />
+                    <DetachFx joint="engine_cover_left" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0317358,-0.531611,0.186895" rot_offset="0.117122,0.0343931,0.992522" helperID="engine_cover_left_PFX_DetachFX_explode_8m_Flash" />
                   </Effects>
                 </Part>
-                <Part name="engine_cover_right" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
+                <Part name="engine_cover_right" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
                   <Effects>
                     <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.356278,2.34974,-0.00303223" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m068" />
                     <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.54373,2.20481,-0.178848" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m071" />
                     <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.652824,1.37646,-0.134737" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m072" />
                     <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0706842,1.94896,0.0709082" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m069" />
                     <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.392148,1.42799,0.00207459" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m070" />
-                    <DetachFx joint="engine_cover_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0375385,-0.53161,0.186895" rot_offset="0.242091,-0.32646,0.913682" helperID="engine_cover_right_PFX_DetachFX_explode_8m_Flash" />
+                    <DetachFx joint="engine_cover_right" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0375385,-0.53161,0.186895" rot_offset="0.242091,-0.32646,0.913682" helperID="engine_cover_right_PFX_DetachFX_explode_8m_Flash" />
                   </Effects>
                 </Part>
-                <Part name="sidefin_left" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="sidefin_left" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="sidefin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.30254,-0.589388,-0.244202" rot_offset="0.0,1.0,0.0" helperID="sidefin_left_SQUIB_.3m038" />
                     <DetachFx joint="sidefin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.30256,0.564472,-0.179586" rot_offset="0.0,1.0,0.0" helperID="sidefin_left_SQUIB_.3m039" />
                     <DetachFx joint="sidefin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.28383,-0.00852112,-0.237073" rot_offset="0.0,1.0,0.0" helperID="sidefin_left_SQUIB_.3m040" />
-                    <DetachFx joint="sidefin_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="1.0439,0.26211,-0.09064" rot_offset="0.0310063,0.607104,-0.794017" helperID="sidefin_left_PFX_DetachFX_explode_2m_Fireless037" />
+                    <DetachFx joint="sidefin_left" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="1.0439,0.26211,-0.09064" rot_offset="0.0310063,0.607104,-0.794017" helperID="sidefin_left_PFX_DetachFX_explode_2m_Fireless037" />
                   </Effects>
                 </Part>
-                <Part name="tailfin_left" class="AnimatedJoint" damageMax="75" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="tailfin_left" class="AnimatedJoint" damageMax="175" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="tailfin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.416135,-1.2006,1.09971" rot_offset="0.0,1.0,0.0" helperID="tailfin_left_SQUIB_.3m058" />
                     <DetachFx joint="tailfin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.403617,0.232925,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_left_SQUIB_.3m059" />
-                    <DetachFx joint="tailfin_left" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-0.847166,2.58713,0.0564136" rot_offset="0.504163,-0.521872,0.688091" helperID="tailfin_left_PFX_DetachFX_sparks_2m_once_fixed003" />
-                    <DetachFx joint="tailfin_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.769943,2.58713,0.0564136" rot_offset="0.684345,-0.439316,0.581957" helperID="tailfin_left_PFX_DetachFX_explode_2m_Fireless034" />
+                    <DetachFx joint="tailfin_left" partName="body" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-0.847166,2.58713,0.0564136" rot_offset="0.504163,-0.521872,0.688091" helperID="tailfin_left_PFX_DetachFX_sparks_2m_once_fixed003" />
+                    <DetachFx joint="tailfin_left" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.769943,2.58713,0.0564136" rot_offset="0.684345,-0.439316,0.581957" helperID="tailfin_left_PFX_DetachFX_explode_2m_Fireless034" />
                     <DetachFx joint="tailfin_left" squibPhysical="40" squibEnergy="40" squibRadius=".8" pos_offset="0.403617,-0.470499,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_left_SQUIB_.8m060" />
                   </Effects>
                   <Parts>
                     <Part name="tailfin_left_rudder_control" class="AnimatedJoint">
                       <Parts>
-                        <Part name="tailfin_left_rudder" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                        <Part name="tailfin_left_rudder" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                           <Effects>
-                            <DetachFx joint="tailfin_left_rudder" partName="tailfin_left_rudder_control" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.0940594,-0.252107,0.134979" rot_offset="0.138172,-0.826106,0.546312" helperID="tailfin_left_rudder_PFX_DetachFX_explode_2m_Fireless035" />
+                            <DetachFx joint="tailfin_left_rudder" partName="tailfin_left_rudder_control" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.0940594,-0.252107,0.134979" rot_offset="0.138172,-0.826106,0.546312" helperID="tailfin_left_rudder_PFX_DetachFX_explode_2m_Fireless035" />
                           </Effects>
                         </Part>
                       </Parts>
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="sidefin_right" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="sidefin_right" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="sidefin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.30256,-0.0104651,-0.160861" rot_offset="0.0,1.0,0.0" helperID="sidefin_right_SQUIB_.3m042" />
                     <DetachFx joint="sidefin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.30253,0.668767,-0.264561" rot_offset="0.0,1.0,0.0" helperID="sidefin_right_SQUIB_.3m043" />
                     <DetachFx joint="sidefin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.30254,-0.610906,-0.247439" rot_offset="0.0,1.0,0.0" helperID="sidefin_right_SQUIB_.3m041" />
-                    <DetachFx joint="sidefin_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.551291,0.262084,-0.0906403" rot_offset="0.0310063,0.607104,-0.794017" helperID="sidefin_right_PFX_DetachFX_explode_2m_Fireless" />
+                    <DetachFx joint="sidefin_right" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.551291,0.262084,-0.0906403" rot_offset="0.0310063,0.607104,-0.794017" helperID="sidefin_right_PFX_DetachFX_explode_2m_Fireless" />
                   </Effects>
                 </Part>
-                <Part name="tailfin_right" class="AnimatedJoint" damageMax="75" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="tailfin_right" class="AnimatedJoint" damageMax="175" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="tailfin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.42077,-1.2006,1.09971" rot_offset="0.0,1.0,0.0" helperID="tailfin_right_SQUIB_.3m061" />
                     <DetachFx joint="tailfin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.433289,0.232925,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_right_SQUIB_.3m062" />
-                    <DetachFx joint="tailfin_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.890454,2.58713,0.0564133" rot_offset="0.684344,-0.439316,0.581957" helperID="tailfin_right_PFX_DetachFX_explode_2m_Fireless032" />
-                    <DetachFx joint="tailfin_right" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0.81323,2.58713,0.0564133" rot_offset="0.504162,-0.521872,0.688091" helperID="tailfin_right_PFX_DetachFX_sparks_2m_once_fixed002" />
+                    <DetachFx joint="tailfin_right" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.890454,2.58713,0.0564133" rot_offset="0.684344,-0.439316,0.581957" helperID="tailfin_right_PFX_DetachFX_explode_2m_Fireless032" />
+                    <DetachFx joint="tailfin_right" partName="body" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0.81323,2.58713,0.0564133" rot_offset="0.504162,-0.521872,0.688091" helperID="tailfin_right_PFX_DetachFX_sparks_2m_once_fixed002" />
                     <DetachFx joint="tailfin_right" squibPhysical="40" squibEnergy="40" squibRadius=".8" pos_offset="-0.433289,-0.470499,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_right_SQUIB_.8m063" />
                   </Effects>
                   <Parts>
                     <Part name="tailfin_right_rudder_control" class="AnimatedJoint">
                       <Parts>
-                        <Part name="tailfin_right_rudder" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                        <Part name="tailfin_right_rudder" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                           <Effects>
-                            <DetachFx joint="tailfin_right_rudder" partName="tailfin_right_rudder_control" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.0473758,-0.252109,0.13498" rot_offset="0.138171,-0.826106,0.546312" helperID="tailfin_right_rudder_PFX_DetachFX_explode_2m_Fireless033" />
+                            <DetachFx joint="tailfin_right_rudder" partName="tailfin_right_rudder_control" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.0473758,-0.252109,0.13498" rot_offset="0.138171,-0.826106,0.546312" helperID="tailfin_right_rudder_PFX_DetachFX_explode_2m_Fireless033" />
                           </Effects>
                         </Part>
                       </Parts>
@@ -232,7 +219,7 @@
                     <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.145831,0.662274,-0.558162" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m055" />
                     <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.407089,0.540109,-0.458391" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m056" />
                     <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.957747,-0.305928,-0.05966" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m057" />
-                    <DetachFx joint="tail" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.338505,-0.413047,0.394384" rot_offset="0.00531395,-0.8142,-0.580561" helperID="tail_PFX_DetachFX_explode_2m_Fireless036" />
+                    <DetachFx joint="tail" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.338505,-0.413047,0.394384" rot_offset="0.00531395,-0.8142,-0.580561" helperID="tail_PFX_DetachFX_explode_2m_Fireless036" />
                     <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-1.32302,0.144482,0.0485266" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.7m049" />
                     <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="1.44858,0.48634,0.117239" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.7m052" />
                   </Effects>
@@ -260,7 +247,7 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="wing_right" class="AnimatedJoint" damageMax="575" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="wing_right" class="AnimatedJoint" damageMax="900" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.0,0.0,0.0" rot_offset="0.0,1.0,0.0" helperID="wing_right_PFX_DetachFX_explode_2m_Fireless028" />
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.728292,-2.35706,0.346599" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m027" />
@@ -272,24 +259,24 @@
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.37058,-0.930938,0.11013" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m035" />
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.116376,-1.97506,0.0464127" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m036" />
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.0788001,-3.03159,0.00508606" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m037" />
-                    <DetachFx joint="wing_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.883356,-0.484896,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_explode_2m_Fireless030" />
-                    <DetachFx joint="wing_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0429321,-2.54022,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_explode_8m_Flash002" />
-                    <DetachFx joint="wing_right" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="0.00332642,-2.51043,0.408469" rot_offset="0.937904,0.0695314,-0.339856" helperID="wing_right_PFX_DetachFX_sparks_1m_loop_fixed002" />
-                    <DetachFx joint="wing_right" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-0.353279,-1.51363,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_sparks_2m_once_fixed002" />
+                    <DetachFx joint="wing_right" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.883356,-0.484896,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_explode_2m_Fireless030" />
+                    <DetachFx joint="wing_right" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0429321,-2.54022,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_explode_8m_Flash002" />
+                    <DetachFx joint="wing_right" partName="body" effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="0.00332642,-2.51043,0.408469" rot_offset="0.937904,0.0695314,-0.339856" helperID="wing_right_PFX_DetachFX_sparks_1m_loop_fixed002" />
+                    <DetachFx joint="wing_right" partName="body" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-0.353279,-1.51363,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_sparks_2m_once_fixed002" />
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.728292,-3.65644,0.163809" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.7m026" />
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.237901,-1.63614,0.39716" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.7m030" />
                     <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-2.29919,0.853607,0.393987" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.7m033" />
                   </Effects>
                   <Parts>
-                    <Part name="wing_right_tip" class="AnimatedJoint" damageMax="200" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                    <Part name="wing_right_tip" class="AnimatedJoint" damageMax="425" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                       <Effects>
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.35091,0.72185,0.904493" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m023" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.22937,0.930949,1.15921" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m021" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.22896,0.142977,1.16018" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m020" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.22811,-0.6598,1.19481" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m019" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.35151,-0.773844,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m025" />
-                        <DetachFx joint="wing_right_tip" partName="wing_right" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-1.21701,0.556625,1.18459" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_tip_PFX_DetachFX_explode_2m_Fireless031" />
-                        <DetachFx joint="wing_right_tip" partName="wing_right" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-1.21701,-0.787474,1.18459" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_tip_PFX_DetachFX_sparks_2m_once_fixed002" />
+                        <DetachFx joint="wing_right_tip" partName="wing_right" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-1.21701,0.556625,1.18459" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_tip_PFX_DetachFX_explode_2m_Fireless031" />
+                        <DetachFx joint="wing_right_tip" partName="wing_right" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-1.21701,-0.787474,1.18459" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_tip_PFX_DetachFX_sparks_2m_once_fixed002" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-1.31043,1.48804,0.989388" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.5m022" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-1.35151,-0.025731,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.5m024" />
                         <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-1.29988,-1.44762,1.01207" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.5m018" />
@@ -322,10 +309,10 @@
                   </Parts>
                 </Part>
                 <Part name="bombbay" class="AnimatedJoint" />
-                <Part name="cockpitbay_gunnerdoor" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,0,-1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-                <Part name="hull_avionicsaccess_panel" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-                <Part name="hull_fuelaccess_panel_left" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
-                <Part name="hull_fuelaccess_panel_right" class="AnimatedJoint" damageMax="10" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="cockpitbay_gunnerdoor" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,0,-1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hull_avionicsaccess_panel" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hull_fuelaccess_panel_left" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hull_fuelaccess_panel_right" class="AnimatedJoint" damageMax="40" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
                 <Part name="hardpoint_engine_left" class="ItemPort">
                   <ItemPort minsize="2" maxsize="2" flags="main rear left" display_name="Main Thruster">
                     <Pitch min="-10" max="10" />
@@ -516,7 +503,7 @@
                     <Pitch min="-10" max="45" />
                   </ItemPort>
                 </Part>
-                <Part name="bombbay_outerdoor_left" class="AnimatedJoint" damageMax="375" detachRatio="1" detachBaseForce="-0.5,0,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="bombbay_outerdoor_left" class="AnimatedJoint" damageMax="800" detachRatio="1" detachBaseForce="-0.5,0,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Parts>
                     <Part name="bombbay_piston_left" class="AnimatedJoint" />
                     <Part name="hardpoint_torpedorack_left" class="ItemPort">
@@ -528,7 +515,7 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="bombbay_outerdoor_right" class="AnimatedJoint" damageMax="375" detachRatio="1" detachBaseForce="0.5,0,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="bombbay_outerdoor_right" class="AnimatedJoint" damageMax="800" detachRatio="1" detachBaseForce="0.5,0,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Parts>
                     <Part name="bombbay_pistons" class="AnimatedJoint" />
                     <Part name="hardpoint_torpedorack_right" class="ItemPort">
@@ -540,7 +527,7 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="core_bottomshield" class="AnimatedJoint" damageMax="575" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="core_bottomshield" class="AnimatedJoint" damageMax="900" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.63125,-1.08997,-0.223894" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m077" />
                     <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.19017,1.58466,-0.20388" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m079" />
@@ -553,10 +540,10 @@
                     <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.95244,-0.192299,-0.223894" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m075" />
                   </Effects>
                   <Parts>
-                    <Part name="core_topshield" class="AnimatedJoint" damageMax="575" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                    <Part name="core_topshield" class="AnimatedJoint" damageMax="900" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
                   </Parts>
                 </Part>
-                <Part name="wing_left" class="AnimatedJoint" damageMax="575" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                <Part name="wing_left" class="AnimatedJoint" damageMax="900" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                   <Effects>
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.2971,-0.877559,0.262717" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m008" />
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.27462,-1.42165,0.309994" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m009" />
@@ -568,10 +555,10 @@
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.103017,-1.835,0.0173795" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m015" />
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.490099,-0.356098,0.0828744" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m016" />
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.59152,-0.0980615,0.175785" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m017" />
-                    <DetachFx joint="wing_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.338137,-1.43456,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_explode_2m_Fireless029" />
-                    <DetachFx joint="wing_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="1.6772,0.379074,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_explode_8m_Flash001" />
-                    <DetachFx joint="wing_left" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="1.67061,0.329958,0.408469" rot_offset="-0.663801,0.705762,-0.247524" helperID="wing_left_PFX_DetachFX_sparks_1m_loop_fixed001" />
-                    <DetachFx joint="wing_left" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0.975853,-0.468845,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_sparks_2m_once_fixed001" />
+                    <DetachFx joint="wing_left" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.338137,-1.43456,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_explode_2m_Fireless029" />
+                    <DetachFx joint="wing_left" partName="body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="1.6772,0.379074,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_explode_8m_Flash001" />
+                    <DetachFx joint="wing_left" partName="body" effect="Damage/Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="1.67061,0.329958,0.408469" rot_offset="-0.663801,0.705762,-0.247524" helperID="wing_left_PFX_DetachFX_sparks_1m_loop_fixed001" />
+                    <DetachFx joint="wing_left" partName="body" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0.975853,-0.468845,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_sparks_2m_once_fixed001" />
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.29779,-0.364955,0.260347" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m" />
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.2851,0.0383261,0.232959" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m001" />
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-2.20424,0.173803,0.063493" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.5m002" />
@@ -583,7 +570,7 @@
                     <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="1.2617,-0.245149,0.465721" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.5m009" />
                   </Effects>
                   <Parts>
-                    <Part name="wing_left_tip" class="AnimatedJoint" damageMax="200" detachRatio="1" detachBaseForce="0,0,-1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                    <Part name="wing_left_tip" class="AnimatedJoint" damageMax="425" detachRatio="1" detachBaseForce="0,0,-1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
                       <Effects>
                         <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.35151,0.727629,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m006" />
                         <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.25269,-0.700948,1.20944" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m002" />
@@ -591,8 +578,8 @@
                         <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.22937,0.930949,1.15921" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m004" />
                         <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.27379,1.48055,1.0661" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m005" />
                         <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.34319,-1.48804,0.920617" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m001" />
-                        <DetachFx joint="wing_left_tip" partName="wing_left" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="1.24516,0.0880374,1.19032" rot_offset="0.996701,0.0202225,-0.0785989" helperID="wing_left_tip_PFX_DetachFX_explode_2m_Fireless" />
-                        <DetachFx joint="wing_left_tip" partName="wing_left" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="1.32816,-0.647129,1.13825" rot_offset="-0.785835,-0.153116,0.599182" helperID="wing_left_tip_PFX_DetachFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tip" partName="wing_left" effect="Damage/Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="1.24516,0.0880374,1.19032" rot_offset="0.996701,0.0202225,-0.0785989" helperID="wing_left_tip_PFX_DetachFX_explode_2m_Fireless" />
+                        <DetachFx joint="wing_left_tip" partName="wing_left" effect="Damage/Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="1.32816,-0.647129,1.13825" rot_offset="-0.785835,-0.153116,0.599182" helperID="wing_left_tip_PFX_DetachFX_metal_1m_loop_trail" />
                         <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="1.22937,0.216574,1.15921" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.5m007" />
                       </Effects>
                       <Parts>
@@ -639,6 +626,13 @@
                 </Types>
               </ItemPort>
             </Part>
+            <Part name="landingpad_helper" class="ItemPort">
+             <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+              <Types>
+                <Type type="LandingSystem"/>
+              </Types>
+             </ItemPort>
+            </Part>
             <Part name="hardpoint_shield_generator" class="ItemPort">
               <ItemPort minsize="2" maxsize="4" flags="" display_name="Shield Slot">
                 <Types>
@@ -662,7 +656,9 @@
 					</AttachmentPoints>
 				</ItemPort>
 			</Part>
-            <Part name="hardpoint_class_4_center" class="ItemPort" />
+						<Part name="hardpoint_class_4_center" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1"/>
+						</Part>
             <Part name="gunner_handles" class="AnimatedJoint">
               <Parts>
                 <Part name="gunner_trigger_right" class="AnimatedJoint" />
@@ -787,19 +783,13 @@
         </Seats>
       </Enter>
     </Action>
-    <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears landingDamages="500" altitudeToRetractGears="12" blockPartRotation="hardpoint_class_4_nose" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
-    </Action>
   </Actions>
   <!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_exit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -908,6 +898,7 @@
                 <ItemPort part="hardpoint_fuel_intake_left" />
                 <ItemPort part="hardpoint_fuel_intake_right" />
                 <ItemPort part="hardpoint_fuel_tank" />
+                <ItemPort part="landingpad_helper" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1030,20 +1021,10 @@
 		<Tab name="Power" />
 		<Tab name="Shield" />
 	</HUDAccess>
-      <Screens>
-        <Screen name="Fixed UI" element="ShipInterface" screen="GladiatorInterfaceScreen" number="1">
-          <Container name="Thruster Screen" helper="cockpit_screen_02" container="ThrusterStatusScreen" scale="0.5" y_offset="-0.005" />
-          <Container name="Fuel Screen" helper="cockpit_screen_04" container="FuelStatusScreen" scale="0.5" y_offset="-0.005" />
-		  <Container name="HUDScreen" helper="UI_Helper" container="HUDScreen" z_offset="-0.05" y_offset="0.24" scale="0.8" />
-		  <Container name="MissileWarning" helper="cockpit_miniscreen_1" container="AnnunciatorMissileWarning" y_offset="-0.005" scale="0.4" />
-		  <Container name="CollisionWarning" helper="cockpit_miniscreen_2" container="AnnunciatorCollisionWarning" y_offset="-0.005" scale="0.4" />
-		  <Container name="ShieldsDownWarning" helper="cockpit_miniscreen_3" container="AnnunciatorShieldsDownWarning" y_offset="-0.005" scale="0.4" />
-		  <Container name="GForceWarning" helper="cockpit_miniscreen_4" container="AnnunciatorGForceWarning" y_offset="-0.005" scale="0.4" />
-        </Screen>
-      </Screens>
+    <ScreensRecord record="Screens_ANVL_Gladiator_Pilot" />
     </Seat>
     <!-- Gunner's Seat -->
-    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-90,0,-180" lookMax="90,0,180" isHUDSupported="1" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimalturret" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Gunner">
+    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="copilot_sit_pos" exitHelper="copilot_exit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-90,0,-180" lookMax="90,0,180" isHUDSupported="1" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimalturret" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Gunner">
       <!-- Begin views for this seat-->
       <Views defaultFirstPerson="0" defaultThirdPerson="3">
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-180" rotationMax="50,0,180" motionBlur="0">
@@ -1161,15 +1142,7 @@
 		<Tab name="Power" />
 		<Tab name="Shield" />
 	</HUDAccess>
-      <Screens>
-        <Screen name="Turret UI" element="ShipInterface" screen="TempTurretInterfaceScreen" number="1">
-          <Container name="LeftMFD" itemPort="hardpoint_turret_center" container="LeftMFD" helper="gunner_screen_1" z_offset="-0.1" y_offset="-0.005" scale="0.33" />
-          <Container name="HideRightMFD" itemPort="hardpoint_turret_center" container="RightMFD" helper="gunner_screen_1" x_offset="0.0" y_offset="0.1" scale="0.01" />
-          <Container name="TargetInfo" itemPort="hardpoint_turret_center" container="TargetHoloScreen" helper="gunner_screen_1" z_offset="0.005" y_offset="-0.005" x_offset="0.03" scale="0.2" />
-          <Container name="Radar2D" itemPort="hardpoint_turret_center" container="Radar2DScreen" helper="gunner_screen_1" z_offset="0.005" y_offset="-0.005" x_offset="-0.0325" scale="0.2" />
-
-        </Screen>
-      </Screens>
+    <ScreensRecord record="Screens_ANVL_Gladiator_Gunner" />
     </Seat>
   </Seats>
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
@@ -1187,29 +1160,20 @@
       </SoundParams>
       <Animations engine="Intake_Fans" />
       <Contrails>
-        <Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
-        <Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
-        <Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
-        <Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+        <!--<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
+        <!--<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
+        <!--<Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />-->
+        <!--<Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />-->
       </Contrails>
     </Spaceship>
   </MovementParams>
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
-  <Particles mfxRow="vfx_Anvil_Hornet">
-    <!--
-	 <Exhaust insideWater="0" outsideWater="1">
-	 <Helpers>
-		<Helper value="main_engine_exhaust"/>
-	 </Helpers>
-	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
-	</Exhaust>
-	-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
-      <!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -1263,7 +1227,6 @@
 			
 	-->
   <Animations>
-    <Action name="Landing_Gear" state="Deploy" />
     <Action name="Canopy" state="Open" />
     <!-- Action name="Wings" state="ROM" / -->
   </Animations>
@@ -1289,10 +1252,6 @@
 	-->
   <Attachments>
     <!--		<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" geometry="Objects/Spaceships/Ships/ANVL/Hornet/F7C/pilot_umbilical.chr" scopeContext="Umbilical"/> -->
-    <Attachment name="landing_gear_front" helper="landing_gear_front_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_Front.cga" scopeContext="LandingGearFront" />
-    <Attachment name="landing_gear_left_wing" helper="landing_gear_left_wing_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_L_Wing.cga" scopeContext="LandingGearLeft" />
-    <Attachment name="landing_gear_right_wing" helper="landing_gear_right_wing_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_R_Wing.cga" scopeContext="LandingGearRight" />
-    <Attachment name="landing_gear_rear" helper="landing_gear_rear_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_Rear.cga" scopeContext="LandingGearRear" />
     <!--Attachment name="headlight" helper="Headlight" archetype="!test_LightsArchetypes.groupname.light" orientation="0,0,90"/-->
     <!--Attachment name="headlightFlare" helper="Headlight" light="Headlight_Flare" orientation="0,0,90" /-->
   </Attachments>

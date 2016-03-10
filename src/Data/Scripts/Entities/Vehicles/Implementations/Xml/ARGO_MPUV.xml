@@ -4,7 +4,7 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 -->
-<Vehicle name="MPUV_Utility_Vehicle" category="Star Fighter" displayname="ARGO MPUV" classname="Class 2" id="idVehicleClass" dockingclass="2" HudPaletteScheme="ANVL">
+<Vehicle name="ARGO_MPUV" category="Star Fighter" displayname="ARGO MPUV" classname="Class 2" id="idVehicleClass" dockingclass="2" HudPaletteScheme="ANVL" itemPortTags="ARGO_MPUV_Base">
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
@@ -12,7 +12,7 @@
   <Signatures>
     <Signature type="CrossSection" value="100" />
   </Signatures>
-  <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+  <Damages  collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
       <DamageMultiplier damageType="bullet" multiplier="1" />
       <DamageMultiplier damageType="melee" multiplier="0" />
@@ -26,9 +26,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <DamageBehavior class="Effect">
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>
+              </DamageBehavior>-->
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -58,8 +58,8 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-    <Part name="HULL" class="Animated" damageMax="300" mass="16000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
-      <Animated filename="Objects\Spaceships\Ships\ARGO\MPUV_Utility_Vehicle\MPUV_Utility_Vehicle.cga" filenameDestruction="Objects\Spaceships\Ships\ARGO\MPUV_Utility_Vehicle\MPUV_Utility_Vehicle.cga" id="idShipGeometry" />
+    <Part name="HULL" class="Animated" damageMax="300" mass="6000" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
+      <Animated filename="Objects\Spaceships\Ships\ARGO\MPUV_Utility_Vehicle\ARGO_MPUV.cga" filenameDestruction="Objects\Spaceships\Ships\ARGO\MPUV_Utility_Vehicle\ARGO_MPUV.cga" id="idShipGeometry" />
 	  <Parts>
 	  
 		<!-- RIGHT REAR ENGINE -->
@@ -88,147 +88,252 @@
 			
 		<!-- MIDDLE RIGHT REAR ENGINE -->
 			<Part name="hardpoint_engine_middle_right" class="ItemPort">
-				<ItemPort minsize="1" maxsize="4" flags="">
+				<ItemPort minsize="1" maxsize="4" flags="right">
 					<Types>
 						<Type type="MainThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="0, -8.0, 0.0" />  -->
+						<Fixup pos="0.87, -2.86, 0" />
 					</OptimalStates>
 				</ItemPort>
 			</Part>	
 			
 		<!-- MIDDLE LEFT REAR ENGINE -->
 			<Part name="hardpoint_engine_middle_left" class="ItemPort">
-				<ItemPort minsize="1" maxsize="4" flags="">
+				<ItemPort minsize="1" maxsize="4" flags="left">
 					<Types>
 						<Type type="MainThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="0, -8.0, 0.0" />  -->
+						<Fixup pos="-0.87, -2.86, 0" />
 					</OptimalStates>
 				</ItemPort>
 			</Part>	
 		
-		<!-- RIGHT FRONT THRUSTER -->
-			<Part name="hardpoint_thruster_right_front" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />												
+		<!-- RIGHT FRONT MIDDLE THRUSTER -->
+			<Part name="hardpoint_thruster_front_right_middle" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" >											
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<Fixup pos="1.65, 0.24, 2.3" />  
+						<Fixup pos="4.22, 1.11, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>	
 			
-		<!-- LEFT FRONT THRUSTER -->
-			<Part name="hardpoint_thruster_left_front" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />													
+		<!-- RIGHT FRONT TOP THRUSTER -->
+			<Part name="hardpoint_thruster_front_right_top" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<Fixup pos="-1.65, 0.24, 2.3" />  
+						<Fixup pos="4.22, 1.11, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>
 			
-		<!-- RIGHT REAR THRUSTER -->
-			<Part name="hardpoint_thruster_right_rear" class="ItemPort">
+		<!-- RIGHT FRONT FRONT THRUSTER -->
+			<Part name="hardpoint_thruster_front_right_front" class="ItemPort">
 				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />														
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="1.2, -6.25, 0.3" />  -->
+						<Fixup pos="4.22, 1.43, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>	
 			
-		<!-- LEFT REAR THRUSTER -->
-			<Part name="hardpoint_thruster_left_rear" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />													
+		<!-- RIGHT FRONT BOTTOM THRUSTER -->
+			<Part name="hardpoint_thruster_front_right_bottom" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="1.2, -6.25, 0.3" />  -->
+						<Fixup pos="4.22, 1.11, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>
 			
-		<!-- TOP FRONT THRUSTER -->
-			<Part name="hardpoint_thruster_top_front" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />											
+		<!-- LEFT FRONT MIDDLE THRUSTER -->
+			<Part name="hardpoint_thruster_front_left_middle" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" >											
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="1.2, -6.25, 0.3" />  -->
-					</OptimalStates> 
-				</ItemPort>
-			</Part>	
-		
-		<!-- TOP REAR THRUSTER -->
-			<Part name="hardpoint_thruster_top_rear" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />												
-					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
-					</Types>
-					<OptimalStates>
-						<!-- <Fixup pos="1.2, -6.25, 0.3" />  -->
+						<Fixup pos="-4.22, 1.11, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>	
 			
-		<!-- BOTTOM FRONT THRUSTER -->
-			<Part name="hardpoint_thruster_bottom_front" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />											
+		<!-- LEFT FRONT TOP THRUSTER -->
+			<Part name="hardpoint_thruster_front_left_top" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="1.2, -6.25, 0.3" />  -->
+						<Fixup pos="-4.22, 1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>
+			
+		<!-- LEFT FRONT FRONT THRUSTER -->
+			<Part name="hardpoint_thruster_front_left_front" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="-4.22, 1.43, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>	
-		
-		<!-- BOTTOM REAR THRUSTER -->
-			<Part name="hardpoint_thruster_bottom_rear" class="ItemPort">
-				<ItemPort minsize="1" maxsize="2" >
-					<Pitch min="-45" max="45" />
-					<Yaw min="-45" max="45" />												
+			
+		<!-- LEFT FRONT BOTTOM THRUSTER -->
+			<Part name="hardpoint_thruster_front_left_bottom" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
-						<!-- <Fixup pos="1.2, -6.25, 0.3" /> --> 
+						<Fixup pos="-4.22, 1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>
+		
+		<!-- RIGHT REAR MIDDLE THRUSTER -->
+			<Part name="hardpoint_thruster_rear_right_middle" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" >											
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>	
+			
+		<!-- RIGHT REAR TOP THRUSTER -->
+			<Part name="hardpoint_thruster_rear_right_top" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>
+			
+		<!-- RIGHT REAR FRONT THRUSTER -->
+			<Part name="hardpoint_thruster_rear_right_front" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>	
+			
+		<!-- RIGHT REAR BOTTOM THRUSTER -->
+		<!-- 	<Part name="hardpoint_thruster_rear_right_bottom" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part> -->
+	
+		<!-- RIGHT REAR BACK THRUSTER -->
+			<Part name="hardpoint_thruster_rear_right_back" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>	
+			
+		<!-- LEFT REAR MIDDLE THRUSTER -->
+			<Part name="hardpoint_thruster_rear_left_middle" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" >											
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="-4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>	
+			
+		<!-- LEFT REAR TOP THRUSTER -->
+			<Part name="hardpoint_thruster_rear_left_top" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="-4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>
+			
+		<!-- LEFT REAR FRONT THRUSTER -->
+			<Part name="hardpoint_thruster_rear_left_front" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="-4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part>	
+			
+		<!-- LEFT REAR BOTTOM THRUSTER -->
+		<!-- 	<Part name="hardpoint_thruster_rear_left_bottom" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >												
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="-4.22, -1.11, 0" />
+					</OptimalStates> 
+				</ItemPort>
+			</Part> -->
+	
+		<!-- LEFT REAR BACK THRUSTER -->
+			<Part name="hardpoint_thruster_rear_left_back" class="ItemPort">
+				<ItemPort minsize="1" maxsize="2" >
+					<Types>
+						<Type type="ManneuverThruster" subtypes="" />
+					</Types>
+					<OptimalStates>
+						<Fixup pos="-4.22, -1.11, 0" />
 					</OptimalStates> 
 				</ItemPort>
 			</Part>	
 					
+					
 		<!-- RIGHT RETRO THRUSTER -->
-			<Part name="hardpoint_thruster_right_retro" class="ItemPort">
+			<Part name="hardpoint_thruster_retro_right" class="ItemPort">
 				<ItemPort minsize="1" maxsize="2" >
 					<Pitch min="-45" max="45" />
 					<Yaw min="-45" max="45" />											
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
 						<!-- <Fixup pos="2, 8, -0.0" />  -->
@@ -237,12 +342,12 @@
 			</Part>	
 
 		<!-- LEFT RETRO THRUSTER -->
-			<Part name="hardpoint_thruster_left_retro"  class="ItemPort">
+			<Part name="hardpoint_thruster_retro_left"  class="ItemPort">
 				<ItemPort minsize="1" maxsize="2" >
 					<Pitch min="-45" max="45" />
 					<Yaw min="-45" max="45" />									
 					<Types>
-						<Type type="ManneuverThruster" subtypes="JointThruster" />
+						<Type type="ManneuverThruster" subtypes="" />
 					</Types>
 					<OptimalStates>
 						<!-- <Fixup pos="-2, 8, -0.0" />  -->
@@ -286,7 +391,7 @@
 			
 		<!-- LEFT WING - RADIATOR -->
 			<Part name="hardpoint_radiator_left" class="ItemPort">
-				<ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Wing Cooler Slot">
+				<ItemPort minsize="1" maxsize="1" flags="invisible"  display_name="Left Wing Cooler Slot">
 					<Types>
 						<Type type="Cooler" subtypes="" />
 					</Types>
@@ -295,7 +400,7 @@
 
 		<!-- RIGHT WING - RADIATOR -->
 			<Part name="hardpoint_radiator_right" class="ItemPort">
-				<ItemPort minsize="1" maxsize="1" flags="left" display_name="Right Wing Cooler Slot">
+				<ItemPort minsize="1" maxsize="1" flags="invisible"  display_name="Right Wing Cooler Slot">
 					<Types>
 						<Type type="Cooler" subtypes="" />
 					</Types>
@@ -339,7 +444,7 @@
 				</Part>			
 			
 		<!-- COUNTERMEASURES	-->
-			<Part name="hardpoint_countermeasure_launcher_left" class="ItemPort">
+<!-- 			<Part name="hardpoint_countermeasure_launcher_left" class="ItemPort">
 				<ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Countermeasure Launcher">
 					<Types>
 						<Type type="WeaponDefensive" subtypes="CountermeasureLauncher_AEGS_Gladius" />
@@ -352,13 +457,13 @@
 						<Type type="WeaponDefensive" subtypes="CountermeasureLauncher_AEGS_Gladius" />
 					</Types>
 				</ItemPort>
-			</Part>
+			</Part> -->
 		
 		<!-- INTERNAL COMPONENTS -->
 			<Part name="hardpoint_powerplant" class="ItemPort">
 				<ItemPort minsize="1" maxsize="2" display_name="Power Plant" displayPos="75,290">
 					<Types>
-						<Type type="PowerPlant" subtypes="Power_AEGS_Gladius" />
+						<Type type="PowerPlant" subtypes="" />
 					</Types>
 				</ItemPort>
 			</Part>
@@ -399,6 +504,16 @@
 					</Types>
 				</ItemPort>
 			</Part>		
+			
+		<!-- LANDING GEAR -->
+			<Part name="landingpad_helper" class="ItemPort">
+				<ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+					<Types>
+						<Type type="LandingSystem"/>
+					</Types>
+				</ItemPort>
+			</Part>
+
 	  </Parts>
     </Part>
   </Parts>
@@ -430,12 +545,6 @@
           <Seat value="SeatDriver" />
         </Seats>
       </Enter>
-    </Action>
-    <Action class="LandingGears">
-      <Activations>
-        <Activation type="OnGroundCollision" />
-      </Activations>
-      <LandingGears animation="Landing_Gear" landingDamages="500" altitudeToRetractGears="8" openState="Retract" closeState="Retract" />
     </Action>
   </Actions>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -556,6 +665,7 @@
                 <ItemPort part="*light" />
                 <ItemPort part="*hardpoint_fuel" />
                 <ItemPort part="hardpoint_cockpit_audio" />
+                <ItemPort part="landingpad_helper" />
               </Items>
             </Settings>
           </SharedItems>
@@ -703,21 +813,18 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="220" maxEngineThrust="180" maxRetroThrust="130" maxDirectionalThrust="110" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0">
-	  <AudioParams engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" dmgBufferDecay="0.2">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="40" maxEngineThrust="40" maxRetroThrust="40" maxDirectionalThrust="40" maxAngularVelocity="30,40,30" maxAngularAcceleration="200,200,200" maxJerk="100.0" maxAngJerk="60.0">
+      <SoundParams>
         <!-- SOUNDS NEED TO BE DONE - REPLACE ME	-->
-		<EngineStartSound sound="" />
-		<EngineRunSound sound="" />
-		<EngineStopSound sound="" />
-		<AmbienceSound sound="Play_SSAM_Orig_M50_Ambient_Interior_Start_Loop" />
-		<PassByLoopSound sound="Play_SSPB_ORIG_M50_Loop" />
-		<PassBySound sound="Play_SSPB_ORIG_M50_800ms_0to100meters" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
-		<DuressSound sound="Play_SSDD_ORIG_M50_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
-	  </AudioParams>
+        <AmbientSound sound="Play_SSAM_Orig_M50_Ambient_Interior_Start_Loop" />
+        <PassByLoopSound sound="Play_SSPB_ORIG_M50_Loop" />
+        <PassBySound sound="Play_SSPB_ORIG_M50_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <DuressSound sound="Play_SSDD_ORIG_M50_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
+      </SoundParams>
       <!-- 
 			<Contrails>
-				<Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
-				<Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed ="25" />
+				<Contrail helper="wing_right_contrail_pos" effect="" ctceffect="" minSpeed ="25" />
+				<Contrail helper="wing_left_contrail_pos" effect="" ctceffect="" minSpeed ="25" />
 			</Contrails>
 			 -->
     </Spaceship>
@@ -725,23 +832,12 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-  <Particles mfxRow="vfx_Anvil_Hornet">
-    <!--
-		<Exhaust insideWater="0" outsideWater="1">
-			<Helpers>
-				<Helper value="main_engine_exhaust"/>
-			</Helpers>
-			<EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-			<EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
-			<EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
-		</Exhaust>
-		-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
-      <!-- 
-			<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
-			 -->
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
@@ -760,7 +856,6 @@
     <!-- 
 		<Action name="Cockpit" state="Enter" />
 		 -->
-    <Action name="Landing_Gear" state="Deploy" />
   </Animations>
   <!-- Vehicle Animations (to be replaced by mannequin)
 	Format is
@@ -815,9 +910,6 @@
 	 -->
   <Attachments>
     <!--<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" filename ="Objects/Spaceships/Anvil_Hornet/pilot_umbilical.chr" scopeContext ="Umbilical"/> -->
-   <!--<Attachment name="landing_gear_front" helper="hardpoint_front_landing_gear" geometry="Objects/Spaceships/Ships/AEGS/LandingGear/Gladius/AEGS_Gladius_LandingGears_Front.chr" scopeContext="LandingGearFront" />
-    <Attachment name="landing_gear_rearleft" helper="hardpoint_rear_landing_gear_left" geometry="Objects/Spaceships/Ships/AEGS/LandingGear/Gladius/AEGS_Gladius_LandingGears_BackLeft.chr" scopeContext="LandingGearLeft" />
-    <Attachment name="landing_gear_rearright" helper="hardpoint_rear_landing_gear_right" geometry="Objects/Spaceships/Ships/AEGS/LandingGear/Gladius/AEGS_Gladius_LandingGears_BackRight.chr" scopeContext="LandingGearRight" /> -->
   </Attachments>
   <GeomTags>
     <geom name="Objects\UI\Ships\AegisDynamics\AEGS_Gladius_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />

@@ -176,6 +176,14 @@ function AreaTrigger:EnteredArea(entity, areaId)
 	end;
 	-- CIG END
 
+	-- CIG BEGIN - Anthony Da Silva (BHVR)
+	-- Do not trigger another event if the trigger is not set per player
+	-- and there is already another player in the area.
+	if self.insideCount > 1 and not self.perPlayer then
+		return;
+	end;
+	-- CIG END
+
 	self:Event_Enter(entity.id);
 end
 
@@ -189,6 +197,14 @@ function AreaTrigger:LeftArea(entity, areaId)
 	if self.inside[entity.id] then 
 		self.inside[entity.id]=nil;
 		self.insideCount=self.insideCount-1;
+	end;
+	-- CIG END
+
+	-- CIG BEGIN - Anthony Da Silva (BHVR)
+	-- Do not trigger another event if the trigger is not set per player
+	-- and there is already another player in the area.
+	if self.insideCount >= 1 and not self.perPlayer then
+		return;
 	end;
 	-- CIG END
 

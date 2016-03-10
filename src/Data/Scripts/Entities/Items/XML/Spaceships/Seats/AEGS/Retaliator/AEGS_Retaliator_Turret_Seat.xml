@@ -6,118 +6,105 @@
     <param name="mountable" 	value="1" />
     <param name="usable"		 	value="0" />
     <param name="arms"			 	value="0" />
-    <!-- FIX ME!!! --><param name="adb" value="hornetLaserGatlingAnims.adb" />
-	<!-- FIX ME!!! --><param name="actionController" value="itemControllerDef.xml" />
+    <param name="scopeContext"		value="Seat" />
+    <param name="adb" value="Items/Seats/Retaliator/AEGS_Retaliator_Turret_Seat_Anims.adb" />
+	<param name="actionController" value="Items/Seats/Retaliator/AEGS_Retaliator_Turret_Seat_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/Retaliator/AEGS_Retaliator_Turret_Seat_HumanAnims.adb" />
+	<MannequinTags>
+		<mannequintag tag="" />
+		<TagsList>
+			<Tags tag="lower" >
+				<mannequintag tag="LowerTurret" />
+			</Tags>
+		</TagsList>
+	</MannequinTags>
     <param name="itemType" value="Seat" />
     <param name="itemSubType" value="Pilot" />
 		<param name="itemDescription" value="" />
     <param name="itemManufactor" value="AEGS" />
     <param name="itemSize" value="1" />
 		<param name="itemTags" value="flightReady" />
-		<!--<param name="requiredPortTags" value="ANVL_Hornet_Base" />-->
 		<param name="itemClass" value="1" />
     <param name="display_name" value="Retaliator Turret Seats" />
   	<vehicleItemStats>
 	</vehicleItemStats>  
   </params>
-    		
-  <geometry>
-    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
-    <!-- default fallback -->
-    <thirdperson name=""/>
-	
-		<!-- TODO
-		<tags tag="Hologram">
-		
-			<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
 
-			<tags tag="ShipHologram">
-				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				
-				<tags tag="inactive">
-					<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				</tags>
-				<tags tag="over dragging">
-					<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				</tags>
-				<tags tag="overCompareValid">
-					<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				</tags>
-				<tags tag="overCompareInvalid">
-					<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				</tags>
-			</tags>
-			
-			<tags tag="ItemList">
-				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				<tags tag="over dragging">
-					<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-				</tags>
-			</tags>	
-			
-			<tags tag="ItemPreviewA">
-				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-			</tags>
-			
-			<tags tag="ItemPreviewB">
-				<thirdperson name="Objects\Spaceships\Turrets\AEGS\Javelin\Flak_Turret\aegs_javelin_flakturret_seat.cga" material=""/>
-			</tags>	
-			
-		</tags>
-		-->
-    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
-    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
+	<geometry>
+			<thirdperson name="Objects/Spaceships/Seats/AEGS/Retaliator/AEGS_Retaliator_Turret_Seat.cga"/>
+			<Tags tag="lower" >
+				<thirdperson name="Objects/Spaceships/Seats/AEGS/Retaliator/AEGS_Retaliator_Lower_Turret_Seat.cga"/>
+			</Tags>
+	</geometry>
 
-  </geometry>
-
-	<Seat name="AEGS_Turret_Seat" mesh="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_turret_seat.cga" enterHelper="" sitHelper="pilot_sit_pos" 
-	updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" 
-	actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1">
+	<Seat name="AEGS_Turret_Seat" enterHelper="turret_enter_pos" sitHelper="turret_sit_pos" exitHelper="turret_exit_pos" postExitHelper="turret_enter_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" actionMap="spaceship_turret" visorType="minimalturret" hasGForceReactions="1" rotates="0">
 		<!-- Begin views for this seat-->
-		<ViewsDefaults defaultFirstPerson="1" defaultThirdPerson="3" />
+		<ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="1" />
 		<Views>
-			<View class="ItemCamera" canRotate="0" hidePlayer="0" itemPortName="turret_base">
-				<ItemCamera/>
-				<!-- for some reason this is required to be here by the camera system -->
-			</View>
-		
-			<!-- TODO: what views do we actually want here? -->
-			<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-				<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-			</View>
-			<View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+			<View class="Cockpit" hidePlayer="0" canRotate="0" rotationMin="-30,0,-180" rotationMax="50,0,180" motionBlur="0">
 				<Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-30" maxPitch="65" />
 			</View>
-			<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
-				<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
-				<CameraEffects minSpeed="102" maxSpeed="280">
-					<FOV maxOffset="20.0f" />
-					<DOF stength="0.25f" offsetLag="0.8f" />
-					<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
-				</CameraEffects>
-			</View>
-			<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
-				<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1"/>
+			<View class="Orbit" canRotate="1" rotationMin="-30,0,-180" rotationMax="50,0,180" rotationInit="-20,0,180" motionBlur="0">
+				<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
 			</View>
 		</Views>
-		
-		<Mannequin tag="HornetPilot" controllerDef="Animations/Mannequin/ADB/Seats/HornetPilot/HornetPilot_ControllerDefs.xml" seatADB="Animations/Mannequin/ADB/Seats/HornetPilot/HornetPilot_Anims.adb" passengerADB="Animations/Mannequin/ADB/Seats/HornetPilot/HornetPilot_HumanAnims.adb" id="idMannequin"/>
-			
+		<Enter>
+			<State animation="SeatDriver" state="Enter" />
+		</Enter>
+		<Exit>
+			<State animation="SeatDriver" state="Exit" />
+		</Exit>
 		<!-- Begin actions for this seat-->
 		<SeatActions>
+			<SeatAction class="SharedItems" />
+			<SeatAction class="SharedMannedTurret" />
+			<!-- Weapons used / controlled -->
+			<SeatAction class="SharedWeapons" >
+			<Settings>
+              <Items>
+                <ItemPort part="turret_body" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+              </Items>
+            </Settings>
+			</SeatAction>
+			<SeatAction class="AnimateControlInputs">
+				<AnimateControlInputs isAvailableDocked="1">
+					<Parts>
+						<!-- Flight Controls -->
+						<ControlPart seatBone="turret_left_arm" >
+							<Rotate_X input="pitch" direction="1" min="-30" max="30" />
+						</ControlPart>
+						<ControlPart seatBone="turret_right_arm" >
+							<Rotate_X input="pitch" direction="1" min="-30" max="30" />
+						</ControlPart>
+						<ControlPart seatBone="right_pedal">
+							<Rotate_X input="yaw_speed" direction="100" minRange="-1" maxRange="0" min="-30" max="0" />
+						</ControlPart>
+						<ControlPart seatBone="left_pedal">
+							<Rotate_X input="yaw_speed" direction="100" minRange="0" maxRange="1" min="0" max="-30" />
+						</ControlPart>
+					</Parts>
+				</AnimateControlInputs>
+			</SeatAction>
+			<SeatAction class="PassengerIK">
+				<PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+					<Limbs>
+						<Limb tag="LeftArm" on="1" limb="LftArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="LftArm_IK_attach" blendTime="0" />
+						<Limb tag="RightArm" on="1" limb="RgtArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="RgtArm_IK_attach" blendTime="0" />
+						<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" slot="1" IKTargetSystemType="seatBone" helper="left_pedal_attach" blendTime="0" />
+						<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" slot="1" IKTargetSystemType="seatBone" helper="right_pedal_attach" blendTime="0" />
+					</Limbs>
+				</PassengerIK>
+			</SeatAction>
 		</SeatActions>
-		
 		<Sounds inout="0" mood="1"/>
-
-		<DockingStation>
-		</DockingStation>
-		
+		<DockingStation/>
 		<FixedVisorSettings default_fixed="0" >
 			<FirstPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.1" />
 			<ThirdPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.065" />
 		</FixedVisorSettings>
-		
-		<Screens>
-		</Screens>			
+	  <HUDAccess primary="0">
+		<Tab name="Overview" />
+	  </HUDAccess>
+		<ScreensRecord record="Screens_AEGS_Retaliator_Turrret "/>
 	</Seat>
  </item>

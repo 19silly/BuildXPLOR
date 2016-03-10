@@ -1,0 +1,54 @@
+<interface name="interface_DEVTEST_Lrg_Main_Thrust">
+	<!-- 
+	This is the model and vfx template for Thrusters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" /><!-- ONLY use if Thruster has special one-off params. All other params should remain in item.xml. -->
+	</params>
+
+
+
+  <damagelevels>
+	<!-- Fill me with damagelevels -->
+  </damagelevels>
+
+
+	<geometry>
+		<!-- Default -->
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Templates\Main_Thruster_Large.cgf"/>
+		
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+		<tags tag="Hologram">
+			<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Templates\Main_Thruster_Large.cgf" material=""/>
+		</tags>
+	
+		<thirdpersonAux name ="Objects\Spaceships\Templates\Ship_Items\Test_Templates\Main_Thruster_Large.cgf"/>
+		<!-- <tags tag="Anvil_Hornet_F7C">
+			<thirdperson name="Objects/Spaceships/Thrusters/Hammer_Propulsion/HM_4_3/Hammer_Propulsion_HM_4_3_Housing.cga"/>
+			<thirdpersonAux name ="Objects/Spaceships/Thrusters/Hammer_Propulsion/HM_4_3/Hammer_Propulsion_HM_4_3_nozzle.chr"/>
+		</tags> -->
+	</geometry>
+  
+  <thrusters>
+	<thruster speed="40" acceleration="20">
+			<Pitch min ="-10" max ="10" />
+			<Yaw min ="-10" max ="10" />
+			<Exhausts>
+				<Exhaust helper ="exhaust">
+					<Run effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+					<Start effect="spaceship_fx.Hornet.main_thruster_start"/>
+					<Stop effect="spaceship_fx.Hornet.main_thruster_stop"/>
+					<Boost effect="spaceship_fx.Hornet.main_thruster_boost"/>	
+				</Exhaust>
+			</Exhausts>
+	  </thruster>
+  </thrusters>
+
+</interface>

@@ -1,0 +1,37 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ServerOnly">
+ <Nodes>
+  <Node Id="2" Class="entity:Flair_Spaceglobe_Evade_InstantUseItem" pos="60,-80,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" Hide="0" UnHide="0" Use="0" UserId="0"/>
+  </Node>
+  <Node Id="10" Class="Logic:Any" pos="540,-60,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="12" Class="Time:Delay" pos="930,220,0" flags="0">
+   <Inputs delay="60" resetOnInput="1"/>
+  </Node>
+  <Node Id="16" Class="Logic:Sequentializer" pos="740,-60,0" flags="0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="18" Class="Logic:Gate" pos="1180,220,0" flags="0">
+   <Inputs Closed="0"/>
+  </Node>
+  <Node Id="29" Class="GOST:RequestState:ToggleItemStateGroup_Pfx:On" pos="980,-510,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" GOSTName="Spaceglobe_Evade"/>
+  </Node>
+  <Node Id="33" Class="GOST:RequestState:ToggleItemStateGroup_Pfx:Off" pos="980,-320,0" flags="0" GraphEntity="0">
+   <Inputs entityId="0" GOSTName="Spaceglobe_Evade"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="10" nodeOut="2" portIn="in1" portOut="StartUsed" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="10" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="12" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="16" portIn="in" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="16" portIn="Open" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="16" portIn="Close" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="29" nodeOut="16" portIn="Request" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="16" portIn="Request" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="18" portIn="in2" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

@@ -25,6 +25,7 @@ BreakableObject =
 			max_time_step = 0.01,
 			sleep_speed = 0.04,
 			damping = 0,
+			freefall_damping = 0.1,
 		},
 		
 

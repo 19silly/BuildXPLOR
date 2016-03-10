@@ -23,28 +23,26 @@
 	</params>
 
 	<missile>
+		<param name="lifetime" 						value="15.0" />
+		<param name="ignitiontime" 					value="0.5" />
+		<param name="lockTime" 						value="2.0" />
+
+		<param name="maxSpeed" 						value="400.0" />
+		<param name="forwardAcceleration" 			value="800.0" />
+		<param name="reverseAcceleration" 			value="800.0" />
+		<param name="maneuverAcceleration" 			value="800.0" />
+		<param name="rotationAcceleration" 			value="800.0" />
+		<param name="rotationThrottleAngle" 		value="0.0" />
+		<param name="explodeProximity" 				value="1.0" />
+
 		<param name="guidanceType" 					value="FireAndForget" />
 		<param name="trackingSignalMin" 			value="1.5" />
 		<param name="trackingSignalType" 			value="Infrared" />
-		<param name="trackingSignalAmplifier" 		value="30" />
-		<param name="trackingSignalAmplifierSeeking"	value="15" />
-		<param name="trackerNoiseAmplifier"			value="2.3" />
-		<param name="trackingDistanceMax"			value="7000" />
-		<param name="trackingAngle"					value="30" />
+		<param name="trackingSignalAmplifier" 		value="27.9336724096" />
+		<param name="trackingDistanceMax"			value="4200.0" />
 		
-		<param name="lifetime" 						value="15.0" />
-		<param name="ignitiontime" 					value="0.5" />
-
-		<param name="maxSpeed" 						value="550" />
-		<param name="forwardAcceleration" 			value="275" />
-		<param name="reverseAcceleration" 			value="100" />
-		<param name="maneuverAcceleration" 			value="175" />
-		<param name="rotationAcceleration" 			value="225" />
-		<param name="rotationThrottleAngle" 		value="0" />
-		<param name="explodeProximity" 				value="1.0" />
-
 		<param name="trailHelper" 					value="exhaust" />
-		<param name="trailEffect" 					value="Spaceships\Ammo\Missiles\VNCL_Mark_S1_HS.trail" />
+		<param name="trailEffect" 					value="Spaceships/Ammo/Missiles/VNCL_Mark_S1_HS.trails.trail" />
 		<param name="launchSound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Boost" />
 		<param name="ejectSound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Launch" />
 		<param name="trailSound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Missile" />	
@@ -56,12 +54,11 @@
 		<param name="max_radius" 					value="20.0" />
 		<param name="aitype" 						value="rpg" />  <!-- this is a hack to determine whether missile is hostile or friendly -->
 		<param name="damage" 						value="250" />
-		<param name="damage_distortion" 			value="375" />
 		
 		<!-- Art and Audio -->
-		<param name="decal" 						value="textures/decal/explo_decal.dds" />
-		<param name="effect"						value="Spaceships\Ammo\Missiles\VNCL_Mark_S1_HS.explosion" />
-		<param name="failed_effect"					value="Spaceships\Ammo\Missiles\VNCL_Mark_S1_HS.explosion" />
+		<param name="decal" 						value="" />
+		<param name="effect"						value="" />
+		<param name="failed_effect"					value="Spaceships/Ammo/Missiles/VNCL_Mark_S1_HS.Impact.failed" />
 		<param name="sound" 						value="Play_WPMR_VNCL_HS_MARK_S1_Explode_Hit" />
 		<param name="failed_sound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Explode_Miss" />
 	</explosion>
@@ -82,5 +79,48 @@
 			</tags>
 		</tags>
 	</geometry>
+	
+	<AudioPreloads>
+		<Preload name = "SC_WPMR_VNCL"/>
+	</AudioPreloads>
 
+	<missile>
+		<param name="lifetime" 						value="10.0" />
+		<param name="ignitiontime" 					value="0.5" />
+		<param name="lockTime" 						value="2.0" />
+
+		<param name="maxSpeed" 						value="400.0" />
+		<param name="forwardAcceleration" 			value="800.0" />
+		<param name="reverseAcceleration" 			value="800.0" />
+		<param name="maneuverAcceleration" 			value="800.0" />
+		<param name="rotationAcceleration" 			value="800.0" />
+		<param name="rotationThrottleAngle" 		value="0.0" />
+		<param name="explodeProximity" 				value="1.0" />
+
+		<param name="guidanceType" 					value="SignatureLock" />
+		<param name="trackingSignalType" 			value="Infrared" />
+		<param name="trackingSignalAmplifier" 		value="27.9336724096" />
+		<param name="trackingDistanceMax"			value="4200.0" />
+		
+		<param name="trailHelper" 					value="exhaust" />
+		<param name="trailEffect" 					value="weapon_fx.missile.trail" />
+		<param name="launchSound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Boost" />
+		<param name="ejectSound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Launch" />
+		<param name="trailSound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Missile" />	
+	</missile>
+	
+	<explosion>
+		<param name="pressure" 						value="1000.0" />
+		<param name="max_radius" 					value="40.0" />
+		<param name="aitype" 						value="rpg" />  <!-- this is a hack to determine whether missile is hostile or friendly -->
+		<param name="damage" 						value="40.0" />
+		
+		<!-- Art and Audio -->
+		<param name="decal" 						value="textures/decal/explo_decal.dds" />
+		<param name="effect"						value="weapon_fx.missile.explosion" />
+		<param name="failed_effect"					value="weapon_fx.missile.explosion_failed" />
+		<param name="sound" 						value="Play_WPMR_VNCL_HS_MARK_S1_Explode_Hit" />
+		<param name="failed_sound" 					value="Play_WPMR_VNCL_HS_MARK_S1_Explode_Miss" />
+	</explosion>
+	
 </item>

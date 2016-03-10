@@ -1,0 +1,53 @@
+<item name="GRIN_Cydnus_Power" class="VehicleItemPowerPlant" invisible="0" category="VehicleItem" >
+	<params>
+		<param name="itemType" value="PowerPlant" />
+		<param name="itemSubType" value="Power" />
+		<param name="itemDescription" value="" />
+		<param name="itemManufactor" value="GRIN" />
+		<param name="itemSize" value="2" />
+		<param name="requiredPortTags" value="GRIN_Cydnus" />
+		<param name="itemTags" value="flightReady" />
+		<param name="display_name"	value="Cydnus Power Plant" />
+		
+		<param name="hitpoints" value="75" />
+		<param name="mass" value="800" />
+	</params>
+
+	
+	<!--<powerPlant>
+		<param name="maxPowerOutput" value="700" /> 
+		<param name="minPowerOutput" value="420" /> 
+		<param name="healthFracForMaxPower" value=".90" /> 
+		<param name="healthFracForMinPower" value=".10" />
+		<param name="heatPerPower" value="0.1" /> 
+		<param name="electromagneticPerPower" value="0.1" /> 
+	</powerPlant>-->
+	
+    <Pipes>
+		<Pipe class="Power" allowThrottle="1">
+			<Signature name="Electromagnetic" multiplier="1" />
+			<States>
+				<State state="Default"><Value value="1000" /></State>
+				<State state="Off"><Value value="0" /></State>
+			</States>
+
+		</Pipe>
+		<Pipe class="Heat">
+			<Pool capacity="2000" rate="100" critical="1"/> 
+      <Signature name="Infrared" poolMultiplier="0.1" />
+			<States>
+				<State state="Default"><Pipe name="Power" value="0.1" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<portParams>
+	<ports>
+		<ItemPort name="hardpoint_battery" minsize="1" maxsize="2" flags="invisible" display_name="Battery">
+			<Types>
+				<Type type="Battery" subtypes=""/>
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+</item>

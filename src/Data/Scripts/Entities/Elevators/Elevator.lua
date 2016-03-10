@@ -366,7 +366,7 @@ end
 
 function Elevator:Slide(floor)
 	--CIG HACK BEGIN We need to update the floor positions since the elevator doesn't update them if moved after being spawned.
-	if(self.currFloor == 0) then
+	if(self.currFloor == self.Properties.nInitialFloor) then
 		self:ResetFloorsPosition();
 	end
 	-- CIG END

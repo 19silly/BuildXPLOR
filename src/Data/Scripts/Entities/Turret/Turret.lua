@@ -172,7 +172,7 @@ function Turret:CacheResources()
 	self:PreLoadParticleEffect( self.Properties.Laser.SourceEffect );
 	
 	local requesterName = "Turret.lua";
-	Game.CacheResource( requesterName, self.Properties.Laser.objGeometry, eGameCacheResourceType_StaticObject, 0 );
+	self:CacheResource( requesterName, self.Properties.Laser.objGeometry, eGameCacheResourceType_StaticObject, 0 );
 end
 
 

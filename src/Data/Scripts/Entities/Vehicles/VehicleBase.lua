@@ -47,26 +47,6 @@ function VehicleBase:HasDriver()
 end
 
 --------------------------------------------------------------------------
-function VehicleBase:GetDriverId()
-	if (self.Seats and self.Seats[1]) then
-		return self.Seats[1].seat:GetPassengerId();
-	end
-	
-	return nil;
-end
-
---------------------------------------------------------------------------
-function GetNextAvailableSeat(seats)
-	for i,s in pairs(seats) do
-		if (not s.seat:GetPassengerId()) then
-			return i;
-		end
-	end
-	
-	return -1;
-end
-
---------------------------------------------------------------------------
 function VehicleBase:InitSeats()
   if (self.Seats) then
     for i,seat in pairs(self.Seats) do
@@ -99,13 +79,6 @@ function VehicleBase:DestroyVehicleBase()
 	end		
 end
 
-----------------------------------------------------------------------------------------------------
-function VehicleBase:CanEnter(userId)
-	if (g_gameRules and g_gameRules.CanEnterVehicle) then
-		return g_gameRules:CanEnterVehicle(self, userId);
-	end
-end
-
 --------------------------------------------------------------------------
 function VehicleBase:GetSeat(userId)
 	local seatId = self.vehicle:GetSeatForPassenger(userId);
@@ -120,12 +93,6 @@ end
 function VehicleBase:GetSeatByIndex(i)
 	return self.Seats[i];		
 end
-
---------------------------------------------------------------------------
-function VehicleBase:GetSeatId(userId)	
-	return self.vehicle:GetSeatForPassenger(userId);
-end
-
 
 --------------------------------------------------------------------------
 function VehicleBase:ResetVehicleBase()
@@ -162,45 +129,6 @@ end
 --------------------------------------------------------------------------
 function VehicleBase:OnDestroy()	
 	self:DestroyVehicleBase();	
-end
-
-----------------------------------------------------------------------------------------------------
-function VehicleBase:UseCustomFiring(weaponId)
-	return false;
-end
-
-----------------------------------------------------------------------------------------------------
-function VehicleBase:GetFiringPos(weaponId)
-	return g_Vectors.v000;
-end
-
---------------------------------------------------------------------------
-function VehicleBase:GetFiringVelocity()
-	return g_Vectors.v000;
-end
-
---------------------------------------------------------------------------
-function VehicleBase:OnAIShoot()	
-
-end
-
-
---------------------------------------------------------------------------
-function VehicleBase:PrepareSeatMountedWeapon(user)
-
-end
-
---------------------------------------------------------------------------
-function VehicleBase:IsGunner(userId)
-	local seat = self:GetSeat(userId);
-	
-	if (seat) then
-		if (seat.Weapons) then
-			return true;
-		end
-	end
-	
-	return false;
 end
 
 --------------------------------------------------------------------------
@@ -255,51 +183,6 @@ function VehicleBase:RequestClosestSeat(userId)
 end
 
 --------------------------------------------------------------------------
-function VehicleBase:RequestMostPrioritarySeat(userId)	
-
-	local pos = System.GetEntity(userId):GetWorldPos();	
-	local selectedSeat;
-	-- search driver seat first
-	local seat = self.Seats[1];
-	if(seat:IsFree(userId)) then 
-		return 1;
-	end
-
-	for i,seat in pairs(self.Seats) do
-		-- search for gunner seats
-		if (seat.enterHelper and seat.Weapons and seat:IsFree(userId)) then
-			if AI then AI.LogEvent(System.GetEntity(userId):GetName().." found seat "..i) end;
-			return i;
-		end
-	end
-
-	for i,seat in pairs(self.Seats) do
-		-- search for remaining seats
-		if (seat.enterHelper and seat:IsFree(userId)) then
-			if AI then AI.LogEvent(System.GetEntity(userId):GetName().." found seat "..i) end;
-			return i;
-		end
-	end
-
-
-	return ;
-end
-
---------------------------------------------------------------------------
-function VehicleBase:RequestSeat(userId)
-	local pos = System.GetEntity(userId):GetWorldPos();
-	local radiusSq = 6;
-
-	for i,seat in pairs(self.Seats) do
-		if (seat:IsFree(userId)) then
-			return i;
-		end
-	end
-
-	return nil;
-end
-
---------------------------------------------------------------------------
 function VehicleBase:EnterVehicle(passengerId, seatId, isAnimationEnabled)
 	--Log("VehicleBase:EnterVehicle() - playerId = %s, seatId = %s", tostring(passengerId), tostring(seatId));
 	return self.vehicle:EnterVehicle(passengerId, seatId, isAnimationEnabled);
@@ -322,32 +205,6 @@ function VehicleBase:IsDead()
   return self.vehicle:IsDestroyed();
 end
 
---------------------------------------------------------------------------
-function VehicleBase:GetWeaponVelocity(weaponId)
-	return self:GetFiringVelocity();
-end
-
---------------------------------------------------------------------------
-function VehicleBase:OnShoot(weapon, remote)
-	if (weapon.userId) then
-		local seat = self:GetSeat(weapon.userId);
-		if (seat) then
-			if (seat.Animations and seat.Animations["weaponRecoil"]) then
-				local user = System.GetEntity(weapon.userId);
-				
-				if (user:IsDead()) then
-					return;
-				end
-
-				user:StartAnimation(0, seat.Animations["weaponRecoil"], 0, 0.000000001, 1.0, false);
-			end
-		end
-	end
-	
-	return true;
-end
-
-
 -------------------------------------------------------------------------
 function VehicleBase:SpawnVehicleBase()
   
@@ -366,12 +223,7 @@ function VehicleBase:SpawnVehicleBase()
 	self:InitVehicleBase();
 			
 	self.ProcessMovement = nil;
-	
-	if (not EmptyString(self.Properties.FrozenModel)) then
-	  self.frozenModelSlot = self:LoadObject(-1, self.Properties.FrozenModel);
-	  self:DrawSlot(self.frozenModelSlot, 0);
-	end
-		
+			
 	if (self.OnPostSpawn) then
 	    self:OnPostSpawn();
 	end
@@ -393,16 +245,6 @@ function VehicleBase:SpawnVehicleBase()
 	ApplyCollisionFiltering(self, GetCollisionFiltering(self));
 	
 	Game.AddTacticalEntity(self.id, eTacticalEntity_Vehicle);
-end
-
-----------------------------------------------------------------------------------------------------
-function VehicleBase:GetFrozenSlot()
-	return self.frozenModelSlot;
-end
-
-----------------------------------------------------------------------------------------------------
-function VehicleBase:GetFrozenAmount()
-	return self.vehicle:GetFrozenAmount();
 end
 
 --------------------------------------------------------------------------
@@ -429,10 +271,6 @@ function VehicleBase:OnActorSitDown(seatId, passengerId)
 	if (not seat) then
 		Log("Error: entity for player id <%s> could not be found!", tostring(passengerId));
 		return;
-	end
-	
-	if (g_gameRules.OnEnterVehicleSeat) then
-		g_gameRules:OnEnterVehicleSeat(self, seat, passengerId);
 	end
 
 	-- need to generate AI sound event (vehicle engine)
@@ -481,7 +319,7 @@ function VehicleBase:OnActorSitDown(seatId, passengerId)
 			AI.Signal(SIGNALFILTER_LEADER, 1, "ORD_USE", passengerId, g_SignalData);
 			
 		end
-		self:EnableMountedWeapons(false);
+
 	end
 	
 	local passengerFaction = AI.GetFactionOf(passenger.id);
@@ -513,10 +351,6 @@ function VehicleBase:OnActorChangeSeat(passengerId, exiting)
 	end
 
 	seat.passengerId = nil;
-
-	if (g_gameRules and g_gameRules.OnLeaveVehicleSeat) then
-		g_gameRules:OnLeaveVehicleSeat(self, seat, passengerId, exiting);
-	end
 
 	if (not passenger) then
 		return;
@@ -551,10 +385,6 @@ function VehicleBase:OnActorStandUp(passengerId, exiting)
 	end
 	
 	seat.passengerId = nil;
-	
-	if (g_gameRules and g_gameRules.OnLeaveVehicleSeat) then
-		g_gameRules:OnLeaveVehicleSeat(self, seat, passengerId, exiting);
-	end
 	
 	local passenger = System.GetEntity(passengerId);
 	if (not passenger) then
@@ -603,7 +433,6 @@ function VehicleBase:OnActorStandUp(passengerId, exiting)
 		if AI then AI.ChangeParameter(passengerId, AIPARAM_INVISIBLE, 0) end;
 --		AI.SetSkip( );
 		--Log( ">>>> HUMAN out " );
-		self:EnableMountedWeapons(true);	
 	end
 
 	-- notify the "wait" goalop
@@ -612,14 +441,3 @@ function VehicleBase:OnActorStandUp(passengerId, exiting)
 	BroadcastEvent(self, "PassengerExit");
 
 end
-
---------------------------------------------------------------------------
-function VehicleBase:EnableMountedWeapons(enable)
- 
-	if not AI then return end
-
-	if not GameAI.IsAISystemEnabled() then
-		return;
-	end
-end
-

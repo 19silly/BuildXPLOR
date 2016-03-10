@@ -1,0 +1,164 @@
+<item name="TEMP_Distortion_Cannon_S3" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <!-- <param name="adb" value="Items\Weapons\JOKR\JOKR_DistortionCannon_S1.adb" />
+    <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" /> -->
+    <param name="itemType" value="WeaponGun" />
+    <param name="itemSubType" value="Gun" />
+	<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="TEMP" />
+    <param name="itemSize" value="3" />
+	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="requiredPortTags" value="" />
+    <param name="display_name"	value="" />
+	<param name="hitpoints" value="150" />
+	<param name="mass" value="150" />
+	<itemStats>
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
+	</itemStats>
+    </params>
+	
+  <ammos>
+    <ammo name="JOKR_DistortionCannon_S1_AMMO" extra="0" amount="0" />
+  </ammos>
+  
+  <firemodes>
+    <firemode name="Auto" type="Automatic">
+      <fire>
+        <param name="ammo_type" value="JOKR_DistortionCannon_S1_AMMO" />
+        <param name="rate" value="120" />
+        <param name="clip_size" value="-1" />
+        <param name="max_clips" value="0" />
+        <param name="nearmiss_signal" value="OnNearMiss" />
+        <param name="helper_fp" value="muzzle_out" />
+        <param name="helper_tp" value="muzzle_out" />
+		<param name="fireLocatorType" value = "circle" />
+		<param name="start_fire_audio_trigger" value="Play_WPHA_JOKR_DistortionCannon_S1_Fire" />
+		<param name="stop_fire_audio_trigger" value="" />
+		<param name="audio_looped" value="0" />
+      </fire>
+      <spread>
+        <param name="min" value="0" />
+        <param name="max" value="0" />
+        <param name="attack" value="0" />
+        <param name="decay" value="0" />
+      </spread>
+
+      <pools>
+		<!-- This is Pool manipulation per shot -->
+        <pool class="Power" value="-100" />
+        <pool class="Heat" value="50" />
+      </pools>
+    </firemode>
+  </firemodes>
+
+  <Pipes>
+
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="-500" rate="-55" />
+      <States>
+        <State state="Default">
+          <Value value="-3" ignorepool="1"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="500" rate="40" critical="1"/>  
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active">
+          <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.05" />
+      </StateLevels>
+    </Pipe>
+
+  </Pipes>
+
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+	
+<firemodes>
+	<firemode>
+      <muzzleflash>
+	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
+        <firstperson effect="weapon_fx.distortion_cannon.firefx" helper="muzzle_out" />
+        <thirdperson effect="weapon_fx.distortion_cannon.firefx" helper="muzzle_out"/>
+      </muzzleflash>
+	  
+
+	</firemode>
+</firemodes>
+
+  <damagelevels>
+	<level damageRatio="0.50">
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect=""  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect=""  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect=""  />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_100_debris4" mass="10" impulse="0,10,0" >
+			</Debris>
+			<Debris name="base_100_debris5" mass="10" impulse="0,10,0" >
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+  
+	<boneAttachments>
+      <attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
+    </boneAttachments>
+	
+    <thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Distortion_Cannon_Size_3.cgf"/>
+		
+	<tags tag="HUD">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Distortion_Cannon_Size_3.cgf" material=""/>
+	</tags>	
+	
+	<tags tag="Hologram">
+		<thirdperson name="Objects\Spaceships\Templates\Ship_Items\Test_Weapon_Templates\Distortion_Cannon_Size_3.cgf" material=""/>
+	</tags>
+    
+  </geometry>
+
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="" />
+  </mobiGlas>
+  
+</item>

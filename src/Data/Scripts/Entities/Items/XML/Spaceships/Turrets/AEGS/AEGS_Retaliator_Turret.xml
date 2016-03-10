@@ -1,4 +1,4 @@
-<item name="AEGS_Retaliator_Turret" class="VehicleTurret" invisible="0" category="VehicleWeapon" weaponParams="1" >
+<item name="AEGS_Retaliator_Turret" class="MannedTurret" invisible="0" category="VehicleWeapon" weaponParams="1" >
   <params>
     <param name="giveable" 		value="0" />
     <param name="selectable" 	value="0" />
@@ -13,22 +13,27 @@
 	<param name="itemTags" value="flightReady" />
     <param name="itemManufactor" value="AEGS" />
     <param name="itemSize" value="3" />
-	<param name="requiredPortTags" value="AEGS_Retaliator_Base" />
+	<param name="requiredPortTags" value="" />
   </params>
   
    <geometry>
-		<thirdperson name="Objects/Spaceships/Ships/AEGS/Retaliator/aegs_ret_turret.cga"/>
+		
 	</geometry>
 
   <turretParams>
-	<yaw limits="-180, 180" speed="100" accel="150" >
+	<yaw limits="-180, 180" speed="200" accel="300" >
 		<joint value="turret_body" />
 	</yaw>
-	<pitch limits="-10, 85" speed="100" accel="150" >
+	<pitch limits="-10, 85" speed="200" accel="300" >
 		<joint value="turret_left" />	
-		<joint value="turret_right" />	
+		<joint value="turret_right" />
 	</pitch>
   </turretParams>
+
+	<!-- remote operation camera -->
+	<cameraParams>
+		<attachment boneName="turret_left" offset="1,2,0" />
+	</cameraParams>
   
 	<EntityEffects>
 		<sound name="" enable ="0" tag = "move" helper="top_turrettop_turret">
@@ -38,21 +43,31 @@
 		</sound>
 	</EntityEffects>  
   
-   <portParams>
+  <portParams>
 	<ports>
 		<ItemPort name="turret_left" minsize="1" maxsize="1">
 			<Types>
-					<Type type="WeaponGun" subtypes="Gun"/>
+				<Type type="WeaponGun" subtypes="Gun"/>
 			</Types>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+		 </Pipes>
 		</ItemPort>
 		<ItemPort name="turret_right" minsize="1" maxsize="1">
 			<Types>
-					<Type type="WeaponGun" subtypes="Gun"/>
+				<Type type="WeaponGun" subtypes="Gun"/>
 			</Types>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+		 </Pipes>
 		</ItemPort>
-		<ItemPort name="turret_seat" minsize="1" maxsize="1" flags="seat" display_name="seathelper">
+		<ItemPort name="hardpoint_ai_module" minsize="1" maxsize="1" flags="invisible" display_name="ai module" >
 			<Types>
-				<Type type="Seat"/>
+				<Type type="AIModule" />
 			</Types>
 		</ItemPort>
 	</ports>
@@ -66,7 +81,7 @@
     <Items>
       <Item portName="turret_left" itemName="KLWE_LaserRepeater_S1" />
       <Item portName="turret_right" itemName="KLWE_LaserRepeater_S1" />
-      <Item portName="turret_seat" itemName="AEGS_Retaliator_Turret_Seat" />
+	  <Item portName="hardpoint_ai_module" itemName="RSI_DefaultTurretAIModule" />
     </Items>
   </defaultLoadout>
 

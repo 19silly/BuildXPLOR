@@ -329,10 +329,10 @@ end
 -------------------------------------------------------
 function DestroyableLight:CacheResources(requesterName)
 	local textureFlags = 0;
-	Game.CacheResource(requesterName, self.PropertiesInstance.LightProperties_Base.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
+	self:CacheResource(requesterName, self.PropertiesInstance.LightProperties_Base.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
 
 	textureFlags = 0;
-	Game.CacheResource(requesterName, self.PropertiesInstance.LightProperties_Destroyed.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
+	self:CacheResource(requesterName, self.PropertiesInstance.LightProperties_Destroyed.Projector.texture_Texture, eGameCacheResourceType_Texture, textureFlags);
 
 	self:PreLoadParticleEffect( self.Properties.Explosion.ParticleEffect );
 	self:PreLoadParticleEffect( self.Properties.Explosion.DelayEffect.ParticleEffect );
@@ -344,6 +344,7 @@ function DestroyableLight:OnPropertyChange()
 	self:Reload();
 	if (self.PropertiesInstance.LightProperties_Base.Options.bDeferredClipBounds) then
 		self:UpdateLightClipBounds(self.lightSlot);
+		self:UpdateLightClipVolumes(self.lightSlot);
 	end
 	-- to avoid loop sounds playing while in editor mode
 	self:StopIdleSound();
@@ -773,6 +774,7 @@ DestroyableLight.Client.Alive =
 	OnLevelLoaded=function(self)
 	if (self.PropertiesInstance.LightProperties_Base.Options.bDeferredClipBounds) then
 		self:UpdateLightClipBounds(self.lightSlot);
+		self:UpdateLightClipVolumes(self.lightSlot);
 		end
 	end,
 }
@@ -786,8 +788,9 @@ DestroyableLight.Server.Alive =
 	end,
 
 	OnLevelLoaded=function(self)
-	if (self.PropertiesInstance.LightProperties_Base.Options.bDeferredClipBounds) then
-		self:UpdateLightClipBounds(self.lightSlot);
+		if (self.PropertiesInstance.LightProperties_Base.Options.bDeferredClipBounds) then
+			self:UpdateLightClipBounds(self.lightSlot);
+			self:UpdateLightClipVolumes(self.lightSlot);
 		end
 	end,
 }

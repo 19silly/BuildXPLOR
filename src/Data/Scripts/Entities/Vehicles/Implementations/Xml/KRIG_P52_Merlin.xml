@@ -1,7 +1,7 @@
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- / KRIG_P52_Merlin                                                                                         / -->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<Vehicle name="KRIG_P52_Merlin" category="StarFighter" displayname="KRIG P-52 Merlin" classname="Class 3" dockingclass="1" priority="10" requiredTags="flightReady" itemPortTags="KRIG_Merlin_Base" HudPaletteScheme="KRIG">
+<Vehicle name="KRIG_P52_Merlin" category="StarFighter" displayname="KRIG P-52 Merlin" classname="Class 3" dockingclass="1" requiredTags="flightReady" itemPortTags="KRIG_Merlin_Base" HudPaletteScheme="KRIG">
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
@@ -75,9 +75,9 @@
           <DamagesSubGroup delay="0" randomness="0">
             <DamageBehaviors>
               <DamageBehavior class="Destroy" />
-              <DamageBehavior class="Effect">
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified <DamageBehavior class="Effect">
                 <Effect effect="VehicleDestroyed" />
-              </DamageBehavior>
+              </DamageBehavior>-->
               <DamageBehavior class="Explosion">
                 <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
               </DamageBehavior>
@@ -147,7 +147,7 @@
   <!-- BEGIN VEHICLE PARTS /////////////////////////////////////////////////////////////////////////////////-->
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-    <Part name="KRIG_P52_Merlin" class="Animated" mass="6000" disablePhysics="0" scopeContext="Ship">
+    <Part name="KRIG_P52_Merlin" class="Animated" mass="5000" disablePhysics="0" scopeContext="Ship">
       <Animated filename="Objects\Vehicles\ships\krig\p52merlin\KRIG_P52_Merlin.cga" filenameDestruction="Objects\Vehicles\ships\krig\p52merlin\KRIG_P52_Merlin.cga" />
       <Parts>
         <Part name="Body" class="AnimatedJoint" damageMax="500" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -260,8 +260,8 @@
               <Effects>
                 <DetachFx joint="Wing_Right" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="0.0139648,-1.06901,-0.0498383" rot_offset="0.993805,0.0723907,-0.084332" helperID="Wing_Right_SQUIB_.6m018" />
                 <DetachFx joint="Wing_Right" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="0.0321686,0.301828,-0.118024" rot_offset="0.993805,0.0723907,-0.084332" helperID="Wing_Right_SQUIB_.6m017" />
-                <DetachFx joint="Wing_Right" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0375293,0.0113966,-0.0182124" rot_offset="0.993805,0.0723908,-0.0843325" helperID="Wing_Right_PFX_DetachFX_explode_8m_Flash007" />
-                <DetachFx joint="Wing_Right" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.0566895,-0.771891,-0.022086" rot_offset="0.993805,0.0723907,-0.084332" helperID="Wing_Right_PFX_DetachFX_explode_2m_once_fixed001" />
+                <DetachFx joint="Wing_Right" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0375293,0.0113966,-0.0182124" rot_offset="0.993805,0.0723908,-0.0843325" helperID="Wing_Right_PFX_DetachFX_explode_8m_Flash007" />
+                <DetachFx joint="Wing_Right" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.0566895,-0.771891,-0.022086" rot_offset="0.993805,0.0723907,-0.084332" helperID="Wing_Right_PFX_DetachFX_explode_2m_once_fixed001" />
                 <DetachFx joint="Wing_Right" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="-0.580237,-1.06901,0.0591821" rot_offset="0.993805,0.0723907,-0.084332" helperID="Wing_Right_SQUIB_.6m019" />
               </Effects>
               <Parts>
@@ -284,8 +284,8 @@
               <Effects>
                 <DetachFx joint="Wing_Left" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="-0.0532941,0.30517,-0.0498383" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_SQUIB_.4m017" />
                 <DetachFx joint="Wing_Left" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="-0.0714978,-1.06566,-0.118024" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_SQUIB_.6m016" />
-                <DetachFx joint="Wing_Left" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0768585,-0.775233,-0.0182124" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_PFX_DetachFX_explode_8m_Flash006" />
-                <DetachFx joint="Wing_Left" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.0960187,0.00805473,-0.022086" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_PFX_DetachFX_explode_2m_once_fixed" />
+                <DetachFx joint="Wing_Left" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0768585,-0.775233,-0.0182124" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_PFX_DetachFX_explode_8m_Flash006" />
+                <DetachFx joint="Wing_Left" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.0960187,0.00805473,-0.022086" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_PFX_DetachFX_explode_2m_once_fixed" />
                 <DetachFx joint="Wing_Left" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="0.737478,-1.57582,-0.118024" rot_offset="-0.993805,-0.0723908,0.0843323" helperID="Wing_Left_SQUIB_.6m020" />
               </Effects>
               <Parts>
@@ -310,10 +310,10 @@
                 <DetachFx joint="Canopy" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="0.531313,0.0326376,-0.417646" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="Canopy_SQUIB_.6m022" />
                 <DetachFx joint="Canopy" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="0.435957,1.12607,-0.417646" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="Canopy_SQUIB_.6m023" />
                 <DetachFx joint="Canopy" squibPhysical="40" squibEnergy="40" squibRadius=".6" pos_offset="-0.736792,1.43926,-0.735638" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="Canopy_SQUIB_.6m024" />
-                <DetachFx joint="Canopy" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.402989,0.409763,-0.375976" rot_offset="-0.809331,0.555034,-0.192146" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed005" />
-                <DetachFx joint="Canopy" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.453033,1.02939,-0.456349" rot_offset="-0.993805,-0.0723909,0.0843326" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed004" />
-                <DetachFx joint="Canopy" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.41996,1.02939,-0.456349" rot_offset="-0.993805,-0.0723907,0.0843325" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed003" />
-                <DetachFx joint="Canopy" partName="Body" effect="SC_Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.41996,0.638886,-0.456349" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed002" />
+                <DetachFx joint="Canopy" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.402989,0.409763,-0.375976" rot_offset="-0.809331,0.555034,-0.192146" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed005" />
+                <DetachFx joint="Canopy" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="0.453033,1.02939,-0.456349" rot_offset="-0.993805,-0.0723909,0.0843326" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed004" />
+                <DetachFx joint="Canopy" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.41996,1.02939,-0.456349" rot_offset="-0.993805,-0.0723907,0.0843325" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed003" />
+                <DetachFx joint="Canopy" partName="Body" effect="Damage/Explode_FX.Explode_ALL.explode_2m_once_fixed" pos_offset="-0.41996,0.638886,-0.456349" rot_offset="-0.993805,-0.0723908,0.0843321" helperID="Canopy_PFX_DetachFX_explode_2m_once_fixed002" />
               </Effects>
             </Part>
             <Part name="Ladder_Panel_01" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
@@ -779,21 +779,7 @@
         <Tab name="Power" />
         <Tab name="Shield" />
       </HUDAccess>
-      <Screens>
-        <Screen name="Fixed UI" element="ShipInterface" screen="MerlinInterfaceScreen" number="1">
-          <Container name="HUDScreen" helper="Dummy_UI_HUD" container="HUDScreen" scale="0.53" />
-          <Container name="EmissionsScreen" helper="UI_Console_Lower" container="EmissionsScreen" scale="0.58" />
-          <Container name="ConsoleLeftScreen" helper="UI_Console_Left" container="ConsoleLeftScreen" scale="0.59" z_offset="-0.001" />
-          <Container name="ConsoleCenterScreen" helper="UI_Console_Center" container="ConsoleCenterScreen" scale="0.595" z_offset="-0.001" />
-          <Container name="ConsoleRightScreen" helper="UI_Console_Right" container="ConsoleRightScreen" scale="0.59" z_offset="-0.001" />
-		  
-		  <!-- Interference Components -->
-		  <Container name="ConsoleLeftScreenInterference" helper="UI_Console_Left" container="ConsoleLeftScreenInterference" scale="0.59" z_offset="-0.001" />
-          <Container name="ConsoleCenterScreenInterference" helper="UI_Console_Center" container="ConsoleCenterScreenInterference" scale="0.595" z_offset="-0.001" />
-          <Container name="ConsoleRightScreenInterference" helper="UI_Console_Right" container="ConsoleRightScreenInterference" scale="0.59" z_offset="-0.001" />
-          <Container name="HUDScreenInterference" helper="Dummy_UI_HUD" container="HUDScreenInterference" scale="0.53" />
-        </Screen>
-      </Screens>
+      <ScreensRecord record="Screens_KRIG_Merlin_Pilot"/>
       <Sounds inout="0" mood="1" />
     </Seat>
   </Seats>
@@ -813,9 +799,9 @@
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- PARTICLES ///////////////////////////////////////////////////////////////////////////////////////////-->
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
-  <Particles mfxRow="vfx_Anvil_Hornet">
+  <Particles mfxRow="vfx_Landing_dust_small">
     <DamageEffects>
-      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <DamageEffect name="VehicleDestroyed" helper="" effect="" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
     </DamageEffects>
     <EnvironmentLayers>
       <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">

@@ -9,14 +9,41 @@
 			<Event type='DamageShip'        points='1'	 />
 			<Event type='DestroyedShip'     points='1'	 />
 		</Player>
+		
+	<!-- Will relate to the players overall score -->
+		<Player>
+			<Event type="DamageShip" points="1" />
+			<Event type="DestroyedShip" points="1" />
+			<Event type="DestroyedShipEjected" points="1" />
+			<Event type="PlayerKillEjected" points="1" />
+
+			<!-- Awards -->
+			<!-- <Event type="Award_UnaidedKill" points="100" /> -->
+			<Event type="Award_Untouchable" points="100" />
+			<Event type="Award_RedemptionKill" points="300" />
+			<Event type="Award_ResurgentKill" points="300" />
+			<Event type="Award_RevengeKill" points="250" />
+			<Event type="Award_CrashRoberts" points="0" />
+			<Event type="Award_ForcedError" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			
+
+			<!-- TeamPlayer Awards -->
+			<Event type="Award_KillAssist" points="200" />
+			<Event type="Award_Wingman" points="200" />
+			<Event type="Award_SquadronRevengeKill" points="200" />
+
+		</Player>
+	
 	</Scoring>
+	
+	<AssistScoring class="DFMAssistScoring" maxTimeBetweenAttackAndKillForAssist='15000' />
 
 	<PlayerStats class='DFMPlayerStats' />
 	<StatsRecording class='NonAuthoritativeClientStats' />
 	
 	<State class='DFMState'>
 		<StartStrings startMatch='ui_msg_ia_matchstart' />
-		<Prematch requiredPlayers="1" gameStartTimer="5"/>
+		<Prematch requiredPlayers="1" gameStartTimer="3"/>
 		<Postmatch retryPrompt='1'/>
 	</State>
 

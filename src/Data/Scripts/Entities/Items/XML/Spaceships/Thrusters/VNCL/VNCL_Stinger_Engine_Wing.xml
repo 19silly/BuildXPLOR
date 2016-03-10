@@ -1,0 +1,65 @@
+<item name="VNCL_Stinger_Engine_Wing" class="VehicleItemThruster" invisible="0" category="VehicleThruster" interface="interface_VNCL_Stinger_Engine_Wing" >
+	<params>
+		<param name="actionController" value="Spaceships/Thrusters/thrusterControllerDefs.xml" />
+		<param name="adb" 				value="Spaceships/Thrusters/thrusterAnims.adb" />
+		<param name="itemType" 			value="MainThruster" />
+		<param name="itemSubType" 		value="FixedThruster" />
+		<param name="itemDescription" 	value="item_DescVNCL_Stinger_Engine_Wing" />
+		<param name="itemManufactor" 	value="VNCL" />
+		<param name="itemSize" 			value="3" />
+		<param name="itemTags" 			value="flightReady" />
+		<param name="requiredPortTags" 	value="VNCL_Stinger_Base" />
+		<param name="display_name"		value="item_NameVNCL_Stinger_Engine_Wing" />
+		<param name="mass" 				value="3000" />
+		<param name="hitpoints"			value="300" />
+	</params>
+	
+	<power_grouping>
+        <param name="powerGrouping" value ="thruster.main" />
+    </power_grouping>
+	   
+	<Pipes>
+		<Pipe class="Power" prioType="manageable" prioGroup="thruster">
+		  <Pool capacity="-100" rate="-10" />
+		  <States>
+			<State state="Default">
+		  <Value value="0" />
+		  </State>
+		  </States>
+		  <StateLevels>
+			<Warning  value = "0.5" />
+			<Critical value = "0.3" />
+			<Fail     value = "0.1" />
+		  </StateLevels>
+		</Pipe>
+
+		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
+			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<States>
+				<State state="Off"><Value value="0" /></State>
+				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
+				<State state="Idle"><Value value="20" /></State>
+			</States>
+		</Pipe>
+
+		<Pipe class="Fuel" prioType="critical">
+			<States>
+				<State state="Default"><Value value="0" /></State>
+				<State state="Boost"><Value value="-20" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<gimbal type="fixed" >
+		<pitch 	joint="" 	min ="" max ="" speed="" accel="" animation ="" />
+		<yaw 	joint=""		min ="" max ="" speed="" accel="" animation ="" />
+		<roll   joint="" 		min ="" max = "" speed="" accel="" animation ="" />
+	</gimbal> 
+	
+	<thrusters>
+	  <thruster type="" flags="main rear" maxThrust="700000" >
+	  </thruster>
+  </thrusters>
+  
+</item>

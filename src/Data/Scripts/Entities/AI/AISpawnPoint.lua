@@ -35,6 +35,7 @@ AISpawnPoint = {
 			esAIProfileFlight		= "<None>",	-- (OPTIONAL) The name of the flight profile to set on spawned AI - overrides parameters in base
 			esAIProfileTargeting	= "<None>",	-- (OPTIONAL) The name of the targeting profile to set on spawned AI - overrides parameters in base
 			esAIProfileRace			= "<None>",	-- (OPTIONAL) The name of the race profile to set on spawned AI - overrides parameters in base			
+			esAIProfileMissile		= "<None>",	-- (OPTIONAL) The name of the missile profile to set on spawned AI - overrides parameters in base	
 			sArchetype				= "",		-- The full name of the archetype to spawn an AI from
 			sName					= "",		-- (OPTIONAL) The name to give to spawned AI
 		},
@@ -191,11 +192,13 @@ end
  -									AI entity as top priority
  - @param[in] argRaceProfile		An optional profile to set on the the newly-spawned
  -									AI entity as top priority
+ - @param[in] argMissileProfile		An optional profile to set on the the newly-spawned
+ -									AI entity as top priority
  -
  - @return 	The entity ID of the single spawned AI (or nil on failure or
 			multiple spawned AI)
 --]]
-function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile)
+function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile, argMissileProfile)
 	local name = self:GetName()
 	
 	-- Load entity spawning parameters based on arguments
@@ -211,6 +214,7 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 	local paramFlightProfile	= argFlightProfile
 	local paramTargetingProfile = argTargetingProfile
 	local paramRaceProfile		= argRaceProfile
+	local paramMissileProfile	= argMissileProfile
 	
 	-- Fill out the parameters list
 	local paramsList = {}
@@ -230,6 +234,7 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 			esAIProfileFlight	 = self.Properties.SpawningParameters.esAIProfileFlight,
 			esAIProfileTargeting = self.Properties.SpawningParameters.esAIProfileTargeting,
 			esAIProfileRace		 = self.Properties.SpawningParameters.esAIProfileRace,
+			esAIProfileMissile	 = self.Properties.SpawningParameters.esAIProfileMissile,
 		}
 		table.insert(paramsList,memberParams)
 	end
@@ -262,6 +267,7 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 			paramFlightProfile		= memberParams.esAIProfileFlight
 			paramTargetingProfile	= memberParams.esAIProfileTargeting
 			paramRaceProfile		= memberParams.esAIProfileRace
+			paramMissileProfile		= memberParams.esAIProfileMissile
 		end
 	
 		-- Spawn the new AI entity
@@ -285,6 +291,9 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 				end
 				if (paramRaceProfile ~= "") then
 					entity.PropertiesInstance.esAIProfileRace = paramRaceProfile
+				end
+				if (paramMissileProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileMissile = paramMissileProfile
 				end
 						
 				-- Add to the list of living AIs
@@ -392,6 +401,7 @@ function AISpawnPoint:GetWaveFromTable(targetWaveID)
 						esAIProfileFlight	 = self.Properties.SpawningParameters.esAIProfileFlight,
 						esAIProfileTargeting = self.Properties.SpawningParameters.esAIProfileTargeting,
 						esAIProfileRace		 = self.Properties.SpawningParameters.esAIProfileRace,
+						esAIProfileMissile	 = self.Properties.SpawningParameters.esAIProfileMissile,
 					}
 					if (wave.Members[i].name) then
 						memberParams.sName = wave.Members[i].name
@@ -410,6 +420,9 @@ function AISpawnPoint:GetWaveFromTable(targetWaveID)
 					end
 					if (wave.Members[i].raceprofile) then
 						memberParams.esAIProfileRace		= wave.Members[i].raceprofile
+					end
+					if (wave.Members[i].missileprofile) then
+						memberParams.esAIProfileMissile		= wave.Members[i].missileprofile
 					end
 					
 					-- Insert the parameters into the list

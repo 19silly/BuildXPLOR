@@ -36,7 +36,7 @@ PressurizedObject =
 		{
 			Effect =
 			{
-				ParticleEffect = "smoke_and_fire.geysir.intense_steam_small",
+				ParticleEffect = "",
 				PulsePeriod = 0,
 				Scale = 1,
 				CountScale = 1,

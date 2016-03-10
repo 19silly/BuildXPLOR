@@ -12,7 +12,6 @@
 --
 --------------------------------------------------------------------------
 
-V_XML_DEF = "Scripts/Entities/Vehicles/def_vehicle.xml";
 V_SCRIPT_DIR = "Scripts/Entities/Vehicles/Implementations/";
 V_XML_DIR = V_SCRIPT_DIR.."Xml/";
 

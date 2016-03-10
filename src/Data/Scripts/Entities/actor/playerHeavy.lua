@@ -25,7 +25,6 @@ PlayerHeavy =
 			health = 90, -- See  Player:SetIsMultiplayer()  for MP value
 			--playerMult = 1.0,
 			--AIMult = 1.0,
-			FallSleepTime = 6.0,
 		},
 
 		CharacterSounds =
@@ -51,7 +50,6 @@ PlayerHeavy =
 
 	PropertiesInstance = 
 	{
-		aibehavior_behaviour = "PlayerIdle",
 	},
 
 	gameParams =
@@ -324,7 +322,7 @@ end
 
 
 function PlayerHeavy.Client:AlignTo(ang)
-	self.actor:SetAngles(ang);
+	self.entity:SetAngles(ang);
 end
 
 function PlayerHeavy.Client:ClearInventory()
@@ -341,11 +339,6 @@ function PlayerHeavy.Client:OnInit(bIsReload)
 end
 
 function PlayerHeavy:OnInit(bIsReload)
-
---	AI.RegisterWithAI(self.id, AIOBJECT_PLAYER, self.Properties);
-	self:SetAIName(self:GetName());
-	----------------------------------------
-
 --	self:InitSounds();
 
 	self:OnReset(true, bIsReload);

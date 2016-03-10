@@ -50,7 +50,13 @@ function AudioUtils.LookupSwitchStateIDs(hSwitchID, tStateNames)
 	
 	if ((hSwitchID ~= nil) and (tStateNames ~= nil)) then
 		for i, name in ipairs(tStateNames) do
-			tStateIDs[i] = Sound.GetAudioSwitchStateID(hSwitchID, name);
+			-- CIG BEGIN mkorotyaev added nil name handling
+			if (name ~= nil) then
+				tStateIDs[i] = Sound.GetAudioSwitchStateID(hSwitchID, name);
+			else
+				tStateIDs[i] = nil;
+			end
+			-- CIG END
 		end
 	end
 	
@@ -76,7 +82,6 @@ function AudioUtils.LookupObstructionSwitchAndStates()
 	return {hSwitchID = nSwitch, tStateIDs = tStates};
 end
 
-
 -- CIG BEGIN shall
 ----------------------------------------------------------------------------------------
 function AudioUtils.LoadPreloadForTrigger(hTriggerID, eMethod)
@@ -88,5 +93,14 @@ end
 ----------------------------------------------------------------------------------------
 function AudioUtils.UnloadPreloadForTrigger(hTriggerID)
 	Sound.UnloadPreloadForTrigger(hTriggerID);	
+end
+-- CIG END
+
+-- CIG BEGIN mkorotyaev
+----------------------------------------------------------------------------------------
+function AudioUtils.SetGlobalSwitchState(hSwitchID, hSwitchStateID)
+	if ((hSwitchID ~= nil) and (hSwitchStateID ~= nil)) then
+		Sound.SetGlobalSwitchState(hSwitchID, hSwitchStateID)
+	end
 end
 -- CIG END

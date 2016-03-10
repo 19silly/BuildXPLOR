@@ -20,7 +20,7 @@ MagneticMine = {
 		
 		Explosion =
 		{
-			ParticleEffect = "explosions_fx.Death_Explosion.Explosion";
+			ParticleEffect = "";
 			-- EffectScale = 0.2,
 			EffectScale = 1.0;
 			DamageRadius = 5,

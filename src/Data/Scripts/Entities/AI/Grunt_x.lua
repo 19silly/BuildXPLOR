@@ -8,23 +8,16 @@ Grunt_x =
 	UpperBodyGraph = "PilotUpperBody.xml",	
 
 	colliderEnergyScale = 10,
-	colliderRagdollScale = 150,
   
 	Properties = 
 	{	
 		esNavigationType = "MediumSizedCharacters",
 		voiceType = "enemy",
-		objFrozenModel = "",
 		Damage =
 		{
-		  bNoGrab = 0,
-			bNoDeath = 0,
 			FallPercentage = 20,
-			FallSleepTime = 2,
 			health = 250,
 		},
-		distanceToHideFrom = 3,
-		preferredCombatDistance = 20,		-- preferred combat distance from the target
 		esFaction = "Civilians",
 		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
 		
@@ -133,10 +126,6 @@ Grunt_x =
 			},
 		},
 	},
-	
-	AI_changeCoverLastTime = 0,	
-	AI_changeCoverInterval = 7,
-	
 
 	--melee stuff
 	melee =
@@ -150,65 +139,3 @@ function Grunt_x:OnResetCustom()
 	AI.ModifySmartObjectStates(self.id, "-Busy");
 	self:ReleaseTargetPOI();
 end
-
-
--------------------------------------------------------------------------------------------------------
---function Grunt_x:OnInit(  )
---
-----	dump(BasicAI);
---	mergef( self, BasicAI, 1 );
-----	dump(self);
---	BasicAI.Server_OnInit( self );
---	BasicAI.Client_OnInit( self );
---
---	self.cnt:CounterSetValue("Boredom", 0 );
---	
-----	self:MakeAlerted();
---	
-----	BasicPlayer.Server_OnInit( self );	
-----	BasicAI.OnInit( self );
---
---end
-
---Grunt=CreateAI(Grunt_x)
------------------------------------------------------------------------------------------------------
---function Grunt_x:Event_Talk(sender)
---	BroadcastEvent(self, "Talk");
---	AI.Signal(SIGNALFILTER_SENDER,1,"OnBored", self.id);
---	System.Log("SENDING TALK");
---end
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
-
---Grunt_x.FlowEvents =
---{
---	Inputs =
---	{
---		Alert = { Grunt_x.Event_Alert, "bool" },
---		Talk = { Grunt_x.Event_Talk, "bool" },
---	},
---	Outputs =
---	{
---		Alert = "bool",
---		Talk = "bool",
---	},
---}
-
------------------------------------------------------------------------------------------------------
--- Points of interest
------------------------------------------------------------------------------------------------------
-
-function Grunt_x:SetTargetPOI(poi)
-	self.AI.poiId = poi.id;
-	AI.SetRefPointPosition(self.id, poi:GetWorldPos());
-end
-
-
-function Grunt_x:ReleaseTargetPOI()
-	if (self.AI.poiId) then
-		AI.ModifySmartObjectStates(self.AI.poiId, "-Busy");
-		self.AI.poiId = nil;
-	end
-end
-
-

@@ -1,16 +1,10 @@
 RSI_IR1337_Weapon_Mount_Quad =
 {
-
-	foreignCollisionDamageMult = 1.0,
-	vehicleCollisionDamageMult = 1.0,
-
 	Properties = 
 	{	
 		bDisableEngine = 0,
 		material = "",
-		bFrozen = 0,
 		Modification = "",
-		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
 		sItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_IR1337_Weapon_Mount_quad.xml",
 		
@@ -37,7 +31,6 @@ RSI_IR1337_Weapon_Mount_Quad.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

@@ -25,21 +25,23 @@
 	</Policy>
 	<!-- entity id's -->
 	<Policy name="eid" impl="EntityId"/>
-	<!-- string table (for strings that are sent repeatedly) -->
+  <!-- string table (for strings that are sent repeatedly) -->
 	<Policy name="stab" impl="StringTable"/>
 
-	<Policy name="wrld" impl="QuantizedVec3">
-		<XParams min="-25000" max="25000.0" nbits="31"/>
-		<YParams min="-25000" max="25000.0" nbits="31"/>
-		<ZParams min="-25000" max="25000.0" nbits="31"/>
+	<!-- CIG world space 64-bit as 45-bit for transit-->
+	<Policy name="wrld" impl="QuantizedVec3W">
+		<XParams min="-1000000000.0" max="1000000000.0" nbits="45"/>
+		<YParams min="-1000000000.0" max="1000000000.0" nbits="45"/>
+		<ZParams min="-1000000000.0" max="1000000000.0" nbits="45"/>
 	</Policy>
+
 	<!-- combined local and world space -->
-	<Policy name="lwld" impl="QuantizedVec3">
+	<Policy name="lwld" impl="QuantizedVec3W">
 		<XParams min="-25000" max="25000.0" nbits="31"/>
 		<YParams min="-25000" max="25000.0" nbits="31"/>
 		<ZParams min="-25000" max="25000.0" nbits="31"/>
 	</Policy>
-	<Policy name="wrl2" impl="AdaptiveVec3">
+	<Policy name="wrl2" impl="AdaptiveVec3W">
 		<XParams 
 			min="-25000" 
 			max="25000" 
@@ -68,7 +70,7 @@
 			quantization="NeverLower"
 			inRange="85"/>
 	</Policy>
-	<Policy name="wrl3" impl="AdaptiveVec3"><!-- for positions that can be out of terrain range usually "target destination" -->
+	<Policy name="wrl3" impl="AdaptiveVec3W"><!-- for positions that can be out of terrain range usually "target destination" -->
 		<XParams 
 			min="-300000" 
 			max="300000" 
@@ -203,8 +205,6 @@
 	<Policy name="limb" impl="RangedUnsignedInt">
 		<Range min="0" max="10"/>
 	</Policy>
-	<!-- prediction handle -->
-	<Policy name="phdl" impl="EntityId"/>
 	<!-- breakable id -->
 	<!-- note this cannot be changed without changing MAX_BREAK_STREAMS in CryNetwork/ContextView.h -->
 	<Policy name="brId" impl="RangedInt">
@@ -288,10 +288,11 @@
   <Policy name="impS" impl="FloatAsInt">
     	<Params min="0" max="8191" nbits="9"/>
   </Policy>
-	<Policy name="sHit" impl="QuantizedVec3">
-		<XParams min="-8192" max="8191" nbits="26"/>
-		<YParams min="-8192" max="8191" nbits="26"/>
-		<ZParams min="-8192" max="8191" nbits="26"/>
+	<!-- CIG sHit is world space, and thus needs 64-bit policy-->
+	<Policy name="sHit" impl="QuantizedVec3w">
+		<XParams min="-1000000000.0" max="1000000000.0" nbits="45"/>
+		<YParams min="-1000000000.0" max="1000000000.0" nbits="45"/>
+		<ZParams min="-1000000000.0" max="1000000000.0" nbits="45"/>
 	</Policy>
 	<Policy name="hit0" impl="QuantizedVec3">
 		<XParams min="0.000" max="1.999" nbits="13"/>
@@ -469,4 +470,3 @@
   <Alias name="schl" is="dflt"/>
   
 </CompressionPolicy>
-

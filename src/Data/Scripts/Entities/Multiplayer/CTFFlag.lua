@@ -12,23 +12,24 @@
 --
 ----------------------------------------------------------------------------------------------------
 CTFFlag =
-{	
+{
 	Server = {},
 	Client = {},
 	Properties =
 	{
-		objModelSame 					= "objects/multiplayer/props/cw2_ctf_flag/cw2_ctf_flag_red.cgf",
-		objModelOther					= "objects/multiplayer/props/cw2_ctf_flag/cw2_ctf_flag_blue.cgf",
+		objModelSame = "objects/props/misc/ctf/flag_neutral_small.cgf",
+		objModelOther = "objects/props/misc/ctf/flag_neutral_small.cgf",
 		Team = 0,
-		ActionSuffix	 = "flag",
+		ActionSuffix = "flag",
 		ActionSuffixAG = "_flag",
 		PlayerTag = "flag",
-		
-		Physics = {
+
+		Physics = 
+		{
 			mass = 20.0,
 			density = 0.0,
 			water_damping = 80,
-			water_resistance = 190,	
+			water_resistance = 190,
 			water_density = 250,
 		},
 	},
@@ -55,7 +56,7 @@ function CTFFlag:LoadCorrectGeometry()
 	if (g_localActorId ~= nil) then
 		localPlayerTeamId = g_gameRules.game:GetTeam(g_localActorId);
 	end
-	
+
 	if (flagTeamId == localPlayerTeamId) then
 		self:LoadGeometry(0, self.Properties.objModelOther);
 	else
@@ -71,7 +72,7 @@ function CTFFlag:OnSpawn()
 
 	self:RedirectAnimationToLayer0(0, true);
 	self:Activate(1);
-	self:SetPhysicParams(PHYSICPARAM_BUOYANCY, self.PhysParams );
+	self:SetPhysicParams(PHYSICPARAM_BUOYANCY, self.Properties.Physics );
 
 	self:OnReset();
 end
@@ -116,7 +117,7 @@ end
 ----------------------------------------------------------------------------------------------------
 function CTFFlag:IsUsable(user)
 	if (g_gameRules.game:GetTeam(user.id) ~= g_gameRules.game:GetTeam(self.id)) then
-		return 725725;			-- Grrrrr, magic number to identify item pickups from interactor
+		return 725725; -- magic number to identify item pickups from interactor
 	else
 		return 0;
 	end

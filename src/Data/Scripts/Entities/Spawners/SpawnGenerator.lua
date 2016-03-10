@@ -435,6 +435,7 @@ function SpawnGenerator:GetWaveFromTable(targetWaveID)
 						esAIProfileFlight	 = self.Properties.SpawningParameters.esAIProfileFlight,
 						esAIProfileTargeting = self.Properties.SpawningParameters.esAIProfileTargeting,
 						esAIProfileRace		 = self.Properties.SpawningParameters.esAIProfileRace,
+						esAIProfileMissile	 = self.Properties.SpawningParameters.esAIProfileMissile,
 					}
 					if (wave.Members[i].name) then
 						memberParams.sName = wave.Members[i].name
@@ -453,6 +454,9 @@ function SpawnGenerator:GetWaveFromTable(targetWaveID)
 					end
 					if (wave.Members[i].raceprofile) then
 						memberParams.esAIProfileRace		= wave.Members[i].raceprofile
+					end
+					if (wave.Members[i].missileprofile) then
+						memberParams.esAIProfileMissile		= wave.Members[i].missileprofile
 					end
 					
 					-- Insert the parameters into the list
@@ -499,6 +503,7 @@ function SpawnGenerator:SpawnFromLink(link)
 	local argFlightProfile		= self.Properties.SpawningParameters.esAIProfileFlight
 	local argTargetingProfile	= self.Properties.SpawningParameters.esAIProfileTargeting
 	local argRaceProfile		= self.Properties.SpawningParameters.esAIProfileRace
+	local argMissileProfile		= self.Properties.SpawningParameters.esAIProfileMissile
 	
 	-- If parameters were loaded from a waves XML, use the next set of parameters from the XML as arguments, instead
 	if (next(self.paramsList) ~= nil) then
@@ -509,6 +514,7 @@ function SpawnGenerator:SpawnFromLink(link)
 		argFlightProfile		= self.paramsList[self.memberIncrement].esAIProfileFlight
 		argTargetingProfile		= self.paramsList[self.memberIncrement].esAIProfileTargeting
 		argRaceProfile			= self.paramsList[self.memberIncrement].esAIProfileRace
+		argMissileProfile		= self.paramsList[self.memberIncrement].esAIProfileMissile
 	end
 	
 	-- If there is no name argument, use default based on archetype
@@ -521,7 +527,7 @@ function SpawnGenerator:SpawnFromLink(link)
 	argName = argName.."_"..self.nSpawnCounter
 	
 	-- Tell the link to spawn using the argument parameters, returning the entity ID of the spawned AI
-	return link:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile)
+	return link:SpawnAI(argArchetype, argName, argBaseProfile, argCombatProfile, argFlightProfile, argTargetingProfile, argRaceProfile, argMissileProfile)
 end
 
 

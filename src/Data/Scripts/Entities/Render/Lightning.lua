@@ -1,3 +1,5 @@
+Script.ReloadScript("scripts/Entities/Sound/Shared/AudioUtils.lua");
+
 Lightning =
 {
 	Properties =
@@ -11,8 +13,6 @@ Lightning =
 			fDelay = 5,  -- Delay between strikes in seconds
 			fDelayVariation = 0.5,  -- Variation of Delay between strikes in percent.
 			fLightningDuration = 0.2,  -- in seconds
-			fThunderDelay = 1,  -- Delay between lighting strike and thunder sound.
-			fThunderDelayVariation = 0.5,  -- Variation of delay between lighting strike and thunder sound.
 		},
 		Effects =
 		{
@@ -27,7 +27,13 @@ Lightning =
 			SkyHighlightMultiplier = 1,
 			color_SkyHighlightColor = {x=0.8,y=0.8,z=1},
 			SkyHighlightAtten = 10,
-			sound_Sound = "",
+		},
+		Audio =
+		{
+			audioTriggerPlayTrigger = "",
+			audioTriggerStopTrigger = "",
+			audioRTPCDistanceRtpc = "",
+			fSpeedOfSoundScale = 1.0,
 		},
 	},
 
@@ -47,14 +53,42 @@ Lightning =
 	_ParticleTable = {},
 	_SkyHighlight = { size=0,color={x=0,y=0,z=0},position={x=0,y=0,z=0} },
 	_StrikeCount = 0,
+	hOnTriggerID = nil,
+	hOffTriggerID = nil,
+	hRtpcID = nil,
+	nAudioTimerMinID = 2, -- Audio Timer IDs start at this value and can grow dynamically, any additional timers must not come after audio timers ID wise!
+	aAudioThunders = {},
+	nNumAuxAudioProxies = 4,
+	nNumThunder = 1,
 }
 
--------------------------------------------------------
+----------------------------------------------------------------------------------------
+function Lightning:_LookupControlIDs()
+	self.hOnTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerPlayTrigger);	
+	self.hOffTriggerID = AudioUtils.LookupTriggerID(self.Properties.Audio.audioTriggerStopTrigger);
+	self.hRtpcID = AudioUtils.LookupRtpcID(self.Properties.Audio.audioRTPCDistanceRtpc);
+end
+
+----------------------------------------------------------------------------------------
+function Lightning:_KillAllAudioTimers()
+	local nIndex = 1;
+
+	while (self.aAudioThunders[nIndex] ~= nil) do
+		self:KillTimer(self.aAudioThunders[nIndex].nTimerID);
+		self.aAudioThunders[nIndex].fDistance = 0.0;
+		self.aAudioThunders[nIndex].vStrikeOffset.x = 0.0;
+		self.aAudioThunders[nIndex].vStrikeOffset.y = 0.0;
+		self.aAudioThunders[nIndex].vStrikeOffset.z = 0.0;		
+		nIndex = nIndex + 1;
+	end
+end
+
+----------------------------------------------------------------------------------------
 function Lightning:OnSpawn()
 	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY,0);
 end
 
--------------------------------------------------------
+----------------------------------------------------------------------------------------
 function Lightning:OnInit()
 	self.bStriking = 0;
 	self.light_fade = 0;
@@ -64,35 +98,66 @@ function Lightning:OnInit()
 
 	--self:NetPresent(0);
 	self.bActive = self.Properties.bActive;
+	
+	-- This is the default and always existing AudioProxy.
+	local oAudioThunderEntry = {nTimerID = self.nAudioTimerMinID, nAudioProxyID = self:GetDefaultAuxAudioProxyID(), fDistance = 0.0, vStrikeOffset = {x = 0.0, y = 0.0, z = 0.0}};
+	table.insert(self.aAudioThunders, oAudioThunderEntry);
+		
+	-- This script creates self.nNumAuxAudioProxies additional AudioProxies on the entity which we use for up to self.nNumAuxAudioProxies+1 simultaneous thunder audio events.
+	for i = 1, self.nNumAuxAudioProxies do
+		oAudioThunderEntry = {nTimerID = self.nAudioTimerMinID + i, nAudioProxyID = self:CreateAuxAudioProxy(), fDistance = 0.0, vStrikeOffset = {x = 0.0, y = 0.0, z = 0.0}};
+		table.insert(self.aAudioThunders, oAudioThunderEntry);
+	end
+	
+	self:_LookupControlIDs();
 	self:ScheduleNextStrike();
-
 	self:CacheResources();
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:CacheResources()
 	self:PreLoadParticleEffect( self.Properties.Effects.ParticleEffect );
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:OnShutDown()
 	self:StopStrike();
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:OnLoad(table)
 	self.bActive = table.bActive;
 	self:StopStrike();
 	self:ScheduleNextStrike();
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:OnSave(table)
 	table.bActive = self.bActive;
-	table.bActive = self.bActive;
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:OnPropertyChange()
 	self.bActive = self.Properties.bActive;
-	self:ScheduleNextStrike();
+	
+	if (self.bActive == 1) then
+		self:_LookupControlIDs();
+		self:ScheduleNextStrike();
+	else
+		-- Kill all possibly pending timers.
+		self:KillTimer(0);
+		self:KillTimer(1);
+		self:_KillAllAudioTimers();
+		
+		if (self.hOffTriggerID ~= nil) then
+			-- The stop trigger addresses all of the AuxAudioProxies.
+			-- Note: Maybe it's more feasible to execute a stop trigger only on the default AuxAudioProxy!?
+			self:ExecuteAudioTrigger(self.hOffTriggerID, self:GetAllAuxAudioProxiesID());
+		end
+	end
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:LoadLightToSlot( nSlot )
 	local props = self.Properties;
 	local Effects = props.Effects;
@@ -116,7 +181,6 @@ function Lightning:LoadLightToSlot( nSlot )
 
 	--lt.diffuse_color = { x=Color.clrDiffuse.x*diffuse_mul, y=Color.clrDiffuse.y*diffuse_mul, z=Color.clrDiffuse.z*diffuse_mul };
 	--lt.specular_color = { x=Color.clrSpecular.x*specular_mul, y=Color.clrSpecular.y*specular_mul, z=Color.clrSpecular.z*specular_mul };
-	lt.hdrdyn = 0;
 	lt.lifetime = 0;
 	lt.realtime = 1;
 	lt.dot3 = 1;
@@ -126,28 +190,43 @@ function Lightning:LoadLightToSlot( nSlot )
 	self:SetSlotPos( nSlot,self.vStrikeOffset );
 end
 
-------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 -- Lightning effect stopped in OnTimer
-------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 function Lightning:OnTimer( nTimerId )
-	if (nTimerId == 1) then
-		self.bStopStrike = 1;
-	end
 	if (nTimerId == 0) then
 		self:Event_Strike();
-	end
-
-	if (nTimerId == 2) then
-		-- Play Thunder sound.
-		local Effects = self.Properties.Effects;
-		if (Effects.sound_Sound ~= "") then
-		-- REINSTANTIATE!!!
-		--	local sndFlags = bor(SOUND_2D,SOUND_RELATIVE);
-		--	self.soundid = self:PlaySoundEvent(Effects.sound_Sound, self.vStrikeOffset, g_Vectors.v010, sndFlags, 0, SOUND_SEMANTIC_AMBIENCE_ONESHOT);
+	elseif (nTimerId == 1) then
+		self.bStopStrike = 1;
+	else
+		-- Is this one of the audio timers?
+		local nIndex = 1;
+		
+		while (self.aAudioThunders[nIndex] ~= nil) do
+			if (self.aAudioThunders[nIndex].nTimerID == nTimerId) then
+				-- Set supplied data and execute the play audio trigger.	
+				if (self.hOnTriggerID ~= nil) then
+					if (self.hRtpcID ~= nil) then
+						self:SetAudioRtpcValue(self.hRtpcID, self.aAudioThunders[nIndex].fDistance, self.aAudioThunders[nIndex].nAudioProxyID);
+					end
+					
+					self:SetAudioProxyOffset(self.aAudioThunders[nIndex].vStrikeOffset, self.aAudioThunders[nIndex].nAudioProxyID);
+					self:ExecuteAudioTrigger(self.hOnTriggerID, self.aAudioThunders[nIndex].nAudioProxyID);
+				end
+				
+				self.aAudioThunders[nIndex].fDistance = 0.0;
+				self.aAudioThunders[nIndex].vStrikeOffset.x = 0.0;
+				self.aAudioThunders[nIndex].vStrikeOffset.y = 0.0;
+				self.aAudioThunders[nIndex].vStrikeOffset.z = 0.0;
+				break;				
+			end
+			
+			nIndex = nIndex + 1;
 		end
 	end
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:StopStrike()
 	if (self.bStriking == 0) then
 		self:ScheduleNextStrike();
@@ -182,6 +261,7 @@ function Lightning:StopStrike()
 	self._StrikeCount = self._StrikeCount - 1;
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:OnUpdate( dt )
 	self.light_intensity = self.light_intensity - self.light_fade*dt;
 	if (self.light_intensity <= 0) then
@@ -196,11 +276,13 @@ function Lightning:OnUpdate( dt )
 	self:UpdateLightningParams();
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:OnStartGame()
 	-- Force object updates. The lightning has no AI and would get stuck without updates.
 	CryAction.ForceGameObjectUpdate(self.id, true);
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:UpdateLightningParams()
 	self:LoadLightToSlot( 0 );
 
@@ -226,10 +308,12 @@ function Lightning:UpdateLightningParams()
 	--System.SetSkyColor( self._SkyHighlight.color );
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:GetValueWithVariation( v,variation )
 	return v + (math.random()*2 - 1)*v*variation;
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:ScheduleNextStrike()
 	if (self.bActive == 1) then
 		local delay = self.Properties.Timing.fDelay;
@@ -238,9 +322,9 @@ function Lightning:ScheduleNextStrike()
 	end
 end
 
-------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 -- Start lightning effect stopped in OnTimer
-------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 function Lightning:Event_Strike()
 	if (self.bStriking == 0) then
 		self.bStriking = 1;
@@ -318,14 +402,25 @@ function Lightning:Event_Strike()
 		self:UpdateLightningParams();
 
 		local Timing = self.Properties.Timing;
-
-		-- Play Thunder sound.
-		if (Effects.sound_Sound ~= "") then
-			-- Set Timer for thunder sound.
-			self:SetTimer( 2,self:GetValueWithVariation(Timing.fThunderDelay,Timing.fThunderDelayVariation)*1000 );
-
-			--local sndFlags = bor(SOUND_2D,SOUND_RELATIVE);
-			--self.soundid = self:PlaySoundEvent(Effects.sound_Sound, self.vStrikeOffset, g_Vectors.v010, sndFlags, 0, SOUND_SEMANTIC_AMBIENCE_ONESHOT);
+		
+		if (self.hOnTriggerID ~= nil) then			
+			if (self.nNumThunder > (self.nNumAuxAudioProxies + 1)) then
+				self.nNumThunder = 1;
+			end
+			
+			local oAudioThunder = self.aAudioThunders[self.nNumThunder];
+			
+			oAudioThunder.fDistance = toCameraDistance;
+			oAudioThunder.vStrikeOffset.x = self.vStrikeOffset.x;
+			oAudioThunder.vStrikeOffset.y = self.vStrikeOffset.y;
+			oAudioThunder.vStrikeOffset.z = self.vStrikeOffset.z;
+			
+			-- Set timer for thunder sound depending on speed of sound at sea level (340.29 m/s) multiplied by a scalar.
+			local fTimeDelayOfThunderSound = (toCameraDistance / 340.29) * self.Properties.Audio.fSpeedOfSoundScale;
+			
+			-- Note: pending timers get killed!
+			self:SetTimer(oAudioThunder.nTimerID, fTimeDelayOfThunderSound * 1000.0);
+			self.nNumThunder = self.nNumThunder + 1;
 		end
 
 		self:SetTimer( 1,self:GetValueWithVariation(Timing.fLightningDuration,0.5)*1000 );
@@ -334,6 +429,7 @@ function Lightning:Event_Strike()
 	BroadcastEvent( self,"Strike" );
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:Event_Enable()
 	if (self.bActive == 0) then
 		self.bActive = 1;
@@ -341,13 +437,14 @@ function Lightning:Event_Enable()
 	end
 end
 
+----------------------------------------------------------------------------------------
 function Lightning:Event_Disable()
 	self.bActive = 0;
 end
 
-------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 -- Event descriptions.
-------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 Lightning.FlowEvents =
 {
 	Inputs =

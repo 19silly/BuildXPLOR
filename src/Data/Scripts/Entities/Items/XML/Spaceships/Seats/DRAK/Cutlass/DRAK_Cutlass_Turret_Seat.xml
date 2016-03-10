@@ -1,0 +1,127 @@
+﻿<item name="DRAK_Cutlass_Turret_Seat" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <param name="scopeContext"		value="Seat" />
+    <param name="adb" value="Items/Seats/DRAK/DRAK_Cutlass_Turret_Seat_Anims.adb" />
+	<param name="actionController" value="Items/Seats/DRAK/DRAK_Cutlass_Turret_Seat_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/DRAK/DRAK_Cutlass_Turret_Seat_HumanAnims.adb" />
+	<!-- <MannequinTags>
+		<mannequintag tag="" />
+		<TagsList>
+			<Tags tag="lower" >
+				<mannequintag tag="LowerTurret" />
+			</Tags>
+		</TagsList>
+	</MannequinTags> -->
+    <param name="itemType" value="Seat" />
+    <param name="itemSubType" value="Pilot" />
+		<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="DRAK" />
+    <param name="itemSize" value="1" />
+		<param name="itemTags" value="flightReady" />
+		<param name="itemClass" value="1" />
+    <param name="display_name" value="Cutlass Turret Seat" />
+  	<vehicleItemStats>
+	</vehicleItemStats>  
+  </params>
+
+	<geometry>
+			<thirdperson name="Objects/Spaceships/Turrets/DRAK/Cutlass/DRAK_Cutlass_Turret_Seat.cga"/>
+	</geometry>
+	
+<!-- 	   -->
+<!-- SEATS -->
+<!-- 	   -->
+    <!-- Gunner -->
+    <Seat name="Gunner" enterHelper="turret_player_mount_pos" sitHelper="turret_sit_helper" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" visorType="turret" actionMap="spaceship">
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
+        </View>
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0" />
+      </Views>
+      <PostAction>
+        <Enter>
+          <State animation="GunnerSeat" state="Retract" />
+        </Enter>
+      </PostAction>
+      <WaitFor>
+        <Exit>
+          <State animation="GunnerSeat" state="Deploy" />
+        </Exit>
+      </WaitFor>
+      <SeatActions>
+        <SeatAction class="SharedWeapons"/>
+        <SeatAction class="SharedMannedTurret"/>
+        <SeatAction class="SharedItems"/>
+		<Settings>
+              <Items>
+                <ItemPort part="turret_body" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+              </Items>
+            </Settings>
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="turret_chair_joystick_left">
+                <Rotate_Z input="roll" direction="-1" min="-5" max="5" />
+              </ControlPart>
+              <ControlPart part="turret_chair_joystick_left">
+                <Rotate_Z input="roll" direction="1" min="-5" max="5" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+              <Limb tag="LeftArmYoke" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="turret_player_ik_left" blendTime="0" />
+              <Limb tag="RightArmYoke" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="turret_player_ik_right" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+    </Seat>
+	<Mannequin tag="DRAK_Cutlass_Turret_Seat" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_HumanAnims.adb" id="idMannequin" />
+	<Animations>
+		<!-- Default Animation States -->
+		<Action name="GunnerSeat" state="Retract" />
+	</Animations>
+	<Actions>
+		<!-- Seat / Gunner -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="turret_enter_helper" distance="0.75" bbMin="-0.5,-0.5,-0.5" bbMax="0.5,0.5,0.5" />
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="Gunner" />
+				</Seats>
+			</Enter>
+		</Action>
+		<!-- Switch / TurretChair -->
+		<Action class="Switch">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="TouchPanel_TurretChair_Helper" distance="1.0" bbMin="-0.08,-0.08,-0.08" bbMax="0.08,0.08,0.08" />
+		  </Activations>
+		  <States>
+			<State>
+			  <AnimationStates>
+				<State animation="GunnerSeat" state="Deploy" />
+			  </AnimationStates>
+			  <uiAction name="Interaction_Button" />
+			</State>
+			<State>
+			  <AnimationStates>
+				<State animation="GunnerSeat" state="Retract" />
+			  </AnimationStates>
+			  <uiAction name="Interaction_Button" />
+			</State>
+		  </States>
+		</Action>
+	</Actions>
+ </item>

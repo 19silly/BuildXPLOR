@@ -49,24 +49,6 @@ end
 function VehiclePartDetached:Event_Disable(sender)
 end
 
-function VehiclePartDetached:GetReturnToPoolWeight(isUrgent)
-	local	maxDistance = 100;
-	
-	local	weight = self:GetTimeSinceLastSeen() * maxDistance;
-	
-	if (g_localActor) then
-		local	distance = self:GetDistance(g_localActor.id);
-		
-		if (distance > maxDistance) then
-			distance = maxDistance;
-		end
-		
-		weight = weight + distance;
-	end
-
-	return weight;
-end
-
 VehiclePartDetached.FlowEvents =
 {
 	Inputs =

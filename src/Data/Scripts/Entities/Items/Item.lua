@@ -74,6 +74,13 @@ function Item:OnUsed(user)
 end
 
 ----------------------------------------------------------------------------------------------------
+function Item:OnStartUsed(user)
+	if (user) then
+		self:ActivateOutput( "StartUsed",user.id );
+	end
+end
+
+----------------------------------------------------------------------------------------------------
 function Item.Server:OnHit(hit)
 	local explosionOnly=tonumber(self.Properties.bExplosionOnly or 0)~=0;
 	local destroyed=self.item:IsDestroyed()
@@ -129,6 +136,7 @@ Item.FlowEvents =
 		Hide = "bool",
 		UnHide = "bool",
 		Used = "entity",
+		StartUsed = "entity"
 	},
 }
 
