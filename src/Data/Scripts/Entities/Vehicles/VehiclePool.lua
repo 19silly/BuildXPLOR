@@ -26,7 +26,6 @@ for i,vehicle in pairs(VehicleSystem.VehicleImpls) do
 			esNavigationType = "VehicleMedium",
 			bSyncPhysics = 1,
 			bDogfightingEnabled = 0, --[0,1,1,"Check this if the ship can be used for dogfighting"]
-			bArenaCommanderUIEnabled = 0 -- CIG David Campbell BHVR determines if the ship should show the arena commander UI when entered
 		},
 		PropertiesInstance =
 		{

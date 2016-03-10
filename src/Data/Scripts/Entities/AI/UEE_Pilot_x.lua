@@ -13,7 +13,7 @@ UEE_Pilot_x =
 	{	
 		esNavigationType = "MediumSizedCharacters",
 		voiceType = "enemy",
-		fileModel = "Objects/Characters/Human/Males/rsi_suit.cdf",
+		fileModel = "Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf",
 		objFrozenModel = "",
 		Damage =
 		{
@@ -28,7 +28,7 @@ UEE_Pilot_x =
 		esFaction = "UEE",
 
 		-- Default Loadout override for UEE_Pilots
-		fileItemLoadout = "Scripts/Loadouts/Player/Default_DFM_Loadout.xml",
+		fileItemLoadout = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
 
 		
 		CharacterSounds =
@@ -61,6 +61,8 @@ UEE_Pilot_x =
 			BONE_ARM_L = "LeftArm",
 			BONE_FOREARM_R = "RightForeArm",
 			BONE_FOREARM_L = "LeftForeArm",
+			BONE_HAND_R = "RightHand",
+			BONE_HAND_L = "LeftHand",
 			BONE_CALF_R = "RightLeg",
 			BONE_CALF_L = "LeftLeg",
 			BONE_CAMERA = "HeadCam",

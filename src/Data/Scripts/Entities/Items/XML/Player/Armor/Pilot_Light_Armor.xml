@@ -14,63 +14,85 @@
 	</params>
 
 	<geometry>
-		<firstperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf"/>
-		<thirdperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf"/>
+		<firstperson name="Objects/Characters/Human/male_cdfs/rsi/pilot/rsi_pilot_m_outfit_original.cdf"/>
+		<thirdperson name="Objects/Characters/Human/male_cdfs/rsi/pilot/rsi_pilot_m_outfit_original.cdf"/>
 	</geometry>
+	
+	<playerArmor type="Light">
+		<param name="physical_damage_modifier" value="0.95" />
+		<param name="energy_damage_modifier" value="1.0" />
+		<param name="distortion_damage_modifier" value="1.0" />
+		<param name="armor_speed_scale" value="1.15" />
+		<param name="footstepEffect" value="footstep_player" />
+		<param name="remoteFootstepEffect" value="footstep" />
+		<param name="foleyEffect" value="foley_light_pilot_player" />
+		<param name="remoteFoleyEffectName" value="foley_light_pilot_grunt" />
+	</playerArmor>
 	
 	<portParams>
 		<ports>
-
 			<!-- Helmet -->
-			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1">
+			<ItemPort minsize="1" maxsize="1" name="headcam" display_name="Helmet Mount 1" flags="nophys">
+				<Types>
+					<Type type="Suit" subtypes="Helmet,Hat"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1" flags="thirdperson nophys">
 				<Types>
 					<Type type="Suit" subtypes="Helmet,Hat"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- Jetpack -->
-			<ItemPort minsize="1" maxsize="1" name="jetpack" display_name="JetPack">
+			<ItemPort minsize="1" maxsize="1" name="jetpack" display_name="JetPack" flags="nophys">
 				<Types>
 					<Type type="Suit" subtypes="JetPack,Thrusters"/>
 				</Types>
 			</ItemPort>
 			
 			<!--Ejection Seat Attachment Point-->
-			<ItemPort minsize="1" maxsize="1" name="ejectionseat" display_name="Ejection Seat">
+			<ItemPort minsize="1" maxsize="1" name="ejectionseat" display_name="Ejection Seat" flags="nophys">
 				<Types>
 					<Type type="Seat" subtypes="Pilot,EjectionSeat"/>
 				</Types>
 			</ItemPort>
 			
 			<!--Right Hand Attach -->
-			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select nophys">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach_hand_right" display_name="Weapon Right Hand" flags="select nophys">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- Left Hand Attach-->
-			<ItemPort minsize="1" maxsize="1" name="offhand_attach" display_name="Left Hand" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="offhand_attach" display_name="Left Hand" flags="select nophys">
 				<types>
 					<Type type="WeaponPersonal" subtypes="Magazine"/>
 				</types>
 			</ItemPort>
 			
 			<!-- 1 x Small Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach" display_name="Small Weapon 1">
+			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach nophys" display_name="Small Weapon 1">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Small"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 2 x Magazines -->
-			<ItemPort name="magazine_attach_1" minsize="1" maxsize="1" display_name="Magazine 1 Armor Attach">
+			<ItemPort name="magazine_attach_1" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Magazine 1 Armor Attach">
 				<Types>
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</Types>
 			</ItemPort>
 			
-			<ItemPort name="magazine_attach_2" minsize="1" maxsize="1" display_name="Magazine 2 Armor Attach">
+			<ItemPort name="magazine_attach_2" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Magazine 2 Armor Attach">
 				<Types>
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</Types>

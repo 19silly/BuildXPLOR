@@ -55,9 +55,9 @@
 		<param name="tag" value="Cannon_Kastak_Firestorm" />
 		<param name="adb" value="Items/Weapons/FPS/Cannon_Kastak_Firestorm.adb" />
 		
-		<param name="tags" value="867"/>
-		<param name="price" value="2500"/>
-		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/missing.tif" />
+		<param name="tags" value="587,867,1017"/>
+		<param name="price" value="99999"/>
+		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/Cannon_Kastak_Firestorm.tif" />
 	</params>
 
 	<FPSDebug>
@@ -445,60 +445,79 @@
 
 	<sway>
 		<!-- The translation is based off of the sway rotation, when you hit the rotation max you hit the translation max. So, choose maxX/maxY carefully for one thing. -->
-		<param name="maxTranslateRightHandX" value=".25" />
-		<param name="maxTranslateRightHandY" value=".25" />
+		<param name="maxTranslateRightHandX" value="0" />
+		<param name="maxTranslateRightHandY" value="0" />
 
 		<param name="maxTranslateLeftHandX" value=".25" />
 		<param name="maxTranslateLeftHandY" value=".25" />
 
+		<!-- This is the scale when player is standing and doing nothing. You don't need to even have this here, defaults to 1, it's just a sample for stance overrides. -->
+		<param name="scale" value="1.0" />
 		<!-- This is to prevent the breath swaying from getting too large, depends on the coolDownRate. 
 		 The larger the max scale the longer it'll take for the player to cool down.-->
 		<param name="maxScale" value="6" />
 
-		<!-- swaySpeed is the amount of time for a full sway cycle. -->
-		<param name="swaySpeed" value="0.75" />
-		<param name="swaySpeedZoomMultiplier" value="5" />
+		<!-- Increases the sway scale by this per second until the scale reaches maxScale -->
+		<param name="increaseRate" value="0.1" />
+		<!-- Decreases the sway scale by this per second until the scale reaches the baseScale -->
+		<param name="decreaseRate" value="0.25" />
 
-		<!-- Decreases the sway scale by this per second until the scale reaches 1.0 -->
-		<param name="scaleCoolDownRate" value=".5" />
+		<!-- speed is the amount of time for a full sway cycle. -->
+		<param name="speedScale" value="0.25" />
+		<param name="maxSpeedScale" value=".75" />
 
-		<param name="zoomScale" value="1.2" />
-		<param name="zoomScaleTime" value="1.0" />
-
-		<!-- When the player holds their breath to stabalize the gun, the sway scale is reduced to this amount.* -->
-		<param name="stabilizeScale" value="0.15" />
-		<!-- When the player goes to hold their breath to stabalize the gun, this is the amount of time it 
-		 takes the player to fully stabalize the gun to the above value. -->
-		<param name="stabilizeScaleRate" value="2.0"/>
-		<!-- This is the maximum amount of time the player can hold their breath after stabalizing the gun before
+		<!-- This is the maximum amount of time the player can hold their breath after stabilizing the gun before
 		 they need to gasp for air. -->
 		<param name="stabilizeScaleEndTime" value="4.0" />
-		<!-- This is intended to indicate the player gasping for breath after stabilizing the gun, you see the camera suddenly sway quickly. -->
-		<param name="stabilizeRecoverScale" value="4.5" />
-		<param name="stabilizeRecoverTime" value="0.5" />
+		<param name="stabilizeRecoverTime" value="2.0" />
 
-		<!-- When firing a weapon this causes the scale to go up. It compounds with recoil, intended to indicate
-		 arm soreness after firing a weapon. -->
-		<param name="weaponFiringScale" value="3.0" />
-		<param name="weaponFiringScaleTime" value="0.25" />
+		<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve. 
+			.5 is 50% jitter and 50% bowditch curve. 
+			The reason for this is because the curves aren't layered, they're merged together. -->
+		<param name="rightHandCurveJitterRatioX" value="0.35" />
+		<param name="rightHandCurveJitterRatioY" value="0.35" />
+		<param name="leftHandCurveJitterRatioX" value="0.35" />
+		<param name="leftHandCurveJitterRatioY" value="0.35" />
 
-		<param name="sprintScale" value="3.0" />
-		<param name="sprintScaleTime" value=".75" />
-		<param name="walkScale" value="1.5" />
-		<param name="walkScaleTime" value="1.0" />
-		<param name="jumpScale" value="3.5" />
-		<param name="slideScale" value="2.0" />
-
-		<param name="proneScale" value="0.4"/>
-		<param name="crouchScale" value="0.8"/>
-		<param name="zerogScale" value=".8"/>
 
 		<!-- * Scales are multiplied together depending on the player state, so you won't necessarily see the exact value in this XML. 
 		   For instance holding your breath and zooming your weapon: baseValue * stanceScale * zoomScale * stabalizeScale * firingScale * movementScale -->
+
+		<overrides>
+	  <!-- Params override base, or you can have them compound. Example:
+				<override name="stabalizeAfter">
+					<param name="increaseRate" value="2.0" />         // This one overrides, notice there's no `type` attribute.
+					<param name="scale"        value="4" type="mult"/>// This one multiplies, notice the `mult` `type` attribute.
+				</override>
+
+				param `type` can be one of { mult, add }, or nonexistant to override default value.
+			 -->
+			<override name="ADS">
+				<param name="scale" value=".25" />
+
+				<param name="maxTranslateRightHandX" value="0.0" />
+				<param name="maxTranslateRightHandY" value="0.0" />
+
+				<param name="maxTranslateLeftHandX" value="0.05" />
+				<param name="maxTranslateLeftHandY" value="0.05" />
+
+				<param name="speedScale" value="0.5" />
+			</override>
+
+			<override name="ADS" event="timeelapsed">
+				<param name="time" value="20000" />
+
+				<param name="scale" value="4" type="mult"/>
+
+				<param name="increaseRate" value="0.05" />
+
+				<param name="maxSpeedScale" value="0.5" />
+			</override>
+		</overrides>
 	</sway>
 	
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0.20, 0.3" arLongRange="12" arShortRange="6" arMinRange="1"/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.2, 0.65,0.0" arLongRange="12" arShortRange="6" arMinRange="1"/>
 		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 	

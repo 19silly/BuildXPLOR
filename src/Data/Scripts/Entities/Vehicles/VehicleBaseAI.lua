@@ -35,6 +35,8 @@ VehicleBaseAI =
 		esAIProfileFlight		= "<None>",
 		esAIProfileTargeting	= "<None>",
 		esAIProfileRace			= "<None>",
+
+		AIPilotName			= "",
 		
 		-- allows for assignment to AI Territory and AI Wave entities
 	 	AITerritoryAndWave =

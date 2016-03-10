@@ -47,6 +47,12 @@ AnimObject =
 	PHYSICALIZEAFTER_TIMER = 1,
 	POSTQL_TIMER = 2,
 
+	SpawnInfoTable =
+	{
+		bAlwaysUpdate = 0,
+	 	bNetworked = 0,
+	},
+
 	Client = {},
 	Server = {},
 
@@ -162,6 +168,29 @@ function AnimObject:UnloadModel()
 end
 
 ------------------------------------------------------------------------------------------------------
+function AnimObject:OnSpawnInfoRead()
+	self.Properties.MultiplayerOptions.bNetworked = self.SpawnInfoTable.bNetworked;
+	self.Properties.Animation.bAlwaysUpdate = self.SpawnInfoTable.bAlwaysUpdate;
+end
+
+------------------------------------------------------------------------------------------------------
+function AnimObject.Server:OnInit()
+	self:OnInit();
+end
+
+function AnimObject.Client:OnInit()
+	self:OnInit();
+end
+
+function AnimObject:OnInit()
+	self.SpawnInfoTable = 
+	{
+		bAlwaysUpdate = self.Properties.Animation.bAlwaysUpdate,
+		bNetworked = self.Properties.MultiplayerOptions.bNetworked,
+	};
+end
+
+------------------------------------------------------------------------------------------------------
 function AnimObject:OnSpawn()
 	if (self.Properties.MultiplayerOptions.bNetworked == 0) then
 		self:SetFlags(ENTITY_FLAG_CLIENT_ONLY,0);
@@ -170,9 +199,13 @@ function AnimObject:OnSpawn()
 	self.isRagdollized = false;
 	self.__super.OnSpawn(self); -- Call parent
 
-	if (self.Properties.Animation.bAlwaysUpdate == 1) then
+	if (self.Properties.Animation.bAlwaysUpdate == 1 or self.Properties.MultiplayerOptions.bNetworked == 1) then
+
 		CryAction.CreateGameObjectForEntity(self.id);
 		CryAction.BindGameObjectToNetwork(self.id);
+	end
+
+	if (self.Properties.Animation.bAlwaysUpdate == 1) then
 		CryAction.ForceGameObjectUpdate(self.id, true);
 		self:Activate(1);
 	end

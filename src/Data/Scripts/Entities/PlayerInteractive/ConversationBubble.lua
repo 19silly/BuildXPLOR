@@ -12,18 +12,22 @@ ConversationBubble =
 		sNPC1EntityName = "",		
 		NPC1 = {
 			bAllowLowerBodyTurn = 1,
+			bAllowTalkTriggerFromBehind = 0,
 		},
 		sNPC2EntityName = "",
 		NPC2 = {
 			bAllowLowerBodyTurn = 1,
+			bAllowTalkTriggerFromBehind = 0,
 		},
 		sNPC3EntityName = "",
 		NPC3 = {
 			bAllowLowerBodyTurn = 1,
+			bAllowTalkTriggerFromBehind = 0,
 		},
 		sNPC4EntityName = "",
 		NPC4 = {
 			bAllowLowerBodyTurn = 1,
+			bAllowTalkTriggerFromBehind = 0,
 		},
 	},
   

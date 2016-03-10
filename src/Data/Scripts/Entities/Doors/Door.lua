@@ -50,6 +50,7 @@ Door =
 		bActivatePortal = 0,
 		bUsable = 1,
 		UseMessage = "@use_door",
+		bNetworkSync = 1, --[1,1,1,"DO NOT MODIFY"]
 	},
 
 	PhysParams =

@@ -1,4 +1,4 @@
-<item name="Pistol_KW_Model-II-Arclight_Grapple" class="Weapon" category="small" priority="13" weaponParams="1">
+<item name="Pistol_KW_Model-II-Arclight_Grapple" class="BatteryBasedWeapon" category="small" priority="13" weaponParams="1">
 	<params>
 		<param name="display_name" value="Grapple Beam" />
 		<param name="giveable" value="1" />
@@ -18,6 +18,7 @@
 		<param name="select_delayed_grab_3P" value="1" />
 
 		<param name="usesBattery" value="1" />
+		<param name="batteryDisplayUIElement" value="LaserPistolBattery" />
 
 		<!-- For Item Port Types -->
 		<param name="itemType" value="WeaponPersonal" />
@@ -85,16 +86,16 @@
 	<firemodes>
 		<firemode type="default">
 			<fire>
-				<param name="hit_type" value="PS-10" />
+				<param name="hit_type" value="Grapple" />
 				<param name="reticle" value="LaserPistol" />
-				<param name="ammo_type" value="PS-10" />
+				<param name="ammo_type" value="Grapple" />
 				<param name="rate" value="300" />
 				<param name="auto_fire" value="0" />
-				<param name="ammoDamageMultiplier" value="1" />
-				<param name="shots_until_battery_needs_recharge" value="60" />
+				<param name="ammoDamageMultiplier" value="1.25" />
+				<param name="shots_until_battery_needs_recharge" value="100" />
 				<param name="lowAmmoWarningFraction" value="0.34"/>
 				<param name="fillAmmoReloadFraction" value="0.60" />
-				<param name="recharge_time" value="1.0" />
+				<param name="recharge_time" value="4.0" />
 				<param name="endReloadFraction" value="0.78" />
 				<param name="helper_fp" value="muzzle_flash" />
 				<param name="helper_tp" value="muzzle_flash" />
@@ -113,7 +114,7 @@
 			<recoil>
 				<param name="max_recoil" value="0.045" />
 				<param name="first_attack" value="0.02" />
-				<param name="attack" value="0.02" />
+				<param name="attack" value="0.023" />
 				<param name="decay" value="0.55" />
 				<param name="end_decay" value="0.55" />
 				<param name="maxx" value="12" />
@@ -124,30 +125,17 @@
 				<param name="recoil_holdBreathActive_m" value="1.0" />
 				<param name="recoil_crouch_m" value="1.0" />
 				<param name="recoil_jump_m" value="1" />
-				<hints>
-					<hint x="0.04"	y="0.4" />
-					<hint x="-0.24"	y="0.36" />
-					<hint x="0.03"	y="0.4" />
-					<hint x="-0.08"	y="0.4" />
-					<hint x="0.24"	y="0.37" />
-					<hint x="0.45"	y="0.4" />
-					<hint x="0.20"	y="0.39" />
-					<hint x="-0.12"	y="0.39" />
-					<hint x="-0.33"	y="0.4" />
-					<hint x="-0.08"	y="0.38" />
-					<hint x="0.2"	y="0.4" />
-					<hint x="-0.12"	y="0.37" />
-					<hint x="0.22"	y="0.39" />
-					<hint x="-0.07"	y="0.4" />
-				</hints>
+        <hints>
+          <hint x="0.000"	y="0.000" />
+        </hints>
 			</recoil>
 			<spread>
 				<param name="min" value="0" />
-				<param name="max" value="0.25" />
-				<param name="attack" value=".1" />
-				<param name="decay" value=".85" />
-				<param name="end_decay" value=".85" />
-				<param name="speed_m" value=".1" />
+				<param name="max" value="0" />
+				<param name="attack" value="0" />
+				<param name="decay" value="0." />
+				<param name="end_decay" value="0." />
+				<param name="speed_m" value="0" />
 				<param name="rotation_m" value="1.2" />
 				<param name="spread_jump_m" value="0" />
 				<param name="spread_slide_m" value="0" />
@@ -156,8 +144,8 @@
 				<param name="spread_holdBreathActive_m" value="0" />
 			</spread>
 			<muzzleflash>
-				<firstperson effect="Illfonic_Weapons_Pistol_KW_Model-II-Arclight.PS-10.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.laserPistol_Muzzleflash" time="0.1" />
-				<thirdperson effect="Illfonic_Weapons_Pistol_KW_Model-II-Arclight.PS-10.3rd_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.laserPistol_Muzzleflash_3rd" time="0.1" />
+				<firstperson effect="Illfonic_Weapons_Grapple_Gun.GrappleAmmo.MuzzleFlash_1st" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Ammo.Grapple" time="0.1" />
+				<thirdperson effect="Illfonic_Weapons_Grapple_Gun.GrappleAmmo.MuzzleFlash_3rd" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Ammo.Grapple" time="0.1" />
 			</muzzleflash>
 			<muzzlesmoke>
 				<firstperson effect="weapon_fx.pistol.barrel_smoke_fp" helper="smoke_effect" />
@@ -173,83 +161,12 @@
 
 		<firemode name="Single" type="Single">
 		</firemode>
-		
-		<firemode name="GrappleBeam" type="GrappleBeam">
-			<fire>
-				<param name="hit_type" value="GravityGun_Ammo" />
-				<param name="ammo_type" value="GravityGun_Ammo" />
-				<param name="rate" value="100" />
-				<param name="ammoDamageMultiplier" value="0" />
-				<param name="shots_until_battery_needs_recharge" value="6000" />
-				<param name="min_damage_for_knockDown" value="0"/>
-				<param name="min_damage_for_knockDown_leg" value="0"/>
-				<param name="tag" value="rapid"/>
-				<param name="is_secondary_firemode" value="1" />
-			</fire>
-			<rapid>
-				<param name="min_speed" value="0.001" />
-				<param name="max_speed" value="0.001" />
-				<param name="acceleration" value="2.35" />
-				<param name="deceleration" value="-3.0" />
-				<param name="min_firingTimeToStop" value="0" />
-			</rapid>
-			<proceduralrecoil>
-				<param name="duration" value="0.0" />
-				<param name="strength" value="0.0" />
-				<param name="kickIn" value="0.0" />
-				<param name="dampStrength" value="0.0f" />
-				<param name="fireRecoilTime" value="0.00f" />
-				<param name="fireRecoilStrengthFirst" value="0.0f" />
-				<param name="fireRecoilStrength" value="0.0f" />
-				<param name="angleRecoilStrength" value="0.0f" />
-				<param name="randomness" value="0.0f" />
-			</proceduralrecoil>
-			<recoil>
-				<!-- Maximum recoil for the weapon in any direction - Higher value is less recoil-->
-				<param name="max_recoil" value="0" />
-
-				<!-- Attack value for the first bullet fired -->
-				<param name="first_attack" value="0.0" />
-
-				<!-- Amount of recoil per shot (must be less than max) -->
-				<param name="attack" value="0.0" />
-
-				<!-- Speed at which your gun returns to its normal position after firing.-->
-				<param name="decay" value="2" />
-
-				<!-- Decay value for the last bullet fired  0.5 -->
-				<param name="end_decay" value="2" />
-
-				<!-- Max recoil on the X (Sideway) axis -->
-				<param name="maxx" value="0" />
-
-				<!-- Max recoil on the Y (Up) axis 30 -->
-				<param name="maxy" value="0" />
-
-				<param name="randomness" value="0.0" />
-
-				<param name="angular_impulse" value="0" />
-
-				<param name="back_impulse" value="0" />
-
-				<param name="recoil_holdBreathActive_m" value="0" />
-
-				<param name="recoil_crouch_m" value="0.0" />
-
-				<param name="recoil_jump_m" value="0.0"/>
-			</recoil>
-			<muzzleflash>
-				<firstperson effect="Illfonic_Weapons_Behring_P4SC.Behring_P4SC.1st_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.Behring_Muzzleflash" time="0.1" />
-				<thirdperson effect="Illfonic_Weapons_Behring_P4SC.Behring_P4SC.3rd_MuzzleFlash" helper="muzzle_flash" light_helper="muzzle_light" lightArchetype="Illfonic_Weapon_Lights.Weapons.Behring_Muzzleflash_3rd" time="0.1" />
-			</muzzleflash>
-		</firemode>
-
 		<firemode name="melee" type="Melee">
 			<melee>
 				<param name="helper" value="collision" />
 				<param name="offset" value="0.35" />
-				<param name="damage" value="1" GAME="SP" />
-				<param name="damage" value="1" GAME="MP" />
+				<param name="damage" value="4.5" GAME="SP" />
+				<param name="damage" value="4.5" GAME="MP" />
 				<param name="slide_damage" value="1" GAME="SP"/>
 				<param name="slide_damage" value="1" GAME="MP"/>
 				<param name="damage_AI" value="30" />
@@ -289,7 +206,7 @@
 				<param name="suffix" value="iron" />
 				<param name="suffixAG" value="_iron" />
 				<param name="dof" value="1" />
-				<param name="dof_mask" value="textures/weapons/ironzoom_blurmask.dds" />
+        <param name="dof_mask" value="textures/weapons/ironsight_blurmask2.dds" />
 				<param name="dof_focusMin" value="50" />
 				<param name="dof_focusMax" value="300" />
 				<param name="dof_focusLimit" value="300.0" />
@@ -298,13 +215,13 @@
 				<param name="dof_minZ" value="0.35" />
 				<param name="dof_minZScale" value="5.0" />
 				<param name="zoom_in_time" value="0.15" />
+        <param name="zoom_in_time_from_lowered" value="0.35" />
 				<param name="zoom_fov_offset" value="0.075" />
 				<param name="zoom_smooth_time" value="0.15" />
-				<param name="zoom_in_time" value="0.15" />
 				<param name="zoom_fov_offset" value="0.075" />
 				<param name="zoom_out_time" value="0.15" />
 				<param name="zoom_out_delay" value="0.15" />
-				<param name="recoil_view_dampen" value="0.8" />
+				<param name="recoil_view_dampen" value="1.5" />
 				<param name="scope_mode" value="1" />
 				<param name="scope_nearFov" value="38" />
 				<param name="armor_bonus_zoom" value="1" />
@@ -361,7 +278,7 @@
     <param name="maxTranslateLeftHandY" value="0.05" />
 
     <!-- This is the scale when player is standing and doing nothing. You don't need to even have this here, defaults to 1, it's just a sample for stance overrides. -->
-    <param name="scale" value="1.0" />
+    <param name="scale" value="0.75" />
 
     <!-- This is to prevent the breath swaying from getting too large, depends on the coolDownRate. 
 		 The larger the max scale the longer it'll take for the player to cool down.-->
@@ -370,7 +287,7 @@
     <!-- Increases the sway scale by this per second until the scale reaches maxScale -->
     <param name="increaseRate" value="0.5" />
     <!-- Decreases the sway scale by this per second until the scale reaches the baseScale -->
-    <param name="decreaseRate" value="0.25" />
+    <param name="decreaseRate" value="0.5" />
 
     <!-- speed is the amount of time for a full sway cycle. -->
     <param name="speedScale" value="0.005" />
@@ -397,11 +314,20 @@
         <param name="maxTranslateRightHandX" value="0.0" />
         <param name="maxTranslateRightHandY" value="0.0" />
 
-        <param name="maxTranslateLeftHandX" value="0.05" />
-        <param name="maxTranslateLeftHandY" value="0.05" />
+        <param name="maxTranslateLeftHandX" value="0.015" />
+        <param name="maxTranslateLeftHandY" value="0.015" />
 
         <param name="speedScale" value="0.5" />
+      </override>
 
+      <override name="ADS" event="timeelapsed">
+        <param name="time" value="25000" />
+
+        <param name="scale" value="4" type="mult"/>
+
+        <param name="increaseRate" value="0.05" />
+
+        <param name="maxSpeedScale" value="0.5" />
       </override>
 
       <override name="crouch">

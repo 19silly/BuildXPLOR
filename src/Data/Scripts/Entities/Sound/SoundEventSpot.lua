@@ -276,13 +276,13 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function SoundEventSpot:Event_Enable( sender )
-  self.Properties.bEnabled = true;
+  self.Properties.bEnabled = 1; -- CIG mkorotyaev - changed "true" to 1, the rest of the code expects an int
   --BroadcastEvent( self,"Enable" );
   self:OnPropertyChange();
 end
 
 function SoundEventSpot:Event_Disable( sender )
-  self.Properties.bEnabled = false;
+  self.Properties.bEnabled = 0; -- CIG mkorotyaev - changed "false" to 0, the rest of the code expects an int
   --BroadcastEvent( self,"Disable" );
   self:OnPropertyChange();
 end

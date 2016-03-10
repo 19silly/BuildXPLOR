@@ -13,7 +13,7 @@
     <param name="itemSubType" value="BallTurret" />
   	<param name="itemDescription" value="DESCRIBE ME!" />
     <param name="itemManufactor" value="Broad &amp; Rabiee" />
-    <param name="itemSize" value="2" />
+    <param name="itemSize" value="4" />
 	<param name="itemTags" value="flightReady" />
 	<param name="requiredPortTags" value="ANVL_Gladiator" />
     <param name="display_name"	value="DESCRIBE ME!" />
@@ -98,73 +98,22 @@
   </damagelevels>
 
   <geometry>
-    <!-- As this vehicle weapon is remote to the player firing, no first peron geometry -->
-    <thirdperson name="Objects\Spaceships\Turrets\ANVL\ANVL_Gladiator_Turret_Ball_S2_Q2.cga"/>
+  <thirdperson name=""/> <!-- need this here and to be an empty string to signify null geo in the code! -->
+  <!-- Such terrible hax to get the Hologram geometry to come back and have the hardpoints come back -->
+    <!--<thirdperson name="Objects\Spaceships\Turrets\ANVL\ANVL_Gladiator_Turret_Ball_S2_Q2.cga"/>-->
 	
-	<!-- Damage Meshes-->
-	<tags tag="damage_50">
-			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret_50.cga"/>
-	</tags>
-	<tags tag="damage_100">
-			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret_100.cga"/>
-	</tags>
-	<!-- /Damage Meshes-->
-	
+	<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->
 	<tags tag="Hologram">
-	
-		<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-
-		<tags tag="ShipHologram">
-			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-		  
-			<tags tag="inactive">
-				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-			</tags>
-			<tags tag="over dragging">
-				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-			</tags>
-			<tags tag="overCompareValid">
-				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-			</tags>
-			<tags tag="overCompareInvalid">
-				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-			</tags>
-		</tags>
-		
-		<tags tag="ItemList">
-			<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-			<tags tag="over dragging">
-				<thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-			</tags>
-		</tags>	
-		
-		<tags tag="ItemPreviewA">
-		  <thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-		</tags>
-		
-		<tags tag="ItemPreviewB">
-		  <thirdperson name="Objects/Spaceships/Turrets/Anvil_Aerospace/Hornet_Ball/Anvil_Hornet_Ball_Turret.cga" material=""/>
-		</tags>	
-		
+		<thirdperson name="Objects\Spaceships\Turrets\ANVL\ANVL_Gladiator_Turret_Ball_S2_Q2.cga" material=""/>
 	</tags>
 	
 	<tags tag="HUD">
 
-		<thirdperson name="Objects\UI\Turrets\Hornet_Ball\ANVL_Ball_Turret_UI.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		<tags tag="damage_50">
-			<thirdperson name="Objects\UI\Turrets\Hornet_Ball\ANVL_Ball_Turret_UI.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
-		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects\UI\Turrets\Hornet_Ball\ANVL_Ball_Turret_UI.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
-		</tags>	
+		<thirdperson name="Objects\Spaceships\Turrets\ANVL\ANVL_Gladiator_Turret_Ball_S2_Q2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
 		
-	</tags>	
+	</tags>
 
-	
-
-    <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
-    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
-  </geometry>
+	</geometry>
 	
 		<!--
 		<prefabs>
@@ -174,18 +123,12 @@
 		
   <turretParams>
 	<yaw limits="-180, 180" speed="70" >
-	<!--<sound name="sounds/mounts_and_turrets:dev_yaw:start_run" 
-		stop="sounds/mounts_and_turrets:dev_yaw:stop" loop="0">
-		</sound>-->
 		<sound name="sounds/mounts_and_turrets:dev_yaw:start_run" 
 		stop="sounds/mounts_and_turrets:dev_yaw:stop" loop="0">
 		</sound>
 		<joint value="gunner_rotatingframe" />
 	</yaw>
-	<pitch limits="-10, 10" speed="70" >
-	<!--<sound name="sounds/mounts_and_turrets:dev_pitch:start_run" 
-		stop="sounds/mounts_and_turrets:dev_pitch:stop" loop="0">
-		</sound>-->
+	<pitch limits="-10, 45" speed="70" >
 		<sound name="sounds/mounts_and_turrets:dev_pitch:start_run" 
 		stop="sounds/mounts_and_turrets:dev_pitch:stop" loop="0">
 		</sound>
@@ -229,7 +172,7 @@
 			</Types>
 		</ItemPort>
 		<!-- Flags here are inverse because the Mantis Gatling turrets are inversed -->
-		<ItemPort name="hardpoint_turret_left" minsize="1" maxsize="4" flags="turret right" display_name="Left Slot" requiredTags="">
+		<ItemPort name="hardpoint_turret_left" minsize="1" maxsize="1" flags="turret right" display_name="Left Slot" requiredTags="">
 			<Types>
 				<Type type="WeaponGun" subtypes="Gun"/>
 			</Types>
@@ -247,7 +190,7 @@
 			</GeomTags>
 		</ItemPort>
 		<!-- Flags here are inverse because the Mantis Gatling turrets are inversed -->
-		<ItemPort name="hardpoint_turret_right" minsize="1" maxsize="4" flags="turret left" display_name="Right Slot" requiredTags="">
+		<ItemPort name="hardpoint_turret_right" minsize="1" maxsize="1" flags="turret left" display_name="Right Slot" requiredTags="">
 			<Types>
 				<Type type="WeaponGun" subtypes="Gun"/>
 			</Types>

@@ -1,13 +1,6 @@
 <Mode name='DFM_Tutorial'>
 	
-	<Spawning class='DFMSpawning' teamGame='0' teamSpawnsType='None' usingLua='0' RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" AllowSpawnWithVehicle="0" HolorezVehicleSpawnEffect="0"/>
-
-	<!-- Will define ship values here -->
-	<Scoring class='DFMScoring'>
-		<Player>
-			<Event type='PlayerKill'        points='200'		xp='200'	 />
-		</Player>
-	</Scoring>
+	<Spawning class='DFMSpawning' teamGame='0' teamSpawnsType='None' usingLua='0' RespawnTimeKilled="1" RespawnTimeEjected="-1" DeRezTimeEjected="999" AllowSpawnWithVehicle="0" HolorezVehicleSpawnEffect="0" ForceRespawnTimer="1" HideRespawnPrompt="1"/>
 
 	<PlayerStats class='DFMPlayerStats' />
 	
@@ -15,7 +8,7 @@
 		<StartStrings startMatch='ui_msg_ia_matchstart' />
 	</State>
 
-	<VictoryConditions class='StandardVictoryConditionsPlayer' killsAsScore='1' />
+	<VictoryConditions class='DFMVictoryConditionsFreeFlight'/>
 
 	<PlayerSetup class='StandardSetup' />
 
@@ -26,6 +19,12 @@
 	<ActorAction class='MPActorAction' />
 
 	<Spectator class="DFMSpectator" eatsActorActions="1" enableFree="1" enableFollow="1" enableKiller="0" timeFromDeathTillAutoSpectate="5000" />
+
+	<PlayerSetup class='FPSSetup'>
+		<PlayerLoadout>
+			<Loadout mapName="DogfightModule/DFM_DyingStar" Team1Loadout="Scripts/Loadouts/Player/Marine_Light_Armor_Tutorial_Loadout.xml" AllowCustomLoadout ="0" Team1Name="UEE Marines" Team2Name="" />
+		</PlayerLoadout>
+	</PlayerSetup>
 
 	<!-- Valid Arena Commander Maps -->
 	<Maps>
@@ -41,5 +40,7 @@
 			</Tracks>
 		</Map>
 	</Maps>
+
+	<Notifications class="DFMNotifications" showNotifications="0"/>
 
 </Mode>

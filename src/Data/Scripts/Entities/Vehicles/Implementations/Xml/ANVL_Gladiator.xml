@@ -1,461 +1,1403 @@
-<!--
-//////////////////////////////////////////////////////////////////////////
-///              Aegis Dynamics Avenger
-//////////////////////////////////////////////////////////////////////////
--->
-
-<Vehicle name="ANVL_Gladiator" category="StarFighter" displayname="Anvil Gladiator" classname="Class 2" id="idVehicleClass" dockingclass="2" priority="2">
-	<Physics pushable="0" dampingFreefall="0">
-		<Buoyancy waterDensity="150" waterResistance="2500"/>
-		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
-	</Physics>
-	<Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
-		<DamageMultipliers>
-			<DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
-			<DamageMultiplier damageType="melee" multiplier="0"/>
-			<DamageMultiplier damageType="fire" multiplier="0.0099999998"/>
-			<DamageMultiplier damageType="collision" multiplier="1"/>
-			<DamageMultiplier damageType="explosion" multiplier="1" splash="0.25"/>
-		</DamageMultipliers>
-		<DamagesGroups>
-			<DamagesGroup name="Destroy" useTemplate="VehicleDestroy">
-				<DamagesSubGroups>
-					<DamagesSubGroup delay="0.34999999" randomness="0.1">
-						<DamageBehaviors>
-							<DamageBehavior class="Explosion">
-								<Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000"/>
-							</DamageBehavior>
-						</DamageBehaviors>
-					</DamagesSubGroup>
-					<DamagesSubGroup delay="0" randomness="0">
-						<DamageBehaviors>
-							<DamageBehavior class="HitPassenger">
-								<HitPassenger damage="100" isDamagePercent="1"/>
-							</DamageBehavior>
-						</DamageBehaviors>
-					</DamagesSubGroup>
-					<DamagesSubGroup delay="3" randomness="0.25">
-						<DamageBehaviors>
-							<DamageBehavior class="Burn">
-								<Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5"/>
-							</DamageBehavior>
-						</DamageBehaviors>
-					</DamagesSubGroup>
-				</DamagesSubGroups>
-			</DamagesGroup>
-			<DamagesGroup name="DestroyEngine">
-				<DamagesSubGroups>
-					<DamagesSubGroup delay="0" randomness="0">
-						<DamageBehaviors>
-							<DamageBehavior class="MovementNotification">
-								<MovementNotification isDamageAlwaysFull="0"/>
-							</DamageBehavior>
-							<DamageBehavior class="Effect">
-								<Effect effect="EngineDamaged" disableAfterExplosion="1"/>
-							</DamageBehavior>
-							<DamageBehavior class="CameraShake">
-								<CameraShake />
-							</DamageBehavior>
-						</DamageBehaviors>
-					</DamagesSubGroup>
-				</DamagesSubGroups>
-			</DamagesGroup>
-		</DamagesGroups>
-	</Damages>
-
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<Parts>
-		<Part name="ANVL_Gladiator" class="Animated" mass="19000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
-			<Animated filename="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" filenameDestroyed="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" id="idShipGeometry"/>
-			<Parts>
-				<Part name="hull" class="AnimatedJoint" >
-					<Parts>
-						<Part name="hardpoint_turret_left" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="" display_name=""  >
-								<Types>
-									<Type type="Turret" subtypes="GunTurret"/>
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_turret_right" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="" display_name=""  >
-								<Types>
-									<Type type="Turret" subtypes="GunTurret"/>
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_class1_left_wing" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="left wing" display_name=""  >
-								<Types>
-									<Type type="Turret" subtypes="GunTurret"/>
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_class1_right_wing" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="right wing" display_name=""  >
-								<Types>
-									<Type type="Turret" subtypes="GunTurret"/>
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_torpedorack_left_wing" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="" display_name=""  >
-								<Types>
-									<Type type="WeaponMissile" subtypes="MissileRack" />
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_torpedorack_right_wing" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="" display_name=""  >
-								<Types>
-									<Type type="WeaponMissile" subtypes="MissileRack" />
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_missilerack_left_wing" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="" display_name=""  >
-								<Types>
-									<Type type="WeaponMissile" subtypes="MissileRack" />
-								</Types>
-							</ItemPort>
-						</Part>	
-						<Part name="hardpoint_missilerack_right_wing" class="ItemPort">
-							<ItemPort minsize="1" maxsize="3" flags="" display_name=""  >
-								<Types>
-									<Type type="WeaponMissile" subtypes="MissileRack" />
-								</Types>
-							</ItemPort>
-						</Part>							
-					</Parts>
-				</Part>
-			</Parts>
-		</Part>
-	</Parts>
-	
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<Helpers>
-		<Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="hull"/>
-		<Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="hull"/>
-	</Helpers>
-	
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->		
-	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<Actions>
-<!-- 	
-    <Action class="Switch">
+<Vehicle name="ANVL_Gladiator" category="StarFighter" displayname="Anvil Gladiator" classname="Class 2" id="idVehicleClass" HudPaletteScheme="ANVL" requiredItemTags="flightReady" itemPortTags="ANVL_Gladiator">
+  <Shield shieldMesh="Objects/Spaceships/Ships/ANVL/Gladiator/anvl_gladiator_shield.obj" />
+  <Physics pushable="0" dampingFreefall="0">
+    <Buoyancy waterDensity="150" waterResistance="2500" />
+    <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+  </Physics>
+  <Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+    <DamageMultipliers>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
+      <DamageMultiplier damageType="melee" multiplier="0" />
+      <DamageMultiplier damageType="fire" multiplier="0.0099999998" />
+      <DamageMultiplier damageType="collision" multiplier="1" />
+      <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25" />
+    </DamageMultipliers>
+    <DamagesGroups>
+      <DamagesGroup name="Destroy">
+        <DamagesSubGroups>
+          <!-- SubGroup to Destroy Vehicle -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="Destroy" />
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" />
+              </DamageBehavior>
+              <DamageBehavior class="Explosion">
+                <Explosion helper="impulsePos" damage="500" radius="10" minRadius="3.33" minPhysRadius="2.2" physRadius="3" pressure="1000" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to kill Passengers -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="HitPassenger">
+                <HitPassenger damage="100" isDamagePercent="1" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to apply burning - might remove this -->
+          <DamagesSubGroup delay="3" randomness="0.25">
+            <DamageBehaviors>
+              <DamageBehavior class="Burn">
+                <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+    </DamagesGroups>
+  </Damages>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Parts>
+    <Part name="ANVL_Gladiator" class="Animated" mass="26000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
+      <Animated filename="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" filenameDestroyed="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" id="idShipGeometry" />
+      <Parts>
+        <Part name="nose" class="AnimatedJoint" damageMax="450">
+          <DamageBehaviors>
+            <DamageBehavior class="DetachPart" damageRatioMin="1">
+              <DetachPart>
+                <Part name="nose" recurseChildren="1" />
+              </DetachPart>
+            </DamageBehavior>
+            <DamageBehavior class="Group" damageRatioMin="1">
+              <Group name="Destroy" />
+            </DamageBehavior>
+          </DamageBehaviors>
+          <Parts>
+            <Part name="shield_generator_cover" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
+              <Effects>
+                <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.142673,-0.0489336,-0.0228415" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m057" />
+                <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.212094,0.96938,0.0800104" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m058" />
+                <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.390439,0.98655,0.191817" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m059" />
+                <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.975816,0.959948,0.109799" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m060" />
+                <DetachFx joint="shield_generator_cover" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.949788,0.503371,0.0064386" rot_offset="0.0,1.0,0.0" helperID="shield_generator_cover_SQUIB_.3m061" />
+              </Effects>
+            </Part>
+            <Part name="cockpit_main" class="AnimatedJoint">
+              <Parts>
+                <Part name="cockpit_chair_arm" class="AnimatedJoint" />
+                <Part name="cockpit_main_throttle" class="AnimatedJoint" />
+                <Part name="cockpit_footpedal_arm" class="AnimatedJoint">
+                  <Parts>
+                    <Part name="cockpit_footpedal_left" class="AnimatedJoint" />
+                    <Part name="cockpit_footpedal_right" class="AnimatedJoint" />
+                  </Parts>
+                </Part>
+                <Part name="cockpit_main_control_stick" class="AnimatedJoint" />
+                <Part name="cockpit_floor" class="AnimatedJoint" />
+                <Part name="hardpoint_cockpit_radar" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="UI">
+                    <Types>
+                      <Type type="Display" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_cockpit_audio" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="Cockpit Audio">
+                    <Types>
+                      <Type type="Avionics" subtypes="Cockpit_Audio" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_cockpit_selfdestruct" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
+                    <Types>
+                      <Type type="SelfDestruct" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_seat" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="" display_name="ANVL Gladiator Seat">
+                    <Types>
+                      <Type type="Seat" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="UI_helper" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
+                    <Types>
+                      <Type type="Display" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="heatstrip" class="AnimatedJoint" />
+              </Parts>
+            </Part>
+            <Part name="cockpitbay_outerdoor_left" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="-1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+            <Part name="cockpitbay_outerdoor_right" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+            <Part name="gunner_interior" class="AnimatedJoint">
+              <Parts>
+                <Part name="gunner_chair_rotating_arms" class="AnimatedJoint" />
+                <Part name="gunner_slidingdoor" class="AnimatedJoint" />
+              </Parts>
+            </Part>
+            <Part name="body" class="AnimatedJoint" damageMax="550">
+              <Effects>
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-6.21068,-3.52242,-0.872327" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m010" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-6.20545,-2.83956,-0.69794" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m011" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-6.20532,-2.2509,-0.70625" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m012" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.60382,-2.60323,-0.671952" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m013" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.31714,-2.1001,-0.671952" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m014" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.26602,-1.63694,-0.671952" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m015" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-4.93704,-0.975253,-0.671952" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m016" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-4.7179,-0.595272,-0.630827" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m017" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-4.24783,-0.159396,-0.618991" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m018" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-4.02375,0.0969248,-0.618991" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m019" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-3.80137,0.442046,-0.618991" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m020" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-3.51631,0.875855,-0.618991" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m021" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-3.22938,0.978705,-0.618991" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.7m022" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-3.29659,0.771199,-0.761967" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m023" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-3.5908,0.377546,-0.784376" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m024" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-3.92536,0.00631783,-0.840609" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m025" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-4.44347,-0.183437,-0.905155" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m026" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.0388,-0.296848,-0.950108" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m027" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.19229,-0.980777,-0.950108" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m028" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.37271,-1.87512,-1.00302" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m029" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-5.49383,-2.54114,-1.00302" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.7m030" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-5.73944,-2.95655,-1.00302" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m031" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-6.08914,-3.27307,-1.00302" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m032" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.46687,1.06431,-0.661068" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m043" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.799118,-0.332243,0.767819" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m033" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.45421,1.75862,-0.796328" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m052" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.33206,2.68023,-1.20287" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m051" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.34293,0.717663,-0.0896017" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m036" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.374295,0.644151,-2.1782" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m037" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.702619,0.801466,-2.30621" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m038" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.327842,0.773925,-2.3074" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m039" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.12992,1.05943,-1.76955" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m040" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.49614,1.06431,-0.661068" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m041" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.04004,0.862585,-1.55698" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m042" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.37544,0.909751,-1.12542" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m053" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.3722,0.717663,-0.0896024" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m044" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.959211,-0.332492,0.384903" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m045" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.929939,-0.332492,0.384903" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m046" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.43662,-0.332626,0.355677" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m047" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.465892,-0.332626,0.355676" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m048" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.622257,2.68023,-1.20287" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m049" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.651528,2.68023,-1.20287" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m050" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0146357,-1.16651,0.360873" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m034" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.475495,-0.331939,0.809233" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m035" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.31354,2.66987,-1.18769" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m054" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.525849,2.67794,-2.4809" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m055" />
+                <DetachFx joint="body" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.381147,2.68308,-2.48131" rot_offset="0.0,1.0,0.0" helperID="body_SQUIB_.3m056" />
+              </Effects>
+              <Parts>
+                <Part name="temp_tail_bodycover" class="AnimatedJoint" />
+                <Part name="amunition_hatch_right" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="amunition_hatch_left" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="-1,0,-1" detachRandomForce="2,2,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="engine_cover_left" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="engine_cover_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.391468,2.36835,-0.0962338" rot_offset="0.0,1.0,0.0" helperID="engine_cover_left_SQUIB_.3m064" />
+                    <DetachFx joint="engine_cover_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.350992,1.47708,0.00607147" rot_offset="0.0,1.0,0.0" helperID="engine_cover_left_SQUIB_.3m066" />
+                    <DetachFx joint="engine_cover_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.557286,1.74229,-0.187163" rot_offset="0.0,1.0,0.0" helperID="engine_cover_left_SQUIB_.3m067" />
+                    <DetachFx joint="engine_cover_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="-0.0317358,-0.531611,0.186895" rot_offset="0.117122,0.0343931,0.992522" helperID="engine_cover_left_PFX_DetachFX_explode_8m_Flash" />
+                  </Effects>
+                </Part>
+                <Part name="engine_cover_right" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,0,3" detachRandomForce="2,2,2" detachRandomRotation="1,1,1" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.356278,2.34974,-0.00303223" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m068" />
+                    <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.54373,2.20481,-0.178848" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m071" />
+                    <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.652824,1.37646,-0.134737" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m072" />
+                    <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0706842,1.94896,0.0709082" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m069" />
+                    <DetachFx joint="engine_cover_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.392148,1.42799,0.00207459" rot_offset="0.0,1.0,0.0" helperID="engine_cover_right_SQUIB_.3m070" />
+                    <DetachFx joint="engine_cover_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0375385,-0.53161,0.186895" rot_offset="0.242091,-0.32646,0.913682" helperID="engine_cover_right_PFX_DetachFX_explode_8m_Flash" />
+                  </Effects>
+                </Part>
+                <Part name="sidefin_left" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="sidefin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.30254,-0.589388,-0.244202" rot_offset="0.0,1.0,0.0" helperID="sidefin_left_SQUIB_.3m038" />
+                    <DetachFx joint="sidefin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.30256,0.564472,-0.179586" rot_offset="0.0,1.0,0.0" helperID="sidefin_left_SQUIB_.3m039" />
+                    <DetachFx joint="sidefin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.28383,-0.00852112,-0.237073" rot_offset="0.0,1.0,0.0" helperID="sidefin_left_SQUIB_.3m040" />
+                    <DetachFx joint="sidefin_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="1.0439,0.26211,-0.09064" rot_offset="0.0310063,0.607104,-0.794017" helperID="sidefin_left_PFX_DetachFX_explode_2m_Fireless037" />
+                  </Effects>
+                </Part>
+                <Part name="tailfin_left" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="tailfin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.416135,-1.2006,1.09971" rot_offset="0.0,1.0,0.0" helperID="tailfin_left_SQUIB_.3m058" />
+                    <DetachFx joint="tailfin_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.403617,0.232925,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_left_SQUIB_.3m059" />
+                    <DetachFx joint="tailfin_left" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-0.847166,2.58713,0.0564136" rot_offset="0.504163,-0.521872,0.688091" helperID="tailfin_left_PFX_DetachFX_sparks_2m_once_fixed003" />
+                    <DetachFx joint="tailfin_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.769943,2.58713,0.0564136" rot_offset="0.684345,-0.439316,0.581957" helperID="tailfin_left_PFX_DetachFX_explode_2m_Fireless034" />
+                    <DetachFx joint="tailfin_left" squibPhysical="40" squibEnergy="40" squibRadius=".8" pos_offset="0.403617,-0.470499,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_left_SQUIB_.8m060" />
+                  </Effects>
+                  <Parts>
+                    <Part name="tailfin_left_rudder_control" class="AnimatedJoint">
+                      <Parts>
+                        <Part name="tailfin_left_rudder" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="tailfin_left_rudder" partName="tailfin_left_rudder_control" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.0940594,-0.252107,0.134979" rot_offset="0.138172,-0.826106,0.546312" helperID="tailfin_left_rudder_PFX_DetachFX_explode_2m_Fireless035" />
+                          </Effects>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="sidefin_right" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="sidefin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.30256,-0.0104651,-0.160861" rot_offset="0.0,1.0,0.0" helperID="sidefin_right_SQUIB_.3m042" />
+                    <DetachFx joint="sidefin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.30253,0.668767,-0.264561" rot_offset="0.0,1.0,0.0" helperID="sidefin_right_SQUIB_.3m043" />
+                    <DetachFx joint="sidefin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.30254,-0.610906,-0.247439" rot_offset="0.0,1.0,0.0" helperID="sidefin_right_SQUIB_.3m041" />
+                    <DetachFx joint="sidefin_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.551291,0.262084,-0.0906403" rot_offset="0.0310063,0.607104,-0.794017" helperID="sidefin_right_PFX_DetachFX_explode_2m_Fireless" />
+                  </Effects>
+                </Part>
+                <Part name="tailfin_right" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="tailfin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.42077,-1.2006,1.09971" rot_offset="0.0,1.0,0.0" helperID="tailfin_right_SQUIB_.3m061" />
+                    <DetachFx joint="tailfin_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.433289,0.232925,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_right_SQUIB_.3m062" />
+                    <DetachFx joint="tailfin_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.890454,2.58713,0.0564133" rot_offset="0.684344,-0.439316,0.581957" helperID="tailfin_right_PFX_DetachFX_explode_2m_Fireless032" />
+                    <DetachFx joint="tailfin_right" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0.81323,2.58713,0.0564133" rot_offset="0.504162,-0.521872,0.688091" helperID="tailfin_right_PFX_DetachFX_sparks_2m_once_fixed002" />
+                    <DetachFx joint="tailfin_right" squibPhysical="40" squibEnergy="40" squibRadius=".8" pos_offset="-0.433289,-0.470499,1.06861" rot_offset="0.0,1.0,0.0" helperID="tailfin_right_SQUIB_.8m063" />
+                  </Effects>
+                  <Parts>
+                    <Part name="tailfin_right_rudder_control" class="AnimatedJoint">
+                      <Parts>
+                        <Part name="tailfin_right_rudder" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                          <Effects>
+                            <DetachFx joint="tailfin_right_rudder" partName="tailfin_right_rudder_control" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.0473758,-0.252109,0.13498" rot_offset="0.138171,-0.826106,0.546312" helperID="tailfin_right_rudder_PFX_DetachFX_explode_2m_Fireless033" />
+                          </Effects>
+                        </Part>
+                      </Parts>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="tail" class="AnimatedJoint">
+                  <Effects>
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.640098,2.7492,0.661963" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m044" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.145581,2.7492,0.661963" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m045" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.927592,2.71871,0.528207" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m046" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.67631,2.7492,0.252651" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m047" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.67631,2.7492,0.249319" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m048" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.57114,1.55633,0.141749" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m050" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.5733,1.81619,0.169739" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m051" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.14777,-0.394038,0.0210925" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m053" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.595338,0.525992,-0.446561" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m054" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.145831,0.662274,-0.558162" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m055" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.407089,0.540109,-0.458391" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m056" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.957747,-0.305928,-0.05966" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.3m057" />
+                    <DetachFx joint="tail" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.338505,-0.413047,0.394384" rot_offset="0.00531395,-0.8142,-0.580561" helperID="tail_PFX_DetachFX_explode_2m_Fireless036" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-1.32302,0.144482,0.0485266" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.7m049" />
+                    <DetachFx joint="tail" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="1.44858,0.48634,0.117239" rot_offset="0.0,1.0,0.0" helperID="tail_SQUIB_.7m052" />
+                  </Effects>
+                  <Parts>
+                    <Part name="hardpoint_countermeasure_launcher_center" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="3" flags="center" display_name="Countermeasure Launcher Center">
+                        <Types>
+                          <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_countermeasure_launcher_left" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="3" flags="left" display_name="Countermeasure Launcher Left">
+                        <Types>
+                          <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_countermeasure_launcher_right" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="3" flags="right" display_name="Countermeasure Launcher Right">
+                        <Types>
+                          <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="wing_right" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".4" pos_offset="0.0,0.0,0.0" rot_offset="0.0,1.0,0.0" helperID="wing_right_PFX_DetachFX_explode_2m_Fireless028" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.728292,-2.35706,0.346599" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m027" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.728292,-3.09151,0.346599" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m028" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.126786,-2.70939,0.380896" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m029" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.84732,-0.61884,0.409228" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m031" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.59864,-0.180349,0.494768" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m032" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.27958,-0.302956,0.214395" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m034" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.37058,-0.930938,0.11013" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m035" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.116376,-1.97506,0.0464127" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m036" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.0788001,-3.03159,0.00508606" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.3m037" />
+                    <DetachFx joint="wing_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-0.883356,-0.484896,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_explode_2m_Fireless030" />
+                    <DetachFx joint="wing_right" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="0.0429321,-2.54022,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_explode_8m_Flash002" />
+                    <DetachFx joint="wing_right" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="0.00332642,-2.51043,0.408469" rot_offset="0.937904,0.0695314,-0.339856" helperID="wing_right_PFX_DetachFX_sparks_1m_loop_fixed002" />
+                    <DetachFx joint="wing_right" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-0.353279,-1.51363,0.408469" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_PFX_DetachFX_sparks_2m_once_fixed002" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="0.728292,-3.65644,0.163809" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.7m026" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-0.237901,-1.63614,0.39716" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.7m030" />
+                    <DetachFx joint="wing_right" squibPhysical="40" squibEnergy="40" squibRadius=".7" pos_offset="-2.29919,0.853607,0.393987" rot_offset="0.0,1.0,0.0" helperID="wing_right_SQUIB_.7m033" />
+                  </Effects>
+                  <Parts>
+                    <Part name="wing_right_tip" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.35091,0.72185,0.904493" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m023" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.22937,0.930949,1.15921" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m021" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.22896,0.142977,1.16018" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m020" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.22811,-0.6598,1.19481" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m019" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.35151,-0.773844,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.3m025" />
+                        <DetachFx joint="wing_right_tip" partName="wing_right" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="-1.21701,0.556625,1.18459" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_tip_PFX_DetachFX_explode_2m_Fireless031" />
+                        <DetachFx joint="wing_right_tip" partName="wing_right" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-1.21701,-0.787474,1.18459" rot_offset="0.847378,0.326694,-0.418595" helperID="wing_right_tip_PFX_DetachFX_sparks_2m_once_fixed002" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-1.31043,1.48804,0.989388" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.5m022" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-1.35151,-0.025731,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.5m024" />
+                        <DetachFx joint="wing_right_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-1.29988,-1.44762,1.01207" rot_offset="0.0,1.0,0.0" helperID="wing_right_tip_SQUIB_.5m018" />
+                      </Effects>
+                      <Parts>
+                         <Part name="landing_gear_right_wing_helper" class="AnimatedJoint" detachRatio="0"  /> 
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_radiator_right" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Cooler Slot">
+                        <Types>
+                          <Type type="Cooler" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_missilerack_right_wing_outer" class="ItemPort">
+                      <ItemPort minsize="2" maxsize="2" flags="right wing" display_name="Right Missile Rack Outer">
+                        <Types>
+                          <Type type="WeaponMissile" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_missilerack_right_wing_inner" class="ItemPort">
+                      <ItemPort minsize="2" maxsize="2" flags="left wing" display_name="Right Missile Rack Inner">
+                        <Types>
+                          <Type type="WeaponMissile" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="bombbay" class="AnimatedJoint" />
+                <Part name="cockpitbay_gunnerdoor" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,0,-1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hull_avionicsaccess_panel" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hull_fuelaccess_panel_left" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hull_fuelaccess_panel_right" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,-0.5,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                <Part name="hardpoint_engine_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="main rear left" display_name="Main Thruster">
+                    <Pitch min="-10" max="10" />
+                    <Yaw min="-10" max="10" />
+                    <Types>
+                      <Type type="MainThruster" subtypes="" id="idEngineType" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-2.25, -4.72, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_engine_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="main rear right" display_name="Main Thruster">
+                    <Pitch min="-10" max="10" />
+                    <Yaw min="-10" max="10" />
+                    <Types>
+                      <Type type="MainThruster" subtypes="" id="idEngineType" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="2.25, -4.72, 0.0" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_front_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="topfrontleft" display_name="Top Front Left Thruster">
+                    <!-- <Pitch min="-90" max="0" />
+                    <Yaw min="-90" max="0" /> -->
+                    <Roll min="-90" max="0" />
+                    <Yaw min="0" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.1, 3.0, 1.2" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_front_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="topfrontright" display_name="Top Front Right Thruster">
+                    <!-- <Pitch min="-90" max="0" />
+                    <Yaw min="0" max="90" /> -->
+                    <Roll min="0" max="90" scale="-1" />
+                    <Yaw min="-90" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.1, 3.0, 1.2" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_power_plant_attach" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="3" flags="" display_name="Power Plant" displayPos="75,290">
+                    <Types>
+                      <Type type="PowerPlant" subtypes="" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_avionics_motherboard" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard" requiredTags="">
+                    <Types>
+                      <Type type="Avionics" subtypes="Motherboard" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_intake_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Intake">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_intake_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Intake">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_tank" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="" display_name="Fuel Tank">
+                    <Types>
+                      <Type type="FuelTank" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_back_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="topbackright" display_name="Top Back Right Thruster">
+                    <!-- <Pitch min="0" max="90" />
+                    <Yaw min="0" max="90" /> -->
+                    <Roll min="-90" max="0" />
+                    <Yaw min="0" max="90" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.1, -3.0, 1.2" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_top_back_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="topbackleft" display_name="Top Back Left Thruster">
+                    <!-- <Pitch min="0" max="90" />
+                    <Yaw min="-90" max="0" /> -->
+                    <Roll min="0" max="90" scale="-1" />
+                    <Yaw min="-90" max="0" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.1, -3.0, 1.2" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_back_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z lower rear left" display_name="Bottom Back Left Thruster">
+                    <Pitch min="0" max="180" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.1, -3.0, -0.9" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_front_left" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z retro lower front left" display_name="Bottom Front Left Thruster">
+                    <Pitch min="0" max="180" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="-3.1, 3.0, -0.9" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_back_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z lower rear right" display_name="Bottom Back Right Thruster">
+                    <Pitch min="0" max="180" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.1, -3.0, -0.9" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_thruster_bottom_front_right" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="2" flags="maneuver orientation +Z retro lower front right" display_name="Bottom Front Right Thruster">
+                    <Pitch min="0" max="180" />
+                    <Types>
+                      <Type type="ManneuverThruster" subtypes="" />
+                    </Types>
+                    <OptimalStates>
+                      <Fixup pos="3.1, 3.0, -0.9" />
+                    </OptimalStates>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_class_2_left_wing" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="3" flags="left wing bottom" display_name="Left Wing Slot" displayPos="75,290">
+                    <Types>
+                      <Type type="Turret" subtypes="GunTurret" />
+                      <Type type="WeaponGun" subtypes="Gun" />
+                    </Types>
+                    <Pitch min="-30" max="12" />
+                    <Yaw min="-15" max="25" />
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_class_2_right_wing" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="3" flags="right wing bottom" display_name="Right Wing Slot" displayPos="475,290">
+                    <Types>
+                      <Type type="Turret" subtypes="GunTurret" />
+                      <Type type="WeaponGun" subtypes="Gun" />
+                    </Types>
+                    <Pitch min="-30" max="12" />
+                    <Yaw min="-25" max="15" />
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_turret_center" class="ItemPort">
+                  <ItemPort minsize="2" maxsize="4" flags="center" display_name="Top Turret Slot" displayPos="275,260" displayTop="1" requiredTags="" portTags="">
+                    <Types>
+                      <Type type="Turret" subtypes="BallTurret" />
+                      <Type type="Container" subtypes="Cargo" />
+                      <Type type="Radar" subtypes="" />
+                    </Types>
+                    <Yaw min="-180" max="180" />
+                    <Pitch min="-10" max="45" />
+                  </ItemPort>
+                </Part>
+                <Part name="bombbay_outerdoor_left" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="-0.5,0,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Parts>
+                    <Part name="bombbay_piston_left" class="AnimatedJoint" />
+                    <Part name="hardpoint_torpedorack_left" class="ItemPort">
+                      <ItemPort minsize="5" maxsize="5" flags="" display_name="Left Torpedo Rack">
+                        <Types>
+                          <Type type="WeaponMissile" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="bombbay_outerdoor_right" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="0.5,0,-0.5" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Parts>
+                    <Part name="bombbay_pistons" class="AnimatedJoint" />
+                    <Part name="hardpoint_torpedorack_right" class="ItemPort">
+                      <ItemPort minsize="5" maxsize="5" flags="" display_name="Right Torpedo Rack">
+                        <Types>
+                          <Type type="WeaponMissile" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="core_bottomshield" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.63125,-1.08997,-0.223894" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m077" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.19017,1.58466,-0.20388" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m079" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.753022,1.81796,-0.264149" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m080" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.63612,-1.09322,-0.171834" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m074" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.15526,-1.79197,-0.357534" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m065" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.92993,-0.383886,-0.264149" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m078" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.9058,0.477363,-0.20388" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m073" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-1.08038,-1.6169,-0.20392" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m076" />
+                    <DetachFx joint="core_bottomshield" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.95244,-0.192299,-0.223894" rot_offset="0.0,1.0,0.0" helperID="core_bottomshield_SQUIB_.3m075" />
+                  </Effects>
+                  <Parts>
+                    <Part name="core_topshield" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="0,0,1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1" />
+                  </Parts>
+                </Part>
+                <Part name="wing_left" class="AnimatedJoint" damageMax="300" detachRatio="1" detachBaseForce="-1,0,0" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                  <Effects>
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.2971,-0.877559,0.262717" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m008" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.27462,-1.42165,0.309994" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m009" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="2.25857,0.825043,0.419746" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m010" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.92541,0.280334,0.518752" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m011" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.071864,-2.66711,0.384796" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m012" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.728292,-3.69426,0.0195132" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m013" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-0.0692145,-3.04547,0.0173795" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m014" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.103017,-1.835,0.0173795" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m015" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="0.490099,-0.356098,0.0828744" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m016" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.59152,-0.0980615,0.175785" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m017" />
+                    <DetachFx joint="wing_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="0.338137,-1.43456,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_explode_2m_Fireless029" />
+                    <DetachFx joint="wing_left" partName="body" effect="SC_Explode_FX.Explode_ALL.explode_8m_Flash" pos_offset="1.6772,0.379074,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_explode_8m_Flash001" />
+                    <DetachFx joint="wing_left" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" pos_offset="1.67061,0.329958,0.408469" rot_offset="-0.663801,0.705762,-0.247524" helperID="wing_left_PFX_DetachFX_sparks_1m_loop_fixed001" />
+                    <DetachFx joint="wing_left" partName="body" effect="SC_Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0.975853,-0.468845,0.408469" rot_offset="-0.877721,0.286527,-0.384068" helperID="wing_left_PFX_DetachFX_sparks_2m_once_fixed001" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.29779,-0.364955,0.260347" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.2851,0.0383261,0.232959" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m001" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-2.20424,0.173803,0.063493" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.5m002" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.17639,-0.574807,0.00504272" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m003" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.17338,-1.90293,-0.00232971" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m004" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="-2.23902,-2.70484,0.137269" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.5m006" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.2629,-2.10465,0.234399" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m007" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="-2.17114,-2.80353,-0.0150232" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.3m005" />
+                    <DetachFx joint="wing_left" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="1.2617,-0.245149,0.465721" rot_offset="0.0,1.0,0.0" helperID="wing_left_SQUIB_.5m009" />
+                  </Effects>
+                  <Parts>
+                    <Part name="wing_left_tip" class="AnimatedJoint" damageMax="100" detachRatio="1" detachBaseForce="0,0,-1" detachRandomForce="0.5,0.5,0.5" detachRandomRotation="0.5,0.5,0.5" detachProbability="1">
+                      <Effects>
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.35151,0.727629,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m006" />
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.25269,-0.700948,1.20944" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m002" />
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.35151,-0.403574,0.903218" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m003" />
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.22937,0.930949,1.15921" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m004" />
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.27379,1.48055,1.0661" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m005" />
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".3" pos_offset="1.34319,-1.48804,0.920617" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.3m001" />
+                        <DetachFx joint="wing_left_tip" partName="wing_left" effect="SC_Explode_FX.Explode_ALL.explode_2m_Fireless" pos_offset="1.24516,0.0880374,1.19032" rot_offset="0.996701,0.0202225,-0.0785989" helperID="wing_left_tip_PFX_DetachFX_explode_2m_Fireless" />
+                        <DetachFx joint="wing_left_tip" partName="wing_left" effect="SC_Metal_FX.Metal_ALL.metal_1m_loop_trail" pos_offset="1.32816,-0.647129,1.13825" rot_offset="-0.785835,-0.153116,0.599182" helperID="wing_left_tip_PFX_DetachFX_metal_1m_loop_trail" />
+                        <DetachFx joint="wing_left_tip" squibPhysical="40" squibEnergy="40" squibRadius=".5" pos_offset="1.22937,0.216574,1.15921" rot_offset="0.0,1.0,0.0" helperID="wing_left_tip_SQUIB_.5m007" />
+                      </Effects>
+                      <Parts>
+                        <Part name="landing_gear_left_wing_helper" class="AnimatedJoint" detachRatio="0" />
+                      </Parts>
+                    </Part>
+                    <Part name="hardpoint_radiator_left" class="ItemPort">
+                      <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Cooler Slot">
+                        <Types>
+                          <Type type="Cooler" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_missilerack_left_wing_inner" class="ItemPort">
+                      <ItemPort minsize="2" maxsize="2" flags="left wing" display_name="Left Missile Rack Inner">
+                        <Types>
+                          <Type type="WeaponMissile" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                    <Part name="hardpoint_missilerack_left_wing_outer" class="ItemPort">
+                      <ItemPort minsize="2" maxsize="2" flags="left wing" display_name="Left Missile Rack Outer">
+                        <Types>
+                          <Type type="WeaponMissile" subtypes="" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
+                  </Parts>
+                </Part>
+                <Part name="landing_gear_rear_helper" class="AnimatedJoint" detachRatio="0" />
+                <Part name="hardpoint_turret_avionics" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard" requiredTags="">
+                    <Types>
+                      <Type type="Avionics" subtypes="Motherboard" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+              </Parts>
+            </Part>
+            <Part name="hardpoint_radar" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
+                <Types>
+                  <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_shield_generator" class="ItemPort">
+              <ItemPort minsize="2" maxsize="4" flags="" display_name="Shield Slot">
+                <Types>
+                  <Type type="Shield" subtypes="" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_class_4_center" class="ItemPort" />
+            <Part name="gunner_handles" class="AnimatedJoint">
+              <Parts>
+                <Part name="gunner_trigger_right" class="AnimatedJoint" />
+                <Part name="gunner_trigger_left" class="AnimatedJoint" />
+                <Part name="gunner_handles_decals" class="AnimatedJoint" />
+              </Parts>
+            </Part>
+            <Part name="gunner_screenaxles_decals" class="AnimatedJoint" />
+            <Part name="hardpoint_copilot_seat" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="" display_name="ANVL Gladiator Copilot Seat">
+                <Types>
+                  <Type type="Seat" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="landing_gear_front_helper" class="AnimatedJoint" detachRatio="0" />
+            <Part name="canopy" class="AnimatedJoint">
+              <Parts>
+                <Part name="canopy_glass" class="AnimatedJoint" />
+              </Parts>
+            </Part>
+          </Parts>
+        </Part>
+      </Parts>
+    </Part>
+  </Parts>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Helpers>
+    <Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="hull" />
+    <Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="hull" />
+  </Helpers>
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <Actions>
+    <Action class="Enter">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="door_switch" distance="1.25" bbMin="-0.25,-0.25,-0.25" bbMax="0.25,0.25,0.25" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" id="idPilotEnterPosActivation" />
       </Activations>
-      <States>
-        <State>
-          <AnimationStates>
-			<State animation="Lower_Door" state="Open" />
-          </AnimationStates>
-        </State>
-        <State>
-          <AnimationStates>
-			<State animation="Lower_Door" state="Close" />
-          </AnimationStates>
-        </State>		
-      </States>
-    </Action>  -->
-
-	
-	<!-- Pilot Enter -->
-<!-- 		<Action class="Enter">
-			<Activations>
-				<Activation type="OnUsed" param1="helper" param2="pilot_sit_pos" distance="1" bbMin="-0.5,-0.5,-2" bbMax="0.5,0.5,-1" />
-			</Activations>
-			<Enter>
-				<Seats>
-					<Seat value="SeatDriver"/>
-				</Seats>
-			</Enter>
-		</Action> -->
-		
-		<Action class="Enter">
-			<Activations>
-				<Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="1" bbMin="-0.5,-0.5,0" bbMax="0.5,0.5,2.25" />
-			</Activations>
-			<Enter>
-				<Seats>
-					<Seat value="SeatDriver"/>
-				</Seats>
-			</Enter>
-		</Action>
-		
-	<!-- CoPilot Enter -->
-		<Action class="Enter">
-			<Activations>
-				<Activation type="OnUsed" param1="helper" param2="gunner_enter_pos" distance="1" bbMin="-0.5,-0.5,0" bbMax="0.5,0.5,2.25" />
-			</Activations>
-			<Enter>
-				<Seats>
-					<Seat value="Gunner"/>
-				</Seats>
-			</Enter>
-		</Action>		
-	</Actions>	
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->	
-	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->	
-	<!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<Interior bbSize="20,20,20" bbCenter="0,0,0">
-	</Interior>
-	
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->  
-	<!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	
-	<Seats>
-		<!-- Pilot's seat  -->
-		<Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" id="idPilotSeat">
-			<!-- Begin views for this seat-->
-			<ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
-			<Views>
-				<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
-					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" minYaw="-50" maxYaw="50" minPitch="-26" maxPitch="60" />
-				</View>			
-				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
-					<ThirdPersonFlight offset="0,-20,12" offsetAngle="-16,0,0" driftOffsetMin="-15,-20,-4" driftOffsetMax="15,-8,4" posSmooth=".4,.2,.2" zoomMin="-5" zoomMax="13" zoomSpeed="50.0f" />
-					<CameraEffects minSpeed="102" maxSpeed="200">
-						<FOV maxOffset="20.0f" />
-						<DOF stength="0.25f" offsetLag="0.8f" />
-						<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
-					</CameraEffects>
-				</View>				
-				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
-				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
-					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1" />
-				</View>
-			</Views>
-			<!-- Begin actions for this seat-->
-			<SeatActions>
-				<!-- We specifiy the Movement Seat Action as we dont want the engine to start on entry. Otehrwise the default vehicle implementation will init a teh SeatActionMovement componnet that will start the engine on entry-->
-				<SeatAction class="Movement">
-					<Movement engine="1">
-					</Movement>
-				</SeatAction>
-
-			<SeatAction class ="AnimateControlInputs" >
-				<AnimateControlInputs isAvailableDocked="1">
-					<Parts>
-						<ControlPart part ="left_stick">
-							<Rotate_X input = "pitch" min="-30" max = "30"/>
-							<Rotate_Y input = "yaw" direction ="1" min="-30" max = "30"/>
-						</ControlPart>
-						<ControlPart part ="right_stick">
-							<Rotate_X input = "pitch" min="-30" max = "30"/>
-							<Rotate_Y input = "yaw" direction ="1" min="-30" max = "30"/>
-						</ControlPart>
-					</Parts>
-				</AnimateControlInputs>
-			</SeatAction>
-		    <SeatAction class ="PassengerIK" >
-			    <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
-					<Limbs>
-<!-- 						<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="Pilot_Left_Yoke_IK" blendTime="0"/> -->
-						<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="Pilot_Right_Yoke_IK" blendTime="0"/>
-					</Limbs>
-			    </PassengerIK>
-		    </SeatAction>
-		    </SeatActions>
-		    <Sounds inout="0" mood="1"/>
-			<WaitFor>
-				<Enter>
-					<State animation="Lower_Door" state="Open" />
-				</Enter>
-<!-- 				<Exit>
-					<State animation="Lower_Door" state="Open" />
-				</Exit> -->
-			</WaitFor> 	
-			<PostAction>
-<!-- 				<Enter>
-					<State animation="Lower_Door" state="Close" />
-				</Enter>
-				<Exit>
-					<State animation="Lower_Door" state="Close" />
-				</Exit> -->
-			</PostAction>			
-		</Seat>
-    <!--              Copilot's Seat        -->
-		<Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="gunner_sit_pos" interiorAccess="0"  useBoundsForEntering="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" id="idCoPilotSeat">
-			<ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
-			<Views>
-				<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
-					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9" minYaw="-30" maxYaw="30" minPitch="-26" maxPitch="70" />
-				</View>
-				<View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
-					<ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
-					<CameraEffects minSpeed="102" maxSpeed="280">
-						<FOV maxOffset="20.0f" />
-						<DOF stength="0.25f" offsetLag="0.8f" />
-						<Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
-					</CameraEffects>
-				</View>
-				<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
-					<Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
-				<View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
-					<OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15"/>
-				</View>
-			</Views>
+      <Enter>
+        <Seats>
+          <Seat value="SeatDriver" />
+        </Seats>
+      </Enter>
+    </Action>
+    <Action class="Enter">
+      <Activations>
+        <Activation type="OnUsed" param1="helper" param2="gunner_enter_pos" distance="3" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,2.5" />
+      </Activations>
+      <Enter>
+        <Seats>
+          <Seat value="Gunner" />
+        </Seats>
+      </Enter>
+    </Action>
+    <Action class="LandingGears">
+      <Activations>
+        <Activation type="OnGroundCollision" />
+      </Activations>
+      <LandingGears landingDamages="500" altitudeToRetractGears="12" blockPartRotation="hardpoint_class_4_nose" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
+    </Action>
+    <Action class="LandingGears">
+      <Activations>
+        <Activation type="OnGroundCollision" />
+      </Activations>
+      <LandingGears landingDamages="500" altitudeToRetractGears="12" blockPartRotation="hardpoint_class_4_nose" animation="Canopy" openState="Open" closeState="Close" />
+    </Action>
+  </Actions>
+  <!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <Seats>
+    <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
+    <Seat name="SeatDriver" enterHelper="pilot_enter_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-30" maxPitch="65" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+        </View>
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-30,0,170" motionBlur="0">
+          <OrbitPassenger speed="180" zoomSpeed="0.0001" zoomMin="0.2" zoomMax="15" zoomInit="1.2" />
+        </View>
+      </Views>
+      <!-- <WaitFor>
+        <Enter>
+          <State animation="Cockpit_Door" state="Open" />
+        </Enter>
+        <Exit>
+          <State animation="Cockpit_Door" state="Open" />
+        </Exit>
+      </WaitFor> -->
+      <PostAction>
+        <Enter>
+          <State animation="Bay_Doors" state="Open" />
+        </Enter>
+        <Exit>
+          <State animation="Cockpit_Door" state="Retract" />
+        </Exit>
+      </PostAction>
       <!-- Begin actions for this seat-->
       <SeatActions>
+        <SeatAction class="AnimatedAction">
+          <Actions>
+            <Action action="v_afterburner" animation="cockpit_fighter_h_throttle_button_1" vehicleAnimation="cockpit_fighter_h_throttle_button_1" isTrigger="1" />
+            <Action action="v_brake" animation="cockpit_fighter_h_throttle_button_2" vehicleAnimation="cockpit_fighter_h_throttle_button_2" isTrigger="1" />
+            <Action action="v_attack1_group1" animation="cockpit_fighter_h_joystick_finger_trigger" vehicleAnimation="cockpit_fighter_h_joystick_finger_trigger" isTrigger="1" blendInTime="0.05" blendOutTime="0.1" />
+            <Action action="v_attack1_group2" animation="cockpit_fighter_h_joystick_button_1" vehicleAnimation="cockpit_fighter_h_joystick_button_1" isTrigger="1" blendInTime="0.05" blendOutTime="0.1" />
+            <Action action="v_attack1_group3" animation="cockpit_fighter_h_joystick_button_2" vehicleAnimation="cockpit_fighter_h_joystick_button_2" isTrigger="1" blendInTime="0.05" blendOutTime="0.1" />
+            <Action action="v_weapon_launch_missile" animation="cockpit_fighter_h_joystick_button_3" vehicleAnimation="cockpit_fighter_h_joystick_button_3" isTrigger="1" blendInTime="0.05" blendOutTime="0.1" />
+            <Action action="v_weapon_launch_countermeasure" animation="cockpit_fighter_h_joystick_button_4" vehicleAnimation="cockpit_fighter_h_joystick_button_4" isTrigger="1" blendInTime="0.05" blendOutTime="0.1" />
+          </Actions>
+        </SeatAction>
+        <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init a the SeatActionMovement component that will start the engine on entry-->
+        <SeatAction class="Movement">
+          <Movement engine="1">
+          </Movement>
+        </SeatAction>
+        <!-- Weapons Used / Controlled by Pilot -->
+        <SeatAction class="SharedWeapons">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_2_left_wing" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_class_2_right_wing" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_turret_center" priority="0" active="1" actorRecoil="0" defaultGroup="1" />
+                <!-- Debug Ports -->
+                <ItemPort part="hardpoint_debug_1" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_2" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_3" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_4" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_5" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_6" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_7" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_8" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_9" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <ItemPort part="hardpoint_debug_10" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
+                <!-- Debug Ports -->
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Missiles Used / Controlled by Pilot -->
+        <SeatAction class="SharedMissiles">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_missilerack_left_wing_outer" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+                <ItemPort part="hardpoint_missilerack_left_wing_inner" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+                <ItemPort part="hardpoint_missilerack_right_wing_outer" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+                <ItemPort part="hardpoint_missilerack_right_wing_inner" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+                <ItemPort part="hardpoint_torpedorack_left" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+                <ItemPort part="hardpoint_torpedorack_right" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+                <!-- Debug Ports -->
+                <ItemPort part="hardpoint_debug_1" />
+                <ItemPort part="hardpoint_debug_2" />
+                <ItemPort part="hardpoint_debug_3" />
+                <ItemPort part="hardpoint_debug_4" />
+                <ItemPort part="hardpoint_debug_5" />
+                <ItemPort part="hardpoint_debug_6" />
+                <ItemPort part="hardpoint_debug_7" />
+                <ItemPort part="hardpoint_debug_8" />
+                <ItemPort part="hardpoint_debug_9" />
+                <ItemPort part="hardpoint_debug_10" />
+                <!-- Debug Ports -->
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Countermeasures Used / Controlled by Pilot -->
+        <SeatAction class="SharedDefensive">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_countermeasure_launcher_center" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure_launcher_left" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <ItemPort part="hardpoint_countermeasure_launcher_right" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+                <!-- Debug Ports -->
+                <ItemPort part="hardpoint_debug_1" />
+                <ItemPort part="hardpoint_debug_2" />
+                <ItemPort part="hardpoint_debug_3" />
+                <ItemPort part="hardpoint_debug_4" />
+                <ItemPort part="hardpoint_debug_5" />
+                <ItemPort part="hardpoint_debug_6" />
+                <ItemPort part="hardpoint_debug_7" />
+                <ItemPort part="hardpoint_debug_8" />
+                <ItemPort part="hardpoint_debug_9" />
+                <ItemPort part="hardpoint_debug_10" />
+                <!-- Debug Ports -->
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Seat Actions for Items by Pilot, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_2_left_wing" />
+                <ItemPort part="hardpoint_class_2_right_wing" />
+                <ItemPort part="hardpoint_turret_center" />
+                <ItemPort part="hardpoint_missilerack_left_wing_outer" />
+                <ItemPort part="hardpoint_missilerack_left_wing_inner" />
+                <ItemPort part="hardpoint_missilerack_right_wing_outer" />
+                <ItemPort part="hardpoint_missilerack_right_wing_inner" />
+                <ItemPort part="hardpoint_torpedorack_left" />
+                <ItemPort part="hardpoint_torpedorack_right" />
+                <ItemPort part="left_movil_lower_rotor" />
+                <ItemPort part="right_movil_lower_rotor" />
+                <ItemPort part="top_left_movil_lower_rotor" />
+                <ItemPort part="top_right_movil_lower_rotor" />
+                <ItemPort part="pilotVisor" />
+                <ItemPort part="hardpoint_power_plant_attach" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_avionics_motherboard" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+                <ItemPort part="hardpoint_armor" />
+                <ItemPort part="hardpoint_cockpit_audio" />
+                <ItemPort part="hardpoint_cockpit_selfdestruct" />
+                <ItemPort part="hardpoint_cockpit_radar" />
+                <ItemPort part="hardpoint_seat" />
+                <ItemPort part="*light" />
+                <ItemPort part="hardpoint_fuel_intake_left" />
+                <ItemPort part="hardpoint_fuel_intake_right" />
+                <ItemPort part="hardpoint_fuel_tank" />
+                <!-- Debug Ports -->
+                <ItemPort part="hardpoint_debug_1" />
+                <ItemPort part="hardpoint_debug_2" />
+                <ItemPort part="hardpoint_debug_3" />
+                <ItemPort part="hardpoint_debug_4" />
+                <ItemPort part="hardpoint_debug_5" />
+                <ItemPort part="hardpoint_debug_6" />
+                <ItemPort part="hardpoint_debug_7" />
+                <ItemPort part="hardpoint_debug_8" />
+                <ItemPort part="hardpoint_debug_9" />
+                <ItemPort part="hardpoint_debug_10" />
+                <!-- Debug Ports -->
+              </Items>
+            </Settings>
+          </SharedItems>
+        </SeatAction>
+        <SeatAction class="SharedAutoWeapons">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_2_left_wing" priority="1" />
+                <ItemPort part="hardpoint_class_2_right_wing" priority="1" />
+                <ItemPort part="hardpoint_turret_center" priority="0" />
+                <ItemPort part="hardpoint_missilerack_left_wing_outer" priority="0" />
+                <ItemPort part="hardpoint_missilerack_left_wing_inner" priority="0" />
+                <ItemPort part="hardpoint_missilerack_right_wing_outer" priority="0" />
+                <ItemPort part="hardpoint_missilerack_right_wing_inner" priority="0" />
+                <ItemPort part="hardpoint_torpedorack_left" priority="0" />
+                <ItemPort part="hardpoint_torpedorack_right" priority="0" />
+                <ItemPort part="hardpoint_countermeasure_launcher_front" priority="0" />
+                <ItemPort part="hardpoint_countermeasure_launcher_left" priority="0" />
+                <ItemPort part="hardpoint_countermeasure_launcher_right" priority="0" />
+                <!-- Debug Ports -->
+                <ItemPort part="hardpoint_debug_1" />
+                <ItemPort part="hardpoint_debug_2" />
+                <ItemPort part="hardpoint_debug_3" />
+                <ItemPort part="hardpoint_debug_4" />
+                <ItemPort part="hardpoint_debug_5" />
+                <ItemPort part="hardpoint_debug_6" />
+                <ItemPort part="hardpoint_debug_7" />
+                <ItemPort part="hardpoint_debug_8" />
+                <ItemPort part="hardpoint_debug_9" />
+                <ItemPort part="hardpoint_debug_10" />
+                <!-- Debug Ports -->
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <SeatAction class="SharedThruster">
+          <SharedAutoWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="*hardpoint_engine" />
+                <ItemPort part="*hardpoint_thruster" />
+                <!-- Debug Ports -->
+                <ItemPort part="hardpoint_debug_1" />
+                <ItemPort part="hardpoint_debug_2" />
+                <ItemPort part="hardpoint_debug_3" />
+                <ItemPort part="hardpoint_debug_4" />
+                <ItemPort part="hardpoint_debug_5" />
+                <ItemPort part="hardpoint_debug_6" />
+                <ItemPort part="hardpoint_debug_7" />
+                <ItemPort part="hardpoint_debug_8" />
+                <ItemPort part="hardpoint_debug_9" />
+                <ItemPort part="hardpoint_debug_10" />
+                <!-- Debug Ports -->
+              </Items>
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <!-- SeatActionAnimateControlInputs
+				 This seat action is used to animate various parts of the vehicle procedurally or via vehicle animation based on the values of registered user deifned variables or actual player input (from a keyboard etc)
+				 Format is
+					Parts               List of parts to animate
+						ControlPart       This is a part that is animated by either rotating its transform based on predefined rotation limits and the value of an input variable or via the vehicle animation system
+							RotateX         Rotation around the X axis (pitch)
+							RotateY         Roll
+							RotateZ         Yaw
+								input=       input type. If this is "OnInputAction" this is a User input action (keyboard press, joystick value etc.). Otherwise the string is the name of the user defined variable
+															registered by a vehicle subcomponent (like VehicleMovementSpaceShip, which registers pitch, roll, yaw and throttle form its working set of action variables )
+															or in the Variables section of the vehicle xml
+								actionId      Only in conjunction with input="OnInputAction". String is the name given to the the actionId in VehicleClient::Init
+								direction=   forwards or backwards
+								min=         minimum rotation from base (assumed to be 0). So a min of -30 and a max of 50 means that the part can rotate between -30 to +50, for a range of 80 degrees
+								max=
+								sound=       The sound to play when animating the part
+								stopSound=   The sound to play when stopping
+							Animation
+								manual=      is the animation manual (i.e. its position is set by the use defined variable or user input (depending on what kind of input was specified). If this is not set the animation will
+															play normally according to it's state parameters in the vehicle animation system.
+				 -->
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="cockpit_main_control_stick" id="idControlPartPilotStick">
+                <Rotate_X input="pitch" direction="-1" min="-30" max="30" />
+                <Rotate_Y input="yaw" direction="1" min="-30" max="30" />
+                <Rotate_Z input="roll" direction="-1" minRange="-1" maxRange="1" min="-25" max="25" />
+              </ControlPart>
+              <ControlPart part="cockpit_main_throttle" id="idControlPartPilotThrottle">
+                <Rotate_X input="power" direction="-1" min="-60" max="60" />
+              </ControlPart>
+              <ControlPart part="right_pedal">
+                <Rotate_X input="Throttle" direction="1" minRange="0" maxRange="1" min="0" max="-18" />
+              </ControlPart>
+              <ControlPart part="left_pedal">
+                <Rotate_X input="Brake" minRange="0" maxRange="1" min="0" max="-18" />
+              </ControlPart>
+              <ControlPart part="right_panel_toggle_switch_1">
+                <Rotate_X input="rightPanelToggleSwitch1" min="-15" max="15" />
+              </ControlPart>
+              <ControlPart part="right_panel_toggle_switch_2">
+                <Rotate_X input="rightPanelToggleSwitch2" min="-15" max="15" />
+              </ControlPart>
+              <ControlPart part="right_panel_toggle_switch_3">
+                <Rotate_X input="rightPanelToggleSwitch3" min="-15" max="15" />
+              </ControlPart>
+              <ControlPart part="right_panel_toggle_switch_4">
+                <Rotate_X input="rightPanelToggleSwitch4" min="-15" max="15" />
+              </ControlPart>
+              <ControlPart part="tailfin_left_rudder">
+                <Rotate_Z input="yaw" direction="1" min="20" max="-20" />
+              </ControlPart>
+              <ControlPart part="tailfin_right_rudder">
+                <Rotate_Z input="yaw" direction="1" min="20" max="-20" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
         <SeatAction class="PassengerIK">
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
-              	<Limb tag ="LeftArmYoke" on="1" limb ="LftArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="Gunner_Left_Yoke_IK" blendTime="0"/>
-				<Limb tag ="RightArmYoke" on="1" limb ="RgtArm01" IKTargetSystemType ="vehicleHelper" spine ="Spine_SpineToNeck" helper ="Gunner_Right_Yoke_IK" blendTime="0"/>
-              <!--<Limb tag ="LeftLegPedal" on="1" limb ="LftLeg01" IKTargetSystemType ="vehicleHelper" helper ="left_pedal_IK_attach" blendTime="0" />
-				<Limb tag ="RightLegPedal" on="1" limb ="RgtLeg01" IKTargetSystemType ="vehicleHelper" helper ="right_pedal_IK_attach" blendTime="0" />-->
+              <Limb tag="LeftArmThrottle" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="throttle_IK_attach" blendTime="0" id="idPilotTrottleIK" />
+              <Limb tag="RightArmJoystick" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="joystick_IK_attach" blendTime="0" id="idPilotJoystickIK" />
+              <Limb tag="LeftLegPedal" on="1" limb="LftLeg01" IKTargetSystemType="vehicleHelper" helper="left_pedal_attach" blendTime="0" />
+              <Limb tag="RightLegPedal" on="1" limb="RgtLeg01" IKTargetSystemType="vehicleHelper" helper="right_pedal_attach" blendTime="0" />
             </Limbs>
           </PassengerIK>
         </SeatAction>
       </SeatActions>
-      <FixedVisorSettings default_fixed="1" scale="1" x_offset="0" y_offset="-0.1" z_offset="0.25" helper="CoPilot_Right_SeatHud"/>
-      <Sounds inout="0" mood="1" />		
-			<WaitFor>
-				<Enter>
-					<State animation="Lower_Door" state="Open" />
-				</Enter>
-<!-- 				<Exit>
-					<State animation="Lower_Door" state="Open" />
-				</Exit> -->
-			</WaitFor> 	
-			<PostAction>
-<!-- 				<Enter>
-					<State animation="Lower_Door" state="Close" />
-				</Enter>
-				<Exit>
-					<State animation="Lower_Door" state="Close" />
-				</Exit> -->
-			</PostAction>	
-		
-		</Seat>
-	</Seats>
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<MovementParams>
-		<Spaceship engineWarmupDelay="1" engineIgnitionTime ="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="50" maxBoostSpeed="100" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="180,160,200" maxAngularAcceleration="240,180,270">
-		</Spaceship>
-	</MovementParams>
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- Mannequin information for vehicle -->
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->	
-	<Mannequin tag="ANVL_Gladiator" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator_HumanAnims.adb" id="idMannequin"/>
-		<Animations>
-			<!-- Default Animation States -->
-			<!-- <Action name="Lower_Door" state="Open" /> -->
-<!-- 			<Action name="LandingGear" state="Deploy" /> -->
-		</Animations>
-	
-	<!-- Vehicle Animations (to be replaced by mannequin)
+      <Sounds inout="0" mood="1" />
+      <DockingStation>
+        <Slots>
+          <Slot name="First" itemPort="hardpoint_cockpit_radar">
+            <Tag name="Radar" />
+          </Slot>
+        </Slots>
+      </DockingStation>
+      <FixedVisorSettings default_fixed="0">
+        <FirstPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.1" />
+        <ThirdPerson fixed="1" scale="1.3" x_offset="0.013" y_offset="-0.15" z_offset="-0.065" />
+      </FixedVisorSettings>
+      <Screens>
+        <Screen name="Fixed UI" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
+          <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" z_offset="-0.06" />
+          <Slot name="Landing System" helper="UI_Helper" slot="LandingSystemIndicator" z_offset="-0.06" />
+          <!-- Fixed HUD afterburner indicator - reenable when fuel updater works properly again
+					<Slot name="Fuel Screen" helper="UI_Helper" slot="FuelStatus" x_offset="-0.147" z_offset="-0.045" />-->
+          <Slot name="Thruster Screen" helper="cockpit_screen_02" scale="0.5" y_offset="-0.005" slot="ThrusterStatus" />
+          <Slot name="Fuel Screen" helper="cockpit_screen_04" scale="0.5" y_offset="-0.005" slot="FuelStatus" />
+          <!-- GForce Indicator - reenable when ShipInterface has been integrated from gamescom branch -->
+          <!-- <Slot name="G-Force" helper="cockpit_screen_03" scale="0.9" y_offset="-0.005" slot="GForceWidget" /> -->
+          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" scale="0.45" x_offset="0.071" y_offset="0" z_offset="-0.02" />
+          <!-- top bar screens-->
+          <Slot name="MissileWarning" helper="cockpit_miniscreen_1" y_offset="-0.005" scale="0.3" slot="MissileWarning" />
+          <Slot name="CollisionWarning" helper="cockpit_miniscreen_2" y_offset="-0.005" scale="0.3" slot="CollisionWarning" />
+          <Slot name="ShieldsDownWarning" helper="cockpit_miniscreen_3" y_offset="-0.005" scale="0.3" slot="ShieldsDownWarning" />
+          <Slot name="GForceWarning" helper="cockpit_miniscreen_4" y_offset="-0.005" scale="0.3" slot="GForceWarning" />
+        </Screen>
+      </Screens>
+    </Seat>
+    <!-- Gunner's Seat -->
+    <Seat name="Gunner" enterHelper="gunner_enter_pos" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-90,0,-180" lookMax="90,0,180" isHUDSupported="1" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimalturret" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <Views defaultFirstPerson="0" defaultThirdPerson="3">
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-180" rotationMax="50,0,180" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
+          <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
+        </View>
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-45,0,150" motionBlur="0">
+          <OrbitPassenger speed="180" zoomSpeed="0.0001" zoomMin="0.2" zoomMax="15" zoomInit="1.1" />
+        </View>
+      </Views>
+      <!--       <WaitFor>
+        <Enter>
+          <State animation="Cockpit_Door" state="Open" />
+        </Enter>
+        <Exit>
+          <State animation="Cockpit_Door" state="Open" />
+        </Exit>
+      </WaitFor> -->
+      <PostAction>
+        <Enter>
+          <State animation="Bay_Doors" state="Open" />
+        </Enter>
+        <Exit>
+          <State animation="Gunner_Seat" state="Retract" />
+        </Exit>
+      </PostAction>
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init a the SeatActionMovement component that will start the engine on entry-->
+        <!-- Weapons Used / Controlled by Gunner -->
+        <SeatAction class="SharedWeapons">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_turret_center" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <!-- Seat Actions for Items by Gunner, atm they only call StartUse/StopUse on the items -->
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_turret_center" />
+                <ItemPort part="hardpoint_turret_avionics" />
+                <ItemPort part="hardpoint_copilot_seat" />
+                <ItemPort part="hardpoint_power_plant_attach" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+              </Items>
+            </Settings>
+          </SharedItems>
+        </SeatAction>
+        <SeatAction class="SharedMannedTurret">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_turret_center" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <SeatAction class="SharedAutoWeapons">
+          <SharedAutoWeapons>
+            <Settings>
+              <!-- <Items>
+                <ItemPort part="hardpoint_class_1_nose_left" priority="0" />
+                <ItemPort part="hardpoint_class_1_nose_right" priority="0" />
+                <ItemPort part="hardpoint_class_2_left_wing" priority="1" />
+                <ItemPort part="hardpoint_class_2_right_wing" priority="1" />
+                <ItemPort part="hardpoint_class_4_nose" priority="1" />
+                <ItemPort part="hardpoint_turret_center" priority="0" />
+                <ItemPort part="hardpoint_class_3_left_bay_door" priority="1" />
+                <ItemPort part="hardpoint_class_3_right_bay_door" priority="1" />
+                <ItemPort part="hardpoint_countermeasure_launcher_front" priority="1" />
+              </Items> -->
+            </Settings>
+          </SharedAutoWeapons>
+        </SeatAction>
+        <SeatAction class="AnimateControlInputs">
+          <AnimateControlInputs isAvailableDocked="1">
+            <Parts>
+              <ControlPart part="main_cockpit_rear_control_stick">
+                <Rotate_X input="pitch" min="-30" max="30" />
+                <Rotate_Y input="yaw" direction="-1" min="-30" max="30" />
+              </ControlPart>
+              <ControlPart part="main_cockpit_rear_throttle">
+                <Rotate_X input="power" direction="-1" min="-60" max="60" />
+              </ControlPart>
+            </Parts>
+          </AnimateControlInputs>
+        </SeatAction>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+              <Limb tag="LeftArmYoke" on="1" limb="LftArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="Gunner_Left_Yoke_IK" blendTime="0" />
+              <Limb tag="RightArmYoke" on="1" limb="RgtArm01" IKTargetSystemType="vehicleHelper" spine="Spine_SpineToNeck" helper="Gunner_Right_Yoke_IK" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <Screens>
+        <Screen name="Turret UI" element="ShipInterface" screen="TempTurretInterfaceScreen" number="1">
+          <Container name="LeftMFD" container="LeftMFD" helper="gunner_screen_1" z_offset="-0.1" y_offset="-0.005" scale="0.33" />
+          <Container name="HideRightMFD" container="RightMFD" helper="gunner_screen_1" x_offset="0.0" y_offset="0.1" scale="0.01" />
+          <Container name="TargetInfo" container="TargetHoloScreen" helper="gunner_screen_1" z_offset="-0.005" y_offset="-0.005" scale="0.4" />
+        </Screen>
+      </Screens>
+    </Seat>
+  </Seats>
+  <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+  <MovementParams>
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="190" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,100.0,137.5" maxTorqueAngle="18,18,18">
+      <SoundParams dmgBufferDecay="0.19">
+        <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
+        <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
+        <RunSound running_sound="" />
+        <AmbientSound sound="Sounds/spaceships:anvl_hornet/parts:ambient_interior" />
+        <PassByLoopSound sound="Sounds/spaceships:anvl_hornet/pass_by:pass_by_loop" />
+        <PassBySound sound="Sounds/spaceships:anvl_hornet/pass_by:pass_by_800ms_0to100meters" leadinTime="0.6" maxDistance="100" cooldownTime="2" />
+        <DuressSound sound="Sounds/spaceships:anvl_gladiator/under_duress:under_duress" damage_floor="22.0" damage_buffer="90.0" />
+      </SoundParams>
+      <Animations engine="Intake_Fans" />
+      <Contrails>
+        <Contrail helper="wing_left_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
+        <Contrail helper="wing_right_contrail_pos" effect="spaceship_fx.Hornet.contrail_small" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />
+        <Contrail helper="tail_right_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+        <Contrail helper="tail_left_contrail_pos" effect="spaceship_fx.Hornet.contrail" minSpeed="35" />
+      </Contrails>
+    </Spaceship>
+  </MovementParams>
+  <!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+  <Particles mfxRow="vfx_Anvil_Hornet">
+    <!--
+	 <Exhaust insideWater="0" outsideWater="1">
+	 <Helpers>
+		<Helper value="main_engine_exhaust"/>
+	 </Helpers>
+	 <EngineStart effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineStop effect="spaceship_fx.Hornet.main_thruster_exhaust"/>
+	 <EngineRunning effect="spaceship_fx.Hornet.main_thruster_exhaust" boostEffect="spaceship_fx.Hornet.main_thruster_exhaust" baseSizeScale="1" minSpeed="0.1" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="100" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPower="0.1" minPowerSizeScale="1" minPowerCountScale="0" minPowerSpeedScale="1" maxPower="1" maxPowerSizeScale="1" maxPowerCountScale="2" maxPowerSpeedScale="2"/>
+	</Exhaust>
+	-->
+    <DamageEffects>
+      <DamageEffect name="VehicleDestroyed" helper="" effect="explosions_fx.Death_Explosion.Explosion" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0" />
+      <!--<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>-->
+    </DamageEffects>
+    <EnvironmentLayers>
+      <EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+        <Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0" />
+        <Emitters />
+        <Wheels />
+      </EnvironmentLayer>
+    </EnvironmentLayers>
+  </Particles>
+  <!-- Mannequin information for vehicle -->
+  <Mannequin tag="ANVL_Gladiator" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator_HumanAnims.adb" id="idMannequin" />
+  <!-- Vehicle Animations (to be replaced by mannequin)
 	Format is
 	
 		Animation
-			name =        Vehicle Animtion name that all systems use when refering to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
-			part =        This is the name of the parent VehiclePartAnimated of this animation. As there can be multipel CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
-			reserveLayer= if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
-										This is useful for animation sthat you need to guarentee will play.
+			name=       Vehicle Animation name that all systems use when referring to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part=       This is the name of the parent VehiclePartAnimated of this animation. As there can be multiple CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer=if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+										This is useful for animations that you need to guarantee will play.
 										
 		State
-			name=         Name of state
-			animation=    this is the CGA ANM file name (sans the CGA name. For instance if teh CGA is Hornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
-			speedDefault= Speed the animtion will play at. A negative numbers means the animtion will play backwards. Defaults to 1
-			speedMin=     defaults to -1
-			speedMax=     defaults to 1
-			isLooped=     Is animation looped
-			isLoopedEx=   Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
-			isManual=     Is animation manually advanced
-			canRestart=   if true the animation can be iterrupted and started again before its finsihed playing. Defaults to false.
-			interrupt=    Can this animation be interupted by another one. Defaults to no.
-			startTime=    The time that the aniamtion will start at when played (in normlaized anaimtion time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
-										until the animtion is requested to be played.
-			play=         Number of thimes this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
-			nextState=    The next state to go to once this state has been played. If not defined the nextState is always the current state
-			sound=        Name of sound to played
-			helper=       (optional) vehicle helper location of sound
+			name=        Name of state
+			animation=   this is the CGA ANM file name (sans the CGA name. For instance if the CGA is Hornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+			speedDefault=Speed the animation will play at. A negative numbers means the animation will play backwards. Defaults to 1
+			speedMin=    defaults to -1
+			speedMax=    defaults to 1
+			isLooped=    Is animation looped
+			isLoopedEx=  Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+			isManual=    Is animation manually advanced
+			canRestart=  if true the animation can be interrupted and started again before its finished playing. Defaults to false.
+			interrupt=   Can this animation be interrupted by another one. Defaults to no.
+			startTime=   The time that the animation will start at when played (in normalized animation time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+										until the animation is requested to be played.
+			play=        Number of times this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+			nextState=   The next state to go to once this state has been played. If not defined the nextState is always the current state
+			sound=       Name of sound to played
+			helper=      (optional) vehicle helper location of sound
 			
 			Materials
-				Material        Specifies the material which the material settign will be animated by the state's speed.
-					name=         name of material
-					setting=      material setting (e.g. opacity etc) to animate
-					min=          min value of setting 
-					max=          max value of setting
-					invertValue=  invert setting
+				Material        Specifies the material which the material setting will be animated by the state's speed.
+					name=        name of material
+					setting=     material setting (e.g. opacity etc) to animate
+					min=         min value of setting 
+					max=         max value of setting
+					invertValue= invert setting
 					
 		Action
-			name =        Name of Mannequin Fragment in the vehicle adb file
-			state =       Sets the Action to teh last frame of the fragment on init, String is the fragment tag(s)
-			play =        Plays this Action on init, String is the fragment tag(s)  
+			name=       Name of Mannequin Fragment in the vehicle adb file
+			state=      Sets the Action to the last frame of the fragment on init, String is the fragment tag(s)
+			play=       Plays this Action on init, String is the fragment tag(s)  
 			
 	-->
-
-	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-	<!-- Variables
+  <Animations>
+    <Action name="Landing_Gear" state="Deploy" />
+    <Action name="Canopy" state="Open" />
+    <!-- Action name="Wings" state="ROM" / -->
+  </Animations>
+  <!-- Attachments
+	This is a list of any attachment objects on the vehicle. This is used primarily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+	where you don't need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+	don't really need them to be their own VehiclePart
+	Format is 
+		name=    is the string name that other systems use when telling the vehicle to do something with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+							animation or do something with an attachment.) 
+		helper=  is the helper where the attachment is located
+		geometry=if specified then the system assumes the attachment is either a CHR,CDF or CGF (depending on the extension).
+		effect=  if specified then the system assumes the attachment is a particle effect, and this is the name of the effect in the particle database. 
+		light=   if specified then the system assumes the attachment is a light, and the string is the light type as defined in DefaultVehcileLights. Note this is just here form completeness. 
+							Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc..
+		archetype= name of entity archetype					
+							
+	optional parameters are
+	
+		hide=    "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+		orientation = 	the angle of the attachment from its parent joint in degrees about the x,y & z axis respectively
+		mass =			specifies the mas in KG of the attachment for physicalization purposes
+	-->
+  <Attachments>
+    <!--		<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" geometry="Objects/Spaceships/Ships/ANVL/Hornet/F7C/pilot_umbilical.chr" scopeContext="Umbilical"/> -->
+    <Attachment name="landing_gear_front" helper="landing_gear_front_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_Front.cga" scopeContext="LandingGearFront" />
+    <Attachment name="landing_gear_left_wing" helper="landing_gear_left_wing_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_L_Wing.cga" scopeContext="LandingGearLeft" />
+    <Attachment name="landing_gear_right_wing" helper="landing_gear_right_wing_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_R_Wing.cga" scopeContext="LandingGearRight" />
+    <Attachment name="landing_gear_rear" helper="landing_gear_rear_helper" geometry="Objects/Spaceships/Ships/ANVL/Gladiator/Landing_Gear/ANVL_Gladiator_LG_Rear.cga" scopeContext="LandingGearRear" />
+    <!--Attachment name="headlight" helper="Headlight" archetype="!test_LightsArchetypes.groupname.light" orientation="0,0,90"/-->
+    <!--Attachment name="headlightFlare" helper="Headlight" light="Headlight_Flare" orientation="0,0,90" /-->
+  </Attachments>
+  <!-- Variables
 	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
 	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
-	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be defined somewhere inside the code base
 	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
 	Format is 
-		name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
-		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+		name=is the string name used to refer to the variable by other systems (SeatActionsAnimateControlInputs etc) and the "mapped" name of the variable in the VehiclePlayerControls dynamic variable list
+		value=is the initial value of the variable. If not defined this will default to 0. All variables in this system are floats.
 	 -->
-	<Attachments>
-	<!--<Attachment name="pilot_umbilical" helper="Anvil_Hornet_F7C" filename ="Objects/Spaceships/Anvil_Hornet/pilot_umbilical.chr" scopeContext ="Umbilical"/> -->
-<!-- 		<Attachment name="landing_gear" helper="LandingGear_Mount" geometry ="Objects\Spaceships\Ships\aegs\Avenger_PrisonerTransport\aegis_dynamics_avenger_landing_gear.chr" scopeContext ="LandingGear"/>	 -->
-	</Attachments>
-	
-	<GeomTags>
-		<geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default"/>
-		<TagsList>
-			<Tags tag="over dragging">
-				<geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
-			</Tags>
-			<Tags tag="ItemPreviewA">
-				<geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" id="idHoloGeometry_ItemPreviewA" />
-			</Tags>
-		</TagsList>
-	</GeomTags>
-	
+  <Variables>
+    <Variable name="rightPanelToggleSwitch1" value="0" />
+    <Variable name="rightPanelToggleSwitch2" value="0" />
+    <Variable name="rightPanelToggleSwitch3" value="0" />
+    <Variable name="rightPanelToggleSwitch4" value="0" />
+  </Variables>
+  <Inventory>
+    <AmmoTypes>
+    </AmmoTypes>
+  </Inventory>
+  <!-- FIX ME!!! Need to export a full F7A model again -->
+  <GeomTags>
+    <geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" id="idHoloGeometry_Default" />
+    <TagsList>
+      <Tags tag="HUD">
+        <geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" />
+        <Tags tag="hostile">
+          <geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" />
+        </Tags>
+        <Tags tag="neutral">
+          <geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" />
+        </Tags>
+      </Tags>
+      <Tags tag="over dragging">
+        <geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" id="idHoloGeometry_OverDragging" />
+      </Tags>
+      <Tags tag="ItemPreviewA">
+        <geom name="Objects/Spaceships/Ships/ANVL/Gladiator/ANVL_Gladiator.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+      </Tags>
+    </TagsList>
+  </GeomTags>
   <!-- Variants -->
-	<Modifications>
-	</Modifications>
+  <Modifications>
+  </Modifications>
 </Vehicle>

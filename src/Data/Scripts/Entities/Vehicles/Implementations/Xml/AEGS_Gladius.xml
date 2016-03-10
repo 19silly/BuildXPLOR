@@ -4,7 +4,7 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 -->
-<Vehicle name="AEGS_Gladius" category="StarFighter" displayname="Aegis Dynamics Gladius" classname="Class 2" id="idVehicleClass" dockingclass="2" HudPaletteScheme="AEGS" requiredItemTags="" itemPortTags="AEGS_Gladius_Base">
+<Vehicle name="AEGS_Gladius" category="StarFighter" displayname="Aegis Dynamics Gladius" classname="Class 2" id="idVehicleClass" dockingclass="2" HudPaletteScheme="AEGS" requiredItemTags="flightReady" itemPortTags="AEGS_Gladius_Base">
   <Shield shieldMesh="Objects/Spaceships/Ships/AEGS/Gladius/AEGS_Gladius_Shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
@@ -276,7 +276,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_weapon_class2_nose" class="ItemPort">
-              <ItemPort minsize="1" maxsize="2" display_name="Nose Slot" displayPos="75,290">
+              <ItemPort minsize="2" maxsize="2" display_name="Nose Slot" requiredTags="" portTags="noseMounted" displayPos="75,290">
                 <Types>
                   <Type type="Turret" subtypes="" />
                 </Types>
@@ -366,7 +366,7 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_shield_generator" class="ItemPort">
-                  <ItemPort minsize="1" maxsize="2" flags="" display_name="Shield Slot">
+                  <ItemPort minsize="1" maxsize="3" flags="" display_name="Shield Slot">
                     <Types>
                       <Type type="Shield" subtypes="" />
                     </Types>
@@ -450,7 +450,7 @@
                       </Effects>
                       <Parts>
                         <Part name="hardpoint_weapon_gun_class1_left_wing" class="ItemPort" detachRatio="0">
-                          <ItemPort minsize="1" maxsize="2" flags="left wing" display_name="Left Wing Class 1 Slot" displayPos="75,290" id="idClass1MountLeft">
+                          <ItemPort minsize="2" maxsize="2" flags="left wing" display_name="Left Wing Class 1 Slot" displayPos="75,290" id="idClass1MountLeft">
                             <Types>
                               <Type type="Turret" subtypes="Gun,GunTurret" />
 							  <Type type="WeaponGun" subtypes="Gun" />
@@ -636,7 +636,7 @@
                       </Effects>
                       <Parts>
                         <Part name="hardpoint_weapon_gun_class1_right_wing" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                          <ItemPort minsize="1" maxsize="2" flags="right wing" display_name="Right Wing Class 1 Slot" displayPos="75,290" id="idClass1MountRight">
+                          <ItemPort minsize="2" maxsize="2" flags="right wing" display_name="Right Wing Class 1 Slot" displayPos="75,290" id="idClass1MountRight">
                             <Types>
                               <Type type="Turret" subtypes="Gun,GunTurret" />
 							  <Type type="WeaponGun" subtypes="Gun" />
@@ -903,7 +903,7 @@
     <!-- SeatDriver Enter -->
     <Action class="Enter">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="1" bbMin="-0.75,-0.25,-0.3" bbMax="0.75,0.75, 2" id="idPilotEnterPosActivation" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_enter_pos" distance="0.4" bbMin="-0.75,-0.25,-0.3" bbMax="0.75,0.75, 2" id="idPilotEnterPosActivation" />
       </Activations>
       <Enter>
         <Seats>
@@ -1247,7 +1247,7 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="240" maxEngineThrust="180" maxRetroThrust="130" maxDirectionalThrust="110" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="50.0" maxTorqueAlpha="35,137.5,35" maxTorqueAngle="5,18,5">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="240" maxEngineThrust="180" maxRetroThrust="130" maxDirectionalThrust="110" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="50.0" maxTorqueAlpha="35,137.5,35" maxTorqueAngle="5,18,5" id="idMovementStats" >
       <SoundParams>
         <!-- SOUNDS NEED TO BE DONE - REPLACE ME	-->
         <AmbientSound sound="Sounds/spaceships_orig_m50:parts:ambient_interior" />
@@ -1361,7 +1361,7 @@
     <Attachment name="landing_gear_rearright" helper="hardpoint_rear_landing_gear_right" geometry="Objects/Spaceships/Ships/AEGS/LandingGear/Gladius/AEGS_Gladius_LandingGears_BackRight.chr" scopeContext="LandingGearRight" />
   </Attachments>
   <GeomTags>
-    <geom name="Objects\Spaceships\Ships\AEGS\Gladius\AEGS_Gladius.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <geom name="Objects\Spaceships\Ships\AEGS\Gladius\AEGS_Gladius.cga" material="" id="idHoloGeometry_Default" />
     <TagsList>
       <Tags tag="HUD">
         <geom name="Objects\Spaceships\Ships\AEGS\Gladius\AEGS_Gladius.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
@@ -1373,7 +1373,7 @@
         </Tags>
       </Tags>
       <Tags tag="over dragging">
-        <geom name="Objects\Spaceships\Ships\AEGS\Gladius\AEGS_Gladius.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+        <geom name="Objects\Spaceships\Ships\AEGS\Gladius\AEGS_Gladius.cga" material="" id="idHoloGeometry_OverDragging" />
       </Tags>
       <Tags tag="ItemPreviewA">
         <geom name="Objects\Spaceships\Ships\AEGS\Gladius\AEGS_Gladius.cga" material="" id="idHoloGeometry_ItemPreviewA" />
@@ -1406,6 +1406,12 @@
         <Elem idRef="idControlPartPilotThrottle" name="part" value="Throttle" />
         <Elem idRef="idPilotTrottleIK" name="helper" value="throttle_IK_attach" />
         <Elem idRef="idPilotJoystickIK" name="helper" value="joystick_IK_attach" />
+      </Elems>
+    </Modification>
+	<Modification name="ACTutorial_Player">
+      <Elems>
+        <!-- Movement Stats -->
+		<Elem idRef="idMovementStats" name="maxCruiseSpeed" value="200" />
       </Elems>
     </Modification>
   </Modifications>

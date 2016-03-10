@@ -47,7 +47,7 @@ BasicAITable = {
 
 		bInvulnerable = 0,
 	
-		eiColliderMode = 0, -- zero as default, meaning 'script does not care and does not override graph, etc'.
+		esColliderMode = "Undefined", -- Undefined as default, meaning 'script does not care and does not override graph, etc'.
 
 		awarenessOfPlayer = 0,
 

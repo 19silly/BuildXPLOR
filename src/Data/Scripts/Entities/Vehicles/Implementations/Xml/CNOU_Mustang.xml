@@ -73,7 +73,7 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-		<Part name="CNOU_Mustang" class="Animated" damageMax="180" mass="13500" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
+		<Part name="CNOU_Mustang" class="Animated" mass="13500" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
       <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Damaged.cga" id="idShipGeometry" />
       <Parts>
         <Part name="body" class="AnimatedJoint" damageMax="100">
@@ -784,7 +784,7 @@
                   </ItemPort>
                 </Part>
 								<Part name="hardpoint_weapon_class_4" class="ItemPort" skipPart="0" id="idCenterBallTurret" >
-                  <ItemPort minsize="1" maxsize="2" flags="center" display_name="Bottom Turret Slot" displayPos="275,260" displayTop="1" requiredTags="">
+                  <ItemPort minsize="1" maxsize="3" flags="center" display_name="Bottom Turret Slot" displayPos="275,260" displayTop="1" requiredTags="">
                     <Types>
                       <Type type="Turret" subtypes="BallTurret" />
                       <Type type="Container" subtypes="" />
@@ -1448,7 +1448,7 @@
     <!-- BEGIN Mustang BETA Specific Actions-->
     <!-- ================================== -->
     <!-- Mustang BETA Enter Rear Door -->
-    <Action class="Enter">
+    <Action class="Enter" skipAction="1" id="rearDoorAction">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Enter" distance="1" bbMin="-0.5,-0.05,-0.3" bbMax="0.5,0.05,0.7" />
         <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Rear_Exit" distance="1" bbMin="-0.5,-0.05,-0.3" bbMax="0.5,0.05,0.7" />
@@ -1465,7 +1465,7 @@
       </Exit>
     </Action>
     <!-- Mustang BETA Enter Bed-->
-    <Action class="Enter">
+    <Action class="Enter" skipAction="1" id="bedSeatAction">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_Mustang_Beta_Bed_Helper" distance="1" bbMin="-0.9,-0.4,-0.3" bbMax="0.9,0.25,0.3" id="" />
       </Activations>
@@ -1476,7 +1476,7 @@
       </Enter>
     </Action>
     <!-- Mustang BETA Enter Toilet-->
-    <Action class="Enter">
+    <Action class="Enter" skipAction="1" id="toiletSeatAction">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_toilet_helper" distance="1" bbMin="-0.35,-0.1,-0.8" bbMax="0.35,0.05,0.8" id="" />
       </Activations>
@@ -1487,7 +1487,7 @@
       </Enter>
     </Action>
     <!-- Mustang BETA Enter Lounge-->
-    <Action class="Enter">
+    <Action class="Enter" skipAction="1" id="loungeSeatAction">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge_helper" distance="1" bbMin="-0.3,-0.3,-0.1" bbMax="0.3,0.3,0.05" id="" />
 				<Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge2_helper" distance="1" bbMin="-0.6,-0.5,0" bbMax="0.6,0.5,0.5" id="" />
@@ -1499,7 +1499,8 @@
       </Enter>
     </Action>
     <!-- Mustang BETA Switch / drawer_a -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="drawerAToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_drawer_a_helper" distance="1" bbMin="-0.3,-0.3,-0.08" bbMax="0.3,0.08,0.08" />
       </Activations>
@@ -1517,7 +1518,8 @@
       </States>
     </Action>
     <!-- Mustang BETA Switch / drawer_b -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="drawerBToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_drawer_b_helper" distance="1" bbMin="-0.3,-0.3,-0.08" bbMax="0.3,0.08,0.08" />
       </Activations>
@@ -1535,7 +1537,8 @@
       </States>
     </Action>
     <!-- Mustang BETA Switch / drawer_c -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="drawerCToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_drawer_c_helper" distance="1" bbMin="-0.3,-0.3,-0.08" bbMax="0.3,0.08,0.08" />
       </Activations>
@@ -1553,7 +1556,8 @@
       </States>
     </Action>
     <!-- Mustang BETA Switch / cabinet_door_a -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="cabinetDoorAToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_cabinet_door_a_helper" distance="1" bbMin="-0.2,-0.3,-0.08" bbMax="0.2,0.08,0.08" />
       </Activations>
@@ -1571,7 +1575,8 @@
       </States>
     </Action>
     <!-- Mustang BETA Switch / cabinet_door_b -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="cabinetDoorBToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_cabinet_door_b_helper" distance="1" bbMin="-0.2,-0.3,-0.08" bbMax="0.2,0.08,0.08" />
       </Activations>
@@ -1608,7 +1613,8 @@
 			</States>
 		</Action> -->
     <!-- Mustang BETA Switch / locker_door_b -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="lockerDoorBToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_locker_door_b_helper" distance="1" bbMin="-0.35,-0.1,-0.8" bbMax="0.35,0.05,0.8" />
       </Activations>
@@ -1626,7 +1632,8 @@
       </States>
     </Action>
     <!-- Mustang BETA Switch / electrical hatch -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="electricalHatchToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_electrical_hatch_helper" distance="1" bbMin="-0.5,-0.1,-0.25" bbMax="0.5,0.1,0.25" />
       </Activations>
@@ -1644,7 +1651,8 @@
       </States>
     </Action>
     <!-- Mustang BETA Switch / close -->
-    <Action class="Switch">
+    <Action class="Switch" skipAction="1" id="closetToggleSwitch">
+
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_closet_helper" distance="1" bbMin="-0.5,-0.1,-0.25" bbMax="0.5,0.1,0.25" />
       </Activations>
@@ -1901,7 +1909,7 @@
       </Screens>
     </Seat>
     <!-- MUSTANG BETA SPECIFIC SEATS -->
-		<Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+	<Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" skipSeat="1" id="bedSeat" >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1914,7 +1922,7 @@
       <WaitFor />
       <SeatActions />
     </Seat>
-    <Seat name="MustangBetaToiletSeat" enterHelper="v_mustang_beta_toilet_mount_pos" sitHelper="v_mustang_beta_toilet_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+    <Seat name="MustangBetaToiletSeat" enterHelper="v_mustang_beta_toilet_mount_pos" sitHelper="v_mustang_beta_toilet_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" skipSeat="1" id="toiletSeat"  >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1942,7 +1950,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-		<Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+	<Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" skipSeat="1" id="loungeSeat" >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -2083,7 +2091,7 @@
   <Attachments>
   </Attachments>
   <GeomTags>
-    <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="" id="idHoloGeometry_Default" />
     <TagsList>
       <Tags tag="HUD">
         <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
@@ -2095,10 +2103,10 @@
         </Tags>
       </Tags>
       <Tags tag="over dragging">
-        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="" id="idHoloGeometry_OverDragging" />
       </Tags>
       <Tags tag="ItemPreviewA">
-        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Alpha.mtl" id="idHoloGeometry_ItemPreviewA" />
+        <geom name="Objects/UI/Ships/CNOU/CNOU_Mustang_UI.cga" material="" id="idHoloGeometry_ItemPreviewA" />
       </Tags>
     </TagsList>
   </GeomTags>
@@ -2117,6 +2125,26 @@
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta.mtl" />
         <Elem idRef="idMannequin" name="passengerADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta_HumanAnims.adb" />
         <Elem idRef="idMannequin" name="vehicleADB" value="Animations/Mannequin/ADB/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Beta_Anims.adb" />
+		<!--Actions-->
+		<Elem idRef="loungeSeatAction" name="skipAction" value="0" />
+		<Elem idRef="toiletSeatAction" name="skipAction" value="0" />
+		<Elem idRef="bedSeatAction" name="skipAction" value="0" />
+		<Elem idRef="rearDoorAction" name="skipAction" value="0" />
+		<!--Switchs-->
+		<Elem idRef="closetToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="electricalHatchToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="lockerDoorBToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="cabinetDoorBToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="cabinetDoorAToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="drawerCToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="drawerBToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="drawerAToggleSwitch" name="skipAction" value="0" />
+		<Elem idRef="loungeSeatAction" name="skipAction" value="0" />
+		<Elem idRef="bedSeatAction" name="skipAction" value="0" />
+		<!--Seat-->
+		<Elem idRef="loungeSeat" name="skipAction" value="0" />
+		<Elem idRef="toiletSeat" name="skipAction" value="0" />
+		<Elem idRef="bedSeat" name="skipAction" value="0" />
       </Elems>
     </Modification>
     <Modification name="Delta">

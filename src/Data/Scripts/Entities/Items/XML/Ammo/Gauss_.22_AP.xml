@@ -1,7 +1,6 @@
-<ammo name="Gauss_.22_AP" class="Bullet">
+<ammo name="Gauss_.22_AP" class="LaserBolt">
 	<geometry>
-		<firstperson name="Objects/Effects/projectiles/laser_bolt01.cgf" material="Materials/Effects/Projectiles/Behring_P4SC_Tracer_01" />
-	</geometry>
+		<firstperson name="Objects/Effects/projectiles/laser_projectile.cgf" material="Materials/Effects/Projectiles/Gauss_22_tracer.mtl" />	</geometry>
 	<flags>
 		<param name="clientonly" value="1" />
 		<param name="reusable" value="1" />
@@ -13,7 +12,7 @@
 	<ricochet>
 		<param name="sound" value="Sounds/physics:FPS_bullets/ricochets:bullet_ricochet" />
 	</ricochet>
-	<tracer>
+	<!--<tracer>
 		<param name="effect" value="Illfonic_Weapons_Ammo_Gauss_22_AP.tracer" />
 		<param name="speed" value="300"/>
 		<param name="lightArchetype" value="Illfonic_Weapon_Lights.Ammo.Gauss_22_AP"/>
@@ -21,7 +20,7 @@
 	<trail>
 		<param name="effect" value="Illfonic_Weapons_Ammo_Gauss_22_AP.1st_Trail" />
 		<param name="delayBeforeDestroy" value="0.5" />
-	</trail>
+	</trail>-->
 	<physics type="particle">
 		<param name="mass" value="0.2" />
 		<param name="speed" value="300"/>
@@ -49,7 +48,7 @@
 
 		<param name="bullet_pierceability_modifier" value="0" />
 
-		<param name="damage" value="2" />
+		<param name="damage" value="2.6" />
 		<param name="ai_vs_player_damage" value="1.8"/>
 		<param name="damage_drop_per_meter" value="0.1" />
 		<param name="damage_drop_min_distance" value="30" />
@@ -65,9 +64,25 @@
 
 		<param name="lifetime" value="1.5" GAME="SP" />
 		<param name="lifetime" value="0.37" GAME="MP" />
-		<param name="showtime" value="0.15" />
+		<param name="showtime" value="0.05" />
 		<param name="bulletType" value="2" /> <!-- Bullet Type 2 - Assault rifle bullet -->
 		<param name="hitRecoil" value="Level3"/>
 		<param name="hitRecoilArmorMode" value="Level2"/>
 	</params>
+	
+	<LaserBoldParams>
+		<!--visual parameters for "stretching" the laser bolt mesh for a cool Star Wars feel-->
+		<param name="gapSize" value="0.02" />
+		<param name="maxLength" value="8" />
+		<param name="radius" value="0.2" />
+	</LaserBoldParams>
+	
+	<light>
+		<param name="diffuse_srgb" value="173,180,142"/>
+		<param name="diffuseMult" value="8" />
+		<param name="attenuation_bulbsize" value="0.1"/>
+		<param name="radius" value="10" />
+		<param name="flare_Scale" value="0"/>
+		<param name="flare_Name" value="0"/>
+	</light>	
 </ammo>

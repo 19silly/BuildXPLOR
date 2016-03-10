@@ -1,5 +1,6 @@
-<ammo name="PC-FF" class="Bullet">
+<ammo name="PC-FF" class="LaserBolt">
 	<geometry>
+		<firstperson name="Objects/Effects/projectiles/laser_projectile.cgf" material="Materials/Effects/Projectiles/PC-FF_laser.mtl" />
 	</geometry>
 	<flags>
 		<param name="clientonly" value="1" />
@@ -13,15 +14,19 @@
 		<param name="sound" value="Sounds/physics:FPS_bullets/ricochets:bullet_ricochet" />
 	</ricochet>
 	<physics type="particle">
-		<param name="mass" value="0.25" />
+		<param name="mass" value="0.01" />
 		<param name="speed" value="375"/>
 		<param name="air_resistance" value="0" />
+		<param name="radius" value="0.1" />
 		<param name="water_resistance" value="0" />
 		<param name="gravity" value="0, 0, 0" />
 		<param name="water_gravity" value="0, 0, 0" />
 		<param name="material" value="mat_metal" />
 		<param name="pierceability" value="1" />
 		<param name="single_contact" value="1" />
+		<param name="no_path_alignment" value="1"/>
+		<param name="constant_orientation" value="1"/>
+		<param name="no_self_collisions" value="1"/>
 		<pierceabilityLevels>
 			<param name="level1" value="0" />
 			<param name="maxPenetrationThickness" value=".2" />
@@ -32,14 +37,14 @@
 		<param name="ammo_category" value="Regular" />
 		<param name="lifetime" value="1.5" GAME="SP" />
 		<param name="lifetime" value=".37" GAME="MP" />
-		<param name="showtime" value=".25" />
+		<param name="showtime" value="0.05" />
 		<param name="bulletType" value="2" /> <!-- Bullet Type 2 - Assault rifle bullet -->
 		<param name="hitRecoil" value="Level2"/>
 		<param name="hitRecoilArmorMode" value="Level1"/>
 
 		<param name="bullet_pierceability_modifier" value="0" />
 
-		<param name="damage" value="2.2" />
+		<param name="damage" value="2.4" />
 		<param name="ai_vs_player_damage" value="1.6"/>
 		<param name="damage_drop_per_meter" value="0.1" />
 		<param name="damage_drop_min_distance" value="50" />
@@ -53,23 +58,27 @@
 		<param name="secondary_damage" value="1" />
 		<param name="ignore_damage_falloff" value="0" />
 	</params>
-	<LightningBoltParams>
-		<param name="strikeTime" value="1.5" />
-		<param name="maxSpreadRadius" value="1.0" />
-		<param name="spreadDamageMult" value="3" />
-		<param name="impulseStrength" value="20" />
-		<param name="maxDamageDistanceThreshold" value="100" />
-		<param name="chargeEffect" value="" />
-		<param name="strikeEffect" value="" />
-		<param name="sparkEffect" value="" />
-		<param name="material" value="" />
-		<param name="lightning" value="" />
-	</LightningBoltParams>
-	<tracer>
+	
+	<LaserBoldParams>
+		<!--visual parameters for "stretching" the laser bolt mesh for a cool Star Wars feel-->
+		<param name="gapSize" value="0" />
+		<param name="maxLength" value="10" />
+		<param name="radius" value="0.3" />
+	</LaserBoldParams>
+	
+	<light>
+		<param name="diffuse_srgb" value="165,99,90"/>
+		<param name="diffuseMult" value="8" />
+		<param name="attenuation_bulbsize" value="0.1"/>
+		<param name="radius" value="10" />
+		<param name="flare_Scale" value="0"/>
+		<param name="flare_Name" value="0"/>
+	</light>	
+	<!--<tracer>
 		<param name="effect" value="Illfonic_Weapons_Ammo_PC-FF.Tracer" />
 		<param name="speed" value="300"/>
 		<param name="lightArchetype" value="Illfonic_Weapon_Lights.Ammo.PC-FF"/>
-    </tracer>
+    </tracer>-->
 	<trail>
 		<param name="effect" value="Illfonic_Weapons_Ammo_PC-FF.1st_Trail" />
 		<param name="delayBeforeDestroy" value="0.5" />

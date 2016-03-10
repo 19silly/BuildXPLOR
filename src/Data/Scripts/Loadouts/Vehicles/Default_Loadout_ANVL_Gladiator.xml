@@ -2,7 +2,7 @@
 	<Pipes>
 		<Pipe name="BatteryPower" class="Power" priority="1"/>
 		<Pipe name="MainPower" class="Power" priority="0"/>
-		<Pipe name="Avionics" class="Avionics" type="1" />
+		<Pipe name="Avionics" class="Avionics" type="Binary" />
 		<Pipe name="Heat" class="Heat"  />
 		<Pipe name="MainFuel" class="Fuel" priority="1" />
 		<Pipe name="BatteryFuel" class="Fuel" priority="0" />
@@ -10,97 +10,411 @@
 	
 	<Items>
 	
-			
-		<!-- ////////////////////////////////////////////////// -->
-		<!-- Weapons -->
-		<!-- ////////////////////////////////////////////////// -->
+	<!-- ////////////////////////////////////////////////// -->
+    <!-- Seat -->
+    <!-- ////////////////////////////////////////////////// -->
 
-		<Item portName ="hardpoint_turret_left" itemName="Class_2a_Placeholder">
-		  <Pipes>
+    <Item portName="hardpoint_seat" itemName="ANVL_Gladiator_Ejection_Seat">
+		<Pipes>
 			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
-		  </Pipes>
-			<Items>
-				<Item portName="hardpoint_class_2" itemName="KLWE_LaserRepeater_S1" />
-			 </Items>
-		</Item>
+		</Pipes>
+    </Item>
 
-		<Item portName ="hardpoint_turret_right" itemName="Class_2a_Placeholder">
-		  <Pipes>
+	<Item portName="hardpoint_copilot_seat" itemName="ANVL_Gladiator_Copilot_Ejection_Seat">
+		<Pipes>
 			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
-		  </Pipes>
-			<Items>
-				<Item portName="hardpoint_class_2" itemName="KLWE_LaserRepeater_S1" />
-			 </Items>
-		</Item>
+		</Pipes>
+    </Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+    <!-- Cockpit -->
+    <!-- ////////////////////////////////////////////////// -->
+
+    <Item portName="hardpoint_cockpit_audio" itemName="ANVL_Cockpit_Audio">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_cockpit_radar" itemName="RSI_3DRadarDisplay">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+     <Item portName="hardpoint_cockpit_selfdestruct" itemName="RSI_SelfDestruct">
+      <Pipes>
+        <Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+	<!-- Power -->
+	<!-- ////////////////////////////////////////////////// -->
+
+	<Item portName="hardpoint_power_plant_attach" itemName="ACOM_AT_Gladiator_S2_Q2">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+		<Items>
+			<Item portName="hardpoint_battery" itemName="">
+				<Pipes>
+					<Connection pipeClass="Input"  pipe="BatteryPower" prio0="0" />
+					<Connection pipeClass="Output" pipe="MainPower"    prio0="100" />
+				</Pipes>
+			</Item>
+		</Items>
+	</Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+    <!-- Fuel -->
+    <!-- ////////////////////////////////////////////////// -->
+    
+	<Item portName="hardpoint_fuel_intake_left" itemName="Default_FuelIntake">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="BatteryFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+    </Item>
+	
+    <Item portName="hardpoint_fuel_intake_right" itemName="Default_FuelIntake">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="BatteryFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+    </Item>
+	
+    <Item portName="hardpoint_fuel_tank" itemName="POIR_FuelTank_1000">
+		<Pipes>
+			<Connection pipeClass="Input"  pipe="BatteryFuel" prio0="0" />
+			<Connection pipeClass="Output" pipe="MainFuel"    prio0="100" />
+		</Pipes>
+    </Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+    <!-- Coolers ##Set these up with temp assets (there are no assets or positions yet) -->
+    <!-- ////////////////////////////////////////////////// -->
+	
+	<Item portName="hardpoint_radiator_left" itemName="WCPR_SR_S1_Q2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_radiator_right" itemName="WCPR_SR_S1_Q2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+	<!-- Avionics -->
+	<!-- ////////////////////////////////////////////////// -->
+
+	<Item portName="hardpoint_radar" itemName="GRNP_SR_S3_Q2">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+
+	<Item portName="hardpoint_avionics_motherboard" itemName="ANVL_Test_Motherboard">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+		<Items>
+			<Item portName="hardpoint_cpu_slot"           itemName="ANVL_Test_CPU" />
+			<Item portName="hardpoint_targeting_computer" itemName="ANVL_Test_TC" />
+			<Item portName="hardpoint_ads_computer"       itemName="ANVL_Test_ADS" />
+			<Item portName="hardpoint_weapon_control"     itemName="ANVL_Test_WC" />
+			<Item portName="hardpoint_landing_system"     itemName="ANVL_Test_LandingSystem" />
+		</Items>
+	</Item>
+
+	<Item portName="hardpoint_turret_avionics" itemName="ANVL_Test_Motherboard">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+		<Items>
+			<Item portName="hardpoint_cpu_slot"           itemName="ANVL_Test_CPU" />
+			<Item portName="hardpoint_targeting_computer" itemName="ANVL_Test_TC" />
+			<Item portName="hardpoint_ads_computer"       itemName="ANVL_Test_ADS" />
+			<Item portName="hardpoint_weapon_control"     itemName="ANVL_Test_WC" />
+		</Items>
+	</Item>
+
+	<!-- ////////////////////////////////////////////////// -->
+    <!-- Shield -->
+    <!-- ////////////////////////////////////////////////// -->
+
+    <Item portName="hardpoint_shield_generator" itemName="GODI_Gladiator_S3_F4_Q2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+	<!-- Main Engines -->
+	<!-- ////////////////////////////////////////////////// -->
+	
+	<Item portName="hardpoint_engine_left" itemName="HAPR_P_ESI_S2_Q2">
+		<Pipes>
+			<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_engine_right" itemName="HAPR_P_ESI_S2_Q2">
+		<Pipes>
+			<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+	<!-- Thrusters -->
+	<!-- ////////////////////////////////////////////////// -->
+
+	<Item portName="hardpoint_thruster_top_front_left" itemName="ANVL_Flex_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_thruster_top_front_right" itemName="ANVL_Flex_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_thruster_top_back_left" itemName="ANVL_Flex_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+
+	<Item portName="hardpoint_thruster_top_back_right" itemName="ANVL_Flex_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_thruster_bottom_front_left" itemName="ANVL_Joint_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_thruster_bottom_front_right" itemName="ANVL_Joint_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_thruster_bottom_back_left" itemName="ANVL_Joint_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+	
+	<Item portName="hardpoint_thruster_bottom_back_right" itemName="ANVL_Joint_MK3">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+	</Item>
+
+	<!-- ////////////////////////////////////////////////// -->
+    <!-- Guns -->
+    <!-- ////////////////////////////////////////////////// -->
+	
+	<Item portName="hardpoint_class_2_left_wing" itemName="Mount_Gimbal_S3">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_class_2" itemName="BEHR_LaserCannon_S2" />
+      </Items>
+    </Item>
+
+    <Item portName="hardpoint_class_2_right_wing" itemName="Mount_Gimbal_S3">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_class_2" itemName="BEHR_LaserCannon_S2" />
+      </Items>
+    </Item>
+	
+	<Item portName="hardpoint_turret_center" itemName="ANVL_Gladiator_Turret_Ball_S2_Q2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_turret_left"  itemName="KLWE_LaserRepeater_S1" />
+        <Item portName="hardpoint_turret_right" itemName="KLWE_LaserRepeater_S1" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>
+
+    <Item portName="hardpoint_missilerack_left_wing_outer" itemName="ANVL_S2_Rack_x2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="missile_01_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+		<Item portName="missile_02_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+      </Items>
+    </Item>
+
+	<Item portName="hardpoint_missilerack_left_wing_inner" itemName="ANVL_S2_Rack_x2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="missile_01_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+		<Item portName="missile_02_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+      </Items>
+    </Item>
+	
+	<Item portName="hardpoint_missilerack_right_wing_outer" itemName="ANVL_S2_Rack_x2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="missile_01_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+		<Item portName="missile_02_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+      </Items>
+    </Item>
 		
-		<Item portName ="hardpoint_class1_left_wing" itemName="Weapon_Mount_Class1_Placeholder_a">
-		  <Pipes>
+	<Item portName="hardpoint_missilerack_right_wing_inner" itemName="ANVL_S2_Rack_x2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="missile_01_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+		<Item portName="missile_02_attach" itemName="FSKI_Tempest_S2_Proximity_TL_CS" />
+      </Items>
+    </Item>
+
+	<Item portName="hardpoint_torpedorack_left" itemName="ANVL_S5_Rack_x2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="missile_01_attach" itemName="TALN_Stalker_S5_Strike_TL_CS" />
+		<Item portName="missile_02_attach" itemName="TALN_Stalker_S5_Strike_TL_CS" />
+      </Items>
+    </Item>
+	
+	<Item portName="hardpoint_torpedorack_right" itemName="ANVL_S5_Rack_x2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="missile_01_attach" itemName="TALN_Stalker_S5_Strike_TL_CS" />
+		<Item portName="missile_02_attach" itemName="TALN_Stalker_S5_Strike_TL_CS" />
+      </Items>
+    </Item>
+	
+	<!-- ////////////////////////////////////////////////// -->
+	<!-- Counter Measure -->
+	<!-- ////////////////////////////////////////////////// -->
+
+	<Item portName="hardpoint_countermeasure_launcher_center" itemName="ANVL_Gladiator_CML">
+		<Pipes>
 			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
-		  </Pipes>
-			<Items>
-				<Item portName="hardpoint" itemName="BEHR_LaserCannon_S2" />
-			 </Items>
-		</Item>
-
-		<Item portName ="hardpoint_class1_right_wing" itemName="Weapon_Mount_Class1_Placeholder_a">
-		  <Pipes>
+		</Pipes>
+		<Items>
+			<Item portName="ammo_box_01" itemName="AmmoBox_ANVL_Flares" />
+		</Items>
+	</Item>
+	
+	<Item portName="hardpoint_countermeasure_launcher_left" itemName="ANVL_Gladiator_CML">
+		<Pipes>
 			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
 			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
-		  </Pipes>
-			<Items>
-				<Item portName="hardpoint" itemName="BEHR_LaserCannon_S2" />
-			 </Items>
-		</Item>
-
-		<Item portName ="hardpoint_missilerack_left_wing" itemName="ANVL_S3_Rack_x1">
-			<Pipes>
-				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
-			</Pipes>
-			<Items>
-				<Item portName="missile_01_attach" itemName="FSKI_Arrester_S3_Proximity_TL_CS" />
-			</Items>
-		</Item>
-
-		<Item portName ="hardpoint_missilerack_right_wing" itemName="ANVL_S3_Rack_x1">
-			<Pipes>
-				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
-			</Pipes>
-			<Items>
-				<Item portName="missile_01_attach" itemName="FSKI_Arrester_S3_Proximity_TL_CS" />
-			</Items>
-		</Item>	
-
-		<Item portName ="hardpoint_torpedorack_left_wing" itemName="ANVL_S3_Rack_x1">
-			<Pipes>
-				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
-			</Pipes>
-			<Items>
-				<Item portName="missile_01_attach" itemName="FSKI_Arrester_S3_Proximity_TL_CS" />
-			</Items>
-		</Item>	
-
-		<Item portName ="hardpoint_torpedorack_right_wing" itemName="ANVL_S3_Rack_x1">
-			<Pipes>
-				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
-				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
-			</Pipes>
-			<Items>
-				<Item portName="missile_01_attach" itemName="FSKI_Arrester_S3_Proximity_TL_CS" />
-			</Items>
-		</Item>		
+		</Pipes>
+		<Items>
+			<Item portName="ammo_box_01" itemName="AmmoBox_ANVL_Chaff" />
+		</Items>
+	</Item>
+	
+	<Item portName="hardpoint_countermeasure_launcher_right" itemName="ANVL_Gladiator_CML">
+		<Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+		</Pipes>
+		<Items>
+			<Item portName="ammo_box_01" itemName="AmmoBox_ANVL_Chaff" />
+		</Items>
+	</Item>
+	
   </Items>
 </Loadout>

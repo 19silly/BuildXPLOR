@@ -442,6 +442,7 @@ function MakeUsable( entity )
 	end
 	function entity:OnUsed(user, idx)
 		BroadcastEvent(self, "Used");
+		self:ActivateOutput("Sender", user.id);
 		if (self.Base_OnUsed) then
 			self:Base_OnUsed(user, idx);
 		end

@@ -56,8 +56,8 @@
 		<param name="tag" value="Shotgun_Kastak_Devastator-12" />
 		<param name="adb" value="Items/Weapons/FPS/Shotgun_Kastak_Devastator-12.adb" />
 		
-		<param name="tags" value="820,587"/>
-		<param name="price" value="1500"/>
+		<param name="tags" value="587,820,1017"/>
+		<param name="price" value="99999"/>
 		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/Shotgun_Kastak_Devastator-12.tif" />
 	</params>
 
@@ -104,14 +104,14 @@
 				<param name="ammo_type" value="PS-10" />
 				<param name="rate" value="100" />
 				<param name="auto_fire" value="0" />
-				<param name="ammoDamageMultiplier" value="1" />
+				<param name="ammoDamageMultiplier" value="1.5" />
 				<param name="bullet_chamber" value="0" />
-				<param name="shots_until_battery_needs_recharge" value="30" />
+				<param name="shots_until_battery_needs_recharge" value="14" />
 				<param name="lowAmmoWarningFraction" value="0.26"/>
 				<param name="helper_fp" value="muzzle_flash" />
 				<param name="helper_tp" value="muzzle_flash" />
 				<param name="nearmiss_signal" value="OnNearMiss" />
-				<param name="recharge_time" value="4" />
+				<param name="recharge_time" value="6" />
 				<param name="fillAmmoReloadFraction" value="0.60" />
 				<param name="endReloadFraction" value="0.90" />
 				<param name="knocks_target" value="0"/>
@@ -241,7 +241,7 @@
 				<param name="pellets" value="10" />
 				<param name="pelletdamage" value="14.5" />
 				<!--<param name="damage_drop_per_meter" value="0.25" />-->
-				<param name="spread" value="2" />
+				<param name="spread" value="5.8" />
 			</shotgun>
 			<recoil>
 				<param name="angular_impulse" value="0.2" />
@@ -253,8 +253,8 @@
 			<melee>
 				<param name="helper" value="collision" />
 				<param name="offset" value="0.35" />
-				<param name="damage" value="1" GAME="SP"/>
-				<param name="damage" value="1" GAME="MP"/>
+				<param name="damage" value="4" GAME="SP"/>
+				<param name="damage" value="4" GAME="MP"/>
 				<param name="slide_damage" value="3" GAME="SP"/>
 				<param name="slide_damage" value="1.3" GAME="MP"/>
 				<param name="damage_AI" value="3" />
@@ -296,8 +296,8 @@
 				<param name="suffix" value="iron" />
 				<param name="suffixAG" value="_iron" />
 				<param name="dof" value="1" />
-				<param name="dof_mask" value="textures/weapons/ironzoom_blurmask.dds" />
-				<param name="dof_focusMin" value="50.0" />
+        <param name="dof_mask" value="textures/weapons/ironsight_blurmask2.dds" />
+        <param name="dof_focusMin" value="50.0" />
 				<param name="dof_focusMax" value="100.00" />
 				<param name="dof_focusLimit" value="300.0" />
 				<param name="dof_shoulderMinZ" value="0.15" />
@@ -306,7 +306,8 @@
 				<param name="dof_minZScale" value="8.0" />
 				<param name="zoom_out_delay" value="0.15" />
 				<param name="zoom_smooth_time" value="0" />
-				<param name="zoom_in_time" value="0.15" />
+        <param name="zoom_in_time" value="0.2" />
+        <param name="zoom_in_time_from_lowered" value="0.45" />
 				<param name="zoom_fov_offset" value="0.075" />
 				<param name="zoom_out_time" value="0.15" />
 				<param name="recoil_view_dampen" value="0.0"/>
@@ -407,11 +408,20 @@
         <param name="maxTranslateRightHandX" value="0.0" />
         <param name="maxTranslateRightHandY" value="0.0" />
 
-        <param name="maxTranslateLeftHandX" value="0.025" />
-        <param name="maxTranslateLeftHandY" value="0.025" />
+        <param name="maxTranslateLeftHandX" value="0.015" />
+        <param name="maxTranslateLeftHandY" value="0.015" />
 
         <param name="speedScale" value="0.5" />
+      </override>
 
+      <override name="ADS" event="timeelapsed">
+        <param name="time" value="25000" />
+
+        <param name="scale" value="4" type="mult"/>
+
+        <param name="increaseRate" value="0.05" />
+
+        <param name="maxSpeedScale" value="0.5" />
       </override>
 
       <override name="crouch">
@@ -477,7 +487,7 @@
   </sway>
 	
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0.4, 0.3" arLongRange="12" arShortRange="6" arMinRange="1"/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.2, 0.65,0.0" arLongRange="12" arShortRange="6" arMinRange="1"/>
 		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 	

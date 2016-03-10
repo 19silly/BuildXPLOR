@@ -28,6 +28,8 @@ Human_x =
 			BONE_ARM_L = "LeftArm",
 			BONE_FOREARM_R = "RightForeArm",
 			BONE_FOREARM_L = "LeftForeArm",
+			BONE_HAND_R = "RightHand",
+			BONE_HAND_L = "LeftHand",
 			BONE_CALF_R = "RightLeg",
 			BONE_CALF_L = "LeftLeg",
 			BONE_CAMERA = "HeadCam",
@@ -196,8 +198,8 @@ Human_x =
 		aicharacter_character = "",
 		esBehaviorSelection = "HumanGrunt",
 
-		fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
-
+		fileModel = "Objects/Characters/Human/male_cdfs/uee/civilian/uee_civilian_m_barpatron01.cdf",
+		
 		bUseFacialFrameRateLimiting = 1,
 
 		-- Default Loadout override for AI
@@ -221,16 +223,6 @@ Human_x =
 			bStealthKill = 1,
 			bCanBeGrabbed = 1,
 			esGrabType = "Human"
-		},
-
-		CharacterSounds =
-		{
-			footstepEffect = "footstep_grunt", -- Footstep mfx library to use
-			remoteFootstepEffect = "footstep_grunt", -- Footstep mfx library to use for remote players
-			footstepIndGearAudioSignal_Walk = "", -- This directly plays the specified audiosignal on every footstep
-			footstepIndGearAudioSignal_Run = "", -- This directly plays the specified audiosignal on every footstep
-			bFootstepGearEffect = 0, -- This define if we play a gear sound from materialfx or not
-			foleyEffect = "foley_player", -- Foley signal effect name
 		},
 	},
 

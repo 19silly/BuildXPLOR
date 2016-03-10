@@ -41,21 +41,11 @@ BasicActor =
 			bWrinkleMap = 0,
 		},
 
-		CharacterSounds =
-		{
-			footstepEffect = "footstep",			-- Footstep mfx library to use
-			remoteFootstepEffect = "footstep",		-- Footstep mfx library to use for remote players
-			bFootstepGearEffect = 1,				-- This plays a sound from materialfx
-			footstepIndGearAudioSignal_Walk = "",	-- This directly plays the specified audiosignal on every footstep
-			footstepIndGearAudioSignal_Run = "",	-- This directly plays the specified audiosignal on every footstep
-			foleyEffect = "",						-- Foley signal effect name
-		},
-
 		-- Item ports descriptor
 		fileItemPortsDefinition = "Scripts/Entities/Items/XML/Player/PlayerItemPorts.xml",
 
 		-- Loadout descriptor
-		fileItemLoadout = "Scripts/Loadouts/Player/Marine_Light_Armor_Loadout.xml",
+		fileItemLoadout = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
 	},
 
 	tempSetStats =

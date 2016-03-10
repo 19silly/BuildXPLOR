@@ -259,7 +259,7 @@ function BasicAI:OnReset(bFromInit, bIsReload)
 		AI.EnableWeaponAccessory(self.id, AIWEPA_LASER, true);
 	end
 
-	self:SetColliderMode(Properties.eiColliderMode);
+	self:SetColliderMode(Properties.esColliderMode);
 
 	-- To support spawn at the initial (rather than current) position
 	self.InitialPosition = self:GetPos();

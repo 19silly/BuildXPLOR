@@ -46,7 +46,25 @@ Elevator =
 			sAxis = "z",
 			fStopTime = 0.75
 		},
+
+		bNetworkSync = 1, --[1,1,1,"DO NOT MODIFY"]
 	},
+
+	SpawnInfoTable =
+	{
+		objModel = "",
+		bAutomatic = 0,
+		nFloorCount = 2,
+		fFloorHeight = 5,
+		nInitialFloor = 0,
+		nDestinationFloor = 1,
+		fSpeed = 1.0,
+		fAcceleration = 1.0,
+		sAxis = "z",
+		fStopTime = 0.75
+	},
+
+	currModel = "NONE",
 
 	Editor =
 	{
@@ -78,14 +96,43 @@ function Elevator:OnReset()
 	self:Reset();
 end
 
+function Elevator:OnSpawnInfoRead()
+	self.Properties.objModel = self.SpawnInfoTable.objModel;
+	self.Properties.bAutomatic = self.SpawnInfoTable.bAutomatic;
+	self.Properties.nFloorCount = self.SpawnInfoTable.nFloorCount;
+	self.Properties.fFloorHeight = self.SpawnInfoTable.fFloorHeight;
+	self.Properties.nInitialFloor = self.SpawnInfoTable.nInitialFloor;
+	self.Properties.nDestinationFloor = self.SpawnInfoTable.nDestinationFloor;
+	self.Properties.Slide.fSpeed = self.SpawnInfoTable.fSpeed;
+	self.Properties.Slide.fAcceleration = self.SpawnInfoTable.fAcceleration;
+	self.Properties.Slide.sAxis = self.SpawnInfoTable.sAxis;
+	self.Properties.Slide.fStopTime = self.SpawnInfoTable.fStopTime;
+end
 
 function Elevator:OnSpawn()
+	self.isServer=CryAction.IsServer();
+	self.isClient=CryAction.IsClient();
+
+	if (self.isServer) then
+		self.SpawnInfoTable = 
+		{
+			objModel = self.Properties.objModel,
+			bAutomatic = self.Properties.bAutomatic,
+			nFloorCount = self.Properties.nFloorCount,
+			fFloorHeight = self.Properties.fFloorHeight,
+			nInitialFloor = self.Properties.nInitialFloor,
+			nDestinationFloor = self.Properties.nDestinationFloor,
+			fSpeed = self.Properties.Slide.fSpeed,
+			fAcceleration = self.Properties.Slide.fAcceleration,
+			sAxis = self.Properties.Slide.sAxis,
+			fStopTime = self.Properties.Slide.fStopTime,
+		};
+	end
+
+
 	CryAction.CreateGameObjectForEntity(self.id);
 	CryAction.BindGameObjectToNetwork(self.id);
 	CryAction.ForceGameObjectUpdate(self.id, true);
-
-	self.isServer=CryAction.IsServer();
-	self.isClient=CryAction.IsClient();
 
 	self.originalpos=self:GetWorldPos();
 

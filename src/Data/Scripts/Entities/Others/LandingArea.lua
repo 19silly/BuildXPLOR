@@ -21,8 +21,6 @@ LandingArea =
 		fTouchdownAltitude = 4.0,
 		fTouchdownHoverAltitude = 8.0,
 		fTakeoffHoverAltitude = 10.0,
-
-		strGeomFilename = "Objects/!test_assets/SQ42/Idris_Simon/LandingVolume/LandingVolume.cgf"
 	},
 	Client =
 	{

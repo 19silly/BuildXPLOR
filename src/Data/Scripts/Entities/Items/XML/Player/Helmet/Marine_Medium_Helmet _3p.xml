@@ -1,0 +1,91 @@
+<item name="Marine_Medium_Helmet_3p" class="PlayerItemHelmet" invisible="0" category="helmet" priority="111">
+	<params>
+		<param name="giveable" value="1" />
+		<param name="selectable" value="0" />
+		<param name="pickable" value="0" />
+		<param name="mountable" value="1" />
+		<param name="usable" value="1" />
+		<param name="arms" value="0" />
+		<param name="adb" value="Items/PlayerItems/RSI_DefaultHelmet/RSI_DefaultHelmet_Anims.adb" />
+		<param name="actionController" value="Items/PlayerItems/RSI_DefaultHelmet/RSI_DefaultHelmet_ControllerDefs.xml" />
+		<param name="itemType" value="Suit" />
+		<param name="itemSubType" value="Helmet" />
+		<param name="itemManufactor" value="UEE" />
+		<param name="itemSize" value="1" />
+		<param name="itemStartUseWhenConnected" value="1" />
+		<param name="display_name" value="RSI Default Helmet" />
+	</params>
+
+	<geometry>
+		<thirdperson name="Objects/Characters/Human/male_cdfs/uee/medium/uee_medium_m_helmet_original.cdf" />
+	</geometry>
+	
+	<Helmet>
+		<param name="helmetMountName" value="helmetmount1" />
+		<param name="visorElement" value="Visor_HUD" />
+		<param name="hudAttach" value="hud_attach" />
+		<param name="visorView" value="Visor_Fps_UEE_Light" />
+			<!-- First person visor params -->
+		<param name="fpScaleX" value="0.73" />
+		<param name="fpScaleY" value="0.6" />
+		<param name="fpDistance" value="0.3" />
+		<!-- Third person visor params -->
+		<param name="tpScaleX" value="0.14" />
+		<param name="tpScaleY" value="0.08" />
+		<param name="tpDistance" value="0.031" />
+	</Helmet>
+
+	<helmetSway>
+		<param name="peekPercentPitchMaxStart" value="0.5" />	<!-- Percent head can pitch up before peek kicks in. -->
+		<param name="peekPercentPitchMinStart" value="0.5" />	<!-- Percent head can pitch down before peek kicks in. -->
+		<param name="peekPitchMaxRange" value="10.0" />			<!-- Degrees the helmet moves when looking all the way up. -->
+		<param name="peekPitchMinRange" value="10.0" />			<!-- Degrees the helmet moves when looking all the way down. -->
+
+		<param name="lagPitchMax" value="5.0" />	<!-- Max pitch degrees that the helmet can lag. -->
+		<param name="lagYawMax" value="5.0" />		<!-- Max yaw degrees that the helmet can lag. -->
+		<param name="lagSmoothRate" value=".075" />	<!-- Smoothing rate of helmet follow. Pretty arbitrary, anything higher than .5 is loose, .125 is pretty tight, .075 even tighter. -->
+
+		<param name="breathMaxRotation" value="1.4" /><!-- Degrees the head/helmet move while breathing. -->
+	</helmetSway>
+	
+	<light>
+		<param name="projectTexture" value="materials/lights/gobos/common/hardsquare_neutral.tif" />
+		<param name="projectorFOV" value="120.0" />
+		<param name="color" value="187,202,255" />
+		<param name="radius" value="0.13" />
+		<param name="diffuseMult" value="0.05" />
+		<param name="specularMult" value="0.5" />
+		<param name="HDRDynamic" value="0.05" />
+		<param name="distance" value="0.2" />
+	</light>
+	
+	<portParams>
+		<ports>
+			<ItemPort minsize="1" maxsize="1" name="HUD_Helper" display_name="HUD DockingStation Helper">
+				<types>
+					<Type type="Display" />
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="radar" display_name="Radar Helper">
+				<types>
+					<Type type="Radar" />
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="radar_display" display_name="Radar Display">
+				<types>
+					<Type type="Display" />
+				</types>
+			</ItemPort>
+		</ports>
+	</portParams>
+	
+	<DockingStation>
+		<Slots>
+			<Slot name="First" itemPort="HUD_Helper">
+				<Tag name="HUD" />
+			</Slot>
+		</Slots>
+	</DockingStation>
+</item>

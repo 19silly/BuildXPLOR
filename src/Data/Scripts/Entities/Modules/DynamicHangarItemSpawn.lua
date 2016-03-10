@@ -2,7 +2,8 @@ Script.ReloadScript("Scripts/Entities/Modules/HangarItemSpawn.lua")
 DynamicHangarItemSpawn = {
   type = "DynamicHangarItemSpawn",
   Properties = {
-    
+    bCenterOnBoundingBox = 0;
+	sItemClass = "";
   },
 
   Client = {},

@@ -59,7 +59,7 @@
 		<param name="tag" value="SMG_Behring_P4SC" />
 		<param name="adb" value="Items/Weapons/FPS/SMG_Behring_P4SC.adb" />
 		
-		<param name="tags" value="587,818"/>
+		<param name="tags" value="587,818,1017"/>
 		<param name="price" value="1500"/>
 		<param name="itemImage" value="UI/mobiGlas/assets/PNG/CubbyBlast_items/SMG_Behring_P4SC.tif" />
 	</params>
@@ -98,7 +98,7 @@
 				<param name="hit_type" value="Gauss_.22_AP" />
 				<param name="rate" value="800" />
 				<param name="auto_fire" value="1" />
-				<param name="ammoDamageMultiplier" value="2" />
+				<param name="ammoDamageMultiplier" value="1" />
 				<param name="bullet_chamber" value="0" />
 				<param name="lowAmmoWarningFraction" value="0.26"/>
 				<param name="helper_fp" value="muzzle_flash" />
@@ -146,7 +146,7 @@
 				<param name="end_decay" value="2" />
 
 				<!-- Max recoil on the X (Sideway) axis -->
-				<param name="maxx" value="12" />
+				<param name="maxx" value="22" />
 
 				<!-- Max recoil on the Y (Up) axis 30 -->
 				<param name="maxy" value="20" />
@@ -261,10 +261,10 @@
 				<param name="reticle" value="SMG" />
 
 				<param name="ooatracer_treshold" value="8" />
-				<param name="changeFMFireDelayFraction" value="1.0" GAME="MP"/>
+				<param name="changeFMFireDelayFraction" value=".5" GAME="MP"/>
 				<param name="tag" value="rapid"/>
 				<param name="fade_in_per_shot" value="0.2" />
-				<param name="fade_out_time" value="0.5" />
+				<param name="fade_out_time" value="0.1" />
 			</fire>
 
 			<rapid>
@@ -331,7 +331,7 @@
 					<param name="impulse_AI_to_Player" value="300"/>
 				</CloseAttack>
 				<param name="knockdown_chance" value="20" />
-    <param name="sound_radius" value="2.0" />
+				<param name="sound_radius" value="2.0" />
 			</melee>
 		</firemode>
 
@@ -347,23 +347,24 @@
 				<param name="suffix" value="iron" />
 				<param name="suffixAG" value="_iron" />
 				<param name="dof" value="1" />
-				<param name="dof_mask" value="textures/weapons/ironsight_blurmask.dds" />
+				<param name="dof_mask" value="textures/weapons/ironsight_blurmask2.dds" />
 				<param name="dof_focusMin" value="0.0" />
 				<param name="dof_focusMax" value="300.0" />
 				<param name="dof_focusLimit" value="200.0" />
 				<param name="dof_shoulderMinZ" value="0.15" />
 				<param name="dof_shoulderMinZScale" value="0.0" />
-				<param name="dof_minZ" value="0.05" />
-				<param name="dof_minZScale" value="1" />
+				<param name="dof_minZ" value="0.09" />
+				<param name="dof_minZScale" value="8" />
 				
 				<param name="post_zoom_dof_scale" value="0.0" />
-				<param name="post_zoom_fov_enabled" value="1" />
+				<param name="post_zoom_fov_enabled" value="0" />
 				<param name="post_zoom_fov_rate" value=".2" />
-				<param name="post_zoom_fov_delay" value="0.6" />
+				<param name="post_zoom_fov_delay" value="0.0" />
 				
-				<param name="zoom_in_time" value="3" />
+				<param name="zoom_in_time" value="0.2" />
+				<param name="zoom_in_time_from_lowered" value="0.45" />
 				<param name="zoom_fov_offset" value="0" />
-				<param name="zoom_smooth_time" value="0.16" />
+				<param name="zoom_smooth_time" value="0.0" />
 				<param name="zoom_out_time" value="0.15" />
 				<param name="zoom_out_delay" value="0.15" />
 				<param name="recoil_view_dampen" value="0.0"/>
@@ -404,45 +405,45 @@
 	</zoommodes>
 
   <sway>
-    <!-- The translation is based off the ratio of the scale to maxScale, when you hit the max scale you hit the translation max. So, choose maxX/maxY carefully for one thing. -->
-    <param name="maxTranslateRightHandX" value="0.0" />
-    <param name="maxTranslateRightHandY" value="0.0" />
+	<!-- The translation is based off the ratio of the scale to maxScale, when you hit the max scale you hit the translation max. So, choose maxX/maxY carefully for one thing. -->
+	<param name="maxTranslateRightHandX" value="0.0" />
+	<param name="maxTranslateRightHandY" value="0.0" />
 
-    <param name="maxTranslateLeftHandX" value="0.02" />
-    <param name="maxTranslateLeftHandY" value="0.03" />
+	<param name="maxTranslateLeftHandX" value="0.02" />
+	<param name="maxTranslateLeftHandY" value="0.03" />
 
-    <!-- This is the scale when player is standing and doing nothing. You don't need to even have this here, defaults to 1, it's just a sample for stance overrides. -->
-    <param name="scale" value="1.0" />
+	<!-- This is the scale when player is standing and doing nothing. You don't need to even have this here, defaults to 1, it's just a sample for stance overrides. -->
+	<param name="scale" value="1.0" />
 
-    <!-- This is to prevent the breath swaying from getting too large, depends on the coolDownRate. 
+	<!-- This is to prevent the breath swaying from getting too large, depends on the coolDownRate. 
 		 The larger the max scale the longer it'll take for the player to cool down.-->
-    <param name="maxScale" value="4" />
+	<param name="maxScale" value="4" />
 
-    <!-- Increases the sway scale by this per second until the scale reaches maxScale -->
-    <param name="increaseRate" value="0.1" />
-    <!-- Decreases the sway scale by this per second until the scale reaches the baseScale -->
-    <param name="decreaseRate" value="0.25" />
+	<!-- Increases the sway scale by this per second until the scale reaches maxScale -->
+	<param name="increaseRate" value="0.1" />
+	<!-- Decreases the sway scale by this per second until the scale reaches the baseScale -->
+	<param name="decreaseRate" value="0.25" />
 
-    <!-- speed is the amount of time for a full sway cycle. -->
-    <param name="speedScale" value="0.25" />
-    <param name="maxSpeedScale" value="1" />
+	<!-- speed is the amount of time for a full sway cycle. -->
+	<param name="speedScale" value="0.25" />
+	<param name="maxSpeedScale" value="1" />
 
-    <!-- This is the maximum amount of time the player can hold their breath after stabilizing the gun before
+	<!-- This is the maximum amount of time the player can hold their breath after stabilizing the gun before
 		 they need to gasp for air. -->
-    <param name="stabilizeScaleEndTime" value="4.0" />
-    <param name="stabilizeRecoverTime" value="2.0" />
+	<param name="stabilizeScaleEndTime" value="4.0" />
+	<param name="stabilizeRecoverTime" value="2.0" />
 
-    <!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve. 
-        .5 is 50% jitter and 50% bowditch curve. 
-        The reason for this is because the curves aren't layered, they're merged together. -->
-    <param name="rightHandCurveJitterRatioX" value="0.35" />
-    <param name="rightHandCurveJitterRatioY" value="0.35" />
-    <param name="leftHandCurveJitterRatioX" value="0.35" />
-    <param name="leftHandCurveJitterRatioY" value="0.35" />
+	<!-- Value from 0 to 1. 0 is 0% jitter using 100% of bowditch curve. 1 is 100% jitter with no bowditch curve. 
+		.5 is 50% jitter and 50% bowditch curve. 
+		The reason for this is because the curves aren't layered, they're merged together. -->
+	<param name="rightHandCurveJitterRatioX" value="0.35" />
+	<param name="rightHandCurveJitterRatioY" value="0.35" />
+	<param name="leftHandCurveJitterRatioX" value="0.35" />
+	<param name="leftHandCurveJitterRatioY" value="0.35" />
 
 
-    <overrides>
-      <!-- Params override base, or you can have them compound. Example:
+	<overrides>
+	  <!-- Params override base, or you can have them compound. Example:
 				<override name="stabalizeAfter">
 					<param name="increaseRate" value="2.0" />         // This one overrides, notice there's no `type` attribute.
 					<param name="scale"        value="4" type="mult"/>// This one multiplies, notice the `mult` `type` attribute.
@@ -450,78 +451,94 @@
 
 				param `type` can be one of { mult, add }, or nonexistant to override default value.
 			 -->
-      <override name="ADS">
-        <param name="scale" value=".25" />
+		<override name="ADS">
+			<param name="scale" value=".25" />
 
-        <param name="maxTranslateRightHandX" value="0.0" />
-        <param name="maxTranslateRightHandY" value="0.0" />
+			<param name="maxTranslateRightHandX" value="0.0" />
+			<param name="maxTranslateRightHandY" value="0.0" />
 
-        <param name="maxTranslateLeftHandX" value="0.025" />
-        <param name="maxTranslateLeftHandY" value="0.025" />
+			<param name="maxTranslateLeftHandX" value="0.001" />
+			<param name="maxTranslateLeftHandY" value="0.010" />
 
-        <param name="speedScale" value="0.5" />
+			<param name="speedScale" value="0.5" />
+		</override>
 
-      </override>
+		<override name="ADS" event="timeelapsed">
+			<param name="time" value="20000" />
 
-      <override name="crouch">
-        <param name="scale" value="0.8" />
-      </override>
+			<param name="scale" value="4" type="mult"/>
 
-      <override name="jump">
-        <param name="scale" value="12" />
-      </override>
+			<param name="increaseRate" value="0.05" />
 
-      <override name="prone">
-        <param name="scale" value="0.5" />
-      </override>
+			<param name="maxSpeedScale" value="0.5" />
+		</override>
 
-      <override name="run">
-        <param name="scale" value="1.25" />
-      </override>
+		<override name="crouch">
+			<param name="scale" value=".25" />
 
-      <override name="slide">
-        <param name="scale" value="12" />
-      </override>
+			<param name="maxTranslateRightHandX" value="0.0" />
+			<param name="maxTranslateRightHandY" value="0.0" />
 
-      <override name="sprint">
-        <param name="scale" value="1.5" />
-      </override>
+			<param name="maxTranslateLeftHandX" value="0.025" />
+			<param name="maxTranslateLeftHandY" value="0.025" />
 
-      <override name="stabalize">
-        <param name="scale" value=".05"/>
-        <param name="decreaseRate" value="2.5" type="mult"/>
-        <param name="speedScale" value=".25" />
-        <param name="maxSpeedScale" value=".25" />
-      </override>
+			<param name="speedScale" value="0.5" />
+		</override>
 
-      <override name="stabalizeAfter">
-        <param name="increaseRate" value="2.0" />
-        <param name="scale" value="4"/>
-      </override>
+		<override name="jump">
+			<param name="scale" value="12" />
+		</override>
 
-      <override name="walk">
-        <param name="scale" value="1" />
+		<override name="prone">
+			<param name="scale" value="0.5" />
+		</override>
 
-        <param name="maxTranslateRightHandX" value="0.0" />
-        <param name="maxTranslateRightHandY" value="0.00" />
+		<override name="run">
+			<param name="scale" value="1.25" />
+		</override>
 
-        <param name="maxTranslateLeftHandX" value="0.1" />
-        <param name="maxTranslateLeftHandY" value="0.06" />
+		<override name="slide">
+			<param name="scale" value="12" />
+		</override>
 
-        <param name="speedScale" value="1" />
+		<override name="sprint">
+			<param name="scale" value="1.5" />
+		</override>
 
-      </override>
+		<override name="stabalize">
+			<param name="scale" value=".05"/>
+			<param name="decreaseRate" value="2.5" type="mult"/>
+			<param name="speedScale" value=".25" />
+			<param name="maxSpeedScale" value=".25" />
+		</override>
 
-      <override name="weaponfire">
-        <param name="scale" value="1.0" />
-      </override>
+		<override name="stabalizeAfter">
+			<param name="increaseRate" value="2.0" />
+			<param name="scale" value="4"/>
+		</override>
 
-      <override name="zerog">
-        <param name="scale" value="1" />
-      </override>
-    </overrides>
+		<override name="walk">
+			<param name="scale" value="1" />
 
-    <!-- * Scales are multiplied together depending on the player state, so you won't necessarily see the exact value in this XML. 
+			<param name="maxTranslateRightHandX" value="0.0" />
+			<param name="maxTranslateRightHandY" value="0.00" />
+
+			<param name="maxTranslateLeftHandX" value="0.1" />
+			<param name="maxTranslateLeftHandY" value="0.06" />
+
+			<param name="speedScale" value="1" />
+		</override>
+
+		<override name="weaponfire">
+			<param name="scale" value="2.0" />
+		</override>
+
+		<override name="zerog">
+			<param name="scale" value="1" />
+		</override>
+	</overrides>
+
+	<!-- * Scales are multiplied together depending on the player state, so you won't necessarily see the exact value in this XML. 
 		   For instance holding your breath and zooming your weapon: baseValue * stanceScale * zoomScale * stabalizeScale * firingScale * movementScale -->
   </sway>
 
@@ -542,7 +559,7 @@
 	</portParams>
 
 	<mobiGlas>
-		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0, 0.4, 0.3" arLongRange="12" arShortRange="6" arMinRange="1"/>
+		<mobiGlasARDataAttachment arType="Info" arEntity="ARItemLabel" arAttachPoint ="0.2, 0.65,0.0" arLongRange="12" arShortRange="6" arMinRange="1"/>
 		<mobiGlasARLabel arMovementType="FacingPlayer" arColor ="128, 128, 255" arShortDescription=""/>
 	</mobiGlas>
 	

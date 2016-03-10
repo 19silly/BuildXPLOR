@@ -109,7 +109,7 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-    <Part name="AEGS_Avenger" class="Animated" damageMax="300" mass="18000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
+    <Part name="AEGS_Avenger" class="Animated" mass="18000" disablePhysics="0" scopeContext="Ship" id="idMainPart">
       <Animated filename="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" filenameDestruction="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger_damaged.cga" id="idShipGeometry" />
       <DamageBehaviors>
         <DamageBehavior class="Group" damageRatioMin="1">
@@ -117,7 +117,7 @@
         </DamageBehavior>
       </DamageBehaviors>
       <Parts>
-        <Part name="Nose" class="AnimatedJoint" damageMax="150">
+        <Part name="Nose" class="AnimatedJoint" damageMax="300">
           <DamageBehaviors>
             <DamageBehavior class="DetachPart" damageRatioMin="0.25">
               <DetachPart part="Nose" recurseChildren="1" skipParent="1" Probability="1" />
@@ -135,7 +135,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_weapon_class2_nose" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" display_name="Nose Class 2 Slot" displayPos="75,290">
+              <ItemPort minsize="3" maxsize="3" display_name="Nose Class 2 Slot" displayPos="75,290">
                 <Types>
                   <Type type="Turret" subtypes="" />
                 </Types>
@@ -217,16 +217,12 @@
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="$lod1_Cockpit_interior" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod2_Cockpit_interior" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod3_Cockpit_interior" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod4_Cockpit_interior" class="AnimatedJoint" damageMax="200" />
+
               </Parts>
             </Part>
-            <Part name="Canopy" class="AnimatedJoint" damageMax="75">
+            <Part name="Canopy" class="AnimatedJoint" damageMax="150">
               <Parts>
-                <Part name="$lod1_Canopy" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod2_Canopy" class="AnimatedJoint" damageMax="200" />
+
               </Parts>
             </Part>
             <Part name="Nose_50_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -298,11 +294,8 @@
             </Part>
             <Part name="Nose_75_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="Nose_75_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
-            <Part name="$lod1_Nose" class="AnimatedJoint" damageMax="200" />
-            <Part name="$lod2_Nose" class="AnimatedJoint" damageMax="200" />
-            <Part name="$lod3_Nose" class="AnimatedJoint" damageMax="200" />
-            <Part name="$lod4_Nose" class="AnimatedJoint" damageMax="200" />
-            <Part name="Body" class="AnimatedJoint" damageMax="250">
+
+            <Part name="Body" class="AnimatedJoint" damageMax="425">
               <DetachParents>
                 <DetachParent partName="Nose" seperateLink="0" />
               </DetachParents>
@@ -443,7 +436,7 @@
                     <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Body_75_debris2_PFX_DetachFX_explode_1m_once_fixed022" partName="Body" />
                   </Effects>
                 </Part>
-                <Part name="Wing_Right" damageMax="100" class="AnimatedJoint">
+                <Part name="Wing_Right" damageMax="175" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="" damageRatioMin="0.25">
                       <Part name="Wing_Right" recurseChildren="1" skipParent="1" Probability="0.5" />
@@ -502,11 +495,10 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="$lod1_Wing_Right" class="AnimatedJoint" damageMax="200" />
-                    <Part name="$lod2_Wing_Right" class="AnimatedJoint" damageMax="200" />
+ 
                   </Parts>
                 </Part>
-                <Part name="Wing_Left" damageMax="100" class="AnimatedJoint">
+                <Part name="Wing_Left" damageMax="175" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Wing_Left" recurseChildren="1" skipParent="1" Probability="1" />
@@ -565,11 +557,10 @@
                         </Part>
                       </Parts>
                     </Part>
-                    <Part name="$lod1_Wing_Left" class="AnimatedJoint" damageMax="200" />
-                    <Part name="$lod2_Wing_Left" class="AnimatedJoint" damageMax="200" />
+
                   </Parts>
                 </Part>
-                <Part name="Intake_Right" damageMax="60" class="AnimatedJoint">
+                <Part name="Intake_Right" damageMax="150" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Intake_Right" recurseChildren="1" skipParent="1" Probability="1" />
@@ -601,10 +592,10 @@
                         <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Right_75_debris1_PFX_DetachFX_explode_4m_once_fixed011" partName="Intake_Right" />
                       </Effects>
                     </Part>
-                    <Part name="$lod1_Intake_Right" class="AnimatedJoint" damageMax="200" />
+
                   </Parts>
                 </Part>
-                <Part name="Intake_Left" damageMax="60" class="AnimatedJoint">
+                <Part name="Intake_Left" damageMax="150" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Intake_Left" recurseChildren="1" skipParent="1" Probability="1" />
@@ -636,10 +627,10 @@
                         <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_4m_once_fixed" joint="Intake_Left_75_debris1_PFX_DetachFX_explode_4m_once_fixed010" partName="Intake_Left" />
                       </Effects>
                     </Part>
-                    <Part name="$lod1_Intake_Left" class="AnimatedJoint" damageMax="200" />
+
                   </Parts>
                 </Part>
-                <Part name="Tail" damageMax="80" class="AnimatedJoint">
+                <Part name="Tail" damageMax="225" class="AnimatedJoint">
                   <DamageBehaviors>
                     <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                       <DetachPart part="Tail" recurseChildren="1" skipParent="1" Probability="1" />
@@ -813,15 +804,10 @@
                         <DetachFx effect="SC_Explode_FX.Explode_ALL.explode_1m_once_fixed" joint="Tail_75_debris6_PFX_DetachFX_explode_1m_once_fixed017" partName="Tail" />
                       </Effects>
                     </Part>
-                    <Part name="$lod1_Tail" class="AnimatedJoint" damageMax="200" />
-                    <Part name="$lod2_Tail" class="AnimatedJoint" damageMax="200" />
-                    <Part name="$lod3_Tail" class="AnimatedJoint" damageMax="200" />
+
                   </Parts>
                 </Part>
-                <Part name="$lod1_Body" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod2_Body" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod3_Body" class="AnimatedJoint" damageMax="200" />
-                <Part name="$lod4_Body" class="AnimatedJoint" damageMax="200" />
+
               </Parts>
             </Part>
           </Parts>
@@ -1572,10 +1558,10 @@
     <Attachment name="landing_gear_right_wing" helper="hardpoint_back_landing_gear_right" geometry="Objects\Spaceships\Ships\AEGS\LandingGear\Avenger\aegs_avenger_lg_rear_r.chr" scopeContext="LandingGearRight" />
   </Attachments>
   <GeomTags>
-    <geom name="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <geom name="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" material="" id="idHoloGeometry_Default" />
     <TagsList>
       <Tags tag="over dragging">
-        <geom name="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+        <geom name="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" material="" id="idHoloGeometry_OverDragging" />
       </Tags>
       <Tags tag="ItemPreviewA">
         <geom name="Objects/Spaceships/Ships/AEGS/Avenger_PrisonerTransport/AEGS_Avenger.cga" material="" id="idHoloGeometry_ItemPreviewA" />

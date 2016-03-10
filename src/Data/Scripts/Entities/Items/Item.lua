@@ -526,7 +526,7 @@ CreateItemTable("PersonalShield");
 
 PersonalShield.Properties.bPickable=0
 PersonalShield.Properties.bUsable=1
-PersonalShield.Properties.HitPoints=3000
+PersonalShield.Properties.HitPoints=100
 PersonalShield.Properties.Mass = 10
 PersonalShield.Properties.SlotSize = 1
 PersonalShield.Properties.Uses = 1
@@ -542,3 +542,13 @@ PersonalMedicalAid.Properties.Mass = 10
 PersonalMedicalAid.Properties.SlotSize = 1
 PersonalMedicalAid.Properties.Uses = 1
 PersonalMedicalAid.Properties.KeepOwnerWhenPlaced = 1
+
+----------------------------------------------------------------------------------------------------
+CreateItemTable("GrappleBeam");
+
+GrappleBeam.Properties.bPickable=1
+GrappleBeam.Properties.bUsable=1
+GrappleBeam.Properties.Mass = 10
+GrappleBeam.Properties.SlotSize = 1
+GrappleBeam.Properties.Uses = 1
+GrappleBeam.Properties.KeepOwnerWhenPlaced = 0

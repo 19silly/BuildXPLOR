@@ -244,6 +244,7 @@ BasicEntity.FlowEvents =
 		Remove = "bool",
 		Ragdollized = "bool",		
 		Break = "int",
+		Sender = "entity",
 	},
 }
 

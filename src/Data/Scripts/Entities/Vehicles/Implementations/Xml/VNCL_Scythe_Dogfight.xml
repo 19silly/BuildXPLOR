@@ -255,25 +255,6 @@
 						<HitFx effect="damage_fx.uee.static.fire_small" 	joint="Scythe_Body_100_PFX_1" 	partName="Scythe_Nose" minDamageRatio="1" maxDamageRatio="1" />
 					</Effects>
 					<Parts>
-						<!-- Body Lights -->
-						<Part name="hardpoint_lights_body" class="ItemPort">
-							<!-- Body Rig attach point  -->
-							<ItemPort minsize="1" maxsize="1" flags="body_lights" display_name="Body Lights">
-								<Types>
-									<Type type="Light" />
-								</Types>
-							</ItemPort>
-						</Part>
-						<!-- Engine Lights -->
-						<Part name="hardpoint_lights_engine" class="ItemPort">
-							<!-- Body Rig attach point  -->
-							<ItemPort minsize="1" maxsize="1" flags="engine_lights" display_name="Engine Lights">
-								<Types>
-									<Type type="Light" />
-								</Types>
-							</ItemPort>
-						</Part>
-						
 						<!-- needs dummy geometry -->
 						<Part name="hardpoint_armor" class="ItemPort">
 							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Armor Slot">
@@ -631,17 +612,6 @@
 										<Part name="Scythe_LeftLandinggear_b" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="0.9"/>	
 										<Part name="Scythe_LeftLandinggear_b_piston" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="0.9"/>	
 									</Parts>
-								</Part>
-								
-								
-								<!--Left Wing Lights-->
-								<Part name="hardpoint_lights_starboard_wing" class="ItemPort" >
-									<!-- Body Rig attach point  -->
-									<ItemPort minsize="1" maxsize="1" flags="starboardWing_lights" display_name="Starboard Lights">
-										<Types>
-											<Type type="Light" />
-										</Types>
-									</ItemPort>
 								</Part>
 								<Part name="hardpoint_leftwing_gun" class="ItemPort">
 									<ItemPort minsize="5" maxsize="5" flags="left" display_name="Left Wing Slot" displayPos="75,290">
@@ -1180,15 +1150,6 @@
 																</DamageBehavior>
 															</DamageBehaviors>
 															<Parts>
-																<!--Right Wing Lights-->
-																<Part name="hardpoint_lights_port_wing" class="ItemPort">
-																	<!-- Body Rig attach point  -->
-																	<ItemPort minsize="1" maxsize="1" flags="portWing_lights" display_name="Port Lights">
-																		<Types>
-																			<Type type="Light" />
-																		</Types>
-																	</ItemPort>
-																</Part>
 																<Part name="hardpoint_rightwing_gun" class="ItemPort" >
 																	<!-- FIXME!!! Bullshit size to make sure other weapons don't get placed, ItemPorts need fixing to not require sizes -->
 																	<ItemPort minsize="1" maxsize="666" display_name="Right Wing Slot" displayPos="75,290">
@@ -1351,11 +1312,17 @@
 				
 				<!-- Cockpit Lights -->
 					<Part name="hardpoint_lights_cockpit_int" class="ItemPort">
-						<!-- Body Rig attach point  -->
-						<ItemPort minsize="1" maxsize="1" flags="cockpit_lights" display_name="Cockpit Lights">
+						<ItemPort minSize="1" maxsize="1">
 							<Types>
-								<Type type="Light" />
+								<Type type="MultiLight" />
 							</Types>
+							<AttachmentPoints>
+								<AttachmentPoint name="cockpit_int" bone="hardpoint_lights_cockpit_int"/>
+								<AttachmentPoint name="body" bone="hardpoint_lights_body"/>
+								<AttachmentPoint name="engine" bone="hardpoint_lights_engine"/>
+								<AttachmentPoint name="port_wing" bone="hardpoint_lights_port_wing"/>
+								<AttachmentPoint name="starboard_wing" bone="hardpoint_lights_starboard_wing"/>
+							</AttachmentPoints>
 						</ItemPort>
 					</Part>
 					
@@ -1969,7 +1936,7 @@
 
 	<!-- FIX ME!!! Need to export a full F7A model again -->
    <GeomTags>
-		<geom name="Objects\Spaceships\Ships\VNCL\Scythe\VNCL_Scythe_Dogfight.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default"/>
+		<geom name="Objects\Spaceships\Ships\VNCL\Scythe\VNCL_Scythe_Dogfight.cga" material="" id="idHoloGeometry_Default"/>
 		<TagsList>
 			<Tags tag="HUD">
 				<geom name="Objects\Spaceships\Ships\VNCL\Scythe\VNCL_Scythe_Dogfight_UI.cga" material=""/>
@@ -1981,7 +1948,7 @@
 				</Tags>
 			</Tags>
 			<Tags tag="over dragging">
-			  <geom name="Objects\Spaceships\Ships\VNCL\Scythe\VNCL_Scythe_Dogfight_UI.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+			  <geom name="Objects\Spaceships\Ships\VNCL\Scythe\VNCL_Scythe_Dogfight_UI.cga" material="" id="idHoloGeometry_OverDragging" />
 			</Tags>
 			<Tags tag="ItemPreviewA">
 			  <geom name="Objects\Spaceships\Ships\VNCL\Scythe\VNCL_Scythe_Dogfight_UI.cga" material="" id="idHoloGeometry_ItemPreviewA"/>

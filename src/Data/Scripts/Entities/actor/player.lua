@@ -31,16 +31,6 @@ Player =
 			FallSleepTime = 6.0,
 		},
 
-		CharacterSounds =
-		{
-			footstepEffect = "footstep_player",		-- Footstep mfx library to use
-			remoteFootstepEffect = "footstep",		-- Footstep mfx library to use for remote players
-			bFootstepGearEffect = 0,				-- This plays a sound from materialfx
-			footstepIndGearAudioSignal_Walk = "Player_Footstep_Gear_Walk",	-- This directly plays the specified audiosignal on every footstep
-			footstepIndGearAudioSignal_Run = "Player_Footstep_Gear_Run",	-- This directly plays the specified audiosignal on every footstep
-			foleyEffect = "foley_player",			-- Foley signal effect name
-		},
-
 		Perception =
 		{
 			--ranges
@@ -51,7 +41,7 @@ Player =
 		clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
 
 		-- Loadout descriptor
-		fileItemLoadout = "Scripts/Loadouts/Player/Marine_Light_Armor_Loadout.xml",
+		fileItemLoadout = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
 	},
 
 	PropertiesInstance = 
@@ -298,6 +288,8 @@ Player =
 			BONE_ARM_L = "LeftArm",
 			BONE_FOREARM_R = "RightForeArm",
 			BONE_FOREARM_L = "LeftForeArm",
+			BONE_HAND_R = "RightHand",
+			BONE_HAND_L = "LeftHand",
 			BONE_CALF_R = "RightLeg",
 			BONE_CALF_L = "LeftLeg",
 			BONE_CAMERA = "HeadCam",

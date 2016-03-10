@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////////////
 -->
 <Vehicle name="DRAK_Cutlass" category="StarFighter" displayname="Drake Cutlass Black" classname="Class 2" dockingclass="2" priority="8" id="idVehicleClass" HudPaletteScheme="ANVL" requiredItemTags="flightReady" itemPortTags="DRAK_Cutlass_Base" crossSectionMultiplier="0.52,0.37,0.51">
-<Shield shieldMesh="Objects/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_Shield.obj" />
+  <Shield shieldMesh="Objects/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_Shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
@@ -54,7 +54,7 @@
   <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
   <!-- Modes:	gun, missile, pilot, eject, enemy, thrusters, death, countermeasure	-->
   <Cameras>
-	<Camera type="missile" attachPoint="" cameraOffset="0,17.5,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+    <Camera type="missile" attachPoint="" cameraOffset="0,17.5,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
     <Camera type="countermeasure" attachPoint="" cameraOffset="0,-4.5,6" filename="Cameras/countermeasure.xml" />
     <Camera type="gun" attachPoint="hardpoint_class2_nose" cameraOffset="0,1.6,-1.1" cameraRotationOffset="10,0,0" filename="Cameras/gun.xml" />
     <Camera type="gun" attachPoint="hardpoint_class1_left_wing" cameraOffset="-0.5,-0.7,-0.4" cameraRotationOffset="0,0,-5" cameraShakeScale="0.3" filename="Cameras/gun.xml" />
@@ -62,7 +62,8 @@
     <Camera type="gun" attachPoint="hardpoint_class_5" cameraOffset="0,-0.2,1.8" cameraRotationOffset="0,-180,0" cameraShakeScale="0.3" filename="Cameras/gun.xml" />
     <Camera type="pilot" attachPoint="" cameraOffset="-0.5,12.4,0.95" cameraRotationOffset="-15,0,-20" filename="Cameras/pilot.xml" />
     <Camera type="pilot" attachPoint="" cameraOffset="0.5,12.4,0.95" cameraRotationOffset="-15,0,20" filename="Cameras/pilot.xml" />
-	<Camera type="pilot" attachPoint="" cameraOffset="0.01,13.69,0.35" cameraRotationOffset="0,30,180" filename="Cameras/pilot.xml" /> <!-- Rear Facing Pilot Cam -->
+    <Camera type="pilot" attachPoint="" cameraOffset="0.01,13.69,0.35" cameraRotationOffset="0,30,180" filename="Cameras/pilot.xml" />
+    <!-- Rear Facing Pilot Cam -->
   </Cameras>
   <!-- Cinematic Cameras End  //////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -141,11 +142,25 @@
                 </Types>
               </ItemPort>
             </Part>
+            <Part name="hardpoint_gunner_avionics" class="ItemPort">
+              <Part name="hardpoint_radar" class="ItemPort">
+                <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
+                  <Types>
+                    <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
+                  </Types>
+                </ItemPort>
+              </Part>
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+                <Types>
+                  <Type type="Avionics" subtypes="Motherboard" />
+                </Types>
+              </ItemPort>
+            </Part>
             <Part name="hardpoint_class2_nose" class="ItemPort">
               <ItemPort minsize="1" maxsize="3" flags="right" display_name="Nose Slot" displayPos="475,290">
                 <Types>
                   <Type type="Turret" subtypes="Gun,GunTurret" />
-				  <Type type="WeaponGun" subtypes="Gun" />
+                  <Type type="WeaponGun" subtypes="Gun" />
                 </Types>
                 <Pitch min="-30" max="30" />
                 <Yaw min="-60" max="60" />
@@ -158,36 +173,6 @@
                 </Types>
               </ItemPort>
             </Part>
-			<!-- <Part name="Cockpit" class="AnimatedJoint" damageMax="200">
-				<Parts>
-                    <Part name="CP_Copilot_Yoke" class="AnimatedJoint" />
-                    <Part name="CP_Copilot_Throttle" class="AnimatedJoint" />
-                    <Part name="hardpoint_seat" class="ItemPort">
-                     <ItemPort minsize="1" maxsize="1" flags="" display_name="Vehicle Seat">
-                        <Types>
-                          <Type type="Seat" subtypes="" />
-                        </Types>
-                     </ItemPort>
-                    </Part>
-                    <Part name="CP_Pilot_Yoke" class="AnimatedJoint" />
-                    <Part name="CP_Pilot_Throttle" class="AnimatedJoint" />
-                    <Part name="CP_Pilot_FootPaddle_Right" class="AnimatedJoint" />
-                    <Part name="CP_Pilot_FootPaddle_Left" class="AnimatedJoint" />												
-                    <Part name="UI_Helper" class="ItemPort">
-                      <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
-                        <Types>
-                          <Type type="Display" />
-                        </Types>
-                      </ItemPort>
-                    </Part>
-                    <Part name="Radar_Helper" class="ItemPort">
-                      <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="UI">
-                        <Types>
-                          <Type type="Display" />
-                        </Types>
-                    </ItemPort>
-                </Part>
-            </Parts> -->
             <Part name="Nose_25_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5">
               <Effects>
                 <DetachFx effect="SC_Sparks_FX.Sparks_ALL.sparks_1m_loop_fixed" joint="Nose_25_debris1_PFX_DetachFX_sparks_1m_loop_fixed020" partName="Nose" />
@@ -393,8 +378,6 @@
                         </Part>
                         <Part name="CP_Pilot_Yoke" class="AnimatedJoint" />
                         <Part name="CP_Pilot_Throttle" class="AnimatedJoint" />
-                        <Part name="CP_Pilot_FootPaddle_Right" class="AnimatedJoint" />
-                        <Part name="CP_Pilot_FootPaddle_Left" class="AnimatedJoint" />												
                         <Part name="UI_Helper" class="ItemPort">
                           <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
                             <Types>
@@ -407,7 +390,7 @@
                             <Types>
                               <Type type="Display" />
                             </Types>
-							<HostItemScale scale="0.75" />
+                            <HostItemScale scale="0.75" />
                           </ItemPort>
                         </Part>
                       </Parts>
@@ -452,9 +435,8 @@
                     </OptimalStates>
                   </ItemPort>
                 </Part>
-				
                 <Part name="hardpoint_class_5" class="ItemPort">
-                  <ItemPort minsize="2" maxsize="4" flags="center" display_name="Top Turret Slot" displayPos="275,260" displayTop="1">
+                  <ItemPort minsize="2" maxsize="6" flags="center" display_name="Top Turret Slot" displayPos="275,260" displayTop="1">
                     <Types>
                       <Type type="Turret" subtypes="BallTurret" />
                       <Type type="Container" subtypes="" />
@@ -463,6 +445,18 @@
                     <Pitch min="-10" max="80" />
                     <Yaw min="-180" max="180" />
                   </ItemPort>
+                </Part>
+                <Part name="turret" class="AnimatedJoint">
+                  <Parts>
+                    <Part name="Turret_pivot" class="AnimatedJoint">
+                      <Parts>
+                        <Part name="hardpoint_class_1_left" class="ItemPort" />
+                        <Part name="hardpoint_class_1_right" class="ItemPort" />
+                      </Parts>
+                    </Part>
+                    <Part name="Turret_Tracks" class="AnimatedJoint" />
+                    <Part name="Display" class="AnimatedJoint" />
+                  </Parts>
                 </Part>
                 <Part name="hardpoint_lights_body" class="ItemPort" skipPart="0" id="lighting_black_variant">
                   <!-- Body Rig attach point  -->
@@ -838,7 +832,7 @@
                       <ItemPort minsize="1" maxsize="3" flags="right" display_name="Right Wing Slot" displayPos="475,290">
                         <Types>
                           <Type type="Turret" subtypes="Gun,GunTurret" />
-						  <Type type="WeaponGun" subtypes="Gun" />
+                          <Type type="WeaponGun" subtypes="Gun" />
                         </Types>
                         <Pitch min="-5" max="5" />
                         <Yaw min="-5" max="5" />
@@ -1242,7 +1236,7 @@
                       <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Wing Slot" displayPos="475,290">
                         <Types>
                           <Type type="Turret" subtypes="Gun,GunTurret" />
-						  <Type type="WeaponGun" subtypes="Gun" />
+                          <Type type="WeaponGun" subtypes="Gun" />
                         </Types>
                         <Pitch min="-5" max="5" />
                         <Yaw min="-5" max="5" />
@@ -2264,7 +2258,7 @@
         <Enter startHelper="ladder_climbup_enter_pos" endHelper="ladder_climbup_exit_pos" />
         <Exit startHelper="ladder_climbup_enter_pos" endHelper="ladder_climbup_exit_pos" />
       </Door>
-     <!--  <Door name="hackdoor3">
+      <!--  <Door name="hackdoor3">
         <Enter startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
         <Exit startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
       </Door> -->
@@ -2272,7 +2266,7 @@
         <Enter startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
         <Exit startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
       </Door>
-     <!--  <Door name="hackdoor5">
+      <!--  <Door name="hackdoor5">
         <Enter startHelper="cabin_door_climbin_enter_pos" endHelper="cabin_door_climbin_exit_pos" />
         <Exit startHelper="cabin_door_climbin_enter_pos" endHelper="cabin_door_climbin_exit_pos" />
       </Door> -->
@@ -2450,8 +2444,8 @@
               <ControlPart part="CP_Pilot_Yoke">
                 <Rotate_X input="pitch" direction="-1" min="-6" max="6" />
                 <Rotate_Y input="roll" direction="-1" min="-5" max="5" />
-								<Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-20" max="20" />							
-								<!--
+                <Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-20" max="20" />
+                <!--
                 <Rotate_X input="pitch" min="-5" max="5" />
                 <Rotate_Y input="yaw" direction="-1" min="-5" max="5" />
 								-->
@@ -2464,7 +2458,7 @@
               </ControlPart>
               <ControlPart part="CP_Pilot_FootPaddle_Right">
                 <Rotate_X input="Throttle" direction="-1" min="-25" max="0" />
-              </ControlPart>							
+              </ControlPart>
             </Parts>
           </AnimateControlInputs>
         </SeatAction>
@@ -2501,14 +2495,17 @@
       </Screens>
       <WaitFor>
         <Exit>
+		   <State animation="Cockpit" state="Retract" />
         </Exit>
       </WaitFor>
       <PostAction>
         <Enter>
           <State animation="Cockpit" state="Deploy" />
           <State animation="cabin_door" state="Close" />
-		  <State animation="cockpit_door" state="Close" />
-        </Enter>
+          <State animation="cockpit_door" state="Close" />
+          <State animation="cockpit_door" state="Close" />
+          <State animation="rear_door" state="Close" />
+        </Enter>	
       </PostAction>
     </Seat>
     <!-- Co Pilot's / Rear seat  ("CoPilot" is the standard name that Star Citizen uses for the this position) -->
@@ -2565,6 +2562,16 @@
         </SeatAction>
       </SeatActions>
       <Sounds inout="0" mood="1" />
+	  <WaitFor>
+        <Exit>
+		   <State animation="CoPilot_Seat" state="Retract" />
+        </Exit>
+      </WaitFor>
+      <PostAction>
+        <Enter>
+          <State animation="CoPilot_Seat" state="Deploy" />
+        </Enter>	
+      </PostAction>
     </Seat>
     <!-- seat_bump_left -->
     <Seat name="SeatBumpLeftPlayer" enterHelper="seat_bump_left_enter_helper" sitHelper="seat_bump_left_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="idseat_bump_left">
@@ -2609,10 +2616,10 @@
       <SeatActions />
     </Seat>
     <!-- Gunner -->
-    <Seat name="Gunner" enterHelper="turret_player_mount_pos" sitHelper="turret_sit_helper" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship" rotates="1">
+    <Seat name="Gunner" enterHelper="turret_player_mount_pos" sitHelper="turret_sit_helper" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-180" lookMax="50,0,180" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="1" visorType="turret" actionMap="spaceship">
       <Views>
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-40,0,-180" rotationMax="50,0,180" motionBlur="0">
-          <Cockpit offset="0,0,0" relativeToHorizon="0.9" turretLookMin="-10,0,-50" turretLookMax="40,0,50" />
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
         </View>
         <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
           <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
@@ -2630,10 +2637,34 @@
           <SharedWeapons isAvailableDocked="1">
             <Settings>
               <Items>
-                <ItemPort part="const_ext_mesh_top_turret_cabin_interior" priority="0" active="1" actorRecoil="0" />
+                <ItemPort part="hardpoint_class_5" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
               </Items>
             </Settings>
           </SharedWeapons>
+        </SeatAction>
+        <SeatAction class="SharedMannedTurret">
+          <SharedWeapons isAvailableDocked="1">
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_class_5" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <SeatAction class="SharedItems">
+          <SharedItems>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_powerplant" />
+                <ItemPort part="hardpoint_radiator_left" />
+                <ItemPort part="hardpoint_radiator_right" />
+                <ItemPort part="hardpoint_gunner_avionics" />
+                <ItemPort part="hardpoint_radar" />
+                <ItemPort part="hardpoint_shield_generator" />
+                <ItemPort part="radar_helper" />
+              </Items>
+            </Settings>
+          </SharedItems>
         </SeatAction>
         <SeatAction class="AnimateControlInputs">
           <AnimateControlInputs isAvailableDocked="1">
@@ -2876,7 +2907,7 @@
     <Action name="cockpit_door" state="Close" />
     <Action name="GunnerSeat" state="Retract" />
     <Action name="iris_airlock" state="Close" />
-	<Action name="Landing_Gear" state="Deploy" />	
+    <Action name="Landing_Gear" state="Deploy" />
   </Animations>
   <!-- Vehicle Animations (to be replaced by mannequin)
 	Format is
@@ -2941,8 +2972,8 @@
   <Attachments>
     <Attachment name="landing_gear_front_left" helper="hardpoint_landinggear_front_left" geometry="Objects/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_LG_L_Front.chr" scopeContext="LandingGearFrontLeft" />
     <Attachment name="landing_gear_front_right" helper="hardpoint_landinggear_front_right" geometry="Objects/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_LG_R_Front.chr" scopeContext="LandingGearFrontRight" />
-    <Attachment name="landing_gear_rear_left" helper="hardpoint_landinggear_rear_left" geometry="objects/spaceships/ships/drak/cutlass/drak_cutlass_lg_l_rear.chr" scopeContext="LandingGearRearLeft" />  
-    <Attachment name="landing_gear_rear_right" helper="hardpoint_landinggear_rear_right" geometry="objects/spaceships/ships/drak/cutlass/drak_cutlass_lg_r_rear.chr" scopeContext="LandingGearRearRight" /> 
+    <Attachment name="landing_gear_rear_left" helper="hardpoint_landinggear_rear_left" geometry="objects/spaceships/ships/drak/cutlass/drak_cutlass_lg_l_rear.chr" scopeContext="LandingGearRearLeft" />
+    <Attachment name="landing_gear_rear_right" helper="hardpoint_landinggear_rear_right" geometry="objects/spaceships/ships/drak/cutlass/drak_cutlass_lg_r_rear.chr" scopeContext="LandingGearRearRight" />
   </Attachments>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- END ATTACHMENTS ///////////////////////////////////////////////////////////////////////////////////-->
@@ -2965,7 +2996,7 @@
   <!-- VEHICLE Inventory - what's in the hold, plus ammunition & fuel stored /////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <GeomTags>
-    <geom name="Objects\Spaceships\Ships\DRAK\Cutlass\DRAK_Cutlass.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <geom name="Objects\Spaceships\Ships\DRAK\Cutlass\DRAK_Cutlass.cga" material="" id="idHoloGeometry_Default" />
     <TagsList>
       <Tags tag="HUD">
         <geom name="Objects\Spaceships\Ships\DRAK\Cutlass\DRAK_Cutlass.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
@@ -2977,7 +3008,7 @@
         </Tags>
       </Tags>
       <Tags tag="over dragging">
-        <geom name="Objects\Spaceships\Ships\DRAK\Cutlass\DRAK_Cutlass.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+        <geom name="Objects\Spaceships\Ships\DRAK\Cutlass\DRAK_Cutlass.cga" material="" id="idHoloGeometry_OverDragging" />
       </Tags>
       <Tags tag="ItemPreviewA">
         <geom name="Objects\Spaceships\Ships\DRAK\Cutlass\DRAK_Cutlass.cga" material="" id="idHoloGeometry_ItemPreviewA" />

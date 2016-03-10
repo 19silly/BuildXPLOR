@@ -15,6 +15,8 @@ DoorAnchor = {
 			sPrefabLibrary = "",
 			sPrefabCategory = "",
 		},
+
+		bNetworkSync = 1, --[1,1,1,"DO NOT MODIFY"]
 		
   },
 

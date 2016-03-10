@@ -396,5 +396,6 @@ RigidBodyEx.FlowEvents =
 		Dead = "bool",
 		Hit = "bool",
 		Health = "float",
+		Sender = "entity",
 	},
 }

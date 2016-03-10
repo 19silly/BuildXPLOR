@@ -374,6 +374,14 @@
                         </Types>
                       </ItemPort>
                     </Part>
+					<Part name="hardpoint_copilot_seat" class="ItemPort">
+                      <!-- Ventral Beacon attach point  -->
+                      <ItemPort minsize="1" maxsize="1" flags="" display_name="Hornet Seat">
+                        <Types>
+                          <Type type="Seat" />
+                        </Types>
+                      </ItemPort>
+                    </Part>
                   </Parts>
                 </Part>
                 <Part name="main_cockpit_throttle" class="AnimatedJoint" id="idMainThrottle" />
@@ -395,6 +403,13 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_avonics_motherboard" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard" requiredTags="">
+                <Types>
+                  <Type type="Avionics" subtypes="Motherboard" />
+                </Types>
+              </ItemPort>
+            </Part>
+            <Part name="hardpoint_copilot_avionics" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard" requiredTags="">
                 <Types>
                   <Type type="Avionics" subtypes="Motherboard" />
@@ -1085,7 +1100,7 @@
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_class_4_center" class="ItemPort" id="idHardpoint_Class_4_Center">
-                      <ItemPort minsize="2" maxsize="4" flags="center" display_name="Top Turret Slot" displayPos="275,260" displayTop="1" requiredTags="" portTags="">
+                      <ItemPort minsize="2" maxsize="5" flags="center" display_name="Top Turret Slot" displayPos="275,260" displayTop="1" requiredTags="" portTags="">
                         <Types>
                           <Type type="Turret" subtypes="BallTurret" />
                           <Type type="Container" subtypes="Cargo" />
@@ -1501,6 +1516,10 @@
           <State animation="Canopy" state="Close" />
           <State animation="Left_Ladder" state="Retract" />
         </Enter>
+		<Exit>
+          <State animation="Canopy" state="Close" />
+          <State animation="Left_Ladder" state="Retract" />
+        </Exit>
       </PostAction>
       <!-- Begin actions for this seat-->
       <SeatActions>
@@ -1794,11 +1813,15 @@
       </Screens>
     </Seat>
     <!-- Co Pilot's / Rear seat  ("CoPilot" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="CoPilot" enterHelper="" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isHUDSupported="0" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" id="idCoPilotSeat">
+    <Seat name="CoPilot" enterHelper="" sitHelper="copilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship_turret" visorType="pilot" hasGForceReactions="1" id="idCoPilotSeat">
       <!-- Begin views for this seat-->
-      <Views defaultFirstPerson="0" defaultThirdPerson="3">
+      <Views>
+	  <!-- ball turret remote camera -->
+		<View class="ItemCamera" canRotate="0" hidePlayer="0" itemPortName="hardpoint_class_4_center">
+          <ItemCamera/> <!-- for some reason this is required to be here by the camera system -->
+        </View>
         <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
-          <Cockpit offset="0,0,0" relativeToHorizon="0.9" />
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-30" maxPitch="65" />
         </View>
         <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
           <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
@@ -1811,25 +1834,29 @@
         <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
           <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
         </View>
-        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="0,0,0" motionBlur="0">
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0">
           <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
         </View>
       </Views>
       <WaitFor>
         <Enter>
-          <State animation="Canopy" state="Open" />
+          <State animation="Rear_Canopy" state="Open" />
           <State animation="Left_Ladder" state="Deploy" />
         </Enter>
         <Exit>
-          <State animation="Canopy" state="Open" />
+          <State animation="Rear_Canopy" state="Open" />
           <State animation="Left_Ladder" state="Deploy" />
         </Exit>
       </WaitFor>
       <PostAction>
         <Enter>
-          <State animation="Canopy" state="Close" />
+          <State animation="Rear_Canopy" state="Close" />
           <State animation="Left_Ladder" state="Retract" />
         </Enter>
+		<Exit>
+          <State animation="Rear_Canopy" state="Close" />
+          <State animation="Left_Ladder" state="Retract" />
+        </Exit>
       </PostAction>
       <!-- Begin actions for this seat-->
       <SeatActions>
@@ -1839,17 +1866,18 @@
           <SharedWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_class_4_center" priority="0" active="1" actorRecoil="0" defaultGroup="0" />
-                <!-- 		<ItemPort part="hardpoint_class_1_nose_left" priority="0" active="1" actorRecoil="0"/>
-								<ItemPort part="hardpoint_class_1_nose_right" priority="0" active="1" actorRecoil="0"/>
-								<ItemPort part="hardpoint_class_2_left_wing" priority="0" active="0" actorRecoil="0"/>
-								<ItemPort part="hardpoint_class_2_right_wing" priority="0" active="0" actorRecoil="0"/>
-								<ItemPort part="hardpoint_class_4_nose" priority="0" actorRecoil="0"/>
-								<ItemPort part="hardpoint_class_4_center" priority="1" actorRecoil="0" active="1" /> -->
-                <ItemPort part="hardpoint_class_3_left_bay_door" active="0" priority="0" actorRecoil="0" />
-                <ItemPort part="hardpoint_class_3_right_bay_door" active="0" priority="0" actorRecoil="0" />
+                <ItemPort part="hardpoint_class_4_center" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
                 <ItemPort part="Intake_Hardpoint_CounterMeasure_Left" active="0" priority="0" actorRecoil="0" />
                 <ItemPort part="Intake_Hardpoint_CounterMeasure_Right" active="0" priority="0" actorRecoil="0" />
+              </Items>
+            </Settings>
+          </SharedWeapons>
+        </SeatAction>
+        <SeatAction class="SharedMannedTurret">
+          <SharedWeapons>
+            <Settings>
+              <Items>
+                <ItemPort part="hardpoint_turret_center" priority="-1" active="1" actorRecoil="0" defaultGroup="0" />
               </Items>
             </Settings>
           </SharedWeapons>
@@ -1859,25 +1887,14 @@
           <SharedItems>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_class_2_left_wing" />
-                <ItemPort part="hardpoint_class_2_right_wing" />
                 <ItemPort part="hardpoint_class_4_center" />
-                <ItemPort part="left_movil_lower_rotor" />
-                <ItemPort part="right_movil_lower_rotor" />
-                <ItemPort part="top_left_movil_lower_rotor" />
-                <ItemPort part="top_right_movil_lower_rotor" />
-                <ItemPort part="pilotVisor" />
                 <ItemPort part="hardpoint_copilot_seat" />
                 <ItemPort part="hardpoint_power_plant_attach" />
                 <ItemPort part="hardpoint_radiator_left" />
                 <ItemPort part="hardpoint_radiator_right" />
-                <ItemPort part="hardpoint_avonics_motherboard" />
+                <ItemPort part="hardpoint_copilot_avionics" />
                 <ItemPort part="hardpoint_radar" />
                 <ItemPort part="hardpoint_shield" />
-                <ItemPort part="hardpoint_fuel_intake_left" />
-                <ItemPort part="hardpoint_fuel_intake_right" />
-                <ItemPort part="hardpoint_fuel_tank_left" />
-                <ItemPort part="hardpoint_fuel_tank_right" />
               </Items>
             </Settings>
           </SharedItems>
@@ -1886,14 +1903,14 @@
           <SharedAutoWeapons>
             <Settings>
               <Items>
-                <ItemPort part="hardpoint_class_1_nose_left" priority="0" />
+                <!--<ItemPort part="hardpoint_class_1_nose_left" priority="0" />
                 <ItemPort part="hardpoint_class_1_nose_right" priority="0" />
                 <ItemPort part="hardpoint_class_2_left_wing" priority="1" />
                 <ItemPort part="hardpoint_class_2_right_wing" priority="1" />
                 <ItemPort part="hardpoint_class_4_nose" priority="1" />
-                <ItemPort part="hardpoint_class_4_center" priority="0" />
                 <ItemPort part="hardpoint_class_3_left_bay_door" priority="1" />
-                <ItemPort part="hardpoint_class_3_right_bay_door" priority="1" />
+                <ItemPort part="hardpoint_class_3_right_bay_door" priority="1" />-->
+                <ItemPort part="hardpoint_class_4_center" priority="1" />
                 <ItemPort part="Intake_Hardpoint_CounterMeasure_Left" priority="1" />
                 <ItemPort part="Intake_Hardpoint_CounterMeasure_Right" priority="1" />
               </Items>
@@ -1925,21 +1942,11 @@
         </SeatAction>
       </SeatActions>
       <Sounds inout="0" mood="1" />
-      <FixedVisorSettings default_fixed="1">
-        <FirstPerson scale="1.25" x_offset="0" y_offset="-0.3" z_offset="-0.1" />
-        <ThirdPerson scale="1.25" x_offset="0" y_offset="-0.3" z_offset="-0.1" />
-      </FixedVisorSettings>
       <Screens>
-        <Screen name="Fixed UI" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
-          <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" />
-          <Slot name="Landing System" helper="UI_Helper" slot="LandingSystemIndicator"/>
-          <Slot name="Thruster Screen" helper="cockpit_screen_03" scale="0.9" y_offset="-0.005" slot="ThrusterStatus" />
-          <Slot name="Fuel Screen" helper="cockpit_screen_04" scale="0.9" y_offset="-0.005" slot="FuelStatus" />
-					<!-- top bar screens-->
-          <Slot name="MissileWarning" helper="cockpit_miniscreen_1" y_offset="-0.005" scale="0.7" slot="MissileWarning" />
-          <Slot name="CollisionWarning" helper="cockpit_miniscreen_2" y_offset="-0.005" scale="0.7" slot="CollisionWarning" />
-          <Slot name="ShieldsDownWarning" helper="cockpit_miniscreen_3" y_offset="-0.005" scale="0.7" slot="ShieldsDownWarning" />
-          <Slot name="GForceWarning" helper="cockpit_miniscreen_4" y_offset="-0.005" scale="0.7" slot="GForceWarning" />
+        <Screen name="Turret UI" element="ShipInterface" screen="TempTurretInterfaceScreen" number="1" is3PVisible="0" spawnOnRemote="0">
+			<Container name="LeftMFD" container="LeftMFD"  isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="-0.08" y_offset="0.12" z_offset="0.027" scale="0.20"/>
+			<Container name="HideRightMFD" container="RightMFD"  isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="0.0" y_offset="-0.1" scale="0.01"/>
+			<Container name="TargetInfo" container="TargetHoloScreen" isItemCameraScreen="1" itemPort="hardpoint_class_4_center" x_offset="0.08" y_offset="0.12" z_offset="0.037" scale="0.15"/>
         </Screen>
       </Screens>
     </Seat>
@@ -1947,7 +1954,7 @@
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,100.0,137.5" maxTorqueAngle="18,18,18">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,120,90" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="137.5,70.0,137.5" maxTorqueAngle="18,18,18" id="idMovementStats" >
       <SoundParams dmgBufferDecay="0.19">
         <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
         <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
@@ -2035,7 +2042,7 @@
 			
 	-->
   <Animations>
-    <Action name="Landing_Gear" state="Deploy" />
+    <Action name="Landing_Gear" state="Retract" />
     <!-- Action name="Wings" state="ROM" / -->
   </Animations>
   <!-- Attachments
@@ -2087,22 +2094,22 @@
   </Inventory>
   <!-- FIX ME!!! Need to export a full F7A model again -->
   <GeomTags>
-    <geom name="Objects/UI/Ships/ANVL/Hornet/F7C/F7C_0_UI.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <geom name="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" material="" id="idHoloGeometry_Default" />
     <TagsList>
       <Tags tag="HUD">
-        <geom name="Objects/UI/Ships/ANVL/Hornet/F7C/F7C_0_UI.cga" material="" />
+        <geom name="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" material="" />
         <Tags tag="hostile">
-          <geom name="Objects/UI/Ships/ANVL/Hornet/F7C/F7C_0_UI.cga" material="" />
+          <geom name="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" material="" />
         </Tags>
         <Tags tag="neutral">
-          <geom name="Objects/UI/Ships/ANVL/Hornet/F7C/F7C_0_UI.cga" material="" />
+          <geom name="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" material="" />
         </Tags>
       </Tags>
       <Tags tag="over dragging">
-        <geom name="Objects/UI/Ships/ANVL/Hornet/F7C/F7C_0_UI.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+        <geom name="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" material="" id="idHoloGeometry_OverDragging" />
       </Tags>
       <Tags tag="ItemPreviewA">
-        <geom name="Objects/UI/Ships/ANVL/Hornet/F7C/F7C_0_UI.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+        <geom name="Objects/Spaceships/Ships/ANVL/Hornet/ANVL_Hornet.cga" material="" id="idHoloGeometry_ItemPreviewA" />
       </Tags>
     </TagsList>
   </GeomTags>

@@ -14,148 +14,195 @@
 	</params>
 
 	<geometry>
-		<firstperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf"/>
-		<thirdperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf"/>
+		<firstperson name="Objects/Characters/Human/male_cdfs/pirate/light/pirate_light_m_outfit_original.cdf"/>
+		<thirdperson name="Objects/Characters/Human/male_cdfs/pirate/light/pirate_light_m_outfit_original.cdf"/>
 	</geometry>
+	
+	<playerArmor type="Light">
+		<param name="physical_damage_modifier" value="0.85" />
+		<param name="energy_damage_modifier" value=".9" />
+		<param name="distortion_damage_modifier" value="1.0" />
+		<param name="armor_speed_scale" value="1.15" />
+		<param name="footstepEffect" value="footstep_player" />
+		<param name="remoteFootstepEffect" value="footstep" />
+		<param name="foleyEffect" value="foley_light_outlaw_player" />
+		<param name="remoteFoleyEffectName" value="foley_light_outlaw_grunt" />
+	</playerArmor>
+
+	<breathing>
+		<param name="exhaleTimeMin" value="2.4" />
+		<param name="inhaleTimeMin" value="2.0" />
+
+		<param name="exhaleTimeMax" value=".75" />
+		<param name="inhaleTimeMax" value=".65" />
+
+		<!-- example, not yet used -->
+		<param name="soundEvent" value="" />
+		
+		<overrides>
+			<override name="ADS">
+				<param name="exhaleTimeMin" value="3" />
+				<param name="inhaleTimeMin" value="2.5" />
+
+				<param name="exhaleTimeMax" value="1" />
+				<param name="inhaleTimeMax" value=".8" />
+
+				<!-- override example, not yet used -->
+				<param name="soundEvent" value="" />
+			</override>
+		</overrides>
+	</breathing>
 	
 	<portParams>
 		<ports>
 			<!-- Helmet -->
-			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1">
+			<ItemPort minsize="1" maxsize="1" name="headcam" display_name="Helmet Mount 1" flags="nophys">
+				<Types>
+					<Type type="Suit" subtypes="Helmet,Hat"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1" flags="thirdperson nophys">
 				<Types>
 					<Type type="Suit" subtypes="Helmet,Hat"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- Eyeware -->
-			<ItemPort minsize="1" maxsize="1" name="eyemount" display_name="Eye Mount" flags="invisible">
+			<ItemPort minsize="1" maxsize="1" name="eyemount" display_name="Eye Mount" flags="invisible nophys">
 				<Types>
 					<Type type="Visor" subtypes="EyeWare"/>
 				</Types>
 			</ItemPort>
 			
 			<!--Ejection Seat Attachment Point-->
-			<ItemPort minsize="1" maxsize="1" name="ejectionseat" display_name="Ejection Seat">
+			<ItemPort minsize="1" maxsize="1" name="ejectionseat" display_name="Ejection Seat" flags="nophys">
 				<Types>
 					<Type type="Seat" subtypes="Pilot,EjectionSeat"/>
 				</Types>
 			</ItemPort>
 
 			<!-- mobiGlas -->	
-			<ItemPort minsize="1" maxsize="1" name="mobiglas_attach" display_name="mobiGlas wrist slot">
+			<ItemPort minsize="1" maxsize="1" name="mobiglas_attach" display_name="mobiGlas wrist slot" flags="nophys">
 				<Types>
 					<Type type="MobiGlas"/>
 				</Types>
 			</ItemPort>
 			
 			<!--Right Hand Attach -->
-			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select nophys">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
 				</Types>
 			</ItemPort>
 			
-			<ItemPort minsize="1" maxsize="1" name="weapon_attach2" display_name="Weapon Right Hand 2" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach_hand_right" display_name="Weapon Right Hand" flags="select nophys">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach2" display_name="Weapon Right Hand 2"  flags="select nophys">
 				<types>
 					<Type type="WeaponPersonal" subtypes="Grenade"/>
 				</types>
 			</ItemPort>
 			
-			<ItemPort minsize="1" maxsize="1" name="weapon_attach3" display_name="Weapon Right Hand 3" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach3" display_name="Weapon Right Hand 3"  flags="select nophys">
 				<types>
 					<Type type="WeaponPersonal" subtypes="Gadget"/>
 				</types>
 			</ItemPort>
 			
-			<ItemPort minsize="1" maxsize="1" name="weapon_attach_gadget_2h" display_name="Weapon Two Handed Gadget" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach_gadget_2h" display_name="Weapon Two Handed Gadget"  flags="select nophys">
 				<types>
 					<Type type="WeaponPersonal" subtypes="Gadget"/>
 				</types>
 			</ItemPort>
 			
-			<ItemPort minsize="1" maxsize="1" name="weapon_attach_shield" display_name="Weapon Right Hand Shield" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach_shield" display_name="Weapon Right Hand Shield"  flags="select nophys">
 				<types>
 					<Type type="WeaponPersonal" subtypes="Gadget"/>
 				</types>
 			</ItemPort>
 			
 			<!-- Left Hand Attach-->
-			<ItemPort minsize="1" maxsize="1" name="offhand_attach" display_name="Left Hand" flags="select">
+			<ItemPort minsize="1" maxsize="1" name="offhand_attach" display_name="Left Hand"  flags="select nophys">
 				<types>
-					<Type type="WeaponPersonal" subtypes="Magazine"/>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</types>
 			</ItemPort>
 			
 			<!-- 1 x Small Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach" display_name="Small Weapon 1">
+			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach nophys" display_name="Small Weapon 1">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Small"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 1 x Medium Weapon -->
-			<ItemPort minsize="1" maxsize="1" name="medium_attach_1" flags="body_attach" display_name="Medium Weapon 1">
+			<ItemPort minsize="1" maxsize="1" name="medium_attach_1" flags="body_attach default nophys" display_name="Medium Weapon 1" selectTag="front">
 				<Types>
 					<Type type="WeaponPersonal" subtypes="Medium"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 1 x Flashlight -->
-			<ItemPort name="flashlight" minsize="1" maxsize="1" display_name="Flashlight">
+			<ItemPort name="flashlight" minsize="1" maxsize="1" display_name="Flashlight" flags="nophys">
 				<Types>
 					<Type type="Suit" subtypes="Flashlight"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 1 x Knife -->
-			<ItemPort name="knife_attach_1" minsize="1" maxsize="1" display_name="Knife Armor Attach">
+			<ItemPort name="knife_attach_1" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Knife Armor Attach">
 				<types>
 					<Type type="WeaponPersonal" subtypes="Knife"/>
 				</types>
 			</ItemPort>
 			
 			<!-- 4 x Magazines -->
-			<ItemPort name="magazine_attach_1" minsize="1" maxsize="1" display_name="Magazine 1 Armor Attach">
+			<ItemPort name="magazine_attach_1" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Magazine 1 Armor Attach">
 				<Types>
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</Types>
 			</ItemPort>
 			
-			<ItemPort name="magazine_attach_2" minsize="1" maxsize="1" display_name="Magazine 2 Armor Attach">
+			<ItemPort name="magazine_attach_2" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Magazine 2 Armor Attach">
 				<Types>
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</Types>
 			</ItemPort>
 			
-			<ItemPort name="magazine_attach_3" minsize="1" maxsize="1" display_name="Magazine 2 Armor Attach">
+			<ItemPort name="magazine_attach_3" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Magazine 2 Armor Attach">
 				<Types>
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</Types>
 			</ItemPort>
 			
-			<ItemPort name="magazine_attach_4" minsize="1" maxsize="1" display_name="Magazine 2 Armor Attach">
+			<ItemPort name="magazine_attach_4" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Magazine 2 Armor Attach">
 				<Types>
 					<Type type="WeaponAttachment" subtypes="Magazine"/>
 				</Types>
 			</ItemPort>
 			
 			<!-- 2 x Grenades -->
-			<ItemPort name="grenade_attach_1" minsize="1" maxsize="1" display_name="Grenade 1 Armor Attach">
+			<ItemPort name="grenade_attach_1" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Grenade 1 Armor Attach">
 				<types>
-					<Type type="WeaponAttachment" subtypes="Grenade"/>
+					<Type type="WeaponPersonal" subtypes="Grenade"/>
 				</types>
 			</ItemPort>
 			
-			<ItemPort name="grenade_attach_2" minsize="1" maxsize="1" display_name="Grenade 2 Armor Attach">
+			<ItemPort name="grenade_attach_2" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Grenade 2 Armor Attach">
 				<types>
-					<Type type="WeaponAttachment" subtypes="Grenade"/>
+					<Type type="WeaponPersonal" subtypes="Grenade"/>
 				</types>
 			</ItemPort>
 			
 			<!-- 1 x Gadget -->
-			<ItemPort name="gadget_attach_1" minsize="1" maxsize="1" display_name="Gadget 1 Armor Attach">
+			<ItemPort name="gadget_attach_1" minsize="1" maxsize="1" flags="body_attach nophys" display_name="Gadget 1 Armor Attach">
 				<Types>
-					<Type type="Gadget"/>
+					<Type type="WeaponPersonal" subtypes="Gadget"/>
 				</Types>
 			</ItemPort>
 		</ports>

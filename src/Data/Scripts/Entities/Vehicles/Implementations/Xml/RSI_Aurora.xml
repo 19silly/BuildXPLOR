@@ -645,7 +645,7 @@
               </Parts>
             </Part>
             <Part name="hardpoint_class_1_left_whisker" class="ItemPort" detachRatio="0">
-              <ItemPort minsize="1" maxsize="2" flags="left" display_name="Left Whisker Class 1 Slot" displayPos="75,290">
+              <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Whisker Class 1 Slot" displayPos="75,290">
                 <Types>
                   <Type type="Turret" subtypes="GunTurret" />
 				  <Type type="WeaponGun" subtypes="Gun" />
@@ -655,7 +655,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_class_1_right_whisker" class="ItemPort" detachRatio="0">
-              <ItemPort minsize="1" maxsize="2" flags="right" display_name="Right Whisker Class 1 Slot" displayPos="75,290">
+              <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Whisker Class 1 Slot" displayPos="75,290">
                 <Types>
                   <Type type="Turret" subtypes="GunTurret" />
 				  <Type type="WeaponGun" subtypes="Gun" />
@@ -1081,7 +1081,7 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_class_3" class="ItemPort" detachRatio="0">
-                  <ItemPort minsize="1" maxsize="3" flags="top mid" display_name="Class 3 Slot" displayPos="275,260" displayTop="1">
+                  <ItemPort minsize="2" maxsize="2" flags="top mid" display_name="Class 3 Slot" displayPos="275,260" displayTop="1">
                     <Types>
                       <Type type="WeaponMissile" subtypes="MissileRack" />
                     </Types>
@@ -1169,20 +1169,25 @@
                 <Part name="TopDuct" class="AnimatedJoint">
                   <AnimatedJoint filename="" id="idTopDuct" />
                 </Part>
-                <Part name="hardpoint_wing_top_left" class="ItemPort" detachRatio="0">
-                  <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Wing Class 1 Slot" displayPos="75,290">
+				
+                <Part name="hardpoint_wing_top_left" class="ItemPort" detachRatio="0" skipPart="1" id="idPart_hardpoint_wing_top_left">
+                  <ItemPort minsize="2" maxsize="2" flags="left" display_name="Left Wing Class 1 Slot" displayPos="75,290">
                     <Types>
                       <Type type="WeaponGun" subtypes="Gun" />
+					  <Type type="Turret" subtypes="Gun,GunTurret" />
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="hardpoint_wing_top_right" class="ItemPort" detachRatio="0">
-                  <ItemPort minsize="1" maxsize="3" flags="right" display_name="Right Wing Class 1 Slot" displayPos="75,290">
+				
+                <Part name="hardpoint_wing_top_right" class="ItemPort" detachRatio="0" skipPart="1" id="idPart_hardpoint_wing_top_right">
+                  <ItemPort minsize="2" maxsize="2" flags="right" display_name="Right Wing Class 1 Slot" displayPos="75,290">
                     <Types>
                       <Type type="WeaponGun" subtypes="Gun" />
+					  <Type type="Turret" subtypes="Gun,GunTurret" />
                     </Types>
                   </ItemPort>
                 </Part>
+				
                 <Part name="hardpoint_selfdestruct" class="ItemPort">
                   <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
                     <Types>
@@ -1536,7 +1541,7 @@
     <!-- SeatDriver -->
     <Action class="Enter">
       <Activations>
-        <Activation type="OnUsed" param1="helper" param2="pilot_enterCockpit_pos" distance="0" bbMin="-0.8,0,0" bbMax="0.8,1.5,2.0" />
+        <Activation type="OnUsed" param1="helper" param2="pilot_enterCockpit_pos" distance="0" bbMin="-0.7,0,0.5" bbMax="0.7,1.5,2.0" />
       </Activations>
       <Enter>
         <Seats>
@@ -1973,7 +1978,7 @@
     </AmmoTypes>
   </Inventory>
   <GeomTags>
-    <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default" />
+    <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" id="idHoloGeometry_Default" />
     <TagsList>
       <Tags tag="HUD">
         <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="" />
@@ -1985,10 +1990,10 @@
         </Tags>
       </Tags>
       <Tags tag="over dragging">
-        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging" />
+        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" id="idHoloGeometry_OverDragging" />
       </Tags>
       <Tags tag="ItemPreviewA">
-        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+        <geom name="Objects\Spaceships\Ships\RSI\Aurora\RSI_Aurora.cga" id="idHoloGeometry_ItemPreviewA" />
       </Tags>
     </TagsList>
   </GeomTags>
@@ -2030,12 +2035,14 @@
         <Elem idRef="idMainPart" name="name" value="RSI_Aurora_LN" />
         <Elem idRef="idBottomBeam" name="skipPart" value="1" />
         <!-- Enable Top right and left hardpoints, only available on LN -->
-        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="hardpoint_wing_top_right" />
-        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="hardpoint_wing_top_left" />
+        <Elem idRef="idPart_hardpoint_wing_top_right" name="skipPart" value="0" />
+        <Elem idRef="idPart_hardpoint_wing_top_left" name="skipPart" value="0" />
         <!-- Geom Tags for Holo Table -->
         <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />
         <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_LN.mtl" />
+        <Elem idRef="idHardpoint_wing_top_left" name="maxsize" value="2" />
+		<Elem idRef="idHardpoint_wing_top_right" name="maxsize" value="2" />
       </Elems>
     </Modification>
     <Modification name="LX">
