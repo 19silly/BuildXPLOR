@@ -274,11 +274,19 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 			paramMissileProfile		= memberParams.esAIProfileMissile
 		end
 	
+		params.additionalData = {}
+		params.additionalData.paramBaseProfile			= paramBaseProfile
+		params.additionalData.paramCombatProfile		= paramCombatProfile
+		params.additionalData.paramFlightProfile		= paramFlightProfile
+		params.additionalData.paramTargetingProfile	= paramTargetingProfile
+		params.additionalData.paramRaceProfile			= paramRaceProfile
+		params.additionalData.paramMissileProfile		= paramMissileProfile
+
 		-- Spawn the new AI entity
 		local shouldActive = argArchetype ~= "" or paramsListSize == 1
 		local entity = System.SpawnEntity(params, self.id, true, shouldActive)
 		if entity then
-			AISpawnedAsync(entity, shouldActive)
+			AISpawnedAsync(entity, shouldActive, params.additionalData)
 		end
 				
 		-- If an archetype argument was used, don't spawn any more AI
@@ -291,29 +299,31 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 	return nil
 end
 
-function AISpawnPoint:AISpawnedAsync(entity, shouldActive)
+function AISpawnPoint:AISpawnedAsync(entity, shouldActive, additionalData)
 	if entity then
 		if entity.class ~= self.class then
 			entityID = entity.id
-				
-			-- If there is a profile parameter, set it on the new AI entity
-			if (paramBaseProfile ~= "") then
-				entity.PropertiesInstance.esAIProfileBase = paramBaseProfile
-			end
-			if (paramCombatProfile ~= "") then
-				entity.PropertiesInstance.esAIProfileCombat = paramCombatProfile
-			end
-			if (paramFlightProfile ~= "") then
-				entity.PropertiesInstance.esAIProfileFlight = paramFlightProfile
-			end
-			if (paramTargetingProfile ~= "") then
-				entity.PropertiesInstance.esAIProfileTargeting = paramTargetingProfile
-			end
-			if (paramRaceProfile ~= "") then
-				entity.PropertiesInstance.esAIProfileRace = paramRaceProfile
-			end
-			if (paramMissileProfile ~= "") then
-				entity.PropertiesInstance.esAIProfileMissile = paramMissileProfile
+			
+			if (additionalData ~= nil) then
+				-- If there is a profile parameter, set it on the new AI entity
+				if (additionalData.paramBaseProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileBase = additionalData.paramBaseProfile
+				end
+				if (additionalData.paramCombatProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileCombat = additionalData.paramCombatProfile
+				end
+				if (additionalData.paramFlightProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileFlight = additionalData.paramFlightProfile
+				end
+				if (additionalData.paramTargetingProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileTargeting = additionalData.paramTargetingProfile
+				end
+				if (additionalData.paramRaceProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileRace = additionalData.paramRaceProfile
+				end
+				if (additionalData.paramMissileProfile ~= "") then
+					entity.PropertiesInstance.esAIProfileMissile = additionalData.paramMissileProfile
+				end
 			end
 						
 			-- Add to the list of living AIs
