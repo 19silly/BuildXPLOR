@@ -82,5 +82,5 @@ record GameMode
 	bool allowLoadoutCycling;
 	
 	// [desc: "Set the list of invalid ship archetypes for this mission type"]
-	string[] invalidShips;
+	ShipArchetypeGroup& invalidShipGroup;
 };

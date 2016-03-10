@@ -16,3 +16,8 @@ record Vehicle
 	// [desc:"Entity token setup"]
 	GameTokens GameTokenList;
 };
+
+record ShipArchetypeGroup
+{
+	string[] shipArchetypes;
+};

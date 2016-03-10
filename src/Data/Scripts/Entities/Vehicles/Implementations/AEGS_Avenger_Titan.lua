@@ -31,7 +31,6 @@ AEGS_Avenger_Titan.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {

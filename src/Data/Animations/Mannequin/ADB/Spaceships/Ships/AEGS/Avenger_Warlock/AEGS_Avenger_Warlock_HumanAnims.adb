@@ -126,7 +126,7 @@
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0.16666667" StartTime="0" Duration="0"/>
-     <Animation name="aegs_avenger_cockpit_pilot_enter_combat" speed="-1"/>
+     <Animation name="aegs_avenger_cockpit_pilot_exit_combat"/>
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0.16666667" StartTime="0" Duration="0.2"/>

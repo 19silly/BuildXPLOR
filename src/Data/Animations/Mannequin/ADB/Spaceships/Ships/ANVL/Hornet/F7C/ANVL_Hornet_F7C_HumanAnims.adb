@@ -307,7 +307,7 @@
    <Fragment BlendOutDuration="0.2" Tags="Scope_Face" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="dannyswarsbrick_idle" flags="Loop"/>
+     <Animation name="male09_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
   </SeatDriver>

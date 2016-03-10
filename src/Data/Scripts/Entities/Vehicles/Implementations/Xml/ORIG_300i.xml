@@ -236,7 +236,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_engine_attach" class="ItemPort">
-              <ItemPort minsize="1" maxsize="4" flags="main rear" display_name="Main Thruster" id="idEngineHardpoint" transitionOffset="0, 0, 0" requiredTags="">
+              <ItemPort minsize="1" maxsize="4" flags="main rear" display_name="Main Thruster" skipPart="0" id="idEngineHardpoint" transitionOffset="0, 0, 0" requiredTags="">
                 <Types>
                   <Type type="MainThruster" subtypes="" />
                 </Types>
@@ -246,7 +246,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_left_engine_attach" class="ItemPort">
-              <ItemPort minsize="1" maxsize="4" flags="left" display_name="Left Thruster" requiredTags="">
+              <ItemPort minsize="1" maxsize="4" flags="main rear left" display_name="Left Thruster" skipPart="1" id="idLeftEngine" requiredTags="">
                 <Types>
                   <Type type="MainThruster" subtypes="" />
                 </Types>
@@ -256,7 +256,7 @@
               </ItemPort>
             </Part>
             <Part name="hardpoint_right_engine_attach" class="ItemPort">
-              <ItemPort minsize="1" maxsize="4" flags="right" display_name="Right Thruster" requiredTags="">
+              <ItemPort minsize="1" maxsize="4" flags="main rear right" display_name="Right Thruster" skipPart="1" id="idRightEngine" requiredTags="">
                 <Types>
                   <Type type="MainThruster" subtypes="" />
                 </Types>
@@ -2302,6 +2302,9 @@
         </Enter>
       </WaitFor>
       <SeatActions />
+	  <HUDAccess primary="0">
+			<Tab name="Overview" />
+	  </HUDAccess>
     </Seat>
   </Seats>
   <!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
@@ -2582,7 +2585,7 @@
         <Elem idRef="id_Interior" name="filename" value="Objects\Spaceships\Ships\ORIG\300_series\350r\350R.cga" />
         <!--            <Elem idRef="idLeftLadderHatch" name="filename" value="Objects\Spaceships\Ships\ORIG\300_series\350r\350R.cga"/>
                                 <Elem idRef="idRightLadderHatch" name="filename" value="Objects\Spaceships\Ships\ORIG\300_series\350r\350R.cga"/> -->
-        <Elem idRef="idBaseEngine" name="skipPart" value="1" />
+        <Elem idRef="idEngineHardpoint" name="skipPart" value="1" />
         <Elem idRef="idLeftEngine" name="skipPart" value="0" />
         <Elem idRef="idRightEngine" name="skipPart" value="0" />
         <Elem idRef="idMovementStats" name="maxBoostSpeed" value="500" />

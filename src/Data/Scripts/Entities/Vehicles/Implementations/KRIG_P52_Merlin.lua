@@ -37,7 +37,6 @@ KRIG_P52_Merlin.AIProperties =
   AIType = AIOBJECT_SPACESHIP,
   PropertiesInstance = 
   {
-    aibehavior_behaviour = "StarFighterIdle",
   },
   Properties = 
   {
