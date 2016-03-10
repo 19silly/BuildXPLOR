@@ -12,7 +12,7 @@ Dummy =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_Dummy.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_Dummy.xml",
 		
 		Perception =
 		{

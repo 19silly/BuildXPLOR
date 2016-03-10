@@ -1,21 +1,8 @@
 <Mode name='DFM_FreeFlight'>
 	
-	<Spawning class='DFMSpawning' teamGame='0' teamSpawnsType='None' usingLua='0' RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" ForceRespawnIfPreviousVehicleDies="1" />
-
-	<!-- Will define ship values here -->
-	<Scoring class='DFMScoring'>
-		<Player>
-			<Event type='PlayerKill'        points='200'		xp='200'	 />
-		</Player>
-	</Scoring>
+	<Spawning class='DFMSpawning' teamGame='0' teamSpawnsType='None' usingLua='0' RespawnTimeKilled="10" RespawnTimeEjected="5" DeRezTimeEjected="10" EnableForcePendingRespawnAction="1" ShipReclaiming="1"/>
 
 	<PlayerStats class='DFMPlayerStats' />
-	
-	<State class='DFMState'>
-		<StartStrings startMatch='ui_msg_ia_matchstart' />
-	</State>
-
-	<VictoryConditions class='StandardVictoryConditionsPlayer' killsAsScore='1' />
 
 	<PlayerSetup class='StandardSetup' />
 
@@ -27,7 +14,19 @@
 
 	<Spectator class="DFMSpectator" eatsActorActions="1" enableFree="1" enableFollow="1" enableKiller="0" timeFromDeathTillAutoSpectate="5000" />
 	
-	<CustomSettings>
-	</CustomSettings>
+	<!-- Custom Match Settings -->
+	<OptionBindings>
+		<!-- See other XML files for examples	-->
+	</OptionBindings>
+
+	<State class="DFMState" />
+
+	<VictoryConditions class='DFMVictoryConditionsFreeFlight'/>
+
+	<!-- Valid Arena Commander Maps -->
+	<Maps>
+		<Map name="DFM_BrokenMoon"/>
+		<Map name="DFM_DyingStar"/>
+	</Maps>
 
 </Mode>

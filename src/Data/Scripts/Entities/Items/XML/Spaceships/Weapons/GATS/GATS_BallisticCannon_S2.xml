@@ -3,33 +3,28 @@
 -->
 
 <!-- Ballistic Cannon Template -->
-<item name="GATS_BallisticCannon_S2" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+<item name="GATS_BallisticCannon_S2" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_GATS_BallisticCannon_S2">
   <params>
-    <param name="giveable" 		value="0" />
-    <param name="selectable" 	value="0" />
-    <param name="pickable" 		value="0" />
-    <param name="mountable" 	value="1" />
-    <param name="usable"		 	value="0" />
-    <param name="arms"			 	value="0" />
 	<param name="adb" value="Items\Weapons\Gallenson_Tactical\GATS_BallisticCannon_S2.adb" />
     <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
     <param name="itemType" value="WeaponGun" />
     <param name="itemSubType" value="Gun" />
-	<param name="itemDescription" value="Tarantula-870-Mk2" /> <!-- Replace me with Localization -->
+	<param name="itemDescription" value="item_NameGATS_BallisticCannon_S2" /> <!-- Replace me with Localization -->
     <param name="itemManufactor" value="GATS" />
     <param name="itemSize" value="2" />
 	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="itemPortTags" value="40mm S2"/>
 	<param name="requiredPortTags" value="" />
-    <param name="display_name"	value="Tarantula-870-Mk2" />
+    <param name="display_name"	value="item_NameGATS_BallisticCannon_S2" />
 	<param name="weaponRequireAmmoBox" value="1" />
-	<param name="weaponDelayChangeAmmoBox" value="0.25" />
+	<param name="weaponDelayChangeAmmoBox" value="0.5" />
 	<param name="hitpoints" value="150" />
 	<param name="mass" value="150" />
 	<itemStats>
-		<Damage 	value="0" />
-		<RoF 		value="0" />
-		<Range 		value="0" />
-		<Power 		value="0" />
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
 	</itemStats>
   </params>
   
@@ -53,13 +48,13 @@
 		</spread>
 	  
       <muzzleflash>
-	    <firstperson effect="weapon_fx.ballistic.firefx" helper="muzzle_out" />
-        <thirdperson effect="weapon_fx.ballistic.firefx" helper="muzzle_out" />
+	    <firstperson effect="%muzzleEffect%" helper="muzzle_out" />
+        <thirdperson effect="%muzzleEffect%" helper="muzzle_out" />
       </muzzleflash>
 	  
 		<reject>
-			<firstperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
-			<thirdperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
+			<firstperson effect="%reject%" helper="shell_ejector" />
+			<thirdperson effect="%reject%" helper="shell_ejector" />
 		</reject>
 		
 		<pools>
@@ -105,169 +100,18 @@
     </Pipe>
 
   </Pipes>
-
-  <damagelevels>
-	<level damageRatio="0.50">
-		<DebrisList>
-			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="base_50_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris2_PFX1" />
-				</EffectsList>
-			</Debris>
-		</DebrisList>
-	</level>
-	<level damageRatio="1.00">
-		<DebrisList>
-			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="base_75_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris2_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="base_100_debris3" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris3_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="base_100_debris4" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris4_PFX1" />
-				</EffectsList>
-			</Debris>
-		</DebrisList>
-	</level>
-  </damagelevels>
-  
-  <geometry>
-	<!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
-    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
-    <boneAttachments>
-      <attachment target="thirdperson" name="muzzle_out" bone="muzzle_out" />
-    </boneAttachments>
-  
-    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
-    <!-- default fallback -->
-    <thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga"/>
-		
-		
-	<tags tag="left">	
-		<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga"/>
-		<tags tag="damage_50">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2_50.cga"/>
-		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2_100.cga"/>
-		</tags>
-	</tags>
-	
-	<tags tag="right">	
-		<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga"/>
-		<tags tag="damage_50">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2_50.cga"/>
-		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2_100.cga"/>
-		</tags>
-	</tags>
-	
-	<tags tag="Hologram">
-	
-		<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-
-
-	
-		<tags tag="ShipHologram">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		  
-			<tags tag="inactive">
-				<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="over dragging">
-				<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="overCompareValid">
-				<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="overCompareInvalid">
-				<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-		</tags>
-		
-		<tags tag="ItemList">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			<tags tag="over dragging">
-				<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-		</tags>	
-		
-		<tags tag="ItemPreviewA">
-		  <thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		</tags>
-		
-		<tags tag="ItemPreviewB">
-		  <thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		</tags>	
-		
-	</tags>
-	
-	<tags tag="HUD">
-		<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		<tags tag="damage_50">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
-		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects/Spaceships/Weapons/Gallenson_Tactical/GATS_BallisticCannon_S2/GATS_BallisticCannon_S2.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
-		</tags>	
-	</tags>	
-  
-  </geometry>
-
-  
   
   <portParams>
 	<ports>
-		<ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="right" display_name="Ammo Box #1">
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="2" flags="right" display_name="Ammo Box #1">
 			<Types>
-				<Type type="AmmoBox" subtypes="40mm"/>
+				<Type type="AmmoBox" subtypes="35mm_AMMO"/>
 			</Types>
-			<GeomTags>
-			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
-			  <Tags tag="over dragging">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareValid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareInvalid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
-			  </Tags>
-			</GeomTags>
 		</ItemPort>
-		<ItemPort name="ammo_box_02" minsize="1" maxsize="1" flags="left" display_name="Ammo Box #2">
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="2" flags="left" display_name="Ammo Box #2">
 			<Types>
-				<Type type="AmmoBox" subtypes="40mm"/>
+				<Type type="AmmoBox" subtypes="35mm_AMMO"/>
 			</Types>
-			<GeomTags>
-			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
-			  <Tags tag="over dragging">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareValid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareInvalid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
-			  </Tags>
-			</GeomTags>
 		</ItemPort>
 	</ports>
   </portParams>
@@ -278,8 +122,8 @@
   
   <defaultLoadout>
     <Items>
-      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_40mm" />
-      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_40mm" />
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_300rd_35mm" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_300rd_35mm" />
     </Items>
   </defaultLoadout>
   

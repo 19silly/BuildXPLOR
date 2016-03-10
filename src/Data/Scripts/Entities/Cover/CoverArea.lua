@@ -22,14 +22,10 @@ CoverArea = {
 	Properties=
 	{
 		bEnabled = 1,
-		bUsable = 1,
 	},
 	
 	area = {}, -- Our script bound object
 }
-
-MakeUsable(CoverArea);
-CoverArea.Properties.bUsable = 1;
 
 ---------------------------------------------------------------------------
 CoverArea.NetSetup={
@@ -56,24 +52,6 @@ end
 ----------------------------------------------------------------------------------------------------
 function CoverArea:Reset()
 	self.area:Reset();
-end
---------------------------------------------------------------------------
-function CoverArea:OnUsed(user, idx)
-	if (not CryAction.IsClient()) then
-		return;
-	end
-	
-	self.area:OnUsed(user.id, idx);
-end
-
---------------------------------------------------------------------------
-function CoverArea:IsUsable(user)
-	local ret = self.area:IsUsable(user.id);
-	if (ret ~= 0) then
-		return ret;
-	end
-
-	return 0;
 end
 ----------------------------------------------------------------------------------------------------
 function CoverArea:Enable(enable)

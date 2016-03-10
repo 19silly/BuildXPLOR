@@ -12,7 +12,7 @@ ORIG_300i_Dogfight =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_ORIG_300i_Dogfight.xml",  
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_ORIG_300i_Dogfight.xml",  
 		
 		Perception =
 		{

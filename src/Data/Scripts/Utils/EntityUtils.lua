@@ -488,17 +488,11 @@ function MakeThrownObjectTargetable( entity )
 	-- Add callback functions
 	function entity:OnThrown()
 		if ((self.Properties.AutoAimTarget.bMakeTargetableOnThrown ~= 0) and (self:CanBeMadeTargetable())) then
-			Game.RegisterWithAutoAimManager(self.id, self.Properties.AutoAimTarget.InnerRadiusVolumeFactor, self.Properties.AutoAimTarget.OuterRadiusVolumeFactor, self.Properties.AutoAimTarget.SnapRadiusVolumeFactor);
 			Script.SetTimer(self.Properties.AutoAimTarget.AfterThrownTargetableTime * 1000, function() self:AfterThrownTimer(); end)
-			self.isTargetable = 1;
 		end
 	end
 
 	function entity:AfterThrownTimer()
-		if (self.isTargetable) then
-			Game.UnregisterFromAutoAimManager(self.id);
-			self.isTargetable = nil;
-		end
 	end
 
 	local _CanBeMadeTargetable = entity.CanBeMadeTargetable;
@@ -515,22 +509,12 @@ function MakeThrownObjectTargetable( entity )
 		if _OnShutDown then
 			_OnShutDown(self, ...);
 		end
-
-		if (self.isTargetable) then
-			Game.UnregisterFromAutoAimManager(self.id);
-			self.isTargetable = nil;
-		end
 	end
 
 	local _OnReset = entity.OnReset;
 	function entity:OnReset(...)
 		if _OnReset then
 			_OnReset(self, ...);
-		end
-
-		if (self.isTargetable) then
-			Game.UnregisterFromAutoAimManager(self.id);
-			self.isTargetable = nil;
 		end
 	end
 end
@@ -1009,17 +993,6 @@ function MakeKythera3DObstacle( entity )
 
 		if (Kyt and self.Properties.Kythera.bIs3DObstacle == 1) then
 			Kyt.Make3DObstacle(self.id);
-		end
-	end
-	
-	local _onDestroy = entity.OnDestroy;
-	function entity:OnDestroy(...)
-		if (_onDestroy) then
-			_onDestroy(self, ...);
-		end
-
-		if (Kyt and self.Properties.Kythera.bIs3DObstacle == 1) then
-			Kyt.UnregisterEntity(self.id);
 		end
 	end
 end

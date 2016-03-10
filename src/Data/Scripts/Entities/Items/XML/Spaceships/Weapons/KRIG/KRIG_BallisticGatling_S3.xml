@@ -3,33 +3,28 @@
 -->
 
 <!-- Gatling Template -->
-<item name="KRIG_BallisticGatling_S3" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+<item name="KRIG_BallisticGatling_S3" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_KRIG_BallisticGatling_S3">
   <params>
-    <param name="giveable" 		value="0" />
-    <param name="selectable" 	value="0" />
-    <param name="pickable" 		value="0" />
-    <param name="mountable" 	value="1" />
-    <param name="usable"		 	value="0" />
-    <param name="arms"			 	value="0" />
 	<param name="adb" value="Items\Weapons\KRIG\KRIG_BG_S3_Q3.adb" />
     <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
     <param name="itemType" value="WeaponGun" />
     <param name="itemSubType" value="NoseMounted" />
-	<param name="itemDescription" value="Tigerstreik T-21" /> <!-- Replace me with Localization -->
+	<param name="itemDescription" value="item_NameKRIG_BallisticGatling_S3" /> <!-- Replace me with Localization -->
     <param name="itemManufactor" value="KRIG" />
     <param name="itemSize" value="3" />
 	<param name="itemTags" value="flightReady weaponMountUsable" />
+	<param name="itemPortTags" value="25mm S4"/>
 	<param name="requiredPortTags" value="AEGS_Avenger_Base" />
-    <param name="display_name"	value="Tigerstreik T-21" />
+    <param name="display_name"	value="item_NameKRIG_BallisticGatling_S3" />
 	<param name="weaponRequireAmmoBox" value="1" />
-	<param name="weaponDelayChangeAmmoBox" value="0.25" />
+	<param name="weaponDelayChangeAmmoBox" value="0.75" />
 	<param name="hitpoints" value="200" />
-	<param name="mass" value="1500" />
+	<param name="mass" value="300" />
 	<itemStats>
-		<Damage 	value="0" />
-		<RoF 		value="0" />
-		<Range 		value="0" />
-		<Power 		value="0" />
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
 	</itemStats>
   </params>
   
@@ -67,16 +62,6 @@
 				<param name="decay" value="0.45" />
 			</spread>
 
-			<muzzleflash>
-			<!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
-				<firstperson effect="weapon_fx.ballistic.firefx" helper="muzzle_out_override"/>
-				<thirdperson effect="weapon_fx.ballistic.firefx" helper="muzzle_out_override"/>
-			</muzzleflash>
-			
-			<reject>
-				<firstperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
-				<thirdperson effect="spaceship_fx.MantisGatling.shell_eject" helper="shell_ejector" />
-			</reject>
 			<pools>
 				<!-- This is Pool manipulation per shot -->
 				<pool class="Power" value="-1" />
@@ -138,289 +123,18 @@
 		<param name="damageTick" value="0.25" />
 		<param name="cooldownTime" value = "3.0" />
   </heatOverflow>
-  
-  <damagelevels>
-	<level damageRatio="0.25">
-		<DebrisList>
-			<Debris name="GATS_BG_S2_Q3_Left_base_25_debris1" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_base_25_debris2" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_base_25_debris3" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_25_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small" helper="barrel_2_100_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_25_debris2" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_25_debris3" mass="10" impulse="0,10,0" >
-			</Debris>
-		</DebrisList> 
-	</level>
-	<level damageRatio="0.50">
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  helper="GATS_BG_S2_Q3_Left_base_50_PFX1"/>
-				</EffectsList>
-		<DebrisList>
-			<Debris name="GATS_BG_S2_Q3_Left_base_50_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_base_50_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  />
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_50_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  />
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_50_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  />
-				</EffectsList>
-			</Debris>
-		</DebrisList> 
-	</level>
-	<level damageRatio="0.75" disableShooting="1">
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  helper="GATS_BG_S2_Q3_Left_barrel_75_PFX6"/>
-				</EffectsList>
-		<DebrisList>
-			<Debris name="GATS_BG_S2_Q3_Left_base_75_debris2" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris1" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris2" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris3" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  />
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris4" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris5" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris6" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_75_debris7" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_75_debris2" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris1" mass="10" impulse="0,10,0" >
-
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris2" mass="10" impulse="0,10,0" >
-
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris3" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris4" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris5" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.debris_fire_small"  />
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris6" mass="10" impulse="0,10,0" >
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_75_debris7" mass="10" impulse="0,10,0" >
-			</Debris>
-		</DebrisList> 
-	</level>
-	<level damageRatio="1.00">
-		<DebrisList>
-			<!-- Don't detach the base of the Gun! -->
-			<!--<Debris name="GATS_BG_S2_Q3_Left_base_100" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.debris_fire_small"  helper="GATS_BG_S2_Q3_Left_base_100_PFX1"/>
-					<Effect effect="damage_fx.uee.static.electric_small"  helper="GATS_BG_S2_Q3_Left_base_100_PFX3"/>
-				</EffectsList>
-			</Debris>-->
-			<Debris name="GATS_BG_S2_Q3_Left_base_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  />
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_base_100_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Left_barrel_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-				</EffectsList>
-			</Debris>
-			<!-- Don't detach the base of the Gun! -->
-			<!--<Debris name="GATS_BG_S2_Q3_Right_base_100" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.debris_fire_small"  />
-				</EffectsList>
-			</Debris>-->
-			<Debris name="GATS_BG_S2_Q3_Right_base_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_100_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_base_100_debris3" mass="10" impulse="0,10,0" >
-				<EffectsList>
-				</EffectsList>
-			</Debris>
-			<Debris name="GATS_BG_S2_Q3_Right_barrel_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="damage_fx.uee.static.electric_small"  />
-				</EffectsList>
-			</Debris>
-		</DebrisList>
-	</level>
-  </damagelevels>
-  
-	
-    
-  <geometry>
-  
-  <!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
-    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
-	<boneAttachments>
-      <attachment target="thirdperson" name="muzzle1" bone="muzzle_out_01" />
-      <attachment target="thirdperson" name="muzzle2" bone="muzzle_out_02" />
-      <attachment target="thirdperson" name="muzzle3" bone="muzzle_out_03" />
-      <attachment target="thirdperson" name="muzzle4" bone="muzzle_out_04" />
-      <attachment target="thirdperson" name="muzzle5" bone="muzzle_out_05" />
-      <attachment target="thirdperson" name="muzzle6" bone="muzzle_out_06" />
-      <attachment target="thirdperson" name="muzzle_out_override" bone="muzzle_out_override" />
-	  <attachment target="thirdperson" name="shell_ejector" bone="shell_ejector" />
-    </boneAttachments>
-
-    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
-    <!-- default fallback -->
-    <thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga"/>
-	 
-    <tags tag="left">
-      <thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga"/>
-	  <tags tag="damage_25">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Left_25.cga"/>
-	  </tags>
-	  <tags tag="damage_50">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Left_50.cga"/>
-	  </tags>
-	  <tags tag="damage_75">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Left_75.cga"/>
-	  </tags>
-	  <tags tag="damage_100">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Left_100.cga"/>
-	  </tags> 
-    </tags>	  
-    <tags tag="right">
-      <thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Right.cga"/>
-	  <tags tag="damage_25">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Right_25.cga"/>
-	  </tags>
-	  <tags tag="damage_50">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Right_50.cga"/>
-	  </tags>
-	  <tags tag="damage_75">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Right_75.cga"/>
-	  </tags>
-	  <tags tag="damage_100">
-		<thirdperson name="Objects\Spaceships\Weapons\Gallenson_Tactical\GATS_BG_S2_Q3\GATS_BG_S2_Q3_Right_100.cga"/>
-	  </tags>   
-    </tags>	  
-	
-	<tags tag="Hologram">
-	
-		<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-
-		<tags tag="ShipHologram">
-			<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		  
-			<tags tag="inactive">
-				<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="over dragging">
-				<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="overCompareValid">
-				<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="overCompareInvalid">
-				<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-		</tags>
-		
-		<tags tag="ItemList">
-			<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			<tags tag="over dragging">
-				<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-		</tags>	
-		
-		<tags tag="ItemPreviewA">
-		  <thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		</tags>
-		
-		<tags tag="ItemPreviewB">
-		  <thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		</tags>	
-		
-	</tags>
-
-	
-	<tags tag="HUD">
-		<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		<tags tag="damage_50">
-			<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
-		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects\Spaceships\Weapons\KRIG\KRIG_BG_S3_Q3.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
-		</tags>	
-	</tags>
-
-	 
-    
-  </geometry>
 
  	<portParams>
 	<ports>
-		<ItemPort name="ammo_box_01" minsize="1" maxsize="1" flags="right" display_name="Ammo Box #1">
+		<ItemPort name="ammo_box_01" minsize="1" maxsize="4" flags="right" display_name="Ammo Box #1">
 			<Types>
-				<Type type="AmmoBox" subtypes="25mm"/>
+				<Type type="AmmoBox" subtypes="25mm_AMMO"/>
 			</Types>
-			<GeomTags>
-			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
-			  <Tags tag="over dragging">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareValid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareInvalid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
-			  </Tags>
-			</GeomTags>
 		</ItemPort>
-		<ItemPort name="ammo_box_02" minsize="1" maxsize="1" flags="left" display_name="Ammo Box #2">
+		<ItemPort name="ammo_box_02" minsize="1" maxsize="4" flags="left" display_name="Ammo Box #2">
 			<Types>
-				<Type type="AmmoBox" subtypes="25mm"/>
+				<Type type="AmmoBox" subtypes="25mm_AMMO"/>
 			</Types>
-			<GeomTags>
-			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
-			  <Tags tag="over dragging">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareValid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
-			  </Tags>
-			  <Tags tag="overCompareInvalid">
-				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
-			  </Tags>
-			</GeomTags>
 		</ItemPort>
 	</ports>
   </portParams>
@@ -431,8 +145,8 @@
 	
    <defaultLoadout>
     <Items>
-      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_KRIG_25mm" />
-      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_KRIG_25mm" />
+      <Item portName="ammo_box_01" itemName="AmmoBox_Ballistic_800rd_25mm" />
+      <Item portName="ammo_box_02" itemName="AmmoBox_Ballistic_800rd_25mm" />
     </Items>
   </defaultLoadout>
   

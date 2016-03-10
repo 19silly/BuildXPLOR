@@ -19,12 +19,13 @@ Player =
 		esCharacterType			= "Human",
 		commrange = 40; -- Luciano - added to use SIGNALFILTER_GROUPONLY
 
+		useSpecialMovementTransitions = 1,
 		aicharacter_character = "Player",
 
 		Damage =
 		{
 			bLogDamages = 0,
-			health = 1000, -- See  Player:SetIsMultiplayer()  for MP value
+			health = 100, -- See  Player:SetIsMultiplayer()  for MP value
 			--playerMult = 1.0,
 			--AIMult = 1.0,
 			FallSleepTime = 6.0,
@@ -46,15 +47,11 @@ Player =
 			sightrange = 50,
 		},
 
-		fileModel = "Objects/Characters/Human/Males/rsi_suit.cdf",
-		clientFileModel = "Objects/Characters/Human/Males/rsi_suit.cdf",
+		fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
+		clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
 
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_PlayerSP.xml",
-
-		-- Item ports descriptor
-		fileItemPortsXml = "Scripts/Entities/Items/XML/Player/PlayerItemPorts.xml",
 		-- Loadout descriptor
-		fileItemLoadout = "Scripts/Loadouts/Player/PlayerItemLoadout.xml",
+		fileItemLoadout = "Scripts/Loadouts/Player/Marine_Light_Armor_Loadout.xml",
 	},
 
 	PropertiesInstance = 
@@ -114,7 +111,7 @@ Player =
 
 		Damage =
 		{
-			health = 1000,
+			health = 100,
 		},
 
 		stance =
@@ -153,10 +150,10 @@ Player =
 			--
 			{
 				stanceId = STANCE_CROUCH,
-				maxSpeed = 1.8,
+				maxSpeed = 1.9,
 				heightCollider = 0.85,
 				pivot = {x=0.0,y=0.0,z=0.0},
-				size = {x=0.2,y=0.2,z=0.05},
+				size = {x=0.2,y=0.2,z=0.15},
 				viewOffset = {x=0,y=0.35,z=1.0},
 				weaponOffset = {x=0.2,y=0.0,z=0.85},
 				viewDownYMod = 0.05,
@@ -170,8 +167,8 @@ Player =
 				maxSpeed = 0.8,
 				heightCollider = 0.45,
 				pivot = {x=0.0,y=0.0,z=0.0},
-				size = {x=0.2,y=0.2,z=0.05},
-				viewOffset = {x=0,y=0.35,z=1.0},
+				size = {x=0.2,y=0.4,z=0.05},
+				viewOffset = {x=0,y=0.35,z=0.5},
 				weaponOffset = {x=0.2,y=0.0,z=0.85},
 				viewDownYMod = 0.05,
 				modelOffset = {x=0,y=0,z=0},
@@ -272,7 +269,7 @@ Player =
 				stanceId = STANCE_BODY_DRAG,
 				maxSpeed = 1.8,
 				heightCollider = 1.1,
-				pivot = {x=0.0,y=0.0,z=0.0},
+				pivot = {x=0.0,y=1.0,z=0.0},
 				size = {x=0.2,y=0.2,z=0.4},
 				viewOffset = {x=0,y=0.15,z=1.69},
 				weaponOffset = {x=0.2,y=0.0,z=1.35},
@@ -284,20 +281,9 @@ Player =
 			-- CIG END
 		},
 
-		autoAimTargetParams =
-		{
-			primaryTargetBone = BONE_SPINE,
-			physicsTargetBone = BONE_SPINE,
-			secondaryTargetBone = BONE_HEAD,
-			fallbackOffset = 1.2,
-			innerRadius = 1.0,
-			outerRadius = 3.5,
-			snapRadius = 1.0,
-			snapRadiusTagged = 1.0,
-		},
-
 		boneIDs =
 		{
+			BONE_HIPS = "Hips",
 			BONE_SPINE = "Spine",
 			BONE_SPINE2 = "Spine2",
 			BONE_SPINE3 = "Spine3",
@@ -308,8 +294,10 @@ Player =
 			BONE_WEAPON2 = "Lweapon_bone",
 			BONE_FOOT_R = "RightFoot",
 			BONE_FOOT_L = "LeftFoot",
-			BONE_ARM_R = "RightForeArm",
-			BONE_ARM_L = "LeftForeArm",
+			BONE_ARM_R = "RightArm",
+			BONE_ARM_L = "LeftArm",
+			BONE_FOREARM_R = "RightForeArm",
+			BONE_FOREARM_L = "LeftForeArm",
 			BONE_CALF_R = "RightLeg",
 			BONE_CALF_L = "LeftLeg",
 			BONE_CAMERA = "HeadCam",
@@ -345,13 +333,12 @@ Player =
 -- Function called from C++ to set up multiplayer parameters
 function Player:SetIsMultiplayer()
 
-	self.Properties.Damage.health = 1000;
+	self.Properties.Damage.health = 100;
 	-- Moon Collider BEGIN arutkowski - Handle setting of new rig (using and/or idiom to approximate ternary operator in Lua)
-	self.Properties.fileModel = "Objects/Characters/Human/Males/rsi_suit.cdf";
-	self.Properties.clientFileModel = "Objects/Characters/Human/Males/rsi_suit.cdf";
+	self.Properties.fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
+	self.Properties.clientFileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf";
 	-- Moon Collider END
 
-	self.Properties.fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_MP.xml";
 	self.Properties.Damage.fileBodyDamage = "Libs/BodyDamage/BodyDamage_MP.xml";
 	self.Properties.Damage.fileBodyDamageParts = "Libs/BodyDamage/BodyParts_HumanMaleShared.xml";
 	self.Properties.Damage.fileBodyDestructibility = "Libs/BodyDamage/BodyDestructibility_Default.xml";

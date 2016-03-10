@@ -12,7 +12,7 @@ ANVL_Gladiator =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_ANVL_Gladiator.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_ANVL_Gladiator.xml",
 		
 		Perception =
 		{

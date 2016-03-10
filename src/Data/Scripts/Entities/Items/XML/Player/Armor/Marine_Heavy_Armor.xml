@@ -14,27 +14,205 @@
 	</params>
 
 	<geometry>
-		<firstperson name="Objects/Characters/Human/Males/Gear/UEE/UEE_Mar/UEE_MarArm/UEE_MarArmHvy/uee_marine_heavy.cdf"/>
-		<thirdperson name="Objects/Characters/Human/Males/Gear/UEE/UEE_Mar/UEE_MarArm/UEE_MarArmHvy/uee_marine_heavy.cdf"/>
+		<firstperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf"/>
+		<thirdperson name="Objects/Characters/Human/male_cdfs/uee/light/uee_light_m_outfit_original.cdf"/>
 	</geometry>
 	
-	<armor type="Heavy">
-		<param name="helmet_slots" value="helmetmount1"/>
-		<param name="jetpack_slots" value="jetpack"/>
-		<param name="small_weapon_slots" value="small_weapon_attach"/>
-		<param name="medium_weapon_slots" value="medium_weapon_attach_1,medium_weapon_attach_2"/>
-		<param name="large_weapon_slots" value="large_weapon_attach_1"/>
-		<param name="grenade_slots" value="grenade_attach_1,grenade_attach_2,grenade_attach_3,grenade_attach_4"/>
-		<param name="gadget_slots" value="gadget_attach_1,gadget_attach_2"/>
-		<param name="magazine_slots" value="magazine_attach_1,magazine_attach_2,magazine_attach_3,magazine_attach_4,magazine_attach_5,magazine_attach_6,magazine_attach_7,magazine_attach_8"/>
-		<param name="flashlight_slots" value="flashlight"/>
-		<param name="knife_slots" value="knife_attach"/>
-		<param name="backpack_slot_name" value="backpack_attach"/>
-	</armor>
-	
-	<!-- Load some default items that come with this armor set -->
-	<DefaultArmorItems>
-		<Item name="Marine_Heavy_Helmet"/>
-		<Item name="RSI_DefaultFlashlight"/>
-	</DefaultArmorItems>
+	<portParams>
+		<ports>
+			<!-- Helmet -->
+			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1">
+				<Types>
+					<Type type="Suit" subtypes="Helmet,Hat"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- Eyeware -->
+			<ItemPort minsize="1" maxsize="1" name="eyemount" display_name="Eye Mount" flags="invisible">
+				<Types>
+					<Type type="Visor" subtypes="EyeWare"/>
+				</Types>
+			</ItemPort>
+			
+			<!--Ejection Seat Attachment Point-->
+			<ItemPort minsize="1" maxsize="1" name="ejectionseat" display_name="Ejection Seat">
+				<Types>
+					<Type type="Seat" subtypes="Pilot,EjectionSeat"/>
+				</Types>
+			</ItemPort>
+
+			<!-- mobiGlas -->	
+			<ItemPort minsize="1" maxsize="1" name="mobiglas_attach" display_name="mobiGlas wrist slot">
+				<Types>
+					<Type type="MobiGlas"/>
+				</Types>
+			</ItemPort>
+			
+			<!--Right Hand Attach -->
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach2" display_name="Weapon Right Hand 2" flags="select">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Grenade"/>
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach3" display_name="Weapon Right Hand 3" flags="select">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Gadget"/>
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach_gadget_2h" display_name="Weapon Two Handed Gadget" flags="select">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Gadget"/>
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach_shield" display_name="Weapon Right Hand Shield" flags="select">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Gadget"/>
+				</types>
+			</ItemPort>
+			
+			<!-- Left Hand Attach-->
+			<ItemPort minsize="1" maxsize="1" name="offhand_attach" display_name="Left Hand" flags="select">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Magazine"/>
+				</types>
+			</ItemPort>
+			
+			<!-- 1 x Small Weapon -->
+			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach" display_name="Small Weapon 1">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Small"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- 1 x Large Weapon -->
+			<ItemPort minsize="1" maxsize="1" name="large_attach_1" flags="body_attach" display_name="Large Weapon ">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Large"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- 2 x Medium Weapon -->
+			<ItemPort minsize="1" maxsize="1" name="medium_attach_1" flags="body_attach" display_name="Medium Weapon 1">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Medium"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="medium_attach_2" flags="body_attach" display_name="Medium Weapon 2">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Medium"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- 1 x Flashlight -->
+			<ItemPort name="flashlight" minsize="1" maxsize="1" display_name="Flashlight">
+				<Types>
+					<Type type="Suit" subtypes="Flashlight"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- 1 x Knife -->
+			<ItemPort name="knife_attach_1" minsize="1" maxsize="1" display_name="Knife Armor Attach">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Knife"/>
+				</types>
+			</ItemPort>
+			
+			<!-- 8 x Magazines -->
+			<ItemPort name="magazine_attach_1" minsize="1" maxsize="1" display_name="Magazine 1 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_2" minsize="1" maxsize="1" display_name="Magazine 2 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_3" minsize="1" maxsize="1" display_name="Magazine 3 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_4" minsize="1" maxsize="1" display_name="Magazine 4 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_5" minsize="1" maxsize="1" display_name="Magazine 5 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_6" minsize="1" maxsize="1" display_name="Magazine 6 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_7" minsize="1" maxsize="1" display_name="Magazine 7 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_8" minsize="1" maxsize="1" display_name="Magazine 8 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- 4 x Grenades -->
+			<ItemPort name="grenade_attach_1" minsize="1" maxsize="1" display_name="Grenade 1 Armor Attach">
+				<types>
+					<Type type="WeaponAttachment" subtypes="Grenade"/>
+				</types>
+			</ItemPort>
+			
+			<ItemPort name="grenade_attach_2" minsize="1" maxsize="1" display_name="Grenade 2 Armor Attach">
+				<types>
+					<Type type="WeaponAttachment" subtypes="Grenade"/>
+				</types>
+			</ItemPort>
+			
+			<ItemPort name="grenade_attach_3" minsize="1" maxsize="1" display_name="Grenade 3 Armor Attach">
+				<types>
+					<Type type="WeaponAttachment" subtypes="Grenade"/>
+				</types>
+			</ItemPort>
+			
+			<ItemPort name="grenade_attach_4" minsize="1" maxsize="1" display_name="Grenade 4 Armor Attach">
+				<types>
+					<Type type="WeaponAttachment" subtypes="Grenade"/>
+				</types>
+			</ItemPort>
+			
+			<!-- 2 x Gadget -->
+			<ItemPort name="gadget_attach_1" minsize="1" maxsize="1" display_name="Gadget 1 Armor Attach">
+				<Types>
+					<Type type="Gadget"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="gadget_attach_2" minsize="1" maxsize="1" display_name="Gadget 2 Armor Attach">
+				<Types>
+					<Type type="Gadget"/>
+				</Types>
+			</ItemPort>
+		</ports>
+	</portParams>
 </item>

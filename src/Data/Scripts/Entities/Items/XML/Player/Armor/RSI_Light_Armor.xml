@@ -14,19 +14,68 @@
 	</params>
 	
 	<geometry>
-		<firstperson name="Objects/Characters/Human/Males/rsi_suit.cdf" />
-		<thirdperson name="Objects/Characters/Human/Males/rsi_suit.cdf" />
+		<firstperson name="Objects/Characters/Human/male_cdfs/bhm_master.cdf" />
+		<thirdperson name="Objects/Characters/Human/male_cdfs/bhm_master.cdf" />
 	</geometry>
 	
-	<armor type="Light">
-		<param name="helmet_slots" value="helmetmount1"/>
-		<param name="jetpack_slots" value="jetpack"/>
-		<param name="small_weapon_slots" value="small_weapon_attach"/>
-		<param name="medium_weapon_slots" value="medium_weapon_attach_1"/>
-		<param name="grenade_slots" value="grenade_attach_1,grenade_attach_2"/>
-		<param name="gadget_slots" value="gadget_attach_1"/>
-		<param name="magazine_slots" value="magazine_attach_1,magazine_attach_2,magazine_attach_3,magazine_attach_4"/>
-		<param name="flashlight_slots" value="flashlight"/>
-		<param name="knife_slots" value="knife_attach"/>
-	</armor>
+	<portParams>
+		<ports>
+
+			<!-- Helmet -->
+			<ItemPort minsize="1" maxsize="1" name="helmetmount1" display_name="Helmet Mount 1">
+				<Types>
+					<Type type="Suit" subtypes="Helmet,Hat"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- Jetpack -->
+			<ItemPort minsize="1" maxsize="1" name="jetpack" display_name="JetPack">
+				<Types>
+					<Type type="Suit" subtypes="JetPack,Thrusters"/>
+				</Types>
+			</ItemPort>
+			
+			<!--Ejection Seat Attachment Point-->
+			<ItemPort minsize="1" maxsize="1" name="ejectionseat" display_name="Ejection Seat">
+				<Types>
+					<Type type="Seat" subtypes="Pilot,EjectionSeat"/>
+				</Types>
+			</ItemPort>
+			
+			<!--Right Hand Attach -->
+			<ItemPort minsize="1" maxsize="1" name="weapon_attach" display_name="Weapon Right Hand" flags="select">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Small,Medium,Large,Grenade,Gadget,Knife"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- Left Hand Attach-->
+			<ItemPort minsize="1" maxsize="1" name="offhand_attach" display_name="Left Hand" flags="select">
+				<types>
+					<Type type="WeaponPersonal" subtypes="Magazine"/>
+				</types>
+			</ItemPort>
+			
+			<!-- 1 x Small Weapon -->
+			<ItemPort minsize="1" maxsize="1" name="small_attach_1" flags="body_attach" display_name="Small Weapon 1">
+				<Types>
+					<Type type="WeaponPersonal" subtypes="Small"/>
+				</Types>
+			</ItemPort>
+			
+			<!-- 2 x Magazines -->
+			<ItemPort name="magazine_attach_1" minsize="1" maxsize="1" display_name="Magazine 1 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+			<ItemPort name="magazine_attach_2" minsize="1" maxsize="1" display_name="Magazine 2 Armor Attach">
+				<Types>
+					<Type type="WeaponAttachment" subtypes="Magazine"/>
+				</Types>
+			</ItemPort>
+			
+		</ports>
+	</portParams>
 </item>

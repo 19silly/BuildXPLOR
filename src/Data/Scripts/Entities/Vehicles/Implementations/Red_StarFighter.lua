@@ -12,7 +12,7 @@ Red_StarFighter =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/DefaultRedStarFighter.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/DefaultRedStarFighter.xml",
 
 		Perception =
 		{

@@ -286,9 +286,12 @@ function ProximityTrigger:Event_Enable()
 	self:Enable(true);
 
 	local entityIdInside = next(self.inside);
-	if (entityIdInside) then
-		self:Event_Enter( entityIdInside );
-	end;
+	-- CIG BEGIN - Alexis Vuillaume BHVR
+	-- This was causing the "Enter" input to activate when you enable the proximityTrigger with insideCount > 0
+	-- if (entityIdInside) then
+	-- 	self:Event_Enter( entityIdInside );
+	-- end;
+	-- CIG END
 
 	self:ActivateOutput("IsInside", self.insideCount);
 	BroadcastEvent(self, "Enable");
@@ -431,9 +434,13 @@ function ProximityTrigger:EnteredArea(entity, areaId)
 	if (tonumber(self.Properties.bOnlyOneEntity)~=0 and self.insideCount>0) then
 		return;
 	end
-
-	self.inside[entity.id]=true;
-	self.insideCount=self.insideCount+1;
+	-- CIG BEGIN - Alexis Vuillaume BHVR
+	-- If the player was already inside, we do nothing
+	if not self.inside[entity.id] then		
+		self.inside[entity.id]=true;
+		self.insideCount=self.insideCount+1;
+	end;
+	-- CIG END
 
 	if (not entity.ai) then
 		if (self.Properties.bActivateWithUseButton~=0) then
@@ -452,9 +459,13 @@ function ProximityTrigger:LeftArea(entity, areaId)
 	if (not self:CanTrigger(entity, areaId)) then
 		return;
 	end
-
-	self.inside[entity.id]=nil;
-	self.insideCount=self.insideCount-1;
+	-- CIG BEGIN - Alexis Vuillaume BHVR
+	-- If the player is not already inside, we do nothing
+	if self.inside[entity.id] then 
+		self.inside[entity.id]=nil;
+		self.insideCount=self.insideCount-1;
+	end;
+	-- CIG END	
 
 	if(self.Properties.ExitDelay==0) then
 		self.Properties.ExitDelay=0.01;

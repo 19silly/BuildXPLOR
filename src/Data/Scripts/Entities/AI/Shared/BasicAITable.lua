@@ -21,7 +21,6 @@ BasicAITable = {
 
 	PropertiesInstance = {
 		soclasses_SmartObjectClass = "",
-		groupid = 0,
 		aibehavior_behaviour = "",
 		bAutoDisable = 0,
 		nVariation = 0,

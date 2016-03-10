@@ -11,6 +11,9 @@
 			"blurAmount" - strength of the blur effect.
 			"focusMin" - the closest point to the camera that can be in focus.
 			"focusMinScale" - strength of the blur effect for objects that are closer than focusMin.
+			"focusMode" - 0 (default) focus min/max is set directly and independently
+			                     1 focus min/max is generated from distance and focusRange
+			"lerpToSpeed" - Overall speed which we lerp to this context's settings from the last (defaults to pl_dynamic_cam_overall_lerp_rate if not explicitly set)
 		
 	CameraSpeedParams
 	
@@ -23,24 +26,27 @@
 
 <DynamicCameraEffects>
 	<Context name="OnFoot">
-		<CameraParams target="Default" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="Default" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0" focusMode="1"/>
+		<CameraParams target="Conversation" fov="38.0" focusRange="4.0"  blurAmount="1.0" focusMin="0.0" focusMinScale="0.0" lerpToSpeed="1.5" focusMode="1"/>
 		<CameraParams target="Zoomed" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
 		<CameraParams target="LookAroundDefault" fov="60.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
-		<CameraParams target="LookAroundZoomed" fov="60.0" focusRange="0.0" blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
-		<CameraParams target="LookAroundCockpitZoomed" fov="60.0" focusRange="0.0" blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="LookAroundZoomed" fov="55.0" focusRange="0.75" blurAmount="0.2" focusMin="1.0" focusMinScale="0.5" focusMode="1"/>
+		<CameraParams target="LookAroundCockpitZoomed" fov="60.0" focusRange="0.0" blurAmount="0.0" focusMin="0.0" focusMinScale="0.0" focusMode="1"/>
 	</Context>                                    
 	<Context name="VehicleSeat">                  
-		<CameraParams target="Default" fov="65.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="Default" fov="65.0" focusRange="0.0"  blurAmount="0.0" focusMin="0.0" focusMinScale="0.0" focusMode="1"/>
+		<CameraParams target="Conversation" fov="38.0" focusRange="4.0"  blurAmount="1.0" focusMin="0.0" focusMinScale="0.0" lerpToSpeed="1.5" focusMode="1"/>
 		<CameraParams target="Zoomed" fov="33.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>  <!-- zoom looking into space when not in look-around mode-->
 		<CameraParams target="LookAroundDefault" fov="65.0" focusRange="0.0" blurAmount="0.0"  focusMin="4.0" focusMinScale="2.0"/>
 		<CameraParams target="LookAroundZoomed" fov="42.0" focusRange="3.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>  <!-- zoom looking into space -->
-		<CameraParams target="LookAroundCockpitZoomed" fov="45.0" focusRange="2.0" blurAmount="0.9" focusMin="1.0" focusMinScale="1.0"/>
+		<CameraParams target="LookAroundCockpitZoomed" fov="45.0" focusRange="2.0" blurAmount="0.9" focusMin="1.0" focusMinScale="1.0" focusMode="1"/>
 		<CameraSpeedParams fov="-8.0" blurAmount="0.1" velMin="100.0" velMax="300.0" />
 	</Context>
-    <Context name="mobiGlas">
-        <CameraParams target="Default" fov="55.0" focusRange="0.6"  blurAmount="0.5" focusMin="0.0" focusMinScale="0.0"/>
-        <CameraParams target="Zoomed" fov="35.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>
-        <CameraParams target="LookAroundDefault" fov="55.0" focusRange="4.0"  blurAmount="1.0" focusMin="0.0" focusMinScale="0.0"/>
-        <CameraParams target="LookAroundZoomed" fov="35.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>
-    </Context>
+	<Context name="mobiGlas">
+		<CameraParams target="Default" fov="55.0" focusRange="0.6"  blurAmount="0.5" focusMin="0.0" focusMinScale="0.0" focusMode="1"/>
+		<CameraParams target="Conversation" fov="38.0" focusRange="4.0"  blurAmount="1.0" focusMin="0.0" focusMinScale="0.0" lerpToSpeed="1.5" focusMode="1"/>
+		<CameraParams target="Zoomed" fov="35.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>
+		<CameraParams target="LookAroundDefault" fov="55.0" focusRange="4.0"  blurAmount="1.0" focusMin="0.0" focusMinScale="0.0"/>
+		<CameraParams target="LookAroundZoomed" fov="35.0" focusRange="6.0" blurAmount="0.6" focusMin="5.0" focusMinScale="0.0"/>
+	</Context>
 </DynamicCameraEffects>

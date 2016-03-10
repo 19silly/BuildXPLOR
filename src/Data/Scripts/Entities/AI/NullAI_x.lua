@@ -23,8 +23,6 @@ NullAI_x =
 	{	
 		fileModel = "",
 		
-		fileHitDeathReactionsParamsDataFile = "",
-		
 		aicharacter_character = "Player",
 		soclasses_SmartObjectClass = "",
 		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
@@ -44,7 +42,6 @@ NullAI_x =
 	
 	AIMovementAbility = {},
 	
-	hitDeathReactionsParamsDefFile = "",
 	AnimationGraph = "",
 	UpperBodyGraph = "",
 	ActionController = "",

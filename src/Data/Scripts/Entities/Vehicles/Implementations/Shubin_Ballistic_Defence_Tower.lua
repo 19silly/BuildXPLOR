@@ -12,7 +12,7 @@ Shubin_Ballistic_Defence_Tower =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_Shubin_Ballistic_Defence_Tower.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_Shubin_Ballistic_Defence_Tower.xml",
 		
 		Perception =
 		{

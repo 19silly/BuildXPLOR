@@ -1,4 +1,3 @@
-Script.ReloadScript("Scripts/Entities/Modules/HangarEntity.lua")
 HangarRoomSystem = {
   type = "HangarRoomSystem",
   Properties = {
@@ -15,5 +14,3 @@ HangarRoomSystem = {
 	DisplayArrow=1,
   },
 }
-
-MakeDerivedEntity(HangarRoomSystem,HangarEntity);

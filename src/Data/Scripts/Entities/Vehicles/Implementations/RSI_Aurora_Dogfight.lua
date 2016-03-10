@@ -12,7 +12,7 @@ RSI_Aurora_Dogfight =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_RSI_Aurora_MR_Dogfight.xml",  -- "MR" loadout is default
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_Aurora_MR_Dogfight.xml",  -- "MR" loadout is default
 		
 		Perception =
 		{

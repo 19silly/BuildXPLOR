@@ -12,7 +12,7 @@ Light =
 		Radius = 10, --[0,100,1,"Specifies how far from the source the light affects the surrounding area."]
 		Style =
 		{
-			nLightStyle = 0, --[0,48,1,"Specifies a preset animation for the light to play."]
+			nLightStyle = 0, --[0,88,1,"Specifies a preset animation for the light to play."] --CIG_BEGIN increased allowed number of styles to match Engine/Shaders/HWScripts/CryFX/Light.cfx
 			fAnimationSpeed = 1, --[0,100,0.1,"Specifies the speed at which the light animation should play."]
 			nAnimationPhase = 0, --[0,100,1,"This will start the light style at a different point along the sequence."]
 			bAttachToSun = 0, --[0,1,1,"When enabled, sets the Sun to use the Flare properties for this light."]

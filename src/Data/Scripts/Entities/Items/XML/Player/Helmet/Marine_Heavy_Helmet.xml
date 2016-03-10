@@ -1,6 +1,6 @@
 <item name="Marine_Heavy_Helmet" class="PlayerItemHelmet" invisible="0" category="helmet" priority="111">
 	<params>
-		<param name="giveable" value="0" />
+		<param name="giveable" value="1" />
 		<param name="selectable" value="0" />
 		<param name="pickable" value="0" />
 		<param name="mountable" value="1" />
@@ -10,20 +10,35 @@
 		<param name="actionController" value="Items/PlayerItems/RSI_DefaultHelmet/RSI_DefaultHelmet_ControllerDefs.xml" />
 		<param name="itemType" value="Suit" />
 		<param name="itemSubType" value="Helmet" />
-		<param name="itemManufactor" value="Origin" />
+		<param name="itemManufactor" value="RSI" />
 		<param name="itemSize" value="1" />
 		<param name="itemStartUseWhenConnected" value="1" />
 		<param name="display_name" value="RSI Default Helmet" />
 	</params>
 
 	<geometry>
-		<firstperson name="Objects/Characters/Human/Males/Gear/UEE/UEE_Mar/UEE_MarArm/UEE_MarArmHvy/helmet/marine_heavy_int_m_helmet_base.cga" />
+		<firstperson name="Objects/Characters/Human/Males/Gear/UEE/UEE_Mar/UEE_MarArm/UEE_MarArmHvy/helmet/marine_heavy_int_m_helmet_base.cdf" />
 		<thirdperson name="Objects/Characters/Human/Males/Gear/UEE/UEE_Mar/UEE_MarArm/UEE_MarArmHvy/helmet/marine_heavy_m_helmet.cdf" />
 	</geometry>
 	
 	<Helmet>
 		<param name="helmetMountName" value="helmetmount1" />
-		<param name="flashHUD" value="MarineHeavy" />
+		<param name="visorElement" value="Visor_HUD" />
+		<param name="hudAttach" value="hud_attach" />
+		<param name="flashBackground" value="UEE_Heavy" />
+			<!-- First person visor params -->
+		<param name="fpScaleX" value="0.63" />
+		<param name="fpScaleY" value="0.5" />
+		<param name="fpDistance" value="0.3" />
+		<!-- Third person visor params -->
+		<param name="tpScaleX" value="0.23" />
+		<param name="tpScaleY" value="0.17" />
+		<param name="tpDistance" value="0.08" />
+		
+		<RadarItems>
+			<radar name="FPS_3DRadar" itemPort="radar" />
+			<display name="FPS_3DRadarDisplay" xOffset="0.05" yOffset="0.016" zOffset="0.02" />
+		</RadarItems>
 	</Helmet>
 	
 	<light>
@@ -40,6 +55,18 @@
 	<portParams>
 		<ports>
 			<ItemPort minsize="1" maxsize="1" name="HUD_Helper" display_name="HUD DockingStation Helper">
+				<types>
+					<Type type="Display" />
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="radar" display_name="Radar Helper">
+				<types>
+					<Type type="Radar" />
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="hud_attach" display_name="Radar Display">
 				<types>
 					<Type type="Display" />
 				</types>

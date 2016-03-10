@@ -78,7 +78,6 @@ end
 
 --------------------------------------------------------------------------
 function VehicleBase:InitVehicleBase()
-	self:OnPropertyChange();
 	if(self.Properties.bSyncPhysics == 0) then
 		CryAction.DontSyncPhysics(self.id);
 	end

@@ -27,7 +27,6 @@ Grunt_x =
 		preferredCombatDistance = 20,		-- preferred combat distance from the target
 		esFaction = "Civilians",
 		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_Grunt.xml",
 		
 		CharacterSounds =
 		{	

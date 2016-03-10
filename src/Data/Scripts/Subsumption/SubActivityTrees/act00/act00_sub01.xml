@@ -1,0 +1,29 @@
+<ActivityTree>
+ <Variables>
+  <Variable name="subact_var_test01" value="somevalue02" type="string"/>
+  <Variable name="another test var" value="val val5" type="string"/>
+ </Variables>
+ <SubActivityGraph>
+  <Nodes>
+   <Task name="Root" id="3" pos="270,-390,0" class="TreeNode"/>
+   <Task name="JeffTest" id="4" pos="30,-140,0" class="TreeNode">
+    <Input name="sampleInputAttr" value="blah2" type="string"/>
+   </Task>
+   <Task name="Use" id="5" pos="445,-209,0" class="TreeNode">
+    <Input name="User" type="string"/>
+    <Input name="Usable" type="string"/>
+    <Input name="Use Channel" type="string"/>
+    <Input name="Max Wait" value="0" type="float"/>
+   </Task>
+   <Task name="JeffTest" id="6" pos="40,-20,0" class="TreeNode">
+    <Input name="sampleInputAttr" value="input value" type="string"/>
+    <Output name="sampleOutputAttr" value="10" type="int"/>
+   </Task>
+  </Nodes>
+  <Edges>
+   <Edge nodeIn="4" nodeOut="3" portIn="in" portOut="outSuccess" enabled="1"/>
+   <Edge nodeIn="5" nodeOut="3" portIn="in" portOut="outFail" enabled="1"/>
+   <Edge nodeIn="6" nodeOut="4" portIn="in" portOut="outSuccess" enabled="1"/>
+  </Edges>
+ </SubActivityGraph>
+</ActivityTree>

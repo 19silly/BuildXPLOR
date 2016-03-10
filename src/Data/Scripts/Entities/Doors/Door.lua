@@ -263,6 +263,12 @@ function Door:Reset(onSpawn)
 			AI.SetSmartObjectState( self.id, "Closed" );
 		end
 	end
+	
+	if (self.locked == true) then
+		self:ActivateOutput("Lock", true);
+	else
+		self:ActivateOutput("UnLock", true);
+	end
 end
 
 
@@ -631,13 +637,14 @@ end
 function Door:Event_UnLock(sender)
 	self.locked = false;
 	if AI then AI.ModifySmartObjectStates( self.id, "-Locked" ) end;
+	self:ActivateOutput("UnLock", true);
 end
 
 function Door:Event_Lock(sender)
 	self.locked = true;
 	if AI then AI.ModifySmartObjectStates( self.id, "Locked" ) end;
+	self:ActivateOutput("Lock", true);
 end
-
 
 Door.FlowEvents =
 {

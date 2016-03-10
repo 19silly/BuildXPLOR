@@ -12,7 +12,7 @@ ORIG_m50 =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_ORIG_m50.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_ORIG_m50.xml",
 		
 		Perception =
 		{

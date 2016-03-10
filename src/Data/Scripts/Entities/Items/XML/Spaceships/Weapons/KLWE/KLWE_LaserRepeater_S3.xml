@@ -3,30 +3,25 @@
 -->
 
 <!-- Laser Repeater Template -->
-<item name="KLWE_LaserRepeater_S3" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" >
+<item name="KLWE_LaserRepeater_S3" class="VehicleWeapon" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_KLWE_LaserRepeater_S3">
   <params>
-    <param name="giveable" 		value="0" />
-    <param name="selectable" 	value="0" />
-    <param name="pickable" 		value="0" />
-    <param name="mountable" 	value="1" />
-    <param name="usable"		 	value="0" />
-    <param name="arms"			 	value="0" />
 	<param name="adb" value="Items\Weapons\KLWE\KLWE_LR_S3_Q2.adb" />
     <param name="actionController" value="Items\Weapons\weaponControllerDef.xml" />
     <param name="itemType" value="WeaponGun" />
     <param name="itemSubType" value="Gun" />
-	<param name="itemDescription" value="CF-227 Panther Repeater" /> <!-- Replace me with Localization -->
+	<param name="itemDescription" value="item_NameKLWE_LaserRepeater_S3" /> <!-- Replace me with Localization -->
     <param name="itemManufactor" value="KLWE" />
     <param name="itemSize" value="3" />
 	<param name="itemTags" value="flightReady weaponMountUsable" />
-    <param name="display_name"	value="CF-227 Panther Repeater" />
+	<param name="itemPortTags" value=""/>
+    <param name="display_name"	value="item_NameKLWE_LaserRepeater_S3" />
 	<param name="hitpoints" value="150" />
 	<param name="mass" value="150" />
 	<itemStats>
-		<Damage 	value="0" />
-		<RoF 		value="0" />
-		<Range 		value="0" />
-		<Power 		value="0" />
+		<Damage 	value="%DMG%" />
+		<RoF 		value="%RoF%" />
+		<Range 		value="%Range%" />
+		<Power 		value="%PWR%" />
 	</itemStats>
     </params>
 	
@@ -56,11 +51,7 @@
         <param name="attack" value="0" />
         <param name="decay" value="0" />
       </spread>
-      <muzzleflash>
-	  <!-- Muzzle Flash only needs to be applied on the first muzzle. Barrels will handle moving the muzzle flash over -->
-        <firstperson effect="weapon_fx.laser_repeater.firefx" helper="muzzle_out_01" />
-		<thirdperson effect="weapon_fx.laser_repeater.firefx" helper="muzzle_out_01" /> 
-      </muzzleflash>
+
       <pools>
         <!-- This is Pool manipulation per shot -->
         <pool class="Power" value="-21" />
@@ -107,146 +98,5 @@
 
 
 
-  <damagelevels>
-	<level damageRatio="0.50">
-		<EffectsList>
-			<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
-		</EffectsList>
-		<DebrisList>
-			<Debris name="base_50_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1" />
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris1_PFX1"/>
-				</EffectsList>
-			</Debris>
-			<Debris name="base_50_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_50_debris2_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="barrel_base_50_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_50_debris1_PFX1"  />
-				</EffectsList>
-			</Debris>
-			<Debris name="barrel_tip_1_50_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_50_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-		</DebrisList> 
-	</level>
-	<level damageRatio="1.00">
-		<DebrisList>
-			<Debris name="base_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="base_100_debris2" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="base_100_debris2_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="barrel_base_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_100_debris1_PFX1" />
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_base_100_debris1_PFX2" />
-				</EffectsList>
-			</Debris>
-			<Debris name="barrel_tip_1_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_100_debris1_PFX1" />
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_1_100_debris1_PFX2" />
-				</EffectsList>
-			</Debris>
-			<Debris name="barrel_tip_2_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_2_100_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-			<Debris name="barrel_tip_3_100_debris1" mass="10" impulse="0,10,0" >
-				<EffectsList>
-					<Effect effect="explosions_fx.Part_Destroyed_Burning" helper="barrel_tip_3_100_debris1_PFX1" />
-				</EffectsList>
-			</Debris>
-			<!-- Missing barrel_tip_1_100_PFX1/PFX2; not debris, don't know where to put it -->
-		</DebrisList>
-	</level>
-  </damagelevels>
 
-  <geometry>
-  
-	<!-- In this sub-block of geometry, we can define attachment points in some of our character bones -->
-    <!-- These attachments can be referenced within this very same script to attach accessories, particle fx... -->
-    <boneAttachments>
-      <attachment target="thirdperson" name="muzzle_out_01" bone="muzzle_out_01" />
-      <attachment target="thirdperson" name="muzzle_out_02" bone="muzzle_out_02" />
-      <attachment target="thirdperson" name="muzzle_out_03" bone="muzzle_out_03" />
-    </boneAttachments>
-	
-    <!-- example for more fine grade tags, most of them mapping to the same geometry atm -->
-    <!-- default fallback -->
-    <thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga"/>
-
-	<tags tag="damage_50">
-		<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser_50.cga"/>
-	</tags>
-	<tags tag="damage_100">
-		<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser_100.cga"/>
-	</tags>
-	
-	<tags tag="HUD">
-		<thirdperson name="Objects\UI\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser_UI.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		<tags tag="damage_50">
-			<thirdperson name="Objects\UI\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser_UI.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
-		</tags>
-		<tags tag="damage_100">
-			<thirdperson name="Objects\UI\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser_UI.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
-		</tags>	
-	</tags>
-
-	<tags tag="Hologram">
-	
-		<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-
-		<tags tag="ShipHologram">
-			<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		  
-			<tags tag="inactive">
-				<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="over dragging">
-				<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="overCompareValid">
-				<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-			<tags tag="overCompareInvalid">
-				<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-		</tags>
-		
-		<tags tag="ItemList">
-			<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			<tags tag="over dragging">
-				<thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-			</tags>
-		</tags>	
-		
-		<tags tag="ItemPreviewA">
-		  <thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		</tags>
-		
-		<tags tag="ItemPreviewB">
-		  <thirdperson name="Objects\Spaceships\Weapons\Klaus_and_Werner\CF-227\Klaus_and_Werner_CF-227_Laser.cga" material="materials/item_selection/material_hologram_default.mtl"/>
-		</tags>	
-		
-	</tags>
-
-  </geometry>
-
-  <mobiGlas>
-	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
-  </mobiGlas>
 </item>

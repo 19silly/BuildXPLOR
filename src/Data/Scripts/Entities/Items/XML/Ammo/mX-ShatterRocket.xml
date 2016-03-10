@@ -1,12 +1,14 @@
 <ammo name="mX-ShatterRocket" class="ShatterRocket">
 	<geometry>
+		<firstperson name="Objects/Weapons/Behring_HP21I-Thunder/Attachments/ammo_mx_shatter_rocket.cgf" />
+		<thirdperson name="Objects/Weapons/Behring_HP21I-Thunder/Attachments/ammo_mx_shatter_rocket.cgf" />
 	</geometry>
 	<flags>
 		<param name="serverspawn" value="1" />
 		<param name="predictspawn" value="1" />
 	</flags>
 	<physics type="particle">
-		<param name="mass" value="2.26796" />
+		<param name="mass" value="2.3" />
 		<param name="speed" value="150"/>
 		<param name="air_resistance" value="0" />
 		<param name="water_resistance" value="0.5" />
@@ -20,25 +22,48 @@
 		<param name="single_contact" value="1" />
 	</physics>
 	<explosion>
-		<param name="pressure" value="900" />
+		<param name="pressure" value="1400" />
 		<param name="min_radius" value="3" />
 		<param name="max_radius" value="5" />
 		<param name="min_phys_radius" value="1.8" />
 		<param name="max_phys_radius" value="4" />
 		<param name="hole_size" value="2" />
 		<param name="terrain_hole_size" value="6" />
-		<param name="decal" value="textures/decal/explo_decal.dds" />
-		<param name="effect" value="spaceship_fx.Hornet.explosion" />
-		<param name="effect_scale" value="0.25" />
+		<param name="decal" value="Materials/VFX/Weapons/Decals/grenadeImpact" />
+		<param name="effect" value="Illfonic_Weapons_Ammo_mX-Shatter_Rocket.RocketMain.Impact" />
+		<param name="effect_scale" value="1" />
 		<param name="aitype" value="rpg" />
 	</explosion>
 	<params>
 		<param name="display_name" value="@mp_emX-ShatterRocket" />
 		<param name="lifetime" value="5" />
 		<param name="showtime" value="0.15" />
+
+		<param name="bullet_pierceability_modifier" value="0" />
+
+		<param name="damage" value="3.5" />
+		<param name="ai_vs_player_damage" value="110"/>
+		<param name="damage_drop_per_meter" value="0.25" GAME="MP"/>
+		<param name="damage_drop_min_distance" value="40" />
+		<param name="damage_drop_min_damage" value="8" GAME="MP"/>
+
+		<param name="point_blank_amount" value="1" />
+		<param name="point_blank_distance" value="0" />
+		<param name="point_blank_falloff_distance" value="0" />
+		<param name="energyRateMul" value="1.0" />
+
+		<param name="secondary_damage" value="0" />
+		<param name="ignore_damage_falloff" value="0" />
 	</params>
+	<tracer>
+		<param name="effect" value="Illfonic_Weapons_Ammo_mX-Shatter_Rocket.RocketMain.Tracer" />
+		<param name="speed" value="0"/>
+		<param name="lightArchetype" value="Illfonic_Weapon_Lights.Ammo.mx_shatter_rocket"/>
+    </tracer>
 	<trail>
-		<param name="effect" value="weapon_fx.tank.tank125.tracer.tracer" />
-		<param name="scale" value="0.25" />
+		<param name="effect" value="Illfonic_Weapons_Ammo_mX-Shatter_Rocket.RocketMain.trail" />
+		<param name="scale" value="1" />
+		<param name="delaybeforedestroy" value="1"/>
 	</trail>
+	
 </ammo>

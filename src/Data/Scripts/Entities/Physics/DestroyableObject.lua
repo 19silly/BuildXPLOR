@@ -293,13 +293,6 @@ function DestroyableObject:OnReset()
 end
 
 ----------------------------------------------------------------------------------------------------
-function DestroyableObject:OnDestroy()
-	if (Kyt and self.Properties.Kythera.bIs3DObstacle == 1) then
-		Kyt.UnregisterEntity(self.id);
-	end
-end
-
-----------------------------------------------------------------------------------------------------
 function DestroyableObject:RemoveEffect()
 	if(self.FXSlot)then
 		self:FreeSlot(self.FXSlot);

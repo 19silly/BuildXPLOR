@@ -6,7 +6,6 @@
 		<FeatureTest name="multiplayerGameCreateGame" description="Create a game which should then appear to clients in the game list" require="noLevelLoaded" enabled="true" owners="markf">
 			<DoConsoleCommand command="sv_servername AutomatedFeatureTestServer" />
 			<DoConsoleCommand command="sv_gamerules tia" />
-			<DoConsoleCommand command="g_enableInitialLoadoutScreen 0"/>
 			<DoConsoleCommand command="g_gameRules_startTimerLength 15" />
 			<DoConsoleCommand command="g_minplayerlimit 0" />
 			<SetResponseToHittingCCCPoint response="expectedNext" checkpointName="GameLobby_CreateSession" />
@@ -62,7 +61,6 @@
 		<FeatureTest name="multiplayerGameConnect" description="Connect to multiplayer game" require="noLevelLoaded" enabled="true" owners="markf">
 			<SetResponseToHittingCCCPoint response="expectedNext" checkpointName="WeaponSystem_OnLoadingStart" />
 			<SetResponseToHittingCCCPoint response="expectedNext" checkpointName="WeaponSystem_OnLoadingComplete" />
-			<DoConsoleCommand command="g_enableInitialLoadoutScreen 0"/>
 			<DoConsoleCommand command="connect" />
 			<WaitUntilHitAllExpectedCCCPoints timeout="60" />
 		</FeatureTest>

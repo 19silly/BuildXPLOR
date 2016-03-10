@@ -2,9 +2,9 @@ Script.ReloadScript( "SCRIPTS/Entities/AI/Shared/AIBase.lua");
 
 UEE_Pilot_x = 
 {
-
-	AnimationGraph = "PilotFullBody.xml",
-	UpperBodyGraph = "PilotUpperBody.xml",	
+	ActionController = "Animations/Mannequin/ADB/playerControllerDefs.xml",
+	AnimDatabase3P = "Animations/Mannequin/ADB/playerAnims.adb",
+	SoundDatabase = "Animations/Mannequin/ADB/playerSounds.adb",
 
 	colliderEnergyScale = 10,
 	colliderRagdollScale = 150,
@@ -13,7 +13,7 @@ UEE_Pilot_x =
 	{	
 		esNavigationType = "MediumSizedCharacters",
 		voiceType = "enemy",
-		fileModel = "Objects/Characters/Human/Males/uee_marine_light.cdf",
+		fileModel = "Objects/Characters/Human/Males/rsi_suit.cdf",
 		objFrozenModel = "",
 		Damage =
 		{
@@ -26,8 +26,10 @@ UEE_Pilot_x =
 		distanceToHideFrom = 3,
 		preferredCombatDistance = 20,		-- preferred combat distance from the target
 		esFaction = "UEE",
-		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_Grunt.xml",
+
+		-- Default Loadout override for UEE_Pilots
+		fileItemLoadout = "Scripts/Loadouts/Player/Default_DFM_Loadout.xml",
+
 		
 		CharacterSounds =
 		{	
@@ -44,6 +46,7 @@ UEE_Pilot_x =
 	{			
 		boneIDs = 
 		{
+			BONE_HIPS = "Hips",
 			BONE_SPINE = "Spine",
 			BONE_SPINE2 = "Spine2",
 			BONE_SPINE3 = "Spine3",
@@ -54,8 +57,10 @@ UEE_Pilot_x =
 			BONE_WEAPON2 = "Lweapon_bone",
 			BONE_FOOT_R = "RightFoot",
 			BONE_FOOT_L = "LeftFoot",
-			BONE_ARM_R = "RightForeArm",
-			BONE_ARM_L = "LeftForeArm",
+			BONE_ARM_R = "RightArm",
+			BONE_ARM_L = "LeftArm",
+			BONE_FOREARM_R = "RightForeArm",
+			BONE_FOREARM_L = "LeftForeArm",
 			BONE_CALF_R = "RightLeg",
 			BONE_CALF_L = "LeftLeg",
 			BONE_CAMERA = "HeadCam",

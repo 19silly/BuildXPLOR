@@ -2,12 +2,19 @@
  
  <Character id="1" type="bb">
   <Base id="1337908400" type="bb">
-   <TargetSelector type="string">TS_CharacterDefault</TargetSelector>
-   <MinFireAngleCos type="float">0.9</MinFireAngleCos>
    <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
    <SelectionTree type="string">ST_CharacterDefault</SelectionTree>
+   <TargetSelector type="string">TS_CharacterDefault</TargetSelector>
+   <CharacterConfig type="string">Combat</CharacterConfig>
    <TargetBias type="float">10.000000</TargetBias>
-   <MemoryLength type="float">10.000000</MemoryLength>
+   <MinFireAngleCos type="float">0.9</MinFireAngleCos>
+   <Accuracy type="float">0.8</Accuracy>
+   <MaxInaccuracySpreadDegrees type="float">45.0</MaxInaccuracySpreadDegrees>
+   <PerceptionObscuredTime type="float">10.000000</PerceptionObscuredTime>
+   <PerceptionMemoryTime type="float">60.000000</PerceptionMemoryTime>
+   <PerceivedLevelDecayRate type="float">0.2</PerceivedLevelDecayRate>
+   <PerceivedLevelMemoryMultiplier type="float">5.0</PerceivedLevelMemoryMultiplier>
    <VisionRaycastRate type="float">1.000000</VisionRaycastRate>
    <VisionMaxDistance type="float">50.000000</VisionMaxDistance>  
    <VisionPrimaryConeAngle type="float">45.0</VisionPrimaryConeAngle>
@@ -16,21 +23,19 @@
    <VisionDistanceScale type="float">5.0</VisionDistanceScale>
    <VisionBasePerceptionScale type="float">1.0</VisionBasePerceptionScale>
    <HearingBasePerceptionScale type="float">1.0</HearingBasePerceptionScale>
-   <PerceiveLevelDecayRate type="float">0.2</PerceiveLevelDecayRate>
    <IronsightApproachPreference type="string">WhenStationary</IronsightApproachPreference>
    <IronsightEngagePreference type="string">Always</IronsightEngagePreference>
-   <MinCautiousTime type="float">20.0</MinCautiousTime>
+   <SuspiciousTargetPreference type="string">Look</SuspiciousTargetPreference>
    <MinSuspiciousTime type="float">5.0</MinSuspiciousTime>
-   <MaxSuspiciousTime type="float">10.0</MaxSuspiciousTime>
+   <MaxSuspiciousDecayTime type="float">10.0</MaxSuspiciousDecayTime>
    <MinEngagementRange type="float">5.000000</MinEngagementRange>
    <MaxEngagementRange type="float">20.000000</MaxEngagementRange>
-   <MinTimeInCover type="float">2.000000</MinTimeInCover>
-   <SlowdownAtPathEnd type="bool">true</SlowdownAtPathEnd>
+   <MinTimeInCover type="float">5.000000</MinTimeInCover>
+   <SlowdownAtPathEnd type="bool">true</SlowdownAtPathEnd>  
   </Base>
 
   <Dummy id="1337924750" inheritanceParent="1337908400" type="bb">
-   <VisionBasePerceptionScale type="float">0.0</VisionBasePerceptionScale>
-   <HearingBasePerceptionScale type="float">0.0</HearingBasePerceptionScale>
+   <CharacterConfig type="string">Peaceful</CharacterConfig>
   </Dummy>
 
   <Player id="1337924747" inheritanceParent="1337908400" type="bb">
@@ -48,6 +53,8 @@
   </PilotPlayer>
   
   <PU id="1337924750" inheritanceParent="1337908400" type="bb">
+   <CharacterConfig type="string">Peaceful</CharacterConfig>
+   <DefaultTask type="string">PU</DefaultTask>
    <SelectionTree type="string">ST_CharacterPU</SelectionTree>
   </PU>
  </Character>
@@ -80,12 +87,32 @@
    <AllowFiringWhenMaxThreatExceeded type="bool">true</AllowFiringWhenMaxThreatExceeded>
   </Turret>
   
+  <Drone id="1587743275" inheritanceParent="1337909952" type="bb">
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <ThreatLevel type="float">1.00000</ThreatLevel>
+   <MinFireAngleCos type="float">0.01</MinFireAngleCos>
+   <OptimalFiringRange type="float">1500.000000</OptimalFiringRange>
+  </Drone>
+  
+  <DroneMissiles id="1587743278" inheritanceParent="1337909952" type="bb">
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <ThreatLevel type="float">1.00000</ThreatLevel>
+   <MinFireAngleCos type="float">0.01</MinFireAngleCos>
+   <OptimalFiringRange type="float">1500.000000</OptimalFiringRange>
+   <EnableMissiles type="bool">true</EnableMissiles>
+   <MissileCooldownTime type="float">30.000000</MissileCooldownTime>
+  </DroneMissiles>
+  
   <Base id="1337909952" type="bb">
-   <MemoryLength type="float">10.000000</MemoryLength>
-   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Defend</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetSelector type="string">TS_ShipDefault</TargetSelector>
    <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+   <PerceptionObscuredTime type="float">10.000000</PerceptionObscuredTime>
+   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
+   <ForwardBias type="float">50.000000</ForwardBias>
    <LeadingAccuracy type="float">0.3000</LeadingAccuracy>
    <AimingDispersionMax type="float">20.50000</AimingDispersionMax>
    <AimingDispersionMaxVel type="float">20.00000</AimingDispersionMaxVel>
@@ -105,19 +132,17 @@
    <LowHealthBias type="float">10.00000</LowHealthBias>
    <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">13.5000</BreakToAvoidMaxTime>
-   <KytheraControl type="bool">true</KytheraControl>
    <RecentDamageToEscape type="float">500.000000</RecentDamageToEscape>
    <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetBias type="float">50.000000</TargetBias>
    <AvoidCollisionTime type="float">4.00000</AvoidCollisionTime>
    <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">1500.000000</ApproachRange>
    <TailingBias type="float">75.000000</TailingBias>
-   <ManeuverSkillLevel type="string">Easy</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
    <EnableMissiles type="bool">false</EnableMissiles>
+   <EnableGuns type="bool">true</EnableGuns>
    <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
    <CMLaunchDelay type="float">0.0</CMLaunchDelay>
    <CMLaunchChance type="float">0.0</CMLaunchChance>
@@ -135,11 +160,16 @@
   </Base>
   
   <Perfect id="1337909948" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
+   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
+   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+   <PerceptionObscuredTime type="float">15.000000</PerceptionObscuredTime>
    <FireDistanceHysteresis type="float">10.000000</FireDistanceHysteresis>
    <AvoidCollisionTime type="float">3.000000</AvoidCollisionTime>
    <ForwardBias type="float">200.000000</ForwardBias>
-   <TargetSelector type="string">TS_ShipDefault</TargetSelector>
-   <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
    <LeadingAccuracy type="float">1.00000</LeadingAccuracy>
    <AimingDispersionMax type="float">0.000000</AimingDispersionMax>
    <ImmediateThreatBias type="float">1.000000</ImmediateThreatBias>
@@ -158,18 +188,15 @@
    <LowHealthBias type="float">200.000000</LowHealthBias>
    <EngageNonFireTime type="float">10.000000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">8.000000</BreakToAvoidMaxTime>
-   <KytheraControl type="bool">true</KytheraControl>
    <RecentDamageToEscape type="float">400.000000</RecentDamageToEscape>
    <RecentDamageToRetreat type="float">200.00000</RecentDamageToRetreat>
    <RecentDamageDecayRate type="float">100.000000</RecentDamageDecayRate>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetBias type="float">800.000000</TargetBias>
    <BreakToEscapeMinTime type="float">2.000000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">3.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">1100.000000</ApproachRange>
    <TailingBias type="float">200.000000</TailingBias>
-   <ManeuverSkillLevel type="string">Hard</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
    <CMLaunchDelay type="float">0.0</CMLaunchDelay>
    <CMLaunchChance type="float">1.0</CMLaunchChance>
    <EnableMissiles type="bool">false</EnableMissiles>
@@ -180,11 +207,15 @@
   </Perfect>
   
   <Hard id="1587743269" type="bb">
-   <MemoryLength type="float">11.000000</MemoryLength>
-   <FireDistanceHysteresis type="float">15.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetSelector type="string">TS_ShipDefault</TargetSelector>
    <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+   <PerceptionObscuredTime type="float">11.000000</PerceptionObscuredTime>
+   <FireDistanceHysteresis type="float">15.000000</FireDistanceHysteresis>
+   <ForwardBias type="float">50.000000</ForwardBias>
    <LeadingAccuracy type="float">1.0000</LeadingAccuracy>
    <AimingDispersionMax type="float">5.0000</AimingDispersionMax>
    <ImmediateThreatBias type="float">1050.000000</ImmediateThreatBias>
@@ -203,18 +234,15 @@
    <LowHealthBias type="float">10.00000</LowHealthBias>
    <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">5.0000</BreakToAvoidMaxTime>
-   <KytheraControl type="bool">true</KytheraControl>
    <RecentDamageToEscape type="float">350.000000</RecentDamageToEscape>
    <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetBias type="float">50.000000</TargetBias>
    <AvoidCollisionTime type="float">3.00000</AvoidCollisionTime>
    <BreakToEscapeMinTime type="float">3.00000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">1000.000000</ApproachRange>
    <TailingBias type="float">75.000000</TailingBias>
-   <ManeuverSkillLevel type="string">Easy</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
    <EnableMissiles type="bool">true</EnableMissiles>
    <MissileCooldownTime type="float">30.000000</MissileCooldownTime>
    <CMLaunchDelay type="float">0.5</CMLaunchDelay>
@@ -230,11 +258,15 @@
   </Hard>
   
   <Balanced id="1587743268" type="bb">
-   <MemoryLength type="float">7.000000</MemoryLength>
-   <FireDistanceHysteresis type="float">20.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetSelector type="string">TS_ShipDefault</TargetSelector>
    <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+   <PerceptionObscuredTime type="float">7.000000</PerceptionObscuredTime>
+   <FireDistanceHysteresis type="float">20.000000</FireDistanceHysteresis>
+   <ForwardBias type="float">50.000000</ForwardBias>
    <LeadingAccuracy type="float">0.8000</LeadingAccuracy>
    <AimingDispersionMax type="float">15.00000</AimingDispersionMax>
    <ImmediateThreatBias type="float">550.000000</ImmediateThreatBias>
@@ -253,18 +285,15 @@
    <LowHealthBias type="float">10.00000</LowHealthBias>
    <EngageNonFireTime type="float">5.00000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">5.0000</BreakToAvoidMaxTime>
-   <KytheraControl type="bool">true</KytheraControl>
    <RecentDamageToEscape type="float">800.000000</RecentDamageToEscape>
    <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetBias type="float">50.000000</TargetBias>
    <AvoidCollisionTime type="float">3.50000</AvoidCollisionTime>
    <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">800.000000</ApproachRange>
    <TailingBias type="float">75.000000</TailingBias>
-   <ManeuverSkillLevel type="string">Medium</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
    <EnableMissiles type="bool">false</EnableMissiles>
    <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
    <CMLaunchDelay type="float">0.75</CMLaunchDelay>
@@ -280,11 +309,15 @@
   </Balanced>
   
   <Easy id="1587743267" type="bb">
-   <MemoryLength type="float">4.000000</MemoryLength>
-   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetSelector type="string">TS_ShipDefault</TargetSelector>
    <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+   <PerceptionObscuredTime type="float">4.000000</PerceptionObscuredTime>
+   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
+   <ForwardBias type="float">50.000000</ForwardBias>
    <LeadingAccuracy type="float">0.5000</LeadingAccuracy>
    <AimingDispersionMax type="float">20.50000</AimingDispersionMax>
    <ImmediateThreatBias type="float">150.000000</ImmediateThreatBias>
@@ -303,18 +336,15 @@
    <LowHealthBias type="float">10.00000</LowHealthBias>
    <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">6.5000</BreakToAvoidMaxTime>
-   <KytheraControl type="bool">true</KytheraControl>
    <RecentDamageToEscape type="float">500.000000</RecentDamageToEscape>
    <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetBias type="float">50.000000</TargetBias>
    <AvoidCollisionTime type="float">4.00000</AvoidCollisionTime>
    <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">1000.000000</ApproachRange>
    <TailingBias type="float">75.000000</TailingBias>
-   <ManeuverSkillLevel type="string">Easy</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
    <EnableMissiles type="bool">false</EnableMissiles>
    <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
    <CMLaunchDelay type="float">0.0</CMLaunchDelay>
@@ -329,12 +359,16 @@
    <AllowFiringWhenMaxThreatExceeded type="bool">false</AllowFiringWhenMaxThreatExceeded>
   </Easy>
   
-  <Teammate id="1587745426" type="bb"> 
-   <MemoryLength type="float">8.000000</MemoryLength>
-   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
-   <ForwardBias type="float">50.000000</ForwardBias>
+  <Teammate id="1587745426" type="bb">
+   <KytheraControl type="bool">true</KytheraControl>
+   <DefaultTask type="string">Attack</DefaultTask>
+   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
+   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetSelector type="string">TS_ShipDefault</TargetSelector>
    <TurretTargetSelector type="string">TS_TurretDefault</TurretTargetSelector>
+   <PerceptionObscuredTime type="float">8.000000</PerceptionObscuredTime>
+   <FireDistanceHysteresis type="float">35.000000</FireDistanceHysteresis>
+   <ForwardBias type="float">50.000000</ForwardBias>
    <LeadingAccuracy type="float">0.3000</LeadingAccuracy>
    <AimingDispersionMax type="float">20.50000</AimingDispersionMax>
    <ImmediateThreatBias type="float">150.000000</ImmediateThreatBias>
@@ -353,18 +387,15 @@
    <LowHealthBias type="float">10.00000</LowHealthBias>
    <EngageNonFireTime type="float">5.0000</EngageNonFireTime>
    <BreakToAvoidMaxTime type="float">9.0000</BreakToAvoidMaxTime>
-   <KytheraControl type="bool">true</KytheraControl>
    <RecentDamageToEscape type="float">500.000000</RecentDamageToEscape>
    <RecentDamageDecayRate type="float">50.000000</RecentDamageDecayRate>
-   <SelectionTree type="string">ST_ShipDefault</SelectionTree>
-   <TurretSelectionTree type="string">ST_TurretDefault</TurretSelectionTree>
    <TargetBias type="float">50.000000</TargetBias>
    <AvoidCollisionTime type="float">4.00000</AvoidCollisionTime>
    <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">4.00000</BreakToEscapeMaxTime>
    <ApproachRange type="float">1350.000000</ApproachRange>
    <TailingBias type="float">75.000000</TailingBias>
-   <ManeuverSkillLevel type="string">Easy</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Easy</SplineSkillLevel>
    <EnableMissiles type="bool">false</EnableMissiles>
    <MissileCooldownTime type="float">10.000000</MissileCooldownTime>
    <CMLaunchDelay type="float">0.0</CMLaunchDelay>
@@ -388,7 +419,7 @@
    <AvoidCollisionTime type="float">2.500000</AvoidCollisionTime>
    <BreakToEscapeMinTime type="float">1.500000</BreakToEscapeMinTime>
    <BreakToEscapeMaxTime type="float">2.000000</BreakToEscapeMaxTime>
-   <ManeuverSkillLevel type="string">Hard</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
    <EngageNonFireTime type="float">8.000000</EngageNonFireTime>
   </Cocky>
   
@@ -399,7 +430,7 @@
    <MinEvadeTime type="float">4.000000</MinEvadeTime>
    <RecentDamageToEscape type="float">150.000000</RecentDamageToEscape>
    <BreakToEscapeMaxTime type="float">4.500000</BreakToEscapeMaxTime>
-   <ManeuverSkillLevel type="string">Medium</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Medium</SplineSkillLevel>
    <EngageNonFireTime type="float">15.000000</EngageNonFireTime>
   </Cautious>
   
@@ -412,7 +443,7 @@
    <BreakToEscapeMinTime type="float">2.00000</BreakToEscapeMinTime>
    <MinEvadeTime type="float">0.750000</MinEvadeTime>
    <RecentDamageToEscape type="float">600.000000</RecentDamageToEscape>
-   <ManeuverSkillLevel type="string">Hard</ManeuverSkillLevel>
+   <SplineSkillLevel type="string">AI:SkillLevel:Hard</SplineSkillLevel>
   </Reckless>
   
   <Balanced id="1337959415" type="bb">
@@ -501,13 +532,13 @@
  </Combat>
  
  <Targeting id="1337929648" type="bb">
-  <Merciless id="1337929872" type="bb">   
-   <MemoryLength type="float">12.000000</MemoryLength>
+  <Merciless id="1337929872" type="bb">
+   <PerceptionObscuredTime type="float">12.000000</PerceptionObscuredTime>
    <TargetBias type="float">800.000000</TargetBias>
   </Merciless>
   
   <Opportunist id="1337930640" type="bb">
-   <MemoryLength type="float">4.000000</MemoryLength>
+   <PerceptionObscuredTime type="float">4.000000</PerceptionObscuredTime>
    <ForwardBias type="float">200.000000</ForwardBias>
    <ImmediateThreatBias type="float">10.000000</ImmediateThreatBias>
    <LowHealthBias type="float">800.000000</LowHealthBias>
@@ -515,7 +546,7 @@
   </Opportunist>
   
   <AttentionDeficit id="1337460640" type="bb">
-   <MemoryLength type="float">3.000000</MemoryLength>
+   <PerceptionObscuredTime type="float">3.000000</PerceptionObscuredTime>
    <ForwardBias type="float">200.000000</ForwardBias>
    <ImmediateThreatBias type="float">10.000000</ImmediateThreatBias>
    <LowHealthBias type="float">10.000000</LowHealthBias>
@@ -523,7 +554,7 @@
   </AttentionDeficit> 
   
   <Balanced id="1337567945" type="bb">
-   <MemoryLength type="float">8.000000</MemoryLength>
+   <PerceptionObscuredTime type="float">8.000000</PerceptionObscuredTime>
    <ForwardBias type="float">50.000000</ForwardBias>
    <ImmediateThreatBias type="float">550.000000</ImmediateThreatBias>
    <LowHealthBias type="float">10.00000</LowHealthBias>
@@ -537,15 +568,15 @@
 
  <Race id="1337903184" type="bb">
   <ShortMemory id="1337903504" type="bb">
-   <MemoryLength type="float">2.000000</MemoryLength>
+   <PerceptionObscuredTime type="float">2.000000</PerceptionObscuredTime>
   </ShortMemory>
   
   <BalancedMemory id="1337903504" type="bb">
-   <MemoryLength type="float">5.000000</MemoryLength>
+   <PerceptionObscuredTime type="float">5.000000</PerceptionObscuredTime>
   </BalancedMemory>
   
   <LongMemory id="1337903504" type="bb">
-   <MemoryLength type="float">8.000000</MemoryLength>
+   <PerceptionObscuredTime type="float">8.000000</PerceptionObscuredTime>
   </LongMemory>
   
   <UEE id="1337903504" type="bb">
@@ -576,7 +607,7 @@
    <BreakToEscapeMinTime type="float">3.000000</BreakToEscapeMinTime>
    <MinEvadeTime type="float">0.500000</MinEvadeTime>
    <RecentDamageToEscape type="float">400.000000</RecentDamageToEscape>
-   <ManeuverSkillLevel type="string">Hard</ManeuverSkillLevel> -->
+   <SplineSkillLevel type="string">Hard</SplineSkillLevel> -->
   </Vanduul>
   
   <Banu id="1337905952" type="bb">

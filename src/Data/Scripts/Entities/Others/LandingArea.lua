@@ -2,10 +2,12 @@ LandingArea =
 {
 	Editor = 
 	{
-		Icon = "AreaTrigger.bmp",
+		Icon = "LandingArea.bmp",
 	},
 	Properties = 
 	{
+		bEnabled = 0,
+
 		DimX = 50,
 		DimY = 50,
 		DimZ = 50,
@@ -15,11 +17,12 @@ LandingArea =
 
 		bAlignDirection = 0,
 		fApproachDistance = 500.0,
-		
-		MultiplayerOptions = 
-		{
-			bNetworked = 0,
-		},
+
+		fTouchdownAltitude = 4.0,
+		fTouchdownHoverAltitude = 8.0,
+		fTakeoffHoverAltitude = 10.0,
+
+		strGeomFilename = "Objects/!test_assets/SQ42/Idris_Simon/LandingVolume/LandingVolume.cgf"
 	},
 	Client =
 	{
@@ -31,9 +34,6 @@ LandingArea =
 
 -- Standard functionality
 function LandingArea:OnSpawn()
-	if self.Properties.MultiplayerOptions.bNetworked == 0 then
-		self:SetFlags(ENTITY_FLAG_CLIENT_ONLY, 0);
-	end
 	Log("LandingArea:OnSpawn");
 	self:OnReset();
 end
@@ -43,14 +43,10 @@ function LandingArea:OnPropertyChange()
 end
 
 function LandingArea:OnReset()
-	self.localOnly = self.Properties.MultiplayerOptions.bNetworked==0;
-
 	-- Setup collision bounds
 	local min = { x=-self.Properties.DimX/2, y=-self.Properties.DimY/2, z=-self.Properties.DimZ/2 };
 	local max = { x=self.Properties.DimX/2, y=self.Properties.DimY/2, z=self.Properties.DimZ/2 };
 	self:SetTriggerBBox( min, max );
-
-	self:SetFlags(ENTITY_FLAG_CLIENT_ONLY,0);
 end
 
 --------------------------------------------------------------------------

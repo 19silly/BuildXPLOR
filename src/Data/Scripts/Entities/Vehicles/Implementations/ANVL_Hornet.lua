@@ -12,7 +12,7 @@ ANVL_Hornet =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_ANVL_Hornet.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_ANVL_Hornet.xml",
 		
 		Perception =
 		{

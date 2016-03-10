@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////////////
 -->
 <Vehicle name="DRAK_Cutlass" category="StarFighter" displayname="Drake Cutlass Black" classname="Class 2" dockingclass="2" priority="8" id="idVehicleClass" HudPaletteScheme="ANVL" requiredItemTags="flightReady" itemPortTags="DRAK_Cutlass_Base" crossSectionMultiplier="0.52,0.37,0.51">
+<Shield shieldMesh="Objects/Spaceships/Ships/DRAK/Cutlass/DRAK_Cutlass_Shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
@@ -53,6 +54,7 @@
   <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
   <!-- Modes:	gun, missile, pilot, eject, enemy, thrusters, death, countermeasure	-->
   <Cameras>
+	<Camera type="missile" attachPoint="" cameraOffset="0,17.5,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
     <Camera type="countermeasure" attachPoint="" cameraOffset="0,-4.5,6" filename="Cameras/countermeasure.xml" />
     <Camera type="gun" attachPoint="hardpoint_class2_nose" cameraOffset="0,1.6,-1.1" cameraRotationOffset="10,0,0" filename="Cameras/gun.xml" />
     <Camera type="gun" attachPoint="hardpoint_class1_left_wing" cameraOffset="-0.5,-0.7,-0.4" cameraRotationOffset="0,0,-5" cameraShakeScale="0.3" filename="Cameras/gun.xml" />
@@ -143,6 +145,7 @@
               <ItemPort minsize="1" maxsize="3" flags="right" display_name="Nose Slot" displayPos="475,290">
                 <Types>
                   <Type type="Turret" subtypes="Gun,GunTurret" />
+				  <Type type="WeaponGun" subtypes="Gun" />
                 </Types>
                 <Pitch min="-30" max="30" />
                 <Yaw min="-60" max="60" />
@@ -404,6 +407,7 @@
                             <Types>
                               <Type type="Display" />
                             </Types>
+							<HostItemScale scale="0.75" />
                           </ItemPort>
                         </Part>
                       </Parts>
@@ -425,7 +429,7 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_left_mid" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                  <ItemPort minsize="1" maxsize="3" flags="Left">
+                  <ItemPort minsize="1" maxsize="3" flags="maneuver orientation +X Left">
                     <Roll min="-180" max="180" />
                     <Yaw min="0" max="90" />
                     <Types>
@@ -437,7 +441,7 @@
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_right_mid" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                  <ItemPort minsize="1" maxsize="3" flags="Right">
+                  <ItemPort minsize="1" maxsize="3" flags="maneuver orientation -X Right">
                     <Roll min="-180" max="180" />
                     <Yaw min="0" max="90" />
                     <Types>
@@ -811,7 +815,7 @@
                   <Parts>
                     <Part name="Wing_Right_50_debris6" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="hardpoint_thruster_right_upper_front" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X -Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -821,7 +825,7 @@
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_right_lower_front" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X +Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -834,6 +838,7 @@
                       <ItemPort minsize="1" maxsize="3" flags="right" display_name="Right Wing Slot" displayPos="475,290">
                         <Types>
                           <Type type="Turret" subtypes="Gun,GunTurret" />
+						  <Type type="WeaponGun" subtypes="Gun" />
                         </Types>
                         <Pitch min="-5" max="5" />
                         <Yaw min="-5" max="5" />
@@ -904,7 +909,7 @@
                     <Part name="Wing_Right_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="Wing_Right_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="hardpoint_thruster_right_wing" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2" flags="mount">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X mount">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -957,7 +962,7 @@
                   </DamageBehaviors>
                   <Parts>
                     <Part name="hardpoint_thruster_right_upper_rear" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X -Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -967,7 +972,7 @@
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_right_lower_rear" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X +Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -984,7 +989,7 @@
                           <Type type="MainThruster" subtypes="" />
                         </Types>
                         <OptimalStates>
-                          <Fixup pos="9, -12, 1.5" />
+                          <Fixup pos="9, -12, 0" />
                         </OptimalStates>
                       </ItemPort>
                     </Part>
@@ -1087,7 +1092,7 @@
                   </DamageBehaviors>
                   <Parts>
                     <Part name="hardpoint_thruster_left_lower_rear" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X +Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -1097,7 +1102,7 @@
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_left_upper_rear" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X -Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -1114,7 +1119,7 @@
                           <Type type="MainThruster" subtypes="" />
                         </Types>
                         <OptimalStates>
-                          <Fixup pos="-9, -12, 1.5" />
+                          <Fixup pos="-9, -12, 0" />
                         </OptimalStates>
                       </ItemPort>
                     </Part>
@@ -1237,13 +1242,14 @@
                       <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Wing Slot" displayPos="475,290">
                         <Types>
                           <Type type="Turret" subtypes="Gun,GunTurret" />
+						  <Type type="WeaponGun" subtypes="Gun" />
                         </Types>
                         <Pitch min="-5" max="5" />
                         <Yaw min="-5" max="5" />
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_left_upper_front" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X -Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -1253,7 +1259,7 @@
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_left_lower_front" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X +Z">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -1318,7 +1324,7 @@
                     <Part name="Wing_Left_100_debris1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,4,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="Wing_Left_100_debris2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,5,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="hardpoint_thruster_left_wing" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2" flags="mount">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X mount">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -1434,7 +1440,7 @@
                     <Part name="Tail_100_debris4" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="-2,4,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="Tail_100_debris5" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,5,3" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3" detachProbability="0.5" />
                     <Part name="hardpoint_thruster_right_rearwing" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2" flags="mount">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation -X mount">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -1444,7 +1450,7 @@
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_left_rearwing" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
-                      <ItemPort minsize="1" maxsize="2" flags="mount">
+                      <ItemPort minsize="1" maxsize="2" flags="maneuver orientation +X mount">
                         <Types>
                           <Type type="ManneuverThruster" subtypes="JointThruster" />
                         </Types>
@@ -2240,7 +2246,7 @@
       <Activations>
         <Activation type="OnGroundCollision" />
       </Activations>
-      <LandingGears landingDamages="500" altitudeToRetractGears="8" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
+      <LandingGears landingDamages="500" altitudeToRetractGears="16" animation="Landing_Gear" openState="Deploy" closeState="Retract" />
     </Action>
   </Actions>
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -2250,34 +2256,34 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Interior bbSize="8,40,5" bbCenter="0,7,2.5">
     <Doors>
-      <Door name="hackdoor1">
+      <!-- <Door name="hackdoor1">
         <Enter startHelper="ladder_climbup_enter_pos" endHelper="ladder_climbup_exit_pos" />
         <Exit startHelper="ladder_climbup_enter_pos" endHelper="ladder_climbup_exit_pos" />
-      </Door>
+      </Door> -->
       <Door name="ladder_lower_player">
         <Enter startHelper="ladder_climbup_enter_pos" endHelper="ladder_climbup_exit_pos" />
         <Exit startHelper="ladder_climbup_enter_pos" endHelper="ladder_climbup_exit_pos" />
       </Door>
-      <Door name="hackdoor3">
+     <!--  <Door name="hackdoor3">
         <Enter startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
         <Exit startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
-      </Door>
+      </Door> -->
       <Door name="ladder_upper_player">
         <Enter startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
         <Exit startHelper="ladder_climbdown_enter_pos" endHelper="ladder_climbdown_exit_pos" />
       </Door>
-      <Door name="hackdoor5">
+     <!--  <Door name="hackdoor5">
         <Enter startHelper="cabin_door_climbin_enter_pos" endHelper="cabin_door_climbin_exit_pos" />
         <Exit startHelper="cabin_door_climbin_enter_pos" endHelper="cabin_door_climbin_exit_pos" />
-      </Door>
+      </Door> -->
       <Door name="cabin_door_outer_player">
         <Enter startHelper="cabin_door_climbin_enter_pos" endHelper="cabin_door_climbin_exit_pos" />
         <Exit startHelper="cabin_door_climbin_enter_pos" endHelper="cabin_door_climbin_exit_pos" />
       </Door>
-      <Door name="hackdoor7">
+      <!-- <Door name="hackdoor7">
         <Enter startHelper="cabin_door_climbout_enter_pos" endHelper="cabin_door_climbout_exit_pos" />
         <Exit startHelper="cabin_door_climbout_enter_pos" endHelper="cabin_door_climbout_exit_pos" />
-      </Door>
+      </Door> -->
       <Door name="cabin_door_inner_player">
         <Enter startHelper="cabin_door_climbout_enter_pos" endHelper="cabin_door_climbout_exit_pos" />
         <Exit startHelper="cabin_door_climbout_enter_pos" endHelper="cabin_door_climbout_exit_pos" />
@@ -2488,8 +2494,9 @@
       <Screens>
         <Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
           <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" x_offset="-0.05" y_offset="0.4" z_offset="-0.02" scale="1" />
+          <Slot name="Landing System" helper="UI_Helper" slot="LandingSystemIndicator" x_offset="-0.05" y_offset="0.4" z_offset="-0.02" scale="1" />
           <Slot name="Fuel Indicator" helper="UI_Helper" slot="FuelIndicator" x_offset="-0.195" y_offset="0.4" z_offset="-0.011" scale="1" />
-          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" x_offset="0.11" y_offset="0.4" z_offset="-0.075" />
+          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" x_offset="0.1" y_offset="0.4" z_offset="-0.065" />
         </Screen>
       </Screens>
       <WaitFor>
@@ -2499,11 +2506,13 @@
       <PostAction>
         <Enter>
           <State animation="Cockpit" state="Deploy" />
+          <State animation="cabin_door" state="Close" />
+		  <State animation="cockpit_door" state="Close" />
         </Enter>
       </PostAction>
     </Seat>
     <!-- Co Pilot's / Rear seat  ("CoPilot" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="CoPilot" enterHelper="Copilot_Mount_Pos" sitHelper="Copilot_Sit_Pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" id="idCoPilotSeat">
+    <Seat name="CoPilot" enterHelper="Copilot_Mount_Pos" sitHelper="Copilot_Sit_Pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" id="idCoPilotSeat">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -2814,7 +2823,7 @@
   <!-- VEHICLE MOVEMENT //////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="180" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,90,90" maxBoostAngularVelocity="90,270,180" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="20.0" id="idMovementStats">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="180" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularVelocity="90,90,90" maxBoostAngularVelocity="90,270,180" maxAngularAcceleration="720,720,720" maxJerk="100.0" maxAngJerk="20.0" maxTorqueAlpha="137.5,137.5,137.5" maxTorqueAngle="1.8,1.8,1.8" id="idMovementStats">
       <SoundParams dmgBufferDecay="0.2">
         <SoundParam engineSoundPosition="rotorSmokeOut" runSoundDelay="1" rpmPitchSpeed="1.2" />
         <SoundParam engineSoundPosition="engineSoundPos" runSoundDelay="1" rpmPitchSpeed="1.2" />
@@ -2867,7 +2876,7 @@
     <Action name="cockpit_door" state="Close" />
     <Action name="GunnerSeat" state="Retract" />
     <Action name="iris_airlock" state="Close" />
-	<Action name="Landing_Gear" state="Deploy" />
+	<Action name="Landing_Gear" state="Deploy" />	
   </Animations>
   <!-- Vehicle Animations (to be replaced by mannequin)
 	Format is
@@ -3022,18 +3031,11 @@
     </Modification>
     <Modification name="SQ42">
       <Elems>
-        <Elem idRef="idVehicleClass" name="Pirate Raider" value="RSI Aurora MR - TRAINER" />
+        <Elem idRef="idVehicleClass" name="displayname" value="Pirate Raider" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.52,0.37,0.51" />
-        <Elem idRef="idMainPart" name="name" value="RSI_Aurora_MR" />
-        <!-- Disable Top right and left hardpoints, only available on LN -->
-        <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
-        <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
-        <!-- Default Loadout -->
-        <!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Vehicles/DefaultRSI_Aurora_MR.xml"/>-->
-        <!-- Damage modifiers changed to make the ship weaker -->
-        <Elem idRef="idDamageMultiplierBullet" name="multiplier" value="99999" />
-        <Elem idRef="idDamageMultiplierExplosion" name="multiplier" value="99999" />
-        <Elem idRef="idDamageMultiplierExplosion" name="splash" value="999999" />
+        <Elem idRef="idDamageMultiplierBullet" name="multiplier" value="100" />
+        <Elem idRef="idDamageMultiplierExplosion" name="multiplier" value="100" />
+        <Elem idRef="idDamageMultiplierExplosion" name="splash" value="100" />
       </Elems>
     </Modification>
   </Modifications>

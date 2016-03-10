@@ -111,8 +111,8 @@ function Elevator:DoPhysicalize()
 	self.currModel = self.Properties.objModel;
 end
 
---CIG BEGIN SJambu -- Used in dynamic spawning to notify the final position of the entity
-function Elevator:OnFinalPositionSet()
+--CIG BEGIN SJambu
+function Elevator:ResetFloorsPosition()
     self.originalpos = self:GetWorldPos();
     self:Reset();
 end
@@ -306,6 +306,11 @@ end
 
 
 function Elevator:Slide(floor)
+	--CIG HACK BEGIN We need to update the floor positions since the elevator doesn't update them if moved after being spawned.
+	if(self.currFloor == 0) then
+		self:ResetFloorsPosition();
+	end
+	-- CIG END
 	if (floor>=self.Properties.nFloorCount) then
 		floor=self.Properties.nFloorCount-1;
 	elseif (floor<0) then

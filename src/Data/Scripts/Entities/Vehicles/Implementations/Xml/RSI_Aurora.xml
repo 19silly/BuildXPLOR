@@ -1,12 +1,13 @@
 <Vehicle name="RSI_Aurora" category="StarFighter" displayname="Anvil Hornet" classname="Class 2" id="idVehicleClass" HudPaletteScheme="RSI" requiredItemTags="flightReady" itemPortTags="RSI_Aurora_Base" crossSectionMultiplier="0.59, 0.61, 0.62">
+<Shield shieldMesh="Objects/Spaceships/Ships/RSI/Aurora/aurora_shield.obj" />
   <Physics pushable="0" dampingFreefall="0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
-  <VisorElement element="Visor_HUD_Aurora" />
+  <VisorElement element="Visor_HUD" />
   <Damages submergedRatioMax="0.4" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.01" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
     <DamageMultipliers>
-      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01"/>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
       <DamageMultiplier damageType="melee" multiplier="0" />
       <DamageMultiplier damageType="collision" multiplier="1" />
       <DamageMultiplier damageType="explosion" multiplier="1" />
@@ -303,15 +304,16 @@
   <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
   <!-- Modes:	gun, missile, pilot, eject, enemy, thrusters, death	-->
   <Cameras>
-    <Camera type="missile" attachPoint="" cameraOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+    <Camera type="missile" attachPoint="" cameraOffset="0,17.5,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
     <Camera type="eject" attachPoint="" cameraOffset="0,5,2" filename="Cameras/eject.xml" />
     <Camera type="death" attachPoint="" cameraOffset="0,0,0" filename="Cameras/death.xml" />
     <Camera type="gun" attachPoint="hardpoint_class_1_left_whisker" cameraOffset="1.7,-2.5,-0.8" cameraRotationOffset="0,90,0" filename="Cameras/gun.xml" />
-	<Camera type="gun" attachPoint="hardpoint_wing_top_left" cameraOffset="-0.5,0.8,-0.3" cameraRotationOffset="0,0,0" filename="Cameras/gun.xml" />
-	<Camera type="gun" attachPoint="hardpoint_wing_top_right" cameraOffset="0.7,0.8,-0.3" cameraRotationOffset="0,0,0" filename="Cameras/gun.xml" />
+    <Camera type="gun" attachPoint="hardpoint_wing_top_left" cameraOffset="-0.5,0.8,-0.3" cameraRotationOffset="0,0,0" filename="Cameras/gun.xml" />
+    <Camera type="gun" attachPoint="hardpoint_wing_top_right" cameraOffset="0.7,0.8,-0.3" cameraRotationOffset="0,0,0" filename="Cameras/gun.xml" />
     <Camera type="pilot" attachPoint="" cameraOffset="-0.4,7.1,1.2" cameraRotationOffset="-7,0,-7" filename="Cameras/pilot.xml" />
     <Camera type="pilot" attachPoint="" cameraOffset="0.4,7.1,1.2" cameraRotationOffset="-7,0,7" filename="Cameras/pilot.xml" />
-	<Camera type="pilot" attachPoint="" cameraOffset="0.05,8.9,0.7" cameraRotationOffset="0,20,180" filename="Cameras/pilot.xml" /> <!-- Rear Facing Pilot Cam -->
+    <Camera type="pilot" attachPoint="" cameraOffset="0.05,8.9,0.7" cameraRotationOffset="0,20,180" filename="Cameras/pilot.xml" />
+    <!-- Rear Facing Pilot Cam -->
   </Cameras>
   <!-- Cinematic Cameras End  //////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -495,14 +497,7 @@
 		-->
       </DamageBehaviors>
       <Parts>
-        <Part name="hardpoint_paint" class="ItemPort">
-			<ItemPort minsize="1" maxsize="1" flags="" display_name="Paint">
-				<Types>
-					<Type type="Paints" />
-				</Types>
-			</ItemPort>
-		</Part>
-		<Part name="Aurora_Cockpit" class="AnimatedJoint" detachRatio="1" damageMax="160" disablePhysics="0">
+        <Part name="Aurora_Cockpit" class="AnimatedJoint" detachRatio="1" damageMax="160" disablePhysics="0">
           <Effects>
             <HitFx effect="damage_fx.uee.static.electric_sparks" joint="Aurora_Cockpit_100_PFX_1" minDamageRatio="0.25" maxDamageRatio="0.49" />
             <HitFx effect="damage_fx.uee.static.smoke_debris" joint="Aurora_Cockpit_100_PFX_2" minDamageRatio="0.35" maxDamageRatio="0.49" />
@@ -585,7 +580,7 @@
             </DamageBehavior>
           </DamageBehaviors>
           <Parts>
-			<Part name="Aurora_RightAirlock" class="AnimatedJoint" damageMax="25" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+            <Part name="Aurora_RightAirlock" class="AnimatedJoint" damageMax="25" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <DamageBehaviors>
                 <DamageBehavior class="DetachPart" damageRatioMin="0.25">
                   <DetachPart>
@@ -653,20 +648,20 @@
               <ItemPort minsize="1" maxsize="2" flags="left" display_name="Left Whisker Class 1 Slot" displayPos="75,290">
                 <Types>
                   <Type type="Turret" subtypes="GunTurret" />
+				  <Type type="WeaponGun" subtypes="Gun" />
                 </Types>
                 <Pitch min="-10" max="10" />
                 <Yaw min="-10" max="10" />
-
               </ItemPort>
             </Part>
             <Part name="hardpoint_class_1_right_whisker" class="ItemPort" detachRatio="0">
               <ItemPort minsize="1" maxsize="2" flags="right" display_name="Right Whisker Class 1 Slot" displayPos="75,290">
                 <Types>
                   <Type type="Turret" subtypes="GunTurret" />
+				  <Type type="WeaponGun" subtypes="Gun" />
                 </Types>
                 <Pitch min="-10" max="10" />
                 <Yaw min="-10" max="10" />
-                
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_mid_front_top" class="ItemPort" detachRatio="0">
@@ -678,7 +673,6 @@
                 <OptimalStates>
                   <Fixup pos="0, 10.6, 1.3" />
                 </OptimalStates>
-              
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_mid_front_bottom" class="ItemPort" detachRatio="0">
@@ -690,7 +684,6 @@
                 <OptimalStates>
                   <Fixup pos="0, 10.6, -1.3" />
                 </OptimalStates>
-                
               </ItemPort>
             </Part>
             <Part name="Aurora_Cockpit_100_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_100" detachEffectJoint="Scythe_Nose_100_debris_1_PFX">
@@ -714,7 +707,6 @@
                         <OptimalStates>
                           <Fixup pos="-1.3, 7.6, 0" />
                         </OptimalStates>
-
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_right_front_mid" class="ItemPort" detachRatio="0">
@@ -726,7 +718,6 @@
                         <OptimalStates>
                           <Fixup pos="1.3, 7.6, 0" />
                         </OptimalStates>
-
                       </ItemPort>
                     </Part>
                     <Part name="Aurora_LeftWhisker" class="AnimatedJoint" damageMax="50" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
@@ -822,36 +813,30 @@
                 </Types>
               </ItemPort>
             </Part>
-            <Part name="hardpoint_light_ext_cockpit_landing" class="ItemPort">
-              <!-- Body Rig attach point  -->
-              <ItemPort minsize="1" maxsize="1" flags="ext_cockpit_landing" display_name="Ext Cockpit Landing Lights">
-                <Types>
-                  <Type type="Light" />
-                </Types>
-              </ItemPort>
-            </Part>
             <Part name="hardpoint_light_ext_cockpit" class="ItemPort">
-              <!-- Body Rig attach point  -->
-              <ItemPort minsize="1" maxsize="1" flags="ext_cockpit" display_name="Ext Cockpit Lights">
-                <Types>
-                  <Type type="Light" />
-                </Types>
-              </ItemPort>
-            </Part>
-            <Part name="hardpoint_light_int_cockpit" class="ItemPort">
-              <!-- Body Rig attach point  -->
-              <ItemPort minsize="1" maxsize="1" flags="int_cockpit" display_name="Int Cockpit Lights">
-                <Types>
-                  <Type type="Light" />
-                </Types>
-              </ItemPort>
-            </Part>
+				<ItemPort minSize="1" maxsize="1">
+					<Types>
+						<Type type="MultiLight" />
+					</Types>
+					<AttachmentPoints>
+						<AttachmentPoint name="ext_body" bone="hardpoint_light_ext_body"/>
+						<AttachmentPoint name="ext_cockpit" bone="hardpoint_light_ext_cockpit"/>
+						<AttachmentPoint name="ext_cockpit_landing" bone="hardpoint_light_ext_cockpit_landing"/>
+						<AttachmentPoint name="ext_dorsal" bone="hardpoint_light_ext_dorsal"/>
+						<AttachmentPoint name="port_nav" bone="hardpoint_light_ext_port_nav"/>
+						<AttachmentPoint name="starboard_nav" bone="hardpoint_light_ext_starboard_nav"/>
+						<AttachmentPoint name="tail" bone="hardpoint_light_ext_tail"/>
+						<AttachmentPoint name="ext_ventral" bone="hardpoint_light_ext_ventral"/>
+						<AttachmentPoint name="int" bone="hardpoint_light_int"/>
+						<AttachmentPoint name="int_cockpit" bone="hardpoint_light_int_cockpit"/>
+					</AttachmentPoints>
+				</ItemPort>
+			</Part>
             <Part name="hardpoint_pilot_chair" class="ItemPort" detachRatio="0">
               <ItemPort minsize="1" maxsize="1" flags="pilot" display_name="Pilot Seat" displayPos="75,290">
                 <Types>
                   <Type type="Seat" subtypes="Pilot" />
                 </Types>
-               
               </ItemPort>
             </Part>
             <Part name="hardpoint_armor" class="ItemPort">
@@ -968,7 +953,6 @@
                         <OptimalStates>
                           <Fixup pos="-1.7, 1.0, -1.85" />
                         </OptimalStates>
-
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_retro_bottom_right" class="ItemPort" detachRatio="0">
@@ -979,7 +963,6 @@
                         <OptimalStates>
                           <Fixup pos="1.7, 1.0, -1.85" />
                         </OptimalStates>
-
                       </ItemPort>
                     </Part>
                     <Part name="Aurora_BottomBeam_75_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,-1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_75_debris_1_PFX" />
@@ -1025,7 +1008,6 @@
                         <OptimalStates>
                           <Fixup pos="-1.7, 1.0, 1.85" />
                         </OptimalStates>
-
                       </ItemPort>
                     </Part>
                     <Part name="hardpoint_thruster_retro_top_right" class="ItemPort" detachRatio="0">
@@ -1036,7 +1018,6 @@
                         <OptimalStates>
                           <Fixup pos="1.7, 1.0, 1.85" />
                         </OptimalStates>
-
                       </ItemPort>
                     </Part>
                     <Part name="Aurora_TopBeam_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.25, 0.5, 0.25" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_TopBeam_25_debris_2_PFX" />
@@ -1076,14 +1057,6 @@
                         <Part name="Aurora_RightBottomWingFrontPropeller" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                       </Parts>
                     </Part>
-                    <Part name="hardpoint_light_ext_starboard_nav" class="ItemPort">
-                      <!-- Body Rig attach point  -->
-                      <ItemPort minsize="1" maxsize="1" flags="starboard_nav" display_name="Starboard Nav Lights">
-                        <Types>
-                          <Type type="Light" />
-                        </Types>
-                      </ItemPort>
-                    </Part>
                     <Part name="Aurora_RightBottomWing_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_25_PFX_debris_2" />
                     <Part name="Aurora_RightBottomWing_50_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_50_PFX_debris_1" />
                     <Part name="Aurora_RightBottomWing_50_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Aurora_RightBottomWing_50_PFX_debris_2" />
@@ -1100,47 +1073,11 @@
                     <Part name="Aurora_RightBottomWing_75_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.hull.med.dmg_75" detachEffectJoint="Aurora_RightBottomWing_75_PFX_debris_2" />
                   </Parts>
                 </Part>
-                <Part name="hardpoint_countermeasure_left" class="ItemPort">
-				  <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Intake Countermeasure Launcher">
-					<Types>
-					  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
-					</Types>
-				  </ItemPort>
-				</Part>
-				<Part name="hardpoint_countermeasure_right" class="ItemPort">
-				  <ItemPort minsize="1" maxsize="3" flags="right" display_name="Left Intake Countermeasure Launcher">
-					<Types>
-					  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
-					</Types>
-				  </ItemPort>
-				</Part>
-				<Part name="hardpoint_fuel_intake_left" class="ItemPort">
-				  <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Fuel Intake">
-					<Types>
-					  <Type type="FuelIntake" />
-					</Types>
-				  </ItemPort>
-				</Part>
-				<Part name="hardpoint_fuel_intake_right" class="ItemPort">
-				  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Fuel Intake">
-					<Types>
-					  <Type type="FuelIntake" />
-					</Types>
-				  </ItemPort>
-				</Part>
-				<Part name="hardpoint_fuel_intake_center" class="ItemPort">
-				  <ItemPort minsize="1" maxsize="1" flags="center" display_name="Center Fuel Intake">
-					<Types>
-					  <Type type="FuelIntake" />
-					</Types>
-				  </ItemPort>
-				</Part>
-				<Part name="hardpoint_power_plant_attach" class="ItemPort" detachRatio="0">
+                <Part name="hardpoint_power_plant_attach" class="ItemPort" detachRatio="0">
                   <ItemPort minsize="1" maxsize="2" flags="main rear" display_name="Power Plant" displayPos="75,290" requiredTags="">
                     <Types>
                       <Type type="PowerPlant" subtypes="Power" />
                     </Types>
-
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_class_3" class="ItemPort" detachRatio="0">
@@ -1148,7 +1085,6 @@
                     <Types>
                       <Type type="WeaponMissile" subtypes="MissileRack" />
                     </Types>
-
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_engine" class="ItemPort" detachRatio="0">
@@ -1159,7 +1095,6 @@
                     <OptimalStates>
                       <Fixup pos="0.0, -5.0, 0" />
                     </OptimalStates>
-                    
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_right_back_mid" class="ItemPort" detachRatio="0">
@@ -1171,7 +1106,6 @@
                     <OptimalStates>
                       <Fixup pos="1.3, -7.6, 0" />
                     </OptimalStates>
-                    
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_mid_back_bottom" class="ItemPort" detachRatio="0">
@@ -1183,7 +1117,6 @@
                     <OptimalStates>
                       <Fixup pos="0, -4.6, -1.3" />
                     </OptimalStates>
-                    
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_left_back_mid" class="ItemPort" detachRatio="0">
@@ -1195,7 +1128,6 @@
                     <OptimalStates>
                       <Fixup pos="-1.3, -7.6, 0" />
                     </OptimalStates>
-                   
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_thruster_mid_back_top" class="ItemPort" detachRatio="0">
@@ -1207,7 +1139,6 @@
                     <OptimalStates>
                       <Fixup pos="0, -4.6, 1.3" />
                     </OptimalStates>
-                   
                   </ItemPort>
                 </Part>
                 <Part name="Aurora_Body_25_debris_1" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" detachEffect="damage_fx.uee.static.electric_small" detachEffectJoint="Scythe_Nose_25_debris_1_PFX" />
@@ -1235,46 +1166,6 @@
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="hardpoint_light_ext_dorsal" class="ItemPort">
-                  <!-- Body Rig attach point  -->
-                  <ItemPort minsize="1" maxsize="1" flags="ext_dorsal" display_name="Dorsal Lights">
-                    <Types>
-                      <Type type="Light" />
-                    </Types>
-                  </ItemPort>
-                </Part>
-                <Part name="hardpoint_light_ext_ventral" class="ItemPort">
-                  <!-- Body Rig attach point  -->
-                  <ItemPort minsize="1" maxsize="1" flags="ext_ventral" display_name="Ventral Lights">
-                    <Types>
-                      <Type type="Light" />
-                    </Types>
-                  </ItemPort>
-                </Part>
-                <Part name="hardpoint_light_ext_body" class="ItemPort">
-                  <!-- Body Rig attach point  -->
-                  <ItemPort minsize="1" maxsize="1" flags="ext_body" display_name="Body Lights">
-                    <Types>
-                      <Type type="Light" />
-                    </Types>
-                  </ItemPort>
-                </Part>
-                <Part name="hardpoint_light_ext_tail" class="ItemPort">
-                  <!-- Body Rig attach point  -->
-                  <ItemPort minsize="1" maxsize="1" flags="tail" display_name="Tail Lights">
-                    <Types>
-                      <Type type="Light" />
-                    </Types>
-                  </ItemPort>
-                </Part>
-                <Part name="hardpoint_light_int" class="ItemPort">
-                  <!-- Body Rig attach point  -->
-                  <ItemPort minsize="1" maxsize="1" flags="int" display_name="Interior Lights">
-                    <Types>
-                      <Type type="Light" />
-                    </Types>
-                  </ItemPort>
-                </Part>
                 <Part name="TopDuct" class="AnimatedJoint">
                   <AnimatedJoint filename="" id="idTopDuct" />
                 </Part>
@@ -1283,7 +1174,6 @@
                     <Types>
                       <Type type="WeaponGun" subtypes="Gun" />
                     </Types>
-                    
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_wing_top_right" class="ItemPort" detachRatio="0">
@@ -1291,7 +1181,6 @@
                     <Types>
                       <Type type="WeaponGun" subtypes="Gun" />
                     </Types>
-                   
                   </ItemPort>
                 </Part>
                 <Part name="hardpoint_selfdestruct" class="ItemPort">
@@ -1366,9 +1255,9 @@
                     </Part>
                   </Parts>
                 </Part>
-                <Part name="Aurora_LeftTopWing" class="AnimatedJoint" damageMax="75" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1" >
-                   <AnimatedJoint filename="" id="idLeftTopWing" />
-				  <Effects>
+                <Part name="Aurora_LeftTopWing" class="AnimatedJoint" damageMax="75" detachRatio="0" detachBaseForce="0,1,0" detachRandomForce="1,0.2,1" detachRandomRotation="0.5,0,0.3" detachProbability="1">
+                  <AnimatedJoint filename="" id="idLeftTopWing" />
+                  <Effects>
                     <HitFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftTopWing_25_PFX_5" minDamageRatio="0.25" maxDamageRatio="0.49" />
                     <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_50_PFX_1" minDamageRatio="0.50" maxDamageRatio="0.74" />
                     <HitFx effect="damage_fx.uee.static.fire_small" joint="Aurora_LeftTopWing_50_PFX_5" minDamageRatio="0.50" maxDamageRatio="0.74" />
@@ -1503,14 +1392,6 @@
                         <Part name="Aurora_LeftBottomWingFrontLowerHatch01" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
                       </Parts>
                     </Part>
-                    <Part name="hardpoint_light_ext_port_nav" class="ItemPort">
-                      <!-- Body Rig attach point  -->
-                      <ItemPort minsize="1" maxsize="1" flags="port_nav" display_name="Port Nav Lights">
-                        <Types>
-                          <Type type="Light" />
-                        </Types>
-                      </ItemPort>
-                    </Part>
                     <Part name="Aurora_LeftBottomWing_25_debris_2" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
                       <Effects>
                         <DetachFx effect="damage_fx.uee.static.electric_small" joint="Aurora_LeftBottomWing_25_PFX_debris_2" partName="Aurora_LeftBottomWing_100_debris_1" />
@@ -1551,6 +1432,41 @@
                     </Part>
                   </Parts>
                 </Part>
+                <Part name="hardpoint_fuel_intake_center" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="center" display_name="Center Fuel Intake">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_intake_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="right" display_name="Right Fuel Intake">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_fuel_intake_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="left" display_name="Left Fuel Intake">
+                    <Types>
+                      <Type type="FuelIntake" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_countermeasure_left" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="3" flags="left" display_name="Left Intake Countermeasure Launcher">
+                    <Types>
+                      <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="hardpoint_countermeasure_right" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="3" flags="right" display_name="Left Intake Countermeasure Launcher">
+                    <Types>
+                      <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+                    </Types>
+                  </ItemPort>
+                </Part>
               </Parts>
             </Part>
           </Parts>
@@ -1573,6 +1489,13 @@
           <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Tank">
             <Types>
               <Type type="FuelTank" />
+            </Types>
+          </ItemPort>
+        </Part>
+        <Part name="hardpoint_paint" class="ItemPort">
+          <ItemPort minsize="1" maxsize="1" flags="" display_name="Paint">
+            <Types>
+              <Type type="Paints" />
             </Types>
           </ItemPort>
         </Part>
@@ -1678,7 +1601,7 @@
   <!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
   <Seats>
     <!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
-    <Seat name="SeatDriver" enterHelper="pilot_enterCockpit_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="pilot" hasGForceReactions="1">
+    <Seat name="SeatDriver" enterHelper="pilot_enterCockpit_pos" sitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -1697,9 +1620,17 @@
           <Orbit speed="120" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" />
         </View>
         <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0">
-          <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1"/>
+          <OrbitPassenger speed="180" zoomSpeed="0.05" zoomMin="0.2" zoomMax="15" zoomInit="1" />
         </View>
       </Views>
+	  <PostAction>
+        <Enter>
+          <State animation="Left_Airlock" state="Close" />
+          <State animation="Left_Ladder" state="Close" />
+          <State animation="Right_Airlock" state="Close" />
+          <State animation="Right_Ladder" state="Close" />
+        </Enter>
+      </PostAction>
       <!-- Begin actions for this seat-->
       <SeatActions>
         <!-- We specify the Movement Seat Action as we don't want the engine to start on entry. Otherwise the default vehicle implementation will init a the SeatActionMovement component that will start the engine on entry-->
@@ -1823,12 +1754,12 @@
               <ControlPart part="Aurora_InteriorLeftJoystick">
                 <Rotate_X input="StrafeUpDown" direction="-1" min="-13" max="20" />
                 <Rotate_Y input="StrafeLeftRight" direction="-1" min="-20" max="20" />
-								<Rotate_Z input="StrafeForwardBack" direction="1" minRange="-1" maxRange="1" min="-25" max="25" />
+                <Rotate_Z input="StrafeForwardBack" direction="1" minRange="-1" maxRange="1" min="-25" max="25" />
               </ControlPart>
               <ControlPart part="Aurora_InteriorRightJoystick">
                 <Rotate_X input="pitch" direction="-1" min="-13" max="20" />
                 <Rotate_Y input="roll" direction="-1" min="-20" max="20" />
-								<Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-25" max="25" />
+                <Rotate_Z input="yaw" direction="-1" minRange="-1" maxRange="1" min="-25" max="25" />
               </ControlPart>
               <ControlPart part="Aurora_InteriorLeftPedal">
                 <Rotate_X input="Brake" direction="1" minRange="-1" maxRange="1" min="0" max="-20" />
@@ -1839,31 +1770,25 @@
             </Parts>
           </AnimateControlInputs>
         </SeatAction>
-
-      <SeatAction class="AnimatedAction">
+        <SeatAction class="AnimatedAction">
           <Actions>
             <!-- Left hand -->
-    <!--        <Action action="v_radar_cycle_zoom_fwd" animation="cockpityokew_rh_cycleradar_add"/>
+            <!--        <Action action="v_radar_cycle_zoom_fwd" animation="cockpityokew_rh_cycleradar_add"/>
             <Action action="v_radar_cycle_zoom_back" animation="cockpityokew_rh_cycleradar_add"/>
 
             <Action action="v_ifcs_toggle_vector_decoupling" animation="cockpityokew_rh_enable_decouple_add"/>
             <Action action="v_ifcs_toggle_gforce_safety" animation="cockpityokew_rh_enable_decouple_add"/>
             <Action action="v_ifcs_toggle_gforce_comstab" animation="cockpityokew_rh_enable_decouple_add"/> -->
-
             <!-- Right hand -->
-    <!--        <Action action="v_weapon_cycle_countermeasure_fwd" animation="cockpityokew_lh_chaff_add"/>
+            <!--        <Action action="v_weapon_cycle_countermeasure_fwd" animation="cockpityokew_lh_chaff_add"/>
             <Action action="v_weapon_cycle_countermeasure_back" animation="cockpityokew_lh_flare_add"/> -->
-
-            <Action action="v_weapon_launch_missile" animation="cockpityokew_rh_press_thumb2"/>
-
-            <Action action="v_afterburner" animation="cockpityokew_lh_afterburner_add" isTrigger="1"/>
-            
-            <Action action="v_attack1_group1" animation="cockpityokew_rh_pull_trigger" isTrigger="1"/>
-            <Action action="v_attack1_group2" animation="cockpityokew_rh_pull_trigger" isTrigger="1"/>
-            <Action action="v_attack1_group3" animation="cockpityokew_rh_pull_trigger" isTrigger="1"/>
+            <Action action="v_weapon_launch_missile" animation="cockpityokew_rh_press_thumb2" />
+            <Action action="v_afterburner" animation="cockpityokew_lh_afterburner_add" isTrigger="1" />
+            <Action action="v_attack1_group1" animation="cockpityokew_rh_pull_trigger" isTrigger="1" />
+            <Action action="v_attack1_group2" animation="cockpityokew_rh_pull_trigger" isTrigger="1" />
+            <Action action="v_attack1_group3" animation="cockpityokew_rh_pull_trigger" isTrigger="1" />
           </Actions>
         </SeatAction>
-        
         <SeatAction class="PassengerIK">
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
@@ -1888,15 +1813,15 @@
         <ThirdPerson scale="1" x_offset="-0.005" y_offset="-0.1" z_offset="-0.075" />
       </FixedVisorSettings>
       <Screens>
-		  <Screen name="Fixed UI" element="ShipInterface" screen="AuroraInterfaceScreen" number="1">
-			  <Container name="FrontHUDScreen" helper="FrontHud_Helper" container="FrontHUDScreen" scale="1.5" x_offset="0" y_offset="0" z_offset="-0.025" />
-			  <Container name="LeftMFD" helper="LeftScreen_Helper" container="LeftMFD" scale="0.6" y_offset="-0.005" />
-			  <Container name="RightMFD" helper="RightScreen_Helper" container="RightMFD" scale="0.6" y_offset="-0.005" />
-			  <Container name="EmissionsScreen" helper="LeftTopScreen_Helper" container="EmissionsScreen" scale="0.65" z_offset="-0.025" />
-			  <Container name="PerformanceScreen" helper="LeftTopScreen_Helper" container="PerformanceScreen" scale="0.65" z_offset="-0.025" />
-			  <Container name="OwnShipHoloScreen" helper="LeftTopScreen_Helper" container="OwnShipHoloScreen" scale="0.65" z_offset="0.08" />
-			  <Container name="TargetHoloScreen" helper="RightTopScreen_Helper" container="TargetHoloScreen" scale="0.60" z_offset="0.03" />
-		  </Screen>
+        <Screen name="Fixed UI" element="ShipInterface" screen="AuroraInterfaceScreen" number="1">
+          <Container name="FrontHUDScreen" helper="FrontHud_Helper" container="FrontHUDScreen" scale="1.5" x_offset="0" y_offset="0" z_offset="-0.025" />
+          <Container name="LeftMFD" helper="LeftScreen_Helper" container="LeftMFD" scale="0.6" y_offset="-0.005" />
+          <Container name="RightMFD" helper="RightScreen_Helper" container="RightMFD" scale="0.6" y_offset="-0.005" />
+          <Container name="EmissionsScreen" helper="LeftTopScreen_Helper" container="EmissionsScreen" scale="0.65" z_offset="-0.025" />
+          <Container name="PerformanceScreen" helper="LeftTopScreen_Helper" container="PerformanceScreen" scale="0.65" z_offset="-0.025" />
+          <Container name="OwnShipHoloScreen" helper="LeftTopScreen_Helper" container="OwnShipHoloScreen" scale="0.65" z_offset="0.08" />
+          <Container name="TargetHoloScreen" helper="RightTopScreen_Helper" container="TargetHoloScreen" scale="0.60" z_offset="0.03" />
+        </Screen>
       </Screens>
     </Seat>
     <Seat name="SeatBed" enterHelper="pilot_enterBed_pos" sitHelper="pilot_Bed_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-70" lookMax="60,0,70" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
@@ -2067,34 +1992,31 @@
       </Tags>
     </TagsList>
   </GeomTags>
-  
   <Paints>
- 		<Paint name="aurora_uee" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_uee.mtl"/>
-		<Paint name="aurora_blackbeard" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_blackbeard.mtl"/>
-		<Paint name="aurora_pitchfork" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_pitchfork.mtl"/>
- </Paints>
-  
+    <Paint name="aurora_uee" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_uee.mtl" />
+    <Paint name="aurora_blackbeard" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_blackbeard.mtl" />
+    <Paint name="aurora_pitchfork" material="Objects/Spaceships/Ships/RSI/Aurora/aurora_paint_pitchfork.mtl" />
+	<Paint name="aurora_SXSW15" material="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_Sxsw15.mtl" />
+  </Paints>
   <Modifications>
     <Modification name="CL">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora CL" />
-		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.61,0.62"/>
-				
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.61,0.62" />
         <Elem idRef="idMainPart" name="name" value="RSI_Aurora_CL" />
         <!-- Disable Top right and left hardpoints, only available on LN -->
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
         <!-- Default Loadout -->
-        <!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Vehicles/DefaultRSI_Aurora_CL.xml"/>-->
-		<!-- Geom Tags for Holo Table -->
+        <!--<Elem idRef="idDefaultLoadout" name="loadout" value="Scripts/Loadouts/Vehicles/DefaultRSI_Aurora_CL.xml"/>-->
+        <!-- Geom Tags for Holo Table -->
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_CL.mtl" />
       </Elems>
     </Modification>
     <Modification name="ES">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora ES" />
-		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.62,0.62"/>
-		
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.62,0.62" />
         <Elem idRef="idMainPart" name="name" value="RSI_Aurora_ES" />
         <!-- Disable Top right and left hardpoints, only available on LN -->
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
@@ -2104,15 +2026,14 @@
     <Modification name="LN">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora LN" />
-		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.49,0.50,0.60"/>
-		
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.49,0.50,0.60" />
         <Elem idRef="idMainPart" name="name" value="RSI_Aurora_LN" />
         <Elem idRef="idBottomBeam" name="skipPart" value="1" />
         <!-- Enable Top right and left hardpoints, only available on LN -->
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="hardpoint_wing_top_right" />
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="hardpoint_wing_top_left" />
-		<!-- Geom Tags for Holo Table -->
-        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />		
+        <!-- Geom Tags for Holo Table -->
+        <Elem idRef="idHoloGeometry_Default" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />
         <Elem idRef="idHoloGeometry_OverDragging" name="name" value="Objects/UI/Ships/RSI/Aurora/RSI_Aurora_LN_UI.cga" />
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_LN.mtl" />
       </Elems>
@@ -2120,26 +2041,24 @@
     <Modification name="LX">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora LX" />
-		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.52,0.53,0.63"/>
-		
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.52,0.53,0.63" />
         <Elem idRef="idMainPart" name="name" value="RSI_Aurora_LX" />
         <!-- Disable Top right and left hardpoints, only available on LN -->
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
-		<!-- Geom Tags for Holo Table -->
+        <!-- Geom Tags for Holo Table -->
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_LX.mtl" />
       </Elems>
     </Modification>
     <Modification name="MR">
       <Elems>
         <Elem idRef="idVehicleClass" name="displayname" value="RSI Aurora MR" />
-		<Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.61,0.62"/>
-		
+        <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.59,0.61,0.62" />
         <Elem idRef="idMainPart" name="name" value="RSI_Aurora_MR" />
         <!-- Disable Top right and left hardpoints, only available on LN -->
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_right" name="part" value="" />
         <Elem idRef="idSharedWeapon_hardpoint_wing_top_left" name="part" value="" />
-		<!-- Geom Tags for Holo Table -->
+        <!-- Geom Tags for Holo Table -->
         <Elem idRef="idHoloGeometry_ItemPreviewA" name="material" value="Objects/Spaceships/Ships/RSI/Aurora/RSI_Aurora_MR.mtl" />
       </Elems>
     </Modification>

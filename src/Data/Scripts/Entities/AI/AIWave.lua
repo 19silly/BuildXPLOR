@@ -499,6 +499,9 @@ function AIWave:Reset()
 	self.currentAssignment = nil
 	self.bDisabledAndCleared = false;
 	
+	if (Kyt) then
+		Kyt.RegisterGroupEntity(self.id, "Wave");
+	end
 end
 
 

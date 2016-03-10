@@ -12,7 +12,7 @@ DRAK_Cutlass =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_DRAK_Cutlass.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_DRAK_Cutlass.xml",
 		
 		Perception =
 		{

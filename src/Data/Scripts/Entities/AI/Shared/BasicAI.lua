@@ -227,7 +227,6 @@ function BasicAI:OnReset(bFromInit, bIsReload)
 	self:SetScriptUpdateRate(self.UpdateTime);
 
 	self.useAction = AIUSEOP_NONE;
-	self.groupid = self.PropertiesInstance.groupid;
 
 	-- now the same for special fire animations
 

@@ -6,6 +6,8 @@ SmartObjectAnimHelper =
 	},
   
 	bIsInUse = false,
+	fLastUseStartTime = 0,
+	fLastUseEndTime = 0,
 
 	Editor = {	
 		Model="Editor/Objects/Arrow.cgf",

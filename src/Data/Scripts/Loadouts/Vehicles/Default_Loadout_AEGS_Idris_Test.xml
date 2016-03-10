@@ -1,0 +1,448 @@
+<Loadout>
+  <Pipes>
+    <Pipe name="BatteryPower" class="Power" priority="1"/>
+    <Pipe name="MainPower" class="Power" priority="0"/>
+    <Pipe name="Avionics" class="Avionics" type="Binary" />
+    <Pipe name="Heat" class="Heat"  />
+    <Pipe name="MainFuel" class="Fuel" priority="1" />
+    <Pipe name="BatteryFuel" class="Fuel" priority="0" />
+	</Pipes>
+	
+	<Items>
+
+
+		<Item portName="hardpoint_engine_left_1" itemName="Idris_MainEngine">
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+			</Pipes>
+		</Item>
+		<Item portName="hardpoint_engine_right_1" itemName="Idris_MainEngine">
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+			</Pipes>
+		</Item>	
+		<Item portName="hardpoint_engine_left_2" itemName="Idris_MainEngine">
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+			</Pipes>
+		</Item>
+		<Item portName="hardpoint_engine_right_2" itemName="Idris_MainEngine">
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+			</Pipes>
+		</Item>		
+		<Item portName="hardpoint_engine_left_3" itemName="Idris_MainEngine">
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+			</Pipes>
+		</Item>
+		<Item portName="hardpoint_engine_right_3" itemName="Idris_MainEngine">
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+				<Connection pipeClass="Fuel"     pipe="MainFuel"   prio0="0"  prio1="10"  prio2="99"/>
+			</Pipes>
+		</Item>	
+
+    <Item portName="hardpoint_powerplant" itemName="Idris_PowerPlant">
+		  <Pipes>
+			<Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+			<Connection pipeClass="Power" 	 pipe="BatteryPower" prio0="0"  prio1="10"  prio2="99" />
+			<Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+		  </Pipes>
+		  <Items>
+			<Item portName="hardpoint_battery" itemName="">
+			  <Pipes>
+				<Connection pipeClass="Input"  pipe="BatteryPower" prio0="0" />
+				<Connection pipeClass="Output" pipe="MainPower"    prio0="100" />
+			  </Pipes>
+			</Item>
+		  </Items>
+		</Item>
+
+    <Item portName="hardpoint_fuel_intake" itemName="Idris_FuelIntake">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Fuel"     pipe="BatteryFuel"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+	
+    <Item portName="hardpoint_fuel_tank" itemName="Idris_FuelTank">
+      <Pipes>
+        <Connection pipeClass="Input"  pipe="BatteryFuel" prio0="0" />
+        <Connection pipeClass="Output" pipe="MainFuel"    prio0="100" />
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_avionics" itemName="ANVL_Test_Motherboard">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_cpu_slot"           itemName="ANVL_Test_CPU" />
+        <Item portName="hardpoint_targeting_computer" itemName="ANVL_Test_TC" />
+        <Item portName="hardpoint_ads_computer"       itemName="ANVL_Test_ADS" />
+        <Item portName="hardpoint_weapon_control"     itemName="ANVL_Test_WC" />
+        <Item portName="hardpoint_landing_system"     itemName="ANVL_Test_LandingSystem" />
+      </Items>
+    </Item>
+
+    <Item portName="hardpoint_seat" itemName="AEGS_Idris_Seat">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_seat_left" itemName="AEGS_Idris_Seat">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item> 
+
+	<Item portName="hardpoint_seat_right" itemName="AEGS_Idris_Seat">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_radiator" itemName="Idris_Cooler">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_radar" itemName="GRNP_SR_S3_Q2">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="Radar_Helper" itemName="RSI_3DRadarDisplay">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_thruster_left_1" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+	
+    <Item portName="hardpoint_thruster_left_2" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_thruster_left_3" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>	
+
+    <Item portName="hardpoint_thruster_right_1" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+	
+    <Item portName="hardpoint_thruster_right_2" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_thruster_right_3" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>	
+
+    <Item portName="hardpoint_thruster_top_1" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_thruster_top_2" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>	
+	
+    <Item portName="hardpoint_thruster_top_3" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>	
+	
+    <Item portName="hardpoint_thruster_bottom_1" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>
+
+    <Item portName="hardpoint_thruster_bottom_2" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>	
+
+    <Item portName="hardpoint_thruster_bottom_3" itemName="Idris_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>			
+
+    <Item portName="hardpoint_thruster_retro_left" itemName="Idris_Retro_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>		
+
+    <Item portName="hardpoint_thruster_retro_right" itemName="Idris_Retro_Thruster">
+      <Pipes>
+		<Connection pipeClass="Power" pipe="MainPower" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Heat" pipe="Heat" prio0="0"  prio1="10"  prio2="99" />
+		<Connection pipeClass="Avionics" pipe="Avionics" prio0="0"  prio1="10"  prio2="99" />
+      </Pipes>
+    </Item>		
+	
+    <Item portName="hardpoint_left_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items> 
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>
+	
+    <Item portName="hardpoint_right_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items> 
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>	
+	
+    <Item portName="hardpoint_front_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="BEHR_LaserCannon_S4" />
+        <Item portName="hardpoint_class_1_right" itemName="BEHR_LaserCannon_S4" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>		
+	
+    <Item portName="hardpoint_left_rear_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>	
+
+    <Item portName="hardpoint_right_rear_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>	
+	
+    <Item portName="hardpoint_bottom_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>	
+
+    <Item portName="hardpoint_front_left_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>
+	
+    <Item portName="hardpoint_front_right_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>	
+	
+    <Item portName="hardpoint_rear_lower_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>
+
+	<Item portName="hardpoint_rear_upper_turret" itemName="Idris_Turret">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+      <Items>
+        <Item portName="hardpoint_ai_module"     itemName="RSI_DefaultTurretAIModule" />
+        <Item portName="hardpoint_class_1_left"  itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="hardpoint_class_1_right" itemName="KLWE_LaserRepeater_S3" />
+        <Item portName="TurretMount"             itemName="ANVL_Hornet_BallTurret_Lights" />
+        <Item portName="Ballturret"              itemName="ANVL_Hornet_BallTurret_Lights" />
+      </Items>
+    </Item>	
+	
+    <Item portName="hardpoint_missile_rack" itemName="RSI_Constellation_MissilePod">
+      <Pipes>
+        <Connection pipeClass="Power"    pipe="MainPower"  prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Heat"     pipe="Heat"       prio0="0"  prio1="10"  prio2="99"/>
+        <Connection pipeClass="Avionics" pipe="Avionics"   prio0="0"  prio1="10"  prio2="99"/>
+      </Pipes>
+			<Items>
+				<Item portName="missile_attach_001" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_002" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_003" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_004" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_005" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_006" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_007" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_008" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_009" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_010" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_011" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_012" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_013" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_014" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_015" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_016" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_017" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+					<Item portName="missile_attach_018" itemName="NOVP_Rattler_S2_Cluster_TL_IR" />
+			</Items>	  
+    </Item>	
+	</Items>
+</Loadout>

@@ -30,7 +30,7 @@ function Assault:SetupPlayerTeamSpecifics(localActorId)
 
 	if (isAttacker and (isAttacker == true)) then
 		-- Remove any defender mods that may still be active (from previous round)
-		System.SetCVar("g_mpNoEnemiesOnRadar", 0);
+		--System.SetCVar("g_mpNoEnemiesOnRadar", 0);
 
 	else
 		System.SetCVar("g_mpAllSeeingRadar", 0);
@@ -72,7 +72,8 @@ function Assault:SetTeamSpecificsForGeneralPlayer(playerId)
 		local  newMaxHealth = player.Properties.Damage.health;
 
 		if ( not playerAttacker or (playerAttacker == false) ) then
-			newMaxHealth = System.GetCVar("g_mp_as_DefendersMaxHealth");
+			newMaxHealth = 180; 
+			--was System.GetCVar("g_mp_as_DefendersMaxHealth");
 		end
 
 		if (player.actor) then
@@ -92,7 +93,7 @@ function Assault:ResetPlayerTeamSpecifics()
 		self.OldCVars.AllSeeingRadar = nil;
 	end
 	if ((self.OldCVars.NoEnemiesOnRadar) and (self.OldCVars.NoEnemiesOnRadar ~= nil)) then
-		System.SetCVar("g_mpNoEnemiesOnRadar", self.OldCVars.NoEnemiesOnRadar);
+		--System.SetCVar("g_mpNoEnemiesOnRadar", self.OldCVars.NoEnemiesOnRadar);
 		self.OldCVars.NoEnemiesOnRadar = nil;
 	end
 

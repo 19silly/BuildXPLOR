@@ -323,6 +323,10 @@ function AITerritory:OnReset()
 	
 	self.nActiveCount = 0;
 	self.nBodyCount   = 0;
+
+	if (Kyt) then
+		Kyt.RegisterGroupEntity(self.id, "Territory");
+	end
 end
 
 

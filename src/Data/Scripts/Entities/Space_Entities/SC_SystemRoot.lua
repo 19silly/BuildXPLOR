@@ -20,6 +20,11 @@ function SC_SystemRoot:OnSpawn()
 end
 
 ------------------------------------------------------------------------------------------------------
+function SC_SystemRoot:OnDestroy()
+	Universe.ClearStarSystem()
+end
+
+------------------------------------------------------------------------------------------------------
 function SC_SystemRoot:OnPropertyChange()
 	Universe.SpawnStarSystem(self.Properties.systemName);
 end

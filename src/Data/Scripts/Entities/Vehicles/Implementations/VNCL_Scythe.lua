@@ -12,7 +12,7 @@ VCLN_Scythe =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_VNCL_Scythe.xml",  --FIX ME! Needs to be created
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_VNCL_Scythe.xml",  --FIX ME! Needs to be created
 
 		Perception =
 		{

@@ -12,7 +12,7 @@ ShubinMissileTurret =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_ShubinMissileTurret.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_ShubinMissileTurret.xml",
 		
 		Perception =
 		{

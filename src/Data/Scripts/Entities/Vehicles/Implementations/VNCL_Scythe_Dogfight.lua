@@ -12,7 +12,7 @@ VNCL_Scythe_Dogfight =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_VNCL_Scythe_Dogfight.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_VNCL_Scythe_Dogfight.xml",
 		
 		Perception =
 		{

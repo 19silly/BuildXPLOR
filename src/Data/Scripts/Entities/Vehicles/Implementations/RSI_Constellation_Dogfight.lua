@@ -12,7 +12,7 @@ RSI_Constellation_Dogfight =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_RSI_Constellation_Dogfight.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_Constellation_Dogfight.xml",
 		
 		Perception =
 		{

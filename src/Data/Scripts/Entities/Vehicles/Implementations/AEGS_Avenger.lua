@@ -12,7 +12,7 @@ AEGS_Avenger =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_AEGS_Avenger.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_AEGS_Avenger.xml",
 		
 		Perception =
 		{

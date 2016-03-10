@@ -141,18 +141,6 @@ Turret =
 			fileBodyDamageParts = "Libs/BodyDamage/BodyParts_HumanTurret.xml",
 			fileBodyDestructibility = "Libs/BodyDamage/BodyDestructibility_HumanTurret.xml",
 		},
-
-		AutoAimTargetParams =
-		{
-			primaryTargetBone = "weaponjoint_ref",
-			physicsTargetBone = "weaponjoint_ref",
-			secondaryTargetBone = "arcjoint",
-			fallbackOffset = 1.2,
-			innerRadius = 0.5,
-			outerRadius = 0.6,
-			snapRadius = 1.5,
-			snapRadiusTagged = 3.0,
-		},
 	},
 
 	PropertiesInstance = 

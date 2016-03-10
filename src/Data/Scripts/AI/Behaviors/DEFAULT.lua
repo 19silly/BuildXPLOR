@@ -940,11 +940,4 @@ local Behavior = CreateAIBehavior("DEFAULT", {
 		end
 	
 	end,
-	
-	---------------------------------------------
-	OnHitDeathReactionInterrupted = function(self, entity, sender, data)
-	
-		self:OnFinishedStumbling(entity, sender, data);
-	
-	end,
 })

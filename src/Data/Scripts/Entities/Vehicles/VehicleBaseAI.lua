@@ -52,6 +52,7 @@ VehicleBaseAI =
 		esAIPilotEntity = "",
 		esFaction = "",
 		bFactionHostility = 1,
+		esContextualDialog = "",
 
 		aicharacter_character = "Tank",
 		leaderName = "",
@@ -522,6 +523,7 @@ end
 --------------------------------------------------------------------------
 function VehicleBaseAI:OnPropertyChangeExtra()
 	self.vehicle:SetAIPilotClassName(self.Properties.esAIPilotEntity);
+	self.vehicle:SetAIContextualResponseFile(self.Properties.esContextualDialog);
 	if (self.Properties.fileItemLoadout) then
 		self.vehicle:LoadXmlLoadout(self.Properties.fileItemLoadout);
 	end

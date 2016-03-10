@@ -93,7 +93,7 @@ function SC_Planet:Client_OnTimer()
 			local dist = LengthSqVector(mypos);
 			local radius = self.Properties.landingOuterRadius;
 			if (dist < radius * radius) then
-				--Game.ShowDebugText("Press 'Y' to land on planet", 0.08);
+				Game.ShowDebugText("Press 'Y' to land on planet", 0.08);
 				if (Game.IsKeyDown("y")) then
 					Game.LoadLevel(self.Properties.landingZones)
 				end

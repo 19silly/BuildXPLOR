@@ -46,8 +46,6 @@ PlayerHeavy =
 
 		fileModel = "Objects/Characters/Human/sdk_player/sdk_player.cdf",
 		clientFileModel = "Objects/Characters/Human/sdk_player/sdk_player.cdf",
-
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_PlayerSP.xml",
 	},
 
 	PropertiesInstance = 
@@ -184,18 +182,6 @@ PlayerHeavy =
 				name = "relaxed",
 				useCapsule = 1,
 			},
-		},
-
-		autoAimTargetParams =
-		{
-			primaryTargetBone = BONE_SPINE,
-			physicsTargetBone = BONE_SPINE,
-			secondaryTargetBone = BONE_HEAD,
-			fallbackOffset = 1.2,
-			innerRadius = 1.0,
-			outerRadius = 3.5,
-			snapRadius = 1.0,
-			snapRadiusTagged = 1.0,
 		},
 
 --[[	boneIDs =

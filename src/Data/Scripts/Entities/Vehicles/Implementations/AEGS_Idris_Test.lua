@@ -12,7 +12,7 @@ AEGS_Idris_Test =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_AEGS_Idris_Test.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_AEGS_Idris_Test.xml",
 		
 		Perception =
 		{

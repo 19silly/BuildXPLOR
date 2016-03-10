@@ -110,31 +110,51 @@
 	<Parts>
 		<Part name="hull" class="Animated" component="Hull" mass="0" disablePhysics="0" scopeContext="Vehicle"  id="idMainPart">
 			<Parts>
-			
-
-						<Part name="weapon_mount" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" portTags="AEGS_Avenger_Base" >
-							<Types>
-								<Type type="Turret" subtypes="GunTurret"/>
-							</Types>
-							<Pitch min ="-20" max ="20" />
-							<Yaw min ="-45" max ="15" />
-							<GeomTags>
-							  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
-							  <TagsList>
-							  <Tags tag="over dragging">
-								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
-							  </Tags>
-							  <Tags tag="overCompareValid">
-								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
-							  </Tags>
-							  <Tags tag="overCompareInvalid">
-								<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
-							  </Tags>
-							  </TagsList>
-							</GeomTags>
-							</ItemPort>
-						</Part>
+				<Part name="hardpoint_radar" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
+                    <Types>
+                      <Type type="Radar" subtypes="ShortRangeRadar,MidRangeRadar" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+				<Part name="UI_Helper" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="nose" display_name="UI">
+                    <Types>
+                      <Type type="Display" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+                <Part name="Radar_Helper" class="ItemPort">
+                  <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="Radar Slot">
+                    <Types>
+                      <Type type="Display" />
+                    </Types>
+                  </ItemPort>
+                </Part>
+				
+				<Part name="weapon_mount" class="ItemPort">
+					<ItemPort minsize="1" maxsize="5" flags="center" display_name="Normal Turret Slot" displayPos="275,260" displayTop="1" portTags="AEGS_Avenger_Base" >
+					<Types>
+						<Type type="Turret" subtypes="GunTurret"/>
+					</Types>
+					<Pitch min ="-20" max ="20" />
+					<Yaw min ="-45" max ="15" />
+					<GeomTags>
+					  <geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+					  <TagsList>
+					  <Tags tag="over dragging">
+						<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_blue.mtl" />
+					  </Tags>
+					  <Tags tag="overCompareValid">
+						<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_green.mtl" />
+					  </Tags>
+					  <Tags tag="overCompareInvalid">
+						<geom name="objects/effects/holotable/HoloTable_empty_port_dodecahedron_prop_uee_2.cgf" material="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_red.mtl" />
+					  </Tags>
+					  </TagsList>
+					</GeomTags>
+					</ItemPort>
+				</Part>
 						
 						
 				<Part name="hardpoint_power_plant_attach" class="ItemPort">
@@ -258,6 +278,7 @@
 								<ItemPort part="hardpoint_radiator_attach" />
 								<ItemPort part="hardpoint_avonics_motherboard" />
 								<ItemPort part="hardpoint_radar" />
+								<ItemPort part="Radar_Helper" />								
 							</Items>
 						</Settings>
 					</SharedItems>
@@ -274,6 +295,24 @@
 				</SeatAction>
 			</SeatActions>
 			<Sounds inout="0" mood="1"/>
+			<DockingStation>
+				<Slots>
+					<Slot name="First" itemPort="Radar_Helper">
+						<Tag name="Radar" scale="0.2" />
+					</Slot>
+				</Slots>
+			</DockingStation>
+			<FixedVisorSettings default_fixed="0">
+				<FirstPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
+				<ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
+			</FixedVisorSettings>
+			<Screens>
+				<Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
+					<Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" scale="0.45" y_offset="0" z_offset="0.0" />
+					<Slot name="Fuel Indicator" helper="UI_Helper" slot="FuelIndicator" scale="0.45" x_offset="-0.065" y_offset="0" z_offset="0.009" />
+					<Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" scale="0.45" x_offset="0.071" y_offset="0" z_offset="-0.02" />
+				</Screen>
+			</Screens>
 		</Seat>
 	</Seats>
 	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
@@ -335,7 +374,12 @@
   </GeomTags>
   
 	<Modifications>
-	
+		<Modification name="SQ42_TestMount">
+			<Elems>
+				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Weapon_Mount/SQ42_TestWeaponMount.cga"/>
+			</Elems>
+		</Modification>
+		
 		<Modification name="Normal">
 			<Elems>
 				<Elem idRef="idShipGeometry" name="filename" value="Objects/Spaceships/Weapon_Mount/RSI_IR1337_Weapon_Mount.cga"/>

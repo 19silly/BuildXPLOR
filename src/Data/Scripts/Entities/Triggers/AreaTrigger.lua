@@ -169,9 +169,13 @@ function AreaTrigger:EnteredArea(entity, areaId)
 	if (not self:CanTrigger(entity.id, areaId)) then
 		return;
 	end
-
-	self.inside[entity.id]=true;
-	self.insideCount=self.insideCount+1;
+	-- CIG BEGIN - Alexis Vuillaume BHVR
+	-- If the player was already inside, we do nothing
+	if not self.inside[entity.id] then	
+		self.inside[entity.id]=true;
+		self.insideCount=self.insideCount+1;
+	end;
+	-- CIG END
 
 	self:Event_Enter(entity.id);
 end
@@ -181,9 +185,13 @@ function AreaTrigger:LeftArea(entity, areaId)
 	if (not self:CanTrigger(entity.id, areaId)) then
 		return;
 	end
-
-	self.inside[entity.id]=nil;
-	self.insideCount=self.insideCount-1;
+	-- CIG BEGIN - Alexis Vuillaume BHVR
+	-- If the player is not already inside, we do nothing
+	if self.inside[entity.id] then 
+		self.inside[entity.id]=nil;
+		self.insideCount=self.insideCount-1;
+	end;
+	-- CIG END
 
 	self:Event_Leave(entity.id);
 end
@@ -321,9 +329,13 @@ function AreaTrigger:Event_Enable()
 	self:Enable(true);
 
 	local entityIdInside = next(self.inside);
-	if (entityIdInside) then
-	  self:Event_Enter( entityIdInside );
-	end;
+	-- CIG BEGIN - Alexis Vuillaume BHVR
+	-- This was causing the "Enter" input to activate when you enable the AreaTrigger with insideCount > 0
+	-- if (entityIdInside) then
+	--   self:Event_Enter( entityIdInside );
+	-- end;
+	-- CIG END
+
   self:ActivateOutput("NrOfEntitiesInside", self.insideCount);
 
 	BroadcastEvent(self, "Enable");

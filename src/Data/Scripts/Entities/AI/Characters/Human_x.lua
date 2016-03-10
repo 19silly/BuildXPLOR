@@ -7,12 +7,13 @@ Human_x =
 	SoundDatabase = "Animations/Mannequin/ADB/playerSounds.adb",
 
 	UseMannequinAGState = true,
-	UseLegacyCoverLocator = false,
+	UseLegacyCoverLocator = true,
 
 	gameParams =
 	{
 		boneIDs = 
 		{
+			BONE_HIPS = "Hips",
 			BONE_SPINE = "Spine",
 			BONE_SPINE2 = "Spine2",
 			BONE_SPINE3 = "Spine3",
@@ -23,8 +24,10 @@ Human_x =
 			BONE_WEAPON2 = "Lweapon_bone",
 			BONE_FOOT_R = "RightFoot",
 			BONE_FOOT_L = "LeftFoot",
-			BONE_ARM_R = "RightForeArm",
-			BONE_ARM_L = "LeftForeArm",
+			BONE_ARM_R = "RightArm",
+			BONE_ARM_L = "LeftArm",
+			BONE_FOREARM_R = "RightForeArm",
+			BONE_FOREARM_L = "LeftForeArm",
 			BONE_CALF_R = "RightLeg",
 			BONE_CALF_L = "LeftLeg",
 			BONE_CAMERA = "HeadCam",
@@ -43,6 +46,19 @@ Human_x =
 
 		canUseComplexLookIK = true,
 		lookAtSimpleHeadBone = "Head",
+		
+		--CIG Rob J - copying in these params that were added to the player - as need to make AIs' look IK behave more smoothly in conversations 
+		lookIKMaxDegreesPerSecX = 3600,
+		lookIKMaxDegreesPerSecY = 3600,
+		lookIKSmoothingTime = 0.75,
+		lookIKSmoothingTimeInVehicle = 0,
+		lookIKSmoothingTimeMoving = 0,
+		lookIKSmoothingTimeZeroG = 0,
+
+		lookIKThresholdX = 0,
+		lookIKThresholdY = 0,
+		lookIKInThresholdMaxDegreesPerSecX = 5,
+		lookIKInThresholdMaxDegreesPerSecY = 5,
 
 		stepThresholdTime = 0.5, -- Duration (seconds) the current position deviation needs to be above stepThresholdDistance before the character steps
 		stepThresholdDistance = 0.1, -- Distance (meters) that the character has to deviate from the entity before the step timer (stepThresholdTime) steps
@@ -140,9 +156,8 @@ Human_x =
 
 		soclasses_SmartObjectClass = "Human, Actor",
 
-		esModularBehaviorTree = "Dummy",
+		esModularBehaviorTree = "",
 		esNavigationType = "MediumSizedCharacters",
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_PlayerSP.xml",
 
 		esVoice = "AI_01",
 		esCommConfig = "Human",
@@ -151,7 +166,7 @@ Human_x =
 
 		Damage =
 		{
-			health = 1000,
+			health = 100,
 			fileBodyDamage = "Libs/BodyDamage/BodyParts_HumanMaleShared.xml",
 			fileBodyDamageParts = "Libs/BodyDamage/BodyParts_HumanMaleShared.xml",
 			fileBodyDestructibility = "Libs/BodyDamage/BodyDestructibility_Default.xml",
@@ -174,22 +189,19 @@ Human_x =
 			config = "Human",
 		},
 
+		useSpecialMovementTransitions = 1,
 		bOverrideAllowLookAimStrafing = 1,
 
 		aibehavior_behaviour = "",
 		aicharacter_character = "",
 		esBehaviorSelection = "HumanGrunt",
 
-		fileModel = "Objects/Characters/Human/Males/rsi_suit.cdf",
+		fileModel = "Objects/Characters/Human/male_cdfs/bhm_master.cdf",
 
 		bUseFacialFrameRateLimiting = 1,
-		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
 
-		-- CraigG : Item ports descriptor (currently same as player)
-		fileItemPortsXml = "Scripts/Entities/Items/XML/Player/PlayerItemPorts.xml",
-		
-		-- CIG cbrungardt @ IllFonic Loadout descriptor
-		fileItemLoadout = "Scripts/Loadouts/Player/AI/AIDefaultItemLoadout.xml",
+		-- Default Loadout override for AI
+		fileItemLoadout = "Scripts/Loadouts/Player/AI/AIEmptyItemLoadout.xml",
 		
 		AIBehaviorFlags =
 		{

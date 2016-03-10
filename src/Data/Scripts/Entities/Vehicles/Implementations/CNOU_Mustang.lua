@@ -12,7 +12,7 @@ CNOU_Mustang =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_CNOU_Mustang.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_CNOU_Mustang.xml",
 		
 		Perception =
 		{

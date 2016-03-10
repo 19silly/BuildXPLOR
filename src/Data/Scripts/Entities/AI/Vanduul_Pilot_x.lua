@@ -27,7 +27,14 @@ Vanduul_Pilot_x =
 		distanceToHideFrom = 3,
 		preferredCombatDistance = 20,		-- preferred combat distance from the target
 		esFaction = "Vanduul",
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_Grunt.xml",
+		
+		-- Item ports descriptor
+		-- None for this Placeholder Vanduul Pilot
+		fileItemPortsDefinition = "",
+
+		-- Loadout descriptor
+		-- None for this Placeholder Vanduul Pilot
+		fileItemLoadout = "",
 		
 		CharacterSounds =
 		{	

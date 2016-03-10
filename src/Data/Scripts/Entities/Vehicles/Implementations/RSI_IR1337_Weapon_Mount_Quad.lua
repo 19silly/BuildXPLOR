@@ -12,7 +12,7 @@ RSI_IR1337_Weapon_Mount_Quad =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		sItemLoadout = "Scripts/Vehicles/Default_Loadout_RSI_IR1337_Weapon_Mount_quad.xml",
+		sItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_IR1337_Weapon_Mount_quad.xml",
 		
 		Perception =
 		{

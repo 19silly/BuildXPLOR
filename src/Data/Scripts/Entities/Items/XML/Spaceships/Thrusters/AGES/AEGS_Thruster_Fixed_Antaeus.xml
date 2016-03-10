@@ -1,0 +1,186 @@
+<item name="AEGS_Thruster_Fixed_Antaeus" class="VehicleItemThruster" invisible="0" category="VehicleThruster" >
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+		<param name="adb" value="Spaceships/Thrusters/thrusterAnims.adb" />
+		<param name="actionController" value="thrusterControllerDefs.xml" />
+		<param name="itemType" value="MainThruster" />
+		<param name="itemSubType" value="FixedThruster" />
+		<param name="itemManufactor" value="Aegis" />
+		<param name="itemSize" value="6" />
+		<param name="itemTags" value="flightReady" />
+		<param name="requiredPortTags" value="AEGS_Retaliator_Base" />
+		<param name="display_name"	value="Aegis Antaeus Main Engine" /> <!--This is the correct name, we need to change the file name and so on to match this at some point -->
+	</params>
+
+    <power_grouping>
+        <param name="powerGrouping" value ="thruster.main" />
+    </power_grouping>
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga"/>
+		
+		<tags tag="left">
+				<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+		</tags>
+		<tags tag="right">
+				<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Right.cga" material=""/>
+		</tags>
+		
+		<tags tag="Hologram">
+	
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+
+			<tags tag="ShipHologram">
+				<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+		  
+				<tags tag="inactive">
+					<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+				</tags>
+				<tags tag="over dragging">
+				<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+				</tags>
+				<tags tag="overCompareValid">
+					<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+				</tags>
+				<tags tag="overCompareInvalid">
+					<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+				</tags>
+			</tags>
+		
+			<tags tag="ItemList">
+				<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+				<tags tag="over dragging">
+					<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+				</tags>
+			</tags>	
+		
+			<tags tag="ItemPreviewA">
+		  	<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+			</tags>
+		
+			<tags tag="ItemPreviewB">
+		 	 <thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material=""/>
+			</tags>	
+		
+		</tags>
+	
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="damage_50">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Thrusters/AEGS/antaeus/AEGS_Thruster_Fixed_Antaues_Left.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+		</tags>	
+		
+		<boneAttachments>		
+<!-- 			<attachment target="thirdperson" name="nozzle" bone="nozzle_node"/>		 -->
+			<attachment target="thirdperson" name="engine_exhaust" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_output" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_fuel" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_heat" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_light" bone="exhaust" orientation="0,0,-90"/>
+			<attachment target="thirdperson" name="engine_boost_light" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_sound" bone="exhaust" orientation="0,0,-180"/>
+			<attachment target="thirdperson" name="engine_boost_sound" bone="exhaust" orientation="0,0,-180"/>
+		</boneAttachments>
+
+	</geometry>
+
+	<Pipes>
+		<Pipe class="Power" prioType="manageable" prioGroup="thruster">
+      <Pool capacity="-100" rate="-10" />
+      <States>
+        <State state="Default">
+				  <Value value="0" />
+		    </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.3" />
+        <Fail     value = "0.1" />
+      </StateLevels>
+    </Pipe>
+
+		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
+			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<States>
+				<State state="Off"><Value value="0" /></State>
+				<State state="Boost,Active" transition="0.25"><Value value="40" /></State>
+				<State state="Idle"><Value value="20" /></State>
+			</States>
+		</Pipe>
+
+		<Pipe class="Fuel" prioType="critical">
+			<States>
+				<State state="Default"><Value value="0" /></State>
+				<State state="Boost"><Value value="-20" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<gimbal type="fixed" >
+		</gimbal>
+  
+  <thrusters>
+	  <thruster flags="main rear" maxThrust="2500000" >
+		  <exhausts>
+			  <exhaust scale="1.0" animation="nozzle" helper="engine_exhaust" effectStopThreshold="0.1">
+				  <effect name="thruster_fx.Templates.Thrust-12" helper="engine_exhaust" enable ="0" tag = "run">
+				  <!--effect name="!test_ParticleArchetypes.somegroup.particleEffect" archetype="1" helper="engine_exhaust"-->
+					  <strength var="thrust" />
+				  </effect>
+  <!-- 				<effect name="thruster_fx.Hornet.HM_4_3_Output" helper="engine_output" enable ="0" tag = "run">
+					  <strength var="thrust" />
+					  <size var="thrust" min="1.0" multiplier="0.5" />
+					  <speed var="thrust" min="0.25" multiplier="1" />
+				  </effect>
+				  <effect name="thruster_fx.Hornet.HM_4_3_Fuel_Efficiency" helper="engine_fuel" enable ="0" tag = "run">
+					  <size var="thrust" min="1.0" multiplier="0.5" />
+					  <speed var="thrust" min="0.25" multiplier="1" />
+					  <strength var="thrust" min="0" multiplier="1" />
+				  </effect>
+				  <effect name="thruster_fx.Hornet.HM_4_3_Heat" helper="engine_heat" enable ="0" tag = "run">
+					  <strength var="thrust" />
+					  <size var="heat" min=".5" multiplier=".5" />
+				  </effect> -->
+				  <!-- light name="Engine_Flare" helper="engine_light" enable ="0" tag = "run">
+					  <radius var="thrust" min="2" multiplier="2" />
+					  <diffuse var="thrust" min="0.3" multiplier="0.7" />
+					  <specular var="thrust" min="0.4" multiplier="0.6" />
+				  </light -->
+				  <material enable ="0" slot="1" helper = "nozzle" matId= "21" tag = "run">
+					  <param name="glow" var="thrust" min = "1" multiplier="51" />
+				  </material>
+  <!-- 				<light name="!test_LightsArchetypes.groupname.light" archetype= "1" helper="engine_boost_light" enable ="0" tag="boost">
+					  <radius var="thrust" min="6" multiplier="8" />
+					  <diffuse var="thrust" min="0.5" multiplier="0.5" />
+					  <specular var="boost" min="0.5" multiplier="0.5" />
+					  <HDRDynamic var="thrust" min="0.5" multiplier="2" />
+				  </light> -->
+				  <sound name="sounds/thrusters:dstc_blue:start_run" enable ="0" tag = "run" loop="0" helper="engine_sound">
+					  <param name="rpm" var="thrust" lerpTime="0.2" />
+					  <param name="boost" var="boost" lerpTime="0.9" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+				  <sound name="sounds/thrusters:dstc_blue:stop" enable ="0" tag = "stop" loop="0">
+				  <param name="rpm" var="thrust" lerpTime="0.5" />
+				  <param name="boost" var="boost" lerpTime="0.2" />
+				  <param name="in_out" var="in_out" />
+				  </sound>
+				  <sound name="sounds/afterburner:dstc_blue:run" enable ="0" tag = "boost" helper="engine_boost_sound">
+					  <param name="boost" var="boost" lerpTime="0.4" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+			  </exhaust>
+		  </exhausts>
+	  </thruster>
+  </thrusters>
+	
+</item>

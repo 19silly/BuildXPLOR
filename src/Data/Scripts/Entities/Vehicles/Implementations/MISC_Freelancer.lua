@@ -12,7 +12,7 @@ MISC_Freelancer =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_MISC_Freelancer.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_MISC_Freelancer.xml",
 		
 		Perception =
 		{

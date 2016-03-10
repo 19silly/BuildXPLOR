@@ -28,6 +28,8 @@
 	<Helmet>
 		<param name="helmetMountName" value="helmetmount1" />
 		<param name="hudAttach" value="hud_attach" />
+		<param name="visorElement" value="Visor_HUD" />
+		<param name="flashBackground" value="Background_Default" />
 		<!-- First person visor params -->
 		<param name="fpScaleX" value="0.63" />
 		<param name="fpScaleY" value="0.5" />
@@ -36,11 +38,28 @@
 		<param name="tpScaleX" value="0.23" />
 		<param name="tpScaleY" value="0.17" />
 		<param name="tpDistance" value="0.08" />
+		
+		<RadarItems>
+			<radar name="FPS_3DRadar" itemPort="radar" />
+			<display name="FPS_3DRadarDisplay" xOffset="0.05" yOffset="0.016" zOffset="0.02" />
+		</RadarItems>
 	</Helmet>
 	
 	<portParams>
 		<ports>
 			<ItemPort minsize="1" maxsize="1" name="HUD_Helper" display_name="HUD DockingStation Helper">
+				<types>
+					<Type type="Display" />
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="radar" display_name="Radar Helper">
+				<types>
+					<Type type="Radar" />
+				</types>
+			</ItemPort>
+			
+			<ItemPort minsize="1" maxsize="1" name="hud_attach" display_name="Radar Display">
 				<types>
 					<Type type="Display" />
 				</types>

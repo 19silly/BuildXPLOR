@@ -8,10 +8,23 @@ ConversationBubble =
 		fOffsetZ = -0.1,		--[-25,25,0.01,"Offset of the bubble around the pivot point.\nMight need to change this on slopes."]
 		--sConversation = "",		--["Name of the Conversation to play when Optimum Bubble is entered"]
 		esDialogName = "", --["Name of the Conversation to play when Optimum Bubble is entered"]
-		sNPC1EntityName = "",
+		
+		sNPC1EntityName = "",		
+		NPC1 = {
+			bAllowLowerBodyTurn = 1,
+		},
 		sNPC2EntityName = "",
+		NPC2 = {
+			bAllowLowerBodyTurn = 1,
+		},
 		sNPC3EntityName = "",
+		NPC3 = {
+			bAllowLowerBodyTurn = 1,
+		},
 		sNPC4EntityName = "",
+		NPC4 = {
+			bAllowLowerBodyTurn = 1,
+		},
 	},
   
 	Editor = {

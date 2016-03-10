@@ -1,5 +1,6 @@
 ShopItemSpawnPoint = {
   Properties = {
+	tagRequest_ItemConstraints = "||[][]",
   },
 
   Client = {},

@@ -6,8 +6,11 @@ ZeroGGrabObject =
 {
   Properties =
   {
-	Width = 1.0
-   },
+		Width = 1.0,
+
+		HandsToWorldDelta = { x = 0.0, y= -1.049 , z = -0.882 }	,
+
+  },
 
   Client={},
   Server={},

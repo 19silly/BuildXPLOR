@@ -1,0 +1,96 @@
+<Vehicle name="MITE_SimPod" category="Simpod" displayname="MicroTech Simpod" classname="Class 2" id="idVehicleClass">
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+
+	<Parts>
+		<Part name="hull" class="Animated" component="Hull" mass="0" disablePhysics="0" scopeContext="Vehicle"  id="idMainPart">
+			<Animated filename="Objects/brush/planet/uee/simpod/simpod_01.cga" filenameDestroyed="Objects/brush/planet/uee/simpod/simpod_01.cga" id="idShipGeometry"/>
+		</Part>
+
+	</Parts>
+	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Helpers>
+	</Helpers>
+	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Actions>
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="mount_pos" distance="1.5" bbMin="-0.4,-0.4,0" bbMax="0.4,0.4,1.75"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="SeatDriver"/>
+				</Seats>
+			</Enter>
+		</Action>
+	</Actions>
+	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Seats>
+
+		<!-- Pilot's seat ("SeatDriver" is the standard name that Star Citizen uses for the this position) -->
+		<Seat name="SeatDriver" exitOffsetPlayer="0,0,0.25" enterHelper="mount_pos" sitHelper="sit_pos" updatePassengerTM ="0" useBoundsForEntering="1" isDriver="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceship" visorType="pilot">
+			<!-- Begin views for this seat-->
+			<Views defaultFirstPerson="0" defaultThirdPerson="3">
+				<View class="Cockpit" hidePlayer ="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+					<Cockpit offset ="0,0,0" relativeToHorizon ="0.9"/>
+				</View>
+			</Views>
+
+			<ArenaCommanderSettings scale="0.75" helper ="UI_Helper"/>
+
+			<!-- Begin actions for this seat-->
+			<SeatActions>
+				<!-- Weapons used / controlled by pilot of Confed Hornet -->
+				<SeatAction class="SharedWeapons">
+					<SharedWeapons isAvailableDocked="1">
+						<Settings>
+							<Items>
+								<ItemPort part="weapon_mount" priority="0" active="1" actorRecoil="0"  defaultGroup="0"/>
+							</Items>
+						</Settings>
+					</SharedWeapons>
+				</SeatAction>
+			</SeatActions>
+			<Sounds inout="0" mood="1"/>
+		</Seat>
+	</Seats>
+	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<MovementParams>
+		<WeaponMount/>
+	</MovementParams>
+	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- Mannequin information for vehicle -->
+	<Mannequin tag="Weapon_Mount" controllerDef="Animations/Mannequin/ADB/Vehicles/simpod/simpod_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Vehicles/simpod/simpod_Anims.adb" passengerADB="Animations/Mannequin/ADB/Vehicles/simpod/simpod_HumanAnims.adb" id="idMannequin"/>
+
+	<GeomTags>
+		<geom name="Objects/brush/planet/uee/simpod/simpod_01.cga" material="materials/item_selection/material_hologram_neutral.mtl" id="idHoloGeometry_Default"/>
+		<TagsList>
+			<Tags tag="over dragging">
+				<geom name="Objects/brush/planet/uee/simpod/simpod_01.cga" material="materials/item_selection/material_hologram_unselected.mtl" id="idHoloGeometry_OverDragging"/>
+			</Tags>
+			<Tags tag="ItemPreviewA">
+				<geom name="Objects/brush/planet/uee/simpod/simpod_01.cga" material="" id="idHoloGeometry_ItemPreviewA" />
+			</Tags>
+		</TagsList>
+	</GeomTags>
+
+	<Modifications>
+
+	</Modifications>
+
+</Vehicle>

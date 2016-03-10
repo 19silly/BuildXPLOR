@@ -12,7 +12,7 @@ RSI_Merlin =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_RSI_P52_Merlin.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_P52_Merlin.xml",
 		
 		Perception =
 		{

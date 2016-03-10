@@ -25,9 +25,6 @@ BasicActor =
 
 	Properties =
 	{
-		fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_Default.xml",
-		bEnableHitReaction = 1,
-
 		soclasses_SmartObjectClass = "Actor",
 		physicMassMult = 1.0,
 
@@ -35,7 +32,7 @@ BasicActor =
 		{
 			bLogDamages = 0,
 			-- CIG BEGIN
-			health = 1000,
+			health = 100,
 			-- CIG END
 		},
 
@@ -53,7 +50,12 @@ BasicActor =
 			footstepIndGearAudioSignal_Run = "",	-- This directly plays the specified audiosignal on every footstep
 			foleyEffect = "",						-- Foley signal effect name
 		},
-		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
+
+		-- Item ports descriptor
+		fileItemPortsDefinition = "Scripts/Entities/Items/XML/Player/PlayerItemPorts.xml",
+
+		-- Loadout descriptor
+		fileItemLoadout = "Scripts/Loadouts/Player/Marine_Light_Armor_Loadout.xml",
 	},
 
 	tempSetStats =
@@ -136,7 +138,7 @@ BasicActorParams =
 	{
 		flags = 0,
 		mass = 110,
-		mass_Player = 30, -- CIG
+		mass_Player = 80, -- Rodney @ Illfonic
 		mass_Grunt = 180,
 
 		stiffness_scale = 73,
@@ -146,7 +148,7 @@ BasicActorParams =
 		{
 			gravity = 9.81,
 			mass = 110,
-			mass_Player = 30, -- CIG
+			mass_Player = 80, -- Rodney @ Illfonic
 			mass_Grunt = 180,
 			air_resistance = 0.0, -- Used in zeroG
 			k_air_control = 0.9,
@@ -163,17 +165,6 @@ BasicActorParams =
 
 	gameParams =
 	{
-		autoAimTargetParams =
-		{
-			primaryTargetBone = BONE_SPINE,
-			physicsTargetBone = BONE_SPINE,
-			secondaryTargetBone = BONE_HEAD,
-			fallbackOffset = 1.2,
-			innerRadius = 0.4,
-			outerRadius = 0.5,
-			snapRadius = 2.0,
-			snapRadiusTagged = 4.0,
-		},
 		sprintMultiplier = 1.5,		-- Speed is multiplied by this ammount if sprint key is pressed
 		crouchMultiplier = 1.0,		-- Speed is multiplied by this ammount if crouching
 		strafeMultiplier = 1.0,		-- Speed is multiplied by this ammount when strafing
@@ -316,14 +307,6 @@ function BasicActor:ResetCommon(bFromInit, bIsReload)
 		self.actor:SetHealth(health);
 		self.actor:SetMaxHealth(health);
 		self.lastHealth = self.actor:GetHealth();
-		self.actor:RegisterInAutoAimManager();
-	end
-
-	-- Hit reaction
-	if (self.Properties.bEnableHitReaction and self.Properties.bEnableHitReaction == 0) then
-		self.actor:DisableHitReaction();
-	else
-		self.actor:EnableHitReaction();
 	end
 
 	-- Sounds
@@ -361,9 +344,14 @@ function BasicActor:Reset(bFromInit, bIsReload)
 
 	self:ResetBleeding();
 
-	if (bFromInit and CryAction.IsServer()) then
-		if (g_gameRules and g_gameRules.EquipActor) then
-			g_gameRules:EquipActor(self);
+	if (CryAction.IsServer()) then
+		if (bFromInit or System.IsEditor()) then
+			if (self.Properties.fileItemLoadout) then
+				self.actor:LoadXmlLoadout(self.Properties.fileItemLoadout);
+				if (not self.actor:IsPlayer()) then
+					self.actor:AISelectDefaultWeapon();
+				end
+			end
 		end
 	end
 
@@ -605,7 +593,7 @@ function BasicActor.Server:OnHit(hit)
 	if (self:IsOnVehicle() and hit.type~="heal") then
 		local vehicle = System.GetEntity(self.actor:GetLinkedVehicleId());
 		if (vehicle and vehicle.vehicle) then
-			local newDamage = vehicle.vehicle:ProcessPassengerDamage(self.id, self.actor:GetHealth(), hit.damage, hit.typeId, hit.explosion or false);
+			local newDamage = vehicle.vehicle:ProcessPassengerDamage(self.id, self.actor:GetHealth(), hit.damageTable, hit.typeId, hit.explosion or false);
 			if (newDamage <= 0.0) then
 				return false;
 			end
@@ -618,7 +606,7 @@ function BasicActor.Server:OnHit(hit)
 	local died = self.actor:ProcessActorDamage(hit.targetId, 
 												hit.shooterId or NULL_ENTITY, 
 												hit.weaponId or NULL_ENTITY,
-												hit.damage,
+												hit.damageTable,
 												g_gameRules.game:GetHitMaterialId(hit.material_type),
 												hit.partId,
 												hit.typeId,

@@ -12,7 +12,7 @@ AEGS_Gladius =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_AEGS_Gladius.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_AEGS_Gladius.xml",
 		
 		Perception =
 		{

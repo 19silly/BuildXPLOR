@@ -12,7 +12,7 @@ RSI_IR1337_Missile_Platform =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_RSI_IR1337_Missile_Platform.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_IR1337_Missile_Platform.xml",
 		
 		Perception =
 		{

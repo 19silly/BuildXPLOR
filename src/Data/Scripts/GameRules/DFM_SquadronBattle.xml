@@ -25,6 +25,8 @@
 			<Event type="Award_CrashRoberts" points="0" />
 			<Event type="Award_ForcedError" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
 			<Event type="Award_ForcedEject" points="1" /> <!-- Dynamic 1 point per damage remaining on target -->
+			<Event type="Award_GoodNight" points="100" />
+			<Event type="Award_LightsOut" points="100" />
 
 			<!-- Squadron Battle Awards -->
 			<Event type="Award_KillAssist" points="200" />
@@ -65,6 +67,7 @@
 	<AssistScoring class="DFMAssistScoring" maxTimeBetweenAttackAndKillForAssist='15000' />
 
 	<PlayerStats class="DFMPlayerStats" />
+	<RECAllocation class="DFMRECAllocationStandard" scoreForFullRECPool="20000" />
 	<StatsRecording class="AuthoritativeStats" />
 
 	<State class="DFMState">
@@ -89,30 +92,36 @@
 	<!-- Custom Match Settings -->
 	<OptionBindings>
 		<OptionBinding>
-			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "20000" Max = "250000" Step = "2500"	DefaultValue = "100000" />
+			<Option		Name = "TargetScore" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesTargetScore" Description = "@dfm_ac_ui_RulesTargetScore"	Min = "20000" Max = "250000" Step = "2500"	DefaultValue = "100000" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		<OptionBinding>
-			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "20" />
+			<Option		Name = "TimeLimit" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesTimeLimit" Description = "@dfm_ac_ui_RulesTimeLimit"	Min = "5"	Max = "30"	Step = "1"	DefaultValue = "20" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		<!--
 		<OptionBinding>
-			<Option		Name = "StartingTickets" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesStartingTickets" Description = "@dfm_ac_ui_RulesStartingTickets"	Min = "1"	Max = "60"	Step = "1"	DefaultValue = "20" />
+			<Option		Name = "StartingTickets" Type = "eRangeRestrictedNumber" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesStartingTickets" Description = "@dfm_ac_ui_RulesStartingTickets"	Min = "1"	Max = "60"	Step = "1"	DefaultValue = "20" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		-->
 		<!--
 		<OptionBinding>
-			<Option		Name = "CockpitView" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesCockpitView" Description = "@dfm_ac_ui_RulesCockpitView"	DefaultValue = "true" />
+			<Option		Name = "CockpitView" Type = "eBoolean" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesCockpitView" Description = "@dfm_ac_ui_RulesCockpitView"	DefaultValue = "true" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		-->
 		<!--
 		<OptionBinding>
-			<Option		Name = "FriendlyFire" Type = "eBoolean" Category = "eArenaCommanderMatchSettings"	DisplayName = "@dfm_ac_ui_RulesFriendlyFire" Description = "@dfm_ac_ui_RulesFriendlyFire"	DefaultValue = "false" />
+			<Option		Name = "FriendlyFire" Type = "eBoolean" Category = "eArenaCommanderMissionTypeSettings"	DisplayName = "@dfm_ac_ui_RulesFriendlyFire" Description = "@dfm_ac_ui_RulesFriendlyFire"	DefaultValue = "false" />
 			<Strategy OptionBindingStrategy = "eLatePointer" />
 		</OptionBinding>
 		-->
 	</OptionBindings>
+
+	<!-- Valid Arena Commander Maps -->
+	<Maps>
+		<Map name="DFM_BrokenMoon"/>
+		<Map name="DFM_DyingStar"/>
+	</Maps>
 </Mode>

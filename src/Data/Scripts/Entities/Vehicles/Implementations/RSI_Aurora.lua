@@ -12,7 +12,7 @@ RSI_Aurora =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/Default_Loadout_RSI_Aurora_MR.xml",  -- "MR" loadout is default
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/Default_Loadout_RSI_Aurora_MR.xml",  -- "MR" loadout is default
 		
 		Perception =
 		{

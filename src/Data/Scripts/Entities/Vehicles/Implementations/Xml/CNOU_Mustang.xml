@@ -5,7 +5,8 @@
 //////////////////////////////////////////////////////////////////////////
 -->
 <Vehicle name="CNOU_Mustang" category="StarFighter" displayname="CNOU Mustang Alpha" classname="Class 2" id="idVehicleClass" dockingclass="2" piority="2" HudPaletteScheme="Origin" requiredItemTags="flightReady" itemPortTags="CNOU_Mustang_Base" crossSectionMultiplier="0.51,0.28,0.43">
-  <Physics pushable="0" dampingFreefall="0">
+<Shield shieldMesh="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Shield_VFX.obj" />
+  <Physics pushable="0" dampingFreefall="0" comOffset="0,-1,0">
     <Buoyancy waterDensity="150" waterResistance="2500" />
     <Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
   </Physics>
@@ -54,7 +55,9 @@
   <!-- Cinematic Cameras ///////////////////////////////////////////////////////////////////////////////-->
   <!-- Modes:	gun, missile, pilot, eject, enemy, thrusters, death	-->
   <Cameras>
-    <Camera type="missile" attachPoint="" cameraOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+		<Camera type="missile" attachPoint="" cameraOffset="0,17.5,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+		<Camera type="missile" attachPoint="hardpoint_class3_left" cameraOffset="-15,15,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
+		<Camera type="missile" attachPoint="hardpoint_class3_right" cameraOffset="15,15,-5" cameraSecondaryOffset="0,-4.5,1" filename="Cameras/missile.xml" />
     <Camera type="eject" attachPoint="" cameraOffset="0,5,2" filename="Cameras/eject.xml" />
     <Camera type="death" attachPoint="" cameraOffset="0,0,0" filename="Cameras/death.xml" />
     <Camera type="gun" attachPoint="hardpoint_weapon_class1_left_wing" cameraOffset="6.5,0.3,-0.8" cameraRotationOffset="0,45,0" cameraShakeScale="0.2" filename="Cameras/gun.xml" />
@@ -70,7 +73,7 @@
   <!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <Parts>
-    <Part name="CNOU_Mustang" class="Animated" damageMax="180" mass="13500" disablePhysics="1" scopeContext="Ship" id="idMain_Part">
+		<Part name="CNOU_Mustang" class="Animated" damageMax="180" mass="13500" disablePhysics="0" scopeContext="Ship" id="idMain_Part">
       <Animated filename="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang.cga" filenameDestruction="Objects\Spaceships\Ships\CNOU\Mustang\CNOU_Mustang_Damaged.cga" id="idShipGeometry" />
       <Parts>
         <Part name="body" class="AnimatedJoint" damageMax="100">
@@ -87,93 +90,93 @@
                 <DamagePart name="v_Interior_A" />
               </DamageParts>
             </DamageBehavior>
-          </DamageBehaviors>
+          </DamageBehaviors> 
           <Parts>
             <Part name="hardpoint_thruster_front_left_top" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontL">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +X -Z Mustang_FrontL">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="-7.8, 4, 4" />
+                  <Fixup pos="-1, 3, 0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_front_left_bottom" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontR">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +X +Z Mustang_FrontR">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="-7.8, 4, -4" />
+                  <Fixup pos="-1, 3, -0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_rear_left_top" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +X -Z Mustang">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="-7.8, -4, 4" />
+                  <Fixup pos="-1, -3, 0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_rear_left_bottom" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation +X +Z Mustang">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="-7.8, -4, -4" />
+                  <Fixup pos="-1, -3, -0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_rear_right_top" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -X -Z Mustang">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="7.8, -4, 4" />
+                  <Fixup pos="1, -3, 0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_rear_right_bottom" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -X +Z Mustang">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="7.8, -4, -4" />
+                  <Fixup pos="1, -3, -0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_front_right_top" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontR">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -X -Z Mustang_FrontR">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="7.8, 4, 4" />
+                  <Fixup pos="1, 3, 0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
             <Part name="hardpoint_thruster_front_right_bottom" class="ItemPort">
-              <ItemPort minsize="1" maxsize="1" flags="Mustang_FrontL">
+              <ItemPort minsize="1" maxsize="1" flags="maneuver orientation -X +Z Mustang_FrontL">
                 <Pitch min="0" max="90" />
                 <Types>
                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                 </Types>
                 <OptimalStates>
-                  <Fixup pos="7.8, 4, -4" />
+                  <Fixup pos="1, 3, -0.4" />
                 </OptimalStates>
               </ItemPort>
             </Part>
@@ -299,7 +302,7 @@
                                   <Type type="ManneuverThruster" subtypes="JointThruster" />
                                 </Types>
                                 <OptimalStates>
-                                  <Fixup pos="2.5, 5.2, 0.0" />
+                                  <Fixup pos="2.5, 0.0, 1.2" />
                                 </OptimalStates>
                               </ItemPort>
                             </Part>
@@ -372,8 +375,11 @@
                                       <Type type="MainThruster" subtypes="" id="idEngineType" />
                                     </Types>
                                     <OptimalStates>
-                                      <Fixup pos="2.5, -5.2, 0.0" />
+                                      <Fixup pos="2.6, -6.1, 1.0" />
                                     </OptimalStates>
+                                    <Thruster>
+                                      <Params flags="allowSpin" />
+                                    </Thruster>
                                   </ItemPort>
                                 </Part>
                               </Parts>
@@ -404,7 +410,7 @@
                               <Type type="ManneuverThruster" subtypes="JointThruster" />
                             </Types>
                             <OptimalStates>
-                              <Fixup pos="-2.5, 5.2, 0.0" />
+                              <Fixup pos="-2.5, 0.0, 1.2" />										          
                             </OptimalStates>
                           </ItemPort>
                         </Part>
@@ -477,8 +483,11 @@
                                   <Type type="MainThruster" subtypes="" id="idEngineType" />
                                 </Types>
                                 <OptimalStates>
-                                  <Fixup pos="-2.5, -5.2, 0.0" />
+                                  <Fixup pos="-2.6, -6.1, 1.0" />
                                 </OptimalStates>
+                                <Thruster>
+                                  <Params flags="allowSpin" />
+                                </Thruster>
                               </ItemPort>
                             </Part>
                           </Parts>
@@ -774,7 +783,7 @@
                     </Types>
                   </ItemPort>
                 </Part>
-                <Part name="hardpoint_weapon_class_4" class="ItemPort">
+								<Part name="hardpoint_weapon_class_4" class="ItemPort" skipPart="0" id="idCenterBallTurret" >
                   <ItemPort minsize="1" maxsize="2" flags="center" display_name="Bottom Turret Slot" displayPos="275,260" displayTop="1" requiredTags="">
                     <Types>
                       <Type type="Turret" subtypes="BallTurret" />
@@ -787,7 +796,6 @@
                 </Part>
               </Parts>
             </Part>
-            <Part name="ArenaCommander_Helper" class="ItemPort" />
             <Part name="Radar_Helper" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="UI">
                 <Types>
@@ -834,7 +842,7 @@
               <Type type="MainThruster" subtypes="" id="idEngineType" />
             </Types>
             <OptimalStates>
-              <Fixup pos="0.0, -5.2, 0.0" />
+              <Fixup pos="0.0, -2.9, 0.0" />
             </OptimalStates>
           </ItemPort>
         </Part>
@@ -1229,6 +1237,7 @@
         </Part> -->
             <Part name="v_wing_right_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
             <Part name="v_wing_left_50_debris3" class="AnimatedJoint" damageMax="1" detachRatio="1" detachBaseForce="0,1,0" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1" />
+   
           </Parts>
         </Part>
       </Parts>
@@ -1481,7 +1490,7 @@
     <Action class="Enter">
       <Activations>
         <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge_helper" distance="1" bbMin="-0.3,-0.3,-0.1" bbMax="0.3,0.3,0.05" id="" />
-        <Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge2_helper" distance="1" bbMin="-0.6,-0.5,-0.1" bbMax="0.6,0.5,0.1" id="" />
+				<Activation type="OnUsed" param1="helper" param2="v_mustang_beta_lounge2_helper" distance="1" bbMin="-0.6,-0.5,0" bbMax="0.6,0.5,0.5" id="" />
       </Activations>
       <Enter>
         <Seats>
@@ -1659,7 +1668,7 @@
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
-  <Interior bbSize="3,6,2" bbCenter="0,4,0">
+	<Interior bbSize="3,10,2" bbCenter="0,2,0">
     <Doors>
       <Door name="HatchDoor">
         <Enter startHelper="pilot_enter_pos_start" endHelper="pilot_enter_pos_end">
@@ -1788,6 +1797,7 @@
                 <ItemPort part="hardpoint_avionics_motherboard" />
                 <ItemPort part="hardpoint_radar" />
                 <ItemPort part="hardpoint_shield_generator" />
+				<ItemPort part="hardpoint_seat" />
                 <ItemPort part="radar_helper" />
                 <ItemPort part="*light" />
                 <ItemPort part="*hardpoint_fuel" />
@@ -1884,13 +1894,14 @@
       <Screens>
         <Screen name="Front HUD" element="Fixed_HUD" screen="FrontHUDScreen" number="1">
           <Slot name="Front HUD" helper="UI_Helper" slot="FrontHUD" x_offset="-0.05" y_offset="0" z_offset="-0.02" scale="1" />
+          <Slot name="Landing System" helper="UI_Helper" slot="LandingSystemIndicator" x_offset="-0.05" y_offset="0" z_offset="-0.02" scale="1" />
           <Slot name="Fuel Indicator" helper="UI_Helper" slot="FuelIndicator" x_offset="-0.195" z_offset="-0.011" scale="1" />
-          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" x_offset="0.11" z_offset="-0.075" />
+          <Slot name="Countermeasures" helper="UI_Helper" slot="Countermeasures" x_offset="0.1" z_offset="-0.065" />
         </Screen>
       </Screens>
     </Seat>
     <!-- MUSTANG BETA SPECIFIC SEATS -->
-    <Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+		<Seat name="MustangBetaBedSeat" enterHelper="v_mustang_beta_bed_mount_pos" sitHelper="v_mustang_beta_bed_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1931,7 +1942,7 @@
       </PostAction>
       <SeatActions />
     </Seat>
-    <Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
+		<Seat name="MustangBetaLoungeSeat" enterHelper="v_mustang_beta_lounge_mount_pos" sitHelper="v_mustang_beta_lounge_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="2" isHUDSupported="0" actionMap="spaceship" id="">
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <SteerThirdPerson />
@@ -1967,7 +1978,7 @@
   <!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
   <MovementParams>
-    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="90,110,90" maxAngularAcceleration="750,750,50" maxJerk="100.0" maxAngJerk="60.0" id="idMovementStats">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="200" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="90,110,90" maxAngularAcceleration="750,750,50" maxJerk="100.0" maxAngJerk="50.0" maxTorqueAlpha="100.5,100.5,100.5" maxTorqueAngle="18,18,18" id="idMovementStats">
       <SoundParams>
         <AmbientSound sound="Sounds/spaceships_CNOU_Mustang:parts:ambient_interior" />
         <PassByLoopSound sound="Sounds/spaceships:CNOU_Mustang/pass_by:pass_by_loop" />
@@ -2132,7 +2143,6 @@
         <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Gamma" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.51,0.28,0.44" />
         <Elem idRef="idMain_Part" name="name" value="Consolidated Outlands Mustang_Gamma" />
-        <Elem idRef="idMain_Part" name="mass" value="8000" />
         <Elem idRef="idShipVariantGeometry" name="filename" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Gamma.cga" />
         <Elem idRef="idShipVariantGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Gamma_Damage.cga" />
         <!-- Geom Tags for Holo Table -->
@@ -2154,6 +2164,7 @@
         <Elem idRef="idPilotEnterShipActivation" name="param2" value="" />
         <Elem idRef="idPilotEnterPosActivation" name="param2" value="cockpit_use_helper2" />
         <Elem idRef="idPilotEnterSeat" name="enterHelper" value="pilot_enterCockpit_pos2" />
+				<Elem idRef="idCenterBallTurret" name="skipPart" value="1" />
       </Elems>
     </Modification>
     <Modification name="Omega">
@@ -2161,7 +2172,6 @@
         <Elem idRef="idVehicleClass" name="displayname" value="CNOU Mustang Omega" />
         <Elem idRef="idVehicleClass" name="crossSectionMultiplier" value="0.53,0.29,0.43" />
         <Elem idRef="idMain_Part" name="name" value="Mustang_Omega" />
-        <Elem idRef="idMain_Part" name="mass" value="8000" />
         <Elem idRef="idShipVariantGeometry" name="filename" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega.cga" />
         <Elem idRef="idShipVariantGeometry" name="filenameDestruction" value="Objects/Spaceships/Ships/CNOU/Mustang/CNOU_Mustang_Omega_Damage.cga" />
         <!-- Geom Tags for Holo Table -->
@@ -2183,6 +2193,7 @@
         <Elem idRef="idPilotEnterShipActivation" name="param2" value="" />
         <Elem idRef="idPilotEnterPosActivation" name="param2" value="cockpit_use_helper2" />
         <Elem idRef="idPilotEnterSeat" name="enterHelper" value="pilot_enterCockpit_pos2" />
+				<Elem idRef="idCenterBallTurret" name="skipPart" value="1" />
       </Elems>
     </Modification>
   </Modifications>

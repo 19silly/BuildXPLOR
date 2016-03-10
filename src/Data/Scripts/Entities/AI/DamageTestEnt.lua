@@ -14,7 +14,6 @@ DamageTestEnt.watchText = "";
 DamageTestEnt.watchTextDead = "";
 DamageTestEnt.isDead = false;
 
-DamageTestEnt.Properties.fileHitDeathReactionsParamsDataFile = "Libs/HitDeathReactionsData/HitDeathReactions_MP.xml";
 DamageTestEnt.Properties.Damage.fileBodyDamage = "Libs/BodyDamage/BodyDamage_MP.xml";
 DamageTestEnt.Properties.Damage.fileBodyDamageParts = "Libs/BodyDamage/BodyParts_HumanMaleShared.xml";
 DamageTestEnt.Properties.Damage.fileBodyDestructibility = "Libs/BodyDamage/BodyDestructibility_Default.xml";

@@ -52,11 +52,9 @@ function TacticalEntity:EnableAutoTarget()
 		local innerRadiusVolumeFactor = 0.35;
 		local outerRadiusVolumeFactor = 0.6;
 		local snapRadiusVolumeFactor = 1.25;
-		Game.RegisterWithAutoAimManager(self.id, innerRadiusVolumeFactor, outerRadiusVolumeFactor, snapRadiusVolumeFactor);
 		self.registeredForAutoTarget = 1;
 	end;
 	if ((props.bAutoTarget == 0) and (self.registeredForAutoTarget ~= 0)) then
-		Game.UnregisterFromAutoAimManager(self.id);
 		self.registeredForAutoTarget = 0;
 	end;
 end;
@@ -64,7 +62,6 @@ end;
 --------------------------------------------------------------------------
 function TacticalEntity:DisableAutoTarget()
 	if (self.registeredForAutoTarget ~= 0) then
-		Game.UnregisterFromAutoAimManager(self.id);
 		self.registeredForAutoTarget = 0;
 	end;
 end;

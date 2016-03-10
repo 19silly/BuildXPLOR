@@ -12,7 +12,7 @@ RSI_Bengal_Carrier =
 		Modification = "",
 		FrozenModel = "",
 		soclasses_SmartObjectClass = "",
-		fileItemLoadout = "Scripts/Vehicles/DefaultBendalCarrier.xml",
+		fileItemLoadout = "Scripts/Loadouts/Vehicles/DefaultBendalCarrier.xml",
 
 		Perception =
 		{

@@ -5,15 +5,30 @@ SC_JumpPoint = {
 		object_Model = "objects/default/primitive_sphere.cgf",
 		celestialBodyType = "jump_point", -- drop down list?
 		distance = 0, -- distance from star measured in AU
-		heliocentricLong = 0, -- horizontal positional angle relative to the star / 0 to 360 degrees
+		heliocentricLong = 0, -- horizontal positional angle relative to the star / +/- 180 degrees
 		heliocentricLat = 0, -- vertical positional angle relative to the star / -10 to 10 degrees maybe?
 		descText = "", -- pointer to data in Articy?  ...which would include the name and other stats
-		jumpPointType = "none", -- if we have different types of jump points - ie. Xi'an made vs natural vs ???
+		jumpPointType = "none", -- this has been repurposed to tell what race owns the jump point at this end. Current values are only uee, alien, or unknown (undiscovered systems)
 		jumpPointLevel = "none", -- the "level" that you navigate while inside the jump point
 		destSystem = "none", -- system to load if player successfully make it through the jump point
 		destStart = "none", -- within the destSystem, where do you start?
-		secLevel = 0, -- normally this value should be the same as the system security level as a whole, but this override allows us flexibility / the value determines what "extra" entities are positioned here, such as comm-relays, satellites, AI ships, etc...
-		secFaction = "UEE", -- determines which style of assets to use for secLevel / again, normally the same as the faction of the entire system
+		secLevel = 0, -- how dangerous is the system at the other end of the jump point? (0-1)
+		secFaction = "UEE", -- who owns the system at the other end (even if the person navigating the jump point doesn't know, we still keep this data around). Currently only uee, alien, unknown.
+		-- size data
+		-- size 1: small ships (smaller than a Freelancer) fit
+		-- size 2: medium ships (smaller than a corvette) fit
+		-- size 3: everything fits
+		jumpPointCurrentSize = 1,
+		-- we assume here that jump points might eventually be able to be explored in such a way that they allow larger ships to pass
+		jumpPointMaxSize = 3,
+		-- information on which races can currently use the jump point
+		knownToHumans = 1,
+		knownToVanduul = 1,
+		knownToBanu = 1,
+		knownToXiAn = 1,
+		-- maybe some day we'll have pirate-only jump points? In fact, we made a few, just for fun.
+		knownToPirates = 1,
+		-- not currently representing Tevarin (treat as Humans), Kr'Thak, or any other Human factions
 		
 		entityType = SYSTEM_OBJECT_TYPE_ORBITAL,
 
