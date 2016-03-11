@@ -94,6 +94,20 @@
      <Blend ExitTime="0.30000019" StartTime="0" Duration="0.2"/>
      <Procedural type=""/>
     </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="2.25" StartTime="0" Duration="1.1920929e-007"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_CargoDoor_Plate_Deploy_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="flap"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="Close">
     <AnimLayer>
@@ -114,6 +128,20 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.013897747"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_CargoDoor_Plate_Retract_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="flap"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
   </Cargo_Door>
   <LandingGear>
@@ -122,13 +150,124 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="aegs_vanguard_landing_gear_open"/>
     </AnimLayer>
-    <ProcLayer />
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.013897747"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Open_Rear_Flap_Left_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Left"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.013897747"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Open_Rear_Flap_Right_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Right"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.013897747"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Open_Front_Flap_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Front"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.013897747"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Foot_Deploy_Central_Rear_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Front"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="Close">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="aegs_vanguard_landing_gear_close"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Close_Rear_Flap_Left_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Left"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Close_Rear_Flap_Right_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Right"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Close_Front_Flap_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Front"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Gear_Foot_Retract_Central_Rear_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Landing_Gear_Front"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
   </LandingGear>
   <Wings>
