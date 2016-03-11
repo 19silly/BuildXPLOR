@@ -1,0 +1,94 @@
+<item name="AEGS_Vanguard_Turret" class="MannedTurret" invisible="0" category="VehicleWeapon" weaponParams="1" >
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="1" />
+    <param name="arms"			 	value="0" />
+    <param name="adb" value="" />
+    <param name="actionController" value="" />
+    <param name="itemType" value="Turret" />
+    <param name="itemSubType" value="MannedTurret" />
+	<param name="itemTags" value="flightReady" />
+    <param name="itemManufactor" value="AEGS" />
+    <param name="itemSize" value="4" />
+	<param name="requiredPortTags" value="" />
+  </params>
+  
+   <geometry>
+		
+	</geometry>
+
+  <turretParams>
+	<yaw limits="-180, 180" speed="200" accel="300" >
+		<joint value="turret_body" />
+	</yaw>
+	<pitch limits="-10, 85" speed="200" accel="300" >
+		<joint value="turret_left" />	
+		<joint value="turret_right" />
+	</pitch>
+  </turretParams>
+
+	<!-- remote operation camera -->
+	<cameraParams>
+		<attachment boneName="turret_left" offset="1,2,0" />
+	</cameraParams>
+  
+	<EntityEffects>
+		<sound name="" enable ="0" tag = "move" helper="top_turrettop_turret">
+			<param name="yaw" var="yaw_speed" multiplier="1" lerpTime="0.1" />   
+			<param name="pitch" var="pitch_speed" multiplier="1" lerpTime="0.1" />
+			<param name="in_out" var="in_out" />
+		</sound>
+	</EntityEffects>  
+  
+  <portParams>
+	<ports>
+		<ItemPort name="turret_left" minsize="2" maxsize="2" flags="rotatedleft" >
+			<Helper>
+				<Helper helper="turret_left" rotation="0.7071067811865476,0,0.7071067811865476,0" />
+			</Helper>
+			<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+			</Pipes>
+		</ItemPort>
+		<ItemPort name="turret_right" minsize="2" maxsize="2" flags="rotatedright">
+			<Helper>
+				<Helper helper="turret_right" rotation="0.7071067811865476,0,-0.7071067811865476,0" />
+			</Helper>
+			<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+			<Pipes>
+				<Connection pipeClass="Power" pipe="MainPower" priority="0" />
+				<Connection pipeClass="Heat" pipe="Heat" priority="0" />
+				<Connection pipeClass="Avionics" pipe="Avionics" priority="0" />
+			</Pipes>
+		</ItemPort>
+		<ItemPort name="hardpoint_ai_module" minsize="1" maxsize="1" flags="invisible" display_name="ai module" >
+			<Types>
+				<Type type="AIModule" />
+			</Types>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+  
+  <defaultLoadout>
+    <Items>
+      <Item portName="turret_left" itemName="BEHR_BallisticRepeater_S2" />
+      <Item portName="turret_right" itemName="BEHR_BallisticRepeater_S2" />
+	  <Item portName="hardpoint_ai_module" itemName="RSI_DefaultTurretAIModule" />
+    </Items>
+  </defaultLoadout>
+
+ </item>

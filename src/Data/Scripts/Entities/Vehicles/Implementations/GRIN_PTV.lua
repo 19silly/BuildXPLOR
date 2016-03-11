@@ -40,7 +40,6 @@ GRIN_PTV.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "Car",
     aiSpeedMult = 1.0,
   },
   AIMovementAbility = 

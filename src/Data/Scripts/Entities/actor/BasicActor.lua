@@ -193,7 +193,6 @@ function CreateDefaultStances(child)
 			{
 				{
 					stanceId = STANCE_STAND,
-					normalSpeed = 1.0,
 					maxSpeed = 50.0,
 					heightCollider = 1.2,
 					pivot = {x=0.0,y=0.0,z=0.0},
@@ -210,7 +209,6 @@ function CreateDefaultStances(child)
 				},
 				{
 					stanceId = STANCE_STEALTH,
-					normalSpeed = 0.6,
 					maxSpeed = 3.0,
 					heightCollider = 1.0,
 					pivot = {x=0.0,y=0.0,z=0.0},
@@ -223,7 +221,6 @@ function CreateDefaultStances(child)
 				},
 				{
 					stanceId = STANCE_CROUCH,
-					normalSpeed = 0.5,
 					maxSpeed = 3.0,
 					heightCollider = 0.8,
 					pivot = {x=0.0,y=0.0,z=0.0},
@@ -240,7 +237,6 @@ function CreateDefaultStances(child)
 				},
 				{
 					stanceId = STANCE_SWIM,
-					normalSpeed = 1.0, -- this is not even used?
 					maxSpeed = 2.5, -- this is ignored, overridden by pl_swim* cvars.
 					heightCollider = 0.9,
 					pivot = {x=0.0,y=0.0,z=0.5},
@@ -254,7 +250,6 @@ function CreateDefaultStances(child)
 				--AI states
 				{
 					stanceId = STANCE_RELAXED,
-					normalSpeed = 1.0,
 					maxSpeed = 50.0,
 					heightCollider = 1.2,
 					pivot = {x=0.0,y=0.0,z=0.0},

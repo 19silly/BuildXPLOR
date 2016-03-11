@@ -1,0 +1,74 @@
+<item name="MISC_Reliant_Main_Thrust" class="VehicleItemThruster" invisible="0" category="VehicleThruster" interface="interface_MISC_Reliant_Main_Thrust" >
+	<params>
+		<param name="actionController" value="Spaceships/Thrusters/thrusterControllerDefs.xml" />
+		<param name="adb" 				value="Spaceships/Thrusters/thrusterAnims.adb" />
+		<param name="itemType" 			value="MainThruster" />
+		<param name="itemSubType" 		value="JointThruster" />
+		<param name="itemDescription" 	value="item_DescMISC_Reliant_Main_Thrust" />
+		<param name="itemManufactor" 	value="ALST" />
+		<param name="itemSize" 			value="2" />
+		<param name="itemTags" 			value="flightReady" />
+		<param name="requiredPortTags" 	value="MISC_Reliant_Base" />
+		<param name="display_name"		value="item_NameMISC_Reliant_Main_Thrust" />
+		<param name="mass" 				value="2000" />
+		<param name="hitpoints"			value="100" />
+	</params>
+	
+	<power_grouping>
+        <param name="powerGrouping" value ="thruster.main" />
+    </power_grouping>
+	   
+	<Pipes>
+		<Pipe class="Power" prioType="manageable" prioGroup="thruster">
+		  <Pool capacity="-100" rate="-10" />
+		  <States>
+			<State state="Default">
+		  <Value value="0" />
+		  </State>
+		  </States>
+		  <StateLevels>
+			<Warning  value = "0.5" />
+			<Critical value = "0.3" />
+			<Fail     value = "0.1" />
+		  </StateLevels>
+		</Pipe>
+
+		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
+			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<States>
+				<State state="Off"><Value value="0" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="10" /></State>
+			</States>
+		</Pipe>
+
+		<Pipe class="Fuel" prioType="critical">
+			<States>
+				<State state="Default"><Value value="0" /></State>
+				<State state="Boost"><Value value="-20" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<heatOverflow>
+		<param name="damageLevel" value="0.20" /> <!-- If "damageLevel" isn't defined, the default min level before taking damage is 0.5 -->
+		<param name="damageMin" value="1" />
+		<param name="damageMax" value="3" />
+		<param name="damageTick" value="0.25" />
+		<param name="cooldownTime" value = "3.0" />
+	</heatOverflow>
+	
+	<gimbal type="joint" >
+		<pitch 	joint="" 		min ="" max ="" speed="" accel="" animation ="" />
+		<yaw 	joint=""		min ="" max ="" speed="" accel="" animation ="" />
+		<roll   joint="" 		min ="" max ="" speed="" accel="" animation ="" />
+	</gimbal> 
+	
+	<thrusters>
+	  <thruster type="" flags="main rear top" maxThrust="750000" >
+	  </thruster>
+  </thrusters>
+  
+</item>

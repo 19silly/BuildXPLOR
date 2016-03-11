@@ -34,7 +34,6 @@ Red_StarFighter.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
   AIMovementAbility = 

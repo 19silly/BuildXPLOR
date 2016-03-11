@@ -60,8 +60,6 @@ AIBase =
 
 		aibehavior_AIBehavior = "", -- Used to set DataForge authored Kythera behavior
 
-		aicharacter_character = "",
-
 		esFaction = "Civilians",		
 		esCharacterType			= "Human",
 

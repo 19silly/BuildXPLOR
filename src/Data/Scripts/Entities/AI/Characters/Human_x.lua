@@ -44,7 +44,6 @@ Human_x =
 		aimFOV = 200, -- Total FOV for aiming  (degrees)
 		maxLookAimAngle = 120, -- Maximum angle between aim and look direction (degrees)
 		aimIKFadeDuration = 0.5, -- time to reach aim pose
-		aimIKLayer = 14,
 
 		canUseComplexLookIK = true,
 		lookAtSimpleHeadBone = "Head",
@@ -94,45 +93,43 @@ Human_x =
 			},
 			{
 				stanceId = STANCE_LOW_COVER,
-				normalSpeed = 0.5,
 				maxSpeed = 50.0,
 				heightCollider = 0.8,
 				heightPivot = 0.0,
 				size = {x=0.5,y=0.5,z=0.1},
 				modelOffset = {x=0.0,y=0.0,z=0},
-				viewOffset = {x=0,y=0.0,z=0.9},
-				weaponOffset = {x=0.2,y=0.0,z=0.85},
+				viewOffset = {x=0,y=0.0,z=1.2},
+				weaponOffset = {x=0.2,y=0.0,z=0.93},
 
-				leanLeftViewOffset = {x=-0.75,y=0.0,z=0.9},
-				leanRightViewOffset = {x=0.75,y=0.0,z=0.95},
-				leanLeftWeaponOffset = {x=-0.75,y=0.0,z=0.6},
-				leanRightWeaponOffset = {x=0.8,y=0.0,z=0.8},
+				leanLeftViewOffset = {x=-0.5,y=0.0,z=1.2},
+				leanRightViewOffset = {x=0.5,y=0.0,z=1.2},
+				leanLeftWeaponOffset = {x=-0.7,y=0.0,z=0.93},
+				leanRightWeaponOffset = {x=0.7,y=0.0,z=0.93},
 
 				whileLeanedLeftViewOffset = {x=0.2,y=0.4,z=0.85},
 				whileLeanedRightViewOffset = {x=0.2,y=0.3,z=1.0},
 				whileLeanedLeftWeaponOffset = {x=0.25,y=0.4,z=0.8},
 				whileLeanedRightWeaponOffset = {x=0.25,y=0.1,z=0.8},
 
-				peekOverViewOffset = {x=0.1,y=0.0,z=1.5},
-				peekOverWeaponOffset = {x=0.1,y=0.0,z=1.4},
+				peekOverViewOffset = {x=0.1,y=0.0,z=1.85},
+				peekOverWeaponOffset = {x=0.1,y=0.0,z=1.65},
 				name = "coverLow",
 				useCapsule = 1,
 			},
 			{
 				stanceId = STANCE_HIGH_COVER,
-				normalSpeed = 1.0,
 				maxSpeed = 50.0,
 				heightCollider = 1.2,
 				heightPivot = 0.0,
 				size = {x=0.5,y=0.5,z=0.2},
 				modelOffset = {x=0,y=-0.0,z=0},
-				viewOffset = {x=0,y=0.10,z=1.625},
+				viewOffset = {x=0,y=0.0,z=1.625},
 				weaponOffset = {x=0.2,y=0.0,z=1.35},
 
-				leanLeftViewOffset = {x=-0.7,y=0.10,z=1.525},
-				leanRightViewOffset = {x=0.95,y=0.10,z=1.525},
-				leanLeftWeaponOffset = {x=-0.6,y=0.10,z=1.30},
-				leanRightWeaponOffset = {x=1.0,y=0.10,z=1.30},
+				leanLeftViewOffset = {x=-0.5,y=0.10,z=1.6},
+				leanRightViewOffset = {x=0.5,y=0.10,z=1.6},
+				leanLeftWeaponOffset = {x=-0.58,y=0.10,z=1.30},
+				leanRightWeaponOffset = {x=0.58, y=0.20,z=1.30},
 
 				whileLeanedLeftViewOffset = {x=0.1,y=0.1,z=1.5},
 				whileLeanedRightViewOffset = {x=0.25,y=0.2,z=1.55},
@@ -250,7 +247,6 @@ Human_x =
 		useSpecialMovementTransitions = 1,
 		bOverrideAllowLookAimStrafing = 1,
 
-		aicharacter_character = "",
 		esBehaviorSelection = "HumanGrunt",
 
 		fileModel = "Objects/Characters/Human/male_v7_cdfs/uee/bartender/uee_bartender_m_base.cdf",
@@ -321,7 +317,7 @@ Human_x =
 		passRadius = 0.25,
 
 		distanceToCover = 0.5, -- needs to be at least 20cm more than max(passRadius, pathRadius)
-		inCoverRadius = 0.075,
+		inCoverRadius = 0.05,
 		effectiveCoverHeight = 0.55,
 		effectiveHighCoverHeight = 1.75,
 
@@ -739,6 +735,12 @@ function Human_x:OnResetCustom()
 	if (self.Properties.AI.bUseRadioChatter == 1) then
 		GameAI.RegisterWithModule("RadioChatter", self.id)
 	end
+	
+	GameAI.RegisterWithModule("RangeModule", self.id)
+	GameAI.AddRange(self.id, 2.5, "OnTargetEnteredMeleeRange", "")
+	GameAI.AddRange(self.id, 3, "", "OnTargetLeftMeleeRange")
+	--GameAI.AddRange(self.id, self.gameParams.nearbyRange, "OnTargetEnteredNearbyRange", "OnTargetLeftNearbyRange")
+	--GameAI.AddRange(self.id, self.gameParams.middleRange, "OnTargetEnteredMiddleRange", "OnTargetEnteredMiddleRange")
 	
 	self.lastImmediateThreatPos = {x=0, y=0, z=0}
 	self.deadGroupMemberCount = 0

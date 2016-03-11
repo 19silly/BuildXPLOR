@@ -1,0 +1,111 @@
+<item name="ARCO_ArcDuo_400_engine_Freelancer" class="VehicleItemThruster" invisible="0" category="VehicleThruster" interface="interface_ARCO_ArcDuo_400_engine_Freelancer" >
+	<params>
+		<param name="actionController" value="Spaceships/Thrusters/thrusterControllerDefs.xml" />
+		<param name="adb" 				value="Spaceships/Thrusters/thrusterAnims.adb" />
+		<param name="itemType" 			value="MainThruster" />
+		<param name="itemSubType" 		value="FixedThruster" />
+		<param name="itemDescription" 	value="ARCO_ArcDuo_400_engine_Freelancer" />
+		<param name="itemManufactor" 	value="DSTC" />
+		<param name="itemSize" 			value="2" />
+		<param name="itemTags" 			value="flightReady" />
+		<param name="requiredPortTags" 	value="MISC_Freelancer_Base" />
+		<param name="display_name"		value="ARCO_ArcDuo_400_engine_Freelancer" />
+		<param name="mass" 				value="4000" />
+		<param name="hitpoints"			value="200" />
+	</params>
+	
+	<power_grouping>
+        <param name="powerGrouping" value ="thruster.main" />
+    </power_grouping>
+	   
+	<Pipes>
+		<Pipe class="Power" prioType="manageable" prioGroup="thruster">
+		  <Pool capacity="-100" rate="-10" />
+		  <States>
+			<State state="Default">
+		  <Value value="0" />
+		  </State>
+		  </States>
+		  <StateLevels>
+			<Warning  value = "0.5" />
+			<Critical value = "0.3" />
+			<Fail     value = "0.1" />
+		  </StateLevels>
+		</Pipe>
+
+		<Pipe class="Heat" prioType="manageable" prioGroup="thruster">
+			<Signature name="Infrared" poolMultiplier="0.1" multiplier="1" />
+			<Pool capacity="200" rate="20" critical="1" decayRate="10" />
+			<States>
+				<State state="Off"><Value value="0" /></State>
+				<State state="Active" transition="0.25"><Value value="20" /></State>
+				<State state="Boost" transition="0.25"><Value value="50" /></State>
+				<State state="Idle"><Value value="20" /></State>
+			</States>
+		</Pipe>
+
+		<Pipe class="Fuel" prioType="critical">
+			<States>
+				<State state="Default"><Value value="0" /></State>
+				<State state="Boost"><Value value="-100" /></State>
+			</States>
+		</Pipe>
+	</Pipes>
+	
+	<!-- <Parts>
+		<Part name="Engine_Wing_Left" class="AnimatedJoint" mass="1000" damageMax="10">
+		<DamageBehaviors>
+			<DamageBehavior class="DetachPart" damageRatioMin="1">
+					<DetachPart>
+						<Part name="Engine_Wing_Left" recurseChildren="1" Probability="1" />
+						<Part name="Engine_Wing_Left" Probability="1" />
+					</DetachPart>
+			</DamageBehavior>
+		</DamageBehaviors>
+		</Part>
+	
+		<Part name="Engine_Wing_Right" class="AnimatedJoint" mass="1000" damageMax="10">
+		<DamageBehaviors>
+			<DamageBehavior class="DetachPart" damageRatioMin="1">
+					<DetachPart>
+						<Part name="Engine_Wing_Right" recurseChildren="1" Probability="1" />
+						<Part name="Engine_Wing_Right" Probability="1" />
+					</DetachPart>
+			</DamageBehavior>
+		</DamageBehaviors>
+		</Part>
+	</Parts> -->
+	
+	<!-- <portParams>
+	<ports>
+		<ItemPort name="hardpoint_retro_right" minsize="1" maxsize="5" flags="" display_name="">
+			<Types>
+				<Type type="ManneuverThruster" subtypes="" />
+			</Types>
+			<OptimalStates>
+				<Fixup pos="1.6, 6.8, 0.0" />
+			</OptimalStates>
+		</ItemPort>
+		<ItemPort name="hardpoint_retro_left" minsize="1" maxsize="5" flags="" display_name="">
+			<Types>
+				<Type type="ManneuverThruster" subtypes="" />
+			</Types>
+			<OptimalStates>
+				<Fixup pos="-1.6, 6.8, 0.0" />
+			</OptimalStates>
+		</ItemPort>
+	</ports>
+	</portParams> -->
+	
+	<gimbal type="fixed" >
+		<!-- <pitch 	joint="PITCH_CONTROL" 	min="-90" max="90" speed="50" accel="10" animation ="" /> -->
+		<!-- <yaw 	joint="PITCH_CONTROL" 	min="-90" max="90" speed="50" accel="10" animation ="%yawAnim%" /> -->
+		<!-- <roll   joint="" 		min ="" max = "" speed="" accel="" animation ="" /> -->
+	</gimbal> 
+	
+	<thrusters>
+	  <thruster type="" flags="main rear" maxThrust="2500000" >
+	  </thruster>
+  </thrusters>
+  
+</item>

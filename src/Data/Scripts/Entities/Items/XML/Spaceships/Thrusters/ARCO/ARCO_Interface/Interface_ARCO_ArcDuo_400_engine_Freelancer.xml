@@ -1,0 +1,189 @@
+<interface name="interface_ARCO_ArcDuo_400_engine_Freelancer">
+	<!-- 
+	This is the model and vfx template for Thrusters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" />
+	</params>
+
+
+
+	<damagelevels>
+<!--	<level damageRatio="0.25">
+		<DebrisList>
+			<Debris name="base__debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_25_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_25_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_25_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_25_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_25_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_25_debris4" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_25_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+		</DebrisList> 
+	</level>
+-->
+	<level damageRatio="0.50">
+		<DebrisList>
+			<Debris name="DragonSTCBlue_Nozzle_50_debris_2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="DragonSTCBlue_Nozzle_50_debris_02_PFX" />
+				</EffectsList>
+			</Debris>
+		</DebrisList> 
+	</level>
+<!--
+	<level damageRatio="0.75">
+		<DebrisList>
+			<Debris name="base_75_debris1" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_75_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris2" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_75_debris2_PFX1" />
+				</EffectsList>
+			</Debris>
+			<Debris name="base_75_debris3" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_75_debris3_PFX1" />
+				</EffectsList>
+			</Debris>
+			</DebrisList> 
+		</level>
+-->		
+	<level damageRatio="1.00">
+		<Explosion probability="1" pressure="1000" radius="15" damage="50" effect="" sound="" />
+		<DebrisList>
+			<Debris name="DragonSTCBlue_Nozzle_100_debris_01" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="DragonSTCBlue_Nozzle_100_debris_01_PFX" />
+				</EffectsList>
+			</Debris>
+			<Debris name="DragonSTCBlue_Nozzle_100_debris_02" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="DragonSTCBlue_Nozzle_100_debris_02_PFX" />
+				</EffectsList>
+			</Debris>
+			<Debris name="DragonSTCBlue_Nozzle_100_debris_03" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="DragonSTCBlue_Nozzle_100_debris_03_PFX" />
+				</EffectsList>
+			</Debris>
+			</DebrisList>
+	</level>
+  </damagelevels>
+
+
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo400_V2_L.cga"/>
+
+		<tags tag="Left">
+			<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo400_V2_L.cga" material=""/>
+		</tags>
+		
+		<tags tag="Right">
+			<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo400_V2_R.cga" material=""/>
+		</tags>
+		
+		
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+		<tags tag="Hologram">
+			<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo_400_engine_Freelancer.cga" material=""/>
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo_400_engine_Freelancer.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="damage_50">
+				<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo_400_engine_Freelancer.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+			</tags>
+			<tags tag="damage_100">
+				<thirdperson name="Objects/Spaceships/Thrusters/Arch_Corp/Arc_Duo_400/ARCO_ArcDuo_400_engine_Freelancer.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+			</tags>	
+		</tags>			
+	
+		<boneAttachments>		
+<!-- 			<attachment target="thirdperson" name="nozzle" bone="nozzle_node"/>		 -->
+			<attachment target="thirdperson" name="engine_exhaust" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_output" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_fuel" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_heat" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_light" bone="exhaust" orientation="0,0,-90"/>
+			<attachment target="thirdperson" name="engine_boost_light" bone="exhaust" />
+			<attachment target="thirdperson" name="engine_sound" bone="exhaust" orientation="0,0,-180"/>
+			<attachment target="thirdperson" name="engine_boost_sound" bone="exhaust" orientation="0,0,-180"/>
+		</boneAttachments>
+		
+	</geometry>
+	
+	<!-- <Parts>
+		<Part name="Engine_Wing_Left" class="AnimatedJoint" mass="1000" damageMax="10">
+		<DamageBehaviors>
+			<DamageBehavior class="DetachPart" damageRatioMin="1">
+					<DetachPart>
+						<Part name="Engine_Wing_Left" recurseChildren="1" Probability="1" />
+						<Part name="Engine_Wing_Left" Probability="1" />
+					</DetachPart>
+			</DamageBehavior>
+		</DamageBehaviors>
+		</Part>
+	
+		<Part name="Engine_Wing_Right" class="AnimatedJoint" mass="1000" damageMax="10">
+		<DamageBehaviors>
+			<DamageBehavior class="DetachPart" damageRatioMin="1">
+					<DetachPart>
+						<Part name="Engine_Wing_Right" recurseChildren="1" Probability="1" />
+						<Part name="Engine_Wing_Right" Probability="1" />
+					</DetachPart>
+			</DamageBehavior>
+		</DamageBehaviors>
+		</Part>
+	</Parts> -->
+  
+ <thrusters>
+	  <thruster flags="main rear" maxThrust="350000" >
+		  <exhausts>
+			  <exhaust scale="1.0" animation="nozzle" helper="exhaust" effectStopThreshold="0.1">
+				  <effect name="Spaceships\Thrusters\arco_ad_400_s4.Thruster_All.arco_ad_400_s4" helper="exhaust" enable ="0" tag = "run">
+					  <strength var="thrust" />
+				  </effect>
+				  
+					<material enable ="0" slot="1" matId= "5" tag = "run">
+						<param name="glow" var="thrust" min = "0.01" multiplier="2" />
+					</material>
+					
+				  <sound name="Play_SSTP_ARCO_Duo400_S4_Q2_Start_Run" enable ="0" tag = "run" helper="engine_sound">
+					  <param name="rpm" var="thrust" lerpTime="0.2" />
+					  <param name="cruise_speed" var="cruise_speed" lerpTime="0.5" />
+					  <param name="boost" var="boost" lerpTime="0.9" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+				  <sound name="Play_SSTP_ARCO_OD_Duo400_S4_Q2" enable ="0" tag = "boost" helper="engine_boost_sound">
+					  <param name="boost" var="boost" lerpTime="0.4" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+			  </exhaust>
+		  </exhausts>
+	  </thruster>
+  </thrusters>
+
+</interface>

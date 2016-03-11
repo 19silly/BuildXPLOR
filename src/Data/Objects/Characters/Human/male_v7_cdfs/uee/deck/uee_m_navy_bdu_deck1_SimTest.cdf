@@ -1,11 +1,11 @@
 <CharacterDefinition>
  <Model File="objects/characters/human/male_v7/export/bhm_skeleton_v7.chr"/>
  <AttachmentList>
-  <Attachment Type="CA_SKIN" AName="head" Binding="objects/characters/human/heads/male/npc/male09/male09_base_head_lod0.skin" Flags="8" VisFlags="3"/>
-  <Attachment Type="CA_SKIN" AName="teeth" Binding="objects/characters/human/heads/male/npc/male09/male09_base_teeth.skin" Flags="8" VisFlags="3"/>
-  <Attachment Type="CA_SKIN" AName="tongue" Binding="objects/characters/human/heads/male/npc/male09/male09_base_tongue.skin" Flags="8" VisFlags="3"/>
-  <Attachment Type="CA_SKIN" AName="eyes" Binding="objects/characters/human/heads/male/npc/male09/male09_base_eyes.skin" Flags="8" VisFlags="3"/>
-  <Attachment Type="CA_SKIN" AName="eyelashes" Binding="objects/characters/human/heads/male/npc/male09/male09_base_eyelashes.skin" Flags="8" VisFlags="3"/>
+  <Attachment Type="CA_SKIN" AName="head" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_head_lod0.skin" Flags="8" VisFlags="3"/>
+  <Attachment Type="CA_SKIN" AName="teeth" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_teeth.skin" Flags="8" VisFlags="3"/>
+  <Attachment Type="CA_SKIN" AName="tongue" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_tongue.skin" Flags="8" VisFlags="3"/>
+  <Attachment Type="CA_SKIN" AName="eyes" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_eyes.skin" Flags="8" VisFlags="3"/>
+  <Attachment Type="CA_SKIN" AName="eyelashes" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_eyelashes.skin" Flags="8" VisFlags="3"/>
   <Attachment Type="CA_SKIN" AName="Shirt" Binding="Objects/Characters/Human/male_v7/uee/navy_bdu/outfit/UEE_BDU_Navy_Shirt.skin" Flags="8" VisFlags="3"/>
   <Attachment Type="CA_SKIN" AName="Pants" Binding="Objects/Characters/Human/male_v7/uee/navy_bdu/outfit/UEE_BDU_Navy_Pants.skin" Flags="8" VisFlags="3"/>
   <Attachment Type="CA_SKIN" AName="Boots" Binding="Objects/Characters/Human/male_v7/uee/navy_bdu/outfit/UEE_BDU_Navy_Boots.skin" Flags="8" VisFlags="3"/>

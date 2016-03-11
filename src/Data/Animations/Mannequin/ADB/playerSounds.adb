@@ -17,7 +17,7 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+sound+FP">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+sound+FP">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -49,7 +49,7 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+sound">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+sound">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -67,7 +67,7 @@
    </Fragment>
   </rapid_fire>
   <select>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+sound" FragTags="front">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+sound" FragTags="front">
     <ProcLayer>
      <Blend ExitTime="0.0001953125" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -163,7 +163,7 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+sound">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+sound">
     <ProcLayer>
      <Blend ExitTime="0.0001953125" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -278,7 +278,7 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+sound" FragTags="front">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+sound" FragTags="front">
     <ProcLayer>
      <Blend ExitTime="0.0001953125" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -358,7 +358,7 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+sound">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+sound">
     <ProcLayer>
      <Blend ExitTime="0.0001953125" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -510,6 +510,22 @@
      <Procedural type="Audio">
       <ProceduralParams>
        <StartTrigger value="Play_WPFA_GMNI_BP_LH86_Fire_3p"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value=""/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+sound">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_WPFA_KLWE_LAR_ATT4_Fire_Loop_3p"/>
        <StopTrigger value=""/>
        <AttachmentJoint value=""/>
        <Radius value="0"/>
@@ -754,7 +770,7 @@
    </Fragment>
   </reload>
   <spin_down>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+sound+FP">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+sound+FP">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
@@ -802,7 +818,7 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+sound">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+sound">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="Audio">

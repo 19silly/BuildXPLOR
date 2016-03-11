@@ -14,7 +14,7 @@ EnvironmentLight =
 		{
 			clrDiffuse = { x=1,y=1,z=1 },
 			fDiffuseMultiplier = 1,
-			fSpecularMultiplier = 0.5,  -- 0.5 by default to compensate standard material diffuse color of 0.5
+			fSpecularMultiplier = 1,
 		},
 		Projection = 
 		{

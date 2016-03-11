@@ -741,6 +741,12 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="wkr+ntrl+scan">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="npc_wkr_ntrl_scan_operator_stand001_idle02" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
   </npc>
  </FragmentList>
 </AnimDB>

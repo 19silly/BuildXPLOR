@@ -34,7 +34,6 @@ RSI_Constellation_Hangar.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

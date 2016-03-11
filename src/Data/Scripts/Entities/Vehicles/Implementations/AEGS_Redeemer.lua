@@ -34,7 +34,6 @@ AEGS_Redeemer.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

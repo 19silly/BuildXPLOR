@@ -41,7 +41,6 @@ BasicAITable = {
 		esModularBehaviorTree = "",
 		esNavigationType = "",
 
-		aicharacter_character = "Cover2",
 		fileModel = "Objects/Characters/Human/Asian/NK_Soldier/nk_soldier_jungle_cover_light_01.cdf",
 		nModelVariations=0,
 

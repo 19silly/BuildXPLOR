@@ -34,7 +34,6 @@ ORIG_300i_Dogfight.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

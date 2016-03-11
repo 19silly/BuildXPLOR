@@ -26,7 +26,7 @@
 	<geometry>
 		<thirdperson name="Objects/Spaceships/Seats/AEGS/Vanguard/AEGS_Vanguard_Cockpit_Seat.cga"/>
 	</geometry>
-   <Seat name="SeatDriver" enterHelper="pilot_mount_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
+   <Seat name="SeatDriver" enterHelper="pilot_mount_pos" sitHelper="pilot_sit_pos" exitHelper="pilot_sit_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="1" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1" multiCrewIdentifier="@ui_ac_ShipDetails_Pilot">
       <!-- Begin views for this seat-->
       <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
       <Views>
@@ -106,28 +106,34 @@
                 <Rotate_Y input="roll" direction="-1" min="-50" max="50" />
                 <Rotate_Z input="yaw" direction="-1"  min="-50" max="50" />
               </ControlPart>
-              <ControlPart seatBone="thruster_arm_r">
+<!--               <ControlPart seatBone="thruster_arm_r">
+                <Rotate_X input="power" direction="-1" min="-50" max="50" />
+              </ControlPart> -->
+              <ControlPart seatBone="Throttle_Base">
                 <Rotate_X input="power" direction="-1" min="-50" max="50" />
               </ControlPart>
-              <ControlPart seatBone="thuster_arm_l">
-                <Rotate_X input="power" direction="-1" min="-50" max="50" />
+			  <ControlPart seatBone="foot_rest_right">
+				  <Rotate_X input="roll" minRange="-1" maxRange="0" min="30" max="0"  />
+			  </ControlPart>
+			  <ControlPart seatBone="foot_rest_left">
+				  <Rotate_X input="roll" minRange="0" maxRange="1" min="0" max="30" />
+		      </ControlPart>
+<!-- 			  <ControlPart part="Wing_Left_Flaps">
+                <Rotate_X input="roll" min="20" max="-20" />
               </ControlPart>
-			<ControlPart seatBone="foot_rest_right">
-				<Rotate_X input="roll" minRange="-1" maxRange="0" min="30" max="0"  />
-			</ControlPart>
-			<ControlPart seatBone="foot_rest_left">
-				<Rotate_X input="roll" minRange="0" maxRange="1" min="0" max="30" />
-			</ControlPart>
+		  	  <ControlPart part="Wing_Right_Flaps">
+                <Rotate_X input="roll" min="-20" max="20" />
+              </ControlPart> -->
             </Parts>
           </AnimateControlInputs>
         </SeatAction>
         <SeatAction class="PassengerIK">
           <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
             <Limbs>
-				<Limb tag="LeftArmThrottle" on="1" limb="LftArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_left_attach" blendTime="0" id="idPilotTrottleIK" />
-				<Limb tag="RightArmJoystick" on="1" limb="RgtArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_right_attach" blendTime="0" id="idPilotJoystickIK" />
-				<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" slot="1" IKTargetSystemType="seatBone" helper="left_pedal_attach" blendTime="0" />
-				<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" slot="1" IKTargetSystemType="seatBone" helper="right_pedal_attach" blendTime="0" />
+				<Limb tag="LeftArmThrottle" on="1" limb="LftArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_left_hand" blendTime="0" id="idPilotTrottleIK" />
+				<Limb tag="RightArmJoystick" on="1" limb="RgtArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_right_hand" blendTime="0" id="idPilotJoystickIK" />
+				<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" slot="1" IKTargetSystemType="seatBone" helper="ik_left_foot" blendTime="0" />
+				<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" slot="1" IKTargetSystemType="seatBone" helper="ik_right_foot" blendTime="0" />
             </Limbs>
           </PassengerIK>
         </SeatAction>
@@ -136,9 +142,9 @@
       <!-- FIX ME!! -->
       <DockingStation>
         <Slots>
-          <!-- <Slot name="First" itemPort="Radar_Helper">
-            <Tag name="Radar" scale="0.2" />
-          </Slot> -->
+		  <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" />
+          </Slot>
         </Slots>
       </DockingStation>
       <FixedVisorSettings default_fixed="0">
@@ -151,7 +157,7 @@
 		<Tab name="Power" />
 		<Tab name="Shield" />
 	  </HUDAccess>
-      <ScreensRecord record="Screens_AEGS_Retaliator_Pilot" />
+      <ScreensRecord record="Screens_AEGS_Vanguard_Pilot" />
         <Enter>
           <State animation="Cockpit" state="Deploy" />
         </Enter>

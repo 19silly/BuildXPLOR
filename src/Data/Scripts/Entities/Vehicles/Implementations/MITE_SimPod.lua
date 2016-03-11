@@ -34,7 +34,6 @@ MITE_SimPod.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

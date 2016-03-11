@@ -32,13 +32,6 @@
               </DamageBehavior>
             </DamageBehaviors>
           </DamagesSubGroup>
-          <DamagesSubGroup delay="0" randomness="0">
-            <DamageBehaviors>
-              <DamageBehavior class="HitPassenger">
-                <HitPassenger damage="100" isDamagePercent="1" />
-              </DamageBehavior>
-            </DamageBehaviors>
-          </DamagesSubGroup>
           <DamagesSubGroup delay="3" randomness="0.25">
             <DamageBehaviors>
               <DamageBehavior class="Burn">
@@ -197,7 +190,6 @@
                 </Controllers>
               </ItemPort>
             </Part>
-            <Part name="hardpoint_selfdestruct" class="ItemPort" />
             <Part name="hardpoint_radar" class="ItemPort">
               <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Short Range Radar">
                 <Types>
@@ -333,6 +325,16 @@
                   <Observer port="hardpoint_seat_copilot_left" active="1" />
                 </Observers>
               </ItemPort>
+            </Part>
+            <Part name="hardpoint_cockpit_selfdestruct" class="ItemPort">
+              <ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
+                <Types>
+                  <Type type="SelfDestruct" />
+                </Types>
+              </ItemPort>
+				<Controllers>
+				  <Controller port="hardpoint_seat_pilot" active="1" />
+				</Controllers>
             </Part>
             <Part name="wing_left" class="AnimatedJoint" damageMax="500" detachRatio="1" detachBaseForce="-11,-1,1" detachRandomForce="0.5, 0.5, 0.5" detachRandomRotation="0.5,0,0.3" detachProbability="1">
               <Effects>
@@ -1752,7 +1754,7 @@
         </Exit>
       </PostAction>
       <SeatActions />
-	  <HUDAccess primary="0">
+      <HUDAccess primary="0">
       </HUDAccess>
     </Seat>
     <!-- Seat / Escape Pod Left Lower -->
@@ -1774,8 +1776,8 @@
         </Exit>
       </PostAction>
       <SeatActions />
-	  <HUDAccess primary="0">
-	  </HUDAccess>
+      <HUDAccess primary="0">
+      </HUDAccess>
     </Seat>
     <!-- Seat / Escape Pod Left Upper -->
     <Seat name="Escape_Pod_Left_Upper_Seat" enterHelper="helper_escape_pod_left_upper_enter_pos" sitHelper="helper_escape_pod_left_upper_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
@@ -1796,8 +1798,8 @@
         </Exit>
       </PostAction>
       <SeatActions />
-	  <HUDAccess primary="0">
-	  </HUDAccess>
+      <HUDAccess primary="0">
+      </HUDAccess>
     </Seat>
     <!-- Seat / Escape Pod Right Lower -->
     <Seat name="Escape_Pod_Right_Lower_Seat" enterHelper="helper_escape_pod_right_lower_enter_pos" sitHelper="helper_escape_pod_right_lower_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
@@ -1818,8 +1820,8 @@
         </Exit>
       </PostAction>
       <SeatActions />
-	  <HUDAccess primary="0">
-	  </HUDAccess>
+      <HUDAccess primary="0">
+      </HUDAccess>
     </Seat>
     <!-- Seat / Escape Pod Right Upper -->
     <Seat name="Escape_Pod_Right_Upper_Seat" enterHelper="helper_escape_pod_right_upper_enter_pos" sitHelper="helper_escape_pod_right_upper_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
@@ -1840,8 +1842,8 @@
         </Exit>
       </PostAction>
       <SeatActions />
-	  <HUDAccess primary="0">
-	   </HUDAccess>
+      <HUDAccess primary="0">
+      </HUDAccess>
     </Seat>
     <!-- Seat / Docking Port -->
     <Seat name="Docking_Port_Seat" enterHelper="helper_docking_port_enter_pos" sitHelper="helper_docking_port_sit_pos" interiorAccess="1" useBoundsForEntering="1" isDriver="0" canLook="1" canExitWhileMoving="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" isHUDSupported="0" actionMap="spaceship">
@@ -1862,8 +1864,8 @@
         </Exit>
       </PostAction>
       <SeatActions />
-	  <HUDAccess primary="0">
-	  </HUDAccess>
+      <HUDAccess primary="0">
+      </HUDAccess>
     </Seat>
   </Seats>
   <!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1872,7 +1874,7 @@
   <MovementParams>
     <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="100" maxAngularAcceleration="120,100,120">
       <AudioParams dmgBufferDecay="0.16">
-        <PassByLoopSound sound="Play_SSPB_RSI_Aurora_Loop" />
+        <PassByLoopSound sound="Play_SSPB_RSI_Shared_Small_Loop" />
         <PassBySound sound="Play_SSPB_RSI_Aurora_800ms_0to100mtrs" leadinTime="0.8" triggerDistance="100" cooldownTime="2" />
         <DuressSound sound="Play_SSDD_RSI_Aurora_Cockpit_Shake" damage_floor="19.0" damage_buffer="60.0" />
       </AudioParams>
@@ -1891,7 +1893,7 @@
         <maxGyro scale="0.2" velScale="0.5" />
         <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
         <errorTorque maxAlpha="13.75,13.75,13.75" maxAngle="1.8,1.8,1.8" />
-		<precisionMode minScale="0.01" maxScale="0.5"/>
+        <precisionMode minScale="0.01" maxScale="0.5" />
       </IFCS>
     </Spaceship>
     <!--     <WeaponMount>

@@ -1,455 +1,700 @@
 <FXLib>
 	<Effect name="blank_event">
 	</Effect>
-
-	<!-- START   SCAR impacts (bullet)   START -->
-
-	<Effect name="hit_mat_concrete" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.1" maxscale="0.3" maxscaledist="80">bullet.hit_concrete.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.1" maxscale="0.3" maxscaledist="80">bullet.hit_concrete.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.1" maxscale="0.3" maxscaledist="80">bullet.hit_concrete.c</Name>
-			</Particle>
-		</RandEffect>
-		<!--
-		<RandEffect>
-			<Decal minscale="0.02" maxscale="0.1">
-				<Material>materials/decals/concrete/concrete_plain</Material>
-			</Decal>
-			<Decal minscale="0.03" maxscale="0.08">
-				<Material>materials/decals/rock/rock_sandy</Material>
-				<Material>materials/decals/rock/rock_sandy</Material>
-			</Decal>
-		</RandEffect>
-		<RandEffect>
-			<Decal minscale="0.05" maxscale="0.4">
-				<Material>materials/decals/concrete/concrete_crack1</Material>
-			</Decal>
-			<Decal minscale="0.04" maxscale="0.1">
-				<Material>materials/decals/concrete/concrete_crack2</Material>
-			</Decal>
-			<Decal minscale="0.05" maxscale="0.2">
-				<Material>materials/decals/concrete/concrete_crack3</Material>
-			</Decal>
-		</RandEffect>-->
-		<FlowGraph name="dirt_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Concrete" />
-	</Effect>
-
-	<Effect name="hit_mat_default" delay="0.005">
-		<!--Sound>
-			<Name>Play_VHLW_GRIN_PTV_Bumps</Name>
-		</Sound>-->
+	
+	<!-- Hit Personal Shield /cbs_deployable_shield_01 -->
+	<Effect name="hit_personal_shield" delay="0.005">
 		<Particle>
-			<Name>bullet.hit_default.a</Name>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">Gadget/gadgets_PersonalShield.Shield_bullet_impact</Name>
 		</Particle>
-		<!--
-		<RandEffect>
-			<Decal minscale="0.04" maxscale="0.06">
-				<Material>materials/decals/dirt/ground</Material>
-			</Decal>
-		</RandEffect>
-		-->
+		<Audio trigger="Play_CGGT_PersonalShield_Impact" />
 	</Effect>
-
-	<Effect name="hit_mat_fabric" delay="0.005">
+	
+	<!-- Hit Battle Arena Dome -->
+	<Effect name="hit_battle_arena_dome" delay="0.005">
 		<Particle>
-			<Name>bullet.hit_fabric.a</Name>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/TE_BattleArena.Energy_Bullet_Impact</Name>
 		</Particle>
-		<!--
-		<RandEffect>
-			<Decal minscale="0.04" maxscale="0.06">
-				<Material>materials/decals/dirt/ground</Material>
-			</Decal>
-		</RandEffect>
-		-->
-		<Audio trigger="Play_WPBI_WPHA_Dull" />
+		<Audio trigger="Play_CGGT_PersonalShield_Impact" />
 	</Effect>
-
-	<Effect name="hit_mat_flesh" delay="0.005" >
-	<!--
-		<RandEffect>
-			<Decal minscale="0.05" maxscale="0.1" lifetime="5.0">
-				<Material>materials/decals/blood/human_body</Material>
-			</Decal>
-		</RandEffect>
-		-->
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.25" maxscale="0.45" maxscaledist="70">bullet.hit_flesh.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.35" maxscale="0.55" maxscaledist="70">bullet.hit_flesh.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.45" maxscale="0.65" maxscaledist="70">bullet.hit_flesh.c</Name>
-			</Particle>
-		</RandEffect>
-		<FlowGraph name="blood_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Flesh" />
-	</Effect>
-
-	<Effect name="hit_mat_glass" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.1" maxscale="0.3" maxscaledist="80">bullet.hit_glass.a</Name>
-			</Particle>
-		</RandEffect>
-		<!--<RandEffect>
-			<Decal minscale="0.05" maxscale="0.125">
-				<Material>materials/decals/glass/glass_b</Material>
-			</Decal>
-		</RandEffect>-->
-		<Audio trigger="Play_WPBI_WPHA_Glass_Thick" />
-	</Effect>
-
-	<Effect name="hit_mat_grass" delay="0.005">
-		<RandEffect name="particles1">
-			<Particle>
-				<Name minscale="0.3" maxscale="1" maxscaledist="80">bullet.hit_grass.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.4" maxscale="1.3" maxscaledist="80">bullet.hit_grass.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="80">bullet.hit_grass.c</Name>
-			</Particle>
-		</RandEffect>
-		<!--
-		<RandEffect>
-			<Decal minscale="0.04" maxscale="0.06">
-				<Material>materials/decals/dirt/ground</Material>
-			</Decal>
-		</RandEffect>
-		-->
-		<FlowGraph name="dirt_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Grass" />
-	</Effect>
-
-	<Effect name="hit_mat_ice" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.5" maxscale="1" maxscaledist="200">bullet.hit_ice.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="200">bullet.hit_ice.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.7" maxscale="0.8" maxscaledist="200">bullet.hit_ice.c</Name>
-			</Particle>
-		</RandEffect>
-		<!--
-		<RandEffect>
-			<Decal minscale="0.06" maxscale="0.15">
-				<Material>materials/decals/ice/ice</Material>
-			</Decal>
-		</RandEffect>
-		-->
-		<FlowGraph name="dirt_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Ice" />
-	</Effect>
-
-	<Effect name="hit_mat_metal" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.18" maxscale="2" maxscaledist="60">bullet.hit_metal.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.18" maxscale="2" maxscaledist="60">bullet.hit_metal.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.18" maxscale="2" maxscaledist="60">bullet.hit_metal.c</Name>
-			</Particle>
-		</RandEffect>
-		<!--<RandEffect>
-			<Decal minscale="0.015" maxscale="0.03">
-				<Material>materials/decals/metal/metal_tin</Material>
-			</Decal>
-		</RandEffect>-->
-		<Audio trigger="Play_WPBI_WPHA_Metal_Thick" />
-	</Effect>
-
-	<Effect name="hit_mat_rock" delay="0.005">
-		<!--<RandEffect>
-			<Decal minscale="0.05" maxscale="0.1">
-				<Material>materials/decals/rock/rock_hard</Material>
-			</Decal>
-			<Decal minscale="0.04" maxscale="0.08">
-				<Material>materials/decals/rock/rock_sandy</Material>
-			</Decal>
-			</RandEffect>-->
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.3" maxscaledist="80">bullet.hit_rock.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.3" maxscaledist="80">bullet.hit_rock.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.3" maxscaledist="80">bullet.hit_rock.c</Name>
-			</Particle>
-		</RandEffect>
-		<FlowGraph name="dirt_bullet_hit" maxdist="2"/>
-		<!--Sound name="mastersnd1" >
-			<Name>Play_WPBI_WPHA_Gravel</Name>
-		</Sound>-->
-		<Audio trigger="Play_WPBI_WPHA_Gravel" />
-	</Effect>
-
-	<Effect name="hit_mat_rock_dusty" delay="0.005">
-		<!--<RandEffect>
-			<Decal minscale="0.1" maxscale="0.2">
-				<Material>materials/decals/rock/rock_sandy</Material>
-			</Decal>
-		</RandEffect>-->
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="40">bullet.hit_rock.a_dusty</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="40">bullet.hit_rock.b_dusty</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="40">bullet.hit_rock.c_dusty</Name>
-			</Particle>
-		</RandEffect>
-		<FlowGraph name="dirt_bullet_hit" maxdist="2"/>
-		<!--Sound name="mastersnd1" >
-			<Name>Play_WPBI_WPHA_Gravel</Name>
-		</Sound>-->
-		<Audio trigger="Play_WPBI_WPHA_Gravel_Dusty" />
-	</Effect>
-
-	<Effect name="hit_mat_rubber" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name>bullet.hit_rubber.a</Name>
-			</Particle>
-		</RandEffect>
-		<!--
-		<RandEffect>
-			<Decal minscale="0.04" maxscale="0.06">
-				<Material>materials/decals/dirt/ground</Material>
-			</Decal>
-		</RandEffect>
-		-->
-		<Audio trigger="Play_WPBI_WPHA_Generic_Dull" />
-	</Effect>
-
-	<Effect name="hit_mat_snow" delay="0.005">
-		<!--<RandEffect>
-			<Decal minscale="0.05" maxscale="0.11">
-				<Material>materials/decals/snow/snow_melt</Material>
-			</Decal>
-		</RandEffect>-->
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.5" maxscale="1.2" maxscaledist="200">bullet.hit_snow.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.5" maxscale="1.2" maxscaledist="200">bullet.hit_snow.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.5" maxscale="1.2" maxscaledist="200">bullet.hit_snow.c</Name>
-			</Particle>
-		</RandEffect>
-		<Audio trigger="Play_WPBI_WPHA_Snow" />
-	</Effect>
-
-	<Effect name="hit_mat_soil" delay="0.005">
-		<!--
-		<RandEffect>
-			<Decal minscale="0.03" maxscale="0.07">
-				<Material>materials/decals/dirt/terrain_soil</Material>
-			</Decal>
-		</RandEffect>
-		-->
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="80">bullet.hit_soil.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="80">bullet.hit_soil.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="80">bullet.hit_soil.c</Name>
-			</Particle>
-		</RandEffect>
-		<FlowGraph name="dirt_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Soil" />
-	</Effect>
-
-	<Effect name="hit_mat_vegetation" delay="0.005">
-		<Particle name="masterpart1" >
-			<Name minscale="0.6" maxscale="1.2" maxscaledist="80">bullet.hit_canopy.a</Name>
-		</Particle>
-		<Audio trigger="Play_WPBI_WPHA_Vegetation" />
-	</Effect>
-
-	<Effect name="hit_mat_water" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="200">bullet.hit_water.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.6" maxscale="1.2" maxscaledist="200">bullet.hit_water.b</Name>
-			</Particle>
-		</RandEffect>
-		<FlowGraph name="water_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Water_Deep" />
-	</Effect>
-
-	<Effect name="hit_mat_wood" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.45" maxscale="1.2" maxscaledist="200">bullet.hit_wood.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.45" maxscale="1.2" maxscaledist="200">bullet.hit_wood.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.45" maxscale="1.2" maxscaledist="200">bullet.hit_wood.c</Name>
-			</Particle>
-		</RandEffect>
-		<!--<RandEffect>
-			<Decal minscale="0.05" maxscale="0.1">
-				<Material>materials/decals/wood/wood_planks</Material>
-			</Decal>
-		</RandEffect>-->
-		<Audio trigger="Play_WPBI_WPHA_Wood_Solid" />
-	</Effect>
-
-	<Effect name="hit_mat_wood_breakable" delay="0.005">
-		<RandEffect>
-			<Particle>
-				<Name minscale="0.5" maxscale="1.2" maxscaledist="200">bullet.hit_wood.a</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.5" maxscale="1.2" maxscaledist="200">bullet.hit_wood.b</Name>
-			</Particle>
-			<Particle>
-				<Name minscale="0.5" maxscale="1.2" maxscaledist="200">bullet.hit_wood.c</Name>
-			</Particle>
-		</RandEffect>
-		<!--<RandEffect>
-			<Decal minscale="0.05" maxscale="0.1">
-				<Material>materials/decals/wood/wood_planks</Material>
-			</Decal>
-		</RandEffect>-->
-		<Audio trigger="Play_WPBI_WPHA_Wood_Plank" />
-	</Effect>
-	<!-- END   SCAR impacts (bullet)   END -->
-
-
-	<!-- START   Melee impacts (melee)   START -->
-	<Effect name="melee_hit_mat_metal" delay="0.005">
+	
+	<!-- Behring_P4SC Effects / 5mm_rifle_ballistic -->
+	<Effect name="5mm_rifle_ballistic_hit_metal" delay="0.005">
 		<Particle>
-			<Name>melee.hit_metal.hit</Name>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Metal_01</Name>
 		</Particle>
-		<!--<Audio trigger="Play_WPBI_WPHA_Metal_Thick" />-->
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_aluminum_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_aluminum_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_aluminum_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
 	</Effect>
 
-	<Effect name="melee_hit_mat_glass" delay="0.005">
+	<Effect name="5mm_rifle_ballistic_hit_metal_damageable" >
 		<Particle>
-			<Name>melee.hit_glass.hit</Name>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Metal_01</Name>
 		</Particle>
-		<!--
 		<RandEffect>
-			<Decal minscale="0.06" maxscale="0.1">
-				<Material>materials/decals/glass/glass</Material>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+	
+	<Effect name="5mm_rifle_ballistic_hit_dense_metal" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.02" maxscale=".06">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_01</Material>
 			</Decal>
-			<Decal minscale="0.06" maxscale="0.1">
-				<Material>materials/decals/glass/glass_b</Material>
+			<Decal minscale="0.02" maxscale=".06">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_02</Material>
+			</Decal>
+			<Decal minscale="0.02" maxscale=".06">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_03</Material>
 			</Decal>
 		</RandEffect>
-		-->
-		<Audio trigger="Play_WPBI_WPHA_Glass_Thick" />
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Dense" />
 	</Effect>
-
-	<Effect name="melee_hit_mat_wood" delay="0.005">
+	<Effect name="5mm_rifle_ballistic_hit_glass_dense" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
 		<RandEffect>
-			<Particle>
-				<Name>melee.hit_wood.hit</Name>
-			</Particle>
+			<Decal minscale="0.1" maxscale="0.13">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
 		</RandEffect>
-		<Audio trigger="Play_WPBI_WPHA_Wood_Solid" />
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thick" />
 	</Effect>
-
-	<Effect name="melee_hit_mat_water" delay="0.005">
+	<Effect name="5mm_rifle_ballistic_hit_glass_thin" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
 		<RandEffect>
-			<Particle>
-				<Name>melee.hit_water.hit</Name>
-			</Particle>
+			<Decal minscale="0.1" maxscale="0.13">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
 		</RandEffect>
-		<FlowGraph name="water_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Water_Deep" />
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thin" />
 	</Effect>
-
-	<Effect name="melee_hit_mat_concrete" delay="0.005">
+	<Effect name="5mm_rifle_ballistic_hit_rubber" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Metal_01</Name>
+		</Particle>
 		<RandEffect>
-			<Particle>
-				<Name>melee.hit_concrete.hit</Name>
-			</Particle>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_rubber_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_rubber_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_rubber_03</Material>
+			</Decal>
 		</RandEffect>
-		<Audio trigger="Play_WPBI_WPHA_Concrete" />
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
 	</Effect>
-
-	<Effect name="melee_hit_mat_soil" delay="0.005">
+	
+	<Effect name="5mm_rifle_ballistic_hit_cloth" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Metal_01</Name>
+		</Particle>
 		<RandEffect>
-			<Particle>
-				<Name>melee.hit_soil.hit</Name>
-			</Particle>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_cloth_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_cloth_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_cloth_03</Material>
+			</Decal>
 		</RandEffect>
-		<!--
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+	
+	<!-- </Effect>
+		<Effect name="5mm_rifle_ballistic_hit_concrete="0.05">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletImpacts_concrete_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletImpacts_concrete_02</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Dense" />
+	</Effect> -->
+	
+	<!-- Electric Shotgun Effects / 12g_electric -->
+	<Effect name="12g_electric_hit_metal" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_12g_electric.Impact_Metal_01</Name>
+		</Particle>
+			<RandEffect>
+			<Decal minscale="0.01" maxscale="0.07">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPEI_WPFA_Default" />		
+	</Effect>
+	
+	<Effect name="12g_electric_hit_metal_damageable" >
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_12g_electric.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+		</RandEffect>
+		<Audio trigger="Play_WPEI_WPFA_Default" />
+	</Effect>
+	
+	<Effect name="12g_electric_hit_glass_dense" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thick" />
+	</Effect>
+	<Effect name="12g_electric_hit_glass_thin" delay="0.005">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thin" />
+	</Effect>
+	
+	<!-- Laser Pistol Effects / 6mm_pistol_laser-->
+	<Effect name="6mm_pistol_laser_hit_metal" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
 		<RandEffect>
 			<Decal minscale="0.05" maxscale="0.1">
-				<Material>materials/decals/dirt/terrain_soil</Material>
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
 			</Decal>
 		</RandEffect>
-		-->
-		<Audio trigger="Play_WPBI_WPHA_Dirt" />
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />		
 	</Effect>
-
-	<Effect name="melee_hit_mat_flesh" delay="0.005">
+	
+	
+	<Effect name="6mm_pistol_laser_hit_metal_thick" delay="0.01">
 		<Particle>
-			<Name>melee.hit_flesh.hit</Name>
-		</Particle>
-
-		<FlowGraph name="blood_bullet_hit" maxdist="2"/>
-		<Audio trigger="Play_WPBI_WPHA_Flesh" />
-	</Effect>
-
-	<Effect name="melee_hit_mat_default" delay="0.005">
-		<Particle>
-			<Name>melee.hit_default.hit</Name>
-		</Particle>
-		<Audio trigger="Play_WPBI_WPHA_Log" />
-	</Effect>
-	<!-- END   Melee impacts (melee)   END -->
-
-
-	<!-- START   Grenade explosions (explosivegrenade_explode,explosivegrenade_explode_underwater, explosivegrenadeAI_explode, explosivegrenadeAI_explode_underwater)   START -->
-	<Effect name="grenade_hit_mat_default" delay="0.005">
-		<Particle>
-			<Name minscale="0.95" maxscale="1.3" maxscaledist="80">weapon_fx.grenade.explosion_default</Name>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
 		</Particle>
 		<RandEffect>
-			<Decal minscale="1.2" maxscale="1.6" lifetime="5.0">
-				<Material>materials/decals/default_blast</Material>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
 			</Decal>
 		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />		
+	</Effect>
+	
+	<Effect name="6mm_pistol_laser_hit_metal_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thin" />		
+	</Effect>
+	
+	<Effect name="6mm_pistol_laser_hit_metal_hollow" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Hollow" />		
+	</Effect>
+	
+	<Effect name="6mm_pistol_laser_hit_grate" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thin" />	 <!--RT TO DO make a hollow version -->	
+	</Effect>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<Effect name="6mm_pistol_laser_hit_metal_damageable" >
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+	
+	<Effect name="6mm_pistol_laser_hit_glass_dense" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thick" />
+	</Effect>
+	<Effect name="6mm_pistol_laser_hit_glass_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thin" />
+	</Effect>
+	
+	<!-- Grapple Pistol Effects / 6mm_pistol_stun -->
+	<Effect name="6mm_pistol_stun_hit_metal" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_Grapple.Impact_Bullet</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserPistol_BurnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />		
+	</Effect>
+	<Effect name="Grapple_laser_hit_glass_dense" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thick" />
+	</Effect>
+	<Effect name="Grapple_laser_hit_glass_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thin" />
+	</Effect>
+	
+	<!-- Combustion Pistol Effcts / 10mm_pistol_ballistic-->
+	
+		<!-- TO DO This is the old generic metal one and can be deleted when we know the specific metal ones are working RT-->
+	<Effect name="10mm_pistol_ballistic_hit_metal" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_pistol_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_01</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_02</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Metal_Thick" />
+	</Effect>
+	
+	<!-- Various Metal types -->
+	
+	<Effect name="10mm_pistol_ballistic_hit_metal_thick" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_pistol_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_01</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_02</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Metal_Thick" />
+	</Effect>
+	
+	
+		<Effect name="10mm_pistol_ballistic_hit_metal_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_pistol_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_01</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_02</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Metal_Thin" />
+	</Effect>
+	
+		<Effect name="10mm_pistol_ballistic_hit_metal_hollow" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_pistol_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_01</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_02</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Metal_Hollow" />
 	</Effect>
 
-	<Effect name="grenade_hit_mat_water" delay="0.005">
+	
+	<Effect name="10mm_pistol_ballistic_hit_metal_grate" delay="0.01">
 		<Particle>
-			<Name minscale="0.75" maxscale="1.3" maxscaledist="80">weapon_fx.grenade.explosion_water</Name>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_pistol_ballistic.Impact_Metal_01</Name>
 		</Particle>
+		<RandEffect>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_01</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_02</Material>
+			</Decal>
+			<Decal minscale="0.03" maxscale=".07">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_densemetal_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Metal_Thin" /> <!--TO DO swap this for metal grate as soon as it's ready RT -->
 	</Effect>
-	<!-- END   Grenade explosions (explosivegrenade_explode,explosivegrenade_explode_underwater, explosivegrenadeAI_explode, explosivegrenadeAI_explode_underwater)   END -->
+	
+	
+	
+	<Effect name="10mm_pistol_ballistic_hit_metal_damageable" >
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_pistol_ballistic.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Metal_Thick" />
+	</Effect>
+	
+	<Effect name="10mm_pistol_ballistic_hit_glass_dense" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Glass_Thick" />
+	</Effect>
+	<Effect name="10mm_pistol_ballistic_hit_glass_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.05" maxscale=".1">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_pistol_ballistic_Impact_Glass_Thin" />
+	</Effect>
+	
+	<!-- Laser Assult Rifle Effects / 10mm_rifle_laser -->
+	
+	
+
+	<Effect name="10mm_rifle_laser_hit_metal_damageable" >
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+	<Effect name="10mm_plasma_hit" delay="0.05">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Test</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+
+		<!-- TO DO This is the old generic metal one and can be deleted when we know the specific metal ones are working RT-->
+	<Effect name="10mm_rifle_laser_hit_metal" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+	
+	<!-- various metal types -->
+		<Effect name="10mm_rifle_laser_hit_metal_thick" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thick" />
+	</Effect>
+	
+		<Effect name="10mm_rifle_laser_hit_metal_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thin" />
+	</Effect>
+	
+		<Effect name="10mm_rifle_laser_hit_metal_hollow" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Hollow" />
+	</Effect>
+	
+		<Effect name="10mm_rifle_laser_hit_metal_grate" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_10mm_rifle_laser.Impact_Metal_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.05" maxscale="0.1">
+				<Material>Materials/VFX/Weapons/Decals/LaserRifle_burnDecal_01</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Metal_Thin" /> <!-- TO DO replace with grate when we have it -->
+	</Effect>
+	
+	
+	
+	
+	
+	
+	
+	<Effect name="10mm_rifle_laser_hit_glass_dense" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.1" maxscale="0.13">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thick" />
+	</Effect>
+	<Effect name="10mm_rifle_laser_hit_glass_thin" delay="0.01">
+		<Particle>
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_weapons/Ammo/Weapons_Ammo_5mm_rifle_ballistic.Impact_Glass_01</Name>
+		</Particle>
+		<RandEffect>
+			<Decal minscale="0.1" maxscale="0.13">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_01</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_02</Material>
+			</Decal>
+			<Decal minscale="0.1" maxscale="0.15">
+				<Material>Materials/VFX/Weapons/Decals/bulletHoles/bulletimpacts_glass_03</Material>
+			</Decal>
+		</RandEffect>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Glass_Thin" />
+	</Effect>
+	
+	<Effect name="10mm_rifle_laser_hit_flesh" delay="0.01">
+		<Particle medium="normal">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium</Name>
+		</Particle>
+		<Particle medium="zerog">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium_zeroG</Name>
+		</Particle>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Flesh" />
+	</Effect>
+	
+	<Effect name="5mm_rifle_ballistic_hit_flesh" delay="0.01">
+		<Particle medium="normal">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium</Name>
+		</Particle>
+		<Particle medium="zerog">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium_zeroG</Name>
+		</Particle>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Flesh" />
+	</Effect>
+	
+	<Effect name="12g_electric_hit_flesh" delay="0.005">
+		<Particle medium="normal">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium</Name>
+		</Particle>
+		<Particle medium="zerog">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium_zeroG</Name>
+		</Particle>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Flesh" />
+	</Effect>
+	
+	<Effect name="PS-10_laser_hit_flesh" delay="0.005">
+		<Particle medium="normal">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium</Name>
+		</Particle>
+		<Particle medium="zerog">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium_zeroG</Name>
+		</Particle>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Flesh" />
+	</Effect>
+	
+	<Effect name="10mm_pistol_ballistic_hit_flesh" delay="0.005">
+		<Particle medium="normal">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium</Name>
+		</Particle>
+		<Particle medium="zerog">
+			<Name minscale="0.9" maxscale="1.4" maxscaledist="80">FPS_Weapons/character_fx.bloodHit_01_medium_zeroG</Name>
+		</Particle>
+		<Audio trigger="Play_WPAM_10mm_rifle_laser_Impact_Flesh" />
+	</Effect>
 
 </FXLib>
+

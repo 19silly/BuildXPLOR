@@ -9,10 +9,6 @@
   <SubADB File="Animations/Mannequin/ADB/ai_anims.adb">
    <FragmentID Name="npc"/>
   </SubADB>
-  <SubADB File="Animations/Mannequin/ADB/s42_ep1_se_chapter04.adb">
-   <FragmentID Name="story_e1c04"/>
-   <FragmentID Name="story_e1c04_upperbody"/>
-  </SubADB>
   <SubADB File="Animations/Mannequin/ADB/Players/playerMotionAnims.adb">
    <FragmentID Name="MotionIdle"/>
    <FragmentID Name="MotionInAir"/>
@@ -22,7 +18,6 @@
    <FragmentID Name="MotionTurn"/>
   </SubADB>
   <SubADB File="Animations/Mannequin/ADB/Players/playerCoverAnims.adb">
-   <FragmentID Name="coverLean"/>
    <FragmentID Name="coverPose"/>
   </SubADB>
   <SubADB File="Animations/Mannequin/ADB/Players/playerLadderAnims.adb">
@@ -43,7 +38,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_cycle_iron_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+ADS">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+ADS">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="stocked_alerted_stand_fire_kw_att4_cycle_iron_01" flags="Loop"/>
@@ -67,7 +62,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_cycle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="stocked_alerted_stand_fire_kw_att4_cycle_01" flags="Loop" weight="3"/>
@@ -75,7 +70,7 @@
    </Fragment>
   </burst_fire>
   <rapid_fire>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+ADS+leanLeft">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+ADS+leanLeft">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_left" flags="Loop"/>
@@ -85,7 +80,7 @@
      <Animation name="stocked_alerted_stand_fire_kw_att4_cycle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+ADS+leanRight">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+ADS+leanRight">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_right" flags="Loop"/>
@@ -143,7 +138,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_cycle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+leanRight">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+leanRight">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_right" flags="Loop"/>
@@ -159,7 +154,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_cycle_iron_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+iron">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+iron">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="stocked_alerted_stand_fire_kw_att4_start_iron_01"/>
@@ -175,7 +170,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_cycle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="stocked_alerted_stand_fire_kw_att4_start_01"/>
@@ -211,7 +206,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_stop_iron_01"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+iron+leanLeft">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+iron+leanLeft">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_left"/>
@@ -221,7 +216,7 @@
      <Animation name="stocked_alerted_stand_fire_kw_att4_stop_iron_01"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+iron+leanRight">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+iron+leanRight">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_right"/>
@@ -257,13 +252,13 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_stop_01"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+iron">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+iron">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="stocked_alerted_stand_fire_kw_att4_stop_iron_01"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+leanLeft">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+leanLeft">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_left"/>
@@ -273,7 +268,7 @@
      <Animation name="stocked_alerted_stand_fire_kw_att4_stop_01"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked+leanRight">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+leanRight">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_lean_right"/>
@@ -301,7 +296,7 @@
      <Animation name="stocked_alerted_stand_fire_behring_p4sc_stop_01" weight="0"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="stocked_alerted_stand_fire_kw_att4_stop_01"/>
@@ -388,7 +383,7 @@
    <Fragment BlendOutDuration="0.2" Tags="pistol+crouch+alerted">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="pistol_alerted_crouch_select"/>
+     <Animation name="pistol_alerted_crouch_select_add"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+prone+alerted">
@@ -560,7 +555,6 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_select_front_add"/>
     </AnimLayer>
-    <ProcLayer />
    </Fragment>
   </select>
   <deselect>
@@ -727,6 +721,27 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+ADS">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Animation name="stocked_alerted_stand_fire_behring_p4sc_start_01" weight="0.5"/>
+     <Blend ExitTime="0.081919968" StartTime="0" Duration="0.1"/>
+     <Animation name="stocked_alerted_stand_fire_behring_p4sc_stop_01" weight="0.5"/>
+    </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="WeaponRecoil">
+      <ProceduralParams>
+       <DampStrength value="15"/>
+       <FireRecoilTime value="0.029999999"/>
+       <FireRecoilStrengthFirst value="0"/>
+       <FireRecoilStrength value="0"/>
+       <AngleRecoilStrength value="0.2"/>
+       <Randomness value="0.0099999998"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+ADS">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
@@ -865,23 +880,23 @@
      <Animation name="stocked_alerted_stand_fire_kw_arrowhead_01"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Rifle_KW_ATT-4+stocked">
+   <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="stocked_alerted_stand_fire_kw_att4_start_01"/>
-     <Blend ExitTime="0.081919968" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_fire_kw_att4_stop_01"/>
+     <Animation name="stocked_alerted_stand_fire_behring_p4sc_start_01"/>
+     <Blend ExitTime="0.081919968" StartTime="0" Duration="0.1"/>
+     <Animation name="stocked_alerted_stand_fire_behring_p4sc_stop_01"/>
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="WeaponRecoil">
       <ProceduralParams>
-       <DampStrength value="7.5"/>
-       <FireRecoilTime value="0.050000001"/>
-       <FireRecoilStrengthFirst value="0.5"/>
+       <DampStrength value="15"/>
+       <FireRecoilTime value="0.029999999"/>
+       <FireRecoilStrengthFirst value="0.1"/>
        <FireRecoilStrength value="0.1"/>
-       <AngleRecoilStrength value="1.5"/>
-       <Randomness value="0.050000001"/>
+       <AngleRecoilStrength value="0.5"/>
+       <Randomness value="0"/>
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
@@ -1036,12 +1051,7 @@
   </reload>
   <change_firemode>
    <Fragment BlendOutDuration="0.2" Tags="behr_rifle_ballistic_01">
-    <AnimLayer>
-     <Blend ExitTime="0.1" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_hitreaction_chest_fromfront"/>
-     <Blend ExitTime="0.20000002" StartTime="0" Duration="0.2"/>
-     <Animation name=""/>
-    </AnimLayer>
+    <AnimLayer />
    </Fragment>
   </change_firemode>
   <pickedup>
@@ -5924,16 +5934,16 @@
    </Fragment>
   </ProneRoll>
   <ProneLookback>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+iron+Scope_LookPose">
+   <Fragment BlendOutDuration="0.2" Tags="stocked+ADS+Scope_AimPose">
     <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="pistol_alerted_prone_back_iron_lookposes" flags="Loop"/>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="stocked_alerted_prone_back_iron_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+iron+Scope_LookPose">
+   <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+Scope_AimPose">
     <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="stocked_alerted_prone_back_iron_lookposes" flags="Loop"/>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_prone_back_iron_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="nw+Scope_LookPose">
@@ -5941,46 +5951,6 @@
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="nw_neutral_prone_back_lookposes" flags="Loop"/>
     </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+Scope_LookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="pistol_alerted_prone_back_lookposes" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+iron">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="pistol_alerted_prone_back_idle_iron" flags="Loop"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="SetStance">
-      <ProceduralParams>
-       <Stance value="Prone"/>
-      </ProceduralParams>
-     </Procedural>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+Scope_LookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="stocked_alerted_prone_back_lookposes" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+iron">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_prone_back_idle_iron" flags="Loop"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="SetStance">
-      <ProceduralParams>
-       <Stance value="Prone"/>
-      </ProceduralParams>
-     </Procedural>
-    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="gren+throwing">
     <AnimLayer>
@@ -5995,6 +5965,18 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+Scope_AimPose">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="stocked_alerted_prone_back_aimposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+Scope_AimPose">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_prone_back_aimposes" flags="Loop"/>
+    </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="nw">
     <AnimLayer>
@@ -6213,663 +6195,6 @@
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="bulkhead"/>
   </navLink>
-  <MovementTransition>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch+ADS+scope_aimstance">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_idle_iron_01" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+ADS+scope_aimstance">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_idle_iron_01_add" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+lowered+scope_aimstance">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_lowered_stand_idle_01" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_LFT+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_left_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_LFT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_left_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="juke_BWD_FWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_crouch_walkfast_juke_back_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="juke_BWD_FWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_crouch_walkfast_juke_back_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_RGT+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_right_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_RGT+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_right_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_FWD+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_forward_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_BWD+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_back_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="juke_FWD_BWD+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_crouch_walkfast_juke_forward_back_lf"/>
-    </AnimLayer>
-    <ProcLayer />
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="juke_FWD_BWD+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_crouch_walkfast_juke_forward_back_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_FWD+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_forward_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="stop_BWD+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_back_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch+Scope_LookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_lookposes" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="start_FWD">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_forward_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="start_LFT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_left_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="start_RGT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_right_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+crouch" FragTags="start_BWD">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_walkfast_back_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_FWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_forward_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_FWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_forward_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_RGT+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_left_right_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_RGT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_left_right_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_FWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_back_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_FWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_back_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_LFT+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_right_left_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_LFT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_right_left_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_FWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_left_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_FWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_left_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_FWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_right_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_FWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_right_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_LFT+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_left_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_BWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_back_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_BWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_back_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_RGT+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_right_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_RGT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_right_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_LFT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_left_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_RGT+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_left_right_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_RGT+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_left_right_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_FWD+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_back_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_FWD+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_back_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_LFT+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="stocked_alerted_stand_juke_right_left_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_LFT+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Animation name="stocked_alerted_stand_juke_right_left_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_LFT+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_back_left_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_LFT+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_back_left_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_RGT+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_back_right_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_RGT+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_back_right_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_FWD+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_left_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_FWD+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_left_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_BWD+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_left_back_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_BWD+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_left_back_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_FWD+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_right_forward_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_FWD+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_right_forward_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_BWD+Run+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_right_back_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_BWD+Run+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_juke_right_back_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_BWD+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_forward_back_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_BWD+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_forward_back_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_RGT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_forward_right_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_RGT+Walk+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_forward_right_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_RGT+Walk+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_back_right_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_FWD+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runforward_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_FWD+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runforward_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_FWD+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_forward_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_BWD+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_back_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_RGT+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_right_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_LFT+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_left_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_LFT+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runleft_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_LFT+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runleft_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_BWD+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_runback_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_BWD+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runback_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_RGT+LeftFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runright_stop_lf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_LFT+Run">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runleft_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_FWD+Run">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runforward_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_BWD+Run">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runback_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="stop_RGT+RightFoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runright_stop_rf"/>
-    </AnimLayer>
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type=""/>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="start_RGT+Run">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_runright_start"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_RGT+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_back_right_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_RGT_BWD+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_right_back_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_LFT+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_forward_left_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_LFT_BWD+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_left_back_rf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_BWD_LFT+Walk">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_walkfast_juke_back_left_lf"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+cover" FragTags="step_LFT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_cover_stepleft"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+cover" FragTags="step_RGT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_cover_stepright"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="step_FWD">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_stepforward"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="step_BWD">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_stepback"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="step_LFT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_stepleft"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="step_RGT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_stepright"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+Scope_LookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_stand_lookposes" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_BWD">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_runslow_forward_jukeback"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_RGT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_runslow_forward_jukeright"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_LFT">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_runslow_forward_jukeleft"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked" FragTags="juke_FWD_FWD">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="stocked_alerted_stand_runslow_forward_jukeforward"/>
-    </AnimLayer>
-   </Fragment>
-  </MovementTransition>
   <Bracing>
    <Fragment BlendOutDuration="0.2" Tags="nw+zerog">
     <AnimLayer>
@@ -7161,16 +6486,64 @@
    </Fragment>
   </Cover>
   <CoverActionIn>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyLeft+Scope_AimPose+AI" FragTags="ToCoverMidShoot">
+    <AnimLayer>
+     <Blend ExitTime="0.60000002" StartTime="0" Duration="0.5"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_aimposes" flags="Loop+FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyRight+Scope_AimPose+AI" FragTags="ToCoverMidShoot">
+    <AnimLayer>
+     <Blend ExitTime="0.60000002" StartTime="0" Duration="0.5"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_aimposes" flags="Loop+FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyRight+AI" FragTags="ToCoverMidShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_center_enter" flags="FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyLeft+AI" FragTags="ToCoverMidShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_enter" flags="FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+Scope_AimPose+AI" FragTags="ToCoverRgtShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.5"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_aimposes" flags="Loop+FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+Scope_AimPose+AI" FragTags="ToCoverLftShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.5"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_aimposes" flags="Loop+FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_AimPose+AI" FragTags="ToCoverRgtShoot">
+    <AnimLayer>
+     <Blend ExitTime="0.5" StartTime="0" Duration="0.5"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_right_aimposes" flags="Loop+FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_AimPose+AI" FragTags="ToCoverLftShoot">
+    <AnimLayer>
+     <Blend ExitTime="0.5" StartTime="0" Duration="0.5"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_left_aimposes" flags="Loop+FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+AI" FragTags="ToCoverLftShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_idle" flags="FullRootPriority"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_stepout_enter" flags="FullRootPriority"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+AI" FragTags="ToCoverRgtShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_idle" flags="FullRootPriority"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_stepout_enter" flags="FullRootPriority"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+AI" FragTags="ToCoverLftShoot">
@@ -7183,12 +6556,6 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_enter" flags="FullRootPriority"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+AI" FragTags="ToCoverMidShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_center_enter" flags="FullRootPriority"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+coverHigh+AI" FragTags="ToCoverLftShoot">
@@ -7223,16 +6590,28 @@
    </Fragment>
   </CoverActionIn>
   <CoverActionOut>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyRight+AI" FragTags="FromCoverMidShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_center_exit" flags="FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyLeft+AI" FragTags="FromCoverMidShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_exit" flags="FullRootPriority"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+AI" FragTags="FromCoverLftShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_idle" flags="FullRootPriority"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_stepout_exit" flags="FullRootPriority"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+AI" FragTags="FromCoverRgtShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_idle" flags="FullRootPriority"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_stepout_exit" flags="FullRootPriority"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+AI" FragTags="FromCoverLftShoot">
@@ -7245,12 +6624,6 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_exit" flags="FullRootPriority"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+AI" FragTags="FromCoverMidShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_center_exit" flags="FullRootPriority"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+coverHigh+AI" FragTags="FromCoverLftShoot">
@@ -7285,18 +6658,6 @@
    </Fragment>
   </CoverActionOut>
   <CoverAction>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+iron+Scope_LookPose+AI" FragTags="CoverLftShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+iron+Scope_LookPose+AI" FragTags="CoverRgtShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+coverHigh+iron+Scope_LookPose+AI" FragTags="CoverLftShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
@@ -7327,28 +6688,16 @@
      <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+Scope_LookPose+AI" FragTags="CoverLftShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+Scope_LookPose+AI" FragTags="CoverRgtShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+iron+AI" FragTags="CoverLftShoot">
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyRight+Scope_AimPose+AI" FragTags="CoverMidShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+iron+AI" FragTags="CoverRgtShoot">
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyLeft+Scope_AimPose+AI" FragTags="CoverMidShoot">
     <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
+     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+coverHigh+Scope_LookPose+AI" FragTags="CoverLftShoot">
@@ -7411,46 +6760,58 @@
      <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_LookPose+AI" FragTags="CoverLftShoot">
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyLeft+AI" FragTags="CoverMidShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_lookposes" flags="Loop"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_LookPose+AI" FragTags="CoverMidShoot">
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+coverBodyRight+AI" FragTags="CoverMidShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_player_coverhigh_lookposes" flags="Loop"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_center_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_LookPose+AI" FragTags="CoverRgtShoot">
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+Scope_AimPose+AI" FragTags="CoverLftShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_aimposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+Scope_AimPose+AI" FragTags="CoverRgtShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.1"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_aimposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_AimPose+AI" FragTags="CoverLftShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_crouch_lookposes" flags="Loop"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_left_aimposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+Scope_AimPose+AI" FragTags="CoverRgtShoot">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="ai_merc_stocked_alerted_coverlow_right_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+AI" FragTags="CoverLftShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_left_stepout_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverHigh+AI" FragTags="CoverRgtShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_left_stepout_center_idle" flags="Loop"/>
+     <Animation name="ai_merc_stocked_alerted_coverhigh_right_stepout_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+AI" FragTags="CoverRgtShoot">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_idle" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+coverLow+AI" FragTags="CoverMidShoot">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="ai_merc_stocked_alerted_coverlow_right_stepout_center_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+coverHigh+AI" FragTags="CoverLftShoot">
@@ -10407,12 +9768,28 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="emote_death_m_stand_heartattack_generic_full"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="8" StartTime="0" Duration="0"/>
+     <Procedural type="DamagePlayer">
+      <ProceduralParams>
+       <AmountOfDamage value="9000"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="suicide+1">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="emote_death_m_stand_heartattack_generic_full"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="8" StartTime="0" Duration="0"/>
+     <Procedural type="DamagePlayer">
+      <ProceduralParams>
+       <AmountOfDamage value="9000"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="bored+2">
     <AnimLayer>
@@ -11793,6 +11170,14 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="emote_death_m_stand_heartattack_generic_full"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="8" StartTime="0" Duration="0"/>
+     <Procedural type="DamagePlayer">
+      <ProceduralParams>
+       <AmountOfDamage value="9000"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="taunt">
     <AnimLayer>
@@ -12206,36 +11591,6 @@
      <ProcLayer>
       <Blend ExitTime="0" StartTime="0" Duration="0.30000001" terminal="1"/>
      </ProcLayer>
-    </Fragment>
-   </Variant>
-  </Blend>
-  <Blend from="coverLean" to="MotionIdle">
-   <Variant from="stocked+crouch" to="stocked+crouch+alerted" fromFrag="toPose">
-    <Fragment BlendOutDuration="0.2" selectTime="0" enterTime="0">
-     <AnimLayer>
-      <Blend ExitTime="0" StartTime="0" Duration="0" terminal="1"/>
-     </AnimLayer>
-    </Fragment>
-   </Variant>
-   <Variant from="pistol+crouch" to="pistol+crouch+alerted" fromFrag="toPose">
-    <Fragment BlendOutDuration="0.2" selectTime="0" enterTime="0">
-     <AnimLayer>
-      <Blend ExitTime="0" StartTime="0" Duration="0" terminal="1"/>
-     </AnimLayer>
-    </Fragment>
-   </Variant>
-   <Variant from="stocked" to="stocked+alerted" fromFrag="toPose">
-    <Fragment BlendOutDuration="0.2" selectTime="0" enterTime="0">
-     <AnimLayer>
-      <Blend ExitTime="0" StartTime="0" Duration="0" terminal="1"/>
-     </AnimLayer>
-    </Fragment>
-   </Variant>
-   <Variant from="pistol" to="pistol+alerted" fromFrag="toPose">
-    <Fragment BlendOutDuration="0.2" selectTime="0" enterTime="0">
-     <AnimLayer>
-      <Blend ExitTime="0" StartTime="0" Duration="0" terminal="1"/>
-     </AnimLayer>
     </Fragment>
    </Variant>
   </Blend>

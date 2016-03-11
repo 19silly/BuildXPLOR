@@ -23,7 +23,7 @@ UEE_Pilot_x =
 		-- Default Loadout override for UEE_Pilots
 		Loadouts = 
 		{
-			fileLoadout1 = "Scripts/Loadouts/Player/Default_Hangar_Loadout.xml",
+			fileLoadout1 = "Scripts/Loadouts/Player/Default_UEE_Pilot_Loadout.xml",
 			fileLoadout2 = "",
 			fileLoadout3 = "",
 			fileLoadout4 = "",

@@ -34,7 +34,6 @@ RSI_IR1337_Weapon_Mount.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

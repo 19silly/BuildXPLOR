@@ -1,0 +1,1315 @@
+<!--
+//////////////////////////////////////////////////////////////////////////
+///              Musashi Industrial Starfflight Concern
+//												FREELANCER
+//////////////////////////////////////////////////////////////////////////
+-->
+<Vehicle name="MISC_Freelancer_Base" category="StarFighter" displayname="MISC Freelancer" classname="Class 3" id="idVehicleClass" dockingclass="3" priority="7" itemPortTags="MISC_Freelancer_Base" HudPaletteScheme="MISC">
+	<!-- <DamageTech resolution="256.0, 256.0" /> -->
+	<Shield shieldMesh="Objects\Spaceships\Ships\MISC\Freelancer_v2\MISC_Freelancer_Shield.obj" />
+	<DamageTech resolution="512.0, 512.0" />
+	<Physics pushable="0" dampingFreefall="0">
+		<Buoyancy waterDensity="150" waterResistance="2500"/>
+		<Simulation maxTimeStep="0.02" minEnergy="0.16" maxLoggedCollisions="2" />
+	</Physics>
+	<VisorElement element="Visor_HUD" />
+	<Damages submergedRatioMax="0.40000001" submergedDamageMult="2" collDamageThreshold="10" groundCollisionMinMult="0.0099999998" groundCollisionMaxMult="2" groundCollisionMinSpeed="4" groundCollisionMaxSpeed="60">
+    <DamageMultipliers>
+      <DamageMultiplier damageType="bullet" multiplier="1" multiplier_energy="1" multiplier_distortion="0.01" />
+      <DamageMultiplier damageType="melee" multiplier="0" />
+      <DamageMultiplier damageType="fire" multiplier="0.0099999998" />
+      <DamageMultiplier damageType="collision" multiplier="1" />
+      <DamageMultiplier damageType="explosion" multiplier="1" splash="0.25" />
+    </DamageMultipliers>
+    <DamagesGroups>
+      <DamagesGroup name="Destroy">
+        <DamagesSubGroups>
+          <!-- SubGroup to Destroy Vehicle -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="Destroy" />
+              <DamageBehavior class="Effect">
+                <Effect effect="VehicleDestroyed" helper="MISC_Freelancer_Base" />
+              </DamageBehavior>
+			  
+              <!-- <DamageBehavior class="Explosion">
+                <Explosion helper="impulsePos" damage="500" radius="15" minRadius="5" minPhysRadius="2.2" physRadius="3" pressure="1000" />
+              </DamageBehavior> -->
+              <!--<DamageBehavior class="AudioFeedback" damageRatioMin="0.96">-->
+              <!--<Sound sound="Play_Deprecated_Event" cooldown="1" />-->
+              <!--</DamageBehavior>-->
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to kill Passengers -->
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="HitPassenger">
+                <HitPassenger damage="100" isDamagePercent="1" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+          <!-- SubGroup to apply burning - might remove this -->
+          <DamagesSubGroup delay="3" randomness="0.25">
+            <DamageBehaviors>
+              <DamageBehavior class="Burn">
+                <Burn helper="impulsePos" damage="5" selfDamage="10" radius="2" interval="0.5" />
+              </DamageBehavior>
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+      <DamagesGroup name="DestroyEngine">
+        <DamagesSubGroups>
+          <DamagesSubGroup delay="0" randomness="0">
+            <DamageBehaviors>
+              <DamageBehavior class="MovementNotification">
+                <MovementNotification isDamageAlwaysFull="0" />
+              </DamageBehavior>
+							<!-- RobJ - commenting out dud effect - won't work as no helper is specified<DamageBehavior class="Effect">
+                <Effect effect="EngineDamaged" disableAfterExplosion="1" />
+              </DamageBehavior>-->
+            </DamageBehaviors>
+          </DamagesSubGroup>
+        </DamagesSubGroups>
+      </DamagesGroup>
+    </DamagesGroups>
+  </Damages>
+
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- BEGIN VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////-->
+
+	<Parts>
+	 <Part name="MISC_Freelancer_Base" class="Animated" mass="40000" disablePhysics="0" scopeContext ="Ship" id="idMainPart">
+		<Animated filename="Objects/Spaceships/Ships/MISC/Freelancer_v2/MISC_Freelancer_Base.cga" id="idShipGeometry" damageMapFlag="1" damageMapScale="1.0, 1.0" damageMapOffset="0.0,0.0">
+			<PhysicsGrid enableLocalGrid="1" gravity="0,0,-9.81">
+				<PhysProxy filename="objects/spaceships/ships/misc/freelancer/misc_freelancer_no_collide.cgf" />
+			</PhysicsGrid>
+		</Animated>
+			<Parts>
+				<Part name="Body" class="AnimatedJoint" mass="1000" damageMax="10000">
+					<DamageBehaviors>
+							<!-- <DamageBehavior class="DetachPart" damageRatioMin="1">
+								<DetachPart>
+									<Part name="Body_Rear" recurseChildren="1" Probability="0.5" />
+									<Part name="Body_Rear" Probability="1" />
+								</DetachPart>
+							</DamageBehavior> -->
+							<DamageBehavior class="Group" damageRatioMin="1">
+								<Group name="Destroy" />
+							</DamageBehavior>
+					</DamageBehaviors>
+					<Effects>
+							<!-- Left -->
+							<!-- <DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="-3, 3, 2.423" rot_offset="0.025019,-0.382151,-0.923761" 	helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="bullet.smoke" pos_offset="-3, 3, 2.423" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" pos_offset="-3, 3, 2.423" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Metal_FX.Metal_ALL.metal_2m_once_trail" pos_offset="0,0,0" rot_offset="0.025019,-0.382151,-0.923761" helperID="" /> -->
+							<!-- Right -->
+							<!-- <DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="3, 3, 2.423" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="bullet.smoke" pos_offset="3, 3, 2.423" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" pos_offset="3, 3, 2.423" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Metal_FX.Metal_ALL.metal_2m_once_trail" pos_offset="0,0,0" rot_offset="0.025019,-0.382151,-0.923761" helperID="" /> -->
+							<!-- Top -->
+							<!-- <DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0, 3, 5.223" rot_offset=		"0.025019,-0.382151,-0.923761" 	helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="bullet.smoke" pos_offset="0, 3, 5.223" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" pos_offset="0, 3, 5.223" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Metal_FX.Metal_ALL.metal_2m_once_trail" pos_offset="0,0,0" rot_offset="0.025019,-0.382151,-0.923761" helperID="" /> -->
+							<!-- Bottom -->
+							<!-- <DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Sparks_FX.Sparks_ALL.sparks_2m_once_fixed" pos_offset="0, 2.5, -0.077" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="bullet.smoke" pos_offset="0, 2.5, -0.077" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Explode_FX.Explode_ALL.explode_1m_once_fixed" pos_offset="0, 2.5, -0.077" rot_offset="0.025019,-0.382151,-0.923761" helperID="" />
+							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Metal_FX.Metal_ALL.metal_2m_once_trail" pos_offset="0,0,0" rot_offset="0.025019,-0.382151,-0.923761" helperID="" /> -->
+					</Effects>
+					<Parts>
+						<!-- Pilot controls -->
+						<Part name ="Cockpit_L_YokeMainArm" class ="AnimatedJoint"/>
+						<Part name ="Cockpit_L_YokeArm_L_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_L_Yoke_L" class ="AnimatedJoint" />
+						<Part name ="Cockpit_L_YokeArm_R_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_L_Yoke_R" class ="AnimatedJoint" />
+						
+						<!-- CoPilot controls -->
+						<Part name ="Cockpit_R_YokeMainArm" class ="AnimatedJoint"/>
+						<Part name ="Cockpit_R_YokeArm_L_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_R_Yoke_L" class ="AnimatedJoint" />
+						<Part name ="Cockpit_R_YokeArm_R_02" class ="AnimatedJoint" />
+						<Part name ="Cockpit_R_Yoke_R" class ="AnimatedJoint" />
+
+						<Part name="landingpad_helper" class="ItemPort">
+						  <ItemPort minsize="1" maxsize="1" flags="" display_name="Landing System">
+							<Types>
+							  <Type type="LandingSystem" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" />
+							</Controllers>
+						  </ItemPort>
+						</Part>
+				
+						<Part name="animated_cockpit" mass="1" class="InteriorNode" helper="animated_cockpit">
+							<InteriorNode>
+								<Prefab name="misc_freelancer_interior.cockpit.cockpit_all" helper="interior_cockpit" />
+							</InteriorNode>
+						</Part>
+					
+						<Part name="hardpoint_seat_pilot" class="ItemPort">
+						  <ItemPort minSize="1" maxsize="3" flags="seat">
+							<Types>
+							  <Type type="Seat" />
+							</Types>							
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_seat_copilot" class="ItemPort">
+						  <ItemPort minSize="1" maxsize="3" flags="seat">
+							<Types>
+							  <Type type="Seat" />
+							</Types>						
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_seat_rear_left" class="ItemPort">
+						  <ItemPort minSize="1" maxsize="3" flags="seat">
+							<Types>
+							  <Type type="Seat" />
+							</Types>						
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_seat_rear_right" class="ItemPort">
+						  <ItemPort minSize="1" maxsize="3" flags="seat">
+							<Types>
+							  <Type type="Seat" />
+							</Types>							
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_cockpit_audio" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags=""  display_name="Cockpit Audio">
+								<Types>
+									<Type type="Avionics" subtypes="Cockpit_Audio"/>
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>							
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_selfdestruct" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Self Destruct">
+								<Types>
+								  <Type type="SelfDestruct" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>							
+							</ItemPort>
+						</Part>						
+						
+						<Part name="UI_helper" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="" display_name="UI">
+								<Types>
+									<Type type="Display" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1" />
+								</Controllers>					
+							</ItemPort>
+						</Part>
+					
+						<Part name="hardpoint_cooler" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" flags="invisible" display_name="Cooler Slot" requiredTags="">
+								<Types>
+									<Type type="Cooler" subtypes="" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>						
+							</ItemPort>
+							
+						</Part>
+				
+						<Part name="hardpoint_shield_generator" class="ItemPort">
+							<ItemPort minsize="1" maxsize="3" flags="invisible" display_name="Shield Slot">
+								<Types>
+									<Type type="Shield" subtypes="" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1" />
+								  <Controller port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Controllers>								
+							</ItemPort>
+						</Part>
+						
+						<Part name ="hardpoint_thruster_front_left_bottom" class ="ItemPort">
+							<ItemPort minsize="1" maxsize="2" flags="">
+								<Pitch min ="-90" max ="90"/>
+								<Yaw min ="0" max ="90"/>
+								<Types>
+									<Type type="ManneuverThruster" subtypes=""/>
+								</Types>
+								<OptimalStates>
+									<Fixup pos="-2.45, 14.25, -5.75" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>								
+							</ItemPort>
+						</Part>
+						
+						
+						
+						<Part name ="hardpoint_thruster_front_right_bottom" class ="ItemPort">
+							<ItemPort minsize="1" maxsize="2" flags="">
+								<Pitch min ="-90" max ="90"/>
+								<Yaw min ="-90" max ="0"/>
+								<Types>
+									<Type type="ManneuverThruster" subtypes=""/>
+								</Types>
+								<OptimalStates>
+									<Fixup pos="2.45, 7.125, -5.75" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>										
+							</ItemPort>
+						</Part>
+
+						<Part name="animated_centre_room" mass="1" class="InteriorNode" helper="animated_centre_room">
+							<InteriorNode>
+								<Prefab name="misc_freelancer_interior.centre_room.centre_room_all" helper="interior_centre_room" />
+							</InteriorNode>
+						</Part>
+							
+				
+						<Part name ="hardpoint_thruster_centre_left_bottom" class ="ItemPort">
+							<ItemPort minsize="1" maxsize="2" flags="">
+								<Pitch min ="-90" max ="90"/>
+								<Yaw min ="0" max ="90"/>
+								<Types>
+									<Type type="ManneuverThruster" subtypes=""/>
+								</Types>
+								<OptimalStates>
+									<Fixup pos="-2.45, 0, -5.75" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>							
+							</ItemPort>
+						</Part>
+
+						<Part name ="hardpoint_thruster_centre_right_bottom" class ="ItemPort">
+							<ItemPort minsize="1" maxsize="2" flags="">
+								<Pitch min ="-90" max ="90"/>
+								<Yaw min ="-90" max ="0"/>
+								<Types>
+									<Type type="ManneuverThruster" subtypes=""/>
+								</Types>
+								<OptimalStates>
+									<Fixup pos="2.45, 0, -5.75" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>								
+							</ItemPort>
+						</Part>
+						
+						<Part name ="hardpoint_thruster_front_left_top" class ="ItemPort">
+							<ItemPort minsize="1" maxsize="2" flags="">
+								<Pitch min ="-90" max ="90"/>
+								<Yaw min ="-90" max ="0"/>
+								<Types>
+									<Type type="ManneuverThruster" subtypes=""/>
+								</Types>
+								<OptimalStates>
+									<Fixup pos="-2.45, 14.25, 5.75" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>								
+							</ItemPort>
+						</Part>
+					
+						<Part name ="hardpoint_thruster_front_right_top" class ="ItemPort">
+							<ItemPort minsize="1" maxsize="2" flags="">
+								<Pitch min ="-90" max ="90"/>
+								<Yaw min ="0" max ="90"/>
+								<Types>
+									<Type type="ManneuverThruster" subtypes=""/>
+								</Types>
+								<OptimalStates>
+									<Fixup pos="2.45, 14.25, 5.75" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>							
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_sidecannon_right" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" display_name="SideCannon Right" displayPos="">
+								<Types>
+									<Type type="Turret" subtypes="" />
+								</Types>
+								<Pitch min="-45" max="45" />
+								<Yaw min="0" max="30" />
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="0" actorRecoil="0" defaultGroup="0" />
+								</Controllers>				
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_sidecannon_left" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" display_name="SideCannon Left" displayPos="">
+								<Types>
+									<Type type="Turret" subtypes="" />
+								</Types>
+								<Pitch min="-45" max="45" />
+								<Yaw min="0" max="30" />
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="0" actorRecoil="0" defaultGroup="0" />
+								</Controllers>							
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_power_plant_attach" class="ItemPort">
+							<ItemPort minsize="2" maxsize="5" flags="invisible" display_name="Power Plant" displayPos="">
+								<Types>
+									<Type type="PowerPlant" subtypes=""/>
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								  <Controller port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Controllers>								
+							</ItemPort>
+						</Part>
+						<Part name="animated_cargo" mass="1" class="InteriorNode" helper="animated_cargo">
+							<InteriorNode>
+								<Prefab name="misc_freelancer_interior.cargo_single.cargo_single_all" helper="interior_cargo" />
+							</InteriorNode>
+						</Part>
+						
+						<Part name="hardpoint_rear_turret" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" display_name="Rear Turret" displayPos="">
+								<Types>
+								  <Type type="TurretBase" subtypes="MannedTurret" />
+								</Types>
+								<Pitch min="-10" max="50">
+										<MinPoints>
+											<Point yaw="-180" pitch="4" />
+											<Point yaw="90" pitch="-15" />
+											<Point yaw="-90" pitch="-15" />
+											<Point yaw="0" pitch="-10" />
+										</MinPoints>
+										<MaxPoints>
+											<Point yaw="-120" pitch="75" />
+											<Point yaw="-90" pitch="75" />
+											<Point yaw="90" pitch="75" />
+											<Point yaw="120" pitch="75" />
+										</MaxPoints>
+								</Pitch>
+								<Yaw min="-180" max="180" />
+								<Controllers>
+								  <Controller port="hardpoint_rear_turret" active="1" priority="1" actorRecoil="0" defaultGroup="1" />
+								</Controllers>								
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_avionics_motherboard" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Avionics Motherboard">
+								<Types>
+									<Type type="Avionics" subtypes="Motherboard" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>							
+							</ItemPort>
+		
+						</Part>
+			
+						<Part name="hardpoint_fuel_intake_left" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Intake">
+								<Types>
+									<Type type="FuelIntake" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>								
+							</ItemPort>
+						</Part>
+				
+						<Part name="hardpoint_fuel_intake_right" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Intake">
+								<Types>
+									<Type type="FuelIntake" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>									
+							</ItemPort>
+						</Part>
+				
+						<Part name="hardpoint_fuel_tank_left" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Left Fuel Tank">
+								<Types>
+									<Type type="FuelTank" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>								
+							</ItemPort>
+						</Part>
+					
+						<Part name="hardpoint_fuel_tank_right" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="invisible" display_name="Right Fuel Tank">
+								<Types>
+									<Type type="FuelTank" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>									
+							</ItemPort>
+							
+						</Part>
+						
+						<Part name ="hardpoint_thruster_back_left_top" class ="ItemPort">
+						<ItemPort minsize="1" maxsize="2" flags="">
+							<Pitch min ="-90" max ="90"/>
+							<Yaw min ="-90" max ="0"/>
+							<Types>
+								<Type type="ManneuverThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="-2.45, -14.25, 5.75" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>									
+						</ItemPort>
+						</Part>
+
+						<Part name ="hardpoint_thruster_back_right_top" class ="ItemPort">
+						<ItemPort minsize="1" maxsize="2" flags="">
+							<Pitch min ="-90" max ="90"/>
+							<Yaw min ="0" max ="90"/>
+							<Types>
+								<Type type="ManneuverThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="2.45, -14.25, 5.75" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>								
+						</ItemPort>
+						</Part>
+					
+						<Part name ="hardpoint_thruster_rear_right_bottom" class ="ItemPort">
+						<ItemPort minsize="1" maxsize="2" flags="">
+							<Pitch min ="-90" max ="90"/>
+							<Yaw min ="-90" max ="0"/>
+							<Types>
+								<Type type="ManneuverThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="-2.45, -14.25, -5.75" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>								
+						</ItemPort>
+						</Part>	
+						
+						<Part name ="hardpoint_thruster_rear_left_bottom" class ="ItemPort">
+						<ItemPort minsize="1" maxsize="2" flags="">
+							<Pitch min ="-90" max ="90"/>
+							<Yaw min ="0" max ="90"/>
+							<Types>
+								<Type type="ManneuverThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="-2.45, -14.25, -5.75" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>								
+						</ItemPort>
+						</Part>
+						
+						<Part name ="hardpoint_thruster_centre_rear_left_bottom" class ="ItemPort">
+						<ItemPort minsize="1" maxsize="2" flags="">
+							<Pitch min ="-90" max ="90"/>
+							<Yaw min ="0" max ="90"/>
+							<Types>
+								<Type type="ManneuverThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="-2.45, -7.125, -5.75" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>								
+						</ItemPort>
+						</Part>
+					
+						<Part name ="hardpoint_thruster_centre_rear_right_bottom" class ="ItemPort">
+						<ItemPort minsize="1" maxsize="2" flags="">
+							<Pitch min ="-90" max ="90"/>
+							<Yaw min ="-90" max ="0"/>
+							<Types>
+								<Type type="ManneuverThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="2.45, -7.125, -5.75" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>									
+						</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_radar" class="ItemPort">
+						<ItemPort minsize="1" maxsize="1" display_name="Short Range Radar" flags="invisible">
+							<Types>
+								<Type type="Radar" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>							
+						</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_cockpit_radar" class="ItemPort">
+						<ItemPort minsize="1" maxsize="1" flags="start_hidden" display_name="UI">
+							<Types>
+								<Type type="Display" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>						
+						</ItemPort>
+						</Part>
+						
+
+						
+						<Part name="hardpoint_engine_left" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" flags="main rear left">
+							<!-- <Pitch min="-90" max="90" />
+							<Yaw min="0" max="0" /> -->
+							<Types>
+								<Type type="MainThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="-1.6, -6.8, 0.0" />
+							</OptimalStates>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+							</Controllers>
+							<Observers>
+							  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+							</Observers>								
+						
+						</ItemPort>
+						</Part>
+					
+					
+					
+						<Part name="hardpoint_retro_left" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
+							<ItemPort minsize="1" maxsize="3" flags="retro" requiredTags="">
+								<Types>
+									<Type type="ManneuverThruster" subtypes="" />
+								</Types>
+								<OptimalStates>
+									<Fixup pos="-1.6, 6.8, 0" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>						
+							
+							</ItemPort>
+						</Part>
+
+						<Part name="hardpoint_engine_right" class="ItemPort">
+							<ItemPort minsize="1" maxsize="5" flags="main rear right">
+							<!-- <Pitch min="-90" max="90" />
+							<Yaw min="0" max="0" /> -->
+							<Types>
+								<Type type="MainThruster" subtypes=""/>
+							</Types>
+							<OptimalStates>
+								<Fixup pos="1.6, -6.8, 0.0" />
+							</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>									
+							
+							</ItemPort>
+						</Part>
+				
+						<Part name="hardpoint_retro_right" class="ItemPort" damageMax="10" detachRatio="1" detachBaseForce="0,10,0" detachRandomForce="2.2,1.5,2.4" detachRandomRotation="0.5,0,0.3">
+							<ItemPort minsize="1" maxsize="3" flags="retro" requiredTags="">
+								<Types>
+									<Type type="ManneuverThruster" subtypes="" />
+								</Types>
+								<OptimalStates>
+									<Fixup pos="1.6, 6.8, 0" />
+								</OptimalStates>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="1" />
+								</Observers>									
+								
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_quantum_drive" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Drive" requiredTags="">
+								<Types>
+									<Type type="Avionics" subtypes="QDrive" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="-1" />
+								</Observers>	
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_quantum_fuel_tank" class="ItemPort">
+							<ItemPort minsize="1" maxsize="1" flags="" display_name="Quantum Fuel Tank" requiredTags="">
+								<Types>
+									<Type type="QuantumFuelTank" subtypes="QuantumFuel" />
+								</Types>
+								<Controllers>
+								  <Controller port="hardpoint_seat_pilot" active="1" priority="-1"/>
+								</Controllers>
+								<Observers>
+								  <Observer port="hardpoint_seat_copilot" active="1" priority="-1" />
+								</Observers>	
+							</ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_countermeasure_launcher_left" class="ItemPort">
+						  <ItemPort minsize="1" maxsize="2" flags="invisible" display_name="Left Countermeasure Launcher">
+							<Types>
+							  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+							</Controllers>
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_countermeasure_launcher_right" class="ItemPort">
+						  <ItemPort minsize="1" maxsize="2" flags="invisible" display_name="Right Countermeasure Launcher">
+							<Types>
+							  <Type type="WeaponDefensive" subtypes="CountermeasureLauncher" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="4" />
+							</Controllers>
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_left_wing_upperA" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="left wing" display_name="Left Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_left_wing_upperB" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="left wing" display_name="Left Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_left_wing_upperC" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="left wing" display_name="Left Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_right_wing_upperA" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="right wing" display_name="Right Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_right_wing_upperB" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="right wing" display_name="Right Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_right_wing_upperC" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="right wing" display_name="Right Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_left_wing_lowerA" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="left wing" display_name="Left Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_left_wing_lowerB" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="left wing" display_name="Left Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_left_wing_lowerC" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="left wing" display_name="Left Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_right_wing_lowerA" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="right wing" display_name="Right Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_right_wing_lowerB" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="right wing" display_name="Right Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+						
+						<Part name="hardpoint_weapon_missilerack_right_wing_lowerC" class="ItemPort" detachRatio="0">
+						  <ItemPort minsize="1" maxsize="3" flags="right wing" display_name="Right Wing Inner Class 3 Slot" displayPos="75,290">
+							<Types>
+							  <Type type="WeaponMissile" subtypes="" />
+							</Types>
+							<Controllers>
+							  <Controller port="hardpoint_seat_pilot" priority="0" active="1" actorRecoil="0" defaultGroup="3" />
+							</Controllers>
+
+						  </ItemPort>
+						</Part>
+
+					</Parts>
+					</Part> 	
+			</Parts>
+		</Part>
+	</Parts>
+	<!-- END VEHICLE PARTS ///////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE HELPERS /////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- PM to do see if we still need this -->
+	<Helpers>
+		<Helper name="impulsePos" position="-0.1375,1.0821,0.026900001" direction="0,1,0" part="MISC_Freelancer_Base"/>
+		<Helper name="burningPos" position="0,0,0.57550001" direction="0,1,0" part="MISC_Freelancer_Base"/>
+	</Helpers>
+	
+	<!-- END VEHICLE HELPERS //////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE ACTIONS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Actions>
+
+		<!-- Rear Cargo Massive Door -->
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="rear_door_helper" distance="1" bbMin="-2,-4,-4" bbMax="2,-6,2"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>
+
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="rear_door_side_helper1" distance="1" bbMin="1,1,1" bbMax="1,1,"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	
+
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="rear_door_side_helper2" distance="1" bbMin="1,1,1" bbMax="1,1,"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Rear_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	
+
+		<!-- Side Door -->
+		
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="side_door_helper_int" distance="1" bbMin="1,1,1" bbMax="1,1,"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Side_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Side_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>			
+
+		<Action class="Switch">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="side_door_helper_ext" distance="1" bbMin="1,1,1" bbMax="1,1,"/>
+			</Activations>
+			<States>
+				<State>
+					<AnimationStates>
+						<State animation="Side_Door" state="Open" />
+					</AnimationStates>
+				</State>
+				<State>
+					<AnimationStates>
+						<State animation="Side_Door" state="Close" />
+					</AnimationStates>
+				</State>
+			</States>
+		</Action>	
+		
+		<Action class="ItemPort">
+		  <Activations>
+			<Activation type="OnUsed" param1="helper" param2="hardpoint_rear_turret" distance="1" bbMin="-0.8,-0.8,0" bbMax="0.8,0.8,-3" />
+		  </Activations>
+		  <ItemPort>
+			<Ports>
+			  <Port value="hardpoint_rear_turret" />
+			</Ports>
+		  </ItemPort>
+		</Action>
+		
+	<!-- bunk bed lower left  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_lowerleft_helper" distance="1" bbMin="-0.3,-0.3,-0.3" bbMax="0.3,0.3,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_lowerleft_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	<!-- bunk bed lower right  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_lowerright_helper" distance="1" bbMin="-0.3,-0.3,-0.3" bbMax="0.3,0.3,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_lowerright_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	<!-- bunk bed upper right  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_upperright_helper" distance="1" bbMin="-0.3,-0.5,-0.3" bbMax="0.3,0.5,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_upperright_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	<!-- bunk bed upper left  -->
+		<Action class="Enter">
+			<Activations>
+				<Activation type="OnUsed" param1="helper" param2="bunkbeds_upperleft_helper" distance="1" bbMin="-0.3,-0.5,-0.3" bbMax="0.3,0.5,0.6"/>
+			</Activations>
+			<Enter>
+				<Seats>
+					<Seat value="bunkbeds_upperleft_player"/>
+				</Seats>
+			</Enter>
+		</Action>
+		
+	</Actions>
+	<!-- END VEHICLE ACTIONS ///////////////////////////////////////////////////////////////////////////////////-->
+
+  <!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////////-->
+  
+  <Interior bbSize="5,31,5" bbCenter="0,0,3">
+	<Doors>
+		<Door name="Entrance_Door_Player">
+			<Enter startHelper="pilot_enter_pos" endHelper="pilot_exit_pos"/>
+			<Exit startHelper="pilot_exit_pos" endHelper="pilot_enter_pos"/>
+		</Door>
+		<!--<Door name="RearEntranceAction">
+			<Enter startHelper="rear_door_enter_pos" endHelper="rear_door_exit_pos">
+				<State animation="Rear_Door" state="Open" />
+			</Enter>
+			<Exit startHelper="rear_door_exit_pos" endHelper="rear_door_enter_pos">
+				<State animation="Rear_Door" state="close" />
+			</Exit>
+		</Door>-->
+	</Doors>
+	<Views>
+		<View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+	</Views>
+  </Interior>
+  
+  <!-- END VEHICLE INTERIOR //////////////////////////////////////////////////////////////////////////////-->
+
+	<!--////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+	<Seats>
+    <!--           Lower Left Sleeping Berth        -->
+    <Seat name="bunkbeds_lowerleft_player" part="" enterHelper="bunkbeds_lower_left_mount_pos" sitHelper="bunkbeds_lowerleft_sit_pos" allowZeroGExit="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="8" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Lower Right Sleeping Berth        -->
+    <Seat name="bunkbeds_lowerright_player" part="" enterHelper="bunkbeds_lower_right_mount_pos" sitHelper="bunkbeds_lowerright_sit_pos" allowZeroGExit="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="9" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Upper Left Sleeping Berth        -->
+    <Seat name="bunkbeds_upperleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_upperleft_sit_pos" allowZeroGExit="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="10" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>
+      <SeatActions />
+    </Seat>
+	
+    <!--           Upper Right Sleeping Berth        -->
+    <Seat name="bunkbeds_upperright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_upperright_sit_pos" allowZeroGExit="1" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="11" isHUDSupported="0" >
+      <Views>
+        <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
+          <FirstPerson offset="0,0,0"/>
+        </View>
+      </Views>`
+      <SeatActions />
+    </Seat>
+	</Seats>
+	<!-- END VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!-- VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+	<MovementParams id="Movementxml">
+    <Spaceship engineWarmupDelay="1" engineIgnitionTime="0" enginePowerMax="2.75" rotationDamping="26" maxCruiseSpeed="225" maxEngineThrust="150" maxRetroThrust="120" maxDirectionalThrust="80" maxAngularVelocity="110,160,110" maxAngularAcceleration="950,950,50" maxJerk="100.0" maxAngJerk="60.0" maxTorqueAlpha="100.5,100.5,100.5" maxTorqueAngle="18,18,18" id="idMovementStats">
+      <AudioParams dmgBufferDecay="0.2">
+		<EngineStartSound sound="" />
+		<EngineRunSound sound="" />
+		<EngineStopSound sound="" />
+		<AmbienceSound sound="Play_SSAM_ORIG_300i_Interior" />
+		<PassByLoopSound sound="Play_SSPB_AEGS_Avenger_Loop" />
+        <PassBySound sound="Play_SSPB_AEGS_Avenger_800ms_0to100mtrs" leadinTime="0.6" triggerDistance="100" cooldownTime="2" />
+        <DuressSound sound="Play_SSDM_ORIG_300_Cockpit_Shake" damage_floor="21.0" damage_buffer="80.0" />
+      </AudioParams>
+      <Animations />
+      <Contrails>
+        <!--<Contrail helper="right_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
+        <!--<Contrail helper="left_wing_contrail_helper" effect="spaceship_fx.Vanduul.contrail" ctceffect="CTF_Effects_ALL.CTF_Got_The_Core_Contrail_ALL.CTF_Got_The_Core_Contrail_Small" minSpeed="25" />-->
+      </Contrails>
+	  <IFCS>
+		<goalTimes opcomTime="5.8" ropcomTime="1.31, .655, 1.31" cruiseTime="18" />
+		<precisionMode minVel="" maxVel="50" scanLen="50.0" /> <!-- Min and Max velocities in Precision mode / Radius to scan for collision -->
+ 
+		<maxVelocity normal="235" />
+		<linearJerk pos="63.7, 36.7, 63.7" neg="63.7, 43.7, 63.7" />
+        <linearScale pos="0.7, 0.8, 0.7" neg="0.7, 1.0, 0.7" />
+
+		<maxAngVelocity normal="55,90,55" boost="" />
+		<angularJerk pos="18.996, 12.8832, 18.996" neg="18.996, 12.8832, 18.996" />
+        <angularScale pos="0.3622, 0.3457, 0.3985" neg="0.3622, 0.3457, 0.3985" />
+        <maxGyro scale="0.2" velScale="0.5"/> <!-- Defaults to 0.2 of max torque.  Never change this for game balance, only for behavior tweaking -->
+        <errorTorque maxAlpha="13.75,13.75,13.75" maxAngle="1.8,1.8,1.8" />
+      </IFCS>
+    </Spaceship>
+  </MovementParams>
+
+	<!-- END VEHICLE MOVEMENT /////////////////////////////////////////////////////////////////////////////////////-->
+
+
+	<Particles>
+		<DamageEffects>
+			<DamageEffect name="VehicleDestroyed" helper="MISC_Freelancer_Base" effect="spaceships/deathmasks/misc_freelancer_deathmask.ALL.misc_freelancer_deathmask1" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			
+	<!--		<DamageEffect name="HullDamaged25" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_a" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			<DamageEffect name="HullDamaged75" helper="burningPos" effect="spaceship_fx.Hornet.hull_smoke_b" scaleMax="1" gravityDirection="0,0,1" pulsePeriod="0"/>
+			-->
+		</DamageEffects>
+		<EnvironmentLayers>
+			<EnvironmentLayer minSpeed="0" minSpeedSizeScale="1" minSpeedCountScale="1" minSpeedSpeedScale="1" maxSpeed="10" maxSpeedSizeScale="1" maxSpeedCountScale="1" maxSpeedSpeedScale="1" minPowerSizeScale="1" minPowerCountScale="1" maxPowerSizeScale="1" maxPowerCountScale="1">
+				<Alignment alignGroundHeight="25" maxHeightSizeScale="0.5" maxHeightCountScale="0.60000002" alignToWater="0"/>
+				<Emitters />
+				<Wheels />
+			</EnvironmentLayer>
+		</EnvironmentLayers>
+	</Particles>
+
+
+	<!-- Vehicle Animation Component data for Mannequin setup of the vehicle -->
+	<Mannequin tag="MISC_Freelancer_Base" controllerDef="Animations/Mannequin/ADB/Spaceships/Ships/MISC/Freelancer_Base/MISC_Freelancer_Base_ControllerDefs.xml" vehicleADB="Animations/Mannequin/ADB/Spaceships/Ships/MISC/Freelancer_Base/MISC_Freelancer_Base_Anims.adb" passengerADB="Animations/Mannequin/ADB/Spaceships/Ships/MISC/Freelancer_Base/MISC_Freelancer_Base_HumanAnims.adb" />
+	
+	<!-- Animations
+	Format is
+	
+		Animation
+			name =        Vehicle Animtion name that all systems use when refering to the animation (from inside and outside the vehicle system). Not this is not the same as the ANM file name.
+			part =        This is the name of the parent VehiclePartAnimated of this animation. As there can be multipel CGAs in the vehicles now, this should be the part that owns teh CGA that the ANM file is based on
+			reserveLayer= if set to "1" the vehicle animation systems reserves an exclusive animation layer (Out of the available 15 on each CGA) for this animation. 
+										This is useful for animation sthat you need to guarntee whill play.
+										
+			State
+				name=         Name of state
+				animation=    this is the CGA ANM file name (sans the CGA name. For instance if teh CGA is WCShipHornet, the animation would be "engine_fans" for "WCShipHornet_engine_fans.anm"
+				speedDefault= Speed the animtion will play at. A negative numbers means the animtion will play backwards. Defaults to 1
+				speedMin=     defaults to -1
+				speedMax=     defaults to 1
+				isLooped=     Is animation looped
+				isLoopedEx=   Animation will play until the end, then replay if requested to be played again. (this is for legacy support of the old system as its not needed in this new one)
+				isManual=     Is animation manually advanced
+				canRestart=   if true the animation can be iterrupted and started again before its finsihed playing. Defaults to false.
+				interrupt=    Can this animation be interupted by another one. Defaults to no.
+				startTime=    The time that the aniamtion will start at when played (in normlaized anaimtion time of 0 to 1). If non zero the vehicle animation system will initialize the animation at this frame and hold it there
+											until the animtion is requested to be played.
+				play=         Number of thimes this state can be played before advancing to the state specified by nextState. If not defined this is set to 1
+				nextState=    The next state to go to once this state has been played. If not defined the nextState is always the current state
+				sound=        Name of sound to played
+				helper=       (optional) vehicle helper location of sound
+			
+				Materials
+					Material        Specifies the material which the material settign will be animated by the state's speed.
+						name=         name of material
+						setting=      material setting (e.g. opacity etc) to animate
+						min=          min value of setting 
+						max=          max value of setting
+						invertValue=  invert setting
+	 
+	 Action
+			name =        Name of Mannequin Fragment in the vehicle adb file
+			state =       Sets the Action to the last frame of the fragment on init, String is the fragment tag(s)
+			play =        Plays this Action on init, String is the fragment tag(s)  
+	-->
+	
+	<Animations>
+		<!-- Disabled for now until Animation fix -->
+		<!--<Action name="Entrance_Door" play="Close" />-->
+		<Action name="Kitchen_Screens" state="Retract" /><!-- Changed "play" to "state" to see if it actually pops the screens to the last frame of its mannequin fragment as described above.-->
+
+	</Animations>
+
+	
+	<!-- Vehicle Attachments
+	This is a list of any attachment objects on the vehicle. This is used primarlily for detail pieces (like a skinned bit of geometry that is part of the vehicle), lights, particle effects etc 
+	where you dont need the a full VehiclePart to own the piece. A good example is the pilot's umbilical cord or the seatbelt in the cockpit, both of which are skinned meshes that animate but we
+	dont really need them to be their own VehiclePart
+	Format is 
+		name=     is the string name that other systems use when telling the vehicle to do soemthing with the part (for instance an AnimEvent or the AG can send an event to the vehicle to play an
+							animation or do something with an attachment.) 
+		helper=   is the helper where the attachment is located
+		filename= if specified then the system assumes the attachement is either a CHR,CDF or CGF (depending on the extension).
+		effect=   if specified then the system assumes the attachment is a particle effect, and this is teh name of the effect in the particle database. 
+		light=    if specified then the system assumes the attachment is a light, and the string is the light type as deifned in DefaultVehcileLights. Note this is just here form completeness. 
+							Lights really should be be created as a VehiclePartLight as that way it can be destroyed etc.
+							
+	optional parameters are
+	
+		hide=     "0" or "1" (attachment is shown / hidden and can be unhidden by a message from another system)
+	-->
+	
+	<Attachments>
+	</Attachments>
+
+	<!-- Vehicle Variables
+	This is where we define any variables that the vehicle needs to be created for use by the SeatActionsAnimateControlInputs
+	A lot of times the variables will be set up by code and exist inside various vehicle parts (like the pitch, yaw and roll, which is set up by VehicleMovementSpaceShip
+	but sometimes there will be parts that need animating (say a switch, which needs a variable for "on" and "off") and will not be deifned somewhere inside the code base
+	so the vehicle init code will allocated a float for each variable defined below and add it to the dynamic variable list in VehiclePLayerControls.
+	Format is 
+		name = is the string name used to refer to the variable by other systems (SeatActionsAnimateControlINputs etc) and the "mapped" name of the varible in the VehiclePlayerControls dynamic variable list
+		value= is the initial value of the variable. If not defined thsi will default to 0. All variables in this system are floats.
+	 -->
+	
+	<Variables>
+	</Variables>
+
+
+
+   <GeomTags>
+    <geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Base.cga" material="" id="idHoloGeometry_Default"/>
+	<TagsList>
+		<Tags tag="HUD">
+			<geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Base.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
+			<Tags tag="hostile">
+			<geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Base.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
+			</Tags>
+			<Tags tag="neutral">
+			<geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Base.cga" material="materials/item_selection/material_hologram_neutral.mtl" />
+			</Tags>
+		</Tags>
+		<Tags tag="over dragging">
+		  <geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Base.cga" material="" id="idHoloGeometry_OverDragging"/>
+		</Tags>
+		<Tags tag="ItemPreviewA">
+		  <geom name="Objects/Spaceships/Ships/MISC/Freelancer/MISC_Freelancer_Base.cga" material="" id="idHoloGeometry_ItemPreviewA"/>
+		</Tags>
+	</TagsList>
+  </GeomTags>
+  
+ 	<Modifications>
+		
+	</Modifications>
+	
+</Vehicle>

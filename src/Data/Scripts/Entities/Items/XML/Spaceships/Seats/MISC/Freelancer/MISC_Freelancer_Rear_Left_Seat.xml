@@ -1,0 +1,90 @@
+<item name="MISC_Freelancer_Rear_Left_Seat" class="VehicleItemSeat" invisible="0" category="VehicleItem">
+  <params>
+    <param name="giveable" 		value="0" />
+    <param name="selectable" 	value="0" />
+    <param name="pickable" 		value="0" />
+    <param name="mountable" 	value="1" />
+    <param name="usable"		 	value="0" />
+    <param name="arms"			 	value="0" />
+    <param name="scopeContext"		value="Seat" />
+    <param name="adb" value="Items/Seats/MISC/Freelancer/MISC_Freelancer_Rear_Left_Seat_Anims.adb" />
+	<param name="actionController" value="Items/Seats/MISC/Freelancer/MISC_Freelancer_Rear_Left_Seat_ControllerDefs.xml" />
+	<param name="userADB" value="Items/Seats/MISC/Freelancer/MISC_Freelancer_Rear_Left_Seat_HumanAnims.adb" />
+    <param name="itemType" value="Seat" />
+    <param name="itemSubType" value="Pilot" />
+		<param name="itemDescription" value="" />
+    <param name="itemManufactor" value="MISC" />
+    <param name="itemSize" value="1" />
+		<param name="itemTags" value="flightReady" />
+		<!--<param name="requiredPortTags" value="ANVL_Hornet_Base" />-->
+		<param name="itemClass" value="1" />
+    <param name="display_name" value="Freelancer Rear_Left Seat" />
+  	<vehicleItemStats>
+	</vehicleItemStats>  
+  </params>
+
+	<geometry>
+		<thirdperson name="Objects/Spaceships/Seats/MISC/Freelancer/MISC_Freelancer_Rear_Left_Seat.cga"/>
+	</geometry>
+   <Seat name="SeatDriver" enterHelper="rear_left_seat_mount_pos" sitHelper="rear_left_seat_sit_pos" exitHelper="rear_left_seat_sit_pos" postExitHelper="rear_left_seat_exit_end_pos" updatePassengerTM="0" useBoundsForEntering="1" isDriver="0" canLook="1" lookMin="-30,0,-50" lookMax="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="1" actionMap="spaceflight_combat" visorType="minimal" hasGForceReactions="1">
+      <!-- Begin views for this seat-->
+      <ViewsDefaults defaultFirstPerson="0" defaultThirdPerson="3" />
+      <Views>
+        <View class="Cockpit" hidePlayer="0" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" motionBlur="0">
+          <Cockpit offset="0,0,0" relativeToHorizon="0.9" minYaw="-70" maxYaw="70" minPitch="-45" maxPitch="45" />
+        </View>
+        <View class="ThirdPersonFlight" canRotate="0" hidePlayer="1" motionBlur="0" isAvailableDocked="0">
+          <ThirdPersonFlight offset="0,-7,8" lookAtOffset="0,7,7" driftOffsetMin="-18,0,-18" driftOffsetMax="18,0,0" inputOffsetMax="10,0,10" zoomMin="-7" zoomMax="4" zoomSpeed="50.0f" />
+          <CameraEffects minSpeed="102" maxSpeed="280">
+            <FOV maxOffset="20.0f" />
+            <DOF stength="0.25f" offsetLag="0.8f" />
+            <Shake offsetAngle="0.25,0.25,0.25" offsetPosition="0.1,0.1,0.1" randomness="1.0f" />
+          </CameraEffects>
+        </View>
+        <View class="Orbit" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="-20,0,180" motionBlur="0" />
+        <View class="OrbitPassenger" canRotate="1" rotationMin="-30,0,-50" rotationMax="50,0,50" rotationInit="10,0,170" motionBlur="0" />
+      </Views>
+      <Enter>
+        <State animation="SeatDriver" state="Enter" />
+      </Enter>
+      <Exit>
+        <State animation="SeatDriver" state="Exit" />
+      </Exit>
+      <!-- Begin actions for this seat-->
+      <SeatActions>
+        <SeatAction class="PassengerIK">
+          <PassengerIK waitShortlyBeforeStarting="1" isAvailableDocked="1">
+            <Limbs>
+				<Limb tag="LeftArmThrottle" on="1" limb="LftArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_left_attach" blendTime="0" id="idPilotTrottleIK" />
+				<Limb tag="RightArmJoystick" on="1" limb="RgtArm01" slot="1" IKTargetSystemType="seatBone" spine="Spine_SpineToNeck" helper="ik_right_attach" blendTime="0" id="idPilotJoystickIK" />
+				<Limb tag="LeftLegPedal" on="1" limb="LftLeg01" slot="1" IKTargetSystemType="seatBone" helper="left_pedal_attach" blendTime="0" />
+				<Limb tag="RightLegPedal" on="1" limb="RgtLeg01" slot="1" IKTargetSystemType="seatBone" helper="right_pedal_attach" blendTime="0" />
+            </Limbs>
+          </PassengerIK>
+        </SeatAction>
+      </SeatActions>
+      <Sounds inout="0" mood="1" />
+      <!-- FIX ME!! -->
+      <DockingStation>
+        <Slots>
+          <!-- <Slot name="First" itemPort="Radar_Helper">
+            <Tag name="Radar" scale="0.2" />
+          </Slot> -->
+        </Slots>
+      </DockingStation>
+      <FixedVisorSettings default_fixed="0">
+        <FirstPerson scale="1" x_offset="0" y_offset="0.05" z_offset="0.03" />
+        <ThirdPerson scale="1" x_offset="0" y_offset="0" z_offset="0" />
+      </FixedVisorSettings>
+	  <HUDAccess primary="0">
+		<Tab name="Overview" />
+		<Tab name="Grouping" />
+		<Tab name="Power" />
+		<Tab name="Shield" />
+	  </HUDAccess>
+      <ScreensRecord record="Screens_MISC_Freelancer_Passenger" />
+        <!-- <Enter>
+          <State animation="Cockpit" state="Deploy" />
+        </Enter> -->
+	</Seat>
+</item>

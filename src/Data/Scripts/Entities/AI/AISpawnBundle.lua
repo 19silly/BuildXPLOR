@@ -155,7 +155,7 @@ function AISpawnBundle:OnUpdate(dt)
 	end
 	
 	self.nNextSpawnTimer = self.nNextSpawnTimer + dt
-	
+
 	while (self.memberIncrement == 0 or self.nNextSpawnTimer >= self.nStaggerTime) do
 		
 		-- Pick a random link with no duplicates from previous picks
@@ -182,7 +182,6 @@ function AISpawnBundle:OnUpdate(dt)
 		end
 	end
 end
-
 --[[
  - @brief	Keeps record when an AI spawned by a linked AISpawnPoint dies
 --]]
@@ -220,11 +219,18 @@ end
 --]]
 function AISpawnBundle:OnReset()
 	self:Activate(0)
-
+	local name = self:GetName()
+	if (name == nil) then
+		name = ""
+	end
 	self.nActiveCount	= 0
 	self.nBodyCount		= 0
-	
-	self.nMemberCount	= self.Properties.SpawningParameters.nGroupSize
+	local nLinks = self:CountLinks()
+	local nGroupSize = self.Properties.SpawningParameters.nGroupSize
+	if ( nLinks < nGroupSize) then
+		System.Warning("<AISpawnBundle> " .. name .. " does not have enough linked AISpawnPoints to spawn all members. The GroupSize should not exceed the number of linked AISpawnPoints.")
+	end
+	self.nMemberCount	= math.min(nLinks, nGroupSize)
 	self.nSpawnCounter	= 0
 	self.iWaveID		= self.Properties.AIWavesXML.iWaveID
 	self.wavesTable		= {}

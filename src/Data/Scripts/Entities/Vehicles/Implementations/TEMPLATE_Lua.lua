@@ -40,7 +40,6 @@ MANUFACTURER_Shipname.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

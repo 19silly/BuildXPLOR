@@ -258,13 +258,12 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 		-- If there is no archetype argument, load the member parameters
 		if (argArchetype == "") then
 			params.archetype = memberParams.sArchetype
-			if (memberParams.sName == "") then
-				params.name = params.archetype.."_"..self.nInstance
-			else
-				params.name = memberParams.sName
-			end
 			self.nSpawnCounter = self.nSpawnCounter + 1
-			params.name = params.name.."_"..self.nSpawnCounter
+			if (memberParams.sName == "") then
+				params.name = params.archetype.."_"..self.nInstance.."."..self.nSpawnCounter
+			else
+				params.name = memberParams.sName.."_"..self.nInstance.."."..self.nSpawnCounter
+			end
 			params.position = vecAdd(self:GetPos(), offset)
 			paramBaseProfile		= memberParams.esAIProfileBase
 			paramCombatProfile		= memberParams.esAIProfileCombat

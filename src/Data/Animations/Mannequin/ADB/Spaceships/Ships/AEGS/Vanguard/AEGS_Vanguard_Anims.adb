@@ -116,5 +116,34 @@
     </ProcLayer>
    </Fragment>
   </Cargo_Door>
+  <LandingGear>
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Open">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="aegs_vanguard_landing_gear_open"/>
+    </AnimLayer>
+    <ProcLayer />
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Close">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="aegs_vanguard_landing_gear_close"/>
+    </AnimLayer>
+   </Fragment>
+  </LandingGear>
+  <Wings>
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Deploy">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="aegs_vanguard_wings_deploy"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Retract">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="aegs_vanguard_wings_retract"/>
+    </AnimLayer>
+   </Fragment>
+  </Wings>
  </FragmentList>
 </AnimDB>

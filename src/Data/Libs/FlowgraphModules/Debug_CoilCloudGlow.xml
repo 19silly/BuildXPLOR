@@ -1,0 +1,347 @@
+<Graph isModule="1" moduleName="Debug_CoilCloudGlow" GOSTType="0" GOSTStateGroup="&lt;None&gt;" GOSTState="&lt;None&gt;" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="GroupID" Type="EntityId" Input="1"/>
+  <Port Name="Minutes" Type="Float" Input="1"/>
+  <Port Name="Seconds" Type="Float" Input="1"/>
+  <Port Name="Reset" Type="Bool" Input="1"/>
+  <Port Name="DebugMessages" Type="Bool" Input="1"/>
+  <Port Name="GlowTarget" Type="Float" Input="1"/>
+  <Port Name="FlashLightningID" Type="EntityId" Input="1"/>
+  <Port Name="FlashDelay" Type="Float" Input="1"/>
+  <Port Name="LightGroupID" Type="EntityId" Input="1"/>
+  <Port Name="LightTargetIntensity" Type="Float" Input="1"/>
+  <Port Name="ClosestCloud" Type="EntityId" Input="0"/>
+  <Port Name="FullyCharged" Type="Any" Input="0"/>
+  <Port Name="SecClosestCloud" Type="EntityId" Input="0"/>
+  <Port Name="GroupID" Type="EntityId" Input="0"/>
+  <Port Name="GlowReached" Type="Float" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_Debug_CoilCloudGlow" pos="-1900,-50,0" flags="0"/>
+  <Node Id="2" Class="Module:End_Debug_CoilCloudGlow" pos="1420,1590,0" flags="0">
+   <Inputs ClosestCloud="0" SecClosestCloud="0" GroupID="0" GlowReached="0"/>
+  </Node>
+  <Node Id="1093" Class="Material:EntityMaterialParams" pos="3710,130,0" flags="0">
+   <Inputs entityId="0" Slot="0" SubMtlId="0" ParamFloat="glow" ValueFloat="0" ParamColor="" color_ValueColor="0,0,0"/>
+  </Node>
+  <Node Id="1115" Class="Entity:Group:DistanceQuery" pos="-490,2500,0" flags="0">
+   <Inputs entityId="0" Count="6" Group="0" Remove="0" Position="0,0,0" SortOrder="1"/>
+  </Node>
+  <Node Id="1164" Class="Iterator:GetEntitiesInGroup" pos="1770,100,0" flags="0">
+   <Inputs entityId="0" Manually="1"/>
+  </Node>
+  <Node Id="1168" Class="Logic:Condition" pos="1470,230,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="1169" Class="Math:Compare" pos="2160,200,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="1171" Class="Logic:Any" pos="1320,210,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1172" Class="Math:SetNumber" pos="3310,420,0" flags="0">
+   <Inputs in="0.01"/>
+  </Node>
+  <Node Id="1173" Class="Logic:Any" pos="3140,180,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1175" Class="Debug:DisplayMessage" pos="5220,2230,0" flags="0">
+   <Inputs entityId="0" message="" DisplayTime="0" posX="0.5" posY="0.65" posZ="0" is3D="0" fontSize="2" isFixedSize="1" isFramed="0" isDepthTested="0" clr_Color="1,1,1" centered="0"/>
+  </Node>
+  <Node Id="1177" Class="Math:Compare" pos="680,130,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="1199" Class="Time:Delay" pos="1100,210,0" flags="0">
+   <Inputs delay="0.3" resetOnInput="0"/>
+  </Node>
+  <Node Id="1203" Class="Math:Mul" pos="-510,310,0" flags="0">
+   <Inputs A="0" B="60"/>
+  </Node>
+  <Node Id="1205" Class="Math:Add" pos="-360,330,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="1207" Class="Math:Div" pos="-220,310,0" flags="0">
+   <Inputs A="0.3" B="0"/>
+  </Node>
+  <Node Id="1213" Class="Time:FrameDelay" pos="1060,1590,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1224" Class="Logic:Gate" pos="4950,2050,0" flags="0">
+   <Inputs Closed="1"/>
+  </Node>
+  <Node Id="1228" Class="Math:BooleanFrom" pos="670,2250,0" flags="0">
+   <Inputs Value="0"/>
+  </Node>
+  <Node Id="1229" Class="Math:Mul" pos="-90,350,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="1231" Class="Actor:LocalPlayer" pos="-1240,2630,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1233" Class="Entity:GetPos" pos="-920,2620,0" flags="0">
+   <Inputs entityId="0" CoordSys="1"/>
+  </Node>
+  <Node Id="1234" Class="Time:FrameDelay" pos="-690,2460,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1235" Class="Logic:Any" pos="930,200,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1244" Class="Logic:Any" pos="2400,900,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1245" Class="Logic:Any" pos="3190,-1190,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1246" Class="Logic:Any" pos="1910,-440,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1247" Class="Logic:Any" pos="1830,410,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1248" Class="Logic:Any" pos="2070,-330,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1255" Class="Time:FrameDelay" pos="-1080,2660,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1264" Class="Math:SetNumber" pos="2240,-120,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="1268" Name="Calculate_time" Class="_commentbox" pos="-520,11.24408,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="522" Height="114"/>
+   <NodeSize Width="1405.1936" Height="399.71594"/>
+  </Node>
+  <Node Id="1269" Name="Find_nearest_cloud" Class="_commentbox" pos="-1300,2128.0757,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1130" Height="430"/>
+   <NodeSize Width="1804.2985" Height="715.71594"/>
+  </Node>
+  <Node Id="1270" Name="Debug_message_(glow_value)" Class="_commentbox" pos="4890,1708.2385,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="580" Height="590"/>
+   <NodeSize Width="2811.3945" Height="875.71594"/>
+  </Node>
+  <Node Id="1271" Name="Increment_Glow_Loop" Class="_commentbox" pos="230,-485.71216,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="3770" Height="880"/>
+   <NodeSize Width="3770" Height="1165.7159"/>
+  </Node>
+  <Node Id="1272" Name="End_Module" Class="_commentbox" pos="960,1291.9443,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="700" Height="160"/>
+   <NodeSize Width="1178.042" Height="445.71594"/>
+  </Node>
+  <Node Id="1276" Class="Time:Delay" pos="730,1160,0" flags="0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="1278" Class="Math:Sub" pos="460,1100,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="1279" Class="Time:FrameDelay" pos="580,1100,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1281" Class="entity:Lightning" pos="990,1120,0" flags="0">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="1282" Name="Enable_Flash_Lightning" Class="_commentbox" pos="450,804.2854,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="690" Height="170"/>
+   <NodeSize Width="2191.1926" Height="455.71594"/>
+  </Node>
+  <Node Id="1283" Class="Iterator:GetEntitiesInGroup" pos="1270,-1780,0" flags="0">
+   <Inputs entityId="0" Manually="1"/>
+  </Node>
+  <Node Id="1284" Class="Math:Calculate" pos="2730,310,0" flags="0">
+   <Inputs Op="0" A="0" B="0"/>
+  </Node>
+  <Node Id="1285" Class="entity:Light" pos="2870,-2090,0" flags="0">
+   <Inputs entityId="0" Active="1" DiffuseColor="0,0,0" DiffuseMultiplier="0" Disable="0" Enable="0" GetOuputs="0" Radius="0" SpecularMultiplier="0"/>
+  </Node>
+  <Node Id="1287" Class="Logic:Any" pos="2530,20,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1291" Class="Math:Mul" pos="30,-480,0" flags="0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="1292" Name="Calculate_light_intensity" Class="_commentbox" pos="-10,-795.09253,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="160" Height="110"/>
+   <NodeSize Width="2255.9778" Height="395.71594"/>
+  </Node>
+  <Node Id="1293" Class="Math:Calculate" pos="2140,-1580,0" flags="0">
+   <Inputs Op="0" A="0" B="0"/>
+  </Node>
+  <Node Id="1299" Class="Logic:Any" pos="2460,-1710,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1301" Class="Math:SetNumber" pos="2160,-1670,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="1304" Class="Logic:Condition" pos="1890,-1600,0" flags="0">
+   <Inputs Condition="0"/>
+  </Node>
+  <Node Id="1306" Class="Logic:Any" pos="1140,-1650,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1312" Class="Math:BooleanTo" pos="1710,-1530,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="1313" Class="Math:SetNumber" pos="2620,-1820,0" flags="0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="1314" Class="Logic:Any" pos="2450,-1930,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1315" Class="Math:Compare" pos="1680,-1710,0" flags="0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="1317" Class="Logic:Any" pos="2790,-2340,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1318" Name="Increment_value,_or_if_glow_loop_finished,_set_value_to_0" Class="_comment" pos="2140,-1610,0" flags="0"/>
+  <Node Id="1320" Class="Logic:Any" pos="2010,240,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1322" Class="Logic:Any" pos="1580,-1670,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1323" Name="Lights_intensity_increase_&amp;_reset" Class="_commentbox" pos="1110,-2632.7104,0" flags="0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="2070" Height="910"/>
+   <NodeSize Width="3075.7825" Height="1195.7159"/>
+  </Node>
+  <Node Id="1325" Class="Logic:Any" pos="2600,-2100,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1327" Class="Logic:Once" pos="2460,-2130,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1328" Class="Logic:Once" pos="2460,-2060,0" flags="0" InHideMask="127" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1329" Class="Logic:Any" pos="970,-2220,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1331" Class="Logic:Any" pos="2360,-1480,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="1332" Class="Time:FrameDelay" pos="1230,1590,0" flags="0">
+   <Inputs />
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="GroupID" portOut="GroupID" enabled="1"/>
+  <Edge nodeIn="1115" nodeOut="1" portIn="entityId" portOut="GroupID" enabled="1"/>
+  <Edge nodeIn="1164" nodeOut="1" portIn="entityId" portOut="GroupID" enabled="1"/>
+  <Edge nodeIn="1177" nodeOut="1" portIn="B" portOut="GlowTarget" enabled="1"/>
+  <Edge nodeIn="1203" nodeOut="1" portIn="A" portOut="Minutes" enabled="1"/>
+  <Edge nodeIn="1205" nodeOut="1" portIn="B" portOut="Seconds" enabled="1"/>
+  <Edge nodeIn="1228" nodeOut="1" portIn="Value" portOut="DebugMessages" enabled="1"/>
+  <Edge nodeIn="1229" nodeOut="1" portIn="B" portOut="GlowTarget" enabled="1"/>
+  <Edge nodeIn="1231" nodeOut="1" portIn="update" portOut="Start" enabled="1"/>
+  <Edge nodeIn="1264" nodeOut="1" portIn="set" portOut="Start" enabled="1"/>
+  <Edge nodeIn="1278" nodeOut="1" portIn="B" portOut="FlashDelay" enabled="1"/>
+  <Edge nodeIn="1281" nodeOut="1" portIn="entityId" portOut="FlashLightningID" enabled="1"/>
+  <Edge nodeIn="1283" nodeOut="1" portIn="entityId" portOut="LightGroupID" enabled="1"/>
+  <Edge nodeIn="1291" nodeOut="1" portIn="B" portOut="LightTargetIntensity" enabled="1"/>
+  <Edge nodeIn="1312" nodeOut="1" portIn="true" portOut="Start" enabled="1"/>
+  <Edge nodeIn="1329" nodeOut="1" portIn="in1" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1115" portIn="ClosestCloud" portOut="Entity1" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1115" portIn="SecClosestCloud" portOut="Entity6" enabled="1"/>
+  <Edge nodeIn="1093" nodeOut="1164" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="1169" nodeOut="1164" portIn="A" portOut="Count" enabled="1"/>
+  <Edge nodeIn="1246" nodeOut="1164" portIn="in10" portOut="Done" enabled="1"/>
+  <Edge nodeIn="1248" nodeOut="1164" portIn="in1" portOut="Done" enabled="1"/>
+  <Edge nodeIn="1320" nodeOut="1164" portIn="in1" portOut="Count" enabled="1"/>
+  <Edge nodeIn="1164" nodeOut="1168" portIn="Start" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="1164" nodeOut="1168" portIn="Next" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="1306" nodeOut="1168" portIn="in10" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="1173" nodeOut="1169" portIn="in1" portOut="false" enabled="1"/>
+  <Edge nodeIn="1247" nodeOut="1169" portIn="in1" portOut="true" enabled="1"/>
+  <Edge nodeIn="1284" nodeOut="1169" portIn="DoCalc" portOut="true" enabled="1"/>
+  <Edge nodeIn="1168" nodeOut="1171" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="1093" nodeOut="1172" portIn="ValueFloat" portOut="out" enabled="1"/>
+  <Edge nodeIn="1244" nodeOut="1172" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1245" nodeOut="1172" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1172" nodeOut="1173" portIn="set" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1177" portIn="FullyCharged" portOut="true" enabled="1"/>
+  <Edge nodeIn="1164" nodeOut="1177" portIn="Stop" portOut="result" enabled="1"/>
+  <Edge nodeIn="1213" nodeOut="1177" portIn="in" portOut="true" enabled="1"/>
+  <Edge nodeIn="1235" nodeOut="1177" portIn="in1" portOut="false" enabled="1"/>
+  <Edge nodeIn="1281" nodeOut="1177" portIn="Disable" portOut="true" enabled="1"/>
+  <Edge nodeIn="1306" nodeOut="1177" portIn="in1" portOut="true" enabled="1"/>
+  <Edge nodeIn="1312" nodeOut="1177" portIn="false" portOut="true" enabled="1"/>
+  <Edge nodeIn="1171" nodeOut="1199" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1205" nodeOut="1203" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1207" nodeOut="1205" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1278" nodeOut="1205" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1229" nodeOut="1207" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1291" nodeOut="1207" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1332" nodeOut="1213" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="1175" nodeOut="1224" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1175" nodeOut="1228" portIn="Hide" portOut="False" enabled="1"/>
+  <Edge nodeIn="1224" nodeOut="1228" portIn="Close" portOut="False" enabled="1"/>
+  <Edge nodeIn="1224" nodeOut="1228" portIn="Open" portOut="True" enabled="1"/>
+  <Edge nodeIn="1284" nodeOut="1229" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1233" nodeOut="1231" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="1255" nodeOut="1231" portIn="in" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="1115" nodeOut="1233" portIn="Position" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="1234" nodeOut="1233" portIn="in" portOut="Pos" enabled="1"/>
+  <Edge nodeIn="1115" nodeOut="1234" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1235" nodeOut="1234" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="1199" nodeOut="1235" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1244" portIn="GlowReached" portOut="out" enabled="1"/>
+  <Edge nodeIn="1171" nodeOut="1244" portIn="in10" portOut="out" enabled="1"/>
+  <Edge nodeIn="1175" nodeOut="1244" portIn="message" portOut="out" enabled="1"/>
+  <Edge nodeIn="1224" nodeOut="1244" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="1177" nodeOut="1245" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1177" nodeOut="1246" portIn="A&gt;=B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1168" nodeOut="1247" portIn="CondTrue" portOut="out" enabled="1"/>
+  <Edge nodeIn="1168" nodeOut="1248" portIn="CondFalse" portOut="out" enabled="1"/>
+  <Edge nodeIn="1233" nodeOut="1255" portIn="Get" portOut="out" enabled="1"/>
+  <Edge nodeIn="1287" nodeOut="1264" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1281" nodeOut="1276" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="1276" nodeOut="1278" portIn="delay" portOut="out" enabled="1"/>
+  <Edge nodeIn="1279" nodeOut="1278" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="1276" nodeOut="1279" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="1285" nodeOut="1283" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="1315" nodeOut="1283" portIn="A" portOut="Count" enabled="1"/>
+  <Edge nodeIn="1322" nodeOut="1283" portIn="in1" portOut="Count" enabled="1"/>
+  <Edge nodeIn="1172" nodeOut="1284" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="1173" nodeOut="1284" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="1287" nodeOut="1284" portIn="in10" portOut="out" enabled="1"/>
+  <Edge nodeIn="1284" nodeOut="1287" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1293" nodeOut="1291" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1299" nodeOut="1293" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="1314" nodeOut="1293" portIn="in3" portOut="out" enabled="1"/>
+  <Edge nodeIn="1331" nodeOut="1293" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1313" nodeOut="1299" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="1285" nodeOut="1301" portIn="Disable" portOut="out" enabled="1"/>
+  <Edge nodeIn="1299" nodeOut="1301" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1314" nodeOut="1301" portIn="in2" portOut="out" enabled="1"/>
+  <Edge nodeIn="1293" nodeOut="1304" portIn="DoCalc" portOut="OnTrue" enabled="1"/>
+  <Edge nodeIn="1301" nodeOut="1304" portIn="set" portOut="OnFalse" enabled="1"/>
+  <Edge nodeIn="1283" nodeOut="1306" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="1304" nodeOut="1312" portIn="Condition" portOut="out" enabled="1"/>
+  <Edge nodeIn="1285" nodeOut="1313" portIn="DiffuseMultiplier" portOut="out" enabled="1"/>
+  <Edge nodeIn="1317" nodeOut="1313" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="1313" nodeOut="1314" portIn="set" portOut="out" enabled="1"/>
+  <Edge nodeIn="1304" nodeOut="1315" portIn="In" portOut="true" enabled="1"/>
+  <Edge nodeIn="1314" nodeOut="1315" portIn="in1" portOut="false" enabled="1"/>
+  <Edge nodeIn="1327" nodeOut="1315" portIn="Input1" portOut="true" enabled="1"/>
+  <Edge nodeIn="1328" nodeOut="1315" portIn="Input1" portOut="false" enabled="1"/>
+  <Edge nodeIn="1283" nodeOut="1317" portIn="Next" portOut="out" enabled="1"/>
+  <Edge nodeIn="1169" nodeOut="1320" portIn="A==B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1315" nodeOut="1322" portIn="A==B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1285" nodeOut="1325" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="1325" nodeOut="1327" portIn="in1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1325" nodeOut="1328" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1327" nodeOut="1329" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="1328" nodeOut="1329" portIn="Reset" portOut="out" enabled="1"/>
+  <Edge nodeIn="1293" nodeOut="1331" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1332" portIn="Success" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

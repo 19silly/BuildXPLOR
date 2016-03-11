@@ -77,15 +77,6 @@ function BasicAI:OnLoadAI(saved)
 		self.InitialPosition = nil;
 	end
 
-			
-
-	if(self.Properties and self.Properties.aicharacter_character) then
-		local characterTable = AICharacter[self.Properties.aicharacter_character];
-		if(characterTable and characterTable.OnLoad) then
-			characterTable.OnLoad(self,saved);
-		end
-	end
-
 end
 
 
@@ -118,13 +109,6 @@ function BasicAI:OnSaveAI(save)
 	  save.InitialPosition = self.InitialPosition;
 	end
 
-
-	if(self.Properties and self.Properties.aicharacter_character) then
-		local characterTable = AICharacter[self.Properties.aicharacter_character];
-		if(characterTable and characterTable.OnSave) then
-			characterTable.OnSave(self,save);
-		end
-	end
 end
 
 

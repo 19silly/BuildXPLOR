@@ -34,7 +34,6 @@ AEGS_Gladius.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

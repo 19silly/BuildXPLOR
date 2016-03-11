@@ -1,0 +1,71 @@
+<interface name="interface_MISC_XiTech_Thruster_S2">
+	<!-- 
+	This is the model and vfx template for Thrusters.
+	Match Entity Name to corresponding item.xml
+	Fill damagelevels, geometry and exhausts to complete.
+	-->
+	<params>
+		<param name="giveable" 		value="0" />
+		<param name="selectable" 	value="0" />
+		<param name="pickable" 		value="0" />
+		<param name="mountable" 	value="1" />
+		<param name="usable"		 	value="0" />
+		<param name="arms"			 	value="0" /><!-- ONLY use if Thruster has special one-off params. All other params should remain in item.xml. -->
+	</params>
+
+  <damagelevels>
+	<level damageRatio="0.50">
+	</level>
+	<level damageRatio="1.00">
+		<DebrisList>
+			<Debris name="base_100_debris01" mass="10" impulse="0,10,0" >
+				<EffectsList>
+					<Effect effect="" helper="base_debris1_PFX1" />
+				</EffectsList>
+			</Debris>
+		</DebrisList>
+	</level>
+  </damagelevels>
+
+  <geometry>
+		<!-- Default -->
+		<thirdperson name="Objects/Spaceships/Thrusters/Misc/MISC_XiTech_Thruster.cga"/>
+
+		<!-- Only specify a mtl if you don't want to use the default one from Common_EquipmentDevice.xml -->	
+		<tags tag="Hologram">
+			<thirdperson name="Objects/Spaceships/Thrusters/Misc/MISC_XiTech_Thruster.cga" material=""/>
+		</tags>
+		
+		<tags tag="HUD">
+			<thirdperson name="Objects/Spaceships/Thrusters/Misc/MISC_XiTech_Thruster.cga" material="materials/item_selection/material_hologram_default.mtl"/>
+			<tags tag="damage_50">
+			<thirdperson name="Objects/Spaceships/Thrusters/Misc/MISC_XiTech_Thruster.cga" material="Materials\item_selection\material_hologram_mid_damaged.mtl"/>
+		</tags>
+		<tags tag="damage_100">
+			<thirdperson name="Objects/Spaceships/Thrusters/Misc/MISC_XiTech_Thruster.cga" material="Materials\item_selection\material_hologram_damaged.mtl"/>
+		</tags>	
+		</tags>	
+		
+		<boneAttachments>
+			<attachment target="thirdperson" name="nozzle_exhaust" bone="exhaust" />
+    </boneAttachments>
+	</geometry>
+  
+  <thrusters>
+	<thruster>
+		  <exhausts>
+			  <exhaust name ="run" scale ="1" helper="nozzle_exhaust" effectStopThreshold="0.1">
+				  <effect name="Spaceships\Thrusters\MISC_XiTech_Thruster_S2.Thruster_All.MISC_XiTech_Thruster_S2" helper="nozzle_exhaust" enable = "0" tag ="run">
+					  <strength var="thrust" />
+				  </effect>
+				  <sound name="Play_SSTM_ANVL_Flex_MK1_S2_Q1_Start_Run" enable ="0" tag = "run">
+					  <param name="rpm" var="thrust" lerpTime="2.8" />
+					  <param name="boost" var="boost" lerpTime="2" />
+					  <param name="in_out" var="in_out" />
+				  </sound>
+			  </exhaust>
+		  </exhausts>
+	  </thruster>
+  </thrusters>
+
+</interface>

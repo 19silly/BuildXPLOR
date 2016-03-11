@@ -40,7 +40,6 @@ RSI_Constellation.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

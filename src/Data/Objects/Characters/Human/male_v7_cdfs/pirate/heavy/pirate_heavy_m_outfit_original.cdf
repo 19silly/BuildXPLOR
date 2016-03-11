@@ -39,12 +39,12 @@
   <Attachment Type="CA_BONE" AName="wep_prone_side_right" Rotation="0.57655096,-0.79961509,-0.16638121,0.022844253" Position="0.20608073,0.096979313,1.0428541" BoneName="spine" PA_PendulumType="3" PA_FPS="30" PA_MaxAngle="3.9999554" PA_HRotation="89" PA_Mass="2" PA_Gravity="2" PA_PivotOffset="0,0.23999999,0" PA_SimulationAxis="0,0.5,0" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="wep_prone_side_left" Rotation="0.060953923,0.037667856,-0.61364406,0.78632474" Position="-0.20033705,0.035988826,1.0937967" BoneName="spine" PA_PendulumType="3" PA_FPS="30" PA_MaxAngle="3.9999554" PA_HRotation="89" PA_Mass="2" PA_Gravity="2" PA_PivotOffset="0,0.23999999,0" PA_SimulationAxis="0,0.5,0" Flags="0" VisFlags="3"/>
   <Attachment Type="CA_BONE" AName="wep_sidearm_leg_right" Rotation="0.70913863,-0.69289321,0.0038896203,0.13040793" Position="0.25562134,0.031742897,0.76844084" BoneName="rightupleg" Flags="0" VisFlags="3"/>
-  <Attachment Type="CA_SKIN" AName="Tougue" Binding="objects/characters/human/heads/male/npc/male09/male09_base_tongue.skin" Flags="0" VisFlags="1"/>
-  <Attachment Type="CA_SKIN" AName="Teeth" Binding="objects/characters/human/heads/male/npc/male09/male09_base_teeth.skin" Flags="0" VisFlags="1"/>
-  <Attachment Type="CA_SKIN" AName="Head" Binding="objects/characters/human/heads/male/npc/male09/male09_base_head_lod0.skin" Flags="8" VisFlags="5"/>
-  <Attachment Type="CA_SKIN" AName="Eyes" Binding="objects/characters/human/heads/male/npc/male09/male09_base_eyes.skin" Flags="0" VisFlags="1"/>
-  <Attachment Type="CA_SKIN" AName="Eyelashes" Binding="objects/characters/human/heads/male/npc/male09/male09_base_eyelashes.skin" Flags="0" VisFlags="1"/>
-  <Attachment Type="CA_SKIN" AName="Scalp" Binding="Objects/Characters/Human/heads/male/npc/male09/dannyswarsbrick_m_base_Scalp.skin" Flags="0" VisFlags="1"/>
+  <Attachment Type="CA_SKIN" AName="Tougue" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_tongue.skin" Flags="0" VisFlags="1"/>
+  <Attachment Type="CA_SKIN" AName="Teeth" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_teeth.skin" Flags="0" VisFlags="1"/>
+  <Attachment Type="CA_SKIN" AName="Head" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_head_lod0.skin" Flags="8" VisFlags="5"/>
+  <Attachment Type="CA_SKIN" AName="Eyes" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_eyes.skin" Flags="0" VisFlags="1"/>
+  <Attachment Type="CA_SKIN" AName="Eyelashes" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_eyelashes.skin" Flags="0" VisFlags="1"/>
+  <Attachment Type="CA_SKIN" AName="Scalp" Binding="Objects/Characters/Human/heads/male/npc/male09/male09_t1_scalp.skin" Flags="0" VisFlags="1"/>
   <Attachment Type="CA_SKIN" AName="outfit_pirate" Binding="objects/characters/human/male_v7/pirate/heavy/outfit/pirate_heavy_m_outfit_base.skin" Material="Objects/Characters/Human/male_v7/pirate/heavy/outfit/pirate_heavy_m_outfit_original" Flags="0" VisFlags="3"/>
  </AttachmentList>
 </CharacterDefinition>

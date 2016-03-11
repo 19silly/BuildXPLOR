@@ -19,7 +19,6 @@ Grunt_x =
 			health = 250,
 		},
 		esFaction = "Civilians",
-		-- CIG cbrungardt @ IllFonic part of Equipment Manager Removal
 		
 		CharacterSounds =
 		{	

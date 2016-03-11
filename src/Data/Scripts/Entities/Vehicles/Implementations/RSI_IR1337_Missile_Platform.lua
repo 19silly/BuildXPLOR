@@ -34,7 +34,6 @@ RSI_IR1337_Missile_Platform.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

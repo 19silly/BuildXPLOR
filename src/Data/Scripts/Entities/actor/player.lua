@@ -20,7 +20,6 @@ Player =
 		commrange = 40; -- Luciano - added to use SIGNALFILTER_GROUPONLY
 
 		useSpecialMovementTransitions = 1,
-		aicharacter_character = "Player",
 
 		Damage =
 		{

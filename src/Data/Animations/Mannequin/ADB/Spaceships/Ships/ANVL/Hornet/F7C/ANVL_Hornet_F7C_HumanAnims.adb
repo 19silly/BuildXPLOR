@@ -91,10 +91,12 @@
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="LayerWeight" string="gforcestress">
-      <Params>
-       <Param value="0"/>
-      </Params>
+     <Procedural type="LayerWeight">
+      <ProceduralParams>
+       <LayerWeightParam value="gforcestress"/>
+       <ScopeLayer value="1"/>
+       <Invert value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>

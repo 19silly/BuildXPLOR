@@ -34,7 +34,6 @@ RSI_Aurora.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

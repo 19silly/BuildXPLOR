@@ -34,7 +34,6 @@ MISC_Freelancer.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

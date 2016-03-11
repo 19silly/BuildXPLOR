@@ -40,7 +40,6 @@ DRAK_Herald_Hangar.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

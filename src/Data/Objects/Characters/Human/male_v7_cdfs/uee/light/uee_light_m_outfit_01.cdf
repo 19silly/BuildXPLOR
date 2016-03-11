@@ -43,7 +43,7 @@
   <Attachment Type="CA_SKIN" AName="Teeth" Binding="objects/characters/human/heads/male//npc/male07/male07_t2_teeth.skin" Flags="0" VisFlags="1"/>
   <Attachment Type="CA_SKIN" AName="Head" Binding="objects/characters/human/heads/male/npc/male07/male07_t2_head_lod0.skin" Flags="8" VisFlags="1"/>
   <Attachment Type="CA_SKIN" AName="Eyes" Binding="objects/characters/human/heads/male/npc/male07/male07_t2_eyes.skin" Flags="0" VisFlags="1"/>
-  <Attachment Type="CA_SKIN" AName="Eyelashes" Binding="objects/characters/human/heads/male/npc/male09/male09_base_eyelashes.skin" Flags="0" VisFlags="1"/>
+  <Attachment Type="CA_SKIN" AName="Eyelashes" Binding="objects/characters/human/heads/male/npc/male09/male09_t1_eyelashes.skin" Flags="0" VisFlags="1"/>
   <Attachment Type="CA_SKIN" AName="outfit_lightmarine" Binding="objects/characters/human/male_v7/uee/light/outfit/uee_light_m_outfit_original.skin" Flags="0" VisFlags="3"/>
  </AttachmentList>
 </CharacterDefinition>

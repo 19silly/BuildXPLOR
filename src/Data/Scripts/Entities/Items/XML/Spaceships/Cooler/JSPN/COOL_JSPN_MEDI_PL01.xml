@@ -1,0 +1,49 @@
+<item name="COOL_JSPN_MEDI_PL01" class="VehicleItemCooler" invisible="0" category="VehicleItem" interface="interface_COOL_JSPN_MEDI_PL01">
+	<params>
+		<param name="itemType" value="Cooler" />
+		<param name="itemSubType" value="" />
+		<param name="itemManufactor" value="JSPN" />
+		<param name="itemDescription" value="itemDesc_COOL_JSPN_MEDI_PL01" />
+		<param name="itemSize" value="2" />
+		<param name="itemTags" value="flightready" />
+		<param name="requiredPortTags" value="" />
+		<param name="display_name"	value="itemName_COOL_JSPN_MEDI_PL01" />
+		<param name="hitpoints" value="500" />
+		<param name="mass" value="500" />
+		<param name="heatRatio" value="20" />
+		<param name="flushRate" value="50" />
+	</params>
+	
+	<Pipes>
+    
+    <Pipe class="Power" prioType="critical" >
+      <Pool capacity="-1250" rate="-50" />
+      <States>
+        <State state="Default">
+          <Value value="-250" ignorepool="1"/>
+        </State>
+        <State state="Off">
+            <Value value="0" />
+        </State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+
+    <Pipe class="Heat" prioType="critical" >
+      <Signature name="Infrared" poolMultiplier="1" />
+      <States>
+        <State state="Default">
+          <Pipe name="Power" value="-50" />
+        </State>
+      </States>
+    </Pipe>
+  
+  </Pipes>
+
+	
+</item>
+

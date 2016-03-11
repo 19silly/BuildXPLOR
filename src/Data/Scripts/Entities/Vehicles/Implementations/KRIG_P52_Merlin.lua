@@ -40,7 +40,6 @@ KRIG_P52_Merlin.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 

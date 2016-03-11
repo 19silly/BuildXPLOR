@@ -34,7 +34,6 @@ Shubin_Ballistic_Defence_Tower.AIProperties =
   },
   Properties = 
   {
-    aicharacter_character = "StarFighter",
     attackrange = 320,
   },
 
