@@ -1,0 +1,92 @@
+<item name="BEHR_PC2_Dual_S3" class="VehicleTurret" invisible="0" category="VehicleWeapon" weaponParams="1" interface="interface_BEHR_PC2_Dual_S3">
+	<params>
+		<param name="itemType" value="Turret" />
+		<param name="itemSubType" value="NoseMounted" />
+		<param name="itemManufactor" value="Gimbal" />
+		<param name="itemSize" value="5" />
+		<param name="itemTags" value="gimbalMount flightReady" />
+		<param name="requiredPortTags" value="MISC_Freelancer_Base" />
+		<param name="hitpoints" value="50" />
+		<param name="mass" value="50" />
+	</params>
+
+  <Pipes>
+    <Pipe class="Power" prioType="manageable" prioGroup="weapon">
+      <States>
+        <State state="Active,Default"><Value value="-1" /></State>
+        <State state="Moving"><Value value="-5" /></State>
+        <State state="Off"><Value value="0" /></State>
+      </States>
+      <StateLevels>
+        <Warning  value = "0.5" />
+        <Critical value = "0.25" />
+        <Fail     value = "0.01" />
+      </StateLevels>
+    </Pipe>
+    <Pipe class="Heat" prioType="manageable" prioGroup="weapon">
+      <Pool capacity="100" rate="15" critical="1"/>
+	  <Signature name="Infrared" poolMultiplier="0.1" />
+      <States>
+        <State state="Active"><Value value="0" /></State>
+        <State state="Moving"><Value value="3" /></State>
+      </States>
+    </Pipe>
+  </Pipes>
+
+ <turretParams>
+	<yaw limits="-180,180" speed="50" >
+		<joint value="yaw_part" />
+	</yaw>
+	<pitch limits="-10, 120" speed="50" >
+		<joint value="pitch_part" />
+	</pitch>
+	<roll limits="" speed="">
+		<joint value="" />
+	</roll>
+ </turretParams>
+	
+ <portParams>
+	<ports>
+		<!-- Flags here are inverse because the Mantis Gatling turrets are inversed -->
+		<ItemPort name="hardpoint_weapon_01" minsize="3" maxsize="3" display_name="Slot" requiredPortTags="" >
+			<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+		<ItemPort name="hardpoint_weapon_02" minsize="3" maxsize="3" display_name="Slot" requiredPortTags="" >
+			<Types>
+				<Type type="WeaponGun" subtypes="Gun"/>
+			</Types>
+			<GeomTags>
+			  <geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_unselected.mtl" />
+			  <Tags tag="over dragging">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_selected.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareValid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overvalid.mtl" />
+			  </Tags>
+			  <Tags tag="overCompareInvalid">
+				<geom name="objects/default/primitive_sphere.cgf" material="materials/item_selection/material_hologram_overinvalid.mtl" />
+			  </Tags>
+			</GeomTags>
+		</ItemPort>
+	</ports>
+  </portParams>
+  
+  <mobiGlas>
+	<mobiGlasARDataAttachment arType="ItemPort" arAttachPoint ="0, 0, 0" arLongRange="12" arShortRange="6" arMinRange="1" arMaterial="materials/item_selection/HoloTable_empty_port_dodecahedron_prop_uee_darkblue.mtl" />
+  </mobiGlas>
+	
+</item>
