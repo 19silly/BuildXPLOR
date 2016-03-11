@@ -253,22 +253,28 @@
      <Animation name="pistol_alerted_zerog_idle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="zerog" FragTags="stocked_base+inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="stocked_stand_eva_idle_01" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="stocked_base+turn">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="StepRot_Stocked_Alerted" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="zerog" FragTags="stocked_base">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_stand_eva_idle_01" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="stocked_base+inAir">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_jump_loop" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="zerog" FragTags="stocked_base">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_zerog_idle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="stocked_base">
@@ -323,6 +329,12 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_coverhigh_right_stepout_idle_aimposes_iron" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+ADS+Scope_AimPose+alerted" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="stocked_alerted_eva_aimposes_iron" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+ADS+alerted+scope_weaponAdjust">
@@ -392,16 +404,16 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+ADS+Scope_AimPose+alerted">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_eva_aimposes_iron" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+ADS+Scope_AimPose+alerted">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="pistol_alerted_eva_aimposes_iron" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+Scope_AimPose+alerted" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_stand_aimposes_iron" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+ADS+alerted+scope_handsAnimOverlay"/>
@@ -472,12 +484,6 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+Scope_AimPose+alerted">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="pistol_alerted_stand_aimposes_iron" flags="Loop"/>
-    </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+alerted+scope_weaponAdjust">
     <ProcLayer>
@@ -606,6 +612,18 @@
      <Animation name="pistol_alerted_crouch_aimposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+Scope_AimPose+alerted" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_eva_aimposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+Scope_AimPose+alerted" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="stocked_alerted_eva_aimposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="pistol+Scope_AimPose+alerted+cover">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
@@ -678,18 +696,6 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+Scope_AimPose+alerted">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stocked_alerted_eva_aimposes" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+Scope_AimPose+alerted">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="pistol_alerted_eva_aimposes" flags="Loop"/>
-    </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+alerted+scope_weaponAdjust">
     <ProcLayer>
@@ -981,6 +987,12 @@
      <Animation name="nw_neutral_traverse_zerog_holdflat" flags="Loop"/>
     </AnimLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="nw+zerog+Scope_LookPose" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="nw_neutral_stand_eva_lookposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="nw+zerog" FragTags="turn">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.80000001"/>
@@ -1003,12 +1015,6 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="1D-BSpace_NW_Neutral_Hunch_StepRot90" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="nw+zerog+Scope_LookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="nw_neutral_stand_eva_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="nw+coverLow+Scope_LookPose">
@@ -1122,6 +1128,18 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="nw+zerog" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="nw_neutral_stand_eva_idle_01" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="nw+zerog+Scope_LookPose">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="nw_neutral_stand_zerog_lookposes" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="mobiglas" FragTags="turn">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
@@ -1146,12 +1164,6 @@
      <Animation name="nw_neutral_hunch_idle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="nw+zerog">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="nw_neutral_stand_eva_idle_01" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="nw+draggingBody">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
@@ -1174,6 +1186,12 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="nw_neutral_stand_jumpdescend" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="nw+zerog">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="nw_neutral_stand_zerog_idle_01" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="mobiglas">
@@ -1367,6 +1385,48 @@
         <Element value="0"/>
         <Element value="0"/>
        </FrontStrafeRot>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+ADS+alerted+scope_weaponAdjust">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="WeaponPose">
+      <ProceduralParams>
+       <poseType value="0"/>
+       <zoomTransitionAngle value="0"/>
+       <Position>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Position>
+       <Rotation>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Rotation>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+ADS+alerted+scope_weaponAdjust">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="WeaponPose">
+      <ProceduralParams>
+       <poseType value="0"/>
+       <zoomTransitionAngle value="0"/>
+       <Position>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Position>
+       <Rotation>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Rotation>
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
@@ -1812,6 +1872,18 @@
      </Procedural>
     </ProcLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+alerted+scope_handsAnimOverlay">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Animation name="stocked_alerted_stand_idle_01_handsoverlay_add" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+alerted+scope_handsAnimOverlay">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Animation name="pistol_alerted_stand_idle_01_handsoverlay_add" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+sprint+alerted+scope_handsAnimOverlay"/>
    <Fragment BlendOutDuration="0.2" Tags="pistol+sprint+Scope_LookPose+alerted">
     <AnimLayer>
@@ -1916,6 +1988,48 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="nw_neutral_stand_lookposes" flags="Loop"/>
     </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="stocked+zerog+alerted+scope_weaponAdjust">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="WeaponPose">
+      <ProceduralParams>
+       <poseType value="0"/>
+       <zoomTransitionAngle value="0"/>
+       <Position>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Position>
+       <Rotation>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Rotation>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+alerted+scope_weaponAdjust">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="WeaponPose">
+      <ProceduralParams>
+       <poseType value="0"/>
+       <zoomTransitionAngle value="0"/>
+       <Position>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Position>
+       <Rotation>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Rotation>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+alerted+scope_weaponAdjust">
     <ProcLayer>

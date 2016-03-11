@@ -122,6 +122,19 @@
 							<DetachFx joint="Nose" partName="MISC_Freelancer_Base" effect="Damage/Metal_FX.Metal_ALL.metal_2m_once_trail" pos_offset="0,0,0" rot_offset="0.025019,-0.382151,-0.923761" helperID="" /> -->
 					</Effects>
 					<Parts>
+						<Part name="thruster_main_body" class="AnimatedJoint" mass="500" damageMax="10000">
+							<DamageBehaviors>
+									<!-- <DamageBehavior class="DetachPart" damageRatioMin="1">
+										<DetachPart>
+											<Part name="Body_Rear" recurseChildren="1" Probability="0.5" />
+											<Part name="Body_Rear" Probability="1" />
+										</DetachPart>
+									</DamageBehavior> -->
+									<DamageBehavior class="Group" damageRatioMin="1">
+										<Group name="Destroy" />
+									</DamageBehavior>
+							</DamageBehaviors>
+						</Part>
 						<!-- Pilot controls -->
 						<Part name ="Cockpit_L_YokeMainArm" class ="AnimatedJoint"/>
 						<Part name ="Cockpit_L_YokeArm_L_02" class ="AnimatedJoint" />
@@ -366,9 +379,9 @@
 						</Part>
 						
 						<Part name="hardpoint_sidecannon_right" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" display_name="SideCannon Right" displayPos="">
+							<ItemPort minsize="1" maxsize="5" flags="MISC" display_name="SideCannon Right" displayPos="">
 								<Types>
-									<Type type="Turret" subtypes="" />
+									<Type type="Turret" subtypes="NoseMounted" />
 								</Types>
 								<Pitch min="-45" max="45" />
 								<Yaw min="0" max="30" />
@@ -379,9 +392,9 @@
 						</Part>
 						
 						<Part name="hardpoint_sidecannon_left" class="ItemPort">
-							<ItemPort minsize="1" maxsize="5" display_name="SideCannon Left" displayPos="">
+							<ItemPort minsize="1" maxsize="5" flags="MISC" display_name="SideCannon Left" displayPos="">
 								<Types>
-									<Type type="Turret" subtypes="" />
+									<Type type="Turret" subtypes="NoseMounted" />
 								</Types>
 								<Pitch min="-45" max="45" />
 								<Yaw min="0" max="30" />
@@ -1103,7 +1116,7 @@
 	<!-- VEHICLE SEATS /////////////////////////////////////////////////////////////////////////////////////-->
 	<Seats>
     <!--           Lower Left Sleeping Berth        -->
-    <Seat name="bunkbeds_lowerleft_player" part="" enterHelper="bunkbeds_lower_left_mount_pos" sitHelper="bunkbeds_lowerleft_sit_pos" allowZeroGExit="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="8" isHUDSupported="0" >
+    <Seat name="bunkbeds_lowerleft_player" part="" enterHelper="bunkbeds_lower_left_mount_pos" sitHelper="bunkbeds_lowerleft_sit_pos" canExitWhileMoving="1" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="8" isHUDSupported="0" >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0"/>
@@ -1113,7 +1126,7 @@
     </Seat>
 	
     <!--           Lower Right Sleeping Berth        -->
-    <Seat name="bunkbeds_lowerright_player" part="" enterHelper="bunkbeds_lower_right_mount_pos" sitHelper="bunkbeds_lowerright_sit_pos" allowZeroGExit="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="9" isHUDSupported="0" >
+    <Seat name="bunkbeds_lowerright_player" part="" enterHelper="bunkbeds_lower_right_mount_pos" sitHelper="bunkbeds_lowerright_sit_pos" canExitWhileMoving="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="9" isHUDSupported="0" >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0"/>
@@ -1123,7 +1136,7 @@
     </Seat>
 	
     <!--           Upper Left Sleeping Berth        -->
-    <Seat name="bunkbeds_upperleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_upperleft_sit_pos" allowZeroGExit="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="10" isHUDSupported="0" >
+    <Seat name="bunkbeds_upperleft_player" part="" enterHelper="bunkbeds_left_mount_pos" sitHelper="bunkbeds_upperleft_sit_pos" canExitWhileMoving="1" isDriver="0" canLook ="1" lookMin="-30,0,-50" lookMax ="50,0,50" isPassengerShielded="1" AimPart="" seatGroupIndex="10" isHUDSupported="0" >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0"/>
@@ -1133,7 +1146,7 @@
     </Seat>
 	
     <!--           Upper Right Sleeping Berth        -->
-    <Seat name="bunkbeds_upperright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_upperright_sit_pos" allowZeroGExit="1" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="11" isHUDSupported="0" >
+    <Seat name="bunkbeds_upperright_player" part="" enterHelper="bunkbeds_right_mount_pos" sitHelper="bunkbeds_upperright_sit_pos" canExitWhileMoving="1" isDriver="0" isPassengerShielded="1" AimPart="" seatGroupIndex="11" isHUDSupported="0" >
       <Views>
         <View class="FirstPerson" canRotate="1" rotationMin="-20,0,-70" rotationMax="20,0,70">
           <FirstPerson offset="0,0,0"/>

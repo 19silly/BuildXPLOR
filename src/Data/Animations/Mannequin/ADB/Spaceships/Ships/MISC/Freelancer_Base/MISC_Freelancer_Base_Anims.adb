@@ -116,12 +116,68 @@
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="misc_freelancer_base_landing_gear_doors_open"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_MISC_Freelancer_Landing_Gear_Rear_Left_Deploy_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="hardpoint_landinggear_rear_left"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_MISC_Freelancer_Landing_Gear_Rear_Right_Deploy_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="hardpoint_landinggear_rear_right"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="MISC_Freelancer_Base" FragTags="Retract">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="misc_freelancer_base_landing_gear_doors_close"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_MISC_Freelancer_Landing_Gear_Rear_Left_Retract_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="hardpoint_landinggear_rear_left"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_MISC_Freelancer_Landing_Gear_Rear_Right_Retract_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="hardpoint_landinggear_rear_right"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
   </Landing_Gear>
   <Entrance_Door>
@@ -191,9 +247,11 @@
      <Animation name="misc_freelancer_base_cargo_door_open"/>
     </AnimLayer>
     <ProcLayer>
-     <Blend ExitTime="-3.2" StartTime="0" Duration="0.2"/>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Procedural type=""/>
-     <Blend ExitTime="3.2" StartTime="0" Duration="0.00099202991"/>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.00099202991"/>
      <Procedural type="Audio">
       <ProceduralParams>
        <StartTrigger value="Play_SSMP_MISC_Freelancer_Interior_Cargo_Door_Open"/>
