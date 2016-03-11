@@ -337,6 +337,12 @@
      <Animation name="stocked_alerted_eva_aimposes_iron" flags="Loop"/>
     </AnimLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+ADS+Scope_AimPose+alerted" FragTags="inAir">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_eva_aimposes_iron" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="klwe_rifle_energy_01+stocked+ADS+alerted+scope_weaponAdjust">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
@@ -403,18 +409,6 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+zerog+ADS+Scope_AimPose+alerted">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="pistol_alerted_eva_aimposes_iron" flags="Loop"/>
-    </AnimLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+Scope_AimPose+alerted" FragTags="inAir">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="pistol_alerted_stand_aimposes_iron" flags="Loop"/>
-    </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+ADS+alerted+scope_handsAnimOverlay"/>
    <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+alerted+scope_handsAnimOverlay"/>
@@ -556,6 +550,12 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stocked_alerted_stand_aimposes_iron" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="pistol+ADS+Scope_AimPose+alerted">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="pistol_alerted_stand_aimposes_iron" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="stocked+lowered+scope_aimstance">
@@ -1192,6 +1192,12 @@
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="nw_neutral_stand_zerog_idle_01" flags="Loop"/>
+    </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="mobiglas+Scope_LookPose">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="nw_neutral_stand_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="mobiglas">
