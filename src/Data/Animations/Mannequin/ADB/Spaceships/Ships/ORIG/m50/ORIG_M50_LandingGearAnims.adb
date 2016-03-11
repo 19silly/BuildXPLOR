@@ -1,7 +1,7 @@
 <AnimDB FragDef="Animations/Mannequin/ADB/Spaceships/Ships/ORIG/m50/ORIG_M50_Fragments.xml" TagDef="Animations/Mannequin/ADB/Spaceships/spaceshipTags.xml">
  <FragmentList>
   <Landing_Gear>
-   <Fragment Tags="" FragTags="Deploy">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Deploy">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="landing_gear_deploy"/>
@@ -9,7 +9,7 @@
      <Animation name=""/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Retract">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Retract">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="landing_gear_retract"/>

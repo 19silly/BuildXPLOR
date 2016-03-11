@@ -17,27 +17,29 @@
      <Animation name="cockpit_zerog_enter_to_cockpit_hotas_r_l"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="Scope_SeatDriverLookIK" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="Scope_SeatDriverLookIK" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="cockpit_hotas_c_l_hornet_big_lookposes" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Enter">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Enter">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="orig_m50_ship_enter"/>
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="PositionAdjustTargetLocator" string="pilot_sit_pos" crcString="SeatDriver">
-      <Params>
-       <Param value="-1"/>
-      </Params>
+     <Procedural type="PositionAdjustTargetLocator">
+      <ProceduralParams>
+       <TargetScopeName value="SeatDriver"/>
+       <TargetJointName value="pilot_sit_pos"/>
+       <TargetStateName value=""/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Idle">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="3D-BSpace_Seat_Hotas_R_L_GForce_Reactions" flags="Loop"/>
@@ -48,20 +50,22 @@
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="LayerWeight" string="gforcestress">
-      <Params>
-       <Param value="1"/>
-      </Params>
+     <Procedural type="LayerWeight">
+      <ProceduralParams>
+       <LayerWeightParam value="gforcestress"/>
+       <ScopeLayer value="1"/>
+       <Invert value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Exit">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="orig_m50_ship_enter" speed="-1"/>
     </AnimLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Eject">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Eject">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="orig_m50_ejection_enter"/>
@@ -69,11 +73,20 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="EjectLoop">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="EjectLoop">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="orig_m50_ejection"/>
@@ -81,11 +94,20 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="EjectEnd">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="EjectEnd">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Animation name="orig_m50_ejection_exit"/>
@@ -93,11 +115,20 @@
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="PositionAdjust">
-      <Params />
+      <ProceduralParams>
+       <Offset>
+        <Element value="0"/>
+        <Element value="0"/>
+        <Element value="0"/>
+       </Offset>
+       <Yaw value="0"/>
+       <IgnoreRotation value="false"/>
+       <IgnorePosition value="false"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Passout">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Passout">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="3D-BSpace_Seat_Hotas_R_L_GForce_Passout"/>
@@ -106,68 +137,84 @@
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="DetachLimbIK" string="RgtArm01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="RgtArm01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="DetachLimbIK" string="LftArm01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="LftArm01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="DisableVehicleControl">
-      <Params />
+      <ProceduralParams />
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="1.4901161e-008"/>
-     <Procedural type="DetachLimbIK" string="RgtLeg01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="RgtLeg01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
-     <Procedural type="DetachLimbIK" string="LftLeg01">
-      <Params />
+     <Procedural type="DetachLimbIK">
+      <ProceduralParams>
+       <LimbHash value="LftLeg01"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
-   <Fragment Tags="" FragTags="Wakeup">
+   <Fragment BlendOutDuration="0.2" Tags="" FragTags="Wakeup">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="3D-BSpace_Seat_Hotas_R_L_GForce_WakeUp"/>
     </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.47236991"/>
-     <Procedural type="AttachLimbIKVehicle" string="LftArm01|ik_hand_attach_left">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="LftArm01|ik_hand_attach_left"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.47220349"/>
-     <Procedural type="AttachLimbIKVehicle" string="RgtArm01|ik_hand_attach_right">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="RgtArm01|ik_hand_attach_right"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="2.73"/>
      <Procedural type="DisableVehicleControl">
-      <Params />
+      <ProceduralParams />
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.4640007"/>
-     <Procedural type="AttachLimbIKVehicle" string="RgtLeg01|right_pedal_attach">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="RgtLeg01|right_pedal_attach"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
     <ProcLayer>
      <Blend ExitTime="2.73" StartTime="0" Duration="0.4652009"/>
-     <Procedural type="AttachLimbIKVehicle" string="LftLeg01|left_pedal_attach">
-      <Params />
+     <Procedural type="AttachLimbIKVehicle">
+      <ProceduralParams>
+       <LimbHash value="LftLeg01|left_pedal_attach"/>
+      </ProceduralParams>
      </Procedural>
     </ProcLayer>
    </Fragment>
