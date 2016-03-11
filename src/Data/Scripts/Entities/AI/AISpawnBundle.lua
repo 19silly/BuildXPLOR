@@ -43,11 +43,9 @@ AISpawnBundle = {
 	nActiveCount	= 0,		-- The number of currently living AIs that have been spawned by this AISpawnBundle
 	nBodyCount		= 0,		-- The number of dead AIs that have been spawned by this AISpawnBundle
 	
-	spawnedEntityIDQueue = {},	-- A queue of entity IDs to be fed into the SpawnedEntityID output
 	nSpawnedPop = 0,			-- The pop position of spawnedEntityIDQueue
 	nSpawnedPush = 0,			-- The push position of spawnedEntityIDQueue
 	
-	deadEntityIDQueue = {},		-- A queue of entity IDs to be fed into the DeadEntityID output
 	nDeadPop = 0,				-- The pop position of deadEntityIDQueue
 	nDeadPush = 0,				-- The push position of deadEntityIDQueue
 }
@@ -89,7 +87,6 @@ function AISpawnBundle:Event_Spawn()
 	self.bSpawning = true
 	self.memberIncrement = 0
 	self.nStaggerTime = 0
-	self.linkPicks = {}
 	self.spawnedEntityID = nil
 	
 	self.paramsList = {}
@@ -98,6 +95,18 @@ function AISpawnBundle:Event_Spawn()
 	end
 	
 	self.nNextSpawnTimer = self.nStaggerTime
+	
+	local totalLinks = self:CountLinks()
+	local lastArrayElementIndex = self.nMemberCount - 1;
+	for index = 0, lastArrayElementIndex do
+		self.randomLinkPicks[index+1] = (index % totalLinks) + 1
+	end
+	local firstIndex,secondIndex
+	for index = 1, self.nMemberCount do
+		firstIndex = random(self.nMemberCount)
+		secondIndex = random(self.nMemberCount)
+		self.randomLinkPicks[firstIndex],self.randomLinkPicks[secondIndex] = self.randomLinkPicks[secondIndex],self.randomLinkPicks[firstIndex]
+	end
 end
 
 
@@ -150,6 +159,9 @@ function AISpawnBundle:OnUpdate(dt)
 
 	-- If there's no spawning to be done, return early
 	if (not self.bSpawning or self.memberIncrement >= self.nMemberCount) then
+		if self.bSpawning then
+			System.Warning("<AISpawnBundle> " .. self:GetName() .. " I should be spawning")
+		end
 		self.bSpawning = false
 		return nil
 	end
@@ -157,20 +169,9 @@ function AISpawnBundle:OnUpdate(dt)
 	self.nNextSpawnTimer = self.nNextSpawnTimer + dt
 
 	while (self.memberIncrement == 0 or self.nNextSpawnTimer >= self.nStaggerTime) do
-		
-		-- Pick a random link with no duplicates from previous picks
-		local r = random(1, self:CountLinks()-self.memberIncrement) - 1
-		local j = 0
-		while (j < self.memberIncrement and not (r < self.linkPicks[j+1] - j)) do
-			j = j + 1
-		end
-		table.insert(self.linkPicks, r+j)
-		table.sort(self.linkPicks)
-		
 		-- Spawn from the picked link
-		local link = self:GetLink(r+j)
-		self.spawnedEntityIDQueue[self.nSpawnedPush] = self:SpawnFromLink(link)
-		self.nSpawnedPush = self.nSpawnedPush + 1
+		local link = self:GetLink(self.randomLinkPicks[self.memberIncrement+1])
+		self:SpawnFromLink(link)
 		
 		self.nNextSpawnTimer = self.nNextSpawnTimer - self.nStaggerTime
 		
@@ -225,51 +226,52 @@ function AISpawnBundle:OnReset()
 	end
 	self.nActiveCount	= 0
 	self.nBodyCount		= 0
-	local nLinks = self:CountLinks()
-	local nGroupSize = self.Properties.SpawningParameters.nGroupSize
-	if ( nLinks < nGroupSize) then
-		System.Warning("<AISpawnBundle> " .. name .. " does not have enough linked AISpawnPoints to spawn all members. The GroupSize should not exceed the number of linked AISpawnPoints.")
-	end
-	self.nMemberCount	= math.min(nLinks, nGroupSize)
+	self.nMemberCount	= self.Properties.SpawningParameters.nGroupSize
 	self.nSpawnCounter	= 0
 	self.iWaveID		= self.Properties.AIWavesXML.iWaveID
 	self.wavesTable		= {}
 	
 	-- Reset spawnedEntityIDQueue
-	for i=self.nSpawnedPop,self.nSpawnedPush do
-		self.spawnedEntityIDQueue[i] = nil
+	if (self.spawnedEntityIDQueue ~= nil) then
+		for i=self.nSpawnedPop,self.nSpawnedPush do
+			self.spawnedEntityIDQueue[i] = nil
+		end
 	end
+	self.spawnedEntityIDQueue = {}
 	self.nSpawnedPop = 0
 	self.nSpawnedPush = 0
 	
 	-- Reset deadEntityIDQueue
-	for i=self.nDeadPop,self.nDeadPush do
-		self.deadEntityIDQueue[i] = nil
+	if (self.deadEntityIDQueue ~= nil) then
+		for i=self.nDeadPop,self.nDeadPush do
+			self.deadEntityIDQueue[i] = nil
+		end
 	end
+	self.deadEntityIDQueue = {}
 	self.nDeadPop = 0
 	self.nDeadPush = 0
 	
 	self.bSpawning = false
+	
+	self.randomLinkPicks = {}
+	self.memberIncrement = 0
 end
 
-
 --[[
- - @brief	Record when a linked AISpawnPoint spawns an AI
+ - @brief	Record when a linked AISpawnPoint spawns an AI 
 --]]
-function AISpawnBundle:OnSpawn()
-
+function AISpawnBundle:OnSpawn(entityId)
+	self.spawnedEntityIDQueue[self.nSpawnedPush] = entityId
+	self.nSpawnedPush = self.nSpawnedPush + 1
 	-- Increment the active count
 	self.nActiveCount = self.nActiveCount + 1
 	self:ActivateOutput("ActiveCount", self.nActiveCount)
 end
 
-
 --[[
  - @brief	Carries out initializations that need to be done at start of game
 --]]
 function AISpawnBundle:OnStartGame()
-	local name = self:GetName()
-	
 	-- Notify linked AISpawnPoints of association to this AISpawnBundle
 	self.nLinkCount = 0
 	local i = 0

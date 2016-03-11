@@ -283,9 +283,10 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 
 		-- Spawn the new AI entity
 		local shouldActive = argArchetype ~= "" or paramsListSize == 1
-		local entity = System.SpawnEntity(params, self.id, true, shouldActive)
+		local spawnAsync = true
+		local entity = System.SpawnEntity(params, self.id, spawnAsync, shouldActive)
 		if entity then
-			AISpawnedAsync(entity, shouldActive, params.additionalData)
+			self:AISpawnedAsync(entity, shouldActive, params.additionalData)
 		end
 				
 		-- If an archetype argument was used, don't spawn any more AI
@@ -299,6 +300,11 @@ function AISpawnPoint:SpawnAI(argArchetype, argName, argBaseProfile, argCombatPr
 end
 
 function AISpawnPoint:AISpawnedAsync(entity, shouldActive, additionalData)
+	local entityID = nil
+	local name = self:GetName()
+	if (name == nil) then
+		name = ""
+	end
 	if entity then
 		if entity.class ~= self.class then
 			entityID = entity.id
@@ -336,7 +342,7 @@ function AISpawnPoint:AISpawnedAsync(entity, shouldActive, additionalData)
 			for spawnBundleID,v in pairs(self.linkedSpawnBundles) do
 				local spawnBundleEnt = System.GetEntity(spawnBundleID)
 				if(spawnBundleEnt) then
-					spawnBundleEnt:OnSpawn()
+					spawnBundleEnt:OnSpawn(entity.id)
 				end			
 			end
 		else

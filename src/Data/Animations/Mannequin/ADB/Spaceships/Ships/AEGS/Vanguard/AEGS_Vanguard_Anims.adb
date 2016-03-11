@@ -59,7 +59,7 @@
       <ProceduralParams>
        <StartTrigger value="Play_Vanguard_Cargo_Door_Open"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value="aegs_vng_extdoor"/>
+       <AttachmentJoint value="aegs_vng_reardoor_walkway"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -101,12 +101,12 @@
      <Animation name="aegs_vanguard_cargo_bay_close"/>
     </AnimLayer>
     <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Blend ExitTime="1" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
        <StartTrigger value="Play_Vanguard_Cargo_Door_Close"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value="aegs_vng_extdoor"/>
+       <AttachmentJoint value="aegs_vng_reardoor_walkway"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -137,12 +137,68 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="aegs_vanguard_wings_deploy"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Wing_Open_Left_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Wing_Left"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Wing_Open_Right_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Wing_Right"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="Retract">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="aegs_vanguard_wings_retract"/>
     </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Wing_Close_Left_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Wing_Left"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_Vanguard_Wing_Close_Right_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="Wing_Right"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
   </Wings>
  </FragmentList>

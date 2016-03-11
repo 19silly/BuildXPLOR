@@ -10,9 +10,9 @@
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Enter_Move_Down"/>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Enter_Backwards"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value=""/>
+       <AttachmentJoint value="chair_base"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -21,12 +21,12 @@
      </Procedural>
     </ProcLayer>
     <ProcLayer>
-     <Blend ExitTime="3.5999999" StartTime="0" Duration="0"/>
+     <Blend ExitTime="4.9000001" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_Cockpit_Armrest_Raise"/>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Swivel_Close_01"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value="central_monitor"/>
+       <AttachmentJoint value="chair_base"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -35,24 +35,12 @@
      </Procedural>
     </ProcLayer>
     <ProcLayer>
-     <Blend ExitTime="1.5" StartTime="0" Duration="0.2"/>
+     <Blend ExitTime="1.3" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_Cockpit_Dash_Move_Enter"/>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Swivel_Open_01"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value="central_monitor"/>
-       <Radius value="0"/>
-       <IsVoice value="false"/>
-       <PlayFacial value="false"/>
-       <SoundFlags value="0"/>
-      </ProceduralParams>
-     </Procedural>
-     <Blend ExitTime="4" StartTime="0" Duration="0"/>
-     <Procedural type="Audio">
-      <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_Cockpit_Dash_Move_Enter_Tilt"/>
-       <StopTrigger value=""/>
-       <AttachmentJoint value="central_monitor"/>
+       <AttachmentJoint value="chair_base"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -61,12 +49,12 @@
      </Procedural>
     </ProcLayer>
     <ProcLayer>
-     <Blend ExitTime="6.3249998" StartTime="0" Duration="0"/>
+     <Blend ExitTime="6.3249989" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_Cockpit_Screen_Move_Tiny_01"/>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Enter_Forwards"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value="central_monitor_left_screen"/>
+       <AttachmentJoint value="chair_base"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -74,20 +62,7 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
-    <ProcLayer>
-     <Blend ExitTime="6.3249998" StartTime="0" Duration="0"/>
-     <Procedural type="Audio">
-      <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_Cockpit_Screen_Move_Tiny_02"/>
-       <StopTrigger value=""/>
-       <AttachmentJoint value="central_monitor_right_screen"/>
-       <Radius value="0"/>
-       <IsVoice value="false"/>
-       <PlayFacial value="false"/>
-       <SoundFlags value="0"/>
-      </ProceduralParams>
-     </Procedural>
-    </ProcLayer>
+    <ProcLayer />
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="Exit">
     <AnimLayer>
@@ -98,9 +73,9 @@
      <Blend ExitTime="0" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Enter_Move_Up_A_sharp"/>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Enter_Backwards"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value=""/>
+       <AttachmentJoint value="chair_base"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -109,12 +84,12 @@
      </Procedural>
     </ProcLayer>
     <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0"/>
+     <Blend ExitTime="1.1999998" StartTime="0" Duration="0"/>
      <Procedural type="Audio">
       <ProceduralParams>
-       <StartTrigger value="Play_SSMP_AEGS_Vanguard_ComputerScreens_Exit"/>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Swivel_Open_01"/>
        <StopTrigger value=""/>
-       <AttachmentJoint value=""/>
+       <AttachmentJoint value="chair_base"/>
        <Radius value="0"/>
        <IsVoice value="false"/>
        <PlayFacial value="false"/>
@@ -122,7 +97,34 @@
       </ProceduralParams>
      </Procedural>
     </ProcLayer>
-    <ProcLayer />
+    <ProcLayer>
+     <Blend ExitTime="5" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Swivel_Close_01"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="chair_base"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
+    <ProcLayer>
+     <Blend ExitTime="6.4000001" StartTime="0" Duration="0"/>
+     <Procedural type="Audio">
+      <ProceduralParams>
+       <StartTrigger value="Play_SSMP_AEGS_Vanguard_PilotSeat_Enter_Forwards"/>
+       <StopTrigger value=""/>
+       <AttachmentJoint value="chair_base"/>
+       <Radius value="0"/>
+       <IsVoice value="false"/>
+       <PlayFacial value="false"/>
+       <SoundFlags value="0"/>
+      </ProceduralParams>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="" FragTags="Idle">
     <AnimLayer>
