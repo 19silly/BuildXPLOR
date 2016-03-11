@@ -14,7 +14,7 @@
  </ModuleInputsOutputs>
  <Nodes>
   <Node Id="1" Class="Module:Start_Crusader_CommsRelay_SecuritySpawnLogic" pos="80,0,0" flags="0"/>
-  <Node Id="2" Class="Module:End_Crusader_CommsRelay_SecuritySpawnLogic" pos="5470,490,0" flags="0">
+  <Node Id="2" Class="Module:End_Crusader_CommsRelay_SecuritySpawnLogic" pos="5460,480,0" flags="0">
    <Inputs />
   </Node>
   <Node Id="4" Class="Mission:GameTokenSet" pos="620,90,0" flags="0">
@@ -150,10 +150,10 @@
   <Node Id="2784" Class="Mission:GameTokenSet" pos="620,630,0" flags="0">
    <Inputs entityId="0" gametoken_Token="Graph Tokens.RetreatPointGroupID" Value=""/>
   </Node>
-  <Node Id="2785" Name="If_all_pirates_are_killed" Class="_commentbox" pos="3960,1707.7704,0" flags="0">
+  <Node Id="2785" Name="If_all_pirates_are_killed" Class="_commentbox" pos="3960,1726.1208,0" flags="0">
    <Inputs TextSize="1" Color="0.093059,0.093059,0.093059" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
    <ResizeBorder X="0" Y="0" Width="2940" Height="1500"/>
-   <NodeSize Width="2940" Height="1555.3749"/>
+   <NodeSize Width="2940" Height="1537.0244"/>
   </Node>
   <Node Id="2786" Class="Logic:Sequentializer" pos="5860,2020,0" flags="0">
    <Inputs Closed="0" Reverse="0"/>
@@ -161,10 +161,10 @@
   <Node Id="2787" Class="Module:Call_Crusader_RetreatLogic" pos="6060,2170,0" flags="0">
    <Inputs Instanced="1" InstanceID="-1" RetreatingEntityID="0" RetreatPointID="0" TimeUntilJump="0"/>
   </Node>
-  <Node Id="2788" Name="Workaround" Class="_commentbox" pos="5830,1917.7704,0" flags="0">
+  <Node Id="2788" Name="Workaround" Class="_commentbox" pos="5830,1936.1208,0" flags="0">
    <Inputs TextSize="1" Color="1,0.144129,0.144129" DisplayFilled="0" DisplayBox="1" SortPriority="2"/>
    <ResizeBorder X="0" Y="0" Width="830" Height="1020"/>
-   <NodeSize Width="830" Height="1075.3749"/>
+   <NodeSize Width="830" Height="1057.0244"/>
   </Node>
   <Node Id="2789" Class="Module:Call_Crusader_RetreatLogic" pos="6060,2310,0" flags="0">
    <Inputs Instanced="1" InstanceID="-1" RetreatingEntityID="0" RetreatPointID="0" TimeUntilJump="0"/>
@@ -252,10 +252,10 @@
   <Node Id="2875" Class="Math:SetNumber" pos="880,2510,0" flags="0">
    <Inputs in="10"/>
   </Node>
-  <Node Id="2879" Name="Difficulty" Class="_commentbox" pos="290,1772.9977,0" flags="0">
+  <Node Id="2879" Name="Difficulty" Class="_commentbox" pos="290,1791.3481,0" flags="0">
    <Inputs TextSize="1" Color="0.0802198,0.0802198,0.0802198" DisplayFilled="0" DisplayBox="1" SortPriority="1"/>
    <ResizeBorder X="0" Y="0" Width="1370" Height="1170"/>
-   <NodeSize Width="1370" Height="1225.3749"/>
+   <NodeSize Width="1370" Height="1207.0244"/>
   </Node>
   <Node Id="2880" Class="Mission:GameTokenSet" pos="1260,2440,0" flags="0">
    <Inputs entityId="0" gametoken_Token="Graph Tokens.MaxWave" Value=""/>
@@ -352,7 +352,7 @@
   <Edge nodeIn="3293" nodeOut="1" portIn="Value" portOut="AIDestroyBoundary" enabled="1"/>
   <Edge nodeIn="3294" nodeOut="1" portIn="Trigger" portOut="Difficulty" enabled="1"/>
   <Edge nodeIn="3294" nodeOut="1" portIn="Value" portOut="Difficulty" enabled="1"/>
-  <Edge nodeIn="2577" nodeOut="2314" portIn="in1" portOut="Emptied" enabled="1"/>
+  <Edge nodeIn="2577" nodeOut="2314" portIn="in1" portOut="AllEntitiesDestroyed" enabled="1"/>
   <Edge nodeIn="2589" nodeOut="2314" portIn="Trigger" portOut="EntityAdded" enabled="1"/>
   <Edge nodeIn="2809" nodeOut="2314" portIn="entityId" portOut="EntityAdded" enabled="1"/>
   <Edge nodeIn="2811" nodeOut="2314" portIn="in" portOut="EntityAdded" enabled="1"/>
@@ -369,9 +369,9 @@
   <Edge nodeIn="2314" nodeOut="2439" portIn="AddEntity" portOut="SpawnedEntityID" enabled="1"/>
   <Edge nodeIn="2377" nodeOut="2547" portIn="entityId" portOut="Out" enabled="1"/>
   <Edge nodeIn="2314" nodeOut="2548" portIn="entityId" portOut="Out" enabled="1"/>
-  <Edge nodeIn="2577" nodeOut="2551" portIn="in2" portOut="Emptied" enabled="1"/>
+  <Edge nodeIn="2577" nodeOut="2551" portIn="in2" portOut="AllEntitiesDestroyed" enabled="1"/>
   <Edge nodeIn="2591" nodeOut="2551" portIn="Trigger" portOut="EntityAdded" enabled="1"/>
-  <Edge nodeIn="2802" nodeOut="2551" portIn="true" portOut="Emptied" enabled="0"/>
+  <Edge nodeIn="2802" nodeOut="2551" portIn="true" portOut="AllEntitiesDestroyed" enabled="1"/>
   <Edge nodeIn="2806" nodeOut="2551" portIn="entityId" portOut="EntityAdded" enabled="1"/>
   <Edge nodeIn="2813" nodeOut="2551" portIn="in" portOut="EntityAdded" enabled="1"/>
   <Edge nodeIn="3291" nodeOut="2551" portIn="Add" portOut="EntityAdded" enabled="1"/>
@@ -445,7 +445,7 @@
   <Edge nodeIn="2809" nodeOut="2811" portIn="sync" portOut="out" enabled="1"/>
   <Edge nodeIn="2806" nodeOut="2813" portIn="sync" portOut="out" enabled="1"/>
   <Edge nodeIn="2775" nodeOut="2815" portIn="entityId" portOut="Out" enabled="1"/>
-  <Edge nodeIn="2" nodeOut="2821" portIn="Cancel" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2821" portIn="Success" portOut="Out" enabled="1"/>
   <Edge nodeIn="2794" nodeOut="2830" portIn="min" portOut="Out" enabled="1"/>
   <Edge nodeIn="2794" nodeOut="2831" portIn="max" portOut="Out" enabled="1"/>
   <Edge nodeIn="2882" nodeOut="2860" portIn="in2" portOut="out" enabled="1"/>

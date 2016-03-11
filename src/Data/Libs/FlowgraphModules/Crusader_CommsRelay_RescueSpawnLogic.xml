@@ -14,7 +14,7 @@
  </ModuleInputsOutputs>
  <Nodes>
   <Node Id="1" Class="Module:Start_Crusader_CommsRelay_RescueSpawnLogic" pos="-180,10,0" flags="0"/>
-  <Node Id="2" Class="Module:End_Crusader_CommsRelay_RescueSpawnLogic" pos="6700,230,0" flags="0">
+  <Node Id="2" Class="Module:End_Crusader_CommsRelay_RescueSpawnLogic" pos="6770,220,0" flags="0">
    <Inputs />
   </Node>
   <Node Id="6" Class="Mission:GameTokenSet" pos="420,270,0" flags="0">
@@ -141,10 +141,10 @@
   <Node Id="2783" Class="Mission:GameToken" pos="4380,1360,0" flags="0">
    <Inputs entityId="0" gametoken_Token="Graph Tokens.CivilianSpawnedAIGroupID" compare_Value=""/>
   </Node>
-  <Node Id="2785" Name="If_all_pirates_are_killed" Class="_commentbox" pos="3800,1176.0442,0" flags="0">
+  <Node Id="2785" Name="If_all_pirates_are_killed" Class="_commentbox" pos="3800,1083.9836,0" flags="0">
    <Inputs TextSize="1" Color="0.093059,0.093059,0.093059" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
    <ResizeBorder X="0" Y="0" Width="2800" Height="1500"/>
-   <NodeSize Width="2800" Height="1527.9309"/>
+   <NodeSize Width="2800" Height="1619.9915"/>
   </Node>
   <Node Id="2786" Class="Logic:Sequentializer" pos="5560,1460,0" flags="0">
    <Inputs Closed="0" Reverse="0"/>
@@ -152,10 +152,10 @@
   <Node Id="2787" Class="Module:Call_Crusader_RetreatLogic" pos="5760,1610,0" flags="0">
    <Inputs Instanced="1" InstanceID="-1" RetreatingEntityID="0" RetreatPointID="0" TimeUntilJump="30"/>
   </Node>
-  <Node Id="2788" Name="Workaround" Class="_commentbox" pos="5530,1386.0444,0" flags="0">
+  <Node Id="2788" Name="Workaround" Class="_commentbox" pos="5530,1293.9839,0" flags="0">
    <Inputs TextSize="1" Color="1,0.144129,0.144129" DisplayFilled="0" DisplayBox="1" SortPriority="2"/>
    <ResizeBorder X="0" Y="0" Width="830" Height="1020"/>
-   <NodeSize Width="830" Height="1047.9309"/>
+   <NodeSize Width="830" Height="1139.9915"/>
   </Node>
   <Node Id="2789" Class="Module:Call_Crusader_RetreatLogic" pos="5760,1750,0" flags="0">
    <Inputs Instanced="1" InstanceID="-1" RetreatingEntityID="0" RetreatPointID="0" TimeUntilJump="30"/>
@@ -203,7 +203,7 @@
   <Node Id="2833" Class="String:Compare" pos="3690,-1430,0" flags="0">
    <Inputs A="" B="DFM_CrusaderShips.ORIG.ORIG_315p_Civilian" IgnoreCase="1"/>
   </Node>
-  <Node Id="2836" Class="entity:GroupEntity" pos="3180,-1430,0" flags="1">
+  <Node Id="2836" Class="entity:GroupEntity" pos="3180,-1430,0" flags="0">
    <Inputs entityId="0" AddEntity="0" AddEntities="0" RemoveEntity="0" RemoveEntities="0"/>
   </Node>
   <Node Id="2837" Class="Mission:GameToken" pos="3180,-1530,0" flags="0">
@@ -221,10 +221,10 @@
   <Node Id="2852" Class="Logic:Any" pos="3050,1880,0" flags="0">
    <Inputs />
   </Node>
-  <Node Id="2853" Name="Damage_Civilian_Ship" Class="_commentbox" pos="3060,-2061.7205,0" flags="0">
+  <Node Id="2853" Name="Damage_Civilian_Ship" Class="_commentbox" pos="3060,-2153.7808,0" flags="0">
    <Inputs TextSize="1" Color="0.0451862,0.0451862,0.0451862" DisplayFilled="0" DisplayBox="1" SortPriority="16"/>
    <ResizeBorder X="0" Y="0" Width="1790" Height="1320"/>
-   <NodeSize Width="1790" Height="1347.9309"/>
+   <NodeSize Width="1790" Height="1439.9915"/>
   </Node>
   <Node Id="3287" Class="entity:VehicleDestroyBoundary" pos="3820,-20,0" flags="0">
    <Inputs entityId="0" VehicleId="0"/>
@@ -276,6 +276,9 @@
   </Node>
   <Node Id="3343" Class="Vehicle:Lock" pos="3640,-1080,0" flags="0">
    <Inputs entityId="0" LockType="0"/>
+  </Node>
+  <Node Id="3345" Class="Logic:Any" pos="6610,220,0" flags="0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
   </Node>
  </Nodes>
  <Edges>
@@ -396,8 +399,8 @@
   <Edge nodeIn="3343" nodeOut="2836" portIn="entityId" portOut="EntityAdded" enabled="1"/>
   <Edge nodeIn="2836" nodeOut="2837" portIn="entityId" portOut="Out" enabled="1"/>
   <Edge nodeIn="2776" nodeOut="2847" portIn="Start" portOut="out" enabled="1"/>
-  <Edge nodeIn="2" nodeOut="2849" portIn="Success" portOut="Out" enabled="1"/>
-  <Edge nodeIn="2" nodeOut="2850" portIn="Cancel" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3345" nodeOut="2849" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3345" nodeOut="2850" portIn="in1" portOut="Out" enabled="1"/>
   <Edge nodeIn="2778" nodeOut="2852" portIn="Cancel" portOut="out" enabled="1"/>
   <Edge nodeIn="2787" nodeOut="2852" portIn="Cancel" portOut="out" enabled="1"/>
   <Edge nodeIn="2789" nodeOut="2852" portIn="Cancel" portOut="out" enabled="1"/>
@@ -420,6 +423,7 @@
   <Edge nodeIn="3341" nodeOut="3339" portIn="A" portOut="out" enabled="1"/>
   <Edge nodeIn="3341" nodeOut="3339" portIn="A==B" portOut="out" enabled="1"/>
   <Edge nodeIn="2847" nodeOut="3341" portIn="in" portOut="true" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="3345" portIn="Success" portOut="out" enabled="1"/>
  </Edges>
  <GraphTokens>
   <Token Name="AIDestroyBoundary" Type="EntityId" Default=""/>
